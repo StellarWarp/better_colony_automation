@@ -2,7 +2,11 @@
 
 https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
-# Better Colony Automation (BCA) - 殖民地自动化改良 
+[4.3 support is released!](https://steamcommunity.com/sharedfiles/filedetails/?id=3673829479)
+
+# Better Colony Automation (BCA) - 殖民地自动化改良
+
+[4.3 的支持已经发布!](https://steamcommunity.com/sharedfiles/filedetails/?id=3673829479)
 
 由于罪恶的P社在4.0更新后一直没修复自动托管的bug，导致每到中后期的游戏体验极差，最后还得是自己来解决P社的bug
 
@@ -87,8 +91,7 @@ https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
 ### 兼容性 MOD
 
-- [Stellar AI 兼容性模组](https://steamcommunity.com/sharedfiles/filedetails/?id=3669715825)
-
+[Stellar AI 兼容性模组](https://steamcommunity.com/sharedfiles/filedetails/?id=3669715825)
 
 ---
 

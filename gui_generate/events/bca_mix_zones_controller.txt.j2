@@ -127,6 +127,8 @@ planet_event = {
 		}
 	}
 	immediate = {
+
+	    remove_planet_flag = bac_plan_build_new_zone
         {% for item in zones_info %}
         {% set type = item.type %}
         {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
@@ -136,5 +138,32 @@ planet_event = {
         remove_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
         {% endif %}
         {% endfor %}
+	}
+}
+
+country_event = {
+	id = colony_automation_event.900
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			is_ai = no
+		}
+	}
+	immediate = {
+        every_owned_planet = {
+            limit = {
+                always = yes
+            }
+            {% for item in zones_info %}
+            {% set type = item.type %}
+            {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
+            remove_planet_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+            {% endif %}
+            {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
+            remove_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
+            {% endif %}
+            {% endfor %}
+        }
 	}
 }

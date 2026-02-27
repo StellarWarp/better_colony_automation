@@ -1686,6 +1686,7 @@ planet_event = {
 		}
 	}
 	immediate = {
+        remove_planet_flag = bac_plan_build_new_zone
         remove_planet_flag = bca_pf_plan_build_primary_zone_type_urban
         remove_planet_flag = bca_pf_plan_build_secondary_zone_type_urban
         remove_planet_flag = bca_pf_plan_build_primary_zone_type_trade
@@ -1741,5 +1742,79 @@ planet_event = {
         remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
         remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_energy
         remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_food
+	}
+}
+
+country_event = {
+	id = colony_automation_event.900
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			is_ai = no
+		}
+	}
+	immediate = {
+        every_owned_planet = {
+            limit = {
+                always = yes
+            }
+            remove_planet_flag = bac_plan_build_new_zone
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_urban
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_urban
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_trade
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_trade
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_industrial
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_industrial
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_foundry
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_foundry
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_factory
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_factory
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_research
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_research
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_physics
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_physics
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_society
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_society
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_engineering
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_engineering
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_bureaucrat
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_bureaucrat
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_unity
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_unity
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_priest
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_priest
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_fortress
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_fortress
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_resort
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_entertainer
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_zoo
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_culture_worker
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_trophy_hunter
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_healthcare
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_duelist
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_energy
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_energy
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_betharian
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_minerals
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_minerals
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_food
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_food
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_rare_crystals
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_volatile_motes
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_exotic_gases
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_angler
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_spawning
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_spawning
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_foundry
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_research
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_unity
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_spawning
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_trade
+            remove_planet_flag = bca_pf_plan_build_primary_zone_type_wilderness_fortress
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_energy
+            remove_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_food
+        }
 	}
 }
