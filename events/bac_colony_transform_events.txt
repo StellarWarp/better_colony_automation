@@ -101,6 +101,12 @@ planet_event = {
 
 	option = {
 		name = colony_automation_event.102.a
+		allow = {
+			custom_tooltip = {
+				fail_text = bca_no_enough_resources_for_arcology_project
+				bca_has_resource_for_arcology_project = yes
+			}
+		}
 		if = {
 			limit = { is_planet_class = pc_relic }
 			select_decision = { name = decision_arcology_project_relic }
@@ -117,7 +123,12 @@ planet_event = {
 	option = {
 		name = colony_automation_event.102.b
 		hidden_effect = {
-			planet_event = { id=colony_automation_event.100 }
+			if = {
+				limit = {
+					bca_has_resource_for_arcology_project = no
+				}
+				planet_event = { id=colony_automation_event.100 }
+			}
 		}
 	}
 
