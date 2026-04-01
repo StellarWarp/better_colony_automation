@@ -134,14 +134,21 @@
 - Fixed incorrect district construction bugs and several other issues.
 
 哇噗 **26-02-28 - v1.3**
-- Rewrote automatic building demolition so it no longer depends on modifying vanilla building files — reduces conflicts with mods that change buildings.
-- Added support for demolishing job-only buildings (e.g., basic research labs) to free slots for higher-tier buildings.
-- Fixed cases where zone construction could stop unexpectedly.
-- Adjusted construction priorities: auxiliary/gain buildings build when there's spare job capacity; job-only buildings are deferred until districts are full.
+- Rewrote the automatic building demolition, no longer relying on modifying vanilla buildings, avoiding conflicts with other mods.
+- Added support for demolishing job-only buildings (like research labs) to free up space for advanced buildings.
+- Fixed an issue where specialization construction would halt under certain conditions.
+- Adjusted building construction priority: buff buildings are now built when there are vacant jobs, while job-only buildings are only built when districts are full.
+
+哇噗 **26-04-01 v1.4**:
+- Improved ecumenopolis construction: when multiple ecumenopolis candidates meet the requirements, they are aggregated into a single event panel, making it easy to select and jump to the corresponding colony when resources are insufficient.
+- Improved resort world construction logic: resort worlds will now only build housing buildings as their functional buildings.
+- Automatic district management for energy and mining habitats: now supported, converting all possible districts into primary resource districts when enabled.
+- Fixed building misconstruction issue: buildings in the previous hybrid specialization were constructed according to panel settings, causing unintended builds. This is now based on the constructed specialization.
+- Fixed incorrect building demolition: resolved an issue where research buildings were mistakenly demolished under the administrative hybrid specialization (Unity + Research).
+
 
 ---
-
-## Contribute
+## Contribute to this mod
 
 Currently, this mod only supports commonly used vanilla buildings and districts.
 Co-authors are welcome!

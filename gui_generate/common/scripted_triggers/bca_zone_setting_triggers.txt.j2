@@ -37,6 +37,17 @@ bca_has_any_planted_zone_of_type_{{ item.type }} = {
 }
 {% endfor %}
 
+{% for item in zones_info %}
+bca_has_zone_of_type_{{ item.type }} = {
+    OR = {
+    {% for zone in item.zones %}
+        num_zones = { type = {{ zone }} value > 0 }
+    {% endfor %}
+    }
+}
+{% endfor %}
+
+
 {% set all_district_set = [primary_districts, secondary_districts_d1, secondary_districts_d2, secondary_districts_d3] %}
 
 {% for district_set_idx in [1,2,3] %}
