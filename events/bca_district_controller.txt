@@ -15,74 +15,11 @@ planet_event = {
 	}
 
 	immediate = {
-        random_list = {
-            1 = {
-                    if = {
-                        limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d0
-                    }
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d1
-                    }
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d2
-                    }
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d3
-                    }
+        if = {
+            limit = {
+                has_modifier = bca_pm_arcology_project_candidate
             }
-            1 = {
-                    if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d1
-                    }
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d2
-                    }
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
-                        }
-                        set_planet_flag = bca_pf_plan_build_district_d3
-                    }
-                    else_if = {
+            if = {
                         limit = {
                             check_variable_arithmetic = {
                                 which = value:bca_num_primary_districts_plan
@@ -90,9 +27,87 @@ planet_event = {
                             }
                         }
                         set_planet_flag = bca_pf_plan_build_district_d0
-                    }
             }
-            1 = {
+        }
+        else = {
+            random_list = {
+                1 = {
+                    if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_primary_districts_plan
+                                value > value:num_primary_district
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d0
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d1
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d2
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d3
+                    }
+                }
+                1 = {
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d1
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d2
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d3
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_primary_districts_plan
+                                value > value:num_primary_district
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d0
+                    }
+                }
+                1 = {
                     if = {
                         limit = {
                             check_variable = {
@@ -129,8 +144,8 @@ planet_event = {
                         }
                         set_planet_flag = bca_pf_plan_build_district_d1
                     }
-            }
-            1 = {
+                }
+                1 = {
                     if = {
                         limit = {
                             check_variable = {
@@ -167,6 +182,7 @@ planet_event = {
                         }
                         set_planet_flag = bca_pf_plan_build_district_d2
                     }
+                }
             }
         }
     }

@@ -1,0 +1,16 @@
+l_english:
+ colony_automation_event.110.name:0 "Arcology Project Candidates"
+ colony_automation_event.110.desc:0 "Our automated systems report that the following colonies have met the prerequisites for the Arcology Project, and resources are currently sufficient.\n\nPlease select the planet you wish to inspect or transform:"
+
+ {% for i in range(1, 10) %}
+ colony_automation_event.110.opt.{{ "%02d"|format(i) }}:0 "[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.GetName] £planet£§H[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.bca_planet_size_scripted_loc]§!"
+ {% endfor %}
+
+ colony_automation_event.102.name:0 "Arcology Project Ready"
+ colony_automation_event.102.desc:0 "[Root.GetName] £planet£§H[Root.bca_planet_size_scripted_loc]§! meets the requirements for the Arcology Project. Should we begin the project now?"
+ colony_automation_event.102.a:0 "Begin Arcology Project"
+ colony_automation_event.102.b:0 "Maybe later"
+ colony_automation_event.102.c:0 "Cancel candidate status"
+ colony_automation_event.102.d:0 "View candidate list"
+ bca_no_enough_resources_for_arcology_project:0 "Initiating the Arcology Project will overdraw reserved resources"
+

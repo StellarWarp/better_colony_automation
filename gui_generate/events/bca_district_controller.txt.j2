@@ -46,18 +46,28 @@ planet_event = {
 	}
 
 	immediate = {
-        random_list = {
-            1 = {
-                {#  #}{{ try_build_district_by_order([0,1,2,3]) }}{#  #}
+        if = {
+            limit = {
+                has_modifier = bca_pm_arcology_project_candidate
             }
-            1 = {
-                {#  #}{{ try_build_district_by_order([1,2,3,0]) }}{#  #}
+            if = {
+                {#  #}{{ try_build_district(0) }}{#  #}
             }
-            1 = {
-                {#  #}{{ try_build_district_by_order([2,3,0,1]) }}{#  #}
-            }
-            1 = {
-                {#  #}{{ try_build_district_by_order([3,0,1,2]) }}{#  #}
+        }
+        else = {
+            random_list = {
+                1 = {
+                    {#  #}{{ try_build_district_by_order([0,1,2,3]) }}{#  #}
+                }
+                1 = {
+                    {#  #}{{ try_build_district_by_order([1,2,3,0]) }}{#  #}
+                }
+                1 = {
+                    {#  #}{{ try_build_district_by_order([2,3,0,1]) }}{#  #}
+                }
+                1 = {
+                    {#  #}{{ try_build_district_by_order([3,0,1,2]) }}{#  #}
+                }
             }
         }
     }

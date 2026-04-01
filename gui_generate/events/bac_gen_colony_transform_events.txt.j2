@@ -1,0 +1,160 @@
+namespace = colony_automation_event
+
+# 隐形前置处理/刷新事件
+country_event = {
+    id = colony_automation_event.109
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        is_ai = no
+    }
+
+    immediate = {
+        # 1. 重置计数器
+        set_variable = {
+            which = bca_arcology_project_candidate_planet_count
+            value = 0
+        }
+        # 2. 遍历并利用你的effect将符合条件的星球层层保存到 bca_arcology_project_candidate_planet_01~09 中
+        every_owned_planet = {
+            limit = {
+                has_modifier = bca_pm_arcology_project_candidate
+            }
+            if = {
+                limit = {
+                    NOR = {
+                        AND = {
+                            NOR = {
+                                is_planet_class = pc_city
+                                is_planet_class = pc_relic
+                                has_modifier = resort_colony
+                                has_modifier = penal_colony
+                                has_modifier = slave_colony
+                                has_modifier = pm_wenkwort_custodian
+                                has_designation = col_nanotech_world
+                            }
+                            exists = owner
+                            owner = { has_ascension_perk = ap_arcology_project }
+                        }
+                        AND = {
+                            is_planet_class = pc_relic
+                            exists = owner
+                            owner = {
+                                OR = {
+                                    is_regular_empire = yes
+                                    has_valid_civic = civic_machine_servitor
+                                }
+                            }
+                        }
+                    }
+                }
+                planet_event = { id=colony_automation_event.100 }
+            }
+            # city_world_candidate
+            else_if = {
+                limit = {
+                    bca_has_resource_for_arcology_project = yes
+                    OR = {
+                        AND = {
+                            free_district_slots < 1
+                            num_uncleared_blockers < 1
+                            num_districts = { type = district_farming value < 1 }
+                            num_districts = { type = district_mining value < 1 }
+                            num_districts = { type = district_generator value < 1 }
+                            # Volcanic Worlds
+                            num_districts = { type = district_geothermal value < 1 }
+                            num_districts = { type = district_melting value < 1 }
+                            num_districts = { type = district_polytechnic value < 1 }
+
+                            NOT = { has_planet_flag = legendary_leader_planet }
+                        }
+                        AND = {
+                            is_planet_class = pc_relic
+                            is_artificial = no
+                            exists = owner
+                            num_uncleared_blockers < 1
+                            owner = { has_technology = tech_housing_2 }
+                        }
+                    }
+                }
+                {% for i in range(1, 10) %}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        owner = {
+                            check_variable = {
+                                which = bca_arcology_project_candidate_planet_count
+                                value = {{ i - 1 }}
+                            }
+                        }
+                    }
+                    owner = {
+                        add_variable = {
+                            which = bca_arcology_project_candidate_planet_count
+                            value = 1
+                        }
+                    }
+                    save_event_target_as = bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}
+                }
+                {% endfor %}
+            }
+        }
+
+        # 3. 检查：如果有2个及以上目标，弹出 .110 列表界面；如果只有1个目标，直接跳转至 .102 确认界面
+        if = {
+            limit = {
+                check_variable = {
+                    which = bca_arcology_project_candidate_planet_count
+                    value >= 2
+                }
+            }
+            country_event = { id = colony_automation_event.110 }
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = bca_arcology_project_candidate_planet_count
+                    value = 1
+                }
+            }
+            event_target:bca_arcology_project_candidate_planet_01 = {
+                planet_event = { id = colony_automation_event.102 }
+            }
+        }
+    }
+}
+
+country_event = {
+    id = colony_automation_event.110
+    is_triggered_only = yes
+    title = colony_automation_event.110.name
+    desc = colony_automation_event.110.desc
+    picture = GFX_evt_metropolis
+    show_sound = event_administrative_work
+
+	{% for i in range(1, 10) %}
+    option = {
+		name = colony_automation_event.110.opt.{{ "%02d"|format(i) }}
+		trigger = {
+			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+			check_variable = {
+				which = bca_arcology_project_candidate_planet_count
+				value >= {{ i }}
+			}
+			exists = event_target:bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}
+		}
+        hidden_effect = {
+            # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
+            event_target:bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }} = {
+                planet_event = { id = colony_automation_event.102 }
+            }
+        }
+	}
+	{% endfor %}
+
+	option = {
+		name = CLOSE
+	}
+}
+
+
