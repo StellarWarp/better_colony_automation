@@ -30,20 +30,8 @@ bca_add_district_d0 = {
         add_district = { district_type = district_nexus }
     }
     else_if = {
-        limit = { has_district = district_prison_industrial }
-        add_district = { district_type = district_prison_industrial }
-    }
-    else_if = {
-        limit = { has_district = district_battle_thrall }
-        add_district = { district_type = district_battle_thrall }
-    }
-    else_if = {
         limit = { has_district = district_arcology_housing }
         add_district = { district_type = district_arcology_housing }
-    }
-    else_if = {
-        limit = { has_district = district_arcology_leisure }
-        add_district = { district_type = district_arcology_leisure }
     }
     else_if = {
         limit = { has_district = district_hab_housing }
@@ -94,20 +82,8 @@ bca_add_district_d0 = {
         add_district = { district_type = district_nexus }
     }
     else_if = {
-        limit = { bca_can_build_district_prison_industrial = yes }
-        add_district = { district_type = district_prison_industrial }
-    }
-    else_if = {
-        limit = { bca_can_build_district_battle_thrall = yes }
-        add_district = { district_type = district_battle_thrall }
-    }
-    else_if = {
         limit = { bca_can_build_district_arcology_housing = yes }
         add_district = { district_type = district_arcology_housing }
-    }
-    else_if = {
-        limit = { bca_can_build_district_arcology_leisure = yes }
-        add_district = { district_type = district_arcology_leisure }
     }
     else_if = {
         limit = { bca_can_build_district_hab_housing = yes }
@@ -161,20 +137,8 @@ bca_remove_district_d0 = {
         remove_district = district_nexus
     }
     else_if = {
-        limit = { has_district = district_prison_industrial }
-        remove_district = district_prison_industrial
-    }
-    else_if = {
-        limit = { has_district = district_battle_thrall }
-        remove_district = district_battle_thrall
-    }
-    else_if = {
         limit = { has_district = district_arcology_housing }
         remove_district = district_arcology_housing
-    }
-    else_if = {
-        limit = { has_district = district_arcology_leisure }
-        remove_district = district_arcology_leisure
     }
     else_if = {
         limit = { has_district = district_hab_housing }

@@ -19,6 +19,15 @@ GAME_ROOT = Path("D:\SteamLibrary\steamapps\common\Stellaris")
 
 ast = ASTLoader(GAME_ROOT, CONFIG).load()
 
+# Load blacklisted districts and filter AST early
+with open("../configs/blacklisted_secondary_districts.yaml", "r", encoding="utf-8") as f:
+    data = yaml.safe_load(f)
+    blacklisted_secondary_districts = set(data.get("blacklisted_districts", []))
+
+for district in list(ast['common/districts'].keys()):
+    if district in blacklisted_secondary_districts:
+        del ast['common/districts'][district]
+
 def node_to_string(node):
     if not node: return ""
     if isinstance(node, BlockNode):
@@ -178,12 +187,7 @@ with open("../templates/generated_configs/zones_on_district.yaml", "w", encoding
 with open("../templates/generated_configs/districts_for_zone.yaml", "w", encoding="utf-8") as f:
     yaml.dump({"districts_for_zone": zone_district_mapping}, f, allow_unicode=True)
 
-# load manual_config/used_secondary_districts.yaml
-with open("../configs/used_secondary_districts.yaml", "r", encoding="utf-8") as f:
-    data = yaml.safe_load(f)
-    used_secondary_districts = data.get("secondary_districts", [])
-
-zone_district_mapping_single = {zone: [d for d in districts if district_type_mapping.get(d) == "single_zone" and d in used_secondary_districts] for zone, districts in zone_district_mapping.items()}
+zone_district_mapping_single = {zone: [d for d in districts if district_type_mapping.get(d) == "single_zone"] for zone, districts in zone_district_mapping.items()}
 #remove empty entries
 zone_district_mapping_single = {zone: districts for zone, districts in zone_district_mapping_single.items() if len(districts) > 0}
 with open("../templates/generated_configs/secondary_districts_for_zone.yaml", "w", encoding="utf-8") as f:

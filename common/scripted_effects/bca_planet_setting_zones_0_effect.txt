@@ -582,6 +582,7 @@ bca_primary_district_update_zone_options_interloop = {
             }
             OR = {
                     bca_primary_district_can_build_zone_rare_crystals = yes
+                    bca_primary_district_can_build_zone_habitat_rare_crystals = yes
                     bca_primary_district_can_build_zone_rare_crystals_nexus = yes
                     bca_primary_district_can_build_zone_rare_crystals_hive = yes
             }
@@ -604,6 +605,7 @@ bca_primary_district_update_zone_options_interloop = {
             }
             OR = {
                     bca_primary_district_can_build_zone_volatile_motes = yes
+                    bca_primary_district_can_build_zone_habitat_volatile_motes = yes
                     bca_primary_district_can_build_zone_volatile_motes_nexus = yes
                     bca_primary_district_can_build_zone_volatile_motes_hive = yes
             }
@@ -626,6 +628,7 @@ bca_primary_district_update_zone_options_interloop = {
             }
             OR = {
                     bca_primary_district_can_build_zone_exotic_gases = yes
+                    bca_primary_district_can_build_zone_habitat_exotic_gases = yes
                     bca_primary_district_can_build_zone_exotic_gases_nexus = yes
                     bca_primary_district_can_build_zone_exotic_gases_hive = yes
             }
@@ -2319,6 +2322,18 @@ bca_primary_district_update_zone_options_interloop = {
         }
         else_if = {
             limit = {
+                bca_primary_district_can_build_zone_habitat_rare_crystals = yes
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_rare_crystals
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_rare_crystals
+            set_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
                 bca_primary_district_can_build_zone_rare_crystals_nexus = yes
             }
             set_planet_flag = bca_pf_ps_zone_option_elected_rare_crystals
@@ -2367,6 +2382,18 @@ bca_primary_district_update_zone_options_interloop = {
         }
         else_if = {
             limit = {
+                bca_primary_district_can_build_zone_habitat_volatile_motes = yes
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_volatile_motes
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_volatile_motes
+            set_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
                 bca_primary_district_can_build_zone_volatile_motes_nexus = yes
             }
             set_planet_flag = bca_pf_ps_zone_option_elected_volatile_motes
@@ -2408,6 +2435,18 @@ bca_primary_district_update_zone_options_interloop = {
             set_planet_flag = bca_pf_ps_zone_option_elected_exotic_gases
             set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_exotic_gases
             set_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
+                bca_primary_district_can_build_zone_habitat_exotic_gases = yes
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_exotic_gases
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_exotic_gases
+            set_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
             add_variable = {
                 which = zone_selector_options_count
                 value = 1
@@ -3001,14 +3040,17 @@ bca_clean_flags_zone_selector = {
     remove_planet_flag = bca_pf_ps_option_map_food_zone_food_hive
     remove_planet_flag = bca_pf_ps_zone_option_elected_rare_crystals
     remove_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals
+    remove_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
     remove_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals_nexus
     remove_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals_hive
     remove_planet_flag = bca_pf_ps_zone_option_elected_volatile_motes
     remove_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes
+    remove_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
     remove_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes_nexus
     remove_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes_hive
     remove_planet_flag = bca_pf_ps_zone_option_elected_exotic_gases
     remove_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
+    remove_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
     remove_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases_nexus
     remove_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases_hive
     remove_planet_flag = bca_pf_ps_zone_option_elected_angler
@@ -5759,6 +5801,12 @@ bca_secondary_district_update_zone_options_interloop = {
                     }
                 }
                 AND = {
+                    bca_can_build_zone_habitat_rare_crystals = yes
+                    OR = {
+                        has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_mining
+                    }
+                }
+                AND = {
                     bca_can_build_zone_rare_crystals_nexus = yes
                     OR = {
                         has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
@@ -5802,6 +5850,12 @@ bca_secondary_district_update_zone_options_interloop = {
                     }
                 }
                 AND = {
+                    bca_can_build_zone_habitat_volatile_motes = yes
+                    OR = {
+                        has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+                    }
+                }
+                AND = {
                     bca_can_build_zone_volatile_motes_nexus = yes
                     OR = {
                         has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
@@ -5841,6 +5895,12 @@ bca_secondary_district_update_zone_options_interloop = {
                     OR = {
                         has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
                         has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+                    }
+                }
+                AND = {
+                    bca_can_build_zone_habitat_exotic_gases = yes
+                    OR = {
+                        has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
                     }
                 }
                 AND = {
@@ -8028,6 +8088,21 @@ bca_secondary_district_update_zone_options_interloop = {
         }
         else_if = {
             limit = {
+                bca_can_build_zone_habitat_rare_crystals = yes
+                OR = {
+                    has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_mining
+                }
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_rare_crystals
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_rare_crystals
+            set_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
                 bca_can_build_zone_rare_crystals_nexus = yes
                 OR = {
                     has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
@@ -8091,6 +8166,21 @@ bca_secondary_district_update_zone_options_interloop = {
         }
         else_if = {
             limit = {
+                bca_can_build_zone_habitat_volatile_motes = yes
+                OR = {
+                    has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+                }
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_volatile_motes
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_volatile_motes
+            set_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
                 bca_can_build_zone_volatile_motes_nexus = yes
                 OR = {
                     has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
@@ -8146,6 +8236,21 @@ bca_secondary_district_update_zone_options_interloop = {
             set_planet_flag = bca_pf_ps_zone_option_elected_exotic_gases
             set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_exotic_gases
             set_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
+                bca_can_build_zone_habitat_exotic_gases = yes
+                OR = {
+                    has_planet_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+                }
+            }
+            set_planet_flag = bca_pf_ps_zone_option_elected_exotic_gases
+            set_planet_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_exotic_gases
+            set_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
             add_variable = {
                 which = zone_selector_options_count
                 value = 1
@@ -8797,14 +8902,17 @@ bca_planet_setting_remove_current_selected_zone = {
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_food_hive
     remove_planet_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_rare_crystals
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals
+    remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_rare_crystals
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals_nexus
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals_hive
     remove_planet_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_volatile_motes
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes
+    remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_volatile_motes
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes_nexus
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes_hive
     remove_planet_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases
+    remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_exotic_gases
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases_nexus
     remove_planet_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases_hive
     remove_planet_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_angler
@@ -9556,6 +9664,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_rare_crystals
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_nexus
@@ -9580,6 +9694,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_volatile_motes
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_nexus
@@ -9601,6 +9721,12 @@ bca_secondary_district_auto_select_default = {
                 has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
             }
             set_planet_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases
+        }
+        if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_exotic_gases
         }
         if = {
             limit = {
@@ -10505,6 +10631,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_rare_crystals
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z4_zone_rare_crystals_nexus
@@ -10529,6 +10661,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_volatile_motes
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z4_zone_volatile_motes_nexus
@@ -10550,6 +10688,12 @@ bca_secondary_district_auto_select_default = {
                 has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
             }
             set_planet_flag = bca_pf_ps_selected_zone_z4_zone_exotic_gases
+        }
+        if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_exotic_gases
         }
         if = {
             limit = {
@@ -11454,6 +11598,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_habitat_rare_crystals
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_rare_crystals
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_rare_crystals_zone_rare_crystals_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z5_zone_rare_crystals_nexus
@@ -11478,6 +11628,12 @@ bca_secondary_district_auto_select_default = {
         }
         if = {
             limit = {
+                has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_habitat_volatile_motes
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_volatile_motes
+        }
+        if = {
+            limit = {
                 has_planet_flag = bca_pf_ps_option_map_volatile_motes_zone_volatile_motes_nexus
             }
             set_planet_flag = bca_pf_ps_selected_zone_z5_zone_volatile_motes_nexus
@@ -11499,6 +11655,12 @@ bca_secondary_district_auto_select_default = {
                 has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_exotic_gases
             }
             set_planet_flag = bca_pf_ps_selected_zone_z5_zone_exotic_gases
+        }
+        if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_option_map_exotic_gases_zone_habitat_exotic_gases
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_exotic_gases
         }
         if = {
             limit = {

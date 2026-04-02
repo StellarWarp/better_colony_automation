@@ -128,28 +128,7 @@ num_primary_district = {
     complex_trigger_modifier = {
         trigger = num_districts
         parameters = {
-            type = district_prison_industrial
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = district_battle_thrall
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
             type = district_arcology_housing
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = district_arcology_leisure
         }
         mode = add
     }
@@ -435,28 +414,7 @@ num_district_d0 = {
     complex_trigger_modifier = {
         trigger = num_districts
         parameters = {
-            type = district_prison_industrial
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = district_battle_thrall
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
             type = district_arcology_housing
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = district_arcology_leisure
         }
         mode = add
     }
@@ -767,41 +725,11 @@ num_free_primary_district = {
     complex_trigger_modifier = {
         trigger = num_free_districts
         parameters = {
-            type = district_prison_industrial
-        }
-        mode = set
-        potential = {
-            bca_can_build_district_prison_industrial = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
-            type = district_battle_thrall
-        }
-        mode = set
-        potential = {
-            bca_can_build_district_battle_thrall = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
             type = district_arcology_housing
         }
         mode = set
         potential = {
             bca_can_build_district_arcology_housing = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
-            type = district_arcology_leisure
-        }
-        mode = set
-        potential = {
-            bca_can_build_district_arcology_leisure = yes
         }
     }
     complex_trigger_modifier = {
@@ -1188,34 +1116,10 @@ num_free_district_d0 = {
     }
     complex_trigger_modifier = {
         trigger = num_free_districts
-        parameters = { type = district_prison_industrial }
-        mode = set
-        potential = {
-            bca_can_build_district_prison_industrial = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = { type = district_battle_thrall }
-        mode = set
-        potential = {
-            bca_can_build_district_battle_thrall = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
         parameters = { type = district_arcology_housing }
         mode = set
         potential = {
             bca_can_build_district_arcology_housing = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = { type = district_arcology_leisure }
-        mode = set
-        potential = {
-            bca_can_build_district_arcology_leisure = yes
         }
     }
     complex_trigger_modifier = {
@@ -1895,7 +1799,21 @@ num_zones_secondary_district = {
     complex_trigger_modifier = {
         trigger = num_zones
         parameters = {
+            type = zone_habitat_exotic_gases
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
             type = zone_habitat_hydroponics
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_rare_crystals
         }
         mode = add
     }
@@ -1910,6 +1828,13 @@ num_zones_secondary_district = {
         trigger = num_zones
         parameters = {
             type = zone_habitat_research_unity
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_volatile_motes
         }
         mode = add
     }
@@ -4140,6 +4065,13 @@ num_secondary_zones_of_type_rare_crystals = {
     complex_trigger_modifier = {
         trigger = num_zones
         parameters = {
+            type = zone_habitat_rare_crystals
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
             type = zone_rare_crystals_nexus
         }
         mode = add
@@ -4191,6 +4123,13 @@ num_secondary_zones_of_type_volatile_motes = {
     complex_trigger_modifier = {
         trigger = num_zones
         parameters = {
+            type = zone_habitat_volatile_motes
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
             type = zone_volatile_motes_nexus
         }
         mode = add
@@ -4236,6 +4175,13 @@ num_secondary_zones_of_type_exotic_gases = {
         trigger = num_zones
         parameters = {
             type = zone_exotic_gases
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_exotic_gases
         }
         mode = add
     }
@@ -8648,6 +8594,50 @@ num_zone_plan_of_zone_rare_crystals = {
         add = 1
     }
 }
+num_zones_of_zone_habitat_rare_crystals = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_rare_crystals
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_habitat_rare_crystals = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_habitat_rare_crystals
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_habitat_rare_crystals
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_rare_crystals
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_rare_crystals
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_rare_crystals
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 num_zones_of_zone_rare_crystals_nexus = {
     complex_trigger_modifier = {
         trigger = num_zones
@@ -8780,6 +8770,50 @@ num_zone_plan_of_zone_volatile_motes = {
         add = 1
     }
 }
+num_zones_of_zone_habitat_volatile_motes = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_volatile_motes
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_habitat_volatile_motes = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_habitat_volatile_motes
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_habitat_volatile_motes
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_volatile_motes
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_volatile_motes
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_volatile_motes
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 num_zones_of_zone_volatile_motes_nexus = {
     complex_trigger_modifier = {
         trigger = num_zones
@@ -8905,6 +8939,50 @@ num_zone_plan_of_zone_exotic_gases = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_exotic_gases
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_habitat_exotic_gases = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_habitat_exotic_gases
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_habitat_exotic_gases = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_habitat_exotic_gases
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_habitat_exotic_gases
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_exotic_gases
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_habitat_exotic_gases
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_habitat_exotic_gases
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0

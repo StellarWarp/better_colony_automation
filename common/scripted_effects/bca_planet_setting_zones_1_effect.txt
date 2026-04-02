@@ -3136,6 +3136,24 @@ hidden_effect = {
             if = {
                 limit = {
                     check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_habitat_rare_crystals
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_habitat_rare_crystals }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = rare_crystals
+                    ZONE = zone_habitat_rare_crystals
+                    DISTRICT = district_hab_mining
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
                         which = value:num_zones_of_zone_rare_crystals_nexus
                         value > 0
                     }
@@ -3228,6 +3246,24 @@ hidden_effect = {
             if = {
                 limit = {
                     check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_habitat_volatile_motes
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_habitat_volatile_motes }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = volatile_motes
+                    ZONE = zone_habitat_volatile_motes
+                    DISTRICT = district_hab_energy
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
                         which = value:num_zones_of_zone_volatile_motes_nexus
                         value > 0
                     }
@@ -3310,6 +3346,24 @@ hidden_effect = {
                     TYPE = exotic_gases
                     ZONE = zone_exotic_gases
                     DISTRICT = district_orchard_forests
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_habitat_exotic_gases
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_habitat_exotic_gases }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = exotic_gases
+                    ZONE = zone_habitat_exotic_gases
+                    DISTRICT = district_hab_energy
                 }
             }
             if = {
@@ -4883,6 +4937,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
             }
             if = {
                 limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_rare_crystals
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_habitat_rare_crystals
+            }
+            if = {
+                limit = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_nexus
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals_nexus
@@ -4909,6 +4969,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
             }
             if = {
                 limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_volatile_motes
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_habitat_volatile_motes
+            }
+            if = {
+                limit = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_nexus
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes_nexus
@@ -4932,6 +4998,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_habitat_exotic_gases
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_habitat_exotic_gases
             }
             if = {
                 limit = {

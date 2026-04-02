@@ -1,70 +1,13 @@
-automate_penal_planet = {
-	category = "planet_automation_designation_construction"
-
-	emergency = yes
-	available = {
-		has_designation = col_penal
-        bca_has_minerals_to_build = yes
-	}
-
-	buildings = {
-		1 = {
-			building = building_ministry_production
-			available = {
-				OR = {
-					really_requires_more_job = no
-					free_district_slots = 0
-				}
-			}
-		}
-
-		2 = {
-			building = building_production_center
-			available = {
-				owner = {
-					has_psionic_ascension = yes
-				}
-			}
-		}
-
-		3 = {
-			building = building_precinct_house
-			available = {
-				owner = {
-					precinct_house_upkeep_affordable = yes
-				}
-				num_buildings = { type = building_precinct_house value < 1 }
-			}
-		}
-
-		4 = {
-			building = building_state_academy
-			available = {
-				owner = {
-					precinct_house_upkeep_affordable = yes
-				}
-				num_buildings = { type = building_state_academy value < 1 }
-			}
-		}
-
-		5 = {
-			building = building_foundry_efficiency_1
-			available = {
-				OR = {
-					really_requires_more_job = no
-					free_district_slots = 0
-				}
-			}
-		}
-
-		6 = {
-			building = building_factory_efficiency_1
-			available = {
-				OR = {
-					really_requires_more_job = no
-					free_district_slots = 0
-				}
-			}
-		}
-	}
-}
+# automate_penal_planet = {
+# 	category = "planet_automation_designation_construction"
+#
+# 	emergency = yes
+# 	available = {
+# 		has_designation = col_penal
+#         bca_has_minerals_to_build = yes
+# 	}
+#
+# 	buildings = {
+#
+# 	}
+# }

@@ -336,33 +336,9 @@ planet_event = {
             }
             else_if = {
                 limit = {
-                    num_districts = { type = district_prison_industrial value > 1 }
-                }
-                remove_district = district_prison_industrial
-                remove_planet_flag = bca_pf_has_district_remove_plan
-                remove_planet_flag = bca_pf_district_balanced
-            }
-            else_if = {
-                limit = {
-                    num_districts = { type = district_battle_thrall value > 1 }
-                }
-                remove_district = district_battle_thrall
-                remove_planet_flag = bca_pf_has_district_remove_plan
-                remove_planet_flag = bca_pf_district_balanced
-            }
-            else_if = {
-                limit = {
                     num_districts = { type = district_arcology_housing value > 1 }
                 }
                 remove_district = district_arcology_housing
-                remove_planet_flag = bca_pf_has_district_remove_plan
-                remove_planet_flag = bca_pf_district_balanced
-            }
-            else_if = {
-                limit = {
-                    num_districts = { type = district_arcology_leisure value > 1 }
-                }
-                remove_district = district_arcology_leisure
                 remove_planet_flag = bca_pf_has_district_remove_plan
                 remove_planet_flag = bca_pf_district_balanced
             }

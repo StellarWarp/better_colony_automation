@@ -61,10 +61,11 @@ automate_crime_management = {
 		}
 	}
 
-	job_changes = { #No increase or decrease for educators as it's a really good job
+	job_changes = {
 		enforcer_reduce = {
 			available = {
 				planet_crime < 1
+				enforcer_is_educator_trigger = no
 			}
 
 			job = enforcer
@@ -75,11 +76,12 @@ automate_crime_management = {
 			available = {
 				OR = {
 					planet_crime > 27
+					enforcer_is_educator_trigger = yes
 				}
 			}
 
 			job = enforcer
-			amount = 50
+			amount = 100
 		}
 	}
 }
@@ -124,7 +126,7 @@ automate_crime_management_gestalt = {
 			}
 
 			job = patrol_drone
-			amount = 50
+			amount = 100
 		}
 	}
 }

@@ -1,0 +1,2487 @@
+bca_zones:
+- name: zone_default
+  potential: ''
+  unlock: "NOT = {\n    has_designation = col_resort\n}"
+  show_in_tech: ''
+- name: zone_urban
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_industrial
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_factory
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_unity
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_physics
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_society
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_engineering
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n    is_spiritualist = no\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n\
+    \    }\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n   \
+    \     has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        OR = {\n\
+    \            is_wilderness_empire = no\n            NOT = {\n                has_valid_civic\
+    \ = civic_machine_servitor\n            }\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_spiritualist
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_spiritualist\
+    \ = yes\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n  \
+    \      has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_unity_bio_trophy
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_research_zone = no\n  \
+    \  has_any_industrial_zone = no\n}"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_resort
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_modifier\
+    \ = resort_colony"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_entertainment
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_modifier\
+    \ = resort_colony"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_zoo
+  potential: "exists = owner\nowner = {\n    has_technology = tech_alien_life_studies\n\
+    \    is_wilderness_empire = no\n}\nhas_modifier = resort_colony\nNOT = {\n   \
+    \ has_zone = {\n        zone = zone_resort_zoo\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_grand_museum
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_zone = {\n        zone = zone_resort_grand_museum\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_hunting_ground
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    is_xenophile\
+    \ = no\n    NOT = {\n        has_zone = {\n            zone = zone_resort_hunting_ground\n\
+    \        }\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_spiritual_retreat
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    is_spiritualist\
+    \ = yes\n    NOT = {\n        has_zone = {\n            zone = zone_resort_spiritual_retreat\n\
+    \        }\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_restoration_enclave
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    NOT =\
+    \ {\n        has_zone = {\n            zone = zone_resort_restoration_enclave\n\
+    \        }\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_resort_proving_grounds
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    OR = {\n\
+    \        has_valid_civic = civic_warrior_culture\n        is_militarist = yes\n\
+    \    }\n    NOT = {\n        has_zone = {\n            zone = zone_resort_proving_grounds\n\
+    \        }\n    }\n}"
+  unlock: has_modifier = resort_colony
+  show_in_tech: ''
+- name: zone_minerals
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: tech_mineral_purification_1
+- name: zone_betharian
+  potential: has_deposit = d_betharian_deposit
+  unlock: "hidden_trigger = {\n    has_deposit = d_betharian_deposit\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_betharian\n}"
+  show_in_tech: tech_mine_betharian
+- name: zone_rare_crystals
+  potential: has_rare_crystals_deposit = yes
+  unlock: "hidden_trigger = {\n    has_rare_crystals_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_rare_crystals\n}"
+  show_in_tech: tech_mine_rare_crystals
+- name: zone_minerals_physics
+  potential: has_deposit = d_sky_mountain
+  unlock: "hidden_trigger = {\n    has_deposit = d_sky_mountain\n}"
+  show_in_tech: ''
+- name: zone_energy
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: tech_power_hub_1
+- name: zone_volatile_motes
+  potential: has_volatile_motes_deposit = yes
+  unlock: "hidden_trigger = {\n    has_volatile_motes_deposit = yes\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_volatile_motes\n}"
+  show_in_tech: tech_mine_volatile_motes
+- name: zone_food
+  potential: "if = {\n    limit = {\n        exists = owner\n        owner = {\n \
+    \           is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse\
+    \ = {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n   \
+    \         is_wilderness_empire = no\n        }\n    }\n}"
+  unlock: "if = {\n    limit = {\n        exists = owner\n        owner = {\n    \
+    \        is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse =\
+    \ {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n     \
+    \       is_wilderness_empire = no\n        }\n    }\n}"
+  show_in_tech: tech_food_processing_1
+- name: zone_anglers
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_anglers_empire\
+    \ = yes\n    }\n}\nis_wet = yes"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_anglers_empire\
+    \ = yes\n    }\n}\nis_wet = yes"
+  show_in_tech: ''
+- name: zone_exotic_gases
+  potential: has_exotic_gases_deposit = yes
+  unlock: "hidden_trigger = {\n    has_exotic_gases_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_exotic_gases\n}"
+  show_in_tech: tech_mine_exotic_gases
+- name: zone_spawning
+  potential: "is_planet_class = pc_hive\nowner = {\n    is_hive_empire = yes\n   \
+    \ has_ascension_perk = ap_hive_worlds\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_hive_empire\
+    \ = yes\n    }\n}\nowner = {\n    has_ascension_perk = ap_hive_worlds\n}"
+  show_in_tech: ''
+- name: zone_machine_replication
+  potential: "is_planet_class = pc_machine\nexists = owner\nowner = {\n    is_machine_empire\
+    \ = yes\n    has_ascension_perk = ap_machine_worlds\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_machine_empire\
+    \ = yes\n    }\n}\nowner = {\n    has_ascension_perk = ap_machine_worlds\n}"
+  show_in_tech: ''
+- name: zone_subterranean_urban
+  potential: "exists = owner\nowner = {\n    is_subterranean_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_subterranean_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_agrarian_urban
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_agrarian_idyll\n\
+    }\nif = {\n    limit = {\n        owner = {\n            is_anglers_empire = yes\n\
+    \        }\n    }\n    is_wet = no\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_agrarian_idyll\n    }\n    if = {\n        limit = {\n            owner\
+    \ = {\n                is_anglers_empire = yes\n            }\n        }\n   \
+    \     is_wet = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_agrarian_anglers
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_agrarian_idyll\n\
+    \    is_anglers_empire = yes\n}\nis_wet = yes"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_agrarian_idyll\n        is_anglers_empire = yes\n    }\n    is_wet =\
+    \ yes\n}"
+  show_in_tech: ''
+- name: zone_cosmogenesis_default
+  potential: ''
+  unlock: ''
+  show_in_tech: ''
+- name: zone_habitat_knights
+  potential: "exists = owner\nowner = {\n    has_origin = origin_toxic_knights\n \
+    \   NOT = {\n        has_country_flag = quest_abandoned\n    }\n}\nOR = {\n  \
+    \  has_planet_flag = toxic_knights_habitat\n    has_building = building_order_castle\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_origin\
+    \ = origin_toxic_knights\n        NOT = {\n            has_country_flag = quest_abandoned\n\
+    \        }\n    }\n    OR = {\n        has_planet_flag = toxic_knights_habitat\n\
+    \        has_building = building_order_castle\n    }\n}"
+  show_in_tech: ''
+- name: zone_habitat_hydroponics
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}\nowner = {\n    has_technology = tech_hydroponics\n}"
+  show_in_tech: ''
+- name: zone_habitat_research
+  potential: always = yes
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_habitat_research_unity
+  potential: always = yes
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_habitat_rare_crystals
+  potential: has_rare_crystals_deposit = yes
+  unlock: "hidden_trigger = {\n    has_rare_crystals_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_rare_crystals\n}"
+  show_in_tech: tech_mine_rare_crystals
+- name: zone_habitat_volatile_motes
+  potential: has_volatile_motes_deposit = yes
+  unlock: "hidden_trigger = {\n    has_volatile_motes_deposit = yes\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_volatile_motes\n}"
+  show_in_tech: tech_mine_volatile_motes
+- name: zone_habitat_exotic_gases
+  potential: has_exotic_gases_deposit = yes
+  unlock: "hidden_trigger = {\n    has_exotic_gases_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_exotic_gases\n}"
+  show_in_tech: tech_mine_exotic_gases
+- name: zone_payback_enlightenment
+  potential: always = no
+  unlock: always = no
+  show_in_tech: ''
+- name: zone_broken_shackles_memorial
+  potential: always = no
+  unlock: always = no
+  show_in_tech: ''
+- name: zone_central_spire
+  potential: always = no
+  unlock: always = no
+  show_in_tech: ''
+- name: zone_urban_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_unity_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_minerals_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_energy_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_food_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_industrial_arcology
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_factory_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_physics_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_society_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_engineering_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n    is_spiritualist = no\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n\
+    \    }\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n   \
+    \     has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        OR = {\n\
+    \            is_wilderness_empire = no\n            NOT = {\n                has_valid_civic\
+    \ = civic_machine_servitor\n            }\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_spiritualist_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_spiritualist\
+    \ = yes\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n  \
+    \      has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_unity_bio_trophy_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress_arcology
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade_arcology
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_research_zone = no\n  \
+    \  has_any_industrial_zone = no\n}"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_industrial_ring_world
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_factory_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_physics_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_society_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_engineering_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n    is_spiritualist = no\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n\
+    \    }\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n   \
+    \     has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        OR = {\n\
+    \            is_wilderness_empire = no\n            NOT = {\n                has_valid_civic\
+    \ = civic_machine_servitor\n            }\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_spiritualist_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_spiritualist\
+    \ = yes\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n  \
+    \      has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_unity_bio_trophy_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade_ring_world
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_research_zone = no\n  \
+    \  has_any_industrial_zone = no\n}"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_food_ring_world
+  potential: "if = {\n    limit = {\n        exists = owner\n        owner = {\n \
+    \           is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse\
+    \ = {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n   \
+    \         is_wilderness_empire = no\n        }\n    }\n}"
+  unlock: "if = {\n    limit = {\n        exists = owner\n        owner = {\n    \
+    \        is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse =\
+    \ {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n     \
+    \       is_wilderness_empire = no\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_energy_ring_world
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_industrial_nexus
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_factory_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_physics_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_society_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_engineering_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n    is_spiritualist = no\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n\
+    \    }\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n   \
+    \     has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        OR = {\n\
+    \            is_wilderness_empire = no\n            NOT = {\n                has_valid_civic\
+    \ = civic_machine_servitor\n            }\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_spiritualist_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_spiritualist\
+    \ = yes\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n  \
+    \      has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_unity_bio_trophy_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_valid_civic\
+    \ = civic_machine_servitor\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade_nexus
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_research_zone = no\n  \
+    \  has_any_industrial_zone = no\n}"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_minerals_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_betharian_nexus
+  potential: has_deposit = d_betharian_deposit
+  unlock: "hidden_trigger = {\n    has_deposit = d_betharian_deposit\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_betharian\n}"
+  show_in_tech: ''
+- name: zone_rare_crystals_nexus
+  potential: has_rare_crystals_deposit = yes
+  unlock: "hidden_trigger = {\n    has_rare_crystals_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_rare_crystals\n}"
+  show_in_tech: ''
+- name: zone_energy_nexus
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_volatile_motes_nexus
+  potential: has_volatile_motes_deposit = yes
+  unlock: "hidden_trigger = {\n    has_volatile_motes_deposit = yes\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_volatile_motes\n}"
+  show_in_tech: ''
+- name: zone_exotic_gases_nexus
+  potential: has_exotic_gases_deposit = yes
+  unlock: "hidden_trigger = {\n    has_exotic_gases_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_exotic_gases\n}"
+  show_in_tech: ''
+- name: zone_industrial_hive
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_foundry_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_factory_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        country_uses_consumer_goods\
+    \ = yes\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_physics_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_society_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_research_engineering_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_unity_hive
+  potential: "hidden_trigger = {\n    exists = owner\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n    is_spiritualist = no\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n\
+    \    }\n}\nOR = {\n    owner = {\n        is_ai = no\n    }\n    AND = {\n   \
+    \     has_any_research_zone = no\n        has_any_industrial_zone = no\n    }\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        OR = {\n\
+    \            is_wilderness_empire = no\n            NOT = {\n                has_valid_civic\
+    \ = civic_machine_servitor\n            }\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_fortress_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_trade_hive
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_research_zone = no\n  \
+    \  has_any_industrial_zone = no\n}"
+  unlock: always = yes
+  show_in_tech: ''
+- name: zone_food_hive
+  potential: "if = {\n    limit = {\n        exists = owner\n        owner = {\n \
+    \           is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse\
+    \ = {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n   \
+    \         is_wilderness_empire = no\n        }\n    }\n}"
+  unlock: "if = {\n    limit = {\n        exists = owner\n        owner = {\n    \
+    \        is_anglers_empire = yes\n        }\n    }\n    is_wet = no\n}\nelse =\
+    \ {\n    hidden_trigger = {\n        exists = owner\n        owner = {\n     \
+    \       is_wilderness_empire = no\n        }\n    }\n}"
+  show_in_tech: ''
+- name: zone_exotic_gases_hive
+  potential: has_exotic_gases_deposit = yes
+  unlock: "hidden_trigger = {\n    has_exotic_gases_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_exotic_gases\n}"
+  show_in_tech: ''
+- name: zone_minerals_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_betharian_hive
+  potential: has_deposit = d_betharian_deposit
+  unlock: "hidden_trigger = {\n    has_deposit = d_betharian_deposit\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_betharian\n}"
+  show_in_tech: ''
+- name: zone_rare_crystals_hive
+  potential: has_rare_crystals_deposit = yes
+  unlock: "hidden_trigger = {\n    has_rare_crystals_deposit = yes\n    exists = owner\n\
+    }\nowner = {\n    has_technology = tech_mine_rare_crystals\n}"
+  show_in_tech: ''
+- name: zone_energy_hive
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_wilderness_empire\
+    \ = no\n    }\n}"
+  show_in_tech: ''
+- name: zone_volatile_motes_hive
+  potential: has_volatile_motes_deposit = yes
+  unlock: "hidden_trigger = {\n    has_volatile_motes_deposit = yes\n    exists =\
+    \ owner\n}\nowner = {\n    has_technology = tech_mine_volatile_motes\n}"
+  show_in_tech: ''
+- name: zone_spawning_hive
+  potential: "is_planet_class = pc_hive\nowner = {\n    is_hive_empire = yes\n   \
+    \ has_ascension_perk = ap_hive_worlds\n}"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_hive_empire\
+    \ = yes\n    }\n}\nowner = {\n    has_ascension_perk = ap_hive_worlds\n}"
+  show_in_tech: ''
+bca_districts:
+- name: district_cosmogenesis_world_science
+  potential: "uses_district_set = cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_cosmogenesis_world_logic
+  potential: "uses_district_set = cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_mindlink
+  potential: "exists = owner\nis_capital = yes\nowner = {\n    has_menace_perk = menp_behemoth_mind_meld\n\
+    }"
+  allow: "hidden_trigger = {\n    NOR = {\n        has_modifier = resort_colony\n\
+    \        has_modifier = penal_colony\n        has_modifier = slave_colony\n  \
+    \  }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_city
+  potential: "OR = {\n    NOT = {\n        exists = owner\n    }\n    AND = {\n  \
+    \      exists = owner\n        owner = {\n            OR = {\n               \
+    \ is_regular_empire = yes\n                AND = {\n                    is_country_type\
+    \ = primitive\n                    is_hive_empire = no\n                }\n  \
+    \          }\n        }\n    }\n}\nNOT = {\n    has_deposit = d_crashed_slaver_ship\n\
+    }\nOR = {\n    uses_district_set = district_resort\n    uses_district_set = standard\n\
+    \    uses_district_set = hive_world\n    uses_district_set = machine_world\n \
+    \   uses_district_set = shattered_ring_world\n    uses_district_set = volcanic_world\n\
+    }\nis_special_colony_type = no\nNAND = {\n    is_capital = yes\n    owner = {\n\
+    \        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+  allow: "hidden_trigger = {\n    is_special_colony_type = no\n}\ncustom_tooltip =\
+    \ {\n    fail_text = arcology_project_construction_fail_tt\n    NOT = {\n    \
+    \    has_planet_flag = arcology_project_construction\n    }\n}"
+  is_uncapped: ''
+- name: district_crashed_slaver_ship
+  potential: "uses_district_set = standard\nhas_deposit = d_crashed_slaver_ship\n\
+    if = {\n    limit = {\n        exists = owner\n    }\n    NAND = {\n        is_capital\
+    \ = yes\n        owner = {\n            has_menace_perk = menp_behemoth_mind_meld\n\
+    \        }\n    }\n    owner = {\n        is_wilderness_empire = no\n    }\n}"
+  allow: "hidden_trigger = {\n    NAND = {\n        has_modifier = resort_colony\n\
+    \        has_modifier = slave_colony\n    }\n}\ncustom_tooltip = {\n    fail_text\
+    \ = arcology_project_construction_fail_tt\n    NOT = {\n        has_planet_flag\
+    \ = arcology_project_construction\n    }\n}"
+  is_uncapped: always = no
+- name: district_resort
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = resort_colony"
+  allow: "hidden_trigger = {\n    NOT = {\n        has_modifier = slave_colony\n \
+    \   }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_resort_1
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = resort_colony"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_resort_2
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = resort_colony"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_resort_3
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = resort_colony"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_prison
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = penal_colony"
+  allow: "hidden_trigger = {\n    has_modifier = penal_colony\n}\ncustom_tooltip =\
+    \ {\n    fail_text = arcology_project_construction_fail_tt\n    NOT = {\n    \
+    \    has_planet_flag = arcology_project_construction\n    }\n}"
+  is_uncapped: ''
+- name: district_slave
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+    \ = slave_colony"
+  allow: "hidden_trigger = {\n    has_modifier = slave_colony\n}\ncustom_tooltip =\
+    \ {\n    fail_text = arcology_project_construction_fail_tt\n    NOT = {\n    \
+    \    has_planet_flag = arcology_project_construction\n    }\n}"
+  is_uncapped: ''
+- name: district_hive
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n}\nOR = {\n    uses_district_set = standard\n    uses_district_set = volcanic_world\n\
+    \    uses_district_set = hive_world\n    uses_district_set = machine_world\n \
+    \   uses_district_set = shattered_ring_world\n}\nNAND = {\n    is_capital = yes\n\
+    \    owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+  allow: "hidden_trigger = {\n    NOT = {\n        has_modifier = resort_colony\n\
+    \    }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_hive_1
+  potential: uses_district_set = hive_world
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_hive_2
+  potential: uses_district_set = hive_world
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_hive_3
+  potential: uses_district_set = hive_world
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_nexus
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n}\nOR = {\n\
+    \    uses_district_set = standard\n    uses_district_set = volcanic_world\n  \
+    \  uses_district_set = hive_world\n    uses_district_set = machine_world\n   \
+    \ uses_district_set = shattered_ring_world\n}\nNAND = {\n    is_capital = yes\n\
+    \    owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+  allow: "hidden_trigger = {\n    NOT = {\n        has_modifier = resort_colony\n\
+    \    }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_nexus_1
+  potential: uses_district_set = machine_world
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_2
+  potential: uses_district_set = machine_world
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_3
+  potential: uses_district_set = machine_world
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_housing
+  potential: "uses_district_set = city_world\nNAND = {\n    is_capital = yes\n   \
+    \ owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_urban_1
+  potential: uses_district_set = city_world
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_urban_2
+  potential: uses_district_set = city_world
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_urban_3
+  potential: uses_district_set = city_world
+  allow: ''
+  is_uncapped: ''
+- name: district_generator
+  potential: "OR = {\n    uses_district_set = standard\n    uses_district_set = shattered_ring_world\n\
+    }\nOR = {\n    NOT = {\n        exists = owner\n    }\n    AND = {\n        exists\
+    \ = owner\n        owner = {\n            is_wilderness_empire = no\n        }\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: is_generator_district_uncapped = yes
+- name: district_mining
+  potential: "OR = {\n    uses_district_set = standard\n    uses_district_set = shattered_ring_world\n\
+    }\nOR = {\n    NOT = {\n        exists = owner\n    }\n    AND = {\n        exists\
+    \ = owner\n        owner = {\n            is_wilderness_empire = no\n        }\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: is_mining_district_uncapped = yes
+- name: district_farming
+  potential: "OR = {\n    uses_district_set = standard\n    uses_district_set = shattered_ring_world\n\
+    }\nNOT = {\n    AND = {\n        exists = owner\n        owner = {\n         \
+    \   is_ai = yes\n            country_uses_food = no\n        }\n    }\n}\nOR =\
+    \ {\n    NOT = {\n        exists = owner\n    }\n    AND = {\n        exists =\
+    \ owner\n        owner = {\n            is_wilderness_empire = no\n        }\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: is_farming_district_uncapped = yes
+- name: district_geothermal
+  potential: uses_district_set = volcanic_world
+  allow: "hidden_trigger = {\n    NOT = {\n        has_modifier = resort_colony\n\
+    \    }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: ''
+- name: district_melting
+  potential: uses_district_set = volcanic_world
+  allow: "hidden_trigger = {\n    NOT = {\n        has_modifier = resort_colony\n\
+    \    }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: is_mining_district_uncapped = yes
+- name: district_polytechnic
+  potential: uses_district_set = volcanic_world
+  allow: "hidden_trigger = {\n    OR = {\n        NOT = {\n            exists = owner\n\
+    \        }\n        owner = {\n            has_technology = tech_basic_science_lab_1\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = arcology_project_construction_fail_tt\n\
+    \    NOT = {\n        has_planet_flag = arcology_project_construction\n    }\n\
+    }"
+  is_uncapped: always = no
+- name: district_hab_housing
+  potential: "uses_district_set = habitat\nNAND = {\n    is_capital = yes\n    owner\
+    \ = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_hab_energy
+  potential: uses_district_set = habitat
+  allow: ''
+  is_uncapped: always = no
+- name: district_hab_mining
+  potential: uses_district_set = habitat
+  allow: ''
+  is_uncapped: always = no
+- name: district_hab_science
+  potential: uses_district_set = habitat
+  allow: "hidden_trigger = {\n    OR = {\n        NOT = {\n            exists = owner\n\
+    \        }\n        owner = {\n            has_technology = tech_basic_science_lab_1\n\
+    \        }\n        has_deposit = d_payback_habitat_research\n    }\n}"
+  is_uncapped: always = no
+- name: district_rw_city
+  potential: "exists = owner\nowner = {\n    is_gestalt = no\n}\nuses_district_set\
+    \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+    \ = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_rw_hive
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nuses_district_set\
+    \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+    \ = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_rw_nexus
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n}\nuses_district_set\
+    \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+    \ = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_rw_urban_1
+  potential: 'exists = owner
+
+    uses_district_set = ring_world'
+  allow: ''
+  is_uncapped: ''
+- name: district_rw_urban_2
+  potential: 'exists = owner
+
+    uses_district_set = ring_world'
+  allow: ''
+  is_uncapped: ''
+- name: district_rw_urban_3
+  potential: 'exists = owner
+
+    uses_district_set = ring_world'
+  allow: ''
+  is_uncapped: ''
+- name: district_craglands
+  potential: "uses_district_set = standard\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = yes\n}\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+    \ = menp_behemoth_mind_meld\n    }\n}"
+  allow: ''
+  is_uncapped: ''
+- name: district_photosynthesis_fields
+  potential: "uses_district_set = standard\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = yes\n}"
+  allow: ''
+  is_uncapped: is_wilderness_generator_district_uncapped = yes
+- name: district_hollow_mountains
+  potential: "uses_district_set = standard\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = yes\n}"
+  allow: ''
+  is_uncapped: is_wilderness_mining_district_uncapped = yes
+- name: district_orchard_forests
+  potential: "uses_district_set = standard\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = yes\n}"
+  allow: "NOT = {\n    has_modifier = resort_colony\n}"
+  is_uncapped: is_wilderness_farming_district_uncapped = yes
+- name: district_mining_rare_crystals
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_mining_betharian
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_mining_engineering
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_mining_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_generator_volatile_motes
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_generator_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_farming_exotic_gases
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_farming_society
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_orders_demesne
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hab_mining_rare_crystals
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hab_energy_volatile_motes
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hab_energy_exotic_gases
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_mixed_industry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_arms_industry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_civilian_industry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_research
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_research_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_research_society
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_research_engineering
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_administrative
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_spiritualist
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_organic_housing
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_fortress
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_arcology_trade
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_industrial
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_foundry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_factory
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_research
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_research_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_research_society
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_research_engineering
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_administrative
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_spiritualist
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_organic_housing
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_fortress
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_trade
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_food
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_ring_world_energy
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_industrial
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_foundry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_factory
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_research
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_research_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_research_society
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_research_engineering
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_administrative
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_spiritualist
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_organic_housing
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_fortress
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_trade
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_mining
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_betharian
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_rare_crystals
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_energy
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_volatile_motes
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_nexus_exotic_gases
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_industrial
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_foundry
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_factory
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_research
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_research_physics
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_research_society
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_research_engineering
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_administrative
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_fortress
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_trade
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_food
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_exotic_gases
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_mining
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_betharian_hive
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_rare_crystals_hive
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_energy
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_volatile_motes
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_hive_spawning
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_zoo
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_museum
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_hunting_ground
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_spiritual_retreat
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_restoration_enclave
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+- name: district_resort_proving_grounds
+  potential: always = no
+  allow: ''
+  is_uncapped: ''
+bca_zone_types:
+- name: zone_urban
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_industrial
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_foundry
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_factory
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_research_unity
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts:
+  - district_polytechnic
+- name: zone_research
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts:
+  - district_polytechnic
+- name: zone_research_physics
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts:
+  - district_hab_science
+  - district_polytechnic
+- name: zone_research_society
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts:
+  - district_hab_science
+  - district_polytechnic
+- name: zone_research_engineering
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts:
+  - district_hab_science
+  - district_polytechnic
+- name: zone_unity
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts:
+  - district_polytechnic
+- name: zone_unity_spiritualist
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts:
+  - district_polytechnic
+- name: zone_unity_bio_trophy
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts:
+  - district_polytechnic
+- name: zone_fortress
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_trade
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_hab_housing
+  - district_hab_housing
+  - district_resort
+  - district_resort
+  single_zone_districts: []
+- name: zone_resort
+  multi_zone_districts:
+  - district_resort
+  - district_resort
+  single_zone_districts: []
+- name: zone_resort_entertainment
+  multi_zone_districts:
+  - district_resort
+  - district_resort
+  single_zone_districts: []
+- name: zone_resort_zoo
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_resort_grand_museum
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_resort_hunting_ground
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_resort_spiritual_retreat
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_resort_restoration_enclave
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_resort_proving_grounds
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_resort_1
+  - district_resort_2
+  - district_resort_3
+- name: zone_minerals
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+  - district_hab_mining
+- name: zone_betharian
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+- name: zone_rare_crystals
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+- name: zone_minerals_physics
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+- name: zone_energy
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_generator
+  - district_geothermal
+  - district_photosynthesis_fields
+  - district_hab_energy
+- name: zone_volatile_motes
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_generator
+  - district_geothermal
+  - district_photosynthesis_fields
+- name: zone_food
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_anglers
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_exotic_gases
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_spawning
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_machine_replication
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_subterranean_urban
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+- name: zone_agrarian_urban
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_agrarian_anglers
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_habitat_knights
+  multi_zone_districts:
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts: []
+- name: zone_habitat_hydroponics
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hab_energy
+- name: zone_habitat_research
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hab_science
+- name: zone_habitat_research_unity
+  multi_zone_districts:
+  - district_hab_housing
+  - district_hab_housing
+  single_zone_districts:
+  - district_hab_science
+- name: zone_habitat_rare_crystals
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hab_mining
+- name: zone_habitat_volatile_motes
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hab_energy
+- name: zone_habitat_exotic_gases
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hab_energy
+- name: zone_central_spire
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_urban_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_foundry_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_research_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_unity_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_research_unity_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_trade_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_fortress_wilderness
+  multi_zone_districts:
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  - district_mindlink
+  - district_city
+  - district_prison
+  - district_slave
+  - district_hive
+  - district_nexus
+  - district_arcology_housing
+  - district_rw_city
+  - district_rw_hive
+  - district_rw_nexus
+  - district_craglands
+  single_zone_districts: []
+- name: zone_minerals_wilderness
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_mining
+  - district_melting
+  - district_hollow_mountains
+- name: zone_energy_wilderness
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_generator
+  - district_geothermal
+  - district_photosynthesis_fields
+- name: zone_food_wilderness
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_farming
+  - district_orchard_forests
+- name: zone_industrial_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_foundry_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_factory_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_research_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_research_physics_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_research_society_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_research_engineering_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_unity_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_unity_spiritualist_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_unity_bio_trophy_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_fortress_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_trade_arcology
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_arcology_urban_1
+  - district_arcology_urban_2
+  - district_arcology_urban_3
+- name: zone_industrial_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_foundry_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_factory_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_research_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_research_physics_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_research_society_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_research_engineering_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_unity_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_unity_spiritualist_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_unity_bio_trophy_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_fortress_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_trade_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_food_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_energy_ring_world
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_rw_urban_1
+  - district_rw_urban_2
+  - district_rw_urban_3
+- name: zone_industrial_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_foundry_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_factory_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_research_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_research_physics_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_research_society_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_research_engineering_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_unity_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_unity_spiritualist_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_unity_bio_trophy_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_fortress_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_trade_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_minerals_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_betharian_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_rare_crystals_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_energy_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_volatile_motes_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_exotic_gases_nexus
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_nexus_1
+  - district_nexus_2
+  - district_nexus_3
+- name: zone_industrial_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_foundry_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_factory_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_research_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_research_physics_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_research_society_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_research_engineering_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_unity_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_fortress_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_trade_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_food_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_exotic_gases_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_minerals_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_betharian_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_rare_crystals_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_energy_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_volatile_motes_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3
+- name: zone_spawning_hive
+  multi_zone_districts: []
+  single_zone_districts:
+  - district_hive_1
+  - district_hive_2
+  - district_hive_3

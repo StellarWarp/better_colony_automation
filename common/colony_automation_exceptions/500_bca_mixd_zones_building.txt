@@ -11,7 +11,6 @@ automate_mixed_zone_trade_building = {
 		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_trade = yes
-            bca_has_any_zone_of_type_urban = yes
 		}
 	}
 
@@ -116,6 +115,20 @@ automate_mixed_zone_industrial_building = {
             building = building_affluence_emporium
 	    }
 
+        6 = {
+            building = building_foundry_1
+            available = {
+                requires_more_job = yes
+                free_district_slots = 0
+            }
+        }
+        7 = {
+            building = building_factory_1
+            available = {
+                requires_more_job = yes
+                free_district_slots = 0
+            }
+        }
 
 	}
 }
@@ -346,7 +359,7 @@ automate_mixed_zone_unity_building = {
 
 	buildings = {
 	    0 = {
-            building = building_autochthon_monument
+            building = building_bureaucratic_2
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -355,7 +368,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    1 = {
-            building = building_corporate_monument
+            building = building_holotemple
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -364,7 +377,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    2 = {
-            building = building_simulation_1
+            building = building_hive_cluster
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -373,7 +386,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    3 = {
-            building = building_sensorium_1
+            building = building_network_junction
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -382,7 +395,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    4 = {
-            building = building_galactic_memorial_1
+            building = building_bureaucratic_3
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -391,7 +404,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    5 = {
-            building = building_autocurating_vault
+            building = building_sacred_nexus
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -400,7 +413,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    6 = {
-            building = building_citadel_of_faith
+            building = building_hive_confluence
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -409,7 +422,7 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    7 = {
-            building = building_corporate_vault
+            building = building_system_conflux
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -418,7 +431,124 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 	    8 = {
+            building = building_autochthon_monument
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    9 = {
+            building = building_corporate_monument
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    10 = {
+            building = building_simulation_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    11 = {
+            building = building_sensorium_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    12 = {
+            building = building_galactic_memorial_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    13 = {
+            building = building_lifecrypt_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    14 = {
+            building = building_lifecrypt_machine_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    15 = {
+            building = building_lifecrypt_hive_mind_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    16 = {
+            building = building_lifecrypt_corporate_1
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    17 = {
+            building = building_autocurating_vault
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    18 = {
+            building = building_citadel_of_faith
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    19 = {
+            building = building_corporate_vault
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    20 = {
             building = building_alpha_hub
+			available = {
+				OR = {
+					really_requires_more_job = no
+					free_district_slots = 0
+				}
+			}
+	    }
+	    21 = {
+            building = building_trophy_vault
 			available = {
 				OR = {
 					really_requires_more_job = no
@@ -428,42 +558,42 @@ automate_mixed_zone_unity_building = {
 	    }
 
 
-        9 = {
+        22 = {
             building = building_bureaucratic_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        10 = {
+        23 = {
             building = building_temple
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        11 = {
+        24 = {
             building = building_sacrificial_temple_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        12 = {
+        25 = {
             building = building_uplink_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        13 = {
+        26 = {
             building = building_hive_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        14 = {
+        27 = {
             building = building_organic_sanctuary
             available = {
                 requires_more_job = yes

@@ -1,0 +1,3827 @@
+bca_buildings:
+- name: building_colony_shelter
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_fallen_empire\
+    \ = no\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    uses_habitat_capitals = yes\n    uses_district_set = cosmogenesis_world\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_capital
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_fallen_empire\
+    \ = no\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    uses_habitat_capitals = yes\n    is_planet_class = pc_cosmogenesis_world\n\
+    }"
+  allow: sapient_pop_amount >= 1000
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_major_capital
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_fallen_empire\
+    \ = no\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: sapient_pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_system_capital
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_fallen_empire\
+    \ = no\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: sapient_pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_administration"'
+- name: building_deployment_post
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_country_type = ai_empire\n    }\n    is_fallen_empire = no\n}\nuses_habitat_capitals\
+    \ = no\nNOT = {\n    is_planet_class = pc_cosmogenesis_world\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_machine_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_country_type = ai_empire\n        AND = {\n            exists = event_target:mechanocalibrator_country\n\
+    \            is_same_value = event_target:mechanocalibrator_country\n        }\n\
+    \    }\n    is_fallen_empire = no\n}\nuses_habitat_capitals = no\nNOT = {\n  \
+    \  is_planet_class = pc_cosmogenesis_world\n}"
+  allow: sapient_pop_amount >= 1000
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_machine_major_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_country_type = ai_empire\n    }\n    is_fallen_empire = no\n}"
+  allow: sapient_pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_machine_system_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_country_type = ai_empire\n    }\n    is_fallen_empire = no\n}"
+  allow: sapient_pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_administration"'
+- name: building_hive_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_hive_empire = yes\n\
+    \        is_country_type = swarm\n    }\n    is_fallen_empire = no\n    is_wilderness_empire\
+    \ = no\n}\nuses_habitat_capitals = no\nNOT = {\n    is_planet_class = pc_cosmogenesis_world\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_hive_major_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_hive_empire = yes\n\
+    \        is_country_type = swarm\n    }\n    is_fallen_empire = no\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: sapient_pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_hab_capital
+  potential: "uses_habitat_capitals = yes\nexists = owner\nowner = {\n    is_fallen_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_habitat_1"'
+- name: building_hab_major_capital
+  potential: "uses_habitat_capitals = yes\nexists = owner\nowner = {\n    is_fallen_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: sapient_pop_amount >= 1000
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_habitat_2"'
+- name: building_hab_system_capital
+  potential: "uses_habitat_capitals = yes\nexists = owner\nowner = {\n    is_fallen_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: sapient_pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_habitat_3"'
+- name: building_resort_capital
+  potential: has_modifier = resort_colony
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_resort_major_capital
+  potential: has_modifier = resort_colony
+  allow: sapient_pop_amount >= 2000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_slave_capital
+  potential: has_modifier = slave_colony
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_slave_major_capital
+  potential: has_modifier = slave_colony
+  allow: sapient_pop_amount >= 2000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_imperial_capital
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_galactic_emperor\
+    \ = yes\n}\nplanet = {\n    is_capital = yes\n}"
+  allow: sapient_pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_imperial_machine_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_country_type = ai_empire\n    }\n    is_galactic_emperor = yes\n}\n\
+    planet = {\n    is_capital = yes\n}"
+  allow: sapient_pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_imperial_hive_capital
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_hive_empire = yes\n\
+    \        is_country_type = swarm\n    }\n    is_galactic_emperor = yes\n    is_wilderness_empire\
+    \ = no\n}\nplanet = {\n    is_capital = yes\n}"
+  allow: sapient_pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_robot_assembly_plant
+  potential: "exists = owner\nOR = {\n    owner = {\n        is_ai = no\n    }\n \
+    \   NOT = {\n        exists = assembling_species\n    }\n    assembling_species\
+    \ = {\n        is_robotic_species = yes\n    }\n}\nowner = {\n    is_regular_empire\
+    \ = yes\n    is_individual_machine = no\n    NOT = {\n        has_policy_flag\
+    \ = robots_outlawed\n    }\n    OR = {\n        is_ai = no\n        NOT = {\n\
+    \            has_ascension_perk = ap_engineered_evolution\n        }\n       \
+    \ is_materialist = yes\n    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_robotic_workers"'
+- name: building_robot_assembly_complex
+  potential: "exists = owner\nOR = {\n    owner = {\n        is_ai = no\n    }\n \
+    \   NOT = {\n        exists = assembling_species\n    }\n    assembling_species\
+    \ = {\n        is_robotic_species = yes\n    }\n}\nowner = {\n    is_regular_empire\
+    \ = yes\n    is_individual_machine = no\n    NOT = {\n        has_policy_flag\
+    \ = robots_outlawed\n    }\n    OR = {\n        is_ai = no\n        NOT = {\n\
+    \            has_ascension_perk = ap_engineered_evolution\n        }\n       \
+    \ is_materialist = yes\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_robot_assembly_complex
+- name: building_machine_assembly_plant
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_individual_machine = yes\n    }\n}\nNOT = {\n    has_modifier = resort_colony\n\
+    }"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_machine_assembly_complex
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
+    \        is_individual_machine = yes\n    }\n}\nNOT = {\n    has_modifier = resort_colony\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mega_assembly
+- name: building_spawning_pool
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n    NOT = {\n        has_origin = origin_progenitor_hive\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_offspring_nest
+  potential: "exists = owner\nowner = {\n    has_origin = origin_progenitor_hive\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_necrophage_elevation_chamber
+  potential: "exists = owner\nowner = {\n    has_origin = origin_necrophage\n    has_trait\
+    \ = trait_necrophage\n    NOR = {\n        has_valid_civic = civic_fanatic_purifiers\n\
+    \        has_valid_civic = civic_hive_devouring_swarm\n    }\n}"
+  allow: "custom_tooltip = {\n    fail_text = NO_CULTURE_SHOCK\n    NOT = {\n    \
+    \    has_modifier = planet_culture_shock\n    }\n}\nif = {\n    limit = {\n  \
+    \      owner = {\n            is_hive_empire = no\n        }\n    }\n    NOT =\
+    \ {\n        is_planet_class = pc_hive\n    }\n}\nNOT = {\n    is_planet_class\
+    \ = pc_machine\n}\nhidden_trigger = {\n    if = {\n        limit = {\n       \
+    \     owner = {\n                is_ai = yes\n            }\n        }\n     \
+    \   any_owned_species = {\n            species_can_be_necrophaged = yes\n    \
+    \    }\n        pop_amount > 500\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_necrophage_house_of_apotheosis
+  potential: "exists = owner\nowner = {\n    has_origin = origin_necrophage\n    has_trait\
+    \ = trait_necrophage\n    NOR = {\n        has_valid_civic = civic_fanatic_purifiers\n\
+    \        has_valid_civic = civic_hive_devouring_swarm\n    }\n    is_ai = no\n\
+    }"
+  allow: "hidden_trigger = {\n    if = {\n        limit = {\n            owner = {\n\
+    \                is_ai = yes\n            }\n        }\n        any_owned_species\
+    \ = {\n            species_can_be_necrophaged = yes\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_glandular_acclimation
+- name: building_clone_vats
+  potential: "exists = owner\nNOT = {\n    has_modifier = resort_colony\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    NOT = {\n        exists = assembling_species\n\
+    \    }\n    assembling_species = {\n        is_organic_species = yes\n    }\n\
+    }\nOR = {\n    owner = {\n        is_ai = no\n    }\n    NAND = {\n        free_district_slots\
+    \ = 0\n        free_building_slots <= 1\n        free_housing <= 0\n        free_jobs\
+    \ <= 0\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_cloning
+- name: building_clone_army_clone_vat
+  potential: "exists = owner\nowner = {\n    has_origin = origin_clone_army\n    NOT\
+    \ = {\n        has_country_flag = clone_army_fertility_unlocked\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_posthumous_employment_center
+  potential: "exists = owner\nOR = {\n    owner = {\n        is_ai = no\n    }\n \
+    \   NOT = {\n        exists = assembling_species\n    }\n    assembling_species\
+    \ = {\n        is_organic_species = yes\n    }\n}\nOR = {\n    owner = {\n   \
+    \     is_ai = no\n    }\n    NAND = {\n        free_district_slots = 0\n     \
+    \   free_building_slots <= 1\n        free_housing <= 0\n        free_jobs <=\
+    \ 0\n    }\n}\nowner = {\n    is_regular_empire = yes\n    has_valid_civic = civic_permanent_employment\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_automation_technician_1
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_assembly_pattern
+- name: building_automation_technician_2
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_construction_templates
+- name: building_automation_miner_1
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_assembly_pattern
+- name: building_automation_miner_2
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_construction_templates
+- name: building_automation_farmer_1
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_assembly_pattern
+- name: building_automation_farmer_2
+  potential: "owner = {\n    is_wilderness_empire = no\n    is_tankbound_empire =\
+    \ no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        NAND = {\n            free_district_slots = 0\n          \
+    \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
+    \ <= 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_construction_templates
+- name: building_automation_1
+  potential: always = no
+  allow: always = no
+  abort_trigger: ''
+  prerequisites:
+  - tech_assembly_pattern
+- name: building_automation_2
+  potential: always = no
+  allow: always = no
+  abort_trigger: ''
+  prerequisites:
+  - tech_construction_templates
+- name: building_noble_estates
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_aristocratic_elite\n\
+    }\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
+    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
+    \ {\n            NOR = {\n                has_starbase_building = ring_noble_estates\n\
+    \                is_starbase_building_building = ring_noble_estates\n        \
+    \    }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_slave_processing
+  potential: "owner = {\n    is_regular_empire = yes\n    OR = {\n        has_policy_flag\
+    \ = slavery_allowed\n        has_exploited_disconnected_drones = yes\n    }\n\
+    }\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
+    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
+    \ {\n            NOR = {\n                has_starbase_building = ring_slave_processing_facility\n\
+    \                is_starbase_building_building = ring_slave_processing_facility\n\
+    \            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_neural_implants"'
+- name: building_precinct_house
+  potential: "owner = {\n    is_regular_empire = yes\n    NOT = {\n        has_valid_civic\
+    \ = civic_civil_education\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        AND = {\n            NOT = {\n                has_forbidden_jobs\
+    \ = enforcer\n            }\n            NOT = {\n                has_available_jobs\
+    \ = enforcer\n            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_hall_judgment
+  potential: "owner = {\n    is_regular_empire = yes\n    NOT = {\n        has_valid_civic\
+    \ = civic_civil_education\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }\nif = {\n    limit = {\n        owner = {\n            is_ai = yes\n       \
+    \ }\n    }\n    NOT = {\n        has_forbidden_jobs = enforcer\n    }\n    NOT\
+    \ = {\n        has_available_jobs = enforcer\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_state_academy
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_civil_education\n\
+    }\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_center_of_guidance
+  potential: "owner = {\n    has_valid_civic = civic_civil_education\n}\nNOT = {\n\
+    \    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_sentinel_posts
+  potential: "exists = owner\nowner = {\n    is_gestalt = yes\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
+    \        }\n        AND = {\n            NOT = {\n                has_building\
+    \ = building_sentinel_posts\n            }\n            NOT = {\n            \
+    \    has_forbidden_jobs = patrol_drone\n            }\n            NOT = {\n \
+    \               has_available_jobs = patrol_drone\n            }\n        }\n\
+    \    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_order_keep
+  potential: "owner = {\n    has_origin = origin_toxic_knights\n}\nhas_planet_flag\
+    \ = toxic_knights_habitat\nowner = {\n    NOT = {\n        has_country_flag =\
+    \ quest_abandoned\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_order_castle
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_psi_corps
+  potential: "owner = {\n    has_psi_corps_tradition = yes\n    NOT = {\n        has_origin\
+    \ = origin_endbringers\n    }\n}\nOR = {\n    NOR = {\n        has_modifier =\
+    \ resort_colony\n        has_modifier = slave_colony\n    }\n    AND = {\n   \
+    \     has_modifier = resort_colony\n        has_designation = col_pleasure\n \
+    \   }\n}"
+  allow: "if = {\n    limit = {\n        exists = orbital_defence\n    }\n    orbital_defence\
+    \ = {\n        exists = starbase\n        starbase = {\n            NOR = {\n\
+    \                has_starbase_building = ring_psi_corps\n                is_starbase_building_building\
+    \ = ring_psi_corps\n            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_embassy
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nexists =\
+    \ planet\nplanet = {\n    is_capital = yes\n}\nNOT = {\n    has_modifier = resort_colony\n\
+    }\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
+    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
+    \ {\n            NOR = {\n                has_starbase_building = ring_embassy_complex\n\
+    \                is_starbase_building_building = ring_embassy_complex\n      \
+    \      }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_xeno_diplomacy"'
+- name: building_grand_embassy
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nplanet =\
+    \ {\n    is_capital = yes\n}\nNOT = {\n    has_modifier = resort_colony\n}\nNOT\
+    \ = {\n    has_modifier = slave_colony\n}"
+  allow: "has_major_upgraded_capital = yes\nif = {\n    limit = {\n        exists\
+    \ = orbital_defence\n    }\n    orbital_defence = {\n        exists = starbase\n\
+    \        starbase = {\n            NOR = {\n                has_starbase_building\
+    \ = ring_embassy_complex\n                is_starbase_building_building = ring_embassy_complex\n\
+    \            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_xeno_relations"'
+- name: building_gaiaseeders_1
+  potential: "exists = owner\nowner = {\n    is_country_type = default\n    is_idyllic_bloom_empire\
+    \ = yes\n}\nNOR = {\n    is_planet_class = pc_gaia\n    is_planet_class = pc_city\n\
+    \    is_planet_class = pc_hive\n    is_planet_class = pc_machine\n    is_planet_class\
+    \ = pc_relic\n}\nis_artificial = no"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_gaiaseeders_2
+  potential: ''
+  allow: can_build_gaiaseeder = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_gaiaseeders_3
+  potential: ''
+  allow: can_build_gaiaseeder = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_gaiaseeders_4
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_gaiaseeders_pc_gaia
+  potential: "hidden_trigger = {\n    exists = owner\n    owner = {\n        is_country_type\
+    \ = default\n        is_idyllic_bloom_empire = yes\n    }\n    is_planet_class\
+    \ = pc_gaia\n    NOR = {\n        has_building = building_gaiaseeders_4\n    \
+    \    has_building_construction = building_gaiaseeders_4\n        has_building\
+    \ = building_gaiaseeders_pc_gaia\n        has_building_construction = building_gaiaseeders_pc_gaia\n\
+    \    }\n}"
+  allow: 'has_upgraded_capital = yes
+
+    can_build_gaiaseeder = yes'
+  abort_trigger: ''
+  prerequisites: []
+- name: building_volcanic_forge_1
+  potential: "exists = owner\nowner = {\n    is_world_forger_empire = yes\n}\nNOR\
+    \ = {\n    is_planet_class = pc_city\n    is_planet_class = pc_machine\n    is_planet_class\
+    \ = pc_hive\n    is_artificial = yes\n    AND = {\n        is_terraforming = yes\n\
+    \        is_scripted_terraforming = no\n    }\n}"
+  allow: num_uncleared_blockers = 0
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_volcanic_forge"'
+- name: building_volcanic_forge_2
+  potential: "exists = owner\nowner = {\n    is_world_forger_empire = yes\n}\nNOR\
+    \ = {\n    is_planet_class = pc_city\n    AND = {\n        is_terraforming = yes\n\
+    \        is_scripted_terraforming = no\n    }\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_volcanic_forge"'
+- name: building_hydroponics_farm
+  potential: "exists = owner\nowner = {\n    OR = {\n        country_uses_food = yes\n\
+    \        is_ai = no\n    }\n    is_wilderness_empire = no\n}\nNOT = {\n    is_planet_class\
+    \ = pc_machine\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hydroponics"'
+- name: building_food_processing_facility
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOR = {\n\
+    \    is_planet_class = pc_machine\n    has_modifier = resort_colony\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_farming_district_or_building\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_food_processing_1"'
+- name: building_food_processing_center
+  potential: "owner = {\n    is_wilderness_empire = no\n}"
+  allow: 'exists = owner
+
+    has_upgraded_capital = yes'
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_food_processing_2"'
+- name: building_farming_districts_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_farming_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_industrial_farming
+- name: building_farming_districts_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_farming_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_eco_simulation
+- name: building_farming_districts_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_farming_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_gene_crops
+- name: building_farming_districts_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_farming_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_nano_vitality_crops
+- name: building_baol_organic_plant
+  potential: "NOR = {\n    is_planet_class = pc_machine\n    has_modifier = resort_colony\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_secrets_baol"'
+- name: building_mine_generic
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n}\nplanet = {\n    planet_is_habitat_equivalent\
+    \ = no\n    planet_is_ring_world_equivalent = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mechanized_mining"'
+- name: building_mineral_purification_plant
+  potential: "owner = {\n    is_wilderness_empire = no\n}\nNOR = {\n    has_modifier\
+    \ = resort_colony\n    is_planet_class = pc_ringworld_habitable\n    is_planet_class\
+    \ = pc_cybrex\n}\nOR = {\n    NOT = {\n        is_planet_class = pc_habitat\n\
+    \    }\n    AND = {\n        is_planet_class = pc_habitat\n        check_modifier_value\
+    \ = {\n            modifier = district_hab_mining_max_add\n            value >\
+    \ 0\n        }\n    }\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_mining_district_or_building\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mineral_purification_1
+- name: building_mineral_purification_hub
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_mining_district_or_building\
+    \ = yes\n}"
+  allow: "has_upgraded_capital = yes\nNOT = {\n    has_modifier = resort_colony\n}"
+  abort_trigger: ''
+  prerequisites:
+  - tech_mineral_purification_2
+- name: building_mining_districts_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_mining_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mechanized_mining
+- name: building_mining_districts_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_mining_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mining_1
+- name: building_mining_districts_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_mining_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mining_2
+- name: building_mining_districts_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_mining_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_mining_3
+- name: building_generator_generic
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_power_plant_1"'
+- name: building_energy_grid
+  potential: "NOT = {\n    has_modifier = resort_colony\n}\nexists = owner\nowner\
+    \ = {\n    is_wilderness_empire = no\n}\nOR = {\n    NOT = {\n        is_planet_class\
+    \ = pc_habitat\n    }\n    AND = {\n        is_planet_class = pc_habitat\n   \
+    \     check_modifier_value = {\n            modifier = district_hab_energy_max_add\n\
+    \            value > 0\n        }\n    }\n    OR = {\n        owner = {\n    \
+    \        is_ai = no\n        }\n        has_any_generator_district_or_building\
+    \ = yes\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_hub_1
+- name: building_energy_nexus
+  potential: "NOT = {\n    has_modifier = resort_colony\n}\nexists = owner\nowner\
+    \ = {\n    is_wilderness_empire = no\n}\nOR = {\n    owner = {\n        is_ai\
+    \ = no\n    }\n    has_any_generator_district_or_building = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_hub_2
+- name: building_generator_districts_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_generator_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_plant_1
+- name: building_generator_districts_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_generator_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_plant_2
+- name: building_generator_districts_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_generator_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_plant_3
+- name: building_generator_districts_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nhas_any_capped_planet_generator_district\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_plant_4
+- name: building_resource_silo
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: "exists = owner\nhidden_trigger = {\n    OR = {\n        owner = {\n    \
+    \        is_ai = no\n        }\n        AND = {\n            NOT = {\n       \
+    \         has_building = building_resource_silo\n            }\n            OR\
+    \ = {\n                owner = {\n                    is_machine_empire = yes\n\
+    \                    has_active_tradition = tr_domination_modular_depot\n    \
+    \            }\n                is_active_resolution = \"resolution_greatergood_balance_in_the_middle\"\
+    \n                is_active_resolution = \"resolution_greatergood_universal_prosperity_mandate\"\
+    \n                owner = {\n                    has_ascension_perk = ap_arcology_project\n\
+    \                    NOT = {\n                        has_technology = tech_mega_engineering\n\
+    \                    }\n                }\n            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_industry"'
+- name: building_bio_reactor
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOR = {\n\
+    \    is_planet_class = pc_machine\n    has_modifier = resort_colony\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_farming_district_or_building\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_bio_reactor"'
+- name: building_bio_reactor_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOR = {\n\
+    \    is_planet_class = pc_machine\n    has_modifier = resort_colony\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_farming_district_or_building\
+    \ = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_bio_reactor_2"'
+- name: building_foundry_1
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nAND = {\n    exists = owner\n    owner = {\n        is_wilderness_empire =\
+    \ no\n    }\n    OR = {\n        has_planet_flag = ignore_ai_building_limitations\n\
+    \        owner = {\n            is_ai = no\n        }\n        AND = {\n     \
+    \       has_any_industrial_zone = yes\n            NOR = {\n                has_building\
+    \ = building_foundry_1\n                has_building = building_foundry_2\n  \
+    \              has_building = building_foundry_3\n            }\n        }\n \
+    \   }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_basic_industry
+- name: building_foundry_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nis_special_colony_type\
+    \ = no"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_1
+- name: building_foundry_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nis_special_colony_type\
+    \ = no"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_2
+- name: building_factory_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        country_uses_consumer_goods\
+    \ = yes\n        has_origin = origin_fear_of_the_dark\n    }\n}\nNOR = {\n   \
+    \ has_modifier = resort_colony\n    has_modifier = slave_colony\n}\nOR = {\n \
+    \   has_planet_flag = ignore_ai_building_limitations\n    owner = {\n        is_ai\
+    \ = no\n    }\n    owner = {\n        has_valid_civic = civic_machine_obsessional_directive\n\
+    \    }\n    AND = {\n        has_any_factory_zone = yes\n        NOR = {\n   \
+    \         has_building = building_factory_1\n            has_building = building_factory_2\n\
+    \            has_building = building_factory_3\n        }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_basic_industry
+- name: building_factory_2
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}\n\
+    NOT = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_luxuries_1
+- name: building_factory_3
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}\n\
+    NOT = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_luxuries_2
+- name: building_refinery
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_exotic_gases"'
+- name: building_chemical_plant
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_volatile_motes"'
+- name: building_crystal_plant
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_rare_crystals"'
+- name: building_nanite_transmuter
+  potential: "exists = owner\nOWNER = {\n    OR = {\n        has_monthly_income =\
+    \ {\n            resource = nanites\n            value > 0\n        }\n      \
+    \  AND = {\n            is_ai = no\n            has_resource = {\n           \
+    \     type = nanites\n                amount > 0\n            }\n        }\n \
+    \   }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_nanite_transmutation"'
+- name: building_ministry_production
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nNOR = {\n\
+    \    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_production_strategy"'
+- name: building_production_center
+  potential: "exists = owner\nowner = {\n    is_gestalt = yes\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_production_strategy"'
+- name: building_coordinated_fulfillment_center_1
+  potential: "exists = owner\nowner = {\n    is_relentless_industrialist_empire =\
+    \ yes\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_basic_industry
+- name: building_coordinated_fulfillment_center_2
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_global_production_strategy
+- name: building_archaeo_refinery
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nowner = {\n    has_technology = tech_archaeo_refinery\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_archaeo_refinery"'
+- name: building_foundry_upkeep_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_1
+- name: building_foundry_efficiency_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOR = {\n\
+    \    has_modifier = resort_colony\n    has_modifier = slave_colony\n    owner\
+    \ = {\n        is_wilderness_empire = yes\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_2
+- name: building_factory_upkeep_1
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}\n\
+    NOT = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_luxuries_1
+- name: building_factory_efficiency_1
+  potential: "exists = owner\nowner = {\n    country_uses_consumer_goods = yes\n}\n\
+    NOT = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_luxuries_2
+- name: building_offworld_expedition_hub
+  potential: "exists = owner\nowner = {\n    is_galvanic_empire = yes\n}"
+  allow: "custom_tooltip = {\n    fail_text = offworld_molten_world_req\n    solar_system\
+    \ = {\n        any_system_planet = {\n            is_planet_class = pc_molten\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_research_lab_1
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}\nis_special_colony_type = no\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n\
+    \    owner = {\n        is_ai = no\n    }\n    AND = {\n        has_any_research_zone\
+    \ = yes\n        NOR = {\n            has_building = building_research_lab_1\n\
+    \            has_building = building_research_lab_2\n            has_building\
+    \ = building_research_lab_3\n        }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_1"'
+- name: building_research_lab_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nis_special_colony_type\
+    \ = no"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_2"'
+- name: building_research_lab_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nis_special_colony_type\
+    \ = no"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_3"'
+- name: building_institute
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_regular_empire\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_research_initiative"'
+- name: building_supercomputer
+  potential: "exists = owner\nowner = {\n    is_gestalt = yes\n    is_wilderness_empire\
+    \ = no\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_research_initiative"'
+- name: building_shroud_observatory_1
+  potential: "exists = owner\nowner = {\n    has_origin = origin_shroud_forged\n}"
+  allow: "custom_tooltip = {\n    fail_text = SHROUD_RIFT_MISSING_TT\n    has_deposit\
+    \ = d_shroud_rift_deposit\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_shroud_observatory_2
+  potential: "exists = owner\nowner = {\n    has_origin = origin_shroud_forged\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_psionic_theory"'
+- name: building_shroud_observatory_3
+  potential: "exists = owner\nowner = {\n    has_origin = origin_shroud_forged\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mine_zro"'
+- name: building_archaeostudies_faculty
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_archaeostudies"'
+- name: building_vultaum_reality_computer
+  potential: "exists = owner\nNOR = {\n    has_modifier = resort_colony\n    has_modifier\
+    \ = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_secrets_vultaum"'
+- name: building_physics_lab_1
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner\
+    \ = {\n        is_ai = no\n    }\n    has_any_research_physics_zone = yes\n  \
+    \  has_any_unspecialized_research_zone = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_physics_1"'
+- name: building_physics_lab_2
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_physics_2"'
+- name: building_physics_lab_3
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_physics_3"'
+- name: building_biolab_1
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner\
+    \ = {\n        is_ai = no\n    }\n    has_any_research_society_zone = yes\n  \
+    \  has_any_unspecialized_research_zone = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_society_1"'
+- name: building_biolab_2
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_society_2"'
+- name: building_biolab_3
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_society_3"'
+- name: building_engineering_facility_1
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner\
+    \ = {\n        is_ai = no\n    }\n    has_any_research_engineering_zone = yes\n\
+    \    has_any_unspecialized_research_zone = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_engineering_1"'
+- name: building_engineering_facility_2
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_engineering_2"'
+- name: building_engineering_facility_3
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_engineering_3"'
+- name: building_ranger_lodge
+  potential: "NOT = {\n    has_modifier = slave_colony\n}\nowner = {\n    is_regular_empire\
+    \ = yes\n    has_valid_civic = civic_environmentalist\n}\nNOR = {\n    is_planet_class\
+    \ = pc_city\n    is_planet_class = pc_hive\n    is_planet_class = pc_machine\n\
+    \    is_planet_class = pc_relic\n}\nis_artificial = no"
+  allow: "custom_tooltip = {\n    fail_text = no_free_district_for_ranger_lodge\n\
+    \    planet = {\n        num_free_districts = {\n            type = any\n    \
+    \        value > 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_research_upkeep_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_2"'
+- name: building_research_efficiency_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_2"'
+- name: building_commercial_zone
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nNOR = {\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}\nNOT = {\n\
+    \    has_building = building_low_tech_capital\n}\nOR = {\n    has_planet_flag\
+    \ = ignore_ai_building_limitations\n    owner = {\n        is_ai = no\n    }\n\
+    \    owner = {\n        is_megacorp = yes\n    }\n    has_any_trade_zone = yes\n\
+    \    NOR = {\n        has_building = building_commercial_zone\n        has_building\
+    \ = building_commercial_megaplex\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_interplanetary_commerce"'
+- name: building_commercial_megaplex
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nNOR = {\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_interstellar_economics"'
+- name: building_galactic_stock_exchange
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_markets"'
+- name: building_maintenance_depot
+  potential: "exists = owner\nowner = {\n    is_gestalt = yes\n}\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_luxury_residence
+  potential: "OR = {\n    NOT = {\n        is_planet_class = pc_habitat\n    }\n \
+    \   AND = {\n        exists = owner\n        owner = {\n            is_void_dweller_empire\
+    \ = yes\n        }\n    }\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n\
+    \    owner = {\n        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n\
+    \    days_passed = 0\n}\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nexists = owner\nowner = {\n    is_regular_empire = yes\n\
+    \    NOT = {\n        has_valid_civic = civic_shared_burden\n    }\n}\nNOT = {\n\
+    \    has_building = building_low_tech_capital\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_paradise_dome
+  potential: "has_building = building_luxury_residence\nOR = {\n    NOT = {\n    \
+    \    is_planet_class = pc_habitat\n    }\n    AND = {\n        exists = owner\n\
+    \        owner = {\n            is_void_dweller_empire = yes\n        }\n    }\n\
+    }\nNOR = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_paradise_dome"'
+- name: building_communal_housing
+  potential: "exists = owner\nOR = {\n    NOT = {\n        is_planet_class = pc_habitat\n\
+    \    }\n    owner = {\n        is_void_dweller_empire = yes\n    }\n}\nOR = {\n\
+    \    has_planet_flag = ignore_ai_building_limitations\n    owner = {\n       \
+    \ is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n    days_passed =\
+    \ 0\n}\nNOR = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }\nowner = {\n    is_regular_empire = yes\n    has_valid_civic = civic_shared_burden\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_communal_housing_large
+  potential: "exists = owner\nhas_building = building_communal_housing\nowner = {\n\
+    \    is_regular_empire = yes\n    has_valid_civic = civic_shared_burden\n}\nOR\
+    \ = {\n    NOT = {\n        is_planet_class = pc_habitat\n    }\n    owner = {\n\
+    \        is_void_dweller_empire = yes\n    }\n}\nNOR = {\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_paradise_dome"'
+- name: building_drone_storage
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n}\nOR = {\n\
+    \    has_planet_flag = ignore_ai_building_limitations\n    owner = {\n       \
+    \ is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n    days_passed =\
+    \ 0\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_drone_megastorage
+  potential: has_building = building_drone_storage
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_micro_replicators"'
+- name: building_hive_warren
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner\
+    \ = {\n        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n   \
+    \ days_passed = 0\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_expanded_warren
+  potential: "exists = owner\nhas_building = building_hive_warren\nowner = {\n   \
+    \ is_wilderness_empire = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_housing_2"'
+- name: building_holo_theatres
+  potential: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    is_regular_empire = yes\n    NOT = {\n   \
+    \     has_valid_civic = civic_dystopian_society\n    }\n}\nOR = {\n    has_planet_flag\
+    \ = ignore_ai_building_limitations\n    owner = {\n        is_ai = no\n    }\n\
+    \    free_amenities < @amenity_ai_limit\n}\nNOT = {\n    has_building = building_low_tech_capital\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_holo_entertainment"'
+- name: building_hyper_entertainment_forum
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hyper_entertainment_forum"'
+- name: building_medical_1
+  potential: ''
+  allow: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    is_regular_empire = yes\n    is_individual_machine\
+    \ = no\n    NOT = {\n        has_valid_civic = civic_dystopian_society\n    }\n\
+    }\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner = {\n\
+    \        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n}\nNOT = {\n\
+    \    has_building = building_low_tech_capital\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_health"'
+- name: building_medical_2
+  potential: "exists = owner\nowner = {\n    is_individual_machine = no\n    OR =\
+    \ {\n        is_regular_empire = yes\n        AND = {\n            has_origin\
+    \ = origin_fear_of_the_dark\n            is_country_type = primitive\n       \
+    \ }\n    }\n    OR = {\n        is_ai = no\n        has_valid_civic = civic_private_healthcare_corporate\n\
+    \        root = {\n            if = {\n                limit = {\n           \
+    \         has_branch_office = yes\n                }\n                branch_office_owner\
+    \ = {\n                    has_valid_civic = civic_private_healthcare_corporate\n\
+    \                }\n            }\n        }\n        root = {\n            NOT\
+    \ = {\n                has_available_jobs = entertainer\n            }\n     \
+    \       NOT = {\n                has_forbidden_jobs = entertainer\n          \
+    \  }\n            planet_stability < 50\n            free_amenities < 0\n    \
+    \    }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_frontier_health"'
+- name: building_medical_3
+  potential: "exists = owner\nhas_upgraded_capital = yes\nOR = {\n    owner = {\n\
+    \        OR = {\n            has_valid_civic = civic_private_healthcare_corporate\n\
+    \            is_ai = no\n        }\n    }\n    AND = {\n        NOT = {\n    \
+    \        has_available_jobs = entertainer\n        }\n        NOT = {\n      \
+    \      has_forbidden_jobs = entertainer\n        }\n        planet_stability <\
+    \ 55\n        free_amenities < 5\n    }\n    AND = {\n        has_branch_office\
+    \ = yes\n        branch_office_owner = {\n            has_valid_civic = civic_private_healthcare_corporate\n\
+    \        }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_frontier_hospital"'
+- name: building_overseer_homes
+  potential: has_modifier = slave_colony
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_toxic_bath
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_toxic_baths_empire = yes\n    OR = {\n        AND = {\n          \
+    \  is_regular_empire = yes\n            is_individual_machine = no\n        }\n\
+    \        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_toxic_bath_hive
+  potential: "owner = {\n    is_hive_empire = yes\n    is_wilderness_empire = no\n\
+    \    is_toxic_baths_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_toxic_bath_machine
+  potential: "exists = owner\nowner = {\n    is_toxic_baths_empire = yes\n    is_synthetic_empire\
+    \ = yes\n    NOT = {\n        has_valid_civic = civic_machine_servitor\n    }\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_autochthon_monument
+  potential: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    NOR = {\n        is_gestalt = yes\n      \
+    \  is_megacorp = yes\n        is_memorialist_empire = yes\n        is_entropy_drinkers_empire\
+    \ = yes\n    }\n}\nowner = {\n    is_ai = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_heritage_site
+  potential: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    NOR = {\n        is_gestalt = yes\n      \
+    \  is_megacorp = yes\n        is_memorialist_empire = yes\n        is_entropy_drinkers_empire\
+    \ = yes\n    }\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_hypercomms_forum
+  potential: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    NOR = {\n        is_gestalt = yes\n      \
+    \  is_megacorp = yes\n        is_memorialist_empire = yes\n        is_entropy_drinkers_empire\
+    \ = yes\n    }\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_bureaucratic_1
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_spiritualist\
+    \ = no\n    has_make_spiritualist_perk = no\n}\nNOR = {\n    has_modifier = penal_colony\n\
+    \    has_modifier = slave_colony\n    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_bureaucratic_2
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_spiritualist\
+    \ = no\n    has_make_spiritualist_perk = no\n}\nNOR = {\n    has_modifier = slave_colony\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_bureaucracy"'
+- name: building_bureaucratic_3
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_spiritualist\
+    \ = no\n    has_make_spiritualist_perk = no\n}\nNOR = {\n    has_modifier = slave_colony\n\
+    \    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_bureaucracy"'
+- name: building_temple
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_spiritualist = yes\n\
+    \        AND = {\n            is_gestalt = no\n            has_make_spiritualist_perk\
+    \ = yes\n        }\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_holotemple
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_spiritualist = yes\n\
+    \        AND = {\n            is_gestalt = no\n            has_make_spiritualist_perk\
+    \ = yes\n        }\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_holographic_rituals"'
+- name: building_sacred_nexus
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_spiritualist = yes\n\
+    \        AND = {\n            is_gestalt = no\n            has_make_spiritualist_perk\
+    \ = yes\n        }\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_consecration_fields"'
+- name: building_uplink_node
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    NOT = {\n\
+    \        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_network_junction
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    NOT = {\n\
+    \        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_bureaucracy"'
+- name: building_system_conflux
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    NOT = {\n\
+    \        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_bureaucracy"'
+- name: building_hive_node
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hive_node"'
+- name: building_hive_cluster
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hive_cluster"'
+- name: building_hive_confluence
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hive_confluence"'
+- name: building_sacrificial_temple_1
+  potential: "exists = owner\nowner = {\n    is_death_cult_empire = yes\n}\nNOT =\
+    \ {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_sacrificial_temple_2
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_death_cult_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_holographic_rituals"'
+- name: building_sacrificial_temple_3
+  potential: "exists = owner\nowner = {\n    is_death_cult_empire = yes\n}\nNOT =\
+    \ {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_consecration_fields"'
+- name: building_galactic_memorial_1
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_memorialist_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_galactic_memorial_2
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_memorialist_empire = yes\n}"
+  allow: 'exists = owner
+
+    has_upgraded_capital = yes'
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_galactic_memorial_3
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_memorialist_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_simulation_1
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_machine_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_simulation_2
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_machine_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_simulation_3
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_machine_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_corporate_monument
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_megacorp = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_corporate_site
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_megacorp = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_corporate_forum
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_megacorp = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_sensorium_1
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_hive_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_sensorium_2
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_hive_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_sensorium_3
+  potential: "exists = owner\nNOT = {\n    has_modifier = slave_colony\n}\nowner =\
+    \ {\n    is_hive_empire = yes\n    is_memorialist_empire = no\n    is_entropy_drinkers_empire\
+    \ = no\n    is_wilderness_empire = no\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_autocurating_vault
+  potential: "exists = owner\nis_special_colony_type = no\nowner = {\n    is_machine_empire\
+    \ = no\n    is_megacorp = no\n    is_spiritualist = no\n    is_wilderness_empire\
+    \ = no\n    OR = {\n        is_hive_empire = yes\n        has_make_spiritualist_perk\
+    \ = no\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_autocurating_vault"'
+- name: building_citadel_of_faith
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_spiritualist = yes\n\
+    \        AND = {\n            is_gestalt = no\n            has_make_spiritualist_perk\
+    \ = yes\n        }\n    }\n}\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_transcendent_faith"'
+- name: building_corporate_vault
+  potential: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}\nowner = {\n    is_megacorp = yes\n    is_spiritualist = no\n\
+    \    has_make_spiritualist_perk = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_autocurating_vault"'
+- name: building_alpha_hub
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    NOT = {\n\
+    \        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_autocurating_vault"'
+- name: building_organic_sanctuary
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_machine_servitor\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_organic_paradise
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_machine_servitor\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_paradise_dome"'
+- name: building_trophy_vault
+  potential: "exists = owner\nis_special_colony_type = no\nowner = {\n    has_valid_civic\
+    \ = civic_machine_servitor\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_autocurating_vault"'
+- name: building_league_offices
+  potential: "exists = owner\nowner = {\n    has_technology = tech_secrets_league\n\
+    }\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_secrets_league"'
+- name: building_military_academy
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    NOT =\
+    \ {\n        has_valid_civic = civic_reanimated_armies\n    }\n}\nNOR = {\n  \
+    \  has_modifier = resort_colony\n    has_modifier = penal_colony\n}"
+  allow: "OR = {\n    has_major_upgraded_capital = yes\n    AND = {\n        exists\
+    \ = owner\n        owner = {\n            has_valid_civic = civic_machine_tactical_algorithms\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_centralized_command"'
+- name: building_dread_encampment
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_reanimated_armies\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_stronghold
+  potential: "exists = owner\nNOT = {\n    has_modifier = resort_colony\n}\nowner\
+    \ = {\n    is_wilderness_empire = no\n}"
+  allow: "exists = owner\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n\
+    \    owner = {\n        is_ai = no\n    }\n    has_any_fortress_zone = yes\n \
+    \   AND = {\n        num_buildings = {\n            type = building_stronghold\n\
+    \            value < 2\n        }\n        num_buildings = {\n            type\
+    \ = building_fortress\n            value < 2\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_defenses"'
+- name: building_fortress
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_defense_grid"'
+- name: building_planetary_shield_generator
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
+    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
+    \ {\n            NOR = {\n                has_starbase_building = ring_orbital_shield_generator\n\
+    \                is_starbase_building_building = ring_orbital_shield_generator\n\
+    \            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_shield_generator"'
+- name: building_mote_harvesters
+  potential: "owner = {\n    is_wilderness_empire = no\n}\nhas_volatile_motes_deposit\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mine_volatile_motes"'
+- name: building_gas_extractors
+  potential: "owner = {\n    is_wilderness_empire = no\n}\nhas_exotic_gases_deposit\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mine_exotic_gases"'
+- name: building_crystal_mines
+  potential: "owner = {\n    is_wilderness_empire = no\n}\nhas_rare_crystals_deposit\
+    \ = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mine_rare_crystals"'
+- name: building_betharian_power_plant
+  potential: "NOT = {\n    has_modifier = resort_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mine_betharian"'
+- name: building_xeno_zoo
+  potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n    is_guided_sapience_empire\
+    \ = no\n}\nplanet = {\n    OR = {\n        has_modifier = resort_colony\n    \
+    \    OR = {\n            has_deposit = d_alien_pets_deposit\n            has_deposit\
+    \ = d_avian_reserve\n            AND = {\n                exists = owner\n   \
+    \             owner = {\n                    has_policy_flag = pre_sapients_protect\n\
+    \                }\n                any_owned_pop_group = {\n                \
+    \    is_sapient = no\n                }\n            }\n            AND = {\n\
+    \                exists = owner\n                any_owned_pop_group = {\n   \
+    \                 has_citizenship_type = {\n                        type = citizenship_protected_drone\n\
+    \                        country = owner\n                    }\n            \
+    \    }\n            }\n            any_owned_pop_group = {\n                is_livestock\
+    \ = yes\n            }\n            AND = {\n                exists = owner\n\
+    \                any_owned_pop_group = {\n                    has_trait = trait_nascent_stage\n\
+    \                }\n            }\n        }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_alien_life_studies"'
+- name: building_crude_huts
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    has_country_flag = stone_age\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_dwellings
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = bronze_age\n        has_country_flag\
+    \ = iron_age\n        has_country_flag = late_medieval_age\n        has_country_flag\
+    \ = renaissance_age\n        has_country_flag = steam_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_stone_palace
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = bronze_age\n        has_country_flag\
+    \ = iron_age\n        has_country_flag = late_medieval_age\n        has_country_flag\
+    \ = renaissance_age\n        has_country_flag = steam_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_factory
+  potential: always = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_offices
+  potential: always = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_research
+  potential: always = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_mine
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_power_plant
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_farm
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = machine_age\n        has_country_flag\
+    \ = industrial_age\n        has_country_flag = atomic_age\n        has_country_flag\
+    \ = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_capital
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = machine_age\n        has_country_flag\
+    \ = industrial_age\n        has_country_flag = atomic_age\n        has_country_flag\
+    \ = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_urban_dwellings
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = no\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_pre_ftl_radio_telescope
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    OR = {\n    \
+    \    has_country_flag = atomic_age\n        has_country_flag = early_space_age\n\
+    \    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_crude_huts
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    has_country_flag = stone_age\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_dwellings
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = bronze_age\n        has_country_flag\
+    \ = iron_age\n        has_country_flag = late_medieval_age\n        has_country_flag\
+    \ = renaissance_age\n        has_country_flag = steam_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_stone_palace
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = bronze_age\n        has_country_flag\
+    \ = iron_age\n        has_country_flag = late_medieval_age\n        has_country_flag\
+    \ = renaissance_age\n        has_country_flag = steam_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_factory
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_mine
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_power_plant
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_farm
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = machine_age\n        has_country_flag\
+    \ = industrial_age\n        has_country_flag = atomic_age\n        has_country_flag\
+    \ = early_space_age\n    }\n    is_lithoid_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_capital
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = machine_age\n        has_country_flag\
+    \ = industrial_age\n        has_country_flag = atomic_age\n        has_country_flag\
+    \ = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_urban_dwellings
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = steam_age\n        has_country_flag\
+    \ = machine_age\n        has_country_flag = industrial_age\n        has_country_flag\
+    \ = atomic_age\n        has_country_flag = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_primitive_node
+  potential: always = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_machine_primitive_node
+  potential: always = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_primitive_clinic
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n    is_hive_empire\
+    \ = yes\n    OR = {\n        has_country_flag = machine_age\n        has_country_flag\
+    \ = industrial_age\n        has_country_flag = atomic_age\n        has_country_flag\
+    \ = early_space_age\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_solarpunk_gaiaseeder
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_solarpunk_ranger_lodge
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_solarpunk_sapling
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_solarpunk_organic_paradise
+  potential: "exists = owner\nowner = {\n    is_primitive = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_junkheap
+  potential: "exists = owner\nowner = {\n    is_country_type = ratlings\n}\nNOT =\
+    \ {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_akx_worm_3
+  potential: "exists = planet\nplanet = {\n    is_capital = yes\n}\nexists = owner\n\
+    NOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_akx_worm_3"'
+- name: building_great_pyramid
+  potential: "NOT = {\n    has_modifier = slave_colony\n}\nexists = owner\nowner =\
+    \ {\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_artist_patron
+  potential: "custom_tooltip = {\n    text = EMPIRE_UNIQUE_BUILDING\n    owner = {\n\
+    \        has_country_flag = artist_building_patron\n    }\n}\nNOT = {\n    has_modifier\
+    \ = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_waste_reprocessing_center
+  potential: "exists = owner\nowner = {\n    has_country_flag = bought_waste_reprocessing_center\n\
+    }\nNOT = {\n    has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nuumismatic_shrine
+  potential: "owner = {\n    has_country_flag = nuumismatic_shrine\n}\nNOT = {\n \
+    \   has_modifier = slave_colony\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_crystal_plant_2
+  potential: "owner = {\n    has_country_flag = lithoid_crystal_plant\n}\nNOR = {\n\
+    \    has_modifier = resort_colony\n    has_modifier = slave_colony\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_rare_crystals"'
+- name: building_zroni_equilibrator
+  potential: "owner = {\n    has_country_flag = zroni_legacy\n}\nhas_planet_flag =\
+    \ zroni_legacy_flag"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_composer_sanctum
+  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
+    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
+    \ = composer_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
+    \ = yes\n        owner = {\n            has_country_flag = fertility_accord\n\
+    \        }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
+    \ = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_eater_sanctum
+  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
+    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
+    \ = eater_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
+    \ = yes\n        owner = {\n            has_country_flag = hunger_accord\n   \
+    \     }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
+    \ = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_instrument_sanctum
+  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
+    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
+    \ = instrument_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
+    \ = yes\n        owner = {\n            has_country_flag = bliss_accord\n    \
+    \    }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
+    \ = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_whisperers_sanctum
+  potential: "OR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\n        has_shroud_dlc\
+    \ = no\n        owner = {\n            has_country_flag = whisperers_covenant_rank_1\n\
+    \        }\n    }\n    AND = {\n        has_shroud_dlc = yes\n        owner =\
+    \ {\n            has_country_flag = wisdom_accord\n        }\n    }\n}\nNOR =\
+    \ {\n    has_designation = col_resort\n    has_modifier = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ancient_control_center
+  potential: "exists = owner\nowner = {\n    is_fallen_empire_machine = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ancient_hive_capital
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_fallen_empire\
+    \ = yes\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ancient_palace
+  potential: "exists = owner\nowner = {\n    is_fallen_empire = yes\n    is_hive_empire\
+    \ = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_xeno_zoo
+  potential: "exists = owner\nowner = {\n    is_fallen_empire = yes\n    is_xenophile\
+    \ = yes\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hab_fe_capital
+  potential: "is_planet_class = pc_habitat\nexists = owner\nowner = {\n    is_fallen_empire\
+    \ = yes\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_master_archive
+  potential: exists = owner
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_empyrean_shrine
+  potential: exists = owner
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ancient_cryo_chamber
+  potential: exists = owner
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_affluence_emporium
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_country_flag = affluence_emporium_can_build\n        has_technology\
+    \ = tech_fe_affluence_1\n    }\n    is_hive_empire = no\n}\nNOR = {\n    has_modifier\
+    \ = resort_colony\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = affluence_emporium_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_affluence_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_affluence_center
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_affluence_2\n        has_country_flag = affluence_emporium_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ affluence_emporium_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_affluence_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nourishment_complex
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_country_flag = nourishment_complex_can_build\n        has_technology\
+    \ = tech_fe_nourishment_1\n    }\n}\nNOR = {\n    has_modifier = resort_colony\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = nourishment_complex_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_nourishment_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nourishment_center
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_nourishment_2\n        has_country_flag = nourishment_complex_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ nourishment_complex_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_nourishment_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_dimensional_replicator
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_fabricator_1\n        has_country_flag = dimensional_replicator_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = dimensional_replicator_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_fabricator_1\n        }\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = cosmogenesis_aborted_tt\n    NOT = {\n        owner = {\n\
+    \            has_country_flag = cosmogenesis_aborted\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_dimensional_fabricator
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_fabricator_2\n        has_country_flag = dimensional_replicator_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ dimensional_replicator_upgrade_count\n                value >= 1\n         \
+    \   }\n            is_fallen_empire = yes\n            has_technology = tech_fe_fabricator_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_class_3_singularity
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_singularity_1\n        has_country_flag = class_3_singularity_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = class_3_singularity_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_singularity_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_class_4_singularity
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_singularity_2\n        has_country_flag = class_3_singularity_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ class_3_singularity_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_singularity_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_micro_forge
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_forge_1\n        has_country_flag = micro_forge_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = micro_forge_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_forge_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nano_forge
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_forge_2\n        has_country_flag = micro_forge_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ micro_forge_upgrade_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_forge_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_sky_dome
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_dome_1\n        has_country_flag = fe_sky_dome_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = fe_sky_dome_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_dome_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_dome
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_dome_2\n        has_country_flag = fe_sky_dome_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_sky_dome_upgrade_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_dome_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_fortress
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_fortress_1\n        has_country_flag = fe_fortress_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = fe_fortress_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_fortress_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_stronghold
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_fortress_2\n        has_country_flag = fe_fortress_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_fortress_upgrade_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_fortress_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_1
+  potential: "exists = owner\nowner = {\n    is_hive_empire = no\n    is_machine_empire\
+    \ = no\n    is_spiritualist = no\n    has_make_spiritualist_perk = no\n    OR\
+    \ = {\n        is_fallen_empire = yes\n        has_technology = tech_fe_administration_1\n\
+    \        has_country_flag = fe_administration_1_can_build\n    }\n}\nNOT = {\n\
+    \    has_modifier = resort_colony\n    has_modifier = slave_colony\n    has_modifier\
+    \ = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    owner = {\n        OR =\
+    \ {\n            check_variable = {\n                which = fe_administration_1_build_count\n\
+    \                value >= 1\n            }\n            is_fallen_empire = yes\n\
+    \            has_technology = tech_fe_administration_1\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_administration_2\n        has_country_flag =\
+    \ fe_administration_1_can_build\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_1_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_administration_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_hive_1
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nowner = {\n\
+    \    OR = {\n        is_fallen_empire = yes\n        has_technology = tech_fe_administration_1\n\
+    \        has_country_flag = fe_administration_hive_1_can_build\n    }\n}\nNOR\
+    \ = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n   \
+    \ has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_hive_1_build_count\n                value >= 1\n         \
+    \   }\n            is_fallen_empire = yes\n            has_technology = tech_fe_administration_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_hive_2
+  potential: "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nowner = {\n\
+    \    OR = {\n        is_fallen_empire = yes\n        has_technology = tech_fe_administration_2\n\
+    \        has_country_flag = fe_administration_hive_1_can_build\n    }\n}\nNOR\
+    \ = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n   \
+    \ has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_hive_1_upgrade_count\n                value >= 1\n       \
+    \     }\n            is_fallen_empire = yes\n            has_technology = tech_fe_administration_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_machine_1
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    OR = {\n\
+    \        is_fallen_empire = yes\n        has_technology = tech_fe_administration_1\n\
+    \        has_country_flag = fe_administration_machine_1_can_build\n    }\n}\n\
+    NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n \
+    \   has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_machine_1_build_count\n                value >= 1\n      \
+    \      }\n            is_fallen_empire = yes\n            has_technology = tech_fe_administration_1\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_administration_machine_2
+  potential: "exists = owner\nowner = {\n    is_machine_empire = yes\n    OR = {\n\
+    \        is_fallen_empire = yes\n        has_technology = tech_fe_administration_2\n\
+    \        has_country_flag = fe_administration_machine_1_can_build\n    }\n}\n\
+    NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n \
+    \   has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_machine_1_upgrade_count\n                value >= 1\n    \
+    \        }\n            is_fallen_empire = yes\n            has_technology = tech_fe_administration_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_temple_1
+  potential: "exists = owner\nowner = {\n    is_spiritualist = yes\n    OR = {\n \
+    \       is_fallen_empire = yes\n        has_technology = tech_fe_administration_1\n\
+    \        has_country_flag = fe_administration_1_can_build\n    }\n}\nNOT = {\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_1_build_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_administration_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_temple_2
+  potential: "exists = owner\nowner = {\n    is_spiritualist = yes\n    OR = {\n \
+    \       is_fallen_empire = yes\n        has_technology = tech_fe_administration_2\n\
+    \        has_country_flag = fe_administration_1_can_build\n    }\n}\nNOT = {\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_administration_1_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_administration_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_assembly_1
+  potential: "exists = owner\nOR = {\n    AND = {\n        OR = {\n            owner\
+    \ = {\n                is_ai = no\n            }\n            NOT = {\n      \
+    \          exists = assembling_species\n            }\n            assembling_species\
+    \ = {\n                is_robotic_species = yes\n            }\n        }\n  \
+    \      owner = {\n            is_regular_empire = yes\n            NOT = {\n \
+    \               has_policy_flag = robots_outlawed\n            }\n           \
+    \ OR = {\n                NOT = {\n                    has_ascension_perk = ap_engineered_evolution\n\
+    \                }\n                is_materialist = yes\n            }\n    \
+    \    }\n    }\n    owner = {\n        is_machine_empire = yes\n    }\n}\nowner\
+    \ = {\n    OR = {\n        is_fallen_empire = yes\n        has_technology = tech_fe_assembly_1\n\
+    \        has_country_flag = fe_assembly_1_can_build\n    }\n}\nNOR = {\n    has_modifier\
+    \ = resort_colony\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_assembly_1_build_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_assembly_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_assembly_2
+  potential: "exists = owner\nOR = {\n    AND = {\n        OR = {\n            owner\
+    \ = {\n                is_ai = no\n            }\n            NOT = {\n      \
+    \          exists = assembling_species\n            }\n            assembling_species\
+    \ = {\n                is_robotic_species = yes\n            }\n        }\n  \
+    \      owner = {\n            is_regular_empire = yes\n            NOT = {\n \
+    \               has_policy_flag = robots_outlawed\n            }\n           \
+    \ OR = {\n                is_ai = no\n                NOT = {\n              \
+    \      has_ascension_perk = ap_engineered_evolution\n                }\n     \
+    \           is_materialist = yes\n            }\n        }\n    }\n    owner =\
+    \ {\n        is_machine_empire = yes\n    }\n}\nowner = {\n    OR = {\n      \
+    \  is_fallen_empire = yes\n        has_technology = tech_fe_assembly_2\n     \
+    \   has_country_flag = fe_assembly_1_can_build\n    }\n}\nNOR = {\n    has_modifier\
+    \ = resort_colony\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_assembly_1_upgrade_count\n                value >= 1\n            }\n   \
+    \         is_fallen_empire = yes\n            has_technology = tech_fe_assembly_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_clinic_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_regular_empire = yes\n\
+    \        is_hive_empire = yes\n    }\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_clinic_1\n        has_country_flag = fe_clinic_1_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_clinic_1_build_count\n                value >= 1\n            }\n       \
+    \     is_fallen_empire = yes\n            has_technology = tech_fe_clinic_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_clinic_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_regular_empire = yes\n\
+    \        is_hive_empire = yes\n    }\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_clinic_2\n        has_country_flag = fe_clinic_1_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_clinic_1_upgrade_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_clinic_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_security_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_security_1\n        has_country_flag = fe_security_1_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_security_1_build_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_security_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_security_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_security_2\n        has_country_flag = fe_security_1_can_build\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_security_1_upgrade_count\n                value >= 1\n            }\n   \
+    \         is_fallen_empire = yes\n            has_technology = tech_fe_security_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_market_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_market_1\n        has_country_flag = fe_market_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_market_1_build_count\n                value >= 1\n            }\n       \
+    \     is_fallen_empire = yes\n            has_technology = tech_fe_market_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_market_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_market_2\n        has_country_flag = fe_market_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = slave_colony\n    has_modifier = penal_colony\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_market_1_upgrade_count\n                value >= 1\n            }\n     \
+    \       is_fallen_empire = yes\n            has_technology = tech_fe_market_2\n\
+    \        }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_silo_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_silo_1\n        has_country_flag = fe_silo_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_silo_1_build_count\n                value >= 1\n            }\n         \
+    \   is_fallen_empire = yes\n            has_technology = tech_fe_silo_1\n    \
+    \    }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_silo_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_silo_2\n        has_country_flag = fe_silo_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_silo_1_upgrade_count\n                value >= 1\n            }\n       \
+    \     is_fallen_empire = yes\n            has_technology = tech_fe_silo_2\n  \
+    \      }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_entertainment_1
+  potential: "exists = owner\nowner = {\n    is_hive_empire = no\n    is_machine_empire\
+    \ = no\n    OR = {\n        is_fallen_empire = yes\n        has_technology = tech_fe_entertainment_1\n\
+    \        has_country_flag = fe_entertainment_1_can_build\n    }\n}\nNOT = {\n\
+    \    has_modifier = slave_colony\n    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_entertainment_1_build_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_entertainment_1\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_entertainment_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_entertainment_2\n        has_country_flag =\
+    \ fe_entertainment_1_can_build\n    }\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_entertainment_1_upgrade_count\n                value >= 1\n            }\n\
+    \            is_fallen_empire = yes\n            has_technology = tech_fe_entertainment_2\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_lab_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_lab_1\n        has_country_flag = fe_lab_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_lab_1_build_count\n                value >= 1\n            }\n          \
+    \  is_fallen_empire = yes\n            has_technology = tech_fe_lab_1\n      \
+    \  }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_lab_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_lab_2\n        has_country_flag = fe_lab_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_lab_1_upgrade_count\n                value >= 1\n            }\n        \
+    \    is_fallen_empire = yes\n            has_technology = tech_fe_lab_2\n    \
+    \    }\n    }\n}\ncustom_tooltip = {\n    fail_text = cosmogenesis_aborted_tt\n\
+    \    NOT = {\n        owner = {\n            has_country_flag = cosmogenesis_aborted\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_mine_1
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_mine_1\n        has_country_flag = fe_mine_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nNOT = {\n    is_planet_class = pc_ringworld_habitable\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_mine_1_build_count\n                value >= 1\n            }\n         \
+    \   is_fallen_empire = yes\n            has_technology = tech_fe_mine_1\n    \
+    \    }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_fe_mine_2
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_fallen_empire = yes\n\
+    \        has_technology = tech_fe_mine_2\n        has_country_flag = fe_mine_1_can_build\n\
+    \    }\n}\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    \    has_modifier = penal_colony\n}\nNOT = {\n    is_planet_class = pc_ringworld_habitable\n\
+    }"
+  allow: "custom_tooltip = {\n    fail_text = ancrel\n    exists = owner\n    owner\
+    \ = {\n        OR = {\n            check_variable = {\n                which =\
+    \ fe_mine_1_upgrade_count\n                value >= 1\n            }\n       \
+    \     is_fallen_empire = yes\n            has_technology = tech_fe_mine_2\n  \
+    \      }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_private_mining_consortium
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}\nis_artificial = no\nNOR = {\n    is_planet_class = pc_hive\n    is_planet_class\
+    \ = pc_machine\n    is_planet_class = pc_city\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_food_conglomerate
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}\nNOR = {\n    is_planet_class = pc_hive\n    is_planet_class = pc_machine\n\
+    \    is_planet_class = pc_relic\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_virtual_entertainment_studios
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_private_shipyards
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_military_contractors
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_industrial_subsidiary
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    OR = {\n     \
+    \   is_criminal_syndicate = no\n        AND = {\n            is_criminal_syndicate\
+    \ = yes\n            has_valid_civic = civic_corporate_scavengers\n          \
+    \  has_valid_civic = civic_corporate_relentless_industrialists\n        }\n  \
+    \  }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_public_relations_office
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_private_research_initiative
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_amusement_megaplex
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}\nbranch_office_owner = {\n    NOT = {\n        has_origin = origin_toxic_knights\n\
+    \    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_commercial_forum
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_corporate_embassy
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_xeno_diplomacy"'
+- name: building_private_security
+  potential: has_branch_office = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_wildcat_miners
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}\nis_artificial = no\nNOR = {\n    is_planet_class = pc_hive\n    is_planet_class\
+    \ = pc_machine\n    is_planet_class = pc_city\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_bio_reprocessing_facilities
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}\nNOR = {\n    is_planet_class = pc_hive\n    is_planet_class = pc_machine\n\
+    \    is_planet_class = pc_relic\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_underground_chemists
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_wrecking_yards
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_pirate_haven
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_underground_clubs
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_syndicate_outreach_office
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_illicit_research_labs
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_smuggling_rings
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_disinformation_center
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_illegal_criminal\
+    \ = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_xeno_diplomacy"'
+- name: building_subversive_shrine
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_valid_civic\
+    \ = civic_gospel_of_the_masses\n    is_illegal_criminal = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_temple_of_prosperity
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_valid_civic\
+    \ = civic_gospel_of_the_masses\n    is_legit_or_legal_criminal = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_executive_retreat
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_executive_retreat"'
+- name: building_xeno_tourism_agency
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_legit_or_legal_criminal\
+    \ = yes\n}"
+  allow: pop_amount >= 2500
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_xeno_tourism_agency"'
+- name: building_imperial_concession_port
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    OR = {\n     \
+    \   has_modifier = imperial_charter\n        has_civic = civic_galactic_sovereign_megacorp\n\
+    \    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_knightly_theme_park
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_origin = origin_toxic_knights\n\
+    \    NOT = {\n        has_country_flag = quest_abandoned\n    }\n}"
+  allow: pop_amount >= 5000
+  abort_trigger: ''
+  prerequisites: []
+- name: building_corporate_clinics
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    OR = {\n     \
+    \   has_valid_civic = civic_private_healthcare_corporate\n        has_valid_civic\
+    \ = civic_corporate_toxic_baths\n        has_valid_civic = civic_corporate_toxic_baths_individual_machine\n\
+    \    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_augmentation_bazaars_branch
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_valid_civic\
+    \ = civic_augmentation_bazaars\n}"
+  allow: always = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ai_emporium
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_synth_corporate\
+    \ = yes\n    has_country_flag = synth_physical\n}"
+  allow: "custom_tooltip = {\n    fail_text = building_ai_emporium_fail_tt\n    planet.owner\
+    \ = {\n        NOT = {\n            any_owned_planet = {\n                has_branch_office\
+    \ = yes\n                has_holding = {\n                    holding = building_ai_emporium\n\
+    \                    owner = root.branch_office_owner\n                }\n   \
+    \         }\n        }\n    }\n}\ncustom_tooltip = {\n    fail_text = building_ai_emporium_outlawed_robots_tt\n\
+    \    planet.owner = {\n        NOT = {\n            has_policy_flag = robots_outlawed\n\
+    \        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_clear_thought_clinic
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_synth_corporate\
+    \ = yes\n    has_country_flag = synth_virtual\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_carceral_test_facility
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_valid_civic\
+    \ = civic_twisted_experimenters_corporate\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_psionic_offices
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    has_breached_shroud\
+    \ = yes\n    has_tradition = tr_psionics_shroud_psi_corps\n    NOT = {\n     \
+    \   has_origin = origin_endbringers\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_living_metal_clinic
+  potential: "has_branch_office = yes\nbranch_office_owner = {\n    is_galvanic_empire\
+    \ = yes\n    is_legit_or_legal_criminal = yes\n}"
+  allow: "owner = {\n    is_gestalt = no\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_garrison
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_orbital_assembly_complex
+  potential: 'has_overlord_dlc = yes
+
+    is_artificial = no'
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_propaganda_office
+  potential: "has_overlord_dlc = yes\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: "exists = planet\nplanet = {\n    is_capital = yes\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_satellite_campus
+  potential: "has_overlord_dlc = yes\nexists = planet.owner\nplanet.owner = {\n  \
+    \  is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_emporium
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ is_machine_empire = no\n        is_hive_empire = no\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_aid_agency
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = overlord_is_homicidal\n    exists =\
+    \ owner.overlord\n    owner.overlord = {\n        is_homicidal = no\n    }\n}\n\
+    custom_tooltip = {\n    fail_text = overlord_is_xenophobe\n    exists = owner.overlord\n\
+    \    owner.overlord = {\n        is_xenophobe = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_energy_requisitorium
+  potential: has_overlord_dlc = yes
+  allow: "custom_tooltip = {\n    fail_text = ove_requires_tech_power_hub_2\n    owner.overlord\
+    \ = {\n        has_technology = tech_power_hub_2\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_material_requisitorium
+  potential: has_overlord_dlc = yes
+  allow: "custom_tooltip = {\n    fail_text = ove_requires_tech_mineral_purification_2\n\
+    \    owner.overlord = {\n        has_technology = tech_mineral_purification_2\n\
+    \    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_produce_requisitorium
+  potential: has_overlord_dlc = yes
+  allow: "custom_tooltip = {\n    fail_text = ove_requires_tech_food_processing_2\n\
+    \    owner.overlord = {\n        has_technology = tech_food_processing_2\n   \
+    \ }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_splinter_hive
+  potential: "has_overlord_dlc = yes\nowner = {\n    is_wilderness_empire = no\n \
+    \   overlord = {\n        is_hive_empire = yes\n        is_wilderness_empire =\
+    \ no\n    }\n}"
+  allow: "custom_tooltip = {\n    fail_text = no_free_district_for_splinter_hive\n\
+    \    planet = {\n        num_free_districts = {\n            type = any\n    \
+    \        value > 0\n        }\n    }\n}\nplanet = {\n    pop_amount >= 2500\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_distributed_processing
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ is_machine_empire = yes\n        NOT = {\n            has_civic = civic_machine_servitor\n\
+    \        }\n    }\n}\nhas_overlord_dlc = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_offspring_nest
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ is_hive_empire = yes\n        has_origin = origin_progenitor_hive\n    }\n}\n\
+    has_overlord_dlc = yes"
+  allow: "owner = {\n    NOT = {\n        has_origin = origin_progenitor_hive\n  \
+    \  }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_offworld_foundry
+  potential: "has_overlord_dlc = yes\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = subject_is_prospectorium\n    exists\
+    \ = planet.owner\n    planet.owner = {\n        is_specialist_subject_type = {\n\
+    \            TYPE = prospectorium\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_overlord_vigil_command
+  potential: "has_overlord_dlc = yes\nexists = owner\nowner = {\n    is_wilderness_empire\
+    \ = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = is_capital\n    exists = planet\n  \
+    \  planet = {\n        is_capital = yes\n    }\n}\ncustom_tooltip = {\n    fail_text\
+    \ = subject_is_bulwark\n    exists = planet.owner\n    planet.owner = {\n    \
+    \    is_specialist_subject_type = {\n            TYPE = bulwark\n        }\n \
+    \   }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_parasitic_algorithms
+  potential: has_overlord_dlc = yes
+  allow: "custom_tooltip = {\n    fail_text = is_capital\n    exists = planet\n  \
+    \  planet = {\n        is_capital = yes\n    }\n}\ncustom_tooltip = {\n    fail_text\
+    \ = subject_is_scholarium\n    exists = planet.owner\n    planet.owner = {\n \
+    \       is_specialist_subject_type = {\n            TYPE = scholarium\n      \
+    \  }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_noble_vacation_homes
+  potential: "owner.overlord = {\n    has_valid_civic = civic_aristocratic_elite\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_dread_outpost
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ has_valid_civic = civic_reanimated_armies\n    }\n}"
+  allow: "owner = {\n    NOR = {\n        has_valid_civic = civic_reanimated_armies\n\
+    \        is_machine_empire = yes\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_communal_housing_outreach
+  potential: "owner.overlord = {\n    has_valid_civic = civic_shared_burden\n}\nNOT\
+    \ = {\n    owner = {\n        has_valid_civic = civic_shared_burden\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_idyllic_bloom
+  potential: "exists = owner\nowner.overlord = {\n    is_country_type = default\n\
+    \    is_idyllic_bloom_empire = yes\n}\nNOR = {\n    is_planet_class = pc_gaia\n\
+    \    is_planet_class = pc_city\n    is_planet_class = pc_hive\n    is_planet_class\
+    \ = pc_machine\n    is_planet_class = pc_relic\n}\nis_artificial = no"
+  allow: can_build_overlord_gaiaseeder = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_reemployment_center
+  potential: "owner.overlord = {\n    has_valid_civic = civic_permanent_employment\n\
+    }\nNOT = {\n    owner = {\n        has_valid_civic = civic_permanent_employment\n\
+    \    }\n}\nowner = {\n    is_machine_empire = no\n    is_wilderness_empire = no\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_recruitment_office
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ has_valid_civic = civic_citizen_service\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_park_ranger_lodge
+  potential: "owner = {\n    NOT = {\n        has_valid_civic = civic_environmentalist\n\
+    \    }\n    overlord = {\n        has_valid_civic = civic_environmentalist\n \
+    \   }\n}\nNOR = {\n    is_planet_class = pc_city\n    is_planet_class = pc_hive\n\
+    \    is_planet_class = pc_machine\n    is_planet_class = pc_relic\n}\nis_artificial\
+    \ = no"
+  allow: "custom_tooltip = {\n    fail_text = no_free_district_for_ranger_lodge\n\
+    \    planet = {\n        num_free_districts = {\n            type = any\n    \
+    \        value > 0\n        }\n    }\n}\ncustom_tooltip = {\n    fail_text = no_ranger_lodge_wilderness\n\
+    \    owner = {\n        is_wilderness_empire = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_tree_of_life_sapling
+  potential: "owner.overlord = {\n    has_origin = origin_tree_of_life\n}\nNOR = {\n\
+    \    owner = {\n        has_origin = origin_tree_of_life\n        country_uses_food\
+    \ = no\n    }\n}\nNOR = {\n    is_planet_class = pc_city\n    is_planet_class\
+    \ = pc_machine\n    is_planet_class = pc_relic\n}\nis_artificial = no"
+  allow: "custom_tooltip = {\n    fail_text = no_tree_of_life_sapling_wilderness\n\
+    \    owner = {\n        is_wilderness_empire = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_experimental_crater
+  potential: "owner.overlord = {\n    has_origin = origin_lithoid\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_organic_sanctuary
+  potential: "owner.overlord = {\n    has_valid_civic = civic_machine_servitor\n}\n\
+    owner = {\n    is_machine_empire = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = no_organic_sanctuary_wilderness\n  \
+    \  owner = {\n        is_wilderness_empire = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_franchise_headquarters
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ has_civic = civic_franchising\n    }\n}"
+  allow: "custom_tooltip = {\n    fail_text = no_branch_office\n    planet = {\n \
+    \       has_branch_office = owner.overlord\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_sacrificial_shrine
+  potential: "owner.overlord = {\n    is_death_cult_empire = yes\n}\nowner = {\n \
+    \   is_machine_empire = no\n    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_knight_commandery
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ has_origin = origin_toxic_knights\n        NOT = {\n            has_country_flag\
+    \ = quest_abandoned\n        }\n    }\n}"
+  allow: "exists = planet\nplanet = {\n    is_capital = yes\n    pop_amount >= 5000\n\
+    }"
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_transcendental_retreat
+  potential: "owner = {\n    is_wilderness_empire = no\n    overlord = {\n       \
+    \ is_natural_design_empire = yes\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: holding_wilderness_glade
+  potential: "has_overlord_dlc = yes\nowner = {\n    overlord = {\n        is_wilderness_empire\
+    \ = yes\n    }\n    is_wilderness_empire = no\n    OR = {\n        is_machine_empire\
+    \ = no\n        has_valid_civic = civic_machine_servitor\n    }\n}"
+  allow: "custom_tooltip = {\n    fail_text = no_free_district_for_wilderness_glade\n\
+    \    planet = {\n        num_free_districts = {\n            type = any\n    \
+    \        value > 0\n        }\n    }\n}\ncustom_tooltip = {\n    fail_text = WILDERNESS_NATURAL_WORLDS_DECLINE\n\
+    \    planet = {\n        is_habitable_for_wilderness = yes\n    }\n}\nplanet =\
+    \ {\n    pop_amount >= 2500\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_scrap_refinery
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nhas_deposit = d_crashed_slaver_ship"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_admin_hub
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nOR = {\n    has_deposit = d_crashed_slaver_ship\n    has_deposit = d_crashed_slaver_ship_memorial\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_power_plant
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nhas_deposit = d_crashed_slaver_ship"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_farm
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nhas_deposit = d_crashed_slaver_ship"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_capital
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nOR = {\n    has_deposit = d_crashed_slaver_ship\n    has_deposit = d_crashed_slaver_ship_memorial\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_low_tech_research_lab
+  potential: "exists = owner\nowner = {\n    has_origin = origin_broken_shackles\n\
+    }\nhas_deposit = d_crashed_slaver_ship"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_paragon_memory_vaults
+  potential: "custom_tooltip = {\n    text = EMPIRE_UNIQUE_BUILDING\n    owner = {\n\
+    \        is_memory_vault_empire = yes\n    }\n}\nexists = planet"
+  allow: "has_upgraded_capital = yes\nhidden_trigger = {\n    owner = {\n        OR\
+    \ = {\n            is_ai = no\n            resource_stockpile_compare = {\n  \
+    \              resource = minerals\n                value >= 800\n           \
+    \ }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_the_beholder
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_contained_ecosphere
+  potential: "exists = owner\nowner = {\n    has_country_flag = azaryn_dead\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_astral_siphon_1
+  potential: "owner = {\n    check_variable = {\n        which = astral_siphon_unlocked\n\
+    \        value >= 1\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_astral_siphon_2
+  potential: "owner = {\n    check_variable = {\n        which = astral_siphon_unlocked\n\
+    \        value >= 2\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_astral_siphon_3
+  potential: "owner = {\n    check_variable = {\n        which = astral_siphon_unlocked\n\
+    \        value >= 3\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_storm_attraction_center
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = storm_attracting_allow\n    solar_system\
+    \ = {\n        system_has_storm_repelling_tech = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_storm_manipulation"'
+- name: building_advanced_storm_attraction_center
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = storm_attracting_allow\n    solar_system\
+    \ = {\n        system_has_storm_repelling_tech = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_advanced_storm_manipulation"'
+- name: building_storm_repellent_center
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nsolar_system\
+    \ = {\n    system_has_storm_attraction_tech = no\n}"
+  allow: "custom_tooltip = {\n    fail_text = storm_repellent_allow\n    solar_system\
+    \ = {\n        system_has_storm_attraction_tech = no\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_storm_manipulation"'
+- name: building_advanced_storm_repellent_center
+  potential: ''
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_advanced_storm_manipulation"'
+- name: building_storm_resistant_production
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    NOT =\
+    \ {\n        has_origin = origin_storm_chasers\n    }\n}\nOR = {\n    owner =\
+    \ {\n        is_ai = no\n    }\n    solar_system = {\n        system_has_storm_repelling_tech\
+    \ = no\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_industrial_storm_protection"'
+- name: building_advanced_storm_resistant_production
+  potential: "exists = owner\nowner = {\n    OR = {\n        is_wilderness_empire\
+    \ = no\n        NOT = {\n            has_origin = origin_storm_chasers\n     \
+    \   }\n    }\n}\nif = {\n    limit = {\n        owner = {\n            is_ai =\
+    \ yes\n        }\n    }\n    solar_system = {\n        system_has_storm_repelling_tech\
+    \ = no\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_advanced_industrial_storm_protection"'
+- name: building_adakkaria_patriotic_institute
+  potential: "exists = owner\nowner = {\n    has_country_flag = adakkaria_world_found\n\
+    }\nhas_planet_flag = adSul_capital"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_astrometeorology_observation_center
+  potential: "exists = owner\nowner = {\n    is_astrometeorologist_empire = yes\n\
+    }\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_storm_summoning_theater
+  potential: "exists = owner\nowner = {\n    is_storm_callers_empire = yes\n}"
+  allow: "solar_system = {\n    system_has_storm_repelling_tech = no\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_storm_holo_theater
+  potential: "exists = owner\nowner = {\n    is_storm_callers_empire = yes\n}"
+  allow: "exists = owner\nhas_upgraded_capital = yes\nowner = {\n    is_storm_callers_empire\
+    \ = yes\n}\nsolar_system = {\n    system_has_storm_repelling_tech = no\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_storm_grand_theater
+  potential: "exists = owner\nowner = {\n    is_storm_callers_empire = yes\n}"
+  allow: "exists = owner\nhas_major_upgraded_capital = yes\nowner = {\n    is_storm_callers_empire\
+    \ = yes\n}\nsolar_system = {\n    system_has_storm_repelling_tech = no\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_augmentation_bazaars
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_augmentation_bazaars\n\
+    }\nNOT = {\n    has_modifier = resort_colony\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }"
+  allow: always = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_transcendental_retreat
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_natural_design\n\
+    }\nNOT = {\n    has_modifier = resort_colony\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }"
+  allow: always = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_hive_transcendental_retreat
+  potential: "exists = owner\nowner = {\n    has_valid_civic = civic_hive_natural_design\n\
+    }\nNOT = {\n    has_modifier = resort_colony\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }\nowner = {\n    is_wilderness_empire = no\n}"
+  allow: always = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_amphitheater_of_the_mind
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    has_origin = origin_cybernetic_creed\n    NOR\
+    \ = {\n        has_country_flag = cybernetic_creed_war\n        has_country_flag\
+    \ = cybernetic_creed_labor\n        has_country_flag = cybernetic_creed_construction\n\
+    \        has_country_flag = cybernetic_creed_general\n    }\n}"
+  allow: "exists = owner\nhas_upgraded_capital = yes\nhidden_trigger = {\n    owner\
+    \ = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_research\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_research\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_grand_concert_hall_of_the_mind
+  potential: ''
+  allow: "has_major_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n\
+    \    owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_research\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_research\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_battlement_of_steel
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    has_origin = origin_cybernetic_creed\n    NOR\
+    \ = {\n        has_country_flag = cybernetic_creed_research\n        has_country_flag\
+    \ = cybernetic_creed_labor\n        has_country_flag = cybernetic_creed_construction\n\
+    \        has_country_flag = cybernetic_creed_general\n    }\n}"
+  allow: "has_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n   \
+    \ owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_war\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_war\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_grand_battlements_of_steel
+  potential: ''
+  allow: "has_major_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n\
+    \    owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_war\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_war\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_sanctuary_of_toil
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    has_origin = origin_cybernetic_creed\n    NOR\
+    \ = {\n        has_country_flag = cybernetic_creed_research\n        has_country_flag\
+    \ = cybernetic_creed_war\n        has_country_flag = cybernetic_creed_construction\n\
+    \        has_country_flag = cybernetic_creed_general\n    }\n}"
+  allow: "has_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n   \
+    \ owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_labor\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_labor\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_grand_cathedral_of_toil
+  potential: ''
+  allow: "has_major_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n\
+    \    owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_labor\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_labor\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_forge_of_the_fellowship
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    has_origin = origin_cybernetic_creed\n    NOR\
+    \ = {\n        has_country_flag = cybernetic_creed_research\n        has_country_flag\
+    \ = cybernetic_creed_war\n        has_country_flag = cybernetic_creed_labor\n\
+    \        has_country_flag = cybernetic_creed_general\n    }\n}"
+  allow: "has_upgraded_capital = yes\nhidden_trigger = {\n    owner = {\n        has_origin\
+    \ = origin_cybernetic_creed\n    }\n}\ncustom_tooltip = {\n    fail_text = not_cybernetic_creed_construction\n\
+    \    owner = {\n        has_country_flag = cybernetic_creed_construction\n   \
+    \ }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_grand_forge_of_the_fellowship
+  potential: ''
+  allow: "has_major_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n\
+    \    owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_construction\n    owner = {\n    \
+    \    has_country_flag = cybernetic_creed_construction\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_the_sanctum_of_augmentation
+  potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }\nexists = owner\nowner = {\n    has_origin = origin_cybernetic_creed\n    has_country_flag\
+    \ = cybernetic_creed_general\n}"
+  allow: "has_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n   \
+    \ owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_general\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_general\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_the_united_sanctum_of_augmentation
+  potential: ''
+  allow: "has_major_upgraded_capital = yes\nhidden_trigger = {\n    exists = owner\n\
+    \    owner = {\n        has_origin = origin_cybernetic_creed\n    }\n}\ncustom_tooltip\
+    \ = {\n    fail_text = not_cybernetic_creed_general\n    owner = {\n        has_country_flag\
+    \ = cybernetic_creed_general\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_identity_repository
+  potential: "exists = owner\nowner = {\n    has_origin = origin_synthetic_fertility\n\
+    \    NOT = {\n        has_country_flag = synthetic_fertility_no_identity_left_behind\n\
+    \    }\n}"
+  allow: "owner = {\n    has_origin = origin_synthetic_fertility\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_abandoned_gene_clinic
+  potential: "exists = owner\nowner = {\n    has_origin = origin_synthetic_fertility\n\
+    }"
+  allow: "owner = {\n    has_origin = origin_synthetic_fertility\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_capital
+  potential: 'uses_district_set = cosmogenesis_world
+
+    exists = owner'
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_major_capital
+  potential: "uses_district_set = cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_super_capital
+  potential: "uses_district_set = cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_resonator
+  potential: is_planet_class = pc_cosmogenesis_world
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_resonator
+- name: building_lathe_stabilisator
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_overclocker
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_overclocker
+- name: building_lathe_preserver
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_preserver
+- name: building_lathe_reactor
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lathe_life_support
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_life_support
+- name: building_lathe_cogitator
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_cogitator
+- name: building_lathe_validator
+  potential: "is_planet_class = pc_cosmogenesis_world\nexists = owner\nowner = {\n\
+    \    has_ascension_perk = ap_cosmogenesis\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_lathe_validator
+- name: building_augmentation_center
+  potential: "owner = {\n    OR = {\n        has_country_flag = augmentation_center_available\n\
+    \        has_active_tradition = tr_cybernetics_augmentation_centers\n        has_active_tradition\
+    \ = tr_cybernetics_assimilator_augmentation_centers\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_cyberdome
+  potential: "owner = {\n    is_imperial_authority = yes\n    has_country_flag = cyber_collectivist\n\
+    }\nis_capital = yes"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_identity_complex
+  potential: "owner = {\n    has_country_flag = identity_complex_available\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nanolab_1
+  potential: "exists = owner\nowner = {\n    has_tradition = tr_nanotech_adopt\n}"
+  allow: "exists = owner\nowner = {\n    has_tradition = tr_nanotech_adopt\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nanolab_2
+  potential: "exists = owner\nowner = {\n    has_tradition = tr_nanotech_1\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_nanotech_cauldron
+  potential: "exists = owner\nowner = {\n    has_tradition = tr_nanotech_2\n}\nNOT\
+    \ = {\n    has_modifier = resort_colony\n}\nNOT = {\n    has_modifier = slave_colony\n\
+    }"
+  allow: always = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: xeno_geology_holomuseum
+  potential: "owner = {\n    has_country_flag = received_collection_stage_2_reward_xeno_geology\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: aesthetic_wonders_holomuseum
+  potential: "owner = {\n    has_country_flag = received_collection_stage_2_reward_aesthetic_wonder\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: galactic_history_holomuseum
+  potential: "owner = {\n    has_country_flag = received_collection_stage_2_reward_historical_item\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: wildlife_ranch
+  potential: "owner = {\n    has_origin = origin_primal_calling\n}\nNOR = {\n    has_building\
+    \ = hunting_grounds\n    has_building = wildlife_sanctuary\n    has_building =\
+    \ primal_arena\n    has_building = symbiosis_nexus\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: wildlife_ranch_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: wildlife_ranch_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: hunting_grounds
+  potential: "OR = {\n    owner = {\n        OR = {\n            has_trophy_hunter_job\
+    \ = yes\n            has_hunter_drone_job = yes\n        }\n    }\n    planet\
+    \ = {\n        has_zone = {\n            zone = zone_resort_hunting_ground\n \
+    \       }\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: hunting_grounds_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: hunting_grounds_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: wildlife_sanctuary
+  potential: "owner = {\n    has_animal_handler_job = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: wildlife_sanctuary_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: wildlife_sanctuary_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: primal_arena
+  potential: "owner = {\n    has_beastfighter_job = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: primal_arena_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: primal_arena_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: symbiosis_nexus
+  potential: "owner = {\n    has_symbiosis_integrator_job = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: symbiosis_nexus_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: symbiosis_nexus_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_colony_shelter_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_capital_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: "num_free_districts = {\n    type = any\n    value <= 10\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_government"'
+- name: building_major_capital_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: "num_free_districts = {\n    type = any\n    value <= 5\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_colonial_centralization"'
+- name: building_system_capital_wilderness
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: "num_free_districts = {\n    type = any\n    value = 0\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_galactic_administration"'
+- name: building_imperial_capital_wilderness
+  potential: "exists = owner\nowner = {\n    is_galactic_emperor = yes\n    is_wilderness_empire\
+    \ = yes\n}\nplanet = {\n    is_capital = yes\n}"
+  allow: "num_free_districts = {\n    type = any\n    value = 0\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_cradle_of_rebirth
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_tendril_cradle_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_tendril_cradle_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_tendril_cradle_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_tendril_cradle_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_brain_node_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_brain_node_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_brain_node_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_2"'
+- name: building_brain_node_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_3"'
+- name: building_commensal_clearing_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_commensal_clearing_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_node
+- name: building_commensal_clearing_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_cluster
+- name: building_commensal_clearing_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_confluence
+- name: building_massive_growth_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_massive_growth_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_massive_growth_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_food_processing_1"'
+- name: building_massive_growth_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_food_processing_2"'
+- name: building_bioelectric_stimulator_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_bioelectric_stimulator_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_bioelectric_stimulator_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_hub_1
+- name: building_bioelectric_stimulator_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_power_hub_2
+- name: building_churning_tunnels_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_churning_tunnels_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_churning_tunnels_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mineral_purification_1"'
+- name: building_churning_tunnels_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_mineral_purification_2"'
+- name: building_natural_furnace_0
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_natural_furnace_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_basic_industry
+- name: building_natural_furnace_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_1
+- name: building_natural_furnace_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_alloys_2
+- name: building_avatar_chamber_1
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_node
+- name: building_avatar_chamber_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}\nNOR =\
+    \ {\n    has_building = building_avatar_chamber_2\n    has_building = building_avatar_chamber_3\n\
+    \    has_building = building_avatar_chamber_4\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_node
+- name: building_avatar_chamber_3
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_cluster
+- name: building_avatar_chamber_4
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_fully_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - tech_wilderness_confluence
+- name: building_mote_aggravator
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_volatile_motes"'
+- name: building_churning_stomach
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_exotic_gases"'
+- name: building_crystal_growth
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_rare_crystals"'
+- name: building_planetary_carapace
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_defenses"'
+- name: building_planetary_carapace_2
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_global_defense_grid"'
+- name: building_ozone_thickener
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
+    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
+    \ {\n            NOR = {\n                has_starbase_building = ring_orbital_shield_generator\n\
+    \                is_starbase_building_building = ring_orbital_shield_generator\n\
+    \            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_planetary_shield_generator"'
+- name: building_wilderness_storm_relief
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}\nOR = {\n\
+    \    owner = {\n        is_ai = no\n    }\n    solar_system = {\n        system_has_storm_repelling_tech\
+    \ = no\n    }\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_industrial_storm_protection"'
+- name: building_subterranean_cache
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
+  allow: "exists = owner\nhidden_trigger = {\n    OR = {\n        owner = {\n    \
+    \        is_ai = no\n        }\n        AND = {\n            NOT = {\n       \
+    \         has_building = building_resource_silo\n            }\n            OR\
+    \ = {\n                owner = {\n                    is_machine_empire = yes\n\
+    \                    has_active_tradition = tr_domination_modular_depot\n    \
+    \            }\n                is_active_resolution = \"resolution_greatergood_balance_in_the_middle\"\
+    \n                is_active_resolution = \"resolution_greatergood_universal_prosperity_mandate\"\
+    \n                owner = {\n                    has_ascension_perk = ap_arcology_project\n\
+    \                    NOT = {\n                        has_technology = tech_mega_engineering\n\
+    \                    }\n                }\n            }\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_industry"'
+- name: building_citadel_uplink
+  potential: "exists = owner\nowner = {\n    has_origin = origin_starlit_citadel\n\
+    }"
+  allow: "exists = solar_system\nsolar_system = {\n    custom_tooltip = {\n      \
+    \  text = \"requires_deep_space_citadel\"\n        count_ship_in_system = {\n\
+    \            limit = {\n                is_space_citadel_ship_size = yes\n   \
+    \         }\n            count > 0\n        }\n    }\n}"
+  abort_trigger: ''
+  prerequisites: []
+- name: building_genomic_facility
+  potential: "owner = {\n    has_country_flag = genomic_research_facility_unlocked\n\
+    \    is_wilderness_empire = no\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_pinniped_sanctuary
+  potential: "owner = {\n    has_country_flag = found_subglacial_pinnipeds\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_cryovault
+  potential: "has_shroud_dlc = yes\nowner = {\n    has_technology = tech_cryovault\n\
+    }"
+  allow: is_cold = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_bio_furnace
+  potential: "has_shroud_dlc = yes\nowner = {\n    has_technology = tech_alloy_fossilization\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_lifecrypt_1
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_lifecrypt_2
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers\n}"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_lifecrypt_3
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_lifecrypt_machine_1
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_machine\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_lifecrypt_machine_2
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_machine\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_lifecrypt_machine_3
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_machine\n\
+    }"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_lifecrypt_hive_mind_1
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_hive_mind\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_lifecrypt_hive_mind_2
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_hive_mind\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_lifecrypt_hive_mind_3
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_hive_mind\n\
+    }"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_lifecrypt_corporate_1
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_corporate\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_cultural_heritage"'
+- name: building_lifecrypt_corporate_2
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_corporate\n\
+    }"
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_heritage_site"'
+- name: building_lifecrypt_corporate_3
+  potential: "exists = owner\nowner = {\n    has_civic = civic_entropy_drinkers_corporate\n\
+    }"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_hypercomms_forum"'
+- name: building_experimentation_chambers_1
+  potential: "exists = owner\nowner = {\n    is_twisted_experimenters_empire = yes\n\
+    }\nNOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_1"'
+- name: building_experimentation_chambers_2
+  potential: ''
+  allow: has_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_2"'
+- name: building_experimentation_chambers_3
+  potential: ''
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_basic_science_lab_3"'
+- name: building_cradle_sanctum
+  potential: "has_shroud_dlc = yes\nexists = owner\nowner = {\n    has_country_flag\
+    \ = trust_accord\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
+    \ = slave_colony\n}"
+  allow: has_major_upgraded_capital = yes
+  abort_trigger: ''
+  prerequisites: []
+- name: building_psionic_suppressor
+  potential: has_shroud_dlc = yes
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_psionic_suppression"'
+- name: building_ancient_ward_1
+  potential: "has_shroud_dlc = yes\nexists = owner\nowner = {\n    has_origin = origin_mindwardens\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_ancient_ward_2
+  potential: "has_shroud_dlc = yes\nexists = owner\nowner = {\n    has_origin = origin_mindwardens\n\
+    \    has_country_flag = unlocked_ancient_ward_upgrade\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []
+- name: building_materiality_engine
+  potential: "has_shroud_dlc = yes\nexists = owner\nowner = {\n    has_origin = origin_shroud_forged\n\
+    }"
+  allow: ''
+  abort_trigger: ''
+  prerequisites:
+  - '"tech_materiality_engine"'
+- name: building_chamber_of_silence
+  potential: "owner = {\n    has_tradition = tr_psionics_shroud_psi_corps\n    has_origin\
+    \ = origin_endbringers\n}"
+  allow: ''
+  abort_trigger: ''
+  prerequisites: []

@@ -84,6 +84,20 @@ automate_industrial_planet = {
 			}
         }
 
+		8_factory = {
+			building = building_factory_1
+			available = {
+				requires_more_job = yes
+				free_district_slots = 0
+				owner = {
+					has_monthly_income = {
+						resource = consumer_goods
+						value < 0
+					}
+				}
+			}
+		}
+
 		8_foundry = {
 			building = building_foundry_1
 			available = {
@@ -92,12 +106,6 @@ automate_industrial_planet = {
 			}
 		}
 
-		8_factory = {
-			building = building_factory_1
-			available = {
-				requires_more_job = yes
-				free_district_slots = 0
-			}
-		}
+
 	}
 }

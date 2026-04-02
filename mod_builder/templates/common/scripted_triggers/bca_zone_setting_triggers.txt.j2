@@ -8,9 +8,7 @@ bca_has_zone_plan = {
     OR = {
         {% set zone_slot = "$ZONE_SLOT$" %}
         {% for item in zones_info %}
-        {% for zone in item.zones %}
         has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
-        {% endfor %}
         {% endfor %}
     }
 }

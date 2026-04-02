@@ -8,9 +8,6 @@ bca_auto_building_destruction_entry = {
         {% for building_group in destruction_build_list %}
         if = {
             limit = {
-                {% for trigger in building_group.trigger %}
-                {{ trigger }} = yes
-                {% endfor %}
                 {% if building_group.category_filter %}
                 {% for category in building_group.category_filter %}
                 {% if building_group.category_filter|length > 1 %}
@@ -30,6 +27,9 @@ bca_auto_building_destruction_entry = {
                 {% endif %}
                 {% endfor %}
                 {% endif %}
+                {% for trigger in building_group.trigger %}
+                {{ trigger }} = yes
+                {% endfor %}
             }
             {% for building in building_group.building %}
             if = {
