@@ -1,0 +1,26 @@
+{% for b in bca_buildings %}
+bca_can_build_{{ b.name }} = {
+{% if b.potential %}
+    AND = {
+        {{ b.potential | indent(8) }}
+    }
+{% endif %}
+{% if b.allow %}
+    AND = {
+        {{ b.allow | indent(8) }}
+    }
+{% endif %}
+{% if b.abort_trigger %}
+    NOR = {
+        {{ b.abort_trigger | indent(8) }}
+    }
+{% endif %}
+{% if b.prerequisites %}
+    owner = {
+{% for prereq in b.prerequisites %}
+        has_technology = {{ prereq }}
+{% endfor %}
+    }
+{% endif %}
+}
+{% endfor %}

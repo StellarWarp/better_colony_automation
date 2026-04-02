@@ -4,32 +4,34 @@ import yaml
 from jinja2 import Environment, FileSystemLoader
 
 # --- 配置区 ---
-SOURCE_DIR = os.path.dirname(__file__)  # gui_generate 目录
+SOURCE_DIR = os.path.dirname(__file__)  # mod_builder 目录
 ROOT_DIR = os.path.dirname(SOURCE_DIR)   # Mod 根目录
-CONFIG_DIR = os.path.join(SOURCE_DIR, 'config')
-TPL_COMMON_DIR = os.path.join(SOURCE_DIR, 'common')
-TPL_EVENTS_DIR = os.path.join(SOURCE_DIR, 'events')
-TPL_INTERFACE_DIR = os.path.join(SOURCE_DIR, 'interface')
-TPL_LOCALISATION_DIR = os.path.join(SOURCE_DIR, 'localisation')
+GENERATED_CONFIG_DIR = os.path.join(SOURCE_DIR, 'templates', 'generated_configs')
+TEMPLATE_DIR = os.path.join(SOURCE_DIR, 'templates')
+TPL_COMMON_DIR = os.path.join(TEMPLATE_DIR, 'common')
+TPL_EVENTS_DIR = os.path.join(TEMPLATE_DIR, 'events')
+TPL_INTERFACE_DIR = os.path.join(TEMPLATE_DIR, 'interface')
+TPL_LOCALISATION_DIR = os.path.join(TEMPLATE_DIR, 'localisation')
 OUTPUT_GUI_DIR = os.path.join(ROOT_DIR, 'interface')
 
 # --- Jinja 环境设置 ---
-# 允许从 SOURCE_DIR 加载（包括 component/ 子目录）
+# 允许从 TEMPLATE_DIR 加载（包括 component/ 子目录）
 env = Environment(
-    loader=FileSystemLoader(SOURCE_DIR),
+    loader=FileSystemLoader(TEMPLATE_DIR),
     trim_blocks=True,      # 自动移除标签后的第一个换行符
     lstrip_blocks=True     # 自动移除标签前的空白
 )
 
 def load_configs():
-    """合并 config 文件夹下所有的 yaml 配置"""
+    """合并 generated_configs 文件夹下的所有 yaml 配置"""
     full_config = {}
-    if not os.path.exists(CONFIG_DIR):
+    if not os.path.exists(GENERATED_CONFIG_DIR):
+        print(f"⚠️ 警告: 配置目录不存在: {GENERATED_CONFIG_DIR}")
         return full_config
 
-    for filename in os.listdir(CONFIG_DIR):
+    for filename in os.listdir(GENERATED_CONFIG_DIR):
         if filename.endswith(('.yaml', '.yml')):
-            with open(os.path.join(CONFIG_DIR, filename), 'r', encoding='utf-8') as f:
+            with open(os.path.join(GENERATED_CONFIG_DIR, filename), 'r', encoding='utf-8') as f:
                 data = yaml.safe_load(f)
                 if data:
                     full_config.update(data)
@@ -61,7 +63,7 @@ def build():
             if filename.endswith('.txt.j2'):
                 full_path = os.path.join(root, filename)
                 # 生成 Jinja 模板相对路径（使用 '/'）
-                rel_path = os.path.relpath(full_path, SOURCE_DIR)
+                rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
                 # 将输出放到 Mod 根目录下对应的相对位置（保留 common/ 子目录结构）
@@ -78,7 +80,7 @@ def build():
         for filename in files:
             if filename.endswith('.txt.j2'):
                 full_path = os.path.join(root, filename)
-                rel_path = os.path.relpath(full_path, SOURCE_DIR)
+                rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
@@ -94,7 +96,7 @@ def build():
         for filename in files:
             if filename.endswith('.yml.j2'):
                 full_path = os.path.join(root, filename)
-                rel_path = os.path.relpath(full_path, SOURCE_DIR)
+                rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
