@@ -2,6 +2,21 @@
 {% import 'component/planet_variable.j2' as v -%}
 {% import 'component/planet_variable.j2' as v -%}
 
+{#secondary_district_default_plan = {#}
+{#    {% for i in range(3,6) %}#}
+{#    {% set zone_slot = "z"~(i) %}#}
+{#    if = {#}
+{#        limit = {#}
+{#            has_generator_designation = yes#}
+{#        }#}
+{#        set_variable = {#}
+{#            which = {{v.var_district_num_plan(zone_slot)}}#}
+{#            value = 1#}
+{#        }#}
+{#    }#}
+{#    {% endfor %}#}
+{#}#}
+
 try_set_secondary_districts_plan_zero_to_one = {
     {% for i in range(3,6) %}
     {% set zone_slot = "z"~(i) %}

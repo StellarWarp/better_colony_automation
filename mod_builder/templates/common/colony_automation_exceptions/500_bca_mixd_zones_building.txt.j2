@@ -72,7 +72,7 @@ automate_mixed_zone_{{ item.types[0] }}_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
+{#		NOT = { has_planet_flag = bca_pf_advance_controller_order }#}
         OR = {
 		    {% for type in item.types %}
             bca_has_any_zone_of_type_{{ type }} = yes
@@ -126,7 +126,7 @@ automate_mixed_zone_{{ item.types[0] }}_building_job_low_priority = {
 		bca_has_minerals_to_build = yes
 		requires_more_job = yes
 		free_district_slots = 0
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
+{#		NOT = { has_planet_flag = bca_pf_advance_controller_order }#}
         OR = {
 		    {% for type in item.types %}
             bca_has_any_zone_of_type_{{ type }} = yes

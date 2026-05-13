@@ -1,12 +1,13 @@
 automate_crystal_deficit_management = {
 	available = {
-		free_building_slots > 0
-		owner = { has_monthly_income = { resource = rare_crystals value < 0 } }
+		owner = { resource_revenue_compare = {
+			resource = rare_crystals
+			value < bca_expect_output_rare_crystals }
+		}
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}
-
-	empire_wide_emergency = yes
+	emergency = yes
 	category = "planet_automation_rare_resources"
 
 	buildings = {
@@ -24,13 +25,16 @@ automate_crystal_deficit_management = {
 
 automate_mote_deficit_management = {
 	available = {
-		free_building_slots > 0
-		owner = { has_monthly_income = { resource = volatile_motes value < 0 } }
+		owner = {
+			resource_revenue_compare = {
+				resource = volatile_motes
+				value < bca_expect_output_volatile_motes
+			}
+		}
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}
-
-	empire_wide_emergency = yes
+	emergency = yes
 	category = "planet_automation_rare_resources"
 
 	buildings = {
@@ -48,13 +52,16 @@ automate_mote_deficit_management = {
 
 automate_gas_deficit_management = {
 	available = {
-		free_building_slots > 0
-		owner = { has_monthly_income = { resource = exotic_gases value < 0 } }
+		owner = {
+			resource_revenue_compare = {
+				resource = exotic_gases
+				value < bca_expect_output_exotic_gases
+			}
+		}
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}
-
-	empire_wide_emergency = yes
+	emergency = yes
 	category = "planet_automation_rare_resources"
 
 	buildings = {
@@ -72,10 +79,10 @@ automate_gas_deficit_management = {
 
 automate_rural_rare_resources = {
 	available = {
-		free_building_slots > 0
 		bca_has_minerals_to_build = yes
 	}
 
+	emergency = yes
 	category = "planet_automation_rare_resources"
 
 	buildings = {

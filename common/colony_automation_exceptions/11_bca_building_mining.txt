@@ -4,7 +4,10 @@ automate_mining_planet_building_district = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		has_mining_designation = yes
+		OR = {
+			has_mining_designation = yes
+			has_zone = { zone = zone_betharian }
+		}
 		# bca_district_reach_planet_max = { type = district_mining }
 		OR = {
 			num_free_districts = { type = district_mining value = 0 }

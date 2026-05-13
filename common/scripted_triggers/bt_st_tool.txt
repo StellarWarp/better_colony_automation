@@ -9,11 +9,19 @@ any_owned_pop_group = {
 requires_more_job = {
 	OR = {
 		has_planet_flag = bca_pf_planet_pre_construction
-		free_jobs <= owner.bca_reserve_job_amount
+		# free_jobs <= owner.bca_reserve_job_amount
+		check_variable_arithmetic = {
+			which = value:bca_free_jobs_main
+			value <= owner.bca_reserve_job_amount
+		}
 	}
 }
 really_requires_more_job = {
-	free_jobs <= owner.bca_reserve_job_amount
+	# free_jobs <= owner.bca_reserve_job_amount
+	check_variable_arithmetic = {
+		which = value:bca_free_jobs_main
+		value <= owner.bca_reserve_job_amount
+	}
 }
 
 bca_has_minerals_to_build = {

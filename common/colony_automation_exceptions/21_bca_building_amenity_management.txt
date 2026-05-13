@@ -74,40 +74,12 @@ automate_hive_amenity_management = {
 	emergency = yes
 	category = "planet_automation_amenities"
 
-	prio_districts = {
-		district_hab_housing
-		district_arcology_housing
-		district_rw_nexus
-		district_city
-		district_hive
-		district_nexus
-	}
-}
-
-automate_amenity_management_ecu = {
-	available = {
-		free_amenities < 0
-		bca_has_minerals_to_build = yes
-		owner = {
-			NOR = {
-				is_machine_empire = yes
-				is_hive_empire = yes
-			}
+	buildings = {
+		1 = {
+			building = building_drone_storage
 		}
-		uses_district_set = city_world
-		free_district_slots > 0
-		NOT = { has_available_jobs = entertainer }
-		NOT = { has_forbidden_jobs = entertainer }
-
-		owner = {
-			has_resource = { type = exotic_gases amount >= 75 }
+		2 = {
+			building = building_hive_warren
 		}
-	}
-
-	emergency = yes
-	category = "planet_automation_amenities"
-
-	prio_districts = {
-		district_arcology_leisure
 	}
 }

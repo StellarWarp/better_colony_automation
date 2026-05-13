@@ -31,7 +31,13 @@ automate_generator_planet_building_order = {
 		bca_has_minerals_to_build = yes
 		OR = {
 			really_requires_more_job = no
-			num_free_districts = { type = district_generator value = 0 }
+			if = {
+				limit = { has_zone = { zone = zone_betharian } }
+				num_free_districts = { type = district_generator value = 0 }
+			}
+			else = {
+				num_free_districts = { type = district_generator value = 0 }
+			}
 			# bca_district_reach_planet_max = { type = district_generator }
 		}
 	}
@@ -39,6 +45,9 @@ automate_generator_planet_building_order = {
 	buildings = {
 		2 = {
 			building = building_energy_grid
+		}
+		1 = {
+			building = building_betharian_power_plant
 		}
 	}
 

@@ -104,7 +104,6 @@ planet_event = {
         remove_planet_flag = bca_pf_district_balanced
         bca_clear_designation_flag = yes
         bca_designation_sync_with_system = yes
-        # init for slot that's not selected by current zones
         {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
         {{ op.auto_select_default_zone(zone_slot) }}
         {% endfor %}
@@ -116,6 +115,29 @@ planet_event = {
             try_set_secondary_districts_plan_zero_to_one = yes
         }
         set_planet_flag = {{ pf.flag_bca_initialized() }}
+    }
+}
+
+# secondary district do not has tech to build zone at start
+planet_event = {
+    id = colony_automation_event.28
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        always = yes
+    }
+
+    immediate = {
+        # init for slot that's not selected by current zones
+        {% for zone_slot in ['z3','z4','z5'] %}
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+            }
+            {{ op.auto_select_default_zone(zone_slot) }}
+        }
+        {% endfor %}
     }
 }
 

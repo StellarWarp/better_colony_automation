@@ -10,7 +10,6 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-        bca_auto_district_manage_enabled = no
         requires_more_job = yes
 	}
 
@@ -27,6 +26,131 @@ planet_event = {
                             }
                         }
                         set_planet_flag = bca_pf_plan_build_district_d0
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_generator_designation = yes
+                    has_mining_designation = yes
+                    has_farming_designation = yes
+                }
+            }
+            random_list = {
+                1 = {
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d1
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d2
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d3
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_primary_districts_plan
+                                value > value:num_primary_district
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d0
+                    }
+                }
+                1 = {
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d2
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d1
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d3
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_primary_districts_plan
+                                value > value:num_primary_district
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d0
+                    }
+                }
+                1 = {
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d3
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d2
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d1
+                    }
+                    else_if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_primary_districts_plan
+                                value > value:num_primary_district
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_district_d0
+                    }
+                }
             }
         }
         else = {
@@ -202,44 +326,39 @@ planet_event = {
 
         if = {
             limit = {
-                bca_auto_district_manage_enabled = no
-            }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:bca_num_primary_districts_plan
-                        value < value:num_primary_district
-                    }
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
                 }
-                set_planet_flag = bca_pf_plan_remove_district_d0
             }
-            else_if = {
-                limit = {
-                    check_variable = {
-                        which = bca_ps_plan_district_count_z3
-                        value < value:num_district_d1
-                    }
+            set_planet_flag = bca_pf_plan_remove_district_d0
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value < value:num_district_d1
                 }
-                set_planet_flag = bca_pf_plan_remove_district_d1
             }
-            else_if = {
-                limit = {
-                    check_variable = {
-                        which = bca_ps_plan_district_count_z4
-                        value < value:num_district_d2
-                    }
+            set_planet_flag = bca_pf_plan_remove_district_d1
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value < value:num_district_d2
                 }
-                set_planet_flag = bca_pf_plan_remove_district_d2
             }
-            else_if = {
-                limit = {
-                    check_variable = {
-                        which = bca_ps_plan_district_count_z5
-                        value < value:num_district_d3
-                    }
+            set_planet_flag = bca_pf_plan_remove_district_d2
+        }
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value < value:num_district_d3
                 }
-                set_planet_flag = bca_pf_plan_remove_district_d3
             }
+            set_planet_flag = bca_pf_plan_remove_district_d3
         }
         if = {
             limit = {

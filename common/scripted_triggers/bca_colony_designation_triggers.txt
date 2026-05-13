@@ -22,6 +22,7 @@ has_any_factory_designation = {
 		has_factory_designation = yes
         has_industrial_designation = yes
         bca_has_any_zone_of_type_factory = yes
+        bca_has_any_zone_of_type_industrial = yes
 	}
 }
 
@@ -31,6 +32,7 @@ has_any_foundry_designation = {
         has_industrial_designation = yes
 		bca_has_any_zone_of_type_foundry = yes
         bca_has_any_zone_of_type_wilderness_foundry = yes
+        bca_has_any_zone_of_type_industrial = yes
 	}
 }
 
@@ -38,7 +40,6 @@ has_any_industrial_designation = {
     OR = {
         has_any_factory_designation = yes
         has_any_foundry_designation = yes
-        bca_has_any_zone_of_type_industrial = yes
     }
 }
 
@@ -101,14 +102,6 @@ bca_has_auto_district_manage = {
         has_generator_designation = yes
         has_mining_designation = yes
         has_farming_designation = yes
-    }
-    NOR = {
-        has_designation = col_habitat_farming
-        AND = {
-            exists = owner
-            owner = { has_technology = tech_mine_betharian }
-            has_deposit = d_betharian_deposit
-        }
     }
 }
 

@@ -206,9 +206,24 @@ bac_remove_pop_assemble_buildings = {
     allow = { always = yes }
     potential = { always = yes }
     option = {
-        name = "disable_bac_remove_pop_assemble_buildings"
+        name = "bac_build_pop_assemble_buildings_even_if_no_jobs"
+        on_enabled = {
+            set_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+        }
+        ai_weight = {
+            factor = 1
+            modifier = {
+                factor = 0
+                is_ai = yes
+            }
+        }
+    }
+    option = {
+        name = "bac_pop_assemble_buildings_build_for_needed"
         on_enabled = {
             remove_country_flag = bac_remove_pop_assemble_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
         }
         ai_weight = {
             factor = 0
@@ -219,19 +234,15 @@ bac_remove_pop_assemble_buildings = {
         }
     }
     option = {
-        name = "enable_bac_remove_pop_assemble_buildings"
+        name = "bac_pop_assemble_buildings_auto_demolish"
         on_enabled = {
             set_country_flag = bac_remove_pop_assemble_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
         }
         ai_weight = {
-            factor = 1
-            modifier = {
-                factor = 0
-                is_ai = yes
-            }
+            factor = 0
         }
     }
-
 }
 
 bac_allow_deurbanization = {

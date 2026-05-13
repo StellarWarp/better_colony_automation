@@ -8,7 +8,6 @@ automate_mixed_zone_trade_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_trade = yes
 		}
@@ -64,7 +63,6 @@ automate_mixed_zone_industrial_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_industrial = yes
 		}
@@ -142,7 +140,6 @@ automate_mixed_zone_foundry_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_foundry = yes
 		}
@@ -201,7 +198,6 @@ automate_mixed_zone_factory_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_factory = yes
 		}
@@ -260,7 +256,6 @@ automate_mixed_zone_research_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_research = yes
             bca_has_any_zone_of_type_physics = yes
@@ -349,7 +344,6 @@ automate_mixed_zone_unity_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_unity = yes
             bca_has_any_zone_of_type_bureaucrat = yes
@@ -557,43 +551,55 @@ automate_mixed_zone_unity_building = {
 			}
 	    }
 
+	    22 = {
+            building = building_fe_administration_1
+	    }
+	    23 = {
+            building = building_fe_administration_hive_1
+	    }
+	    24 = {
+            building = building_fe_temple_1
+	    }
+	    25 = {
+            building = building_fe_administration_machine_1
+	    }
 
-        22 = {
+        26 = {
             building = building_bureaucratic_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        23 = {
+        27 = {
             building = building_temple
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        24 = {
+        28 = {
             building = building_sacrificial_temple_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        25 = {
+        29 = {
             building = building_uplink_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        26 = {
+        30 = {
             building = building_hive_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        27 = {
+        31 = {
             building = building_organic_sanctuary
             available = {
                 requires_more_job = yes
@@ -613,7 +619,6 @@ automate_mixed_zone_fortress_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_fortress = yes
 		}
@@ -692,7 +697,6 @@ automate_mixed_zone_energy_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_energy = yes
             bca_has_any_zone_of_type_hydroponics = yes
@@ -723,7 +727,6 @@ automate_mixed_zone_energy_building_job_low_priority = {
 		bca_has_minerals_to_build = yes
 		requires_more_job = yes
 		free_district_slots = 0
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_energy = yes
             bca_has_any_zone_of_type_hydroponics = yes
@@ -732,9 +735,6 @@ automate_mixed_zone_energy_building_job_low_priority = {
 
 	buildings = {
         0 = {
-            building = building_class_3_singularity
-        }
-        1 = {
             building = building_generator_generic
         }
 	}
@@ -748,7 +748,6 @@ automate_mixed_zone_minerals_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_minerals = yes
 		}
@@ -778,7 +777,6 @@ automate_mixed_zone_minerals_building_job_low_priority = {
 		bca_has_minerals_to_build = yes
 		requires_more_job = yes
 		free_district_slots = 0
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_minerals = yes
 		}
@@ -786,9 +784,6 @@ automate_mixed_zone_minerals_building_job_low_priority = {
 
 	buildings = {
         0 = {
-            building = building_fe_mine_1
-        }
-        1 = {
             building = building_mine_generic
         }
 	}
@@ -802,7 +797,6 @@ automate_mixed_zone_food_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_food = yes
             bca_has_any_zone_of_type_agrarian = yes
@@ -833,7 +827,6 @@ automate_mixed_zone_food_building_job_low_priority = {
 		bca_has_minerals_to_build = yes
 		requires_more_job = yes
 		free_district_slots = 0
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
         OR = {
             bca_has_any_zone_of_type_food = yes
             bca_has_any_zone_of_type_agrarian = yes
@@ -842,9 +835,6 @@ automate_mixed_zone_food_building_job_low_priority = {
 
 	buildings = {
         0 = {
-            building = building_nourishment_complex
-        }
-        1 = {
             building = building_hydroponics_farm
         }
 	}

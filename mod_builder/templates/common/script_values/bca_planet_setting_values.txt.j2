@@ -32,6 +32,15 @@ bca_num_free_secondary_districts_plan = {
     {% endfor %}
 }
 
+bca_num_free_secondary_districts_plan_full_secondary_districts = {
+    set = value:bca_potential_max_districts
+    subtract = 1
+    {% for i in range(3,6) %}
+    {% set zone_slot = "z"~i %}
+    subtract = {{ v.var_district_num_plan(zone_slot) }}
+    {% endfor %}
+}
+
 bca_num_free_primary_districts_plan = {
     {% for i in range(3,6) %}
     {% set zone_slot = "z"~i %}
@@ -217,19 +226,20 @@ num_primary_zone_plan_of_type_{{ type }} = {
         add = 1
     }
     {% endfor %}
-    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
-    {% for zone_slot in ['z3','z4','z5'] %}
-    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-    modifier = {
-        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
-        check_variable = {
-            which = {{v.var_district_num_plan(zone_slot)}}
-            value > 0
-        }
-        add = 1
-    }
-    {% endfor %}
-    {% endif %}
+    {# what the fuck? #}
+{#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
+{#    {% for zone_slot in ['z3','z4','z5'] %}#}
+{#    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
+{#    modifier = {#}
+{#        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
+{#        check_variable = {#}
+{#            which = {{v.var_district_num_plan(zone_slot)}}#}
+{#            value > 0#}
+{#        }#}
+{#        add = 1#}
+{#    }#}
+{#    {% endfor %}#}
+{#    {% endif %}#}
 }
 
 {% endif %}
@@ -260,14 +270,15 @@ num_secondary_zone_plan_of_type_{{ type }} = {
         add = 1
     }
     {% endfor %}
-    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
-    {% for zone_slot in ['z1','z2'] %}
-    modifier = {
-        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
-        add = 1
-    }
-    {% endfor %}
-    {% endif %}
+    {# what the fuck? #}
+{#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
+{#    {% for zone_slot in ['z1','z2'] %}#}
+{#    modifier = {#}
+{#        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
+{#        add = 1#}
+{#    }#}
+{#    {% endfor %}#}
+{#    {% endif %}#}
 }
 
 {% endif %}
@@ -331,6 +342,15 @@ bca_district_max_add_{{ district_slot }} = {
     }
     {% endif %}
     {% endfor %}
+}
+
+bca_district_max_build_{{ district_slot }} = {
+    set = value:bca_district_max_add_{{ district_slot }}
+    max = value:bca_planet_max_districts_subtract_one
+    modifier = {
+        bca_has_advance_secondary_districts = yes
+        subtract = 2
+    }
 }
 {% endfor %}
 

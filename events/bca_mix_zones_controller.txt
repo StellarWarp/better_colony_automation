@@ -17,6 +17,8 @@ planet_event = {
 	}
 }
 
+
+
 planet_event = {
 	id = colony_automation_event.20
 	hide_window = yes
@@ -24,7 +26,6 @@ planet_event = {
 
 	trigger = {
         requires_more_job = yes
-        NOT = { has_planet_flag = bca_pf_advance_controller_order }
 	}
 
 	immediate = {
@@ -254,6 +255,32 @@ planet_event = {
                 set_planet_flag = bca_has_zone_to_replace
             }
 
+       if = {
+            limit = {
+                NOT = {
+                    AND = {
+                        OR = {
+                            has_generator_designation = yes
+                            has_mining_designation = yes
+                            has_farming_designation = yes
+                        }
+                        OR = {
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z3
+                                value > value:num_district_d1
+                            }
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z4
+                                value > value:num_district_d2
+                            }
+                            check_variable = {
+                                which = bca_ps_plan_district_count_z5
+                                value > value:num_district_d3
+                            }
+                        }
+                    }
+                }
+            }
             if = {
                 limit = {
                     check_variable_arithmetic = {
@@ -979,6 +1006,7 @@ planet_event = {
                     clear_variable = bca_num_free_city_zones
                 }
             }
+        }
             if = {
                 limit = {
                     check_variable_arithmetic = {
@@ -1301,7 +1329,6 @@ planet_event = {
             }
         remove_planet_flag = bca_has_zone_to_replace
     }
-
 }
 
 planet_event = {

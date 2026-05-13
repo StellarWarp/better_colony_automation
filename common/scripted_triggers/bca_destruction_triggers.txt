@@ -44,13 +44,19 @@ bca_can_remove_pop_assemble = {
 		free_district_slots = 0
 		free_building_slots = 0
 		free_housing <= 0
-		free_jobs <= 0
+		free_amenities <= 500
+		bca_can_build_pop_assemble = no
 	}
 }
 
 bca_can_build_pop_assemble = {
-	free_jobs > 0
-	free_building_slots > 1
+	OR = {
+		owner = { has_country_flag = bca_build_pop_assemble_even_if_no_jobs }
+		check_variable_arithmetic = {
+			which = value:bca_civilian_jobs
+			value = 0
+		}
+	}
 }
 
 bca_unique_building_potential = {
@@ -147,6 +153,8 @@ bca_advanced_foundry_building_replace = {
 		}
 	}
 }
+
+
 
 bca_advanced_unity_building_replace = {
 	OR = {
@@ -270,9 +278,9 @@ bca_advanced_trade_building_replace = {
 
 low_rare_resource_income = {
 	OR = {
-		has_monthly_income = { resource = rare_crystals value < bca_expect_output_rare_crystals }
-		has_monthly_income = { resource = volatile_motes value < bca_expect_output_volatile_motes }
-		has_monthly_income = { resource = exotic_gases value < bca_expect_output_exotic_gases }
+		resource_revenue_compare = { resource = rare_crystals value < bca_expect_output_rare_crystals }
+		resource_revenue_compare = { resource = volatile_motes value < bca_expect_output_volatile_motes }
+		resource_revenue_compare = { resource = exotic_gases value < bca_expect_output_exotic_gases }
 	}
 }
 
@@ -283,13 +291,47 @@ bca_advanced_rare_resource_building_replace = {
 		}
 	}
 	has_any_industrial_designation = yes
+	low_rare_resource_income = no
 	OR = {
-		AND = {
-			low_rare_resource_income = yes
-			bca_unique_building_potential = {
+		bca_unique_building_potential = {
 				building1 = building_archaeo_refinery
-			}
 		}
 		has_building =  building_archaeo_refinery
+	}
+}
+
+bca_rare_crystals_buidling_potential = {
+	resource_revenue_compare = { resource = rare_crystals value < bca_expect_output_rare_crystals }
+	bca_unique_building_potential = {
+		building1 = building_crystal_plant
+	}
+}
+
+bca_volatile_motes_building_potential = {
+	resource_revenue_compare = { resource = volatile_motes value < bca_expect_output_volatile_motes }
+	bca_unique_building_potential = {
+		building1 = building_chemical_plant
+	}
+}
+
+bca_exotic_gases_building_potential = {
+	resource_revenue_compare = { resource = exotic_gases value < bca_expect_output_exotic_gases }
+	bca_unique_building_potential = {
+		building1 = building_refinery
+	}
+}
+
+bca_industrial_building_repalce_for_rare_resources = {
+	has_any_industrial_designation = yes
+	low_rare_resource_income = yes
+	bca_advanced_rare_resource_building_replace = no
+	NOT = { has_building = building_archaeo_refinery }
+	OR = {
+		bca_unique_building_potential = {
+			building1 = building_archaeo_refinery
+		}
+		bca_rare_crystals_buidling_potential = yes
+		bca_volatile_motes_building_potential = yes
+		bca_exotic_gases_building_potential = yes
 	}
 }

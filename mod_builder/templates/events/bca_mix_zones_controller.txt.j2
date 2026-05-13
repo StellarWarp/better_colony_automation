@@ -19,6 +19,8 @@ planet_event = {
 	}
 }
 
+
+
 planet_event = {
 	id = colony_automation_event.20
 	hide_window = yes
@@ -26,7 +28,6 @@ planet_event = {
 
 	trigger = {
         requires_more_job = yes
-        NOT = { has_planet_flag = bca_pf_advance_controller_order }
 	}
 
 	immediate = {
@@ -46,6 +47,28 @@ planet_event = {
         {% endfor %}
 
        {# set build command to builder #}
+       if = {
+            limit = {
+                {# require secondary districts fully built first #}
+                NOT = {
+                    AND = {
+                        OR = {
+                            has_generator_designation = yes
+                            has_mining_designation = yes
+                            has_farming_designation = yes
+                        }
+                        OR = {
+                            {% for zone_slot in ['z3','z4','z5'] %}
+                            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+                            check_variable = {
+                                which = {{v.var_district_num_plan(zone_slot)}}
+                                value > value:num_district_{{ district_slot }}
+                            }
+                            {% endfor %}
+                        }
+                    }
+                }
+            }
         {% for item in zones_info %}
             {% set type = item.type %}
             {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
@@ -81,6 +104,7 @@ planet_event = {
             }
             {% endif %}
         {% endfor %}
+        }
         {# some zones are shared between primary district and secondary district
            however if the primary district zone slots are full (primary district zone build first),
            it would be not possible to build in primary district for zones that should be build in secondary districts
@@ -109,7 +133,6 @@ planet_event = {
 {#        }#}
         remove_planet_flag = bca_has_zone_to_replace
     }
-
 }
 
 planet_event = {

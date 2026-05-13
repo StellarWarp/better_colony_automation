@@ -17,6 +17,59 @@ bca_value_divide = {
 	divide = $DIVIDE$
 }
 
+bca_free_jobs_main = {
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = complex_drone
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = simple_drone
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = specialist
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = worker
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+}
+
+bca_civilian_jobs = {
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = civilian
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = free_jobs_of_type
+		parameters = {
+			category = maintenance_drone
+			include_deprioritized_jobs = no
+		}
+		mode = add
+	}
+}
 
 # must ensure that no on going district construction is happening when using this script
 bca_planet_max_districts= {

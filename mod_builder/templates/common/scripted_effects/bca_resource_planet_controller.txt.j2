@@ -133,9 +133,9 @@
 {%- endmacro %}
 
 
-{% set energy_zone_types = ['energy','wilderness_energy'] %}
+{% set energy_zone_types = ['energy','betharian','wilderness_energy'] %}
 {% set minerals_zone_types = ['minerals','wilderness_minerals'] %}
-{% set food_zone_types = ['food','wilderness_food'] %}
+{% set food_zone_types = ['food','wilderness_food','hydroponics'] %}
 {#bca_resource_planet_controller = {#}
 {#{% for i in range(3) %}#}
 {#{% set resource = ['energy','minerals','food'][i] %}#}
@@ -272,7 +272,7 @@ if = {
 }
 
 {% for i in range(3) %}
-{% set resource = ['energy','minerals','food'][i] %}
+{#{% set resource = ['energy','minerals','food'][i] %}#}
 {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
 
 {{ "if" if loop.first else "else_if" }} = {
@@ -280,139 +280,80 @@ if = {
         {{ ['has_generator_designation', 'has_mining_designation', 'has_farming_designation'][i] }} = yes
     }
 
-{#    if = {#}
-{#        limit = {#}
-{#            requires_more_job = yes#}
-{#        }#}
-{#        remove_all_zone_plan_flag = yes#}
-{#    }#}
-
-    {% for zone_slot in ['z3','z4','z5'] %}
-    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-    {{ "if" if loop.first else "else_if" }} = {
+    if = {
         limit = {
-            OR = {
-                {% for zone_type in zone_type_set %}
-                has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
-                {% endfor %}
-            }
+            bca_auto_district_manage_enabled = yes
         }
-        if = {
+        {% for zone_slot in ['z3','z4','z5'] %}
+        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+        {{ "if" if loop.first else "else_if" }} = {
             limit = {
-                bca_auto_district_manage_enabled = yes
-            }
-            set_variable = {
-                which = {{v.var_district_num_plan(zone_slot)}}
-                value = value:bca_potential_district_max_build_{{ district_slot }}
-            }
-            {% for other_zone_slot in ['z3','z4','z5'] %}
-            {% if other_zone_slot != zone_slot %}
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:bca_num_free_secondary_districts_plan
-                        value <= 0
-                    }
-                }
-                subtract_variable = {
-                    which = {{ v.var_district_num_plan(zone_slot) }}
-                    value = {{ v.var_district_num_plan(other_zone_slot) }}
-                }
-            }
-            {% endif %}
-            {% endfor %}
-        }
-        if = {
-            limit = {
-                requires_more_job = yes
-            }
-            {# secondary zone #}
-            # secondary zone
-            {% for zone_type in zone_type_set %}
-            {{ "if" if loop.first else "else_if" }} = {
-                limit = {
+                OR = {
+                    {% for zone_type in zone_type_set %}
                     has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
-                    {# 防止错误的特化进入 #}
-                    check_variable_arithmetic = {
-                        which = value:num_district_{{ district_slot }}
-                        value > 0
-                    }
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_{{ zone_type }}
-                        value < value:num_secondary_zone_plan_of_type_{{ zone_type }}
-                    }
-                    OR = {
-                        {% for zone_group in zones_info %}
-                        {% if zone_group.type == zone_type %}
-                        {% for zone in zone_group.zones %}
-                        bca_can_build_{{ zone }} = yes
-                        {% endfor %}
-                        {% endif %}
-                        {% endfor %}
-                    }
-                }
-                set_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(zone_type) }}
-                set_planet_flag = bca_plan_build_new_zone
-                set_planet_flag = bca_pf_advance_controller_order
-            }
-            {% endfor %}
-        }
-        {# secondary district #}
-        # secondary district
-        if = {
-            limit = {
-                bca_auto_district_manage_enabled = yes
-            }
-            if = {
-                limit = {
-                    free_district_slots > 0
-                    requires_more_job = yes
-                }
-                if = {
-                    limit = {
-                        check_variable = {
-                            which = {{ v.var_district_num_plan(zone_slot) }}
-                            value > value:num_district_{{ district_slot }}
-                        }
-                        check_variable_arithmetic = {
-                            which = value:num_free_district_{{ district_slot }}
-                            value > 0
-                        }
-                    }
-                    set_planet_flag = {{ pf.flag_district_plan_build(district_slot) }}
-                    set_planet_flag = bca_pf_advance_controller_order
-                }
-                else = {
-                    if = {
-                        limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
-                        }
-                        set_planet_flag = {{ pf.flag_district_plan_build('d0') }}
-                    }
-                    {% for other_zone_slot in ['z3','z4','z5'] %}
-                    {% set other_district_slot = zone_slot_district_slot_mapping[other_zone_slot] %}
-                    {% if other_zone_slot != zone_slot %}
-                    {% endif %}
-                    else_if = {
-                        limit = {
-                            check_variable = {
-                                which = {{v.var_district_num_plan(other_zone_slot)}}
-                                value > value:num_district_{{ other_district_slot }}
-                            }
-                        }
-                        set_planet_flag = {{ pf.flag_district_plan_build(other_district_slot) }}
-                    }
                     {% endfor %}
                 }
             }
+            set_variable = {
+                which = {{v.var_district_num_plan(zone_slot)}}
+                value = value:bca_district_max_build_{{ district_slot }}
+            }
         }
-
-
+        {% endfor %}
+        {% if i == 0 %}
+        if = {
+            limit = {
+                exists = owner
+                owner = { has_technology = tech_mine_betharian }
+                has_deposit = d_betharian_deposit
+                has_planet_flag = {{ pf.flag_selected_zone_type('z4', 'betharian') }}
+            }
+            {% set zone_slot = 'z4' %}
+            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+            if = {
+                limit = {
+                    OR = {
+                        {% for zone_type in zone_type_set %}
+                        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                        {% endfor %}
+                    }
+                }
+                set_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = value:bca_district_max_build_{{ district_slot }}
+                }
+            }
+            {% set zone_slot = 'z3' %}
+            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+            if = {
+                limit = {
+                    OR = {
+                        {% for zone_type in zone_type_set %}
+                        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                        {% endfor %}
+                    }
+                }
+                set_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = value:bca_district_max_build_{{ district_slot }}
+                }
+                if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                            value < 0
+                        }
+                    }
+                    add_variable = {
+                        which = {{ v.var_district_num_plan(zone_slot) }}
+                        value = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                    }
+                }
+            }
+        }
+        {% endif %}
     }
-    {% endfor %}
+
 }
 
 {% endfor %}

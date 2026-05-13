@@ -41,7 +41,6 @@ planet_event = {
 	is_triggered_only = yes
 
 	trigger = {
-        bca_auto_district_manage_enabled = no
         requires_more_job = yes
 	}
 
@@ -52,6 +51,26 @@ planet_event = {
             }
             if = {
                 {#  #}{{ try_build_district(0) }}{#  #}
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_generator_designation = yes
+                    has_mining_designation = yes
+                    has_farming_designation = yes
+                }
+            }
+            random_list = {
+                1 = {
+                    {#  #}{{ try_build_district_by_order([1,2,3,0]) }}{#  #}
+                }
+                1 = {
+                    {#  #}{{ try_build_district_by_order([2,1,3,0]) }}{#  #}
+                }
+                1 = {
+                    {#  #}{{ try_build_district_by_order([3,2,1,0]) }}{#  #}
+                }
             }
         }
         else = {
@@ -88,31 +107,26 @@ planet_event = {
         {# destroy order #}
         if = {
             limit = {
-                bca_auto_district_manage_enabled = no
-            }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:bca_num_primary_districts_plan
-                        value < value:num_primary_district
-                    }
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
                 }
-                set_planet_flag = {{ pf.flag_district_plan_remove('d0') }}
             }
-            {% for i in range(3) %}
-            {% set district_slot = ['d1','d2','d3'][i] %}
-            {% set zone_slot = ['z3','z4','z5'][i] %}
-            else_if = {
-                limit = {
-                    check_variable = {
-                        which = {{v.var_district_num_plan(zone_slot)}}
-                        value < value:num_district_{{ district_slot }}
-                    }
-                }
-                set_planet_flag = {{ pf.flag_district_plan_remove(district_slot) }}
-            }
-            {% endfor %}
+            set_planet_flag = {{ pf.flag_district_plan_remove('d0') }}
         }
+        {% for i in range(3) %}
+        {% set district_slot = ['d1','d2','d3'][i] %}
+        {% set zone_slot = ['z3','z4','z5'][i] %}
+        else_if = {
+            limit = {
+                check_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value < value:num_district_{{ district_slot }}
+                }
+            }
+            set_planet_flag = {{ pf.flag_district_plan_remove(district_slot) }}
+        }
+        {% endfor %}
         {# arcology_project #}
         if = {
             limit = {

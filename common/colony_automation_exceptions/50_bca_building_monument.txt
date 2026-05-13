@@ -3,8 +3,12 @@ automate_monument_autobuild = {
 	
     emergency = yes
 	available = {
-        requires_more_job = yes
         bca_has_minerals_to_build = yes
+        exists = owner
+        num_assigned_jobs = {
+            job = civilian
+            value > 0
+        }
 	}
 	
 
@@ -38,3 +42,4 @@ automate_monument_autobuild = {
         }
 	}
 }
+

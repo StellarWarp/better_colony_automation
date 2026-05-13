@@ -27,6 +27,14 @@ bca_num_free_secondary_districts_plan = {
     subtract = bca_ps_plan_district_count_z5
 }
 
+bca_num_free_secondary_districts_plan_full_secondary_districts = {
+    set = value:bca_potential_max_districts
+    subtract = 1
+    subtract = bca_ps_plan_district_count_z3
+    subtract = bca_ps_plan_district_count_z4
+    subtract = bca_ps_plan_district_count_z5
+}
+
 bca_num_free_primary_districts_plan = {
     add = bca_ps_plan_district_count_z3
     add = bca_ps_plan_district_count_z4
@@ -2674,30 +2682,6 @@ num_primary_zone_plan_of_type_research = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_research
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_research
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_research
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_research
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
-        add = 1
-    }
 }
 
 num_secondary_zones_of_type_research = {
@@ -2770,14 +2754,6 @@ num_secondary_zone_plan_of_type_research = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_research
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_research
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_physics = {
@@ -2797,30 +2773,6 @@ num_primary_zone_plan_of_type_physics = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_physics
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_physics
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_physics
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_physics
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -2895,14 +2847,6 @@ num_secondary_zone_plan_of_type_physics = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_physics
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_physics
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_society = {
@@ -2922,30 +2866,6 @@ num_primary_zone_plan_of_type_society = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_society
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_society
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_society
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_society
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -3013,14 +2933,6 @@ num_secondary_zone_plan_of_type_society = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_society
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_society
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_engineering = {
@@ -3040,30 +2952,6 @@ num_primary_zone_plan_of_type_engineering = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_engineering
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_engineering
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_engineering
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_engineering
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -3131,14 +3019,6 @@ num_secondary_zone_plan_of_type_engineering = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_engineering
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_engineering
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_bureaucrat = {
@@ -3165,30 +3045,6 @@ num_primary_zone_plan_of_type_bureaucrat = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_bureaucrat
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_bureaucrat
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_bureaucrat
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_bureaucrat
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -3235,14 +3091,6 @@ num_secondary_zone_plan_of_type_bureaucrat = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_bureaucrat
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_bureaucrat
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_unity = {
@@ -3269,30 +3117,6 @@ num_primary_zone_plan_of_type_unity = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_unity
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_unity
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_unity
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_unity
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -3388,14 +3212,6 @@ num_secondary_zone_plan_of_type_unity = {
         }
         add = 1
     }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_unity
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_unity
-        add = 1
-    }
 }
 
 num_primary_zones_of_type_priest = {
@@ -3415,30 +3231,6 @@ num_primary_zone_plan_of_type_priest = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_type_z2_priest
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z3_priest
-        check_variable = {
-            which = bca_ps_plan_district_count_z3
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z4_priest
-        check_variable = {
-            which = bca_ps_plan_district_count_z4
-            value > 0
-        }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z5_priest
-        check_variable = {
-            which = bca_ps_plan_district_count_z5
-            value > 0
-        }
         add = 1
     }
 }
@@ -3504,14 +3296,6 @@ num_secondary_zone_plan_of_type_priest = {
             which = bca_ps_plan_district_count_z5
             value > 0
         }
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z1_priest
-        add = 1
-    }
-    modifier = {
-        has_planet_flag = bca_pf_ps_selected_zone_type_z2_priest
         add = 1
     }
 }
@@ -9817,6 +9601,15 @@ bca_district_max_add_d1 = {
          set = value:bca_planet_max_districts
     }
 }
+
+bca_district_max_build_d1 = {
+    set = value:bca_district_max_add_d1
+    max = value:bca_planet_max_districts_subtract_one
+    modifier = {
+        bca_has_advance_secondary_districts = yes
+        subtract = 2
+    }
+}
 bca_district_max_add_d2 = {
     add = value:bca_planet_max_districts_of|type|district_mining|
     add = value:bca_planet_max_districts_of|type|district_melting|
@@ -9843,6 +9636,15 @@ bca_district_max_add_d2 = {
          set = value:bca_planet_max_districts
     }
 }
+
+bca_district_max_build_d2 = {
+    set = value:bca_district_max_add_d2
+    max = value:bca_planet_max_districts_subtract_one
+    modifier = {
+        bca_has_advance_secondary_districts = yes
+        subtract = 2
+    }
+}
 bca_district_max_add_d3 = {
     add = value:bca_planet_max_districts_of|type|district_farming|
     add = value:bca_planet_max_districts_of|type|district_polytechnic|
@@ -9867,6 +9669,15 @@ bca_district_max_add_d3 = {
     modifier = {
          bca_can_build_district_rw_urban_3 = yes
          set = value:bca_planet_max_districts
+    }
+}
+
+bca_district_max_build_d3 = {
+    set = value:bca_district_max_add_d3
+    max = value:bca_planet_max_districts_subtract_one
+    modifier = {
+        bca_has_advance_secondary_districts = yes
+        subtract = 2
     }
 }
 

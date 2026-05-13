@@ -162,7 +162,7 @@ automate_unity_planet = {
 				}
 			}
 	    }
-	    18 = {
+	    17 = {
             building = building_autocurating_vault
 			available = {
 				OR = {
@@ -171,7 +171,7 @@ automate_unity_planet = {
 				}
 			}
 	    }
-	    19 = {
+	    18 = {
             building = building_citadel_of_faith
 			available = {
 				OR = {
@@ -180,7 +180,7 @@ automate_unity_planet = {
 				}
 			}
 	    }
-	    20 = {
+	    19 = {
             building = building_corporate_vault
 			available = {
 				OR = {
@@ -189,7 +189,7 @@ automate_unity_planet = {
 				}
 			}
 	    }
-	    21 = {
+	    20 = {
             building = building_alpha_hub
 			available = {
 				OR = {
@@ -198,7 +198,7 @@ automate_unity_planet = {
 				}
 			}
 	    }
-	    22 = {
+	    21 = {
             building = building_trophy_vault
 			available = {
 				OR = {
@@ -208,46 +208,61 @@ automate_unity_planet = {
 			}
 	    }
 
+	    22 = {
+            building = building_fe_administration_1
+	    }
+	    23 = {
+            building = building_fe_administration_hive_1
+	    }
+	    24 = {
+            building = building_fe_temple_1
+	    }
+	    25 = {
+            building = building_fe_administration_machine_1
+	    }
 
-        23 = {
+        26 = {
             building = building_bureaucratic_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        24 = {
+        27 = {
             building = building_temple
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        25 = {
+        28 = {
             building = building_sacrificial_temple_1
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        26 = {
+        29 = {
             building = building_uplink_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        27 = {
+        30 = {
             building = building_hive_node
             available = {
                 requires_more_job = yes
                 free_district_slots = 0
             }
         }
-        28 = {
+        31 = {
             building = building_organic_sanctuary
             available = {
-                requires_more_job = yes
+                any_owned_pop_group = {
+					is_unemployed = yes
+					has_citizenship_type = { type = citizenship_organic_trophy country = owner }
+				}
                 free_district_slots = 0
             }
         }
