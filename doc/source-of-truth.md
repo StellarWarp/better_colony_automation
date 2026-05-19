@@ -13,6 +13,9 @@ This project is mixed-mode. A change request like "adjust default zone selection
 ## Rule Of Thumb
 
 - If a runtime file has a matching `.j2` template under `mod_builder/templates/`, treat the template as the primary source.
+- Treat `mod_builder/configs/` as handwritten source data.
+- Treat `mod_builder/templates/generated_configs/` as generated output only; do not edit it by hand.
+- If a template reads values from `templates/generated_configs/`, trace that value back to `configs/` or `parse/`.
 - If there is no matching template, treat the runtime file as handwritten until proven otherwise.
 - Some behavior is split: handwritten triggers call generated effects, or generated events emit flags consumed by handwritten automation exceptions.
 
@@ -63,6 +66,20 @@ This project is mixed-mode. A change request like "adjust default zone selection
 - Runtime source: [`../common/script_values/bca_planet_setting_zone_ranking.txt`](../common/script_values/bca_planet_setting_zone_ranking.txt)
 - Template source: [`../mod_builder/templates/common/script_values/bca_planet_setting_zone_ranking.txt.j2`](../mod_builder/templates/common/script_values/bca_planet_setting_zone_ranking.txt.j2)
 - Data source: [`../mod_builder/configs/zone_type_fitness.yaml`](../mod_builder/configs/zone_type_fitness.yaml)
+
+### Generated-config copy layer
+
+- Runtime-adjacent source: [`../mod_builder/templates/generated_configs/`](../mod_builder/templates/generated_configs/)
+- Copy source: [`../mod_builder/configs/`](../mod_builder/configs/)
+- Copy entrypoint: [`../mod_builder/parse/copy_configs.py`](../mod_builder/parse/copy_configs.py)
+- Primary source: handwritten config files in `mod_builder/configs/`
+
+### Generated-config extraction layer
+
+- Runtime-adjacent source: [`../mod_builder/templates/generated_configs/`](../mod_builder/templates/generated_configs/)
+- Extraction entrypoints: [`../mod_builder/parse/zone_condition_gen.py`](../mod_builder/parse/zone_condition_gen.py), [`../mod_builder/parse/building_condition.py`](../mod_builder/parse/building_condition.py)
+- Parser/toolchain: [`../mod_builder/synthetipy/`](../mod_builder/synthetipy/)
+- Primary source: parser logic plus upstream Stellaris definitions
 
 ### Trigger helpers
 
@@ -126,6 +143,7 @@ This project is mixed-mode. A change request like "adjust default zone selection
 Usually touches:
 
 - zone ranking data: [`../mod_builder/configs/zone_type_fitness.yaml`](../mod_builder/configs/zone_type_fitness.yaml)
+- generated config layer populated from `configs/` and parser output
 - selector template: [`../mod_builder/templates/common/scripted_effects/bca_planet_setting_zones_0_effect.txt.j2`](../mod_builder/templates/common/scripted_effects/bca_planet_setting_zones_0_effect.txt.j2)
 - current-layout sync: [`../mod_builder/templates/common/scripted_effects/bca_planet_setting_zones_1_effect.txt.j2`](../mod_builder/templates/common/scripted_effects/bca_planet_setting_zones_1_effect.txt.j2)
 

@@ -5,10 +5,20 @@ This folder is a maintainer-oriented documentation set for AI agents and human c
 The project has mixed ownership:
 
 - Some runtime logic is handwritten directly under `common/`, `events/`, and `interface/`.
-- Some runtime logic is generated from `mod_builder/templates/` and `mod_builder/templates/generated_configs/`.
-- Some gameplay behavior is data-driven by YAML files under `mod_builder/configs/`.
+- Some runtime logic is generated from `mod_builder/templates/`.
+- `mod_builder/configs/` contains handwritten configuration only.
+- `mod_builder/templates/generated_configs/` is fully program-generated and must not be edited by hand.
+- Some generated config data is derived from Stellaris definitions through `mod_builder/parse/` and `mod_builder/synthetipy/`.
 
 Do not assume that a long file under `common/` or `events/` is handwritten. Many large runtime files are generated outputs.
+Do not assume that YAML under `templates/generated_configs/` is editable source data. It is generated output.
+
+Development constraints:
+
+- Stellaris mod logic does not support hot reload; after edits, you must re-enter the game to test.
+- A practical way to test logic is the event window, using dedicated test events such as [`../events/test_event.txt`](../events/test_event.txt).
+- The recommended editor is IntelliJ IDEA ("IJ") because its Stellaris/Paradox syntax support is strong.
+- File watcher-based rendering is recommended so template changes are regenerated quickly during development.
 
 ## Read This First
 
@@ -33,6 +43,9 @@ Do not assume that a long file under `common/` or `events/` is handwritten. Many
 - Build gating triggers: [`../common/scripted_triggers/bt_st_tool.txt`](../common/scripted_triggers/bt_st_tool.txt)
 - Main GUI: [`../interface/bca_district_gui.gui`](../interface/bca_district_gui.gui)
 - Generator entrypoint: [`../mod_builder/generate.py`](../mod_builder/generate.py)
+- Generated-config copy step: [`../mod_builder/parse/copy_configs.py`](../mod_builder/parse/copy_configs.py)
+- Generated-config extraction: [`../mod_builder/parse/zone_condition_gen.py`](../mod_builder/parse/zone_condition_gen.py), [`../mod_builder/parse/building_condition.py`](../mod_builder/parse/building_condition.py)
+- Paradox script parser/toolchain: [`../mod_builder/synthetipy/`](../mod_builder/synthetipy/)
 
 ## Practical Rule
 

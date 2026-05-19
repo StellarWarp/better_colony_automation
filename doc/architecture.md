@@ -13,7 +13,7 @@ This mod is best understood as four layers:
 1. Runtime orchestration
 2. Runtime state model
 3. UI/state mutation layer
-4. Template and config generation layer
+4. Parse/extraction plus template generation layer
 
 These layers are not perfectly separated. Some features are fully generated, some are fully handwritten, and some are split across both.
 
@@ -73,7 +73,7 @@ Key files:
 - Zone selector effects: [`../common/scripted_effects/bca_planet_setting_zones_0_effect.txt`](../common/scripted_effects/bca_planet_setting_zones_0_effect.txt)
 - Layout/designation sync: [`../common/scripted_effects/bca_planet_setting_zones_1_effect.txt`](../common/scripted_effects/bca_planet_setting_zones_1_effect.txt)
 
-## 4. Template And Config Generation
+## 4. Parse/Extraction And Template Generation
 
 Generated runtime files are rendered by:
 
@@ -82,18 +82,26 @@ Generated runtime files are rendered by:
 Generation input comes from:
 
 - Handwritten templates in `../mod_builder/templates/`
-- Generated YAML in `../mod_builder/templates/generated_configs/`
 - Handwritten config YAML in `../mod_builder/configs/`
+- Generated YAML in `../mod_builder/templates/generated_configs/`
+- Parsed Stellaris definitions via `../mod_builder/parse/` and `../mod_builder/synthetipy/`
 
 One especially important pattern:
 
 - `zone_type_fitness.yaml` defines ranking preferences.
-- Templates convert that into script values and selector logic.
+- `mod_builder/configs/` is the only hand-edited config source.
+- `templates/generated_configs/` is generated and should never be edited directly.
+- `parse/copy_configs.py` and the parser scripts populate `templates/generated_configs/`.
+- Parser scripts such as `zone_condition_gen.py` derive additional YAML from Stellaris definitions.
+- Templates convert the merged generated-config layer into script values and selector logic.
 - Generated runtime files then use those values to pick defaults and candidate options.
 
 See:
 
 - [`../mod_builder/configs/zone_type_fitness.yaml`](../mod_builder/configs/zone_type_fitness.yaml)
+- [`../mod_builder/parse/copy_configs.py`](../mod_builder/parse/copy_configs.py)
+- [`../mod_builder/parse/zone_condition_gen.py`](../mod_builder/parse/zone_condition_gen.py)
+- [`../mod_builder/synthetipy/`](../mod_builder/synthetipy/)
 - [`../mod_builder/templates/common/script_values/bca_planet_setting_zone_ranking.txt.j2`](../mod_builder/templates/common/script_values/bca_planet_setting_zone_ranking.txt.j2)
 
 ## Important Consequence

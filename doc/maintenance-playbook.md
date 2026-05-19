@@ -10,6 +10,13 @@ See also:
 
 This document is written for future AI agents and contributors making changes under time pressure.
 
+Development reality:
+
+- Stellaris mod logic does not hot reload.
+- Every logic change must be validated by re-entering the game.
+- Event-window tests are the fastest feedback loop for scripted logic.
+- Use IntelliJ IDEA ("IJ") if possible, and pair it with a file watcher that re-renders templates on save.
+
 ## Before You Edit Anything
 
 1. Classify the change.
@@ -19,6 +26,7 @@ This document is written for future AI agents and contributors making changes un
 Useful starting question:
 
 - "Am I changing runtime execution, state naming, UI selection behavior, ranking data, or automation categories?"
+- "Am I looking at handwritten config in `configs/`, or generated output in `templates/generated_configs/`?"
 
 ## Change Recipes
 
@@ -87,6 +95,20 @@ Risk:
 Mitigation:
 
 - check for a matching `.j2` template first
+- if the template reads from `templates/generated_configs/`, trace that YAML back to either `configs/` or `parse/`
+
+### Hazard: editing intermediate generated-config YAML directly
+
+Risk:
+
+- later copy/generation steps silently overwrite the fix
+- maintainers mistake generated YAML for editable source
+
+Mitigation:
+
+- edit `mod_builder/configs/` for handwritten config changes
+- edit `mod_builder/parse/` or `mod_builder/synthetipy/` for generated-config logic changes
+- never hand-edit `templates/generated_configs/`
 
 ### Hazard: editing only the template when the same concept has handwritten siblings
 
@@ -111,6 +133,17 @@ Mitigation:
 
 - regenerate after template/config changes
 
+### Hazard: missing generated-file warning headers
+
+Risk:
+
+- maintainers accidentally patch generated runtime files by hand
+
+Mitigation:
+
+- keep the warning-header behavior in [`../mod_builder/generate.py`](../mod_builder/generate.py)
+- if the header format changes, update the renderer once instead of patching generated outputs individually
+
 ### Hazard: state sync bugs
 
 Typical trigger points:
@@ -129,6 +162,13 @@ When debugging anything plan-related, inspect synchronization hooks before chang
 3. Confirm internal plan flags/variables are set as expected.
 4. Confirm automation categories consume those flags.
 5. Confirm cleanup does not immediately erase the state.
+6. If generated-config values look wrong, confirm whether the problem starts in `configs/`, `parse/`, or `synthetipy/`.
+
+## Testing Workflow
+
+For scripted logic, prefer a dedicated test event such as [`../events/test_event.txt`](../events/test_event.txt) and trigger it manually from the in-game event window.
+
+For template changes, rely on a file watcher to regenerate outputs before re-entering the game.
 
 ## Documentation Maintenance Rule
 
