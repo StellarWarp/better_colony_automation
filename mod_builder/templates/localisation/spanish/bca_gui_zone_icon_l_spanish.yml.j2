@@ -1,0 +1,14 @@
+l_spanish:
+  {% for item in zones_info %}
+  bca_zone_icon_large_{{item.type}}: "£district_specialization_{{item.type}}_large£"
+  bca_zone_icon_small_{{item.type}}: "£district_specialization_{{item.type}}_small£"
+  {% endfor %}
+
+  {% for i in range(1,16)%}
+  {% set selector_slot = "s"~i %}
+  bca_zone_icon_selector_{{selector_slot}}: "[This.BCA_ZONE_SELECTOR_ICON_{{ selector_slot }}_script]"
+  {% endfor %}
+
+  {% for zone_slot in ['z1','z2','z3','z4','z5','zx']%}
+  bca_zone_icon_selection_{{zone_slot}}: "[This.BCA_ZONE_SELECTION_ICON_{{ zone_slot }}_script]"
+  {% endfor %}
