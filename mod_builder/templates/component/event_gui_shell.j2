@@ -1,0 +1,242 @@
+{% macro event_window_shell(window_name, header_text, width=760, height=430, show_native_event_text=true) -%}
+{% set hidden_x = -1120 %}
+{% set hidden_y = -115 %}
+{% set hidden_focus_x = -1180 %}
+{% set hidden_focus_y = -1112 %}
+{% set hidden_portrait_x = -1117 %}
+{% set hidden_portrait_y = -1145 %}
+{% set hidden_background_x = -1110 %}
+{% set hidden_background_y = -11430 %}
+{% set hidden_ethics_x = -1145 %}
+{% set hidden_ethics_y = -11138 %}
+{% set hidden_flag_x = -1125 %}
+{% set hidden_flag_y = -11235 %}
+{% set hidden_leader_x = -1125 %}
+{% set hidden_leader_y = -1175 %}
+{% set hidden_opinion_x = -1127 %}
+{% set hidden_opinion_y = -11110 %}
+{% set hidden_option_x = -11500 %}
+{% set hidden_option_y = -1130 %}
+{% if show_native_event_text %}
+{% set action_title_x = 20 %}
+{% set action_title_y = 5 %}
+{% set action_desc_x = 49000 %}
+{% set action_desc_y = 0 %}
+{% set alien_message_x = 20 %}
+{% set alien_message_y = 100 %}
+{% else %}
+{% set action_title_x = hidden_x %}
+{% set action_title_y = hidden_y %}
+{% set action_desc_x = hidden_x %}
+{% set action_desc_y = hidden_y %}
+{% set alien_message_x = hidden_x %}
+{% set alien_message_y = hidden_y %}
+{% endif %}
+guiTypes = {
+    containerWindowType = {
+        name = "{{ window_name }}"
+        orientation = center
+        origo = center
+        moveable = yes
+        size = { width = {{ width }} height = {{ height }} }
+
+        background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
+
+        iconType = { name = "hex_bg" spriteType = "GFX_hex_bg" position = { x = -10 y = -14 } alwaysTransparent = yes }
+        iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long" position = { x = 6 y = 22 } alwaysTransparent = yes }
+
+        buttonType = {
+            name = "close"
+            quadTextureSprite = "GFX_close"
+            position = { x = -42 y = 12 }
+            orientation = upper_right
+            shortcut = "ESCAPE"
+            clicksound = "back_click"
+        }
+
+        buttonType = {
+            name = "focus_button"
+            position = { x = {{ hidden_focus_x }} y = {{ hidden_focus_y }} }
+            spriteType = "GFX_fleetview_focus"
+        }
+
+        buttonType = {
+            name = "tts_button"
+            position = { x = {{ hidden_flag_x }} y = {{ hidden_leader_y + 50 }} }
+            spriteType = "GFX_empire_flag_128"
+        }
+
+        instantTextBoxType = {
+            name = "heading"
+            font = "malgun_goth_24"
+            position = { x = {{ hidden_x }} y = {{ hidden_y }} }
+        }
+
+        buttonType = {
+            name = "alien_message_background"
+            position = { x = {{ hidden_background_x }} y = {{ hidden_background_y }} }
+            spriteType = "GFX_tiles_dark_area_cut_8"
+        }
+
+        buttonType = {
+            name = "confirm_button"
+            quadTextureSprite = "GFX_standard_button_142_34_button"
+        }
+
+        containerWindowType = {
+            name = "portrait_background"
+            position = { x = {{ hidden_portrait_x }} y = {{ hidden_portrait_y }} }
+            size = { width = 0 height = 0 }
+            iconType = {
+                name = "event_picture"
+                spriteType = "GFX_diplomacy_portrait_frame"
+            }
+            iconType = {
+                name = "portrait"
+                spriteType = "GFX_portrait_character"
+            }
+        }
+
+        containerWindowType = {
+            name = "portrait"
+            position = { x = {{ hidden_portrait_x }} y = {{ hidden_portrait_y }} }
+            size = { width = 0 height = 0 }
+            iconType = {
+                name = "portrait"
+                spriteType = "GFX_portrait_gamesetup_mask"
+            }
+            iconType = {
+                name = "black_frame"
+                spriteType = "GFX_diplomacy_portrait_shadow_frame"
+            }
+            iconType = {
+                name = "stripes_1"
+                spriteType = "GFX_diplomacy_stripes_2"
+            }
+            iconType = {
+                name = "city_frame"
+                spriteType = "GFX_diplomacy_portrait_frame"
+            }
+        }
+
+        iconType = {
+            name = "empire_info_bg"
+            spriteType = "GFX_diplomacy_dark_fade_bg"
+        }
+
+        instantTextBoxType = {
+            name = "empire_name"
+            font = "malgun_goth_24"
+        }
+
+        instantTextBoxType = {
+            name = "empire_government_type"
+            font = "cg_16b"
+        }
+
+        instantTextBoxType = {
+            name = "empire_personality_type"
+            font = "cg_16b"
+        }
+
+        overlappingElementsBoxType = {
+            name = "empire_ethics_icons"
+            position = { x = {{ hidden_ethics_x }} y = {{ hidden_ethics_y }} }
+        }
+
+        buttonType = {
+            name = "empire_flag"
+            spriteType = "GFX_empire_flag_128"
+            position = { x = {{ hidden_flag_x }} y = {{ hidden_flag_y }} }
+        }
+
+        containerWindowType = {
+            name = "leader_details"
+            position = { x = {{ hidden_leader_x }} y = {{ hidden_leader_y }} }
+            containerWindowType = {
+                name = "empire_traits_box"
+            }
+            instantTextBoxType = {
+                name = "empire_traits_label"
+                font = "cg_16b"
+            }
+            overlappingElementsBoxType = {
+                name = "leader_traits"
+            }
+            instantTextBoxType = {
+                name = "leader_name"
+                font = "cg_16b"
+            }
+            instantTextBoxType = {
+                name = "leader_species"
+                font = "cg_16b"
+            }
+        }
+
+        containerWindowType = {
+            name = "opinion_window"
+            position = { x = {{ hidden_opinion_x }} y = {{ hidden_opinion_y }} }
+            size = { width = 94 height = 30 }
+            iconType = {
+                name = "their_opinion_icon"
+                spriteType = "GFX_diplomacy_opinion"
+            }
+            instantTextBoxType = {
+                name = "their_opinion"
+                font = "cg_16b"
+            }
+        }
+
+        containerWindowType = {
+            name = "EVENT_DIPLO"
+            position = { x = 0 y = 0 }
+            moveable = no
+
+            instantTextBoxType = {
+                name = "action_title"
+                font = "malgun_goth_24"
+                position = { x = {{ action_title_x }} y = {{ action_title_y }} }
+                maxWidth = 500
+                alwaysTransparent = yes
+            }
+            instantTextBoxType = {
+                name = "action_desc"
+                font = "malgun_goth_24"
+                position = { x = {{ action_desc_x }} y = {{ action_desc_y }} }
+                maxWidth = 500
+                maxHeight = 180
+                format = center
+                alwaysTransparent = yes
+                text_color_code = "H"
+            }
+            listBoxType = {
+                name = "option_list"
+                position = { x = {{ hidden_option_x }} y = {{ hidden_option_y }} }
+            }
+        }
+
+        instantTextBoxType = {
+            name = "alien_message"
+            font = "cg_16b"
+            position = { x = {{ alien_message_x }} y = {{ alien_message_y }} }
+            maxWidth = 465
+            maxHeight = 220
+            format = left
+            scrollbarType = "standardtext_slider"
+        }
+
+        instantTextBoxType = {
+            name = "window_header"
+            font = "malgun_goth_24"
+            text = "{{ header_text }}"
+            position = { x = 20 y = 5 }
+            maxWidth = 620
+            maxHeight = 22
+            fixedSize = yes
+            alwaysTransparent = yes
+        }
+
+        {{ caller() }}
+    }
+}
+{%- endmacro %}

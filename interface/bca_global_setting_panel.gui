@@ -4,18 +4,18 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: interface/bca_global_setting_panel.gui.j2
+
+
+
 guiTypes = {
-
-    ### FACTION OVERVIEW GUI ###
-
     containerWindowType = {
         name = "bca_global_setting_panel"
         orientation = center
         origo = center
         moveable = yes
-        size = { width = 660 height = 300 }
+        size = { width = 860 height = 848 }
 
-        background = { name = "background" quadTextureSprite ="GFX_tile_outliner_bg" }
+        background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
 
         iconType = { name = "hex_bg" spriteType = "GFX_hex_bg" position = { x = -10 y = -14 } alwaysTransparent = yes }
         iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long" position = { x = 6 y = 22 } alwaysTransparent = yes }
@@ -23,111 +23,1095 @@ guiTypes = {
         buttonType = {
             name = "close"
             quadTextureSprite = "GFX_close"
-            position = { x= -42 y = 12 }
-            Orientation = "UPPER_RIGHT"
+            position = { x = -42 y = 12 }
+            orientation = upper_right
             shortcut = "ESCAPE"
             clicksound = "back_click"
         }
 
-        # Custom header
+        buttonType = {
+            name = "focus_button"
+            position = { x = -1180 y = -1112 }
+            spriteType = "GFX_fleetview_focus"
+        }
+
+        buttonType = {
+            name = "tts_button"
+            position = { x = -1125 y = -1125 }
+            spriteType = "GFX_empire_flag_128"
+        }
+
         instantTextBoxType = {
-            name = "bca_global_setting_panel_header"
+            name = "heading"
             font = "malgun_goth_24"
-            text = "ui_faction_header"  # header text
+            position = { x = -1120 y = -115 }
+        }
+
+        buttonType = {
+            name = "alien_message_background"
+            position = { x = -1110 y = -11430 }
+            spriteType = "GFX_tiles_dark_area_cut_8"
+        }
+
+        buttonType = {
+            name = "confirm_button"
+            quadTextureSprite = "GFX_standard_button_142_34_button"
+        }
+
+        containerWindowType = {
+            name = "portrait_background"
+            position = { x = -1117 y = -1145 }
+            size = { width = 0 height = 0 }
+            iconType = {
+                name = "event_picture"
+                spriteType = "GFX_diplomacy_portrait_frame"
+            }
+            iconType = {
+                name = "portrait"
+                spriteType = "GFX_portrait_character"
+            }
+        }
+
+        containerWindowType = {
+            name = "portrait"
+            position = { x = -1117 y = -1145 }
+            size = { width = 0 height = 0 }
+            iconType = {
+                name = "portrait"
+                spriteType = "GFX_portrait_gamesetup_mask"
+            }
+            iconType = {
+                name = "black_frame"
+                spriteType = "GFX_diplomacy_portrait_shadow_frame"
+            }
+            iconType = {
+                name = "stripes_1"
+                spriteType = "GFX_diplomacy_stripes_2"
+            }
+            iconType = {
+                name = "city_frame"
+                spriteType = "GFX_diplomacy_portrait_frame"
+            }
+        }
+
+        iconType = {
+            name = "empire_info_bg"
+            spriteType = "GFX_diplomacy_dark_fade_bg"
+        }
+
+        instantTextBoxType = {
+            name = "empire_name"
+            font = "malgun_goth_24"
+        }
+
+        instantTextBoxType = {
+            name = "empire_government_type"
+            font = "cg_16b"
+        }
+
+        instantTextBoxType = {
+            name = "empire_personality_type"
+            font = "cg_16b"
+        }
+
+        overlappingElementsBoxType = {
+            name = "empire_ethics_icons"
+            position = { x = -1145 y = -11138 }
+        }
+
+        buttonType = {
+            name = "empire_flag"
+            spriteType = "GFX_empire_flag_128"
+            position = { x = -1125 y = -11235 }
+        }
+
+        containerWindowType = {
+            name = "leader_details"
+            position = { x = -1125 y = -1175 }
+            containerWindowType = {
+                name = "empire_traits_box"
+            }
+            instantTextBoxType = {
+                name = "empire_traits_label"
+                font = "cg_16b"
+            }
+            overlappingElementsBoxType = {
+                name = "leader_traits"
+            }
+            instantTextBoxType = {
+                name = "leader_name"
+                font = "cg_16b"
+            }
+            instantTextBoxType = {
+                name = "leader_species"
+                font = "cg_16b"
+            }
+        }
+
+        containerWindowType = {
+            name = "opinion_window"
+            position = { x = -1127 y = -11110 }
+            size = { width = 94 height = 30 }
+            iconType = {
+                name = "their_opinion_icon"
+                spriteType = "GFX_diplomacy_opinion"
+            }
+            instantTextBoxType = {
+                name = "their_opinion"
+                font = "cg_16b"
+            }
+        }
+
+        containerWindowType = {
+            name = "EVENT_DIPLO"
+            position = { x = 0 y = 0 }
+            moveable = no
+
+            instantTextBoxType = {
+                name = "action_title"
+                font = "malgun_goth_24"
+                position = { x = -1120 y = -115 }
+                maxWidth = 500
+                alwaysTransparent = yes
+            }
+            instantTextBoxType = {
+                name = "action_desc"
+                font = "malgun_goth_24"
+                position = { x = -1120 y = -115 }
+                maxWidth = 500
+                maxHeight = 180
+                format = center
+                alwaysTransparent = yes
+                text_color_code = "H"
+            }
+            listBoxType = {
+                name = "option_list"
+                position = { x = -11500 y = -1130 }
+            }
+        }
+
+        instantTextBoxType = {
+            name = "alien_message"
+            font = "cg_16b"
+            position = { x = -1120 y = -115 }
+            maxWidth = 465
+            maxHeight = 220
+            format = left
+            scrollbarType = "standardtext_slider"
+        }
+
+        instantTextBoxType = {
+            name = "window_header"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_HEADER"
             position = { x = 20 y = 5 }
-            maxWidth = 543
+            maxWidth = 620
             maxHeight = 22
             fixedSize = yes
             alwaysTransparent = yes
         }
 
-
-
-
-
-
-        ### ALL OF THIS IS HIDDEN OR DISPLACED ! ###
-
-        buttonType = { name = "focus_button" position = { x = -1180 y = -1112 } spriteType = "GFX_fleetview_focus" } # hidden
-        instantTextBoxType = { name = "heading" font = "malgun_goth_24" position = { x = -1120 y = -115 } } # hidden
-        buttonType = { name = "alien_message_background" size = { x = 0 y = 0 } position = { x = -1110 y = -11430 } spriteType = "GFX_tiles_dark_area_cut_8" } # hidden
-        buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
-        containerWindowType = {
-            name = "portrait_background"
-            position = { x = -1117 y = -1145 }
-            size = { width = 0 height = 0 }     # hide portrait window
-            iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
-            iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
-        }
-        containerWindowType = {
-            name = "portrait"
-            position = { x = -1117 y = -1145 }
-            size = { width = 0 height = 0 } # hide portrait window
-            iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" } # hidden
-            iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" } # hidden
-            iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" } # hidden
-            iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
-        }
-        iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
-        instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden
-        instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
-        instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
-        OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
-        iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
-        containerWindowType = {
-            name = "leader_details"
-            position = { x = -1125 y = -1175 }
-            containerWindowType = { name = "empire_traits_box" } # hidden
-            instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
-            overlappingElementsBoxType = { name = "leader_traits" } # hidden
-            instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
-            instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
-        }
-        containerWindowType = {
-            name = "opinion_window"
-            position = { x = -1127 y = -11110 }
-            size = { width = 94 height = 30 }
-            iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
-            instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
-        }
-
-        ### EVENT DIPLO ###
-
-        containerWindowType = {
-            name = "EVENT_DIPLO"
-            position = { x = 2 y = 50 }
-            #size = { width=563 height=220 }
-            moveable = no
-
-            instantTextBoxType={
-             name = "action_title"
-             font = "malgun_goth_24"
-             position = { x = 20 y = 0 }
-             maxWidth = 200
-             alwaysTransparent = yes
-            }
-            instantTextBoxType={
-             name = "action_desc"
-             font = "malgun_goth_24"
-             position = { x = 490 y = 0 }
-             maxWidth = 500
-             maxHeight = 180
-             Orientation = "UPPER_LEFT"
-             format = center
-             alwaysTransparent = yes
-             text_color_code = "H"
-            }
-            listboxType = { name = "option_list" position = { x = -11500 y = -1130 } } # hidden option list
-        }
-        # Description Section
-        instantTextBoxType = {
-            name = "alien_message"
-            font = "cg_16b"
-            position = { x = 20 y = 100 }
-            maxWidth = 465
-            maxHeight = 220
+                instantTextBoxType = {
+            name = "auto_demolition_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
+            position = { x = 24 y = 88 }
+            maxWidth = 812
+            maxHeight = 28
+            fixedSize = yes
             format = left
-            scrollbartype = "standardtext_slider"
+            vertical_alignment = center
+            alwaysTransparent = yes
         }
+        instantTextBoxType = {
+            name = "auto_demolition_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT"
+            position = { x = 24 y = 124 }
+            maxWidth = 812
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "apply_all_row"
+            position = { x = 24 y = 178 }
+            size = { width = 812 height = 44 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "apply_all_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION"
+                position = { x = 18 y = 4 }
+                maxWidth = 566
+                maxHeight = 20
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "apply_all_apply_enable"
+                position = { x = 602 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_ENABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_all_enable"
+            }
+            effectButtonType = {
+                name = "apply_all_apply_disable"
+                position = { x = 702 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_DISABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_all_disable"
+            }
+        }
+                containerWindowType = {
+            name = "buildings_row"
+            position = { x = 24 y = 234 }
+            size = { width = 812 height = 54 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "buildings_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION"
+                position = { x = 18 y = 4 }
+                maxWidth = 348
+                maxHeight = 20
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "buildings_status"
+                position = { x = 20 y = 29 }
+                size = { x = 224 y = 16 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_STATUS"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "buildings_default_enable_current"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_buildings_enable_current"
+            }
+            effectButtonType = {
+                name = "buildings_default_enable_target"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_buildings_enable"
+            }
+            effectButtonType = {
+                name = "buildings_default_disable_current"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_buildings_disable_current"
+            }
+            effectButtonType = {
+                name = "buildings_default_disable_target"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_buildings_disable"
+            }
+            effectButtonType = {
+                name = "buildings_apply_enable"
+                position = { x = 602 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_buildings_enable"
+            }
+            effectButtonType = {
+                name = "buildings_apply_disable"
+                position = { x = 702 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_buildings_disable"
+            }
+        }
+                containerWindowType = {
+            name = "districts_row"
+            position = { x = 24 y = 300 }
+            size = { width = 812 height = 54 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "districts_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION"
+                position = { x = 18 y = 4 }
+                maxWidth = 348
+                maxHeight = 20
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "districts_status"
+                position = { x = 20 y = 29 }
+                size = { x = 224 y = 16 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_STATUS"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "districts_default_enable_current"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_districts_enable_current"
+            }
+            effectButtonType = {
+                name = "districts_default_enable_target"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_districts_enable"
+            }
+            effectButtonType = {
+                name = "districts_default_disable_current"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_districts_disable_current"
+            }
+            effectButtonType = {
+                name = "districts_default_disable_target"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_districts_disable"
+            }
+            effectButtonType = {
+                name = "districts_apply_enable"
+                position = { x = 602 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_districts_enable"
+            }
+            effectButtonType = {
+                name = "districts_apply_disable"
+                position = { x = 702 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_districts_disable"
+            }
+        }
+                containerWindowType = {
+            name = "zones_row"
+            position = { x = 24 y = 366 }
+            size = { width = 812 height = 54 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "zones_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION"
+                position = { x = 18 y = 4 }
+                maxWidth = 348
+                maxHeight = 20
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "zones_status"
+                position = { x = 20 y = 29 }
+                size = { x = 224 y = 16 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_STATUS"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "zones_default_enable_current"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_zones_enable_current"
+            }
+            effectButtonType = {
+                name = "zones_default_enable_target"
+                position = { x = 384 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_zones_enable"
+            }
+            effectButtonType = {
+                name = "zones_default_disable_current"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_default_auto_destruction_zones_disable_current"
+            }
+            effectButtonType = {
+                name = "zones_default_disable_target"
+                position = { x = 488 y = 12 }
+                size = { x = 96 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_default_auto_destruction_zones_disable"
+            }
+            effectButtonType = {
+                name = "zones_apply_enable"
+                position = { x = 602 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_zones_enable"
+            }
+            effectButtonType = {
+                name = "zones_apply_disable"
+                position = { x = 702 y = 12 }
+                size = { x = 92 y = 30 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_auto_destruction_zones_disable"
+            }
+        }
+        instantTextBoxType = {
+            name = "reserve_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_SECTION"
+            position = { x = 24 y = 432 }
+            maxWidth = 395
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "reserve_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_HINT"
+            position = { x = 24 y = 468 }
+            maxWidth = 395
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "reserve_minerals_row"
+            position = { x = 24 y = 516 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_minerals_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 139
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_minerals_value"
+                position = { x = 163 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_minerals_decrease"
+                position = { x = 257 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_minerals_increase"
+                position = { x = 323 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_alloys_row"
+            position = { x = 24 y = 568 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_alloys_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 139
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_alloys_value"
+                position = { x = 163 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_alloys_decrease"
+                position = { x = 257 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_alloys_increase"
+                position = { x = 323 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_influence_row"
+            position = { x = 24 y = 620 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_influence_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 139
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_influence_value"
+                position = { x = 163 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_influence_decrease"
+                position = { x = 257 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_influence_increase"
+                position = { x = 323 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_job_row"
+            position = { x = 24 y = 672 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_job_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 139
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_job_value"
+                position = { x = 163 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_job_decrease"
+                position = { x = 257 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
+                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_job_increase"
+                position = { x = 323 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50"
+                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_increase"
+            }
+        }
+                containerWindowType = {
+            name = "rare_output_row"
+            position = { x = 24 y = 724 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "rare_output_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS"
+                position = { x = 14 y = 0 }
+                maxWidth = 139
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "rare_output_value"
+                position = { x = 163 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "rare_output_decrease"
+                position = { x = 257 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_20"
+                tooltipText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_resource_decrease"
+            }
+            effectButtonType = {
+                name = "rare_output_increase"
+                position = { x = 323 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_20"
+                tooltipText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_resource_increase"
+            }
+        }
+
+        instantTextBoxType = {
+            name = "behavior_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION"
+            position = { x = 441 y = 432 }
+            maxWidth = 395
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "behavior_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT"
+            position = { x = 441 y = 468 }
+            maxWidth = 395
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "rare_buildings_row"
+            position = { x = 441 y = 516 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "rare_buildings_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS"
+                position = { x = 14 y = 0 }
+                maxWidth = 161
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "rare_buildings_retain_selected"
+                position = { x = 187 y = 4 }
+                size = { x = 92 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_RETAIN"
+                tooltipText = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_RETAIN_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_retain_low_level_rare_resource_buildings_selected"
+            }
+            effectButtonType = {
+                name = "rare_buildings_retain_unselected"
+                position = { x = 187 y = 4 }
+                size = { x = 92 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_RETAIN"
+                tooltipText = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_RETAIN_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_retain_low_level_rare_resource_buildings_unselected"
+            }
+            effectButtonType = {
+                name = "rare_buildings_remove_selected"
+                position = { x = 289 y = 4 }
+                size = { x = 92 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_REMOVE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_REMOVE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_remove_low_level_rare_resource_buildings_selected"
+            }
+            effectButtonType = {
+                name = "rare_buildings_remove_unselected"
+                position = { x = 289 y = 4 }
+                size = { x = 92 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_REMOVE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_REMOVE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_remove_low_level_rare_resource_buildings_unselected"
+            }
+        }
+                containerWindowType = {
+            name = "pop_assembly_row"
+            position = { x = 441 y = 568 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "pop_assembly_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS"
+                position = { x = 14 y = 0 }
+                maxWidth = 81
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "pop_assembly_always_selected"
+                position = { x = 107 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_ALWAYS_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_pop_assemble_always_selected"
+            }
+            effectButtonType = {
+                name = "pop_assembly_always_unselected"
+                position = { x = 107 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_ALWAYS_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_pop_assemble_always_unselected"
+            }
+            effectButtonType = {
+                name = "pop_assembly_needed_selected"
+                position = { x = 201 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_NEEDED_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_pop_assemble_needed_selected"
+            }
+            effectButtonType = {
+                name = "pop_assembly_needed_unselected"
+                position = { x = 201 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_NEEDED_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_pop_assemble_needed_unselected"
+            }
+            effectButtonType = {
+                name = "pop_assembly_demolish_selected"
+                position = { x = 295 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_DEMOLISH_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_pop_assemble_demolish_selected"
+            }
+            effectButtonType = {
+                name = "pop_assembly_demolish_unselected"
+                position = { x = 295 y = 4 }
+                size = { x = 86 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_DEMOLISH_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_pop_assemble_demolish_unselected"
+            }
+        }
+        instantTextBoxType = {
+            name = "testing_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_SECTION"
+            position = { x = 441 y = 636 }
+            maxWidth = 395
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "testing_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_HINT"
+            position = { x = 441 y = 672 }
+            maxWidth = 395
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "deurbanization_row"
+            position = { x = 441 y = 720 }
+            size = { width = 395 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "deurbanization_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION"
+                position = { x = 14 y = 0 }
+                maxWidth = 201
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "deurbanization_off_selected"
+                position = { x = 227 y = 4 }
+                size = { x = 72 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_deurbanization_off_selected"
+            }
+            effectButtonType = {
+                name = "deurbanization_off_unselected"
+                position = { x = 227 y = 4 }
+                size = { x = 72 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_deurbanization_off_unselected"
+            }
+            effectButtonType = {
+                name = "deurbanization_on_selected"
+                position = { x = 309 y = 4 }
+                size = { x = 72 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_deurbanization_on_selected"
+            }
+            effectButtonType = {
+                name = "deurbanization_on_unselected"
+                position = { x = 309 y = 4 }
+                size = { x = 72 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_deurbanization_on_unselected"
+            }
+        }
+
     }
 }

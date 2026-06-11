@@ -4924,6 +4924,39 @@ planet_event = {
                 bca_set_zx_for_identical_secondary_zone_plan = yes
                 try_set_secondary_districts_plan_zero_to_one = yes
             }
+            if = {
+                limit = {
+                    owner = {
+                        has_country_flag = bca_default_disable_auto_destruction_building
+                    }
+                }
+                set_planet_flag = bca_pf_disable_planet_auto_destruction_building
+            }
+            else = {
+                remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
+            }
+            if = {
+                limit = {
+                    owner = {
+                        has_country_flag = bca_default_disable_auto_destruction_district
+                    }
+                }
+                set_planet_flag = bca_pf_disable_planet_auto_destruction_district
+            }
+            else = {
+                remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
+            }
+            if = {
+                limit = {
+                    owner = {
+                        has_country_flag = bca_default_disable_auto_destruction_zone
+                    }
+                }
+                set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            }
+            else = {
+                remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            }
             set_planet_flag = bca_pf_ps_initialized
         }
         else = {
@@ -9824,6 +9857,39 @@ planet_event = {
             }
             bca_set_zx_for_identical_secondary_zone_plan = yes
             try_set_secondary_districts_plan_zero_to_one = yes
+        }
+        if = {
+            limit = {
+                owner = {
+                    has_country_flag = bca_default_disable_auto_destruction_building
+                }
+            }
+            set_planet_flag = bca_pf_disable_planet_auto_destruction_building
+        }
+        else = {
+            remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
+        }
+        if = {
+            limit = {
+                owner = {
+                    has_country_flag = bca_default_disable_auto_destruction_district
+                }
+            }
+            set_planet_flag = bca_pf_disable_planet_auto_destruction_district
+        }
+        else = {
+            remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
+        }
+        if = {
+            limit = {
+                owner = {
+                    has_country_flag = bca_default_disable_auto_destruction_zone
+                }
+            }
+            set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        }
+        else = {
+            remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
         }
         set_planet_flag = bca_pf_ps_initialized
     }

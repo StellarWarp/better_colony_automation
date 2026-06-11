@@ -24,6 +24,26 @@ bca_planet_setting_preconstruction_disable = {
     }
 }
 
+bca_planet_setting_open_global_settings = {
+    potential = {
+        exists = owner
+        owner = { is_ai = no }
+    }
+    allow = {
+        owner = {
+            NOT = { has_active_event = { bca_global_settings_event.1 } }
+        }
+    }
+    effect = {
+        custom_tooltip = edict_bca_open_global_settings_panel_desc
+        hidden_effect = {
+            owner = {
+                country_event = { id = bca_global_settings_event.1 }
+            }
+        }
+    }
+}
+
 bca_planet_setting_auto_destruction_enable = {
     potential = {
         exists = owner

@@ -72,15 +72,17 @@ Why it matters:
 - Some user-facing behavior and initialization-like flows live here.
 - Not all event behavior belongs to generated automation templates.
 
-## 7. Decisions and policies
+## 7. Decisions, edicts, and global settings entrypoints
 
 - [`../common/decisions/`](../common/decisions/)
 - [`../common/policies/bac_policies.txt`](../common/policies/bac_policies.txt)
+- [`../common/edicts/bca_global_settings_panel.txt`](../common/edicts/bca_global_settings_panel.txt)
+- [`../common/button_effects/bca_global_settings_panel.txt`](../common/button_effects/bca_global_settings_panel.txt)
 
 Why it matters:
 
-- These define user-facing control points for enabling, disabling, or biasing automation.
-- Many runtime triggers assume these policy values or flags already exist.
+- These files define user-facing control points and the country flags/variables they manipulate.
+- `bac_policies.txt` is now a tombstone file documenting that public policy entrypoints were intentionally removed.
 
 ## 8. Handwritten automation exceptions
 
@@ -113,7 +115,7 @@ If a bug report sounds like one of these, check handwritten hotspots first:
 - "automation never starts"
 - "mineral reserve is ignored"
 - "wrong building gets demolished"
-- "policy or decision toggle does nothing"
+- "global settings toggle does nothing"
 - "feature works in planner but not in gameplay"
 
 If the bug sounds like one of these, check templates first:

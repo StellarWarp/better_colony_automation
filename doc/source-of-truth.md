@@ -126,6 +126,14 @@ This project is mixed-mode. A change request like "adjust default zone selection
 - Runtime source: [`../interface/bca_district_gui.gui`](../interface/bca_district_gui.gui)
 - Template source: [`../mod_builder/templates/interface/bca_district_gui.gui.j2`](../mod_builder/templates/interface/bca_district_gui.gui.j2)
 
+### Empire settings center event GUI
+
+- Runtime source: [`../interface/bca_global_setting_panel.gui`](../interface/bca_global_setting_panel.gui)
+- Template source: [`../mod_builder/templates/interface/bca_global_setting_panel.gui.j2`](../mod_builder/templates/interface/bca_global_setting_panel.gui.j2)
+- Shell source: [`../mod_builder/templates/component/event_gui_shell.j2`](../mod_builder/templates/component/event_gui_shell.j2)
+- Content source: [`../mod_builder/templates/component/global_settings_components.j2`](../mod_builder/templates/component/global_settings_components.j2)
+- Event entrypoint: [`../events/bca_global_settings_events.txt`](../events/bca_global_settings_events.txt)
+
 ### Building demolition logic
 
 - Runtime source: [`../common/scripted_effects/bca_building_destruction.txt`](../common/scripted_effects/bca_building_destruction.txt)
@@ -162,5 +170,7 @@ Could mean:
 - zone demolition in generated zone controller templates
 - district demolition in generated district controller templates
 - building demolition in handwritten [`../common/scripted_effects/bca_building_destruction.txt`](../common/scripted_effects/bca_building_destruction.txt)
+- default demolition state in [`../common/button_effects/bca_global_settings_panel.txt`](../common/button_effects/bca_global_settings_panel.txt) plus [`../mod_builder/templates/events/bca_update_default_selection.txt.j2`](../mod_builder/templates/events/bca_update_default_selection.txt.j2)
+- bulk demolition application in [`../events/bca_auto_destruction_global_events.txt`](../events/bca_auto_destruction_global_events.txt), triggered from the global settings panel
 
 Do not assume these share one implementation path.

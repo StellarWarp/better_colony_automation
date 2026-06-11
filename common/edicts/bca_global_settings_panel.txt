@@ -1,0 +1,37 @@
+bca_open_global_settings_panel = {
+    length = 1
+    icon = "GFX_edict_type_policy"
+
+    resources = {
+        category = edicts
+        cost = {
+            unity = 0
+        }
+        upkeep = {
+            unity = 0
+        }
+    }
+
+    potential = {
+        is_ai = no
+    }
+
+    allow = {
+        custom_tooltip = {
+            fail_text = BCA_GLOBAL_SETTINGS_ALREADY_OPEN
+            NOT = {
+                has_active_event = {
+                    bca_global_settings_event.1
+                }
+            }
+        }
+    }
+
+    effect = {
+        country_event = { id = bca_global_settings_event.1 }
+    }
+
+    ai_weight = {
+        weight = 0
+    }
+}

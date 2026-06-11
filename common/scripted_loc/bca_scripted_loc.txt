@@ -103,3 +103,100 @@ define_text = {
         localization_key = "building_lifecrypt_corporate_1"
     }
 }
+
+defined_text = {
+    name = bca_gs_all_auto_demolition_enabled_planets
+    value = bca_gs_all_auto_demolition_enabled_planets
+}
+
+defined_text = {
+    name = bca_gs_all_auto_demolition_disabled_planets
+    value = bca_gs_all_auto_demolition_disabled_planets
+}
+
+defined_text = {
+    name = bca_gs_building_auto_demolition_enabled_planets
+    value = bca_gs_building_auto_demolition_enabled_planets
+}
+
+defined_text = {
+    name = bca_gs_building_auto_demolition_disabled_planets
+    value = bca_gs_building_auto_demolition_disabled_planets
+}
+
+defined_text = {
+    name = bca_gs_district_auto_demolition_enabled_planets
+    value = bca_gs_district_auto_demolition_enabled_planets
+}
+
+defined_text = {
+    name = bca_gs_district_auto_demolition_disabled_planets
+    value = bca_gs_district_auto_demolition_disabled_planets
+}
+
+defined_text = {
+    name = bca_gs_zone_auto_demolition_enabled_planets
+    value = bca_gs_zone_auto_demolition_enabled_planets
+}
+
+defined_text = {
+    name = bca_gs_zone_auto_demolition_disabled_planets
+    value = bca_gs_zone_auto_demolition_disabled_planets
+}
+
+defined_text = {
+    name = bca_gs_mineral_reserve_value_raw
+    value = bca_reserve_minerals_amount
+}
+
+defined_text = {
+    name = bca_gs_mineral_reserve_value_k
+    value = value:bca_value_divide|VALUE|bca_reserve_minerals_amount|DIVIDE|1000|
+}
+
+defined_text = {
+    name = bca_gs_mineral_reserve_display
+    text = {
+        trigger = {
+            check_variable = { which = bca_reserve_minerals_amount value >= 1000 }
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_VALUE_K_FORMAT_MINERAL"
+    }
+    default = "BCA_GLOBAL_SETTINGS_VALUE_RAW_FORMAT_MINERAL"
+}
+
+defined_text = {
+    name = bca_gs_alloy_reserve_value_raw
+    value = bca_reserve_alloys_amount
+}
+
+defined_text = {
+    name = bca_gs_alloy_reserve_value_k
+    value = value:bca_value_divide|VALUE|bca_reserve_alloys_amount|DIVIDE|1000|
+}
+
+defined_text = {
+    name = bca_gs_alloy_reserve_display
+    text = {
+        trigger = {
+            check_variable = { which = bca_reserve_alloys_amount value >= 1000 }
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_VALUE_K_FORMAT_ALLOY"
+    }
+    default = "BCA_GLOBAL_SETTINGS_VALUE_RAW_FORMAT_ALLOY"
+}
+
+defined_text = {
+    name = bca_gs_influence_reserve_display
+    value = bca_reserve_influence_amount
+}
+
+defined_text = {
+    name = bca_gs_job_reserve_display
+    value = bca_reserve_job_amount
+}
+
+defined_text = {
+    name = bca_gs_rare_resource_target_surplus_display
+    value = bca_expect_output_rare_crystals
+}

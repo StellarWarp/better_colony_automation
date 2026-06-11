@@ -84,6 +84,39 @@ Check:
 2. [`../common/scripted_effects/bca_resource_planet_controller.txt`](../common/scripted_effects/bca_resource_planet_controller.txt)
 3. [`../common/script_values/bca_planet_setting_values.txt`](../common/script_values/bca_planet_setting_values.txt)
 
+### Recipe: change default auto-demolition behavior
+
+Check:
+
+1. [`../common/button_effects/bca_global_settings_panel.txt`](../common/button_effects/bca_global_settings_panel.txt)
+2. [`../mod_builder/templates/events/bca_update_default_selection.txt.j2`](../mod_builder/templates/events/bca_update_default_selection.txt.j2)
+3. [`../events/bca_auto_destruction_global_events.txt`](../events/bca_auto_destruction_global_events.txt)
+4. related localisation files under [`../localisation/`](../localisation/)
+
+Important distinction:
+
+- the global settings panel writes country flags for default behavior
+- the same panel triggers bulk country events for already-owned planets
+
+### Recipe: change empire settings center GUI
+
+Check:
+
+1. [`../mod_builder/templates/component/event_gui_shell.j2`](../mod_builder/templates/component/event_gui_shell.j2)
+2. [`../mod_builder/templates/component/global_settings_components.j2`](../mod_builder/templates/component/global_settings_components.j2)
+3. [`../mod_builder/templates/interface/bca_global_setting_panel.gui.j2`](../mod_builder/templates/interface/bca_global_setting_panel.gui.j2)
+4. [`../events/bca_global_settings_events.txt`](../events/bca_global_settings_events.txt)
+
+Important distinction:
+
+- the shell macro owns required hidden/displaced event-window fields
+- the content macro owns visible business controls only
+- do not copy shell-only fields into business GUI files
+- auto-demolition now has one public entry point: the global settings panel
+- GUI display text must use dedicated `BCA_GLOBAL_SETTINGS_*` localisation keys
+- do not reuse `policy_*` or other legacy public-entry localisation keys inside the custom GUI
+- legacy policy localisation may remain for compatibility, but custom GUI templates must not reference it
+
 ## Common Hazards
 
 ### Hazard: editing only generated output
@@ -144,6 +177,20 @@ Mitigation:
 - keep the warning-header behavior in [`../mod_builder/generate.py`](../mod_builder/generate.py)
 - if the header format changes, update the renderer once instead of patching generated outputs individually
 
+### Hazard: breaking custom event GUI shell invariants
+
+Risk:
+
+- event window opens blank
+- close behavior breaks
+- hidden vanilla event controls bleed back into view
+
+Mitigation:
+
+- keep hidden/displaced required event fields centralized in the shell macro
+- update the shell first when event GUI structure breaks
+- keep business controls isolated from shell-only compatibility fields
+
 ### Hazard: state sync bugs
 
 Typical trigger points:
@@ -169,6 +216,34 @@ When debugging anything plan-related, inspect synchronization hooks before chang
 For scripted logic, prefer a dedicated test event such as [`../events/test_event.txt`](../events/test_event.txt) and trigger it manually from the in-game event window.
 
 For template changes, rely on a file watcher to regenerate outputs before re-entering the game.
+
+For auto-demolition changes, test both paths:
+
+- global-settings defaults on a newly initialized or reset planet
+- global-settings bulk application on already initialized planets
+
+## Release Workflow
+
+When preparing a public release, update these in one pass:
+
+1. Bump the version flag in [`../events/bca_intro_event.txt`](../events/bca_intro_event.txt).
+2. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in all relevant files under [`../localisation/`](../localisation/), especially [`../localisation/simp_chinese/bca_intro_l_simp_chinese.yml`](../localisation/simp_chinese/bca_intro_l_simp_chinese.yml).
+3. Bump the version string in [`../descriptor.mod`](../descriptor.mod).
+4. Update the public-facing changelog in [`../README.md`](../README.md).
+
+Suggested order:
+
+1. Finalize user-visible features and wording.
+2. Update localisation changelog entries.
+3. Bump the intro-event update flag and `descriptor.mod`.
+4. Update `README.md`.
+5. Re-enter the game and confirm the update popup shows the new version and changelog.
+
+Release note rule:
+
+- keep the intro popup short and player-facing
+- keep `README.md` slightly more descriptive
+- if a release changes global settings behavior, mention both the new default behavior and the new primary entry point
 
 ## Documentation Maintenance Rule
 

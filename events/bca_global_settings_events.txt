@@ -1,0 +1,25 @@
+namespace = bca_global_settings_event
+
+country_event = {
+    id = bca_global_settings_event.1
+    title = bca_global_settings_event.1.name
+    desc = bca_global_settings_event.1.desc
+    diplomatic = yes
+    is_triggered_only = yes
+    custom_gui = "bca_global_setting_panel"
+    picture = GFX_evt_glitchy_matrix
+
+    trigger = {
+        is_ai = no
+    }
+
+    immediate = {
+        save_global_event_target_as = bca_global_settings_country
+        bca_refresh_global_settings_panel_counts = yes
+    }
+
+    option = {
+        name = EXIT
+        default_hide_option = yes
+    }
+}

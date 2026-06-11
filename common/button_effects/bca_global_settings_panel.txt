@@ -1,0 +1,593 @@
+bca_global_settings_default_auto_destruction_buildings_enable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_building }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_buildings_enable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_building
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                remove_country_flag = bca_default_disable_auto_destruction_building
+            }
+        }
+    }
+}
+
+bca_global_settings_default_auto_destruction_buildings_disable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_building
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_buildings_disable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_building }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                set_country_flag = bca_default_disable_auto_destruction_building
+            }
+        }
+    }
+}
+
+bca_global_settings_default_auto_destruction_districts_enable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_district }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_districts_enable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_district
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                remove_country_flag = bca_default_disable_auto_destruction_district
+            }
+        }
+    }
+}
+
+bca_global_settings_default_auto_destruction_districts_disable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_district
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_districts_disable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_district }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                set_country_flag = bca_default_disable_auto_destruction_district
+            }
+        }
+    }
+}
+
+bca_global_settings_default_auto_destruction_zones_enable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_zone }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_zones_enable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_zone
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                remove_country_flag = bca_default_disable_auto_destruction_zone
+            }
+        }
+    }
+}
+
+bca_global_settings_default_auto_destruction_zones_disable_current = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            has_country_flag = bca_default_disable_auto_destruction_zone
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP
+    }
+}
+
+bca_global_settings_default_auto_destruction_zones_disable = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOT = { has_country_flag = bca_default_disable_auto_destruction_zone }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                set_country_flag = bca_default_disable_auto_destruction_zone
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_all_enable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_ENABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.1 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_all_disable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_DISABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.2 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_buildings_enable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.3 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_buildings_disable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.4 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_districts_enable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.5 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_districts_disable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.6 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_zones_enable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.7 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_auto_destruction_zones_disable = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                country_event = { id = bca_auto_destruction_event.8 }
+                bca_refresh_global_settings_panel_counts = yes
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_minerals_decrease = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { check_variable = { which = bca_reserve_minerals_amount value > 0 } } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                if = {
+                    limit = { check_variable = { which = bca_reserve_minerals_amount value <= 2000 } }
+                    set_variable = { which = bca_reserve_minerals_amount value = 0 }
+                }
+                else = {
+                    subtract_variable = { which = bca_reserve_minerals_amount value = 2000 }
+                }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_minerals_increase = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                change_variable = { which = bca_reserve_minerals_amount value = 2000 }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_alloys_decrease = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { check_variable = { which = bca_reserve_alloys_amount value > 0 } } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                if = {
+                    limit = { check_variable = { which = bca_reserve_alloys_amount value <= 2000 } }
+                    set_variable = { which = bca_reserve_alloys_amount value = 0 }
+                }
+                else = {
+                    subtract_variable = { which = bca_reserve_alloys_amount value = 2000 }
+                }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_alloys_increase = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                change_variable = { which = bca_reserve_alloys_amount value = 2000 }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_influence_decrease = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { check_variable = { which = bca_reserve_influence_amount value > 0 } } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                if = {
+                    limit = { check_variable = { which = bca_reserve_influence_amount value <= 100 } }
+                    set_variable = { which = bca_reserve_influence_amount value = 0 }
+                }
+                else = {
+                    subtract_variable = { which = bca_reserve_influence_amount value = 100 }
+                }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_influence_increase = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                change_variable = { which = bca_reserve_influence_amount value = 100 }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_job_decrease = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { check_variable = { which = bca_reserve_job_amount value > 0 } } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                if = {
+                    limit = { check_variable = { which = bca_reserve_job_amount value <= 50 } }
+                    set_variable = { which = bca_reserve_job_amount value = 0 }
+                }
+                else = {
+                    subtract_variable = { which = bca_reserve_job_amount value = 50 }
+                }
+            }
+        }
+    }
+}
+
+bca_global_settings_reserve_job_increase = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                change_variable = { which = bca_reserve_job_amount value = 50 }
+            }
+        }
+    }
+}
+
+bca_global_settings_expect_output_rare_resource_decrease = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { check_variable = { which = bca_expect_output_rare_crystals value > 0 } } }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_DECREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                if = {
+                    limit = { check_variable = { which = bca_expect_output_rare_crystals value <= 20 } }
+                    set_variable = { which = bca_expect_output_rare_crystals value = 0 }
+                    set_variable = { which = bca_expect_output_volatile_motes value = 0 }
+                    set_variable = { which = bca_expect_output_exotic_gases value = 0 }
+                }
+                else = {
+                    subtract_variable = { which = bca_expect_output_rare_crystals value = 20 }
+                    subtract_variable = { which = bca_expect_output_volatile_motes value = 20 }
+                    subtract_variable = { which = bca_expect_output_exotic_gases value = 20 }
+                }
+            }
+        }
+    }
+}
+
+bca_global_settings_expect_output_rare_resource_increase = {
+    potential = { exists = event_target:bca_global_settings_country }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_INCREASE_TOOLTIP
+        hidden_effect = {
+            event_target:bca_global_settings_country = {
+                change_variable = { which = bca_expect_output_rare_crystals value = 20 }
+                change_variable = { which = bca_expect_output_volatile_motes value = 20 }
+                change_variable = { which = bca_expect_output_exotic_gases value = 20 }
+            }
+        }
+    }
+}
+
+bca_global_settings_retain_low_level_rare_resource_buildings_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bca_retain_low_level_rare_resource_buildings } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { set_country_flag = bca_retain_low_level_rare_resource_buildings } }
+}
+
+bca_global_settings_retain_low_level_rare_resource_buildings_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bca_retain_low_level_rare_resource_buildings } } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { set_country_flag = bca_retain_low_level_rare_resource_buildings } }
+}
+
+bca_global_settings_remove_low_level_rare_resource_buildings_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bca_retain_low_level_rare_resource_buildings } } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { remove_country_flag = bca_retain_low_level_rare_resource_buildings } }
+}
+
+bca_global_settings_remove_low_level_rare_resource_buildings_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bca_retain_low_level_rare_resource_buildings } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { remove_country_flag = bca_retain_low_level_rare_resource_buildings } }
+}
+
+bca_global_settings_pop_assemble_always_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bca_build_pop_assemble_even_if_no_jobs } }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            set_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+        }
+    }
+}
+
+bca_global_settings_pop_assemble_always_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bca_build_pop_assemble_even_if_no_jobs } } }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            set_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+        }
+    }
+}
+
+bca_global_settings_pop_assemble_needed_selected = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            NOR = {
+                has_country_flag = bca_build_pop_assemble_even_if_no_jobs
+                has_country_flag = bac_remove_pop_assemble_buildings
+            }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+        }
+    }
+}
+
+bca_global_settings_pop_assemble_needed_unselected = {
+    potential = {
+        exists = event_target:bca_global_settings_country
+        event_target:bca_global_settings_country = {
+            OR = {
+                has_country_flag = bca_build_pop_assemble_even_if_no_jobs
+                has_country_flag = bac_remove_pop_assemble_buildings
+            }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+        }
+    }
+}
+
+bca_global_settings_pop_assemble_demolish_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bac_remove_pop_assemble_buildings } }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            set_country_flag = bac_remove_pop_assemble_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+        }
+    }
+}
+
+bca_global_settings_pop_assemble_demolish_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bac_remove_pop_assemble_buildings } } }
+    allow = { always = yes }
+    effect = {
+        event_target:bca_global_settings_country = {
+            set_country_flag = bac_remove_pop_assemble_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+        }
+    }
+}
+
+bca_global_settings_deurbanization_off_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bac_allow_deurbanization } } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { remove_country_flag = bac_allow_deurbanization } }
+}
+
+bca_global_settings_deurbanization_off_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bac_allow_deurbanization } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { remove_country_flag = bac_allow_deurbanization } }
+}
+
+bca_global_settings_deurbanization_on_selected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { has_country_flag = bac_allow_deurbanization } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { set_country_flag = bac_allow_deurbanization } }
+}
+
+bca_global_settings_deurbanization_on_unselected = {
+    potential = { exists = event_target:bca_global_settings_country event_target:bca_global_settings_country = { NOT = { has_country_flag = bac_allow_deurbanization } } }
+    allow = { always = yes }
+    effect = { event_target:bca_global_settings_country = { set_country_flag = bac_allow_deurbanization } }
+}

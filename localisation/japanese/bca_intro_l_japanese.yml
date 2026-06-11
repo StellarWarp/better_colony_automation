@@ -1,12 +1,14 @@
 ﻿l_japanese:
   MESSAGE_BCA_STARTUP: "Better Colony Automation 通知"
-  MESSAGE_BCA_STARTUP_desc: "§YBetter Colony Automation§! by 哇噗 & 红塵渡者\n\nこのMODは植民地の自動化を修正・改善します。['concept_colony']の['concept_planet_automation']、惑星['concept_decision']、帝国['concept_policies']から動作を設定できます。\n\n§H主な機能:§!\n- §Yスマート計画:§! 惑星の指定に基づいて、目標収量を最大化するよう自動的に区画を計画・建設します\n- §Y自動解体:§! 必要に応じて不要な£building£['concept_buildings']、£district£['concept_district']、£zone£['concept_district_specialization']を自動的に削除します\n- §Yその他:§! 詳細はワークショップページをご覧ください。\n\n§H注意§!: §Y自動解体§!は['concept_planet_automation']とは独立しており、デフォルトで有効です。UIから切り替えることができます。\n\nMOD作者はバニラ市民権以外の政府でのプレイ経験が限られています。フィードバックとバグ報告を歓迎します！"
+ MESSAGE_BCA_STARTUP_desc: "§YBetter Colony Automation§! by 哇噗 & 红塵渡者\n\nこのMODは植民地の自動化を修正・改善します。['concept_colony']の['concept_planet_automation']と、帝国全体向けの自動建造グローバル設定パネルから動作を設定できます。\n\n§H主な機能:§!\n- §Yスマート計画:§! 惑星の指定に基づいて、目標収量を最大化するよう自動的に区画を計画・建設します\n- §Y自動解体:§! 必要に応じて不要な£building£['concept_buildings']、£district£['concept_district']、£zone£['concept_district_specialization']を自動的に削除します\n- §Yその他:§! 詳細はワークショップページをご覧ください。\n\n§H注意§!: §Y自動解体§!は['concept_planet_automation']とは独立しており、デフォルト動作はグローバル設定パネルから構成されます。\n\nMOD作者はバニラ市民権以外の政府でのプレイ経験が限られています。フィードバックとバグ報告を歓迎します！"
 
  MESSAGE_BCA_UPDATE: "Better Colony Automation アップデート"
  MESSAGE_BCA_UPDATE_desc: "$MESSAGE_BCA_UPDATE_desc_verson$\n$MESSAGE_BCA_UPDATE_desc_important$\n$MESSAGE_BCA_STARTUP_desc_log$"
- MESSAGE_BCA_UPDATE_desc_verson: "§YBetter Colony Automation§! が v1.5 に更新されました！"
+ MESSAGE_BCA_UPDATE_desc_verson: "§YBetter Colony Automation§! が v1.6 に更新されました！"
  MESSAGE_BCA_UPDATE_desc_important: "§H注意§!: このMODは最近多くのアップデートがありました。詳細はワークショップページをご確認ください。\n§R注意§!: このMODは前提MODとして §1UI Overhaul Dynamic§! が必要になりました。\nフィードバックと議論: Github または ワークショップ"
- MESSAGE_BCA_STARTUP_desc_log: "$MESSAGE_BCA_STARTUP_desc_log_v150$\n$MESSAGE_BCA_STARTUP_desc_log_v140$\n\n['concept_bca_prev_update_log']"
+ MESSAGE_BCA_STARTUP_desc_log: "$MESSAGE_BCA_STARTUP_desc_log_v160$\n$MESSAGE_BCA_STARTUP_desc_log_v150$\n$MESSAGE_BCA_STARTUP_desc_log_v140$\n\n['concept_bca_prev_update_log']"
+
+ MESSAGE_BCA_STARTUP_desc_log_v160: "\n§Y2026-6-11 - v1.6§!:\n\t- §G自動建造の全体設定パネル§!: 自動建造関連の設定をまとめて管理できる帝国全体向けパネルを追加しました。\n\t- §Gグローバル自動解体設定§!: 新規初期化植民地向けに、建造物・区域・区域特化の自動解体デフォルトを個別に設定でき、既存植民地には一括適用できます。\n\t- §H全体設定UIの改善§!: パネル配置、ツールチップ、資源/職業しきい値の調整操作を改善しました。"
 
   MESSAGE_BCA_STARTUP_desc_log_v150: "\n§Y2026-4-6 - v1.5§!:\n\t- §G職業計算の改善§!: 以前は利用可能な職業に基づいて建設の必要性を評価する際、意図せず非主要種族の職業もカウントされていました。これを階級ごとにカウントするように変更しました。\n\t- §G自動区域設定の修正と改善§!: ベザリアン発電所や農業居住地を含むすべての資源区域タイプにおいて自動管理をサポートしました。自動区域設定を有効にすると建設が停止する問題を修正しました。\n\t- §G統合力建造物の改善§!: 統合力建造物の建設ロジックがより包括的になりました。\n\t- §G希少資源建造物ロジックの修正と改善§!: 希少資源建造物はプリセット値に適切に従うようになりました。§Vさらに、建造物スロットが満杯になった場合、一部の建造物が希少資源建造物に置き換えられることがあります。§!\n\t- §H人口組み立てロジックの改善§!: 人口組み立て建造物の建設と解体を制御するための詳細な政策を提供するようになりました。\n\t- §H建造物建設の微調整§!: 没落帝国の建造物を通常の資源建造物プランから削除しました。\n\t- §H特化建設の修正§!: 第二区域特化が主要区域に誤って建設される問題を修正しました。"
   MESSAGE_BCA_STARTUP_desc_log_v140: "\n§Y2026-4-1 - v1.4§!：\n\t- §Gエキュメノポリス建設の改善§!：建設条件を満たすエキュメノポリス候補が複数ある場合、確認しやすいように1つのイベントパネル に集約されるようになりました\n\t- §Gリゾート惑星の建設ロジックの改善§!：リゾート惑星は機能的な建造物として住居建造物のみを建設するようになりました\n\t- §G発電および採掘居住地の自動区域管理§!：発電および採掘居住地での区域管理をサポートしました。有効にすると、可能な限りすべての区域を一次資源区域に変換します\n\t- §H建造物の誤建設問題の修正§!：以前の ハイブリッド特化におけるパネル設定に基づく建設により、建設が禁止されている特化での建造物が建設される問題がありましたが、現在は建設済みの特化に基づき建設されるようになりました\n\t- §H建造物の誤解体の修正§!：行政ハイブリッド特化（統合力＋研究）において研究建造物が解体される問題が修正されました"

@@ -1,127 +1,357 @@
-guiTypes = {
+{% import 'component/event_gui_shell.j2' as shell %}
+{% import 'component/global_settings_components.j2' as gsc %}
 
-    ### FACTION OVERVIEW GUI ###
+{% set panel_width = 860 %}
+{% set panel_height = 848 %}
+{% set outer_padding_x = 24 %}
+{% set column_gap = 22 %}
+{% set column_width = 395 %}
+{% set full_width = panel_width - outer_padding_x * 2 %}
+{% set left_column_x = outer_padding_x %}
+{% set right_column_x = left_column_x + column_width + column_gap %}
+{% set section_title_y = 88 %}
+{% set section_hint_y = 124 %}
+{% set first_row_y = 178 %}
+{% set auto_demo_row_gap = 12 %}
+{% set auto_demo_all_row_height = 44 %}
+{% set auto_demo_row_height = 54 %}
+{% set auto_demo_second_row_y = first_row_y + auto_demo_all_row_height + auto_demo_row_gap %}
+{% set auto_demo_third_row_y = auto_demo_second_row_y + auto_demo_row_height + auto_demo_row_gap %}
+{% set auto_demo_fourth_row_y = auto_demo_third_row_y + auto_demo_row_height + auto_demo_row_gap %}
+{% set row_height = 40 %}
+{% set row_gap = 14 %}
+{% set lower_section_title_y = 432 %}
+{% set lower_section_hint_y = 468 %}
+{% set lower_first_row_y = 516 %}
+{% set choice_row_gap = 12 %}
+{% set lower_right_behavior_row_y = lower_first_row_y + (row_height + choice_row_gap) %}
+{% set lower_right_testing_section_title_y = lower_right_behavior_row_y + row_height + 28 %}
+{% set lower_right_testing_hint_y = lower_right_testing_section_title_y + 36 %}
+{% set lower_right_testing_row_y = lower_right_testing_hint_y + 48 %}
 
-    containerWindowType = {
-        name = "bca_global_setting_panel"
-        orientation = center
-        origo = center
-        moveable = yes
-        size = { width = 660 height = 300 }
+{% set rare_building_choices = [
+    {"name": "retain", "text": "BCA_GLOBAL_SETTINGS_OPTION_RETAIN", "effect": "bca_global_settings_retain_low_level_rare_resource_buildings", "tooltip": "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_RETAIN_TOOLTIP"},
+    {"name": "remove", "text": "BCA_GLOBAL_SETTINGS_OPTION_REMOVE", "effect": "bca_global_settings_remove_low_level_rare_resource_buildings", "tooltip": "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_REMOVE_TOOLTIP"}
+] %}
+{% set pop_assembly_choices = [
+    {"name": "always", "text": "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD", "effect": "bca_global_settings_pop_assemble_always", "tooltip": "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_ALWAYS_TOOLTIP"},
+    {"name": "needed", "text": "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED", "effect": "bca_global_settings_pop_assemble_needed", "tooltip": "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_NEEDED_TOOLTIP"},
+    {"name": "demolish", "text": "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE", "effect": "bca_global_settings_pop_assemble_demolish", "tooltip": "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_DEMOLISH_TOOLTIP"}
+] %}
+{% set deurbanization_choices = [
+    {"name": "off", "text": "BCA_GLOBAL_SETTINGS_DISABLED", "effect": "bca_global_settings_deurbanization_off"},
+    {"name": "on", "text": "BCA_GLOBAL_SETTINGS_ENABLED", "effect": "bca_global_settings_deurbanization_on"}
+] %}
 
-        background = { name = "background" quadTextureSprite ="GFX_tile_outliner_bg" }
+{% call shell.event_window_shell(
+    window_name = "bca_global_setting_panel",
+    header_text = "BCA_GLOBAL_SETTINGS_HEADER",
+    width = panel_width,
+    height = panel_height,
+    show_native_event_text = false
+) %}
+        {{
+        gsc.section_title(
+            name = "auto_demolition_section",
+            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION",
+            x = left_column_x,
+            y = section_title_y,
+            width = full_width
+        )
+        }}
+        {{
+        gsc.sub_title(
+            name = "auto_demolition_hint",
+            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT",
+            x = left_column_x,
+            y = section_hint_y,
+            width = full_width
+        )
+        }}
+        {{
+        gsc.auto_demolition_row(
+            name = "apply_all",
+            text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION",
+            x = left_column_x,
+            y = first_row_y,
+            width = full_width,
+            height = auto_demo_all_row_height,
+            show_default = false,
+            apply_enable_effect = "bca_global_settings_auto_destruction_all_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_all_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_DISABLE_TOOLTIP"
+        )
+        }}
+        {{
+        gsc.auto_demolition_row(
+            name = "buildings",
+            text = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_STATUS",
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_buildings_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_buildings_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_buildings_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_buildings_disable",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP",
+            apply_enable_effect = "bca_global_settings_auto_destruction_buildings_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_buildings_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            x = left_column_x,
+            y = auto_demo_second_row_y,
+            width = full_width,
+            height = auto_demo_row_height
+        )
+        }}
+        {{
+        gsc.auto_demolition_row(
+            name = "districts",
+            text = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_STATUS",
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_districts_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_districts_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_districts_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_districts_disable",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP",
+            apply_enable_effect = "bca_global_settings_auto_destruction_districts_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_districts_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            x = left_column_x,
+            y = auto_demo_third_row_y,
+            width = full_width,
+            height = auto_demo_row_height
+        )
+        }}
+        {{
+        gsc.auto_demolition_row(
+            name = "zones",
+            text = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_STATUS",
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_zones_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_zones_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_zones_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_zones_disable",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP",
+            apply_enable_effect = "bca_global_settings_auto_destruction_zones_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_zones_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            x = left_column_x,
+            y = auto_demo_fourth_row_y,
+            width = full_width,
+            height = auto_demo_row_height
+        )
+        }}
+        {{
+        gsc.section_title(
+            name = "reserve_section",
+            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_SECTION",
+            x = left_column_x,
+            y = lower_section_title_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.sub_title(
+            name = "reserve_hint",
+            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_HINT",
+            x = left_column_x,
+            y = lower_section_hint_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.value_adjust_row(
+            name = "reserve_minerals",
+            text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE",
+            value_text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE",
+            tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_TOOLTIP",
+            decrease_effect = "bca_global_settings_reserve_minerals_decrease",
+            increase_effect = "bca_global_settings_reserve_minerals_increase",
+            decrease_tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP",
+            increase_tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP",
+            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K",
+            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K",
+            x = left_column_x,
+            y = lower_first_row_y,
+            width = column_width,
+            height = row_height,
+            value_width = 84,
+            button_width = 58,
+            button_gap = 8
+        )
+        }}
+        {{
+        gsc.value_adjust_row(
+            name = "reserve_alloys",
+            text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE",
+            value_text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE",
+            tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_TOOLTIP",
+            decrease_effect = "bca_global_settings_reserve_alloys_decrease",
+            increase_effect = "bca_global_settings_reserve_alloys_increase",
+            decrease_tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP",
+            increase_tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP",
+            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K",
+            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K",
+            x = left_column_x,
+            y = lower_first_row_y + (row_height + choice_row_gap),
+            width = column_width,
+            height = row_height,
+            value_width = 84,
+            button_width = 58,
+            button_gap = 8
+        )
+        }}
+        {{
+        gsc.value_adjust_row(
+            name = "reserve_influence",
+            text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE",
+            value_text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE",
+            tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_TOOLTIP",
+            decrease_effect = "bca_global_settings_reserve_influence_decrease",
+            increase_effect = "bca_global_settings_reserve_influence_increase",
+            decrease_tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP",
+            increase_tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP",
+            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100",
+            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100",
+            x = left_column_x,
+            y = lower_first_row_y + (row_height + choice_row_gap) * 2,
+            width = column_width,
+            height = row_height,
+            value_width = 84,
+            button_width = 58,
+            button_gap = 8
+        )
+        }}
+        {{
+        gsc.value_adjust_row(
+            name = "reserve_job",
+            text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE",
+            value_text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE",
+            tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_TOOLTIP",
+            decrease_effect = "bca_global_settings_reserve_job_decrease",
+            increase_effect = "bca_global_settings_reserve_job_increase",
+            decrease_tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP",
+            increase_tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP",
+            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50",
+            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50",
+            x = left_column_x,
+            y = lower_first_row_y + (row_height + choice_row_gap) * 3,
+            width = column_width,
+            height = row_height,
+            value_width = 84,
+            button_width = 58,
+            button_gap = 8
+        )
+        }}
+        {{
+        gsc.value_adjust_row(
+            name = "rare_output",
+            text = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS",
+            value_text = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_VALUE",
+            tooltip = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_TOOLTIP",
+            decrease_effect = "bca_global_settings_expect_output_rare_resource_decrease",
+            increase_effect = "bca_global_settings_expect_output_rare_resource_increase",
+            decrease_tooltip = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_DECREASE_TOOLTIP",
+            increase_tooltip = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_INCREASE_TOOLTIP",
+            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_20",
+            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_20",
+            x = left_column_x,
+            y = lower_first_row_y + (row_height + choice_row_gap) * 4,
+            width = column_width,
+            height = row_height,
+            value_width = 84,
+            button_width = 58,
+            button_gap = 8
+        )
+        }}
 
-        iconType = { name = "hex_bg" spriteType = "GFX_hex_bg" position = { x = -10 y = -14 } alwaysTransparent = yes }
-        iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long" position = { x = 6 y = 22 } alwaysTransparent = yes }
-
-        buttonType = {
-            name = "close"
-            quadTextureSprite = "GFX_close"
-            position = { x= -42 y = 12 }
-            Orientation = "UPPER_RIGHT"
-            shortcut = "ESCAPE"
-            clicksound = "back_click"
-        }
-
-        # Custom header
-        instantTextBoxType = {
-            name = "bca_global_setting_panel_header"
-            font = "malgun_goth_24"
-            text = "ui_faction_header"  # header text
-            position = { x = 20 y = 5 }
-            maxWidth = 543
-            maxHeight = 22
-            fixedSize = yes
-            alwaysTransparent = yes
-        }
-
-
-
-
-
-
-        ### ALL OF THIS IS HIDDEN OR DISPLACED ! ###
-
-        buttonType = { name = "focus_button" position = { x = -1180 y = -1112 } spriteType = "GFX_fleetview_focus" } # hidden
-        instantTextBoxType = { name = "heading" font = "malgun_goth_24" position = { x = -1120 y = -115 } } # hidden
-        buttonType = { name = "alien_message_background" size = { x = 0 y = 0 } position = { x = -1110 y = -11430 } spriteType = "GFX_tiles_dark_area_cut_8" } # hidden
-        buttonType = { name = "confirm_button" quadTextureSprite = "GFX_standard_button_142_34_button" } # hidden
-        containerWindowType = {
-            name = "portrait_background"
-            position = { x = -1117 y = -1145 }
-            size = { width = 0 height = 0 }     # hide portrait window
-            iconType = { name = "event_picture" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
-            iconType = { name = "portrait" spriteType = "GFX_portrait_character" } # hidden
-        }
-        containerWindowType = {
-            name = "portrait"
-            position = { x = -1117 y = -1145 }
-            size = { width = 0 height = 0 } # hide portrait window
-            iconType = { name = "portrait" spriteType = "GFX_portrait_gamesetup_mask" } # hidden
-            iconType = { name = "black_frame" spriteType = "GFX_diplomacy_portrait_shadow_frame" } # hidden
-            iconType = { name = "stripes_1" spriteType = "GFX_diplomacy_stripes_2" } # hidden
-            iconType = { name = "city_frame" spriteType = "GFX_diplomacy_portrait_frame" } # hidden
-        }
-        iconType = { name = "empire_info_bg" spriteType = "GFX_diplomacy_dark_fade_bg" } # hidden
-        instantTextBoxType={ name = "empire_name" font = "malgun_goth_24" } # hidden
-        instantTextBoxType={ name = "empire_government_type" font = "cg_16b" } # hidden
-        instantTextBoxType={ name = "empire_personality_type" font = "cg_16b" } # hidden
-        OverlappingElementsBoxType = { name = "empire_ethics_icons" position = { x = -1145 y = -11138 } } # hidden
-        iconType = { name = "empire_flag" spriteType = "GFX_empire_flag_128" position = { x = -1125 y = -11235 } } # hidden
-        containerWindowType = {
-            name = "leader_details"
-            position = { x = -1125 y = -1175 }
-            containerWindowType = { name = "empire_traits_box" } # hidden
-            instantTextBoxType = { name = "empire_traits_label" font = "cg_16b" } # hidden
-            overlappingElementsBoxType = { name = "leader_traits" } # hidden
-            instantTextBoxType = { name = "leader_name" font = "cg_16b" } # hidden
-            instantTextBoxType = { name = "leader_species" font = "cg_16b" } # hidden
-        }
-        containerWindowType = {
-            name = "opinion_window"
-            position = { x = -1127 y = -11110 }
-            size = { width = 94 height = 30 }
-            iconType = { name = "their_opinion_icon" spriteType = "GFX_diplomacy_opinion" } # hidden
-            instantTextBoxType = { name = "their_opinion" font = "cg_16b" }
-        }
-
-        ### EVENT DIPLO ###
-
-        containerWindowType = {
-            name = "EVENT_DIPLO"
-            position = { x = 2 y = 50 }
-            #size = { width=563 height=220 }
-            moveable = no
-
-            instantTextBoxType={
-             name = "action_title"
-             font = "malgun_goth_24"
-             position = { x = 20 y = 0 }
-             maxWidth = 200
-             alwaysTransparent = yes
-            }
-            instantTextBoxType={
-             name = "action_desc"
-             font = "malgun_goth_24"
-             position = { x = 490 y = 0 }
-             maxWidth = 500
-             maxHeight = 180
-             Orientation = "UPPER_LEFT"
-             format = center
-             alwaysTransparent = yes
-             text_color_code = "H"
-            }
-            listboxType = { name = "option_list" position = { x = -11500 y = -1130 } } # hidden option list
-        }
-        # Description Section
-        instantTextBoxType = {
-            name = "alien_message"
-            font = "cg_16b"
-            position = { x = 20 y = 100 }
-            maxWidth = 465
-            maxHeight = 220
-            format = left
-            scrollbartype = "standardtext_slider"
-        }
-    }
-}
+        {{
+        gsc.section_title(
+            name = "behavior_section",
+            text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION",
+            x = right_column_x,
+            y = lower_section_title_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.sub_title(
+            name = "behavior_hint",
+            text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT",
+            x = right_column_x,
+            y = lower_section_hint_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.choice_row(
+            name = "rare_buildings",
+            text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS",
+            tooltip = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_TOOLTIP",
+            x = right_column_x,
+            y = lower_first_row_y,
+            width = column_width,
+            height = row_height,
+            button_width = 92,
+            button_gap = 10,
+            options = rare_building_choices
+        )
+        }}
+        {{
+        gsc.choice_row(
+            name = "pop_assembly",
+            text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS",
+            tooltip = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
+            x = right_column_x,
+            y = lower_right_behavior_row_y,
+            width = column_width,
+            height = row_height,
+            button_width = 86,
+            button_gap = 8,
+            options = pop_assembly_choices
+        )
+        }}
+        {{
+        gsc.section_title(
+            name = "testing_section",
+            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_SECTION",
+            x = right_column_x,
+            y = lower_right_testing_section_title_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.sub_title(
+            name = "testing_hint",
+            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_HINT",
+            x = right_column_x,
+            y = lower_right_testing_hint_y,
+            width = column_width
+        )
+        }}
+        {{
+        gsc.choice_row(
+            name = "deurbanization",
+            text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION",
+            tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",
+            x = right_column_x,
+            y = lower_right_testing_row_y,
+            width = column_width,
+            height = row_height,
+            button_width = 72,
+            button_gap = 10,
+            options = deurbanization_choices
+        )
+        }}
+{% endcall %}
