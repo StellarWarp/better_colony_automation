@@ -1152,10 +1152,9 @@ bca_buildings:
   potential: ''
   allow: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
     \ = penal_colony\n}\nowner = {\n    is_regular_empire = yes\n    is_individual_machine\
-    \ = no\n    NOT = {\n        has_valid_civic = civic_dystopian_society\n    }\n\
-    }\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner = {\n\
-    \        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n}\nNOT = {\n\
-    \    has_building = building_low_tech_capital\n}"
+    \ = no\n}\nOR = {\n    has_planet_flag = ignore_ai_building_limitations\n    owner\
+    \ = {\n        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n}\n\
+    NOT = {\n    has_building = building_low_tech_capital\n}"
   abort_trigger: ''
   prerequisites:
   - '"tech_basic_health"'
@@ -1841,41 +1840,38 @@ bca_buildings:
   abort_trigger: ''
   prerequisites: []
 - name: building_composer_sanctum
-  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
-    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
-    \ = composer_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
-    \ = yes\n        owner = {\n            has_country_flag = fertility_accord\n\
-    \        }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
-    \ = slave_colony\n}"
+  potential: "exists = owner\nOR = {\n    AND = {\n        has_shroud_dlc = no\n \
+    \       owner = {\n            has_country_flag = composer_covenant_rank_1\n \
+    \       }\n    }\n    AND = {\n        has_shroud_dlc = yes\n        owner = {\n\
+    \            has_country_flag = fertility_accord\n        }\n    }\n}\nNOR = {\n\
+    \    has_designation = col_resort\n    has_modifier = slave_colony\n}"
   allow: has_major_upgraded_capital = yes
   abort_trigger: ''
   prerequisites: []
 - name: building_eater_sanctum
-  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
-    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
-    \ = eater_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
-    \ = yes\n        owner = {\n            has_country_flag = hunger_accord\n   \
-    \     }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
-    \ = slave_colony\n}"
+  potential: "exists = owner\nOR = {\n    AND = {\n        has_shroud_dlc = no\n \
+    \       owner = {\n            has_country_flag = eater_covenant_rank_1\n    \
+    \    }\n    }\n    AND = {\n        has_shroud_dlc = yes\n        owner = {\n\
+    \            has_country_flag = hunger_accord\n        }\n    }\n}\nNOR = {\n\
+    \    has_designation = col_resort\n    has_modifier = slave_colony\n}"
   allow: has_major_upgraded_capital = yes
   abort_trigger: ''
   prerequisites: []
 - name: building_instrument_sanctum
-  potential: "exists = owner\nOR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\
-    \n        has_shroud_dlc = no\n        owner = {\n            has_country_flag\
-    \ = instrument_covenant_rank_1\n        }\n    }\n    AND = {\n        has_shroud_dlc\
-    \ = yes\n        owner = {\n            has_country_flag = bliss_accord\n    \
-    \    }\n    }\n}\nNOR = {\n    has_designation = col_resort\n    has_modifier\
-    \ = slave_colony\n}"
+  potential: "exists = owner\nOR = {\n    AND = {\n        has_shroud_dlc = no\n \
+    \       owner = {\n            has_country_flag = instrument_covenant_rank_1\n\
+    \        }\n    }\n    AND = {\n        has_shroud_dlc = yes\n        owner =\
+    \ {\n            has_country_flag = bliss_accord\n        }\n    }\n}\nNOR = {\n\
+    \    has_designation = col_resort\n    has_modifier = slave_colony\n}"
   allow: has_major_upgraded_capital = yes
   abort_trigger: ''
   prerequisites: []
 - name: building_whisperers_sanctum
-  potential: "OR = {\n    AND = {\n        host_has_dlc = \"Utopia\"\n        has_shroud_dlc\
-    \ = no\n        owner = {\n            has_country_flag = whisperers_covenant_rank_1\n\
-    \        }\n    }\n    AND = {\n        has_shroud_dlc = yes\n        owner =\
-    \ {\n            has_country_flag = wisdom_accord\n        }\n    }\n}\nNOR =\
-    \ {\n    has_designation = col_resort\n    has_modifier = slave_colony\n}"
+  potential: "OR = {\n    AND = {\n        has_shroud_dlc = no\n        owner = {\n\
+    \            has_country_flag = whisperers_covenant_rank_1\n        }\n    }\n\
+    \    AND = {\n        has_shroud_dlc = yes\n        owner = {\n            has_country_flag\
+    \ = wisdom_accord\n        }\n    }\n}\nNOR = {\n    has_designation = col_resort\n\
+    \    has_modifier = slave_colony\n}"
   allow: has_major_upgraded_capital = yes
   abort_trigger: ''
   prerequisites: []
