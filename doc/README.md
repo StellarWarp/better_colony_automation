@@ -1,58 +1,57 @@
 # Better Colony Automation Maintainer Docs
 
-This folder is a maintainer-oriented documentation set for AI agents and human contributors working on this mod.
+This folder documents how the mod is built, how it runs, and how humans or AI agents should safely change it.
 
-The project has mixed ownership:
+The docs have two reading paths:
 
-- Some runtime logic is handwritten directly under `common/`, `events/`, and `interface/`.
-- Some runtime logic is generated from `mod_builder/templates/`.
-- `mod_builder/configs/` contains handwritten configuration only.
+1. Understand the project architecture.
+2. Maintain the project safely, including DSL and AI coding practices.
+
+## Architecture Path
+
+Read these when you need to understand how the mod is organized and executed:
+
+1. [Architecture Overview](architecture/overview.md)
+2. [Generation Pipeline](architecture/generation-pipeline.md)
+3. [Runtime Flow](architecture/runtime-flow.md)
+4. [State Model](architecture/state-model.md)
+
+## Maintenance And AI Coding Path
+
+Read these when you are about to change behavior, templates, GUI, localisation, or release metadata:
+
+1. [Maintenance Playbook](maintenance/playbook.md)
+2. [DSL Style Guide](maintenance/dsl-style-guide.md)
+3. [Change Entrypoints](maintenance/change-entrypoints.md)
+4. [Handwritten Hotspots](maintenance/handwritten-hotspots.md)
+
+## Project Ownership Model
+
+The project mixes handwritten runtime code, generated runtime code, templates, generated config inputs, and parser output.
+
+Important rules:
+
+- `mod_builder/configs/` contains handwritten config source.
+- `mod_builder/templates/` contains Jinja templates and template components.
 - `mod_builder/templates/generated_configs/` is fully program-generated and must not be edited by hand.
-- Some generated config data is derived from Stellaris definitions through `mod_builder/parse/` and `mod_builder/synthetipy/`.
+- `mod_builder/parse/` and `mod_builder/synthetipy/` form a parser/extraction frontend for Stellaris script definitions.
+- Generated runtime files should contain a warning header pointing back to the source template.
 
-Do not assume that a long file under `common/` or `events/` is handwritten. Many large runtime files are generated outputs.
-Do not assume that YAML under `templates/generated_configs/` is editable source data. It is generated output.
+Do not assume that a long file under `common/`, `events/`, `interface/`, or `localisation/` is handwritten. Many runtime files are generated outputs.
 
-Development constraints:
+## Development Constraints
 
-- Stellaris mod logic does not support hot reload; after edits, you must re-enter the game to test.
-- A practical way to test logic is the event window, using dedicated test events such as [`../events/test_event.txt`](../events/test_event.txt).
-- The recommended editor is IntelliJ IDEA ("IJ") because its Stellaris/Paradox syntax support is strong.
-- File watcher-based rendering is recommended so template changes are regenerated quickly during development.
-
-## Read This First
-
-1. [Architecture Overview](architecture.md)
-2. [Runtime Flow](runtime-flow.md)
-3. [Source Of Truth Map](source-of-truth.md)
-4. [State Model](state-model.md)
-5. [Handwritten Hotspots](handwritten-hotspots.md)
-6. [Generation Pipeline](generation-pipeline.md)
-7. [Maintenance Playbook](maintenance-playbook.md)
-
-## Code Entry Points
-
-- Monthly automation entry: [`../events/bca_planet_monthly_iteration_entry.txt`](../events/bca_planet_monthly_iteration_entry.txt)
-- Initialization/reset events: [`../events/bca_update_default_selection.txt`](../events/bca_update_default_selection.txt)
-- District build/remove events: [`../events/bca_district_controller.txt`](../events/bca_district_controller.txt)
-- Mixed zone build/remove events: [`../events/bca_mix_zones_controller.txt`](../events/bca_mix_zones_controller.txt)
-- Zone selector effects: [`../common/scripted_effects/bca_planet_setting_zones_0_effect.txt`](../common/scripted_effects/bca_planet_setting_zones_0_effect.txt)
-- Designation sync and layout sync: [`../common/scripted_effects/bca_planet_setting_zones_1_effect.txt`](../common/scripted_effects/bca_planet_setting_zones_1_effect.txt)
-- District plan math: [`../common/scripted_effects/bca_planet_district_setting_effect.txt`](../common/scripted_effects/bca_planet_district_setting_effect.txt)
-- Resource-world district planner: [`../common/scripted_effects/bca_resource_planet_controller.txt`](../common/scripted_effects/bca_resource_planet_controller.txt)
-- Build gating triggers: [`../common/scripted_triggers/bt_st_tool.txt`](../common/scripted_triggers/bt_st_tool.txt)
-- Main GUI: [`../interface/bca_district_gui.gui`](../interface/bca_district_gui.gui)
-- Generator entrypoint: [`../mod_builder/generate.py`](../mod_builder/generate.py)
-- Generated-config copy step: [`../mod_builder/parse/copy_configs.py`](../mod_builder/parse/copy_configs.py)
-- Generated-config extraction: [`../mod_builder/parse/zone_condition_gen.py`](../mod_builder/parse/zone_condition_gen.py), [`../mod_builder/parse/building_condition.py`](../mod_builder/parse/building_condition.py)
-- Paradox script parser/toolchain: [`../mod_builder/synthetipy/`](../mod_builder/synthetipy/)
+- Stellaris mod logic does not support hot reload; after logic edits, re-enter the game to test.
+- Event-window tests are the fastest practical feedback loop for scripted logic.
+- Use a dedicated test event such as [`../events/test_event.txt`](../events/test_event.txt) for manual in-game testing.
+- IntelliJ IDEA is recommended because its Paradox/Stellaris syntax support is useful.
+- A file watcher should render templates after template edits.
 
 ## Practical Rule
 
 Before changing behavior:
 
-- Identify whether the target file is handwritten or generated.
-- If generated, find the template and config that produced it.
-- Check whether the same concept also has handwritten logic elsewhere.
-
-The rest of this doc set is organized to make that trace easier.
+1. Identify which layer owns the change.
+2. If a runtime file has a generated warning header, go back to the template or generator input.
+3. If DSL syntax or API usage is uncertain, check [DSL Style Guide](maintenance/dsl-style-guide.md) and the Stellaris user document `logs/script_documentation`.
+4. If the change affects release metadata, follow the release workflow in [Maintenance Playbook](maintenance/playbook.md).

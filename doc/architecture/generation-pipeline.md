@@ -1,0 +1,141 @@
+# Generation Pipeline
+
+See also:
+
+- [Architecture Overview](overview.md)
+- [DSL Style Guide](../maintenance/dsl-style-guide.md)
+- [Maintenance Playbook](../maintenance/playbook.md)
+
+## Overview
+
+The runtime generator renders Jinja templates into Stellaris files, but rendering is only the last stage.
+
+The full pipeline is:
+
+1. Maintain handwritten config under `mod_builder/configs/`.
+2. Parse or copy data into `mod_builder/templates/generated_configs/`.
+3. Load the generated-config layer into Jinja.
+4. Render runtime files into `common/`, `events/`, `interface/`, and `localisation/`.
+5. Prepend generated-file warning headers to rendered outputs.
+
+Entrypoints:
+
+- [`../../mod_builder/generate.py`](../../mod_builder/generate.py)
+- [`../../mod_builder/build_all.py`](../../mod_builder/build_all.py)
+- [`../../mod_builder/parse/copy_configs.py`](../../mod_builder/parse/copy_configs.py)
+- [`../../mod_builder/parse/zone_condition_gen.py`](../../mod_builder/parse/zone_condition_gen.py)
+- [`../../mod_builder/parse/building_condition.py`](../../mod_builder/parse/building_condition.py)
+
+## Input Classes
+
+### Handwritten templates
+
+Location:
+
+- [`../../mod_builder/templates/`](../../mod_builder/templates/)
+
+Important subfolders:
+
+- `common/`
+- `events/`
+- `interface/`
+- `component/`
+- `localisation/`
+
+### Handwritten config YAML
+
+Location:
+
+- [`../../mod_builder/configs/`](../../mod_builder/configs/)
+
+This is the human-maintained source data layer.
+
+Examples:
+
+- [`../../mod_builder/configs/zone_type_fitness.yaml`](../../mod_builder/configs/zone_type_fitness.yaml)
+- [`../../mod_builder/configs/mix_zone_buildings_config.yaml`](../../mod_builder/configs/mix_zone_buildings_config.yaml)
+- [`../../mod_builder/configs/job_config.yaml`](../../mod_builder/configs/job_config.yaml)
+
+### Copied/generated config YAML
+
+Location:
+
+- [`../../mod_builder/templates/generated_configs/`](../../mod_builder/templates/generated_configs/)
+
+This directory is generated and not editable by hand.
+
+Its contents come from:
+
+- copy steps from handwritten `configs/`
+- parser/extraction output from Stellaris definitions
+
+### Parser/extraction tooling
+
+Locations:
+
+- [`../../mod_builder/parse/`](../../mod_builder/parse/)
+- [`../../mod_builder/synthetipy/`](../../mod_builder/synthetipy/)
+
+This layer acts like a small compiler frontend for Paradox DSL:
+
+- lex and parse upstream script definitions
+- build AST-like structures
+- resolve inline script expansion where needed
+- emit YAML consumed by templates
+
+This exists because the official runtime DSL API is not rich enough for all automation decisions. Some information must be extracted before runtime.
+
+## Rendering Model
+
+`generate.py` does the following:
+
+1. Load YAML files in `templates/generated_configs/`.
+2. Merge them into one Jinja context dictionary.
+3. Render `.gui.j2` templates into `interface/`.
+4. Render `.txt.j2` templates under `templates/common/` into `common/`.
+5. Render `.txt.j2` templates under `templates/events/` into `events/`.
+6. Render `.yml.j2` localisation templates into `localisation/`.
+7. Prepend a generated-file warning header to rendered output.
+
+This means:
+
+- output paths are determined by template locations
+- runtime directories contain both generated and handwritten files
+- warning headers are the first-line ownership signal during editing
+
+## Component Macros
+
+The `component/` templates act like an internal meta-API.
+
+Important files:
+
+- [`../../mod_builder/templates/component/planet_flag_ps.j2`](../../mod_builder/templates/component/planet_flag_ps.j2)
+- [`../../mod_builder/templates/component/planet_variable.j2`](../../mod_builder/templates/component/planet_variable.j2)
+- [`../../mod_builder/templates/component/zone_setting_option_operation.j2`](../../mod_builder/templates/component/zone_setting_option_operation.j2)
+- [`../../mod_builder/templates/component/conditions.j2`](../../mod_builder/templates/component/conditions.j2)
+- [`../../mod_builder/templates/component/event_gui_shell.j2`](../../mod_builder/templates/component/event_gui_shell.j2)
+- [`../../mod_builder/templates/component/global_settings_components.j2`](../../mod_builder/templates/component/global_settings_components.j2)
+
+If a behavior repeats across templates, check component macros before adding another local pattern.
+
+## Generated File Warning
+
+Generated runtime files should contain a warning header.
+
+Purpose:
+
+- make generated ownership visible at the edit site
+- reduce accidental patches to generated output
+- point maintainers back to the source template
+
+If the header disappears or becomes inaccurate, fix the renderer instead of patching generated files one by one.
+
+## Safe Workflow
+
+1. Locate the runtime file involved in the bug or feature.
+2. Check whether it has a generated warning header.
+3. If generated, find the template named by the header.
+4. Check whether template data comes from handwritten config or parser output.
+5. Edit the highest-leverage source.
+6. Regenerate outputs with the file watcher or generator.
+7. Spot-check generated output and in-game behavior.
