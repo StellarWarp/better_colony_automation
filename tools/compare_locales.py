@@ -1,19 +1,25 @@
 import io
 import os
 
-files = [
-    ("localisation/simp_chinese/bt_main_3_l_simp_chinese.yml",
-     "localisation/english/bt_main_3_l_english.yml",
-     "localisation/japanese/bt_main_3_l_japanese.yml"),
-    ("localisation/simp_chinese/bca_intro_l_simp_chinese.yml",
-     "localisation/english/bca_intro_l_english.yml",
-     "localisation/japanese/bca_intro_l_japanese.yml"),
-    ("localisation/simp_chinese/bca_gui_l_simp_chinese.yml",
-        "localisation/english/bca_gui_l_english.yml",
-        "localisation/japanese/bca_gui_l_japanese.yml"),
+# Base de cada archivo de localizacion (sin el sufijo _l_<lang>.yml).
+# english es la referencia: cada idioma se compara contra ingles.
+BASE_FILES = [
+    "bt_main_3",
+    "bca_intro",
+    "bca_gui",
+    "bac_colony_transform_events",
+    "bca_gui_zone_icon",
 ]
 
+REFERENCE_LANG = "english"
+# Idiomas a validar contra la referencia.
+LANGS = ["japanese", "russian", "simp_chinese", "spanish"]
+
 root = os.path.dirname(os.path.dirname(__file__))
+
+
+def loc_path(base, lang):
+    return f"localisation/{lang}/{base}_l_{lang}.yml"
 
 
 def read_keys(path):
@@ -29,61 +35,48 @@ def read_keys(path):
             continue
         if s.startswith('#') or s.startswith('//'):
             continue
-        # ignore header like l_simp_chinese:
-        if s.endswith(':') and s.split(':')[0].startswith('l_') and len(s.split())==1:
+        # ignorar la cabecera tipo l_spanish: / l_english:
+        if s.endswith(':') and s.split(':')[0].startswith('l_') and len(s.split()) == 1:
             continue
-        # find first colon
+        # ignorar tags de plantilla Jinja por si se apunta a un .yml.j2
+        if s.startswith('{%') or s.startswith('{{'):
+            continue
         if ':' in s:
-            # but avoid lines where colon is inside value? key is before first colon
             key = s.split(':', 1)[0].strip()
-            # skip if key seems to be a single quote or value continuation
             if key:
                 keys.append(key)
     return set(keys), None
 
 
-total_cn = 0
-missing_report = {}
-for cn, en, jp in files:
-    cn_keys, err = read_keys(cn)
-    if cn_keys is None:
-        print(err)
-        continue
-    en_keys, err_en = read_keys(en)
-    jp_keys, err_jp = read_keys(jp)
-    missing_en = sorted(list(cn_keys - (en_keys or set())))
-    missing_jp = sorted(list(cn_keys - (jp_keys or set())))
-    missing_report[cn] = {
-        'english_missing_count': len(missing_en),
-        'japanese_missing_count': len(missing_jp),
-        'english_missing': missing_en,
-        'japanese_missing': missing_jp,
-        'english_file_missing': en_keys is None,
-        'japanese_file_missing': jp_keys is None,
-    }
-    total_cn += len(cn_keys)
+total_missing = {lang: 0 for lang in LANGS}
+total_extra = {lang: 0 for lang in LANGS}
 
-# print human readable
-for cn_path, data in missing_report.items():
-    print('FILE:', cn_path)
-    if data['english_file_missing']:
-        print('  English file missing entirely')
-    else:
-        print('  Missing in English:', data['english_missing_count'])
-        for k in data['english_missing']:
-            print('    ', k)
-    if data['japanese_file_missing']:
-        print('  Japanese file missing entirely')
-    else:
-        print('  Missing in Japanese:', data['japanese_missing_count'])
-        for k in data['japanese_missing']:
-            print('    ', k)
+for base in BASE_FILES:
+    ref_path = loc_path(base, REFERENCE_LANG)
+    ref_keys, err = read_keys(ref_path)
+    print('BASE FILE:', base)
+    if ref_keys is None:
+        print('  Reference (english) file missing:', err)
+        print()
+        continue
+    print(f'  Reference (english) keys: {len(ref_keys)}')
+
+    for lang in LANGS:
+        lang_keys, lerr = read_keys(loc_path(base, lang))
+        if lang_keys is None:
+            print(f'  [{lang}] FILE MISSING')
+            continue
+        missing = sorted(ref_keys - lang_keys)   # presentes en ingles, ausentes en este idioma
+        extra = sorted(lang_keys - ref_keys)      # presentes en este idioma, ausentes en ingles
+        total_missing[lang] += len(missing)
+        total_extra[lang] += len(extra)
+        print(f'  [{lang}] missing: {len(missing)}  extra: {len(extra)}')
+        for k in missing:
+            print('      - missing:', k)
+        for k in extra:
+            print('      + extra  :', k)
     print()
 
-# summary
-total_missing_en = sum(d['english_missing_count'] for d in missing_report.values())
-total_missing_jp = sum(d['japanese_missing_count'] for d in missing_report.values())
-print('SUMMARY: total chinese keys scanned (approx):', total_cn)
-print('SUMMARY: total missing in English:', total_missing_en)
-print('SUMMARY: total missing in Japanese:', total_missing_jp)
-
+print('==================== SUMMARY ====================')
+for lang in LANGS:
+    print(f'{lang:14s} total missing vs english: {total_missing[lang]:4d}   total extra: {total_extra[lang]:4d}')
