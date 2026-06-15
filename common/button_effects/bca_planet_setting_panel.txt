@@ -26,18 +26,19 @@ bca_planet_setting_preconstruction_disable = {
 
 bca_planet_setting_open_global_settings = {
     potential = {
+        exists = from
         exists = owner
-        owner = { is_ai = no }
+        owner = { is_same_value = from }
     }
     allow = {
-        owner = {
+        from = {
             NOT = { has_active_event = { bca_global_settings_event.1 } }
         }
     }
     effect = {
         custom_tooltip = edict_bca_open_global_settings_panel_desc
         hidden_effect = {
-            owner = {
+            from = {
                 country_event = { id = bca_global_settings_event.1 }
             }
         }

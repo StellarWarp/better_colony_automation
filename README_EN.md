@@ -67,6 +67,10 @@
 
 ## Changelog
 
+哇噗 **26-06-15 - v1.6.1**
+- Fixed a multiplayer issue where changing empire-wide global automation settings could affect other players in the same lobby.
+- Fixed the global settings entry on the planet UI in multiplayer so it only appears for your own colonies and opens your country's panel.
+
 红尘渡者 previous - v0.1
 
 哇噗 **26-01-18 - v0.2**
