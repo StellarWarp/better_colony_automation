@@ -11,23 +11,23 @@ country_event = {
     }
 
     immediate = {
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 has_building_construction = no
                 is_under_colonization = no
             }
             # 初始化检查
             if = {
-                limit = { NOT = { has_planet_flag = bca_pf_ps_initialized } }
-                planet_event = { id = colony_automation_event.26 }
+                limit = { NOT = { has_carrier_flag = bca_pf_ps_initialized } }
+                carrier_event = { id = colony_automation_event.26 }
             }
-            planet_event = { id = colony_automation_event.28}
-            planet_event = { id = colony_automation_event.112} # 在建设前清除标识
-            planet_event = { id = colony_automation_event.10} # 资源特化区块自动规划
-            planet_event = { id = colony_automation_event.1} # 区划建造
-            planet_event = { id = colony_automation_event.2} # 区划拆除
-            planet_event = { id = colony_automation_event.20 } # 特化建造
-            planet_event = { id = colony_automation_event.21 } # 特化拆除
+            carrier_event = { id = colony_automation_event.28}
+            carrier_event = { id = colony_automation_event.112} # 在建设前清除标识
+            carrier_event = { id = colony_automation_event.10} # 资源特化区块自动规划
+            carrier_event = { id = colony_automation_event.1} # 区划建造
+            carrier_event = { id = colony_automation_event.2} # 区划拆除
+            carrier_event = { id = colony_automation_event.20 } # 特化建造
+            carrier_event = { id = colony_automation_event.21 } # 特化拆除
             bca_auto_building_destruction_entry = yes # 建筑自动拆除
         }
     }

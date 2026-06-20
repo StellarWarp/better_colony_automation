@@ -1,26 +1,26 @@
 bca_planet_setting_preconstruction_enable = {
     potential = {
-        NOT = { has_planet_flag = bca_pf_planet_pre_construction }
+        NOT = { has_carrier_flag = bca_pf_planet_pre_construction }
     }
     allow = {
         always = yes
     }
     effect ={
         custom_tooltip = BCA_PLANET_SETTING_PRECONSTRUCTION_DESC
-        set_planet_flag = bca_pf_planet_pre_construction
+        set_carrier_flag = bca_pf_planet_pre_construction
     }
 }
 
 bca_planet_setting_preconstruction_disable = {
     potential = {
-        has_planet_flag = bca_pf_planet_pre_construction
+        has_carrier_flag = bca_pf_planet_pre_construction
     }
     allow = {
         always = yes
     }
     effect ={
         custom_tooltip = BCA_PLANET_SETTING_PRECONSTRUCTION_DESC
-        remove_planet_flag = bca_pf_planet_pre_construction
+        remove_carrier_flag = bca_pf_planet_pre_construction
     }
 }
 
@@ -49,9 +49,9 @@ bca_planet_setting_auto_destruction_enable = {
     potential = {
         exists = owner
         AND = {
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_building
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_district
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
         }
     }
     allow = {
@@ -59,9 +59,9 @@ bca_planet_setting_auto_destruction_enable = {
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
     }
 }
 
@@ -69,9 +69,9 @@ bca_planet_setting_auto_destruction_disable = {
     potential = {
         exists = owner
         NAND = {
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_building
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_district
-            has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+            has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
         }
     }
     allow = {
@@ -79,93 +79,93 @@ bca_planet_setting_auto_destruction_disable = {
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_building
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_district
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
     }
 }
 
 bca_planet_setting_auto_destruction_buildings_disable = {
     potential = {
         exists = owner
-        NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_building }
+        NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_building }
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_BUILDING_DESC
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_building
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
     }
 }
 
 bca_planet_setting_auto_destruction_buildings_enable = {
     potential = {
         exists = owner
-        has_planet_flag = bca_pf_disable_planet_auto_destruction_building
+        has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_BUILDING_DESC
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
     }
 }
 
 bca_planet_setting_auto_destruction_districts_disable = {
     potential = {
         exists = owner
-        NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_district }
+        NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DISTRICT_DESC
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_district
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
     }
 }
 
 bca_planet_setting_auto_destruction_districts_enable = {
     potential = {
         exists = owner
-        has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+        has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DISTRICT_DESC
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
     }
 }
 
 bca_planet_setting_auto_destruction_zones_disable = {
     potential = {
         exists = owner
-        NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_zone }
+        NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE_DESC
-        set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
     }
 }
 
 bca_planet_setting_auto_destruction_zones_enable = {
     potential = {
         exists = owner
-        has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE_DESC
-        remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
     }
 }
 
@@ -182,14 +182,14 @@ bca_planet_setting_storage_world_icon = {
 bca_planet_setting_storage_world_enable = {
     potential = {
         bca_has_advance_secondary_districts = no
-		NOT = { has_planet_flag = bca_pf_can_build_extra_zones_for_storage }
+		NOT = { has_carrier_flag = bca_pf_can_build_extra_zones_for_storage }
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_STORAGE_WORLD_DESC
-		set_planet_flag = bca_pf_can_build_extra_zones_for_storage
+		set_carrier_flag = bca_pf_can_build_extra_zones_for_storage
         try_set_secondary_districts_plan_zero_to_one = yes
     }
 }
@@ -197,14 +197,14 @@ bca_planet_setting_storage_world_enable = {
 bca_planet_setting_storage_world_disable = {
     potential = {
         bca_has_advance_secondary_districts = no
-        has_planet_flag = bca_pf_can_build_extra_zones_for_storage
+        has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
     }
     allow = {
         always = yes
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_STORAGE_WORLD_DESC
-        remove_planet_flag = bca_pf_can_build_extra_zones_for_storage
+        remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
         try_set_secondary_districts_plan_one_to_zero = yes
     }
 }
@@ -250,7 +250,7 @@ bca_planet_setting_world_transform_candidate_arcology_project = {
     effect = {
         hidden_effect = {
             add_modifier = { modifier = "bca_pm_arcology_project_candidate" days = -1 }
-            remove_planet_flag = bca_pf_can_build_extra_zones_for_storage
+            remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
             clear_open_selector = yes
             bca_secondary_district_auto_select_default = yes
             set_variable = {
@@ -280,7 +280,7 @@ bca_planet_setting_world_transform_candidate_cancel = {
 
     effect = {
         hidden_effect = {
-            planet_event = { id=colony_automation_event.100 }
+            carrier_event = { id=colony_automation_event.100 }
         }
     }
 }
@@ -288,7 +288,7 @@ bca_planet_setting_world_transform_candidate_cancel = {
 bca_planet_setting_detailed_secondary_districts_regular_enable = {
     potential = {
         bca_has_advance_secondary_districts = no
-        NOT = { has_planet_flag = bca_pf_ps_show_detailed_secondary_districts }
+        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
     }
 
     allow = {
@@ -296,7 +296,7 @@ bca_planet_setting_detailed_secondary_districts_regular_enable = {
     }
 
     effect = {
-        set_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        set_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         clear_open_selector = yes
     }
 }
@@ -304,7 +304,7 @@ bca_planet_setting_detailed_secondary_districts_regular_enable = {
 bca_planet_setting_detailed_secondary_districts_regular_disable = {
     potential = {
         bca_has_advance_secondary_districts = no
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
 
     allow = {
@@ -312,7 +312,7 @@ bca_planet_setting_detailed_secondary_districts_regular_disable = {
     }
 
     effect = {
-        remove_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        remove_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         clear_open_selector = yes
     }
 
@@ -321,7 +321,7 @@ bca_planet_setting_detailed_secondary_districts_regular_disable = {
 bca_planet_setting_detailed_secondary_districts_advanced_enable = {
     potential = {
         bca_has_advance_secondary_districts = yes
-        NOT = { has_planet_flag = bca_pf_ps_show_detailed_secondary_districts }
+        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
     }
 
     allow = {
@@ -329,7 +329,7 @@ bca_planet_setting_detailed_secondary_districts_advanced_enable = {
     }
 
     effect = {
-        set_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        set_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         clear_open_selector = yes
         bca_planet_setting_remove_current_selected_zone = {
             ZONE_SLOT = zx
@@ -340,7 +340,7 @@ bca_planet_setting_detailed_secondary_districts_advanced_enable = {
 bca_planet_setting_detailed_secondary_districts_advanced_disable = {
     potential = {
         bca_has_advance_secondary_districts = yes
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
 
     allow = {
@@ -348,7 +348,7 @@ bca_planet_setting_detailed_secondary_districts_advanced_disable = {
     }
 
     effect = {
-        remove_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        remove_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         clear_open_selector = yes
         bca_secondary_district_auto_select_default = yes
     }
@@ -379,7 +379,7 @@ bca_planet_setting_reset_settings_on_designation_changed = {
     effect = {
         hidden_effect = {
             bca_designation_sync_with_system = yes
-            planet_event = { id = colony_automation_event.27 }
+            carrier_event = { id = colony_automation_event.27 }
         }
     }
 }
@@ -387,7 +387,7 @@ bca_planet_setting_reset_settings_on_designation_changed = {
 bca_planet_setting_auto_district_management_enable = {
     potential = {
         OR = {
-            has_planet_flag = bca_pf_disable_auto_district_manage
+            has_carrier_flag = bca_pf_disable_auto_district_manage
             bca_has_auto_district_manage = no
         }
     }
@@ -395,19 +395,19 @@ bca_planet_setting_auto_district_management_enable = {
         bca_has_auto_district_manage = yes
     }
     effect = {
-        remove_planet_flag = bca_pf_disable_auto_district_manage
+        remove_carrier_flag = bca_pf_disable_auto_district_manage
     }
 }
 
 bca_planet_setting_auto_district_management_disable = {
     potential = {
-        NOT = { has_planet_flag = bca_pf_disable_auto_district_manage }
+        NOT = { has_carrier_flag = bca_pf_disable_auto_district_manage }
         bca_has_auto_district_manage = yes
     }
     allow = {
         always = yes
     }
     effect = {
-        set_planet_flag = bca_pf_disable_auto_district_manage
+        set_carrier_flag = bca_pf_disable_auto_district_manage
     }
 }

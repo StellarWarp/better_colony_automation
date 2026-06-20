@@ -17,7 +17,7 @@ country_event = {
             value = 0
         }
         # 2. 遍历并利用你的effect将符合条件的星球层层保存到 bca_arcology_project_candidate_planet_01~09 中
-        every_owned_planet = {
+        every_owned_colony = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
             }
@@ -49,7 +49,7 @@ country_event = {
                         }
                     }
                 }
-                planet_event = { id=colony_automation_event.100 }
+                carrier_event = { id=colony_automation_event.100 }
             }
             # city_world_candidate
             else_if = {
@@ -67,7 +67,7 @@ country_event = {
                             num_districts = { type = district_melting value < 1 }
                             num_districts = { type = district_polytechnic value < 1 }
 
-                            NOT = { has_planet_flag = legendary_leader_planet }
+                            NOT = { has_carrier_flag = legendary_leader_planet }
                         }
                         AND = {
                             is_planet_class = pc_relic
@@ -118,7 +118,7 @@ country_event = {
                 }
             }
             event_target:bca_arcology_project_candidate_planet_01 = {
-                planet_event = { id = colony_automation_event.102 }
+                carrier_event = { id = colony_automation_event.102 }
             }
         }
     }
@@ -146,7 +146,7 @@ country_event = {
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }} = {
-                planet_event = { id = colony_automation_event.102 }
+                carrier_event = { id = colony_automation_event.102 }
             }
         }
 	}

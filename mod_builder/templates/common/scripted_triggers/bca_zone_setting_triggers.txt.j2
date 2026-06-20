@@ -1,14 +1,14 @@
 {% import 'component/planet_flag_ps.j2' as pf with context -%}
 
 bca_in_secondary_selector = {
-    has_planet_flag = bca_pf_in_secondary_selector
+    has_carrier_flag = bca_pf_in_secondary_selector
 }
 
 bca_has_zone_plan = {
     OR = {
         {% set zone_slot = "$ZONE_SLOT$" %}
         {% for item in zones_info %}
-        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
         {% endfor %}
     }
 }
@@ -19,7 +19,7 @@ bca_designation_changed = {
 {% for designation in all_designations %}
         AND = {
             has_designation = {{ designation }}
-            NOT = { has_planet_flag = {{ pf.flag_current_designation(designation) }} }
+            NOT = { has_carrier_flag = {{ pf.flag_current_designation(designation) }} }
         }
 {% endfor %}
     }
@@ -29,7 +29,7 @@ bca_designation_changed = {
 bca_has_any_planted_zone_of_type_{{ item.type }} = {
     OR = {
     {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
-        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
     {% endfor %}
     }
 }

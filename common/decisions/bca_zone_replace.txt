@@ -2,7 +2,7 @@ decision_zone_replace = {
     # 【关键】通过 flag 隐藏
     # 只要行星没有这个特定的 flag，玩家在界面上就永远看不到它
     potential = {
-        has_planet_flag = show_hidden_decisions_debug 
+        has_carrier_flag = show_hidden_decisions_debug
     }
 
     # 这里的 allow 可以保持为空或者 always = yes
@@ -19,7 +19,7 @@ decision_zone_replace = {
 
     effect = {
 		switch = {
-			trigger = has_planet_flag
+			trigger = has_carrier_flag
 			bca_pf_zone_replace_to_research = {
 				add_zone = {
 					district = district_city

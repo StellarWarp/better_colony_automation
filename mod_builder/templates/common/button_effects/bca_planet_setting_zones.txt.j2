@@ -8,9 +8,9 @@ bca_planet_setting_zone_select_toggle_{{ zone_slot }}_icon = {
     potential = {
         {% if zone_slot in ['zx'] %}
         bca_has_advance_secondary_districts = yes
-        NOT = { has_planet_flag = bca_pf_ps_show_detailed_secondary_districts }
+        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
         {% elif zone_slot in ['z3','z4','z5'] %}
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         {% else %}
         always = yes
         {% endif %}
@@ -21,15 +21,15 @@ bca_planet_setting_zone_select_toggle_{{ zone_slot }}_icon = {
     effect = {
         if = {
             limit = {
-                has_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+                has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
             }
-            remove_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+            remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
             {{ op.clear_zone_selector_flags(zone_slot) }}
         }
         else = {
             clear_open_selector = yes
 
-            set_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+            set_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
 
             {{ op.update_zone_selector_option(zone_slot) }}
         }
@@ -43,10 +43,10 @@ bca_planet_setting_{{ zone_slot }}_icon = {
     potential = {
         {% if zone_slot in ['zx'] %}
         bca_has_advance_secondary_districts = yes
-        NOT = { has_planet_flag = bca_pf_ps_show_detailed_secondary_districts }
+        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
         {% endif %}
         {% if zone_slot in ['z3','z4','z5'] %}
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
         {% endif %}
     }
     allow = {
@@ -60,7 +60,7 @@ bca_planet_setting_{{ zone_slot }}_icon = {
 {% macro zone_selector_background(zone_slot,option_count) -%}
 bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }} = {
     potential = {
-        has_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+        has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
         check_variable = {
             which = zone_selector_options_count
             value = {{ option_count }}
@@ -75,7 +75,7 @@ bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }} = {
 {% macro zone_selector_icon(zone_slot, selector_slot, selector_index) -%}
 bca_planet_setting_{{ zone_slot }}_{{ selector_slot }} = {
     potential = {
-        has_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+        has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
         check_variable = {
             which = zone_selector_options_count
             value >= {{ selector_index }}
@@ -87,7 +87,7 @@ bca_planet_setting_{{ zone_slot }}_{{ selector_slot }} = {
     effect = {
         {{ op.clear_zone_selection(zone_slot) }}
         {{ op.set_zone_type_selection(zone_slot, selector_slot) }}
-        remove_planet_flag = {{pf.flag_zone_selector(zone_slot)}}
+        remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
 
         {{ op.clear_zone_selector_flags(zone_slot) }}
     }

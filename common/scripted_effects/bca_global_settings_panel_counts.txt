@@ -8,14 +8,14 @@ bca_refresh_global_settings_panel_counts = {
     set_variable = { which = bca_gs_zone_auto_demolition_enabled_planets value = 0 }
     set_variable = { which = bca_gs_zone_auto_demolition_disabled_planets value = 0 }
 
-    every_owned_planet = {
+    every_owned_colony = {
         limit = {
             is_colony = yes
         }
 
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_building
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
             }
             owner = {
                 add_variable = {
@@ -35,7 +35,7 @@ bca_refresh_global_settings_panel_counts = {
 
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             owner = {
                 add_variable = {
@@ -55,7 +55,7 @@ bca_refresh_global_settings_panel_counts = {
 
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
             }
             owner = {
                 add_variable = {
@@ -76,9 +76,9 @@ bca_refresh_global_settings_panel_counts = {
         if = {
             limit = {
                 NOR = {
-                    has_planet_flag = bca_pf_disable_planet_auto_destruction_building
-                    has_planet_flag = bca_pf_disable_planet_auto_destruction_district
-                    has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+                    has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+                    has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+                    has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
                 }
             }
             owner = {
@@ -90,9 +90,9 @@ bca_refresh_global_settings_panel_counts = {
         }
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_building
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_district
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_building
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
             }
             owner = {
                 add_variable = {

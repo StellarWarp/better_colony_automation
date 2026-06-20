@@ -5,7 +5,7 @@ automate_silo_building_autobuild = {
 	available = {
 		bca_has_minerals_to_build = yes
 		really_requires_more_job = no
-		NOT = { has_planet_flag = bca_pf_advance_controller_order }
+		NOT = { has_carrier_flag = bca_pf_advance_controller_order }
 	}
 	
 	buildings = {
@@ -13,7 +13,7 @@ automate_silo_building_autobuild = {
 			building = building_fe_silo_1
 			available = {
 				OR = {
-					has_planet_flag = bca_pf_can_build_extra_zones_for_storage
+					has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
 					NOR = {
 						has_building = building_fe_silo_1
 						has_building = building_fe_silo_2
@@ -26,7 +26,7 @@ automate_silo_building_autobuild = {
             building = building_resource_silo
 			available = {
 				OR = {
-					has_planet_flag = bca_pf_can_build_extra_zones_for_storage
+					has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
 					NOR = {
 						has_building = building_fe_silo_1
 						has_building = building_fe_silo_2

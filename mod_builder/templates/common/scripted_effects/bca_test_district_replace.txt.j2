@@ -45,7 +45,7 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#            }#}
 {#			bca_district_{{ district_slot_replace_to }}_reach_planet_max = no#}
 {#		}#}
-{#		set_planet_flag = debug_tested_{{ district_slot_replace_from }}_to_{{ district_slot_replace_to }}#}
+{#		set_carrier_flag = debug_tested_{{ district_slot_replace_from }}_to_{{ district_slot_replace_to }}#}
 {#		bca_remove_district_{{ district_slot_replace_from }} = yes#}
 {#		bca_add_district_{{ district_slot_replace_to }} = yes#}
 {#		set_variable = {#}
@@ -70,11 +70,11 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#                    }#}
 {#                }#}
 {#			}#}
-{#			set_planet_flag = debug_test_passed_{{ district_slot_replace_from }}_to_{{ district_slot_replace_to }}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_build(district_slot_replace_to) }}#}
-{#			set_planet_flag = bca_pf_has_district_remove_plan#}
-{#			set_planet_flag = bca_pf_advance_controller_order#}
+{#			set_carrier_flag = debug_test_passed_{{ district_slot_replace_from }}_to_{{ district_slot_replace_to }}#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_build(district_slot_replace_to) }}#}
+{#			set_carrier_flag = bca_pf_has_district_remove_plan#}
+{#			set_carrier_flag = bca_pf_advance_controller_order#}
 {#		}#}
 {##}
 {#	}#}
@@ -140,10 +140,10 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#                    value > bca_current_production#}
 {#                }#}
 {#			}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_build(district_slot_replace_to_primary) }}#}
-{#			set_planet_flag = bca_pf_has_district_remove_plan#}
-{#			set_planet_flag = bca_pf_advance_controller_order#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_build(district_slot_replace_to_primary) }}#}
+{#			set_carrier_flag = bca_pf_has_district_remove_plan#}
+{#			set_carrier_flag = bca_pf_advance_controller_order#}
 {#		}#}
 {#		else_if = {#}
 {#			limit = {#}
@@ -156,10 +156,10 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#                    value > bca_current_production#}
 {#                }#}
 {#			}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
-{#			set_planet_flag = {{ pf.flag_district_plan_build(district_slot_replace_to_secondary) }}#}
-{#			set_planet_flag = bca_pf_has_district_remove_plan#}
-{#			set_planet_flag = bca_pf_advance_controller_order#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot_replace_from) }}#}
+{#			set_carrier_flag = {{ pf.flag_district_plan_build(district_slot_replace_to_secondary) }}#}
+{#			set_carrier_flag = bca_pf_has_district_remove_plan#}
+{#			set_carrier_flag = bca_pf_advance_controller_order#}
 {#		}#}
 {#	}#}
 {##}
@@ -178,7 +178,7 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#                is_blocker = yes#}
 {#            }#}
 {#        }#}
-{#        set_planet_flag = {{ pf.flag_district_plan_build(primary_district_slot) }}#}
+{#        set_carrier_flag = {{ pf.flag_district_plan_build(primary_district_slot) }}#}
 {#    }#}
 {#    {% for i in range(3) %}#}
 {#    {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}#}
@@ -199,7 +199,7 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#            limit = {#}
 {#                OR = {#}
 {#                    {% for zone_type in zone_type_set %}#}
-{#                    has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}#}
+{#                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}#}
 {#                    {% endfor %}#}
 {#                }#}
 {#            }#}
@@ -212,7 +212,7 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#                        which = value:num_district_{{ other_district_slot }}#}
 {#                        value > {{v.var_district_num_plan(other_zone_slot)}}#}
 {#                    }#}
-{#                    NOT = { has_planet_flag = bca_pf_has_district_remove_plan }#}
+{#                    NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }#}
 {#                }#}
 {#                bca_test_district_to_replace_3ways = {#}
 {#                    district_slot_replace_from = {{ other_district_slot }}#}
@@ -225,7 +225,7 @@ bca_remove_district_d{{ district_set_idx }} = {
 {#            {% endfor %}#}
 {#            if = {#}
 {#                limit = {#}
-{#                    NOT = { has_planet_flag = bca_pf_has_district_remove_plan }#}
+{#                    NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }#}
 {#                }#}
 {#                bca_test_district_to_replace = {#}
 {#                    district_slot_replace_from = {{ primary_district_slot }}#}
@@ -264,7 +264,7 @@ bca_resource_district_replace_controller = {
                 is_blocker = yes
             }
         }
-        set_planet_flag = {{ pf.flag_district_plan_build(primary_district_slot) }}
+        set_carrier_flag = {{ pf.flag_district_plan_build(primary_district_slot) }}
     }
     {% for i in range(3) %}
     {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
@@ -280,7 +280,7 @@ bca_resource_district_replace_controller = {
             limit = {
                 OR = {
                     {% for zone_type in zone_type_set %}
-                    has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                     {% endfor %}
                 }
 
@@ -296,27 +296,27 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_{{ other_district_slot }}
                             value > {{v.var_district_num_plan(other_zone_slot)}}
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = {{ pf.flag_district_plan_remove(other_district_slot) }}
-                    set_planet_flag = {{ pf.flag_district_plan_build(district_slot) }}
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = {{ pf.flag_district_plan_remove(other_district_slot) }}
+                    set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 {% endif %}
                 {% endfor %}
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_{{ primary_district_slot }}
                             value > 1
                         }
                     }
-                    set_planet_flag = {{ pf.flag_district_plan_remove(primary_district_slot) }}
-                    set_planet_flag = {{ pf.flag_district_plan_build(district_slot) }}
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = {{ pf.flag_district_plan_remove(primary_district_slot) }}
+                    set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }

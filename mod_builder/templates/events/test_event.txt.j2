@@ -38,7 +38,7 @@ namespace = bca_debug_event
 ] %}
 
 
-planet_event = {
+carrier_event = {
 	id = bca_debug_event.2
 
 	is_triggered_only = yes
@@ -52,7 +52,7 @@ planet_event = {
 	option = {
 		name = "add pop"
 		create_pop_group = { size = 1000  species = owner_main_species }
-		planet_event = {
+		carrier_event = {
 			id = bca_debug_event.2
 		}
 	}
@@ -79,13 +79,13 @@ planet_event = {
             limit = {
                 requires_more_job = yes
             }
-            set_planet_flag = debug_2_zone_path_minerals_z4
+            set_carrier_flag = debug_2_zone_path_minerals_z4
             # secondary zone
             if = {
                 limit = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
                 }
-                set_planet_flag = debug_3_zone_path_minerals_z4_minerals
+                set_carrier_flag = debug_3_zone_path_minerals_z4_minerals
                 # debug check_variable_arithmetic condition
                 if = {
                     limit = {
@@ -94,7 +94,7 @@ planet_event = {
                             value < value:num_secondary_zone_plan_of_type_minerals
                         }
                     }
-                    set_planet_flag = debug_check_variable_arithmetic_minerals_z4_minerals
+                    set_carrier_flag = debug_check_variable_arithmetic_minerals_z4_minerals
                 }
                 if = {
                     limit = {
@@ -103,7 +103,7 @@ planet_event = {
                             value = 0
                         }
                     }
-                    set_planet_flag = debug_check_variable_arithmetic_num_secondary_zones_of_type_minerals_eq_0
+                    set_carrier_flag = debug_check_variable_arithmetic_num_secondary_zones_of_type_minerals_eq_0
                 }
                 if = {
                     limit = {
@@ -112,15 +112,15 @@ planet_event = {
                             value = 0
                         }
                     }
-                    set_planet_flag = debug_check_variable_arithmetic_num_secondary_zone_plan_of_type_minerals_eq_0
+                    set_carrier_flag = debug_check_variable_arithmetic_num_secondary_zone_plan_of_type_minerals_eq_0
                 }
             }
 
             else_if = {
                 limit = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
                 }
-                set_planet_flag = debug_3_zone_path_minerals_z4_wilderness_minerals
+                set_carrier_flag = debug_3_zone_path_minerals_z4_wilderness_minerals
                 # debug check_variable_arithmetic condition
                 if = {
                     limit = {
@@ -129,13 +129,13 @@ planet_event = {
                             value < value:num_secondary_zone_plan_of_type_wilderness_minerals
                         }
                     }
-                    set_planet_flag = debug_check_variable_arithmetic_minerals_z4_wilderness_minerals
+                    set_carrier_flag = debug_check_variable_arithmetic_minerals_z4_wilderness_minerals
                 }
             }
 
             if = {
                 limit = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
                     check_variable_arithmetic = {
                         which = value:num_secondary_zones_of_type_minerals
                         value < value:num_secondary_zone_plan_of_type_minerals
@@ -146,14 +146,14 @@ planet_event = {
                         bca_can_build_zone_minerals_hive = yes
                     }
                 }
-                set_planet_flag = bca_pf_plan_build_secondary_zone_type_minerals
-                set_planet_flag = bca_plan_build_new_zone
-                set_planet_flag = bca_pf_advance_controller_order
-                set_planet_flag = debug_zone_path_minerals_z4_minerals
+                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_minerals
+                set_carrier_flag = bca_plan_build_new_zone
+                set_carrier_flag = bca_pf_advance_controller_order
+                set_carrier_flag = debug_zone_path_minerals_z4_minerals
             }
             else_if = {
                 limit = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
                     check_variable_arithmetic = {
                         which = value:num_secondary_zones_of_type_wilderness_minerals
                         value < value:num_secondary_zone_plan_of_type_wilderness_minerals
@@ -162,10 +162,10 @@ planet_event = {
                         bca_can_build_zone_minerals_wilderness = yes
                     }
                 }
-                set_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
-                set_planet_flag = bca_plan_build_new_zone
-                set_planet_flag = bca_pf_advance_controller_order
-                set_planet_flag = debug_zone_path_minerals_z4_wilderness_minerals
+                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
+                set_carrier_flag = bca_plan_build_new_zone
+                set_carrier_flag = bca_pf_advance_controller_order
+                set_carrier_flag = debug_zone_path_minerals_z4_wilderness_minerals
             }
         }
         # secondary district
@@ -184,18 +184,18 @@ planet_event = {
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_advance_controller_order }
+                        NOT = { has_carrier_flag = bca_pf_advance_controller_order }
                         check_variable_arithmetic = {
                             which = value:num_free_district_d2
                             value > 0
                         }
                     }
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_advance_controller_order
-                    set_planet_flag = debug_district_path_minerals_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = debug_district_path_minerals_d2
                 }
                 else = {
-                    set_planet_flag = bca_pf_plan_build_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d0
                 }
             }
         }
@@ -207,19 +207,19 @@ planet_event = {
 
 {#	option = {#}
 {#	    name = "remove_flags"#}
-{#        remove_planet_flag = debug_tested_d0_to_d2#}
-{#        remove_planet_flag = debug_test_passed_d0_to_d2#}
-{#        remove_planet_flag = debug_tested_d2_to_d0#}
-{#        remove_planet_flag = debug_test_passed_d2_to_d0#}
-{#        remove_planet_flag = bca_pf_plan_build_district_d0#}
-{#        remove_planet_flag = bca_pf_plan_build_district_d1#}
-{#        remove_planet_flag = bca_pf_plan_build_district_d2#}
-{#        remove_planet_flag = bca_pf_plan_build_district_d3#}
-{#        remove_planet_flag = bca_pf_plan_remove_district_d0#}
-{#        remove_planet_flag = bca_pf_plan_remove_district_d1#}
-{#        remove_planet_flag = bca_pf_plan_remove_district_d2#}
-{#        remove_planet_flag = bca_pf_plan_remove_district_d3#}
-{#        planet_event = {#}
+{#        remove_carrier_flag = debug_tested_d0_to_d2#}
+{#        remove_carrier_flag = debug_test_passed_d0_to_d2#}
+{#        remove_carrier_flag = debug_tested_d2_to_d0#}
+{#        remove_carrier_flag = debug_test_passed_d2_to_d0#}
+{#        remove_carrier_flag = bca_pf_plan_build_district_d0#}
+{#        remove_carrier_flag = bca_pf_plan_build_district_d1#}
+{#        remove_carrier_flag = bca_pf_plan_build_district_d2#}
+{#        remove_carrier_flag = bca_pf_plan_build_district_d3#}
+{#        remove_carrier_flag = bca_pf_plan_remove_district_d0#}
+{#        remove_carrier_flag = bca_pf_plan_remove_district_d1#}
+{#        remove_carrier_flag = bca_pf_plan_remove_district_d2#}
+{#        remove_carrier_flag = bca_pf_plan_remove_district_d3#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#	}#}
@@ -232,7 +232,7 @@ planet_event = {
 {#            metric_value = value:bca_potential_standard_energy_production#}
 {#            is_priority_district = no#}
 {#        }#}
-{#        planet_event = {#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#	}#}
@@ -245,7 +245,7 @@ planet_event = {
 {#            metric_value = value:bca_potential_standard_energy_production#}
 {#            is_priority_district = yes#}
 {#        }#}
-{#        planet_event = {#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#    }#}
@@ -258,7 +258,7 @@ planet_event = {
 {#            metric_value = value:bca_potential_standard_minerals_production#}
 {#            is_priority_district = no#}
 {#        }#}
-{#        planet_event = {#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#	}#}
@@ -271,7 +271,7 @@ planet_event = {
 {#            metric_value = value:bca_potential_standard_minerals_production#}
 {#            is_priority_district = yes#}
 {#        }#}
-{#        planet_event = {#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#    }#}
@@ -280,9 +280,9 @@ planet_event = {
     option = {
         name = "{{ flag }}"
         allow = {
-            has_planet_flag = {{ flag }}
+            has_carrier_flag = {{ flag }}
         }
-        planet_event = {
+        carrier_event = {
 			id = bca_debug_event.2
 		}
     }
@@ -294,7 +294,7 @@ planet_event = {
         allow = {
             {{ trigger }} = yes
         }
-        planet_event = {
+        carrier_event = {
 			id = bca_debug_event.2
 		}
     }
@@ -312,7 +312,7 @@ planet_event = {
             clear_variable = {{ val }}
             {% endfor %}
         }
-        planet_event = {
+        carrier_event = {
 			id = bca_debug_event.2
 		}
 	}
@@ -327,7 +327,7 @@ planet_event = {
 {#            priority_shift = 0#}
 {#            index = 1#}
 {#        }#}
-{#        planet_event = {#}
+{#        carrier_event = {#}
 {#			id = bca_debug_event.2#}
 {#		}#}
 {#    }#}

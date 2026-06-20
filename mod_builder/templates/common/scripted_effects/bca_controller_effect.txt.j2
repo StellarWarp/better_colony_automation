@@ -3,15 +3,15 @@
 {% import 'component/conditions.j2' as cond with context %}
 
 remove_all_zone_plan_flag = {
-    remove_planet_flag = bca_plan_build_new_zone
+    remove_carrier_flag = bca_plan_build_new_zone
 
     {% for item in zones_info %}
     {% set type = item.type %}
     {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-    remove_planet_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+    remove_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
     {% endif %}
     {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
-    remove_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
+    remove_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
     {% endif %}
     {% endfor %}
 }

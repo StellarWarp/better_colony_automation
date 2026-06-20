@@ -2,11 +2,11 @@
 try_construct_district = {
 	if = {
 		limit = { check_variable = { which = bca_selected_index value = $index$ } }
-		set_planet_flag = bca_pf_plan_build_district_$district_slot$
+		set_carrier_flag = bca_pf_plan_build_district_$district_slot$
 	}
 	else_if = {
 		limit = {
-			NOT = { has_planet_flag = bca_pf_disable_auto_district_manage }
+			NOT = { has_carrier_flag = bca_pf_disable_auto_district_manage }
 			check_variable = { which = bca_selected_index value = -1 }
 			check_variable_arithmetic = {
 				which = value:num_free_district_$district_slot$
@@ -61,7 +61,7 @@ try_construct_building = {
 try_construct_zone_city = {
 	if = {
 		limit = { check_variable = { which = bca_selected_index value = $index$ } }
-		set_planet_flag = bca_pf_plan_build_primary_zone_type_$zone_type$
+		set_carrier_flag = bca_pf_plan_build_primary_zone_type_$zone_type$
 	}
 	else_if = {
 		limit = { 

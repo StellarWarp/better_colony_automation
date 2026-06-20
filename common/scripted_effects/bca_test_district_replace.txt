@@ -585,7 +585,7 @@ bca_resource_district_replace_controller = {
                 is_blocker = yes
             }
         }
-        set_planet_flag = bca_pf_plan_build_district_d0
+        set_carrier_flag = bca_pf_plan_build_district_d0
     }
     else_if = {
         limit = {
@@ -594,9 +594,9 @@ bca_resource_district_replace_controller = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
                 }
 
             }
@@ -608,12 +608,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -621,34 +621,34 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
                 }
 
             }
@@ -660,12 +660,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -673,34 +673,34 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
                 }
 
             }
@@ -712,12 +712,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -725,25 +725,25 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
@@ -755,8 +755,8 @@ bca_resource_district_replace_controller = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
                 }
 
             }
@@ -768,12 +768,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -781,33 +781,33 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
                 }
 
             }
@@ -819,12 +819,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -832,33 +832,33 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
                 }
 
             }
@@ -870,12 +870,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -883,25 +883,25 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
@@ -913,8 +913,8 @@ bca_resource_district_replace_controller = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
                 }
 
             }
@@ -926,12 +926,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -939,33 +939,33 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d1
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d1
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
                 }
 
             }
@@ -977,12 +977,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -990,33 +990,33 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d3
                             value > bca_ps_plan_district_count_z5
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d3
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d3
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d2
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d2
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
                 }
 
             }
@@ -1028,12 +1028,12 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d1
                             value > bca_ps_plan_district_count_z3
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d1
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d1
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
@@ -1041,25 +1041,25 @@ bca_resource_district_replace_controller = {
                             which = value:num_district_d2
                             value > bca_ps_plan_district_count_z4
                         }
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d2
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d2
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
                 if = {
                     limit = {
-                        NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                         check_variable_arithmetic = {
                             which = value:num_district_d0
                             value > 1
                         }
                     }
-                    set_planet_flag = bca_pf_plan_remove_district_d0
-                    set_planet_flag = bca_pf_plan_build_district_d3
-                    set_planet_flag = bca_pf_has_district_remove_plan
-                    set_planet_flag = bca_pf_advance_controller_order
+                    set_carrier_flag = bca_pf_plan_remove_district_d0
+                    set_carrier_flag = bca_pf_plan_build_district_d3
+                    set_carrier_flag = bca_pf_has_district_remove_plan
+                    set_carrier_flag = bca_pf_advance_controller_order
                 }
             }
         }

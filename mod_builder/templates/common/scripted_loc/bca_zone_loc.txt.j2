@@ -7,7 +7,7 @@ defined_text = {
     {% for item in zones_info %}
 	text = {
 	    trigger = {
-            has_planet_flag = {{pf.flag_selected_zone_type(zone_slot, item.type)}}
+            has_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, item.type)}}
         }
 	    localization_key =  bca_zone_icon_large_{{item.type}}
 	}
@@ -24,7 +24,7 @@ defined_text = {
     {% set type = item.type %}
 	text = {
 	    trigger = {
-            has_planet_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
+            has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
         }
 	    localization_key =  bca_zone_icon_{{ icon_type }}_{{type}}
 	}
@@ -39,7 +39,7 @@ defined_text = {
     {% for zone in item.zones %}
 	text = {
 	    trigger = {
-            has_planet_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+            has_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
         }
 	    localization_key = {{ zone }}
 	}

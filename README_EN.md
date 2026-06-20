@@ -68,7 +68,7 @@
 ## Changelog
 
 哇噗 **26-06-20 - v1.7.0**
-- Updated compatibility to Stellaris 4.4.
+- Updated compatibility to Stellaris 4.4 and adapted changed script APIs that previously prevented automation from functioning.
 - Added automation support for the new Nomad Arkship designations, districts, and zones.
 - Added specialization-aware construction for Forever Cruise passenger and crew enhancement buildings, plus Passenger Dorm housing automation.
 - Reworked the internal building automation configuration for more consistent construction and demolition rules and easier future compatibility updates.

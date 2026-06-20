@@ -20,7 +20,7 @@ if = {
     if = {
         limit = {
             OR = {
-                has_planet_flag = bca_pf_can_build_extra_zones_for_storage
+                has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
                 bca_has_advance_secondary_districts = yes
             }
         }
@@ -66,9 +66,9 @@ if = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
                 }
             }
             set_variable = {
@@ -79,9 +79,9 @@ if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
                 }
             }
             set_variable = {
@@ -92,9 +92,9 @@ if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_energy
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_betharian
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
                 }
             }
             set_variable = {
@@ -107,14 +107,14 @@ if = {
                 exists = owner
                 owner = { has_technology = tech_mine_betharian }
                 has_deposit = d_betharian_deposit
-                has_planet_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
             }
             if = {
                 limit = {
                     OR = {
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z4_energy
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
                     }
                 }
                 set_variable = {
@@ -125,9 +125,9 @@ if = {
             if = {
                 limit = {
                     OR = {
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z3_energy
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                        has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
                     }
                 }
                 set_variable = {
@@ -165,8 +165,8 @@ else_if = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
                 }
             }
             set_variable = {
@@ -177,8 +177,8 @@ else_if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
                 }
             }
             set_variable = {
@@ -189,8 +189,8 @@ else_if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_minerals
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
                 }
             }
             set_variable = {
@@ -215,9 +215,9 @@ else_if = {
         if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
                 }
             }
             set_variable = {
@@ -228,9 +228,9 @@ else_if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
                 }
             }
             set_variable = {
@@ -241,9 +241,9 @@ else_if = {
         else_if = {
             limit = {
                 OR = {
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
-                    has_planet_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
                 }
             }
             set_variable = {

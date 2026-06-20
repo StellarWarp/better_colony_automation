@@ -1,7 +1,7 @@
 namespace = colony_automation_event
 
 # cancel arcology project candidate
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.100
 	hide_window = yes
 	is_triggered_only = yes
@@ -14,7 +14,7 @@ planet_event = {
 }
 
 # 理想城建造询问事件
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.102
 	title = colony_automation_event.102.name
 	desc = colony_automation_event.102.desc
@@ -70,7 +70,7 @@ planet_event = {
 	option = {
 		name = colony_automation_event.102.c
 		hidden_effect = {
-			planet_event = { id=colony_automation_event.100 }
+			carrier_event = { id=colony_automation_event.100 }
 			owner = { country_event = { id = colony_automation_event.109 } }
 		}
 	}

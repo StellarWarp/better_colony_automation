@@ -5,7 +5,7 @@
 
 bca_clear_designation_flag = {
     {% for designation in all_designations %}
-    remove_planet_flag = {{ pf.flag_current_designation(designation) }}
+    remove_carrier_flag = {{ pf.flag_current_designation(designation) }}
     {% endfor %}
 }
 
@@ -14,7 +14,7 @@ bca_designation_sync_with_system = {
 {% for designation in all_designations %}
     {{ "if" if loop.first else "else_if" }} = {
         limit = {  has_designation = {{ designation }} }
-        set_planet_flag = {{ pf.flag_current_designation(designation) }}
+        set_carrier_flag = {{ pf.flag_current_designation(designation) }}
     }
 {% endfor %}
 }
@@ -22,7 +22,7 @@ bca_designation_sync_with_system = {
 bca_designation_sync_with_prev = {
 {% for designation in all_designations %}
     {{ "if" if loop.first else "else_if" }} = {
-        limit = {  has_planet_flag = {{ pf.flag_current_designation(designation) }} }
+        limit = {  has_carrier_flag = {{ pf.flag_current_designation(designation) }} }
         set_colony_type = {{ designation }}
     }
 {% endfor %}
@@ -42,16 +42,16 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
     {% set district = '$DISTRICT$' %}
     if = {
         limit = {
-            NOT = { has_planet_flag = tp_zone_processed_{{ zone_slot }} }
-            has_planet_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+            NOT = { has_carrier_flag = tp_zone_processed_{{ zone_slot }} }
+            has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
             check_variable = {
                 which = temp_num_zones
                 value > 0
             }
         }
-        set_planet_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
-        set_planet_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
-        set_planet_flag = tp_zone_processed_{{ zone_slot }}
+        set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
+        set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+        set_carrier_flag = tp_zone_processed_{{ zone_slot }}
         export_trigger_value_to_variable = {
             trigger = num_districts
             parameters = { type = {{ district }} }
@@ -86,7 +86,7 @@ hidden_effect = {
             }
             {% for zone in item.zones %}
             {% if zone in secondary_districts_for_zone %}
-{#            set_planet_flag = last_test_{{ zone }}#}
+{#            set_carrier_flag = last_test_{{ zone }}#}
             if = {
                 limit = {
                     check_variable_arithmetic = {
@@ -94,24 +94,24 @@ hidden_effect = {
                         value > 0
                     }
                 }
-{#                set_planet_flag = last_test_export_1#}
+{#                set_carrier_flag = last_test_export_1#}
                 export_trigger_value_to_variable = {
                     trigger = num_zones
                     parameters = { type = {{ zone }} }
                     variable = temp_num_zones
                 }
-{#                remove_planet_flag = last_test_export_1#}
+{#                remove_carrier_flag = last_test_export_1#}
                 {% for district in secondary_districts_for_zone[zone] %}
-{#                set_planet_flag = last_test_{{ district }}#}
+{#                set_carrier_flag = last_test_{{ district }}#}
                 bca_secondary_zone_setting_set_by_current_zones_helper = {
                     TYPE = {{ type }}
                     ZONE = {{ zone }}
                     DISTRICT = {{ district }}
                 }
-{#                remove_planet_flag = last_test_{{ district }}#}
+{#                remove_carrier_flag = last_test_{{ district }}#}
                 {% endfor %}
             }
-{#            remove_planet_flag = last_test_{{ zone }}#}
+{#            remove_carrier_flag = last_test_{{ zone }}#}
             {% endif %}
             {% endfor %}
         }
@@ -121,14 +121,14 @@ hidden_effect = {
     {% for zone_slot in ['z3','z4','z5'] %}
     if = {
         limit = {
-            NOT = { has_planet_flag = tp_zone_processed_{{ zone_slot }} }
+            NOT = { has_carrier_flag = tp_zone_processed_{{ zone_slot }} }
         }
         set_variable = {
             which = {{ v.var_district_num_plan(zone_slot) }}
             value = 0
         }
     }
-    remove_planet_flag = tp_zone_processed_{{ zone_slot }}
+    remove_carrier_flag = tp_zone_processed_{{ zone_slot }}
     {% endfor %}
     clear_variable = temp_num_zones
     bca_clean_flags_zone_selector_secondary_district = yes
@@ -148,15 +148,15 @@ bca_primary_zone_setting_set_by_current_zones_helper = {
     {% set zone_slot = 'z'~zone_index %}
     if = {
         limit = {
-            NOT = { has_planet_flag = tp_zone_processed_{{ zone_slot }} }
+            NOT = { has_carrier_flag = tp_zone_processed_{{ zone_slot }} }
             check_variable = {
                 which = temp_num_zones
                 value > 0
             }
         }
-        set_planet_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
-        set_planet_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
-        set_planet_flag = tp_zone_processed_{{ zone_slot }}
+        set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
+        set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+        set_carrier_flag = tp_zone_processed_{{ zone_slot }}
         bca_helper_temp_num_zones_subtract_one = yes
     }
     {% endfor %}
@@ -179,7 +179,7 @@ hidden_effect = {
             }
             {% for zone in item.zones %}
             {% if zone in primary_districts_for_zone %}
-{#            set_planet_flag = last_test_{{ zone }}#}
+{#            set_carrier_flag = last_test_{{ zone }}#}
             if = {
                 limit = {
                     check_variable_arithmetic = {
@@ -192,14 +192,14 @@ hidden_effect = {
                     ZONE = {{ zone }}
                 }
             }
-{#            remove_planet_flag = last_test_{{ zone }}#}
+{#            remove_carrier_flag = last_test_{{ zone }}#}
             {% endif %}
             {% endfor %}
         }
         {% endif %}
     {% endfor %}
     {% for zone_slot in ['z1','z2'] %}
-    remove_planet_flag = tp_zone_processed_{{ zone_slot }}
+    remove_carrier_flag = tp_zone_processed_{{ zone_slot }}
     {% endfor %}
     clear_variable = temp_num_zones
 
@@ -218,17 +218,17 @@ bca_set_zx_for_identical_secondary_zone_plan = {
         {{ "if" if loop.first else "else_if" }} = {
             limit = {
                 {% for zone_slot in ['z3','z4','z5'] %}
-                has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
                 {% endfor %}
             }
-            set_planet_flag = {{pf.flag_selected_zone_type('zx', type)}}
+            set_carrier_flag = {{pf.flag_selected_zone_type('zx', type)}}
             {% for zone in item.zones %}
             {% if zone in secondary_districts_for_zone %}
             if = {
                 limit = {
-                    has_planet_flag = {{ pf.flag_selected_zone('z3', zone) }}
+                    has_carrier_flag = {{ pf.flag_selected_zone('z3', zone) }}
                 }
-                set_planet_flag = {{pf.flag_selected_zone('zx', zone)}}
+                set_carrier_flag = {{pf.flag_selected_zone('zx', zone)}}
             }
             {% endif %}
             {% endfor %}
@@ -236,7 +236,7 @@ bca_set_zx_for_identical_secondary_zone_plan = {
         {% endif %}
     {% endfor %}
     else = {
-        set_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        set_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
 }
 

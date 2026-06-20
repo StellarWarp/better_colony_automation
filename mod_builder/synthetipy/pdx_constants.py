@@ -63,7 +63,7 @@ FILE_TYPE_RULES = {
 # 迭代作用域（计划迁移到 game_rules）
 ITERATION_SCOPES = {
     'any_owned_planet': ('planet', 'owned_planets'),
-    'every_owned_planet': ('planet', 'owned_planets'),
+    'every_owned_colony': ('planet', 'owned_planets'),
     'any_owned_pop': ('pop', 'owned_pops'),
     'every_owned_pop': ('pop', 'owned_pops'),
     'any_planet': ('planet', 'planets'),
@@ -85,7 +85,7 @@ VARIABLE_OPS = frozenset({
 })
 
 FLAG_OPS = frozenset({
-    'set_planet_flag', 'remove_planet_flag',
+    'set_carrier_flag', 'remove_carrier_flag',
     'set_country_flag', 'remove_country_flag',
     'set_global_flag', 'remove_global_flag',
     'set_star_flag', 'remove_star_flag',

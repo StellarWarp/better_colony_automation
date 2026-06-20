@@ -46,7 +46,7 @@ try_set_secondary_districts_plan_one_to_zero = {
     {% for district in secondary_districts %}
     if = {
         limit = {
-             has_planet_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+             has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
              NOT = { has_district = {{district}} }
              check_variable = {
                  which = {{v.var_district_num_plan(zone_slot)}}
@@ -101,9 +101,9 @@ bca_set_district_plan_by_diff = {
                 which = new_num_main_districts_plan_diff
                 value > 0
             }
-            NOT = { has_planet_flag = bca_no_more_planed_secondary_district }
+            NOT = { has_carrier_flag = bca_no_more_planed_secondary_district }
         }
-        set_planet_flag = bca_no_more_planed_secondary_district
+        set_carrier_flag = bca_no_more_planed_secondary_district
         {% for i in range(3,6) %}
         {% set zone_slot = "z"~(i) %}
         if = {
@@ -125,26 +125,26 @@ bca_set_district_plan_by_diff = {
                 which = new_num_main_districts_plan_diff
                 value = 1
             }
-            remove_planet_flag = bca_no_more_planed_secondary_district
+            remove_carrier_flag = bca_no_more_planed_secondary_district
         }
         {% endfor %}
     }
     {# built secondary district reduce #}
     if = {
         limit = {
-            has_planet_flag = bca_no_more_planed_secondary_district
-            NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_district }
+            has_carrier_flag = bca_no_more_planed_secondary_district
+            NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
         }
-        remove_planet_flag = bca_no_more_planed_secondary_district
+        remove_carrier_flag = bca_no_more_planed_secondary_district
         while = {
             limit = {
                 check_variable = {
                     which = new_num_main_districts_plan_diff
                     value > 0
                 }
-                NOT = { has_planet_flag = bca_no_more_planed_secondary_district }
+                NOT = { has_carrier_flag = bca_no_more_planed_secondary_district }
             }
-            set_planet_flag = bca_no_more_planed_secondary_district
+            set_carrier_flag = bca_no_more_planed_secondary_district
             {% for i in range(3,6) %}
             {% set zone_slot = "z"~(i) %}
             if = {
@@ -166,12 +166,12 @@ bca_set_district_plan_by_diff = {
                     which = new_num_main_districts_plan_diff
                     value = 1
                 }
-                remove_planet_flag = bca_no_more_planed_secondary_district
+                remove_carrier_flag = bca_no_more_planed_secondary_district
             }
             {% endfor %}
         }
     }
-    remove_planet_flag = bca_no_more_planed_secondary_district
+    remove_carrier_flag = bca_no_more_planed_secondary_district
 
     {# secondary district increment #}
     while = {
@@ -180,9 +180,9 @@ bca_set_district_plan_by_diff = {
                 which = new_num_main_districts_plan_diff
                 value < 0
             }
-            NOT = { has_planet_flag = bca_no_more_free_secondary_district }
+            NOT = { has_carrier_flag = bca_no_more_free_secondary_district }
         }
-        set_planet_flag = bca_no_more_free_secondary_district
+        set_carrier_flag = bca_no_more_free_secondary_district
         {% for i in range(3,6) %}
         {% set zone_slot = "z"~(i) %}
         {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
@@ -243,11 +243,11 @@ bca_set_district_plan_by_diff = {
                 which = new_num_main_districts_plan_diff
                 value = 1
             }
-            remove_planet_flag = bca_no_more_free_secondary_district
+            remove_carrier_flag = bca_no_more_free_secondary_district
         }
         {% endfor %}
     }
-    remove_planet_flag = bca_no_more_free_secondary_district
+    remove_carrier_flag = bca_no_more_free_secondary_district
     clear_variable = new_num_main_districts_plan_diff
 
 

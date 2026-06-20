@@ -6,11 +6,11 @@
 {% for zone in urban_resource_zone %}
 bca_future_planed_{{ zone }} = {
     modifier = {
-        has_planet_flag = {{ pf.flag_selected_zone('z1',zone) }}
+        has_carrier_flag = {{ pf.flag_selected_zone('z1',zone) }}
         add = 1
     }
     modifier = {
-        has_planet_flag = {{ pf.flag_selected_zone('z2',zone) }}
+        has_carrier_flag = {{ pf.flag_selected_zone('z2',zone) }}
         add = 1
     }
 }

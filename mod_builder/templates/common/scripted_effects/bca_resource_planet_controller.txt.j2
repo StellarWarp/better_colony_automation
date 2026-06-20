@@ -71,7 +71,7 @@
             limit = {
                 OR = {
                     {% for zone_type in zone_type_set %}
-                    has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                     {% endfor %}
                 }
             }
@@ -79,19 +79,19 @@
             {% for zone_type in zone_type_set %}
             if = {
                 limit = {
-                    has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                     check_variable_arithmetic = {
                         which = value:num_secondary_zones_of_type_{{ zone_type }}
                         value < value:num_secondary_zone_plan_of_type_{{ zone_type }}
                     }
                 }
-                set_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(zone_type) }}
+                set_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(zone_type) }}
             }
             {% endfor %}
             {# secondary district #}
             if = {
                 limit = {
-                    NOT = { has_planet_flag = bca_pf_disable_auto_district_manage }
+                    NOT = { has_carrier_flag = bca_pf_disable_auto_district_manage }
                 }
                 set_variable = {
                     which = {{v.var_district_num_plan(zone_slot)}}
@@ -178,7 +178,7 @@
 {##}
 {#    if = {#}
 {#        limit = {#}
-{#            NOT = { has_planet_flag = bca_pf_disable_auto_district_manage }#}
+{#            NOT = { has_carrier_flag = bca_pf_disable_auto_district_manage }#}
 {#        }#}
 {#        {% for zone_slot in ['z3','z4','z5'] %}#}
 {#        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
@@ -224,7 +224,7 @@
 {#                value != -1#}
 {#            }#}
 {#        }#}
-{#        set_planet_flag = bca_pf_advance_controller_order#}
+{#        set_carrier_flag = bca_pf_advance_controller_order#}
 {#    }#}
 {#    clear_variable = bca_selected_index#}
 {#    clear_variable = bca_non_job_provider_priority_shift#}
@@ -248,7 +248,7 @@ if = {
     if = {
         limit = {
             OR = {
-                has_planet_flag = bca_pf_can_build_extra_zones_for_storage
+                has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
                 bca_has_advance_secondary_districts = yes
             }
         }
@@ -290,7 +290,7 @@ if = {
             limit = {
                 OR = {
                     {% for zone_type in zone_type_set %}
-                    has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                     {% endfor %}
                 }
             }
@@ -306,7 +306,7 @@ if = {
                 exists = owner
                 owner = { has_technology = tech_mine_betharian }
                 has_deposit = d_betharian_deposit
-                has_planet_flag = {{ pf.flag_selected_zone_type('z4', 'betharian') }}
+                has_carrier_flag = {{ pf.flag_selected_zone_type('z4', 'betharian') }}
             }
             {% set zone_slot = 'z4' %}
             {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
@@ -314,7 +314,7 @@ if = {
                 limit = {
                     OR = {
                         {% for zone_type in zone_type_set %}
-                        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                         {% endfor %}
                     }
                 }
@@ -329,7 +329,7 @@ if = {
                 limit = {
                     OR = {
                         {% for zone_type in zone_type_set %}
-                        has_planet_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
                         {% endfor %}
                     }
                 }

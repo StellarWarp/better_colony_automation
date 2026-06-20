@@ -1571,7 +1571,7 @@ ALL_EFFECTS = {
         "scopes": ['country'],
         "usage_format": 'comparison',
     },
-    'every_owned_planet': {
+    'every_owned_colony': {
         "description": 'Iterate through each inhabited planet owned by the current empire - executes the enclosed effects on all of them for which the limit triggers return true',
         "scopes": ['country', 'sector'],
         "usage_format": 'comparison',
@@ -2772,7 +2772,7 @@ ALL_EFFECTS = {
         "scopes": ['country'],
         "usage_format": 'comparison',
     },
-    'planet_event': {
+    'carrier_event': {
         "description": 'Fires a planet event for the scoped planet, with optional DAYS and RANDOM delay',
         "scopes": ['planet'],
         "usage_format": 'block',
@@ -3740,7 +3740,7 @@ ALL_EFFECTS = {
         "scopes": ['planet'],
         "usage_format": 'comparison',
     },
-    'remove_planet_flag': {
+    'remove_carrier_flag': {
         "description": 'Removes a flag from the scoped planet',
         "scopes": ['planet'],
         "usage_format": 'comparison',
@@ -4723,7 +4723,7 @@ ALL_EFFECTS = {
         "usage_format": 'block',
         "params": [{'name': 'entity', 'type': 'name of entity'}, {'name': 'graphical_culture', 'type': 'target or name of culture'}, {'name': 'picture', 'type': 'picture override'}, {'name': 'atmosphere_color', 'type': 'color from 3 components'}],
     },
-    'set_planet_flag': {
+    'set_carrier_flag': {
         "description": 'Sets an arbitrarily-named flag on the scoped planet',
         "scopes": ['planet'],
         "usage_format": 'comparison',

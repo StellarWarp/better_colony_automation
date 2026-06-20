@@ -1,12 +1,12 @@
 namespace = colony_automation_event
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.10
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
-		remove_planet_flag = bca_pf_advance_controller_order
+		remove_carrier_flag = bca_pf_advance_controller_order
 
 		bca_resource_planet_controller_district_only = yes
 
@@ -14,13 +14,13 @@ planet_event = {
 			limit = {
 				free_district_slots = 0 #replace district
 				NOR = {
-					has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+					has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
 				}
 				bca_auto_district_manage_enabled = yes
 			}
 			if = { #check by year
 				limit = {
-					has_planet_flag = bca_pf_district_balanced
+					has_carrier_flag = bca_pf_district_balanced
 				}
 				add_variable = {
 					which = bca_district_balanced_test_counter
@@ -44,9 +44,9 @@ planet_event = {
 			else = { #check by month
 				if = {
 					limit = {
-						NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+						NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
 					}
-					set_planet_flag = bca_pf_previous_has_district_remove_plan_clear
+					set_carrier_flag = bca_pf_previous_has_district_remove_plan_clear
 				}
 
 				# bca_test_primary_and_secondary_district_bidirectional_replace = yes
@@ -54,16 +54,16 @@ planet_event = {
 
 				if = {
 					limit = {
-						has_planet_flag = bca_pf_previous_has_district_remove_plan_clear
-						NOT = { has_planet_flag = bca_pf_has_district_remove_plan }
+						has_carrier_flag = bca_pf_previous_has_district_remove_plan_clear
+						NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
 					}
-					set_planet_flag = bca_pf_district_balanced
+					set_carrier_flag = bca_pf_district_balanced
 				}
-				remove_planet_flag = bca_pf_previous_has_district_remove_plan_clear
+				remove_carrier_flag = bca_pf_previous_has_district_remove_plan_clear
 			}
 		}
 		else = {
-			remove_planet_flag = bca_pf_district_balanced
+			remove_carrier_flag = bca_pf_district_balanced
 			clear_variable = bca_district_balanced_test_counter
 
 		}
@@ -72,7 +72,7 @@ planet_event = {
 		# if = {
 		# 	limit = {
 		# 		NOT = {
-		# 			has_planet_flag = bca_pf_fully_constructed
+		# 			has_carrier_flag = bca_pf_fully_constructed
 		# 		}
 		# 	}
 		# 	bca_resource_planet_controller = yes
@@ -84,7 +84,7 @@ planet_event = {
 
 # trigger by on_district_complete
 # remove district flag if construction completed
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.11
 	is_triggered_only = yes
 	hide_window = yes
@@ -94,10 +94,10 @@ planet_event = {
 		}
 	}
 	immediate = {
-		remove_planet_flag = bca_pf_plan_build_district_d0
-		remove_planet_flag = bca_pf_plan_build_district_d1
-		remove_planet_flag = bca_pf_plan_build_district_d2
-		remove_planet_flag = bca_pf_plan_build_district_d3
+		remove_carrier_flag = bca_pf_plan_build_district_d0
+		remove_carrier_flag = bca_pf_plan_build_district_d1
+		remove_carrier_flag = bca_pf_plan_build_district_d2
+		remove_carrier_flag = bca_pf_plan_build_district_d3
 	}
 }
 
@@ -105,7 +105,7 @@ planet_event = {
 
 # trigger by on_building_complete
 # remove building flag if construction completed
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.13
 	is_triggered_only = yes
 	hide_window = yes
@@ -115,51 +115,51 @@ planet_event = {
 		}
 	}
 	immediate = {
-		remove_planet_flag = bca_pf_has_building_build_plan
-		remove_planet_flag = bca_pf_plan_build_building_energy_grid
-		remove_planet_flag = bca_pf_plan_build_building_mineral_purification_plant
-		remove_planet_flag = bca_pf_plan_build_building_food_processing_facility
+		remove_carrier_flag = bca_pf_has_building_build_plan
+		remove_carrier_flag = bca_pf_plan_build_building_energy_grid
+		remove_carrier_flag = bca_pf_plan_build_building_mineral_purification_plant
+		remove_carrier_flag = bca_pf_plan_build_building_food_processing_facility
 	}
 }
 
 
 # test event for debug, will be removed in final version
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.501
 	is_triggered_only = yes
 	title = "flag 1"
 	desc = "flag 1 set"
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.502
 	is_triggered_only = yes
 	title = "flag 2"
 	desc = "flag 2 set"
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.503
 	is_triggered_only = yes
 	title = "503"
 	desc = "503"
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.504
 	is_triggered_only = yes
 	title = "504"
 	desc = "504"
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.505
 	is_triggered_only = yes
 	title = "505"
 	desc = "505"
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.506
 	is_triggered_only = yes
 	title = "506"

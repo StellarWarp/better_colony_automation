@@ -2621,7 +2621,7 @@ ALL_TRIGGERS = {
         "scopes": ['galactic_object'],
         "usage_format": 'comparison',
     },
-    'has_planet_flag': {
+    'has_carrier_flag': {
         "description": 'Checks if the planet has a specific flag',
         "scopes": ['planet'],
         "usage_format": 'comparison',

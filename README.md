@@ -64,7 +64,7 @@ https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
 哇噗 **26-06-20 - v1.7.0**：
 
-- 支持 Stellaris 4.4。
+- 支持 Stellaris 4.4，并适配变更的脚本 API，修复自动化无法运行的问题。
 - 支持新增的游牧方舟特化、区划与区划特化自动化。
 - 支持按特化建设永恒巡航乘客与船员强化建筑，并加入乘客宿舍住房自动化。
 - 重构内部建筑自动化配置，使建筑建设与拆除规则更加一致，并便于后续版本兼容。

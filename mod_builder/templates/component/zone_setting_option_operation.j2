@@ -33,23 +33,23 @@
     {% set zones = item.zones %}
     if = {
         limit = {
-            has_planet_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
+            has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
         }
-        set_planet_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
+        set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
         {% if zone_slot in ['zx'] %}
             {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                set_planet_flag = {{pf.flag_selected_zone_type(secondary_zone_slot, type)}}
+                set_carrier_flag = {{pf.flag_selected_zone_type(secondary_zone_slot, type)}}
             {% endfor %}
         {% endif %}
         {% for zone in zones %}
         if = {
             limit = {
-                has_planet_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
+                has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
             }
-            set_planet_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+            set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
             {% if zone_slot in ['zx'] %}
                 {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                    set_planet_flag = {{pf.flag_selected_zone(secondary_zone_slot, zone)}}
+                    set_carrier_flag = {{pf.flag_selected_zone(secondary_zone_slot, zone)}}
                 {% endfor %}
             {% endif %}
         }

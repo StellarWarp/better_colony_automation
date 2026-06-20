@@ -66,7 +66,7 @@ bca_planet_setting_slider_{{ func }}_{{ index }} = {
         {% if func == 'primary_district_built' or func == 'secondary_district_built' %}
         custom_tooltip = {
             fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
-            NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_district }
+            NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
         }
         {% endif %}
     }
@@ -78,7 +78,7 @@ bca_planet_setting_slider_{{ func }}_{{ index }} = {
         {% elif func == 'primary_district_built' %}
         if = {
             limit = {
-                NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_district }
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
             }
             bca_set_district_plan_by_ratio = {
                 RATIO = {{ setting_ratio }}
@@ -87,7 +87,7 @@ bca_planet_setting_slider_{{ func }}_{{ index }} = {
         {% elif func == 'secondary_district_built' %}
         if = {
             limit = {
-                NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_district }
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
             }
             bca_set_district_plan_by_ratio = {
                 RATIO = {{ setting_ratio }}
@@ -104,7 +104,7 @@ bca_planet_setting_slider_{{ func }}_{{ index }} = {
 
 bca_planet_setting_secondary_zone_count_icon_{{ zone_slot }} = {
     potential = {
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
         always = yes
@@ -122,7 +122,7 @@ bca_planet_setting_secondary_zone_count_icon_{{ zone_slot }} = {
 
 bca_planet_setting_secondary_zone_count_inc_{{ zone_slot }} = {
     potential = {
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
         hidden_trigger = {
@@ -146,12 +146,12 @@ bca_planet_setting_secondary_zone_count_inc_{{ zone_slot }} = {
 
 bca_planet_setting_secondary_zone_count_dec_{{ zone_slot }} = {
     potential = {
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             custom_tooltip = {
                 fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
@@ -185,7 +185,7 @@ bca_planet_setting_secondary_zone_count_dec_{{ zone_slot }} = {
 
 bca_planet_setting_secondary_zone_show_up = {
     potential = {
-        has_planet_flag = bca_pf_ps_show_detailed_secondary_districts
+        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = { always = yes }
 }
@@ -198,7 +198,7 @@ bca_planet_setting_primary_district_count_dec = {
 
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             custom_tooltip = {
                 fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
@@ -233,7 +233,7 @@ bca_planet_setting_primary_district_count_inc = {
 
         if = {
             limit = {
-                has_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             custom_tooltip = {
                 fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"

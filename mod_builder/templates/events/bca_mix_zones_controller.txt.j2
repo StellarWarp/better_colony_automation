@@ -6,14 +6,14 @@
 namespace = colony_automation_event
 
 # flag clear
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.112
 	hide_window = yes
 	is_triggered_only = yes
 
 	immediate = {
         {% for district_slot in ['d0','d1','d2','d3'] %}
-        remove_planet_flag = {{ pf.flag_district_plan_build(district_slot) }}
+        remove_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
         {% endfor %}
         remove_all_zone_plan_flag = yes
 	}
@@ -21,7 +21,7 @@ planet_event = {
 
 
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.20
 	hide_window = yes
 	is_triggered_only = yes
@@ -41,7 +41,7 @@ planet_event = {
                         value > value:num_primary_zone_plan_of_type_{{ type }}
                     }
                 }
-                set_planet_flag = bca_has_zone_to_replace
+                set_carrier_flag = bca_has_zone_to_replace
             }
             {% endif %}
         {% endfor %}
@@ -82,10 +82,10 @@ planet_event = {
                 {# ensure has slot to build avoid primary zones build on secondary districts #}
                 if = {
                     limit = {
-                        has_planet_flag = bca_has_zone_to_replace
+                        has_carrier_flag = bca_has_zone_to_replace
                     }
-                    set_planet_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-                    set_planet_flag = bca_plan_build_new_zone
+                    set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                    set_carrier_flag = bca_plan_build_new_zone
                 }
                 else = {
                     bca_get_num_free_city_zones = yes
@@ -96,8 +96,8 @@ planet_event = {
                                 value > 0
                             }
                         }
-                        set_planet_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-                        set_planet_flag = bca_plan_build_new_zone
+                        set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                        set_carrier_flag = bca_plan_build_new_zone
                     }
                     clear_variable = bca_num_free_city_zones
                 }
@@ -111,7 +111,7 @@ planet_event = {
            thus no bug #}
 {#        if = {#}
 {#            limit = {#}
-{#                NOT = { has_planet_flag = bca_plan_build_new_zone } {# for reducing computation #}
+{#                NOT = { has_carrier_flag = bca_plan_build_new_zone } {# for reducing computation #}
 {#            }#}
         {% for item in zones_info %}
             {% set type = item.type %}
@@ -125,24 +125,24 @@ planet_event = {
                         value < value:num_secondary_zone_plan_of_type_{{ type }}
                     }
                 }
-                set_planet_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
-                set_planet_flag = bca_plan_build_new_zone
+                set_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
+                set_carrier_flag = bca_plan_build_new_zone
             }
             {% endif %}
         {% endfor %}
 {#        }#}
-        remove_planet_flag = bca_has_zone_to_replace
+        remove_carrier_flag = bca_has_zone_to_replace
     }
 }
 
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.21
 	hide_window = yes
 	is_triggered_only = yes
 
 	trigger = {
-        has_planet_flag = bca_plan_build_new_zone
-        NOT = { has_planet_flag = bca_pf_disable_planet_auto_destruction_zone }
+        has_carrier_flag = bca_plan_build_new_zone
+        NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
 	}
 
 	immediate = {
@@ -168,7 +168,7 @@ planet_event = {
 
 # trigger by on_zone_complete
 # remove zone flag if construction completed
-planet_event = {
+carrier_event = {
 	id = colony_automation_event.12
 	is_triggered_only = yes
 	hide_window = yes

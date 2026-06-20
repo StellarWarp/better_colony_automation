@@ -16,14 +16,14 @@ event = {
             limit = {
                 is_ai = no
             }
-            every_owned_planet = {
+            every_owned_colony = {
                 limit = {
                     is_colony = yes
                     NOT = {
-                        has_planet_flag = bca_pf_ps_initialized
+                        has_carrier_flag = bca_pf_ps_initialized
                    }
                 }
-                planet_event = { id = colony_automation_event.26 }
+                carrier_event = { id = colony_automation_event.26 }
             }
         }
     }
@@ -33,7 +33,7 @@ event = {
 # set by current layout
 # on_colonized
 # on_planet_transfer
-planet_event = {
+carrier_event = {
     id = colony_automation_event.26
     hide_window = yes
     is_triggered_only = yes
@@ -44,15 +44,15 @@ planet_event = {
 
     immediate = {
         if = {
-            planet_event = { id = colony_automation_event.12 }
-            planet_event = { id = colony_automation_event.11 }
+            carrier_event = { id = colony_automation_event.12 }
+            carrier_event = { id = colony_automation_event.11 }
             limit = {
                 owner = {
                     is_ai = no
                 }
             }
-            remove_planet_flag = bca_pf_can_build_extra_zones_for_storage
-            remove_planet_flag = bca_pf_district_balanced
+            remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
+            remove_carrier_flag = bca_pf_district_balanced
             bca_clear_designation_flag = yes
             bca_designation_sync_with_system = yes
             bca_primary_zone_setting_set_by_current_zones = yes
@@ -79,10 +79,10 @@ planet_event = {
                         has_country_flag = bca_default_disable_auto_destruction_building
                     }
                 }
-                set_planet_flag = bca_pf_disable_planet_auto_destruction_building
+                set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
             }
             else = {
-                remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
+                remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
             }
             if = {
                 limit = {
@@ -90,10 +90,10 @@ planet_event = {
                         has_country_flag = bca_default_disable_auto_destruction_district
                     }
                 }
-                set_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             else = {
-                remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
+                remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
             }
             if = {
                 limit = {
@@ -101,27 +101,27 @@ planet_event = {
                         has_country_flag = bca_default_disable_auto_destruction_zone
                     }
                 }
-                set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+                set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
             }
             else = {
-                remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+                remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
             }
-            set_planet_flag = {{ pf.flag_bca_initialized() }}
+            set_carrier_flag = {{ pf.flag_bca_initialized() }}
         }
         else = {
-            remove_planet_flag = bca_pf_district_balanced
+            remove_carrier_flag = bca_pf_district_balanced
             bca_clear_designation_flag = yes
             clear_open_selector = yes
             {% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
                 {{ op.clear_zone_selection(zone_slot) }}
             {% endfor %}
-            remove_planet_flag = {{ pf.flag_bca_initialized() }}
+            remove_carrier_flag = {{ pf.flag_bca_initialized() }}
         }
     }
 }
 
 # reset to default
-planet_event = {
+carrier_event = {
     id = colony_automation_event.27
     hide_window = yes
     is_triggered_only = yes
@@ -131,10 +131,10 @@ planet_event = {
     }
 
     immediate = {
-        planet_event = { id = colony_automation_event.12 }
-        planet_event = { id = colony_automation_event.11 }
-        remove_planet_flag = bca_pf_can_build_extra_zones_for_storage
-        remove_planet_flag = bca_pf_district_balanced
+        carrier_event = { id = colony_automation_event.12 }
+        carrier_event = { id = colony_automation_event.11 }
+        remove_carrier_flag = bca_pf_can_build_extra_zones_for_storage
+        remove_carrier_flag = bca_pf_district_balanced
         bca_clear_designation_flag = yes
         bca_designation_sync_with_system = yes
         {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
@@ -153,10 +153,10 @@ planet_event = {
                     has_country_flag = bca_default_disable_auto_destruction_building
                 }
             }
-            set_planet_flag = bca_pf_disable_planet_auto_destruction_building
+            set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         }
         else = {
-            remove_planet_flag = bca_pf_disable_planet_auto_destruction_building
+            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         }
         if = {
             limit = {
@@ -164,10 +164,10 @@ planet_event = {
                     has_country_flag = bca_default_disable_auto_destruction_district
                 }
             }
-            set_planet_flag = bca_pf_disable_planet_auto_destruction_district
+            set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
         }
         else = {
-            remove_planet_flag = bca_pf_disable_planet_auto_destruction_district
+            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
         }
         if = {
             limit = {
@@ -175,17 +175,17 @@ planet_event = {
                     has_country_flag = bca_default_disable_auto_destruction_zone
                 }
             }
-            set_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
         }
         else = {
-            remove_planet_flag = bca_pf_disable_planet_auto_destruction_zone
+            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
         }
-        set_planet_flag = {{ pf.flag_bca_initialized() }}
+        set_carrier_flag = {{ pf.flag_bca_initialized() }}
     }
 }
 
 # secondary district do not has tech to build zone at start
-planet_event = {
+carrier_event = {
     id = colony_automation_event.28
     hide_window = yes
     is_triggered_only = yes
