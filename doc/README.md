@@ -7,6 +7,9 @@ The docs have two reading paths:
 1. Understand the project architecture.
 2. Maintain the project safely, including DSL and AI coding practices.
 
+Proposal documents for active design work live under `proposal/`, including
+the [Building Strategy Model](proposal/building-strategy-model.md).
+
 ## Architecture Path
 
 Read these when you need to understand how the mod is organized and executed:

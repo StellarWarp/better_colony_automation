@@ -260,6 +260,60 @@ planet_event = {
                 }
                 set_planet_flag = bca_has_zone_to_replace
             }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_research_unity_consumer_goods
+                        value > value:num_primary_zone_plan_of_type_ark_research_unity_consumer_goods
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_research_alloys_support
+                        value > value:num_primary_zone_plan_of_type_ark_research_alloys_support
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_passenger
+                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_passenger
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_crew
+                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_crew
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_mixed
+                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_mixed
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_pilgrimage
+                        value > value:num_primary_zone_plan_of_type_ark_pilgrimage
+                    }
+                }
+                set_planet_flag = bca_has_zone_to_replace
+            }
 
        if = {
             limit = {
@@ -1012,6 +1066,180 @@ planet_event = {
                     clear_variable = bca_num_free_city_zones
                 }
             }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_research_unity_consumer_goods
+                        value < value:num_primary_zone_plan_of_type_ark_research_unity_consumer_goods
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_unity_consumer_goods
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_unity_consumer_goods
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_research_alloys_support
+                        value < value:num_primary_zone_plan_of_type_ark_research_alloys_support
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_alloys_support
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_alloys_support
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_passenger
+                        value < value:num_primary_zone_plan_of_type_forever_cruise_city_passenger
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_passenger
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_passenger
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_crew
+                        value < value:num_primary_zone_plan_of_type_forever_cruise_city_crew
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_crew
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_crew
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_forever_cruise_city_mixed
+                        value < value:num_primary_zone_plan_of_type_forever_cruise_city_mixed
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_mixed
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_mixed
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
+            else_if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_primary_zones_of_type_ark_pilgrimage
+                        value < value:num_primary_zone_plan_of_type_ark_pilgrimage
+                    }
+                }
+                if = {
+                    limit = {
+                        has_planet_flag = bca_has_zone_to_replace
+                    }
+                    set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_pilgrimage
+                    set_planet_flag = bca_plan_build_new_zone
+                }
+                else = {
+                    bca_get_num_free_city_zones = yes
+                    if = {
+                        limit = {
+                            check_variable = {
+                                which = bca_num_free_city_zones
+                                value > 0
+                            }
+                        }
+                        set_planet_flag = bca_pf_plan_build_primary_zone_type_ark_pilgrimage
+                        set_planet_flag = bca_plan_build_new_zone
+                    }
+                    clear_variable = bca_num_free_city_zones
+                }
+            }
         }
             if = {
                 limit = {
@@ -1333,6 +1561,76 @@ planet_event = {
                 set_planet_flag = bca_pf_plan_build_secondary_zone_type_wilderness_food
                 set_planet_flag = bca_plan_build_new_zone
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_ark_reactor
+                        value < value:num_secondary_zone_plan_of_type_ark_reactor
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_ark_reactor
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_missile
+                        value < value:num_secondary_zone_plan_of_type_missile
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_missile
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_gun
+                        value < value:num_secondary_zone_plan_of_type_gun
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_gun
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_laser
+                        value < value:num_secondary_zone_plan_of_type_laser
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_laser
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_fighter
+                        value < value:num_secondary_zone_plan_of_type_fighter
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_fighter
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_forever_cruise_passenger
+                        value < value:num_secondary_zone_plan_of_type_forever_cruise_passenger
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_passenger
+                set_planet_flag = bca_plan_build_new_zone
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_secondary_zones_of_type_forever_cruise_crew
+                        value < value:num_secondary_zone_plan_of_type_forever_cruise_crew
+                    }
+                }
+                set_planet_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_crew
+                set_planet_flag = bca_plan_build_new_zone
+            }
         remove_planet_flag = bca_has_zone_to_replace
     }
 }
@@ -1424,6 +1722,15 @@ planet_event = {
                 else_if = {
                     limit = {
                         check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_waystation_trade
+                            value > value:num_zone_plan_of_zone_ark_waystation_trade
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_waystation_trade }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
                             which = value:num_zones_of_zone_industrial
                             value > value:num_zone_plan_of_zone_industrial
                         }
@@ -1510,6 +1817,15 @@ planet_event = {
                         }
                     }
                     remove_zone = { zone = zone_foundry_hive }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_military_eco
+                            value > value:num_zone_plan_of_zone_ark_military_eco
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_military_eco }
                 }
                 else_if = {
                     limit = {
@@ -1676,6 +1992,15 @@ planet_event = {
                 else_if = {
                     limit = {
                         check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_reactor_physics
+                            value > value:num_zone_plan_of_zone_ark_reactor_physics
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_reactor_physics }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
                             which = value:num_zones_of_zone_research_society
                             value > value:num_zone_plan_of_zone_research_society
                         }
@@ -1721,6 +2046,15 @@ planet_event = {
                 else_if = {
                     limit = {
                         check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_farm_society
+                            value > value:num_zone_plan_of_zone_ark_farm_society
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_farm_society }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
                             which = value:num_zones_of_zone_research_engineering
                             value > value:num_zone_plan_of_zone_research_engineering
                         }
@@ -1762,6 +2096,24 @@ planet_event = {
                         }
                     }
                     remove_zone = { zone = zone_research_engineering_hive }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_military_engineering
+                            value > value:num_zone_plan_of_zone_ark_military_engineering
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_military_engineering }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_engineering
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_engineering
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_engineering }
                 }
                 else_if = {
                     limit = {
@@ -2117,6 +2469,15 @@ planet_event = {
                 else_if = {
                     limit = {
                         check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_harvest
+                            value > value:num_zone_plan_of_zone_ark_harvest
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_harvest }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
                             which = value:num_zones_of_zone_food
                             value > value:num_zone_plan_of_zone_food
                         }
@@ -2140,6 +2501,15 @@ planet_event = {
                         }
                     }
                     remove_zone = { zone = zone_food_hive }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_food
+                            value > value:num_zone_plan_of_zone_ark_food
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_food }
                 }
                 else_if = {
                     limit = {
@@ -2248,6 +2618,15 @@ planet_event = {
                         }
                     }
                     remove_zone = { zone = zone_exotic_gases_hive }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_shield_overloader
+                            value > value:num_zone_plan_of_zone_ark_shield_overloader
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_shield_overloader }
                 }
                 else_if = {
                     limit = {
@@ -2392,6 +2771,150 @@ planet_event = {
                         }
                     }
                     remove_zone = { zone = zone_food_wilderness }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_research_unity
+                            value > value:num_zone_plan_of_zone_ark_research_unity
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_research_unity }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_research_unity_gestalt
+                            value > value:num_zone_plan_of_zone_ark_research_unity_gestalt
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_research_unity_gestalt }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_industrial
+                            value > value:num_zone_plan_of_zone_ark_industrial
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_industrial }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_foundry
+                            value > value:num_zone_plan_of_zone_ark_foundry
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_foundry }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_engine_bypass
+                            value > value:num_zone_plan_of_zone_ark_engine_bypass
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_engine_bypass }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_missile_silos
+                            value > value:num_zone_plan_of_zone_ark_missile_silos
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_missile_silos }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_ammunition_lines
+                            value > value:num_zone_plan_of_zone_ark_ammunition_lines
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_ammunition_lines }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_laser_capacitors
+                            value > value:num_zone_plan_of_zone_ark_laser_capacitors
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_laser_capacitors }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_flight_decks
+                            value > value:num_zone_plan_of_zone_ark_flight_decks
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_flight_decks }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_passenger
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_passenger
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_passenger }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_shipwright
+                            value > value:num_zone_plan_of_zone_ark_shipwright
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_shipwright }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_crew
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_crew
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_crew }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_city_passenger
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_passenger
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_city_passenger }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_city_crew
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_crew
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_city_crew }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_forever_cruise_city_mixed
+                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_mixed
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_forever_cruise_city_mixed }
+                }
+                else_if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_zones_of_zone_ark_sacred_path_pilgrims
+                            value > value:num_zone_plan_of_zone_ark_sacred_path_pilgrims
+                        }
+                    }
+                    remove_zone = { zone = zone_ark_sacred_path_pilgrims }
                 }
     }
 }

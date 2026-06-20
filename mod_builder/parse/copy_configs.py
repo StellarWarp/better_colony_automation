@@ -1,6 +1,8 @@
 import shutil
-import importlib.util
 from pathlib import Path
+
+from building_strategy_compile import compile_building_strategies
+
 
 def copy_configs():
     # Setup paths
@@ -13,11 +15,9 @@ def copy_configs():
 
     # List of files to copy
     files_to_copy = [
-        "destruction_build_list.yaml",
         "job_config.yaml",
-        "mix_zone_buildings_config.yaml",
         "other_district_config.yaml",
-        "all_designations.yaml"
+        "all_designations.yaml",
     ]
 
     for filename in files_to_copy:
@@ -28,6 +28,13 @@ def copy_configs():
             print(f"Copied {filename} to generated_configs")
         else:
             print(f"Warning: Source file {src} does not exist.")
+
+    compile_building_strategies(
+        configs_dir / "buildings",
+        generated_configs_dir,
+    )
+    print("Compiled building strategy configs to generated_configs")
+
 
 if __name__ == "__main__":
     copy_configs()

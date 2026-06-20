@@ -1,9 +1,10 @@
-from synthetipy.parser import parse
-from synthetipy.script_merger import utils
+from pathlib import Path
+import sys
+
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
 from synthetipy.ast_loadder import ASTLoader
 from synthetipy.ast_nodes import *
-from pathlib import Path
-import copy
 import yaml
 from synthetipy.compiler import compile_ast
 
@@ -15,7 +16,7 @@ CONFIG = {
     },
 }
 
-GAME_ROOT = Path("D:\SteamLibrary\steamapps\common\Stellaris")
+GAME_ROOT = Path(r"D:\SteamLibrary\steamapps\common\Stellaris")
 
 ast = ASTLoader(GAME_ROOT, CONFIG).load()
 
@@ -35,6 +36,11 @@ def node_to_string(node):
     elif isinstance(node, ListNode):
         return " ".join([compile_ast(item) for item in node.items])
     return compile_ast(node)
+
+def list_node_values(node, field_name, object_name):
+    if not isinstance(node, ListNode):
+        raise ValueError(f"Expected list for {field_name} in {object_name}")
+    return [str(item) for item in node.items]
 
 district_type_mapping = {}
 # zone_slot -> List[district]
@@ -77,6 +83,39 @@ for name, zone in ast['common/zones'].items():
                 zone_zone_slot_mapping.setdefault(name, []).append(str(zone_slot))
 
 zone_zone_slot_mapping.pop('zone_default', None)  # 移除默认的 zone_default
+
+# Preserve the zone-side building restrictions and provide reverse building-set
+# indexes for building strategy configuration.
+zone_building_availability = {}
+zones_for_building_set = {}
+zone_building_fields = {
+    'include': 'included_buildings',
+    'exclude': 'excluded_buildings',
+    'included_building_sets': 'included_building_sets',
+    'excluded_building_sets': 'excluded_building_sets',
+}
+
+for name, zone in ast['common/zones'].items():
+    availability = {}
+    for stat in zone.body.statements:
+        if not isinstance(stat, PropertyNode):
+            continue
+        field_name = str(stat.key)
+        output_name = zone_building_fields.get(field_name)
+        if not output_name:
+            continue
+        values = list_node_values(stat.value, field_name, name)
+        if values:
+            availability[output_name] = values
+
+    if not availability:
+        continue
+    zone_building_availability[name] = availability
+
+    for building_set in availability.get('included_building_sets', []):
+        zones_for_building_set.setdefault(building_set, {}).setdefault('included_in', []).append(name)
+    for building_set in availability.get('excluded_building_sets', []):
+        zones_for_building_set.setdefault(building_set, {}).setdefault('excluded_from', []).append(name)
 
 # zone -> List[district]
 zone_district_mapping: Dict[str, List[str]] = {}
@@ -242,6 +281,34 @@ zone_type_fitness = zone_type_fitness_data.get('zone_type_fitness', [])
 zone_type_fitness_map = {item['type']: item for item in zone_type_fitness}
 
 grouped = {'icons_info': group_zones(zone_icon_list)}
+zone_type_for_zone = {
+    zone: group['type']
+    for group in grouped['icons_info']
+    for zone in group['zones']
+}
+
+for zone, availability in zone_building_availability.items():
+    availability['zone_type'] = zone_type_for_zone.get(zone, '')
+
+for building_set, availability in zones_for_building_set.items():
+    for zone_key, type_key in (
+        ('included_in', 'included_in_types'),
+        ('excluded_from', 'excluded_from_types'),
+    ):
+        types = []
+        for zone in availability.get(zone_key, []):
+            zone_type = zone_type_for_zone.get(zone, '')
+            if zone_type and zone_type not in types:
+                types.append(zone_type)
+        if types:
+            availability[type_key] = types
+
+with open("../templates/generated_configs/zone_building_mapping.yaml", "w", encoding="utf-8") as f:
+    yaml.safe_dump({
+        "building_availability_for_zone": zone_building_availability,
+        "zones_for_building_set": zones_for_building_set,
+    }, f, sort_keys=False, allow_unicode=True)
+
 group_to_remove = []
 for group in grouped['icons_info']:
     type_ = group['type']

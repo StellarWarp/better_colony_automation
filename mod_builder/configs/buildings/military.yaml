@@ -1,0 +1,41 @@
+﻿- designations:
+    - fortress
+  zone_types:
+    - fortress
+  groups:
+    - buildings:
+        - building_dread_encampment
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_fortress
+
+    - buildings:
+        - building_military_academy
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_fortress
+
+    - buildings:
+        - building_planetary_shield_generator
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_fortress
+
+    - buildings:
+        - building_fe_fortress
+      strategy: job_only
+      destruction:
+        - triggers:
+            - bca_can_remove_building_fortress
+
+    - buildings:
+        - building_stronghold
+      strategy: job_only
+      destruction:
+        - triggers:
+            - bca_can_remove_building_fortress
+          remove_series: true
+

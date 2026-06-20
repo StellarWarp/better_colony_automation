@@ -53,7 +53,8 @@ This is the human-maintained source data layer.
 Examples:
 
 - [`../../mod_builder/configs/zone_type_fitness.yaml`](../../mod_builder/configs/zone_type_fitness.yaml)
-- [`../../mod_builder/configs/mix_zone_buildings_config.yaml`](../../mod_builder/configs/mix_zone_buildings_config.yaml)
+- [`../../mod_builder/configs/buildings/`](../../mod_builder/configs/buildings/)
+- [`../../mod_builder/configs/manual_building_destruction.yaml`](../../mod_builder/configs/manual_building_destruction.yaml)
 - [`../../mod_builder/configs/job_config.yaml`](../../mod_builder/configs/job_config.yaml)
 
 ### Copied/generated config YAML

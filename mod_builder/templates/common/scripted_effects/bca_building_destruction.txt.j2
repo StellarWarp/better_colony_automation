@@ -5,7 +5,7 @@ bca_auto_building_destruction_entry = {
             bca_can_remove_building = yes
             free_building_slots = 0
         }
-        {% for building_group in destruction_build_list %}
+        {% for building_group in building_strategy_destruction_contexts %}
         if = {
             limit = {
                 {% if building_group.category_filter %}

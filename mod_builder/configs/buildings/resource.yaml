@@ -1,0 +1,118 @@
+buildings:
+  building_farming_districts_1:
+    construction:
+      - projection: designation
+        context: farming
+        strategy: district_capacity
+      - projection: zone
+        context:
+          - food
+          - agrarian
+        strategy: district_capacity
+
+  building_food_processing_facility:
+    construction:
+      - projection: designation
+        context: farming
+        strategy: efficiency
+        subcases:
+          - trigger: bca_is_farming_habitat
+      - projection: zone
+        context:
+          - food
+          - agrarian
+        strategy: efficiency
+
+  building_hydroponics_farm:
+    construction:
+      - projection: designation
+        context: farming
+        strategy: job_low_priority
+        subcases:
+          - trigger: bca_is_farming_habitat
+            strategy_override: job_only
+      - projection: zone
+        context:
+          - food
+          - agrarian
+        strategy: job_low_priority
+    destruction:
+      - triggers:
+          - bca_can_remove_building_resource
+
+  building_generator_districts_1:
+    construction:
+      - projection: designation
+        context: generator
+        strategy: district_capacity
+      - projection: zone
+        context:
+          - energy
+          - hydroponics
+        strategy: district_capacity
+
+  building_betharian_power_plant:
+    construction:
+      - projection: designation
+        context: generator
+        strategy: job_only
+        include_default: false
+        subcases:
+          - trigger: bca_is_generator_betharian
+
+  building_energy_grid:
+    construction:
+      - projection: designation
+        context: generator
+        strategy: efficiency
+        subcases:
+          - trigger: bca_is_generator_betharian
+      - projection: zone
+        context:
+          - energy
+          - hydroponics
+        strategy: efficiency
+
+  building_generator_generic:
+    construction:
+      - projection: designation
+        context: generator
+        strategy: job_low_priority
+      - projection: zone
+        context:
+          - energy
+          - hydroponics
+        strategy: job_low_priority
+
+  building_mining_districts_1:
+    construction:
+      - projection: designation
+        context: mining
+        strategy: district_capacity
+      - projection: zone
+        context: minerals
+        strategy: district_capacity
+
+  building_mineral_purification_plant:
+    construction:
+      - projection: designation
+        context: mining
+        strategy: efficiency
+      - projection: designation
+        context: generator
+        strategy: job_only
+        include_default: false
+        subcases:
+          - trigger: bca_is_generator_betharian
+      - projection: zone
+        context: minerals
+        strategy: efficiency
+
+  building_mine_generic:
+    construction:
+      - projection: designation
+        context: mining
+        strategy: job_low_priority
+      - projection: zone
+        context: minerals
+        strategy: job_low_priority

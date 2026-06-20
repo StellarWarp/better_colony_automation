@@ -1,0 +1,1927 @@
+building_strategy_model:
+  buildings:
+    building_farming_districts_1:
+      construction:
+      - projection: designation
+        context: farming
+        strategy: district_capacity
+        source_order: 0
+      - projection: zone
+        context: food
+        strategy: district_capacity
+        source_order: 1
+      - projection: zone
+        context: agrarian
+        strategy: district_capacity
+        source_order: 2
+    building_food_processing_facility:
+      construction:
+      - projection: designation
+        context: farming
+        strategy: efficiency
+        source_order: 3
+        subcases:
+        - trigger: bca_is_farming_habitat
+      - projection: zone
+        context: food
+        strategy: efficiency
+        source_order: 4
+      - projection: zone
+        context: agrarian
+        strategy: efficiency
+        source_order: 5
+    building_hydroponics_farm:
+      construction:
+      - projection: designation
+        context: farming
+        strategy: job_low_priority
+        source_order: 6
+        subcases:
+        - trigger: bca_is_farming_habitat
+          strategy_override: job_only
+      - projection: zone
+        context: food
+        strategy: job_low_priority
+        source_order: 7
+      - projection: zone
+        context: agrarian
+        strategy: job_low_priority
+        source_order: 8
+      destruction:
+      - triggers:
+        - bca_can_remove_building_resource
+        source_order: 9
+        remove_series: true
+    building_generator_districts_1:
+      construction:
+      - projection: designation
+        context: generator
+        strategy: district_capacity
+        source_order: 10
+      - projection: zone
+        context: energy
+        strategy: district_capacity
+        source_order: 11
+      - projection: zone
+        context: hydroponics
+        strategy: district_capacity
+        source_order: 12
+    building_betharian_power_plant:
+      construction:
+      - projection: designation
+        context: generator
+        strategy: job_only
+        source_order: 13
+        include_default: false
+        subcases:
+        - trigger: bca_is_generator_betharian
+    building_energy_grid:
+      construction:
+      - projection: designation
+        context: generator
+        strategy: efficiency
+        source_order: 14
+        subcases:
+        - trigger: bca_is_generator_betharian
+      - projection: zone
+        context: energy
+        strategy: efficiency
+        source_order: 15
+      - projection: zone
+        context: hydroponics
+        strategy: efficiency
+        source_order: 16
+    building_generator_generic:
+      construction:
+      - projection: designation
+        context: generator
+        strategy: job_low_priority
+        source_order: 17
+      - projection: zone
+        context: energy
+        strategy: job_low_priority
+        source_order: 18
+      - projection: zone
+        context: hydroponics
+        strategy: job_low_priority
+        source_order: 19
+    building_mining_districts_1:
+      construction:
+      - projection: designation
+        context: mining
+        strategy: district_capacity
+        source_order: 20
+      - projection: zone
+        context: minerals
+        strategy: district_capacity
+        source_order: 21
+    building_mineral_purification_plant:
+      construction:
+      - projection: designation
+        context: mining
+        strategy: efficiency
+        source_order: 22
+      - projection: designation
+        context: generator
+        strategy: job_only
+        source_order: 23
+        include_default: false
+        subcases:
+        - trigger: bca_is_generator_betharian
+      - projection: zone
+        context: minerals
+        strategy: efficiency
+        source_order: 24
+    building_mine_generic:
+      construction:
+      - projection: designation
+        context: mining
+        strategy: job_low_priority
+        source_order: 25
+      - projection: zone
+        context: minerals
+        strategy: job_low_priority
+        source_order: 26
+    building_ministry_production:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 27
+      - projection: designation
+        context: foundry
+        strategy: efficiency
+        source_order: 28
+      - projection: designation
+        context: factory
+        strategy: efficiency
+        source_order: 29
+      - projection: zone
+        context: industrial
+        strategy: efficiency
+        source_order: 30
+      - projection: zone
+        context: foundry
+        strategy: efficiency
+        source_order: 31
+      - projection: zone
+        context: factory
+        strategy: efficiency
+        source_order: 32
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 33
+        remove_series: true
+    building_production_center:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 34
+      - projection: designation
+        context: foundry
+        strategy: efficiency
+        source_order: 35
+      - projection: designation
+        context: factory
+        strategy: efficiency
+        source_order: 36
+      - projection: zone
+        context: industrial
+        strategy: efficiency
+        source_order: 37
+      - projection: zone
+        context: foundry
+        strategy: efficiency
+        source_order: 38
+      - projection: zone
+        context: factory
+        strategy: efficiency
+        source_order: 39
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 40
+        remove_series: true
+    building_foundry_efficiency_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 41
+      - projection: designation
+        context: foundry
+        strategy: efficiency
+        source_order: 42
+      - projection: zone
+        context: industrial
+        strategy: efficiency
+        source_order: 43
+      - projection: zone
+        context: foundry
+        strategy: efficiency
+        source_order: 44
+      destruction:
+      - triggers:
+        - bca_can_remove_building_foundry
+        source_order: 45
+        remove_series: true
+    building_micro_forge:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: always
+        source_order: 46
+      - projection: designation
+        context: foundry
+        strategy: always
+        source_order: 47
+      - projection: zone
+        context: industrial
+        strategy: always
+        source_order: 48
+      - projection: zone
+        context: foundry
+        strategy: always
+        source_order: 49
+      destruction:
+      - triggers:
+        - bca_can_remove_building_foundry
+        source_order: 50
+        remove_series: true
+    building_foundry_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: job_only
+        source_order: 51
+      - projection: designation
+        context: foundry
+        strategy: job_only
+        source_order: 52
+      - projection: zone
+        context: industrial
+        strategy: job_only
+        source_order: 53
+      - projection: zone
+        context: foundry
+        strategy: job_only
+        source_order: 54
+      destruction:
+      - triggers:
+        - bca_can_remove_building_foundry
+        - bca_advanced_foundry_building_replace
+        source_order: 55
+        remove_series: true
+    building_factory_efficiency_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 56
+      - projection: designation
+        context: factory
+        strategy: efficiency
+        source_order: 57
+      - projection: zone
+        context: industrial
+        strategy: efficiency
+        source_order: 58
+      - projection: zone
+        context: factory
+        strategy: efficiency
+        source_order: 59
+      destruction:
+      - triggers:
+        - bca_can_remove_building_factory
+        source_order: 60
+        remove_series: true
+    building_affluence_emporium:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: always
+        source_order: 61
+      - projection: designation
+        context: factory
+        strategy: always
+        source_order: 62
+      - projection: zone
+        context: industrial
+        strategy: always
+        source_order: 63
+      - projection: zone
+        context: factory
+        strategy: always
+        source_order: 64
+      destruction:
+      - triggers:
+        - bca_can_remove_building_factory
+        source_order: 65
+        remove_series: true
+    building_factory_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: job_only
+        source_order: 66
+      - projection: designation
+        context: factory
+        strategy: job_only
+        source_order: 67
+      - projection: zone
+        context: industrial
+        strategy: job_only
+        source_order: 68
+      - projection: zone
+        context: factory
+        strategy: job_only
+        source_order: 69
+      destruction:
+      - triggers:
+        - bca_can_remove_building_factory
+        - bca_advanced_factory_building_replace
+        source_order: 70
+        remove_series: true
+    building_foundry_upkeep_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 71
+      - projection: designation
+        context: foundry
+        strategy: efficiency
+        source_order: 72
+      destruction:
+      - triggers:
+        - bca_can_remove_building_foundry
+        source_order: 73
+        remove_series: true
+    building_factory_upkeep_1:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 74
+      - projection: designation
+        context: factory
+        strategy: efficiency
+        source_order: 75
+      destruction:
+      - triggers:
+        - bca_can_remove_building_factory
+        source_order: 76
+        remove_series: true
+    building_fe_market_1:
+      construction:
+      - projection: designation
+        context: trade
+        strategy: efficiency
+        source_order: 77
+      - projection: zone
+        context: trade
+        strategy: efficiency
+        source_order: 78
+      destruction:
+      - triggers:
+        - bca_can_remove_building_trade
+        source_order: 79
+        remove_series: true
+    building_galactic_stock_exchange:
+      construction:
+      - projection: designation
+        context: trade
+        strategy: efficiency
+        source_order: 80
+      - projection: zone
+        context: trade
+        strategy: efficiency
+        source_order: 81
+      destruction:
+      - triggers:
+        - bca_can_remove_building_trade
+        source_order: 82
+        remove_series: true
+    building_commercial_megaplex:
+      construction:
+      - projection: designation
+        context: trade
+        strategy: efficiency
+        source_order: 83
+      - projection: zone
+        context: trade
+        strategy: efficiency
+        source_order: 84
+      destruction:
+      - triggers:
+        - bca_can_remove_building_trade
+        source_order: 85
+        remove_series: true
+    building_commercial_zone:
+      construction:
+      - projection: designation
+        context: trade
+        strategy: job_only
+        source_order: 86
+      - projection: zone
+        context: trade
+        strategy: job_only
+        source_order: 87
+      destruction:
+      - triggers:
+        - bca_can_remove_building_trade
+        - bca_advanced_trade_building_replace
+        source_order: 88
+        remove_series: true
+    building_vultaum_reality_computer:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 89
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 90
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 91
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 92
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 93
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 94
+        remove_series: true
+    building_institute:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 95
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 96
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 97
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 98
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 99
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 100
+        remove_series: true
+    building_supercomputer:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 101
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 102
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 103
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 104
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 105
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 106
+        remove_series: true
+    building_archaeostudies_faculty:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 107
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 108
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 109
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 110
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 111
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 112
+        remove_series: true
+    building_research_efficiency_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 113
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 114
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 115
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 116
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 117
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 118
+        remove_series: true
+    building_engineering_facility_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: always
+        source_order: 119
+      - projection: zone
+        context: research
+        strategy: always
+        source_order: 120
+      - projection: zone
+        context: physics
+        strategy: always
+        source_order: 121
+      - projection: zone
+        context: society
+        strategy: always
+        source_order: 122
+      - projection: zone
+        context: engineering
+        strategy: always
+        source_order: 123
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 124
+        remove_series: true
+    building_physics_lab_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: always
+        source_order: 125
+      - projection: zone
+        context: research
+        strategy: always
+        source_order: 126
+      - projection: zone
+        context: physics
+        strategy: always
+        source_order: 127
+      - projection: zone
+        context: society
+        strategy: always
+        source_order: 128
+      - projection: zone
+        context: engineering
+        strategy: always
+        source_order: 129
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 130
+        remove_series: true
+    building_biolab_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: always
+        source_order: 131
+      - projection: zone
+        context: research
+        strategy: always
+        source_order: 132
+      - projection: zone
+        context: physics
+        strategy: always
+        source_order: 133
+      - projection: zone
+        context: society
+        strategy: always
+        source_order: 134
+      - projection: zone
+        context: engineering
+        strategy: always
+        source_order: 135
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 136
+        remove_series: true
+    building_fe_lab_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: always
+        source_order: 137
+      - projection: zone
+        context: research
+        strategy: always
+        source_order: 138
+      - projection: zone
+        context: physics
+        strategy: always
+        source_order: 139
+      - projection: zone
+        context: society
+        strategy: always
+        source_order: 140
+      - projection: zone
+        context: engineering
+        strategy: always
+        source_order: 141
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 142
+        remove_series: true
+    building_research_lab_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: job_only
+        source_order: 143
+      - projection: zone
+        context: research
+        strategy: job_only
+        source_order: 144
+      - projection: zone
+        context: physics
+        strategy: job_only
+        source_order: 145
+      - projection: zone
+        context: society
+        strategy: job_only
+        source_order: 146
+      - projection: zone
+        context: engineering
+        strategy: job_only
+        source_order: 147
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        - bca_advanced_research_building_replace
+        source_order: 148
+        remove_series: true
+    building_research_upkeep_1:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 149
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 150
+        remove_series: true
+    building_bureaucratic_2:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 151
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 152
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 153
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 154
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 155
+        remove_series: true
+    building_holotemple:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 156
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 157
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 158
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 159
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 160
+        remove_series: true
+    building_hive_cluster:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 161
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 162
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 163
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 164
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 165
+        remove_series: true
+    building_network_junction:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 166
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 167
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 168
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 169
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 170
+        remove_series: true
+    building_bureaucratic_3:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 171
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 172
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 173
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 174
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 175
+        remove_series: true
+    building_sacred_nexus:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 176
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 177
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 178
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 179
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 180
+        remove_series: true
+    building_hive_confluence:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 181
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 182
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 183
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 184
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 185
+        remove_series: true
+    building_system_conflux:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 186
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 187
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 188
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 189
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 190
+        remove_series: true
+    building_autochthon_monument:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 191
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 192
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 193
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 194
+    building_corporate_monument:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 195
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 196
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 197
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 198
+    building_simulation_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 199
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 200
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 201
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 202
+    building_galactic_memorial_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 203
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 204
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 205
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 206
+    building_sensorium_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 207
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 208
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 209
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 210
+    building_lifecrypt_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 211
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 212
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 213
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 214
+    building_lifecrypt_machine_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 215
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 216
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 217
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 218
+    building_lifecrypt_hive_mind_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 219
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 220
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 221
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 222
+    building_lifecrypt_corporate_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 223
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 224
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 225
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 226
+    building_autocurating_vault:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 227
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 228
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 229
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 230
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 231
+        remove_series: true
+    building_citadel_of_faith:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 232
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 233
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 234
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 235
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 236
+        remove_series: true
+    building_corporate_vault:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 237
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 238
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 239
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 240
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 241
+        remove_series: true
+    building_alpha_hub:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 242
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 243
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 244
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 245
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 246
+        remove_series: true
+    building_trophy_vault:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 247
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 248
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 249
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 250
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 251
+        remove_series: true
+    building_fe_administration_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: always
+        source_order: 252
+      - projection: zone
+        context: unity
+        strategy: always
+        source_order: 253
+      - projection: zone
+        context: bureaucrat
+        strategy: always
+        source_order: 254
+      - projection: zone
+        context: priest
+        strategy: always
+        source_order: 255
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 256
+        remove_series: true
+    building_fe_administration_hive_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: always
+        source_order: 257
+      - projection: zone
+        context: unity
+        strategy: always
+        source_order: 258
+      - projection: zone
+        context: bureaucrat
+        strategy: always
+        source_order: 259
+      - projection: zone
+        context: priest
+        strategy: always
+        source_order: 260
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 261
+        remove_series: true
+    building_fe_temple_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: always
+        source_order: 262
+      - projection: zone
+        context: unity
+        strategy: always
+        source_order: 263
+      - projection: zone
+        context: bureaucrat
+        strategy: always
+        source_order: 264
+      - projection: zone
+        context: priest
+        strategy: always
+        source_order: 265
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 266
+        remove_series: true
+    building_fe_administration_machine_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: always
+        source_order: 267
+      - projection: zone
+        context: unity
+        strategy: always
+        source_order: 268
+      - projection: zone
+        context: bureaucrat
+        strategy: always
+        source_order: 269
+      - projection: zone
+        context: priest
+        strategy: always
+        source_order: 270
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        source_order: 271
+        remove_series: true
+    building_bureaucratic_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: job_only
+        source_order: 272
+      - projection: zone
+        context: unity
+        strategy: job_only
+        source_order: 273
+      - projection: zone
+        context: bureaucrat
+        strategy: job_only
+        source_order: 274
+      - projection: zone
+        context: priest
+        strategy: job_only
+        source_order: 275
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        - bca_advanced_unity_building_replace
+        source_order: 276
+        remove_series: true
+    building_temple:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: job_only
+        source_order: 277
+      - projection: zone
+        context: unity
+        strategy: job_only
+        source_order: 278
+      - projection: zone
+        context: bureaucrat
+        strategy: job_only
+        source_order: 279
+      - projection: zone
+        context: priest
+        strategy: job_only
+        source_order: 280
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        - bca_advanced_unity_building_replace
+        source_order: 281
+        remove_series: true
+    building_sacrificial_temple_1:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: job_only
+        source_order: 282
+      - projection: zone
+        context: unity
+        strategy: job_only
+        source_order: 283
+      - projection: zone
+        context: bureaucrat
+        strategy: job_only
+        source_order: 284
+      - projection: zone
+        context: priest
+        strategy: job_only
+        source_order: 285
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        - bca_advanced_unity_building_replace
+        source_order: 286
+        remove_series: true
+    building_uplink_node:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: job_only
+        source_order: 287
+      - projection: zone
+        context: unity
+        strategy: job_only
+        source_order: 288
+      - projection: zone
+        context: bureaucrat
+        strategy: job_only
+        source_order: 289
+      - projection: zone
+        context: priest
+        strategy: job_only
+        source_order: 290
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        - bca_advanced_unity_building_replace
+        source_order: 291
+        remove_series: true
+    building_hive_node:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: job_only
+        source_order: 292
+      - projection: zone
+        context: unity
+        strategy: job_only
+        source_order: 293
+      - projection: zone
+        context: bureaucrat
+        strategy: job_only
+        source_order: 294
+      - projection: zone
+        context: priest
+        strategy: job_only
+        source_order: 295
+      destruction:
+      - triggers:
+        - bca_can_remove_building_unity
+        - bca_advanced_unity_building_replace
+        source_order: 296
+        remove_series: true
+    building_dread_encampment:
+      construction:
+      - projection: designation
+        context: fortress
+        strategy: efficiency
+        source_order: 297
+      - projection: zone
+        context: fortress
+        strategy: efficiency
+        source_order: 298
+      destruction:
+      - triggers:
+        - bca_can_remove_building_fortress
+        source_order: 299
+        remove_series: true
+    building_military_academy:
+      construction:
+      - projection: designation
+        context: fortress
+        strategy: efficiency
+        source_order: 300
+      - projection: zone
+        context: fortress
+        strategy: efficiency
+        source_order: 301
+      destruction:
+      - triggers:
+        - bca_can_remove_building_fortress
+        source_order: 302
+        remove_series: true
+    building_planetary_shield_generator:
+      construction:
+      - projection: designation
+        context: fortress
+        strategy: efficiency
+        source_order: 303
+      - projection: zone
+        context: fortress
+        strategy: efficiency
+        source_order: 304
+      destruction:
+      - triggers:
+        - bca_can_remove_building_fortress
+        source_order: 305
+        remove_series: true
+    building_fe_fortress:
+      construction:
+      - projection: designation
+        context: fortress
+        strategy: job_only
+        source_order: 306
+      - projection: zone
+        context: fortress
+        strategy: job_only
+        source_order: 307
+      destruction:
+      - triggers:
+        - bca_can_remove_building_fortress
+        source_order: 308
+        remove_series: true
+    building_stronghold:
+      construction:
+      - projection: designation
+        context: fortress
+        strategy: job_only
+        source_order: 309
+      - projection: zone
+        context: fortress
+        strategy: job_only
+        source_order: 310
+      destruction:
+      - triggers:
+        - bca_can_remove_building_fortress
+        source_order: 311
+        remove_series: true
+    building_cradle_of_rebirth:
+      construction:
+      - projection: designation
+        context: col_wilderness_capital
+        strategy: job_bookend
+        source_order: 312
+      - projection: designation
+        context: col_wilderness_generator
+        strategy: job_bookend
+        source_order: 315
+      - projection: zone
+        context: wilderness_energy
+        strategy: job_bookend
+        source_order: 316
+      - projection: designation
+        context: col_wilderness_mining
+        strategy: job_bookend
+        source_order: 319
+      - projection: zone
+        context: wilderness_minerals
+        strategy: job_bookend
+        source_order: 320
+      - projection: designation
+        context: col_wilderness_farming
+        strategy: job_bookend
+        source_order: 323
+      - projection: zone
+        context: wilderness_food
+        strategy: job_bookend
+        source_order: 324
+      - projection: designation
+        context: col_wilderness_fortress
+        strategy: job_bookend
+        source_order: 327
+      - projection: zone
+        context: wilderness_fortress
+        strategy: job_bookend
+        source_order: 328
+      - projection: designation
+        context: col_wilderness_tech
+        strategy: job_bookend
+        source_order: 331
+      - projection: zone
+        context: wilderness_research
+        strategy: job_bookend
+        source_order: 332
+      - projection: designation
+        context: col_wilderness_nest
+        strategy: job_bookend
+        source_order: 335
+      - projection: zone
+        context: wilderness_trade
+        strategy: job_bookend
+        source_order: 336
+      - projection: designation
+        context: col_wilderness_refinery
+        strategy: job_bookend
+        source_order: 341
+      - projection: designation
+        context: col_wilderness_forge
+        strategy: job_bookend
+        source_order: 346
+      - projection: zone
+        context: wilderness_foundry
+        strategy: job_bookend
+        source_order: 347
+      - projection: designation
+        context: col_wilderness_unification
+        strategy: job_bookend
+        source_order: 350
+      - projection: zone
+        context: wilderness_unity
+        strategy: job_bookend
+        source_order: 351
+    building_brain_node_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_capital
+        strategy: job_only
+        source_order: 313
+      - projection: designation
+        context: col_wilderness_tech
+        strategy: job_only
+        source_order: 333
+      - projection: zone
+        context: wilderness_research
+        strategy: job_only
+        source_order: 334
+      - projection: designation
+        context: col_wilderness_nest
+        strategy: job_only
+        source_order: 339
+      - projection: zone
+        context: wilderness_trade
+        strategy: job_only
+        source_order: 340
+    building_natural_furnace_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_capital
+        strategy: job_only
+        source_order: 314
+      - projection: designation
+        context: col_wilderness_refinery
+        strategy: job_only
+        source_order: 342
+      - projection: designation
+        context: col_wilderness_forge
+        strategy: job_only
+        source_order: 348
+      - projection: zone
+        context: wilderness_foundry
+        strategy: job_only
+        source_order: 349
+    building_bioelectric_stimulator_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_generator
+        strategy: job_only
+        source_order: 317
+      - projection: zone
+        context: wilderness_energy
+        strategy: job_only
+        source_order: 318
+    building_churning_tunnels_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_mining
+        strategy: job_only
+        source_order: 321
+      - projection: zone
+        context: wilderness_minerals
+        strategy: job_only
+        source_order: 322
+    building_massive_growth_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_farming
+        strategy: job_only
+        source_order: 325
+      - projection: zone
+        context: wilderness_food
+        strategy: job_only
+        source_order: 326
+    building_planetary_carapace:
+      construction:
+      - projection: designation
+        context: col_wilderness_fortress
+        strategy: job_only
+        source_order: 329
+      - projection: zone
+        context: wilderness_fortress
+        strategy: job_only
+        source_order: 330
+    building_tendril_cradle_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_nest
+        strategy: job_only
+        source_order: 337
+      - projection: zone
+        context: wilderness_trade
+        strategy: job_only
+        source_order: 338
+    building_churning_stomach:
+      construction:
+      - projection: designation
+        context: col_wilderness_refinery
+        strategy: job_only
+        source_order: 343
+    building_crystal_growth:
+      construction:
+      - projection: designation
+        context: col_wilderness_refinery
+        strategy: job_only
+        source_order: 344
+    building_mote_aggravator:
+      construction:
+      - projection: designation
+        context: col_wilderness_refinery
+        strategy: job_only
+        source_order: 345
+    building_commensal_clearing_1:
+      construction:
+      - projection: designation
+        context: col_wilderness_unification
+        strategy: job_only
+        source_order: 352
+      - projection: zone
+        context: wilderness_unity
+        strategy: job_only
+        source_order: 353
+    building_forever_cruise_passenger_unity:
+      construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+        source_order: 354
+      - projection: zone
+        context: unity
+        strategy: efficiency
+        source_order: 355
+      - projection: zone
+        context: bureaucrat
+        strategy: efficiency
+        source_order: 356
+      - projection: zone
+        context: priest
+        strategy: efficiency
+        source_order: 357
+    building_forever_cruise_passenger_research:
+      construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+        source_order: 358
+      - projection: zone
+        context: research
+        strategy: efficiency
+        source_order: 359
+      - projection: zone
+        context: physics
+        strategy: efficiency
+        source_order: 360
+      - projection: zone
+        context: society
+        strategy: efficiency
+        source_order: 361
+      - projection: zone
+        context: engineering
+        strategy: efficiency
+        source_order: 362
+    building_forever_cruise_passenger_consumer_goods:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: efficiency
+        source_order: 363
+      - projection: designation
+        context: factory
+        strategy: efficiency
+        source_order: 364
+      - projection: zone
+        context: industrial
+        strategy: efficiency
+        source_order: 365
+      - projection: zone
+        context: factory
+        strategy: efficiency
+        source_order: 366
+      - projection: zone
+        context: ark_research_unity_consumer_goods
+        strategy: efficiency
+        source_order: 367
+    building_forever_cruise_crew_resources:
+      construction:
+      - projection: designation
+        context: farming
+        strategy: always
+        source_order: 368
+      - projection: designation
+        context: generator
+        strategy: always
+        source_order: 369
+      - projection: designation
+        context: mining
+        strategy: always
+        source_order: 370
+      - projection: zone
+        context: food
+        strategy: always
+        source_order: 371
+      - projection: zone
+        context: energy
+        strategy: always
+        source_order: 372
+      - projection: zone
+        context: minerals
+        strategy: always
+        source_order: 373
+    building_forever_cruise_crew_industry:
+      construction:
+      - projection: designation
+        context: industrial
+        strategy: always
+        source_order: 374
+      - projection: designation
+        context: foundry
+        strategy: always
+        source_order: 375
+      - projection: designation
+        context: factory
+        strategy: always
+        source_order: 376
+      - projection: zone
+        context: industrial
+        strategy: always
+        source_order: 377
+      - projection: zone
+        context: foundry
+        strategy: always
+        source_order: 378
+      - projection: zone
+        context: factory
+        strategy: always
+        source_order: 379
+      - projection: zone
+        context: ark_research_alloys_support
+        strategy: always
+        source_order: 380
+    building_forever_cruise_crew_service:
+      construction:
+      - projection: designation
+        context: trade
+        strategy: always
+        source_order: 381
+      - projection: designation
+        context: unity
+        strategy: always
+        source_order: 382
+      - projection: zone
+        context: trade
+        strategy: always
+        source_order: 383
+      - projection: zone
+        context: unity
+        strategy: always
+        source_order: 384
+      - projection: zone
+        context: bureaucrat
+        strategy: always
+        source_order: 385
+      - projection: zone
+        context: priest
+        strategy: always
+        source_order: 386
+      - projection: zone
+        context: entertainer
+        strategy: always
+        source_order: 387
+      - projection: zone
+        context: duelist
+        strategy: always
+        source_order: 388
+      - projection: zone
+        context: forever_cruise_passenger
+        strategy: always
+        source_order: 389
+      - projection: zone
+        context: forever_cruise_crew
+        strategy: always
+        source_order: 390
+      - projection: zone
+        context: forever_cruise_city_passenger
+        strategy: always
+        source_order: 391
+      - projection: zone
+        context: forever_cruise_city_crew
+        strategy: always
+        source_order: 392
+      - projection: zone
+        context: forever_cruise_city_mixed
+        strategy: always
+        source_order: 393
+    building_shroud_observatory_1:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 394
+        remove_series: true
+    building_ranger_lodge:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_reasearch
+        source_order: 395
+        remove_series: true
+    building_archaeo_refinery:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 396
+        remove_series: true
+    building_crystal_plant:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 397
+        remove_series: true
+      - triggers:
+        - bca_advanced_rare_resource_building_replace
+        source_order: 400
+        remove_series: true
+    building_chemical_plant:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 398
+        remove_series: true
+      - triggers:
+        - bca_advanced_rare_resource_building_replace
+        source_order: 401
+        remove_series: true
+    building_refinery:
+      destruction:
+      - triggers:
+        - bca_can_remove_building_industry
+        source_order: 399
+        remove_series: true
+      - triggers:
+        - bca_advanced_rare_resource_building_replace
+        source_order: 402
+        remove_series: true
+    building_robot_assembly_plant:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 403
+        remove_series: true
+    building_robot_assembly_complex:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 404
+        remove_series: true
+    building_machine_assembly_plant:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 405
+        remove_series: true
+    building_machine_assembly_complex:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 406
+        remove_series: true
+    building_clone_vats:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 407
+        remove_series: true
+    building_posthumous_employment_center:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 408
+        remove_series: true
+    building_spawning_pool:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 409
+        remove_series: true
+    building_offspring_nest:
+      destruction:
+      - triggers:
+        - bca_can_remove_pop_assemble
+        source_order: 410
+        remove_series: true

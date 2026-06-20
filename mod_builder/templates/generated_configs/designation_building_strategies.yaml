@@ -1,0 +1,459 @@
+building_strategy_designation_contexts:
+- context: farming
+  job_provider_districts:
+  - district_farming
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers:
+    - bca_is_farming_habitat
+    job_provider_districts:
+    - district_farming
+    strategy_buckets:
+    - strategy: district_capacity
+      buildings:
+      - building_farming_districts_1
+    - strategy: efficiency
+      buildings:
+      - building_food_processing_facility
+    - strategy: job_low_priority
+      buildings:
+      - building_hydroponics_farm
+    - strategy: always
+      buildings:
+      - building_forever_cruise_crew_resources
+  - name: bca_is_farming_habitat
+    trigger: bca_is_farming_habitat
+    exclude_triggers: []
+    job_provider_districts:
+    - district_farming
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_food_processing_facility
+    - strategy: job_only
+      buildings:
+      - building_hydroponics_farm
+  types:
+  - farming
+- context: generator
+  job_provider_districts:
+  - district_generator
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers:
+    - bca_is_generator_betharian
+    job_provider_districts:
+    - district_generator
+    strategy_buckets:
+    - strategy: district_capacity
+      buildings:
+      - building_generator_districts_1
+    - strategy: efficiency
+      buildings:
+      - building_energy_grid
+    - strategy: job_low_priority
+      buildings:
+      - building_generator_generic
+    - strategy: always
+      buildings:
+      - building_forever_cruise_crew_resources
+  - name: bca_is_generator_betharian
+    trigger: bca_is_generator_betharian
+    exclude_triggers: []
+    job_provider_districts:
+    - district_generator
+    strategy_buckets:
+    - strategy: job_only
+      buildings:
+      - building_betharian_power_plant
+      - building_mineral_purification_plant
+    - strategy: efficiency
+      buildings:
+      - building_energy_grid
+  types:
+  - generator
+- context: mining
+  job_provider_districts:
+  - district_mining
+  - district_melting
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts:
+    - district_mining
+    - district_melting
+    strategy_buckets:
+    - strategy: district_capacity
+      buildings:
+      - building_mining_districts_1
+    - strategy: efficiency
+      buildings:
+      - building_mineral_purification_plant
+    - strategy: job_low_priority
+      buildings:
+      - building_mine_generic
+    - strategy: always
+      buildings:
+      - building_forever_cruise_crew_resources
+  types:
+  - mining
+- context: industrial
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_ministry_production
+      - building_production_center
+      - building_foundry_efficiency_1
+      - building_factory_efficiency_1
+      - building_foundry_upkeep_1
+      - building_factory_upkeep_1
+      - building_forever_cruise_passenger_consumer_goods
+    - strategy: always
+      buildings:
+      - building_micro_forge
+      - building_affluence_emporium
+      - building_forever_cruise_crew_industry
+    - strategy: job_only
+      buildings:
+      - building_foundry_1
+      - building_factory_1
+  types:
+  - industrial
+- context: foundry
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_ministry_production
+      - building_production_center
+      - building_foundry_efficiency_1
+      - building_foundry_upkeep_1
+    - strategy: always
+      buildings:
+      - building_micro_forge
+      - building_forever_cruise_crew_industry
+    - strategy: job_only
+      buildings:
+      - building_foundry_1
+  types:
+  - foundry
+- context: factory
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_ministry_production
+      - building_production_center
+      - building_factory_efficiency_1
+      - building_factory_upkeep_1
+      - building_forever_cruise_passenger_consumer_goods
+    - strategy: always
+      buildings:
+      - building_affluence_emporium
+      - building_forever_cruise_crew_industry
+    - strategy: job_only
+      buildings:
+      - building_factory_1
+  types:
+  - factory
+- context: trade
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_fe_market_1
+      - building_galactic_stock_exchange
+      - building_commercial_megaplex
+    - strategy: job_only
+      buildings:
+      - building_commercial_zone
+    - strategy: always
+      buildings:
+      - building_forever_cruise_crew_service
+  types:
+  - trade
+- context: research
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_vultaum_reality_computer
+      - building_institute
+      - building_supercomputer
+      - building_archaeostudies_faculty
+      - building_research_efficiency_1
+      - building_research_upkeep_1
+      - building_forever_cruise_passenger_research
+    - strategy: always
+      buildings:
+      - building_engineering_facility_1
+      - building_physics_lab_1
+      - building_biolab_1
+      - building_fe_lab_1
+    - strategy: job_only
+      buildings:
+      - building_research_lab_1
+  types:
+  - research
+- context: unity
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_bureaucratic_2
+      - building_holotemple
+      - building_hive_cluster
+      - building_network_junction
+      - building_bureaucratic_3
+      - building_sacred_nexus
+      - building_hive_confluence
+      - building_system_conflux
+      - building_autochthon_monument
+      - building_corporate_monument
+      - building_simulation_1
+      - building_galactic_memorial_1
+      - building_sensorium_1
+      - building_lifecrypt_1
+      - building_lifecrypt_machine_1
+      - building_lifecrypt_hive_mind_1
+      - building_lifecrypt_corporate_1
+      - building_autocurating_vault
+      - building_citadel_of_faith
+      - building_corporate_vault
+      - building_alpha_hub
+      - building_trophy_vault
+      - building_forever_cruise_passenger_unity
+    - strategy: always
+      buildings:
+      - building_fe_administration_1
+      - building_fe_administration_hive_1
+      - building_fe_temple_1
+      - building_fe_administration_machine_1
+      - building_forever_cruise_crew_service
+    - strategy: job_only
+      buildings:
+      - building_bureaucratic_1
+      - building_temple
+      - building_sacrificial_temple_1
+      - building_uplink_node
+      - building_hive_node
+  types:
+  - unity
+- context: fortress
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: efficiency
+      buildings:
+      - building_dread_encampment
+      - building_military_academy
+      - building_planetary_shield_generator
+    - strategy: job_only
+      buildings:
+      - building_fe_fortress
+      - building_stronghold
+  types:
+  - fortress
+- context: col_wilderness_capital
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_brain_node_1
+      - building_natural_furnace_1
+  types:
+  - col_wilderness_capital
+- context: col_wilderness_generator
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_bioelectric_stimulator_1
+  types:
+  - col_wilderness_generator
+- context: col_wilderness_mining
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_churning_tunnels_1
+  types:
+  - col_wilderness_mining
+- context: col_wilderness_farming
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_massive_growth_1
+  types:
+  - col_wilderness_farming
+- context: col_wilderness_fortress
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_planetary_carapace
+  types:
+  - col_wilderness_fortress
+- context: col_wilderness_tech
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_brain_node_1
+  types:
+  - col_wilderness_tech
+- context: col_wilderness_nest
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_tendril_cradle_1
+      - building_brain_node_1
+  types:
+  - col_wilderness_nest
+- context: col_wilderness_refinery
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_natural_furnace_1
+      - building_churning_stomach
+      - building_crystal_growth
+      - building_mote_aggravator
+  types:
+  - col_wilderness_refinery
+- context: col_wilderness_forge
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_natural_furnace_1
+  types:
+  - col_wilderness_forge
+- context: col_wilderness_unification
+  job_provider_districts: any
+  branches:
+  - name: default
+    trigger: null
+    exclude_triggers: []
+    job_provider_districts: any
+    strategy_buckets:
+    - strategy: job_bookend
+      buildings:
+      - building_cradle_of_rebirth
+    - strategy: job_only
+      buildings:
+      - building_commensal_clearing_1
+  types:
+  - col_wilderness_unification

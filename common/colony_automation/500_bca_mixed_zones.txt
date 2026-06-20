@@ -222,6 +222,80 @@ bca_mix_primary_zone_build_wilderness_fortress = {
 		zone_fortress_wilderness
 	}
 }
+bca_mix_primary_zone_build_ark_research_unity_consumer_goods = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_unity_consumer_goods
+	}
+
+	prio_zones = {
+		zone_ark_research_unity
+		zone_ark_research_unity_gestalt
+	}
+}
+bca_mix_primary_zone_build_ark_research_alloys_support = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_ark_research_alloys_support
+	}
+
+	prio_zones = {
+		zone_ark_industrial
+		zone_ark_foundry
+	}
+}
+bca_mix_primary_zone_build_forever_cruise_city_passenger = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_passenger
+	}
+
+	prio_zones = {
+		zone_ark_forever_cruise_city_passenger
+	}
+}
+bca_mix_primary_zone_build_forever_cruise_city_crew = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_crew
+	}
+
+	prio_zones = {
+		zone_ark_forever_cruise_city_crew
+	}
+}
+bca_mix_primary_zone_build_forever_cruise_city_mixed = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_forever_cruise_city_mixed
+	}
+
+	prio_zones = {
+		zone_ark_forever_cruise_city_mixed
+	}
+}
+bca_mix_primary_zone_build_ark_pilgrimage = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_primary_zone_type_ark_pilgrimage
+	}
+
+	prio_zones = {
+		zone_ark_sacred_path_pilgrims
+	}
+}
 
 bca_mix_primary_zone_build_research = {
 	category = "planet_automation_designation_construction"
@@ -338,6 +412,7 @@ bca_mix_secondary_zone_build_trade = {
 		zone_trade_ring_world
 		zone_trade_nexus
 		zone_trade_hive
+		zone_ark_waystation_trade
 	}
 }
 bca_mix_secondary_zone_build_industrial = {
@@ -368,6 +443,7 @@ bca_mix_secondary_zone_build_foundry = {
 		zone_foundry_ring_world
 		zone_foundry_nexus
 		zone_foundry_hive
+		zone_ark_military_eco
 	}
 }
 bca_mix_secondary_zone_build_factory = {
@@ -417,6 +493,7 @@ bca_mix_secondary_zone_build_physics = {
 		zone_research_physics_ring_world
 		zone_research_physics_nexus
 		zone_research_physics_hive
+		zone_ark_reactor_physics
 	}
 }
 bca_mix_secondary_zone_build_society = {
@@ -433,6 +510,7 @@ bca_mix_secondary_zone_build_society = {
 		zone_research_society_ring_world
 		zone_research_society_nexus
 		zone_research_society_hive
+		zone_ark_farm_society
 	}
 }
 bca_mix_secondary_zone_build_engineering = {
@@ -449,6 +527,8 @@ bca_mix_secondary_zone_build_engineering = {
 		zone_research_engineering_ring_world
 		zone_research_engineering_nexus
 		zone_research_engineering_hive
+		zone_ark_military_engineering
+		zone_ark_forever_cruise_engineering
 	}
 }
 bca_mix_secondary_zone_build_bureaucrat = {
@@ -616,6 +696,7 @@ bca_mix_secondary_zone_build_minerals = {
 		zone_minerals
 		zone_minerals_nexus
 		zone_minerals_hive
+		zone_ark_harvest
 	}
 }
 bca_mix_secondary_zone_build_food = {
@@ -630,6 +711,7 @@ bca_mix_secondary_zone_build_food = {
 		zone_food
 		zone_food_ring_world
 		zone_food_hive
+		zone_ark_food
 	}
 }
 bca_mix_secondary_zone_build_rare_crystals = {
@@ -675,6 +757,7 @@ bca_mix_secondary_zone_build_exotic_gases = {
 		zone_habitat_exotic_gases
 		zone_exotic_gases_nexus
 		zone_exotic_gases_hive
+		zone_ark_shield_overloader
 	}
 }
 bca_mix_secondary_zone_build_angler = {
@@ -759,5 +842,90 @@ bca_mix_secondary_zone_build_wilderness_food = {
 
 	prio_zones = {
 		zone_food_wilderness
+	}
+}
+bca_mix_secondary_zone_build_ark_reactor = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_ark_reactor
+	}
+
+	prio_zones = {
+		zone_ark_engine_bypass
+	}
+}
+bca_mix_secondary_zone_build_missile = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_missile
+	}
+
+	prio_zones = {
+		zone_ark_missile_silos
+	}
+}
+bca_mix_secondary_zone_build_gun = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_gun
+	}
+
+	prio_zones = {
+		zone_ark_ammunition_lines
+	}
+}
+bca_mix_secondary_zone_build_laser = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_laser
+	}
+
+	prio_zones = {
+		zone_ark_laser_capacitors
+	}
+}
+bca_mix_secondary_zone_build_fighter = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_fighter
+	}
+
+	prio_zones = {
+		zone_ark_flight_decks
+	}
+}
+bca_mix_secondary_zone_build_forever_cruise_passenger = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_passenger
+	}
+
+	prio_zones = {
+		zone_ark_forever_cruise_passenger
+	}
+}
+bca_mix_secondary_zone_build_forever_cruise_crew = {
+	category = "planet_automation_designation_construction"
+
+	available = {
+        bca_has_minerals_to_build = yes
+        has_planet_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_crew
+	}
+
+	prio_zones = {
+		zone_ark_shipwright
+		zone_ark_forever_cruise_crew
 	}
 }

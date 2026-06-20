@@ -1,0 +1,124 @@
+﻿- designations:
+    - industrial
+    - foundry
+    - factory
+  zone_types:
+    - industrial
+    - foundry
+    - factory
+  groups:
+    - buildings:
+        - building_ministry_production
+        - building_production_center
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_industry
+
+- designations:
+    - industrial
+    - foundry
+  zone_types:
+    - industrial
+    - foundry
+  groups:
+    - buildings:
+        - building_foundry_efficiency_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_foundry
+
+- designations:
+    - industrial
+    - foundry
+  zone_types:
+    - industrial
+    - foundry
+  groups:
+    - buildings:
+        - building_micro_forge
+      strategy: always
+      destruction:
+        - triggers:
+            - bca_can_remove_building_foundry
+
+- designations:
+    - industrial
+    - foundry
+  zone_types:
+    - industrial
+    - foundry
+  groups:
+    - buildings:
+        - building_foundry_1
+      strategy: job_only
+      destruction:
+        - triggers:
+            - bca_can_remove_building_foundry
+            - bca_advanced_foundry_building_replace
+
+- designations:
+    - industrial
+    - factory
+  zone_types:
+    - industrial
+    - factory
+  groups:
+    - buildings:
+        - building_factory_efficiency_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_factory
+- designations:
+    - industrial
+    - factory
+  zone_types:
+    - industrial
+    - factory
+  groups:
+    - buildings:
+        - building_affluence_emporium
+      strategy: always
+      destruction:
+        - triggers:
+            - bca_can_remove_building_factory
+
+- designations:
+    - industrial
+    - factory
+  zone_types:
+    - industrial
+    - factory
+  groups:
+    - buildings:
+        - building_factory_1
+      strategy: job_only
+      destruction:
+        - triggers:
+            - bca_can_remove_building_factory
+            - bca_advanced_factory_building_replace
+
+- designations:
+    - industrial
+    - foundry
+  groups:
+    - buildings:
+        - building_foundry_upkeep_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_foundry
+
+- designations:
+    - industrial
+    - factory
+  groups:
+    - buildings:
+        - building_factory_upkeep_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_factory
+

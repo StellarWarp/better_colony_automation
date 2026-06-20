@@ -1,0 +1,1002 @@
+designation_building_contexts:
+- designations:
+  - farming
+  efficiency:
+  - building: building_food_processing_facility
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_resource
+  - building: building_food_processing_facility
+    build_triggers:
+    - bca_habitat_farming_context
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_resource
+  always:
+  - building: building_farming_districts_1
+    build_and_upgrade_triggers:
+    - bca_no_free_farming_districts
+  job_only:
+  - building: building_hydroponics_farm
+  - building: building_hydroponics_farm
+    build_triggers:
+    - bca_habitat_farming_context
+  key: farming
+- designations:
+  - generator
+  efficiency:
+  - building: building_energy_grid
+  always:
+  - building: building_generator_districts_1
+    build_and_upgrade_triggers:
+    - bca_no_free_generator_districts
+    - bca_not_betharian_generator_upgrade_context
+  job_only:
+  - building: building_generator_generic
+  - building: building_betharian_power_plant
+    build_triggers:
+    - bca_betharian_generator_context
+  - building: building_mineral_purification_plant
+    build_triggers:
+    - bca_betharian_generator_context
+  - building: building_energy_grid
+    build_triggers:
+    - bca_betharian_generator_context
+  key: generator
+- designations:
+  - mining
+  efficiency:
+  - building: building_mineral_purification_plant
+  always:
+  - building: building_mining_districts_1
+    build_and_upgrade_triggers:
+    - bca_no_free_mining_districts
+  job_only:
+  - building: building_mine_generic
+  key: mining
+- designations:
+  - industrial
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_foundry_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_micro_forge
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_factory_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_affluence_emporium
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_foundry_upkeep_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_factory_upkeep_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  job_only:
+  - building: building_foundry_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_foundry
+      - bca_advanced_foundry_building_replace
+  - building: building_factory_1
+    build_triggers:
+    - bca_negative_consumer_goods_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_factory
+      - bca_advanced_factory_building_replace
+  key: industrial
+- designations:
+  - foundry
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_foundry_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_micro_forge
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_foundry_upkeep_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  job_only:
+  - building: building_foundry_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_foundry
+      - bca_advanced_foundry_building_replace
+  key: foundry
+- designations:
+  - factory
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_factory_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_affluence_emporium
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_factory_upkeep_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  job_only:
+  - building: building_factory_1
+    build_triggers:
+    - bca_negative_consumer_goods_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_factory
+      - bca_advanced_factory_building_replace
+  key: factory
+- designations:
+  - trade
+  efficiency:
+  - building: building_fe_market_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  - building: building_galactic_stock_exchange
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  - building: building_commercial_megaplex
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  job_only:
+  - building: building_commercial_zone
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_trade
+      - bca_advanced_trade_building_replace
+  key: trade
+- designations:
+  - research
+  efficiency:
+  - building: building_vultaum_reality_computer
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_institute
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_supercomputer
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_archaeostudies_faculty
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_research_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_research_upkeep_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  always:
+  - building: building_fe_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_engineering_facility_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_physics_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_biolab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  job_only:
+  - building: building_research_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+      - bca_advanced_research_building_replace
+  key: research
+- designations:
+  - unity
+  efficiency:
+  - building: building_bureaucratic_2
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_holotemple
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_hive_cluster
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_network_junction
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_bureaucratic_3
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_sacred_nexus
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_hive_confluence
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_system_conflux
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_autochthon_monument
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_corporate_monument
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_simulation_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_sensorium_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_galactic_memorial_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_machine_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_hive_mind_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_corporate_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_autocurating_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_citadel_of_faith
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_corporate_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_alpha_hub
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_trophy_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  always:
+  - building: building_fe_administration_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_administration_hive_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_temple_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_administration_machine_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  job_only:
+  - building: building_bureaucratic_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_temple
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_sacrificial_temple_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_uplink_node
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_hive_node
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_organic_sanctuary
+    build_triggers:
+    - bca_machine_servitor_organic_sanctuary_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  key: unity
+- designations:
+  - fortress
+  efficiency:
+  - building: building_dread_encampment
+    build_triggers:
+    - bca_reanimated_armies_context
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_military_academy
+    build_triggers:
+    - bca_non_reanimated_armies_context
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_planetary_shield_generator
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  job_only:
+  - building: building_fe_fortress
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_stronghold
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_fortress
+  key: fortress
+- designations:
+  - col_capital
+  - col_capital_hive
+  - col_capital_machine
+  always:
+  - building: building_embassy
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_autochthon_monument
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_corporate_monument
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_simulation_1
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_sensorium_1
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_galactic_memorial_1
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_vultaum_reality_computer
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_institute
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_supercomputer
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_archaeostudies_faculty
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_autocurating_vault
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_citadel_of_faith
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_corporate_vault
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_alpha_hub
+    build_triggers:
+    - bca_capital_job_context
+  - building: building_organic_sanctuary
+    build_triggers:
+    - bca_capital_machine_servitor_sanctuary_context
+    building_settings:
+      planet_limit: 2
+  key: col_capital
+- designations:
+  - col_resort
+  - col_pleasure
+  always:
+  - building: building_capital
+    build_triggers:
+    - bca_resort_context
+  - building: building_luxury_residence
+    build_triggers:
+    - bca_resort_context
+  key: col_resort
+- designations:
+  - col_slave
+  always:
+  - building: building_overseer_homes
+    build_triggers:
+    - bca_slave_overseer_homes_first_pass
+    building_settings:
+      planet_limit: 1
+  - building: building_overseer_homes
+    build_triggers:
+    - bca_slave_overseer_homes_second_pass
+    building_settings:
+      planet_limit: 2
+  - building: building_slave_processing
+    build_triggers:
+    - bca_slave_processing_context
+  - building: building_psi_corps
+    build_triggers:
+    - bca_slave_psionic_context
+  key: col_slave
+- designations:
+  - col_wilderness_capital
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_brain_node_1
+  - building: building_natural_furnace_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_capital
+- designations:
+  - col_wilderness_generator
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_bioelectric_stimulator_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_generator
+- designations:
+  - col_wilderness_mining
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_churning_tunnels_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_mining
+- designations:
+  - col_wilderness_farming
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_massive_growth_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_farming
+- designations:
+  - col_wilderness_fortress
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_planetary_carapace
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_fortress
+- designations:
+  - col_wilderness_tech
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_brain_node_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_tech
+- designations:
+  - col_wilderness_nest
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_tendril_cradle_1
+  - building: building_brain_node_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_nest
+- designations:
+  - col_wilderness_refinery
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_natural_furnace_1
+  - building: building_churning_stomach
+  - building: building_crystal_growth
+  - building: building_mote_aggravator
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_refinery
+- designations:
+  - col_wilderness_forge
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_natural_furnace_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_forge
+- designations:
+  - col_wilderness_unification
+  job_only:
+  - building: building_cradle_of_rebirth
+    building_settings:
+      planet_limit: 1
+  - building: building_commensal_clearing_1
+  - building: building_cradle_of_rebirth
+  key: col_wilderness_unification
+mixed_zone_building_contexts:
+- zone_types:
+  - food
+  - agrarian
+  efficiency:
+  - building: building_food_processing_facility
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_resource
+  job_only:
+  - building: building_hydroponics_farm
+  key: food
+  job_building_available_for_at_least_one_zone: true
+- zone_types:
+  - energy
+  - hydroponics
+  efficiency:
+  - building: building_energy_grid
+  job_only:
+  - building: building_generator_generic
+  key: energy
+  job_building_available_for_at_least_one_zone: true
+- zone_types:
+  - minerals
+  efficiency:
+  - building: building_mineral_purification_plant
+  job_only:
+  - building: building_mine_generic
+  key: minerals
+  job_building_available_for_at_least_one_zone: true
+- zone_types:
+  - industrial
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_foundry_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_micro_forge
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_factory_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_affluence_emporium
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  job_only:
+  - building: building_foundry_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_foundry
+      - bca_advanced_foundry_building_replace
+  - building: building_factory_1
+    build_triggers:
+    - bca_negative_consumer_goods_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_factory
+      - bca_advanced_factory_building_replace
+  key: industrial
+- zone_types:
+  - foundry
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_foundry_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  - building: building_micro_forge
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_foundry
+  job_only:
+  - building: building_foundry_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_foundry
+      - bca_advanced_foundry_building_replace
+  key: foundry
+- zone_types:
+  - factory
+  efficiency:
+  - building: building_ministry_production
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_production_center
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_industry
+  - building: building_factory_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  - building: building_affluence_emporium
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_factory
+  job_only:
+  - building: building_factory_1
+    build_triggers:
+    - bca_negative_consumer_goods_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_factory
+      - bca_advanced_factory_building_replace
+  key: factory
+- zone_types:
+  - trade
+  efficiency:
+  - building: building_fe_market_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  - building: building_galactic_stock_exchange
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  - building: building_commercial_megaplex
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_trade
+  job_only:
+  - building: building_commercial_zone
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_trade
+      - bca_advanced_trade_building_replace
+  key: trade
+- zone_types:
+  - research
+  - physics
+  - society
+  - engineering
+  efficiency:
+  - building: building_vultaum_reality_computer
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_institute
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_supercomputer
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_archaeostudies_faculty
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_research_efficiency_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  always:
+  - building: building_fe_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_engineering_facility_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_physics_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  - building: building_biolab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+  job_only:
+  - building: building_research_lab_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_reasearch
+      - bca_advanced_research_building_replace
+  key: research
+- zone_types:
+  - unity
+  - bureaucrat
+  - priest
+  efficiency:
+  - building: building_bureaucratic_2
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_holotemple
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_hive_cluster
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_network_junction
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_bureaucratic_3
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_sacred_nexus
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_hive_confluence
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_system_conflux
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_autochthon_monument
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_corporate_monument
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_simulation_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_sensorium_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_galactic_memorial_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_machine_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_hive_mind_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_lifecrypt_corporate_1
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_autocurating_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_citadel_of_faith
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_corporate_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_alpha_hub
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_trophy_vault
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_unity
+  always:
+  - building: building_fe_administration_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_administration_hive_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_temple_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  - building: building_fe_administration_machine_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+  job_only:
+  - building: building_bureaucratic_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_temple
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_sacrificial_temple_1
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_uplink_node
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_hive_node
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  - building: building_organic_sanctuary
+    build_triggers:
+    - bca_machine_servitor_organic_sanctuary_context
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_unity
+      - bca_advanced_unity_building_replace
+  key: unity
+- zone_types:
+  - fortress
+  efficiency:
+  - building: building_dread_encampment
+    build_triggers:
+    - bca_reanimated_armies_context
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_military_academy
+    build_triggers:
+    - bca_non_reanimated_armies_context
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_planetary_shield_generator
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  job_only:
+  - building: building_fe_fortress
+    destruction:
+      any_triggers:
+      - bca_can_remove_building_fortress
+  - building: building_stronghold
+    destruction:
+      remove_series: true
+      any_triggers:
+      - bca_can_remove_building_fortress
+  key: fortress

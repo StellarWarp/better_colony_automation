@@ -15,6 +15,7 @@ zones_info:
   - zone_trade_ring_world
   - zone_trade_nexus
   - zone_trade_hive
+  - zone_ark_waystation_trade
   type: trade
   fitness_trigger:
     has_trade_designation: 200
@@ -37,6 +38,7 @@ zones_info:
   - zone_foundry_ring_world
   - zone_foundry_nexus
   - zone_foundry_hive
+  - zone_ark_military_eco
   type: foundry
   fitness_trigger:
     has_foundry_designation: 200
@@ -74,6 +76,7 @@ zones_info:
   - zone_research_physics_ring_world
   - zone_research_physics_nexus
   - zone_research_physics_hive
+  - zone_ark_reactor_physics
   type: physics
   fitness_trigger:
     has_research_designation: 200
@@ -84,6 +87,7 @@ zones_info:
   - zone_research_society_ring_world
   - zone_research_society_nexus
   - zone_research_society_hive
+  - zone_ark_farm_society
   type: society
   fitness_trigger:
     has_research_designation: 200
@@ -94,6 +98,8 @@ zones_info:
   - zone_research_engineering_ring_world
   - zone_research_engineering_nexus
   - zone_research_engineering_hive
+  - zone_ark_military_engineering
+  - zone_ark_forever_cruise_engineering
   type: engineering
   fitness_trigger:
     has_research_designation: 200
@@ -217,6 +223,7 @@ zones_info:
   - zone_minerals
   - zone_minerals_nexus
   - zone_minerals_hive
+  - zone_ark_harvest
   type: minerals
   fitness_trigger:
     has_mining_designation: 200
@@ -226,6 +233,7 @@ zones_info:
   - zone_food
   - zone_food_ring_world
   - zone_food_hive
+  - zone_ark_food
   type: food
   fitness_trigger:
     has_farming_designation: 200
@@ -256,6 +264,7 @@ zones_info:
   - zone_habitat_exotic_gases
   - zone_exotic_gases_nexus
   - zone_exotic_gases_hive
+  - zone_ark_shield_overloader
   type: exotic_gases
   fitness_trigger:
     has_farming_designation: 120
@@ -379,3 +388,96 @@ zones_info:
     col_wilderness_farming: 200
     col_farming: 150
     col_wilderness_capital: 100
+- icon: GFX_district_specialization_ark_research_unity_consumer_goods
+  zones:
+  - zone_ark_research_unity
+  - zone_ark_research_unity_gestalt
+  type: ark_research_unity_consumer_goods
+  fitness_trigger:
+    has_research_designation: 200
+    has_unity_designation: 200
+    has_factory_designation: 100
+- icon: GFX_district_specialization_ark_research_alloys_support
+  zones:
+  - zone_ark_industrial
+  - zone_ark_foundry
+  type: ark_research_alloys_support
+  fitness_trigger:
+    has_research_designation: 200
+    has_foundry_designation: 150
+    has_industrial_designation: 100
+- icon: GFX_district_specialization_ark_reactor
+  zones:
+  - zone_ark_engine_bypass
+  type: ark_reactor
+  fitness_trigger:
+    has_generator_designation: 200
+- icon: GFX_district_specialization_missile
+  zones:
+  - zone_ark_missile_silos
+  type: missile
+  fitness_trigger:
+    has_fortress_designation: 200
+- icon: GFX_district_specialization_gun
+  zones:
+  - zone_ark_ammunition_lines
+  type: gun
+  fitness_trigger:
+    has_fortress_designation: 200
+- icon: GFX_district_specialization_laser
+  zones:
+  - zone_ark_laser_capacitors
+  type: laser
+  fitness_trigger:
+    has_fortress_designation: 200
+- icon: GFX_district_specialization_fighter
+  zones:
+  - zone_ark_flight_decks
+  type: fighter
+  fitness_trigger:
+    has_fortress_designation: 200
+- icon: GFX_district_specialization_forever_cruise_passenger
+  zones:
+  - zone_ark_forever_cruise_passenger
+  type: forever_cruise_passenger
+  fitness_trigger:
+    has_unity_designation: 200
+    has_research_designation: 150
+    has_trade_designation: 100
+- icon: GFX_district_specialization_forever_cruise_crew
+  zones:
+  - zone_ark_shipwright
+  - zone_ark_forever_cruise_crew
+  type: forever_cruise_crew
+  fitness_trigger:
+    has_industrial_designation: 200
+    has_foundry_designation: 200
+    has_factory_designation: 200
+- icon: GFX_district_specialization_forever_cruise_city_passenger
+  zones:
+  - zone_ark_forever_cruise_city_passenger
+  type: forever_cruise_city_passenger
+  fitness_trigger:
+    has_unity_designation: 200
+    has_research_designation: 150
+    has_trade_designation: 100
+- icon: GFX_district_specialization_forever_cruise_city_crew
+  zones:
+  - zone_ark_forever_cruise_city_crew
+  type: forever_cruise_city_crew
+  fitness_trigger:
+    has_industrial_designation: 200
+    has_foundry_designation: 200
+    has_factory_designation: 200
+- icon: GFX_district_specialization_forever_cruise_city_mixed
+  zones:
+  - zone_ark_forever_cruise_city_mixed
+  type: forever_cruise_city_mixed
+  fitness_trigger:
+    always: 50
+- icon: GFX_district_specialization_ark_pilgrimage
+  zones:
+  - zone_ark_sacred_path_pilgrims
+  type: ark_pilgrimage
+  fitness_trigger:
+    has_unity_designation: 200

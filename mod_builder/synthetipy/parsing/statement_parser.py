@@ -87,7 +87,7 @@ class StatementParserMixin:
         
         self.consume(TokenType.EQUALS, f"Expected '=' after '{operator}'")
         
-        body = self.parse_block()
+        body = self.parse_block_or_list()
         
         condition = ConditionNode(operator, body)
         condition.line = operator_token.line

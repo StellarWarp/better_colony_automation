@@ -253,11 +253,16 @@ class ConditionNode(ASTNode):
             has_technology = tech_advanced
             owner = { is_ai = yes }
         }
+
+        OR = {
+            tech_autocurating_vault
+            tech_transcendent_faith
+        }
     """
     
     OPERATORS = ['OR', 'AND', 'NOT', 'NAND', 'NOR']
     
-    def __init__(self, operator: Union[str, WrappedString], body: BlockNode):
+    def __init__(self, operator: Union[str, WrappedString], body: ASTNode):
         super().__init__()
         assert isinstance(operator, (str, WrappedString)), "Operator should be a string or WrappedString"
         if isinstance(operator, str):
@@ -266,6 +271,7 @@ class ConditionNode(ASTNode):
         else:
             assert operator.value in self.OPERATORS, f"Invalid operator: {operator.value}"
             self.operator = operator
+        assert isinstance(body, (BlockNode, ListNode)), "Condition body should be a BlockNode or ListNode"
         self.operator.parent = self
         self.body = body
         body.parent = self

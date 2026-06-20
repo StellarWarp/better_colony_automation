@@ -4,6 +4,7 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: common/scripted_triggers/building_build_conditions.txt.j2
+
 bca_can_build_building_colony_shelter = {
     AND = {
         exists = owner
@@ -37,7 +38,7 @@ bca_can_build_building_capital = {
         sapient_pop_amount >= 1000
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_major_capital = {
@@ -56,7 +57,7 @@ bca_can_build_building_major_capital = {
         sapient_pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_system_capital = {
@@ -75,7 +76,7 @@ bca_can_build_building_system_capital = {
         sapient_pop_amount >= 5000
     }
     owner = {
-        has_technology = "tech_galactic_administration"
+        has_technology = tech_galactic_administration
     }
 }
 bca_can_build_building_deployment_post = {
@@ -101,10 +102,7 @@ bca_can_build_building_machine_capital = {
             OR = {
                 is_machine_empire = yes
                 is_country_type = ai_empire
-                AND = {
-                    exists = event_target:mechanocalibrator_country
-                    is_same_value = event_target:mechanocalibrator_country
-                }
+                is_country_type = mechanocalibrator
             }
             is_fallen_empire = no
         }
@@ -117,7 +115,7 @@ bca_can_build_building_machine_capital = {
         sapient_pop_amount >= 1000
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_machine_major_capital = {
@@ -135,7 +133,7 @@ bca_can_build_building_machine_major_capital = {
         sapient_pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_machine_system_capital = {
@@ -153,7 +151,7 @@ bca_can_build_building_machine_system_capital = {
         sapient_pop_amount >= 5000
     }
     owner = {
-        has_technology = "tech_galactic_administration"
+        has_technology = tech_galactic_administration
     }
 }
 bca_can_build_building_hive_capital = {
@@ -173,7 +171,7 @@ bca_can_build_building_hive_capital = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_hive_major_capital = {
@@ -192,7 +190,7 @@ bca_can_build_building_hive_major_capital = {
         sapient_pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_hab_capital = {
@@ -205,7 +203,7 @@ bca_can_build_building_hab_capital = {
         }
     }
     owner = {
-        has_technology = "tech_habitat_1"
+        has_technology = tech_habitat_1
     }
 }
 bca_can_build_building_hab_major_capital = {
@@ -221,7 +219,7 @@ bca_can_build_building_hab_major_capital = {
         sapient_pop_amount >= 1000
     }
     owner = {
-        has_technology = "tech_habitat_2"
+        has_technology = tech_habitat_2
     }
 }
 bca_can_build_building_hab_system_capital = {
@@ -237,7 +235,7 @@ bca_can_build_building_hab_system_capital = {
         sapient_pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_habitat_3"
+        has_technology = tech_habitat_3
     }
 }
 bca_can_build_building_resort_capital = {
@@ -321,17 +319,6 @@ bca_can_build_building_imperial_hive_capital = {
 bca_can_build_building_robot_assembly_plant = {
     AND = {
         exists = owner
-        OR = {
-            owner = {
-                is_ai = no
-            }
-            NOT = {
-                exists = assembling_species
-            }
-            assembling_species = {
-                is_robotic_species = yes
-            }
-        }
         owner = {
             is_regular_empire = yes
             is_individual_machine = no
@@ -366,23 +353,12 @@ bca_can_build_building_robot_assembly_plant = {
         }
     }
     owner = {
-        has_technology = "tech_robotic_workers"
+        has_technology = tech_robotic_workers
     }
 }
 bca_can_build_building_robot_assembly_complex = {
     AND = {
         exists = owner
-        OR = {
-            owner = {
-                is_ai = no
-            }
-            NOT = {
-                exists = assembling_species
-            }
-            assembling_species = {
-                is_robotic_species = yes
-            }
-        }
         owner = {
             is_regular_empire = yes
             is_individual_machine = no
@@ -462,9 +438,15 @@ bca_can_build_building_spawning_pool = {
 }
 bca_can_build_building_offspring_nest = {
     AND = {
-        exists = owner
         owner = {
             has_origin = origin_progenitor_hive
+        }
+    }
+    AND = {
+        NOT = {
+            fleet.starbase = {
+                has_starbase_building = arkship_offspring_outlook
+            }
         }
     }
 }
@@ -556,17 +538,6 @@ bca_can_build_building_clone_vats = {
             owner = {
                 is_ai = no
             }
-            NOT = {
-                exists = assembling_species
-            }
-            assembling_species = {
-                is_organic_species = yes
-            }
-        }
-        OR = {
-            owner = {
-                is_ai = no
-            }
             NAND = {
                 free_district_slots = 0
                 free_building_slots <= 1
@@ -593,17 +564,6 @@ bca_can_build_building_clone_army_clone_vat = {
 bca_can_build_building_posthumous_employment_center = {
     AND = {
         exists = owner
-        OR = {
-            owner = {
-                is_ai = no
-            }
-            NOT = {
-                exists = assembling_species
-            }
-            assembling_species = {
-                is_organic_species = yes
-            }
-        }
         OR = {
             owner = {
                 is_ai = no
@@ -861,7 +821,7 @@ bca_can_build_building_slave_processing = {
         }
     }
     owner = {
-        has_technology = "tech_neural_implants"
+        has_technology = tech_neural_implants
     }
 }
 bca_can_build_building_precinct_house = {
@@ -894,7 +854,7 @@ bca_can_build_building_precinct_house = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_hall_judgment = {
@@ -923,7 +883,7 @@ bca_can_build_building_hall_judgment = {
         }
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_state_academy = {
@@ -937,7 +897,7 @@ bca_can_build_building_state_academy = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_center_of_guidance = {
@@ -950,7 +910,7 @@ bca_can_build_building_center_of_guidance = {
         }
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_sentinel_posts = {
@@ -984,7 +944,7 @@ bca_can_build_building_sentinel_posts = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_order_keep = {
@@ -992,7 +952,9 @@ bca_can_build_building_order_keep = {
         owner = {
             has_origin = origin_toxic_knights
         }
-        has_planet_flag = toxic_knights_habitat
+        planet = {
+            has_carrier_flag = toxic_knights_habitat
+        }
         owner = {
             NOT = {
                 has_country_flag = quest_abandoned
@@ -1073,7 +1035,7 @@ bca_can_build_building_embassy = {
         }
     }
     owner = {
-        has_technology = "tech_xeno_diplomacy"
+        has_technology = tech_xeno_diplomacy
     }
 }
 bca_can_build_building_grand_embassy = {
@@ -1110,7 +1072,7 @@ bca_can_build_building_grand_embassy = {
         }
     }
     owner = {
-        has_technology = "tech_xeno_relations"
+        has_technology = tech_xeno_relations
     }
 }
 bca_can_build_building_gaiaseeders_1 = {
@@ -1135,12 +1097,18 @@ bca_can_build_building_gaiaseeders_1 = {
 }
 bca_can_build_building_gaiaseeders_2 = {
     AND = {
-        can_build_gaiaseeder = yes
+        exists = planet
+        planet = {
+            can_build_gaiaseeder = yes
+        }
     }
 }
 bca_can_build_building_gaiaseeders_3 = {
     AND = {
-        can_build_gaiaseeder = yes
+        exists = planet
+        planet = {
+            can_build_gaiaseeder = yes
+        }
     }
 }
 bca_can_build_building_gaiaseeders_4 = {
@@ -1164,7 +1132,10 @@ bca_can_build_building_gaiaseeders_pc_gaia = {
     }
     AND = {
         has_upgraded_capital = yes
-        can_build_gaiaseeder = yes
+        exists = planet
+        planet = {
+            can_build_gaiaseeder = yes
+        }
     }
 }
 bca_can_build_building_volcanic_forge_1 = {
@@ -1188,7 +1159,7 @@ bca_can_build_building_volcanic_forge_1 = {
         num_uncleared_blockers = 0
     }
     owner = {
-        has_technology = "tech_volcanic_forge"
+        has_technology = tech_volcanic_forge
     }
 }
 bca_can_build_building_volcanic_forge_2 = {
@@ -1209,7 +1180,7 @@ bca_can_build_building_volcanic_forge_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_volcanic_forge"
+        has_technology = tech_volcanic_forge
     }
 }
 bca_can_build_building_hydroponics_farm = {
@@ -1228,9 +1199,19 @@ bca_can_build_building_hydroponics_farm = {
         NOT = {
             has_modifier = resort_colony
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_hydroponics_farm
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_hydroponics"
+        has_technology = tech_hydroponics
     }
 }
 bca_can_build_building_food_processing_facility = {
@@ -1251,7 +1232,7 @@ bca_can_build_building_food_processing_facility = {
         }
     }
     owner = {
-        has_technology = "tech_food_processing_1"
+        has_technology = tech_food_processing_1
     }
 }
 bca_can_build_building_food_processing_center = {
@@ -1265,7 +1246,7 @@ bca_can_build_building_food_processing_center = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_food_processing_2"
+        has_technology = tech_food_processing_2
     }
 }
 bca_can_build_building_farming_districts_1 = {
@@ -1273,6 +1254,7 @@ bca_can_build_building_farming_districts_1 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_farming_district = yes
     }
@@ -1285,6 +1267,7 @@ bca_can_build_building_farming_districts_2 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_farming_district = yes
     }
@@ -1297,6 +1280,7 @@ bca_can_build_building_farming_districts_3 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_farming_district = yes
     }
@@ -1309,6 +1293,7 @@ bca_can_build_building_farming_districts_4 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_farming_district = yes
     }
@@ -1324,7 +1309,7 @@ bca_can_build_building_baol_organic_plant = {
         }
     }
     owner = {
-        has_technology = "tech_secrets_baol"
+        has_technology = tech_secrets_baol
     }
 }
 bca_can_build_building_mine_generic = {
@@ -1340,9 +1325,19 @@ bca_can_build_building_mine_generic = {
             planet_is_habitat_equivalent = no
             planet_is_ring_world_equivalent = no
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_mine_generic
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_mechanized_mining"
+        has_technology = tech_mechanized_mining
     }
 }
 bca_can_build_building_mineral_purification_plant = {
@@ -1368,11 +1363,14 @@ bca_can_build_building_mineral_purification_plant = {
             }
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
             has_any_mining_district_or_building = yes
+            owner = {
+                is_nomadic = yes
+            }
         }
     }
     owner = {
@@ -1390,6 +1388,9 @@ bca_can_build_building_mineral_purification_hub = {
                 is_ai = no
             }
             has_any_mining_district_or_building = yes
+            owner = {
+                is_nomadic = yes
+            }
         }
     }
     AND = {
@@ -1407,6 +1408,7 @@ bca_can_build_building_mining_districts_1 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_mining_district = yes
     }
@@ -1419,6 +1421,7 @@ bca_can_build_building_mining_districts_2 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_mining_district = yes
     }
@@ -1431,6 +1434,7 @@ bca_can_build_building_mining_districts_3 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_mining_district = yes
     }
@@ -1443,6 +1447,7 @@ bca_can_build_building_mining_districts_4 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_mining_district = yes
     }
@@ -1459,9 +1464,19 @@ bca_can_build_building_generator_generic = {
         NOT = {
             has_modifier = resort_colony
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_generator_generic
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_power_plant_1"
+        has_technology = tech_power_plant_1
     }
 }
 bca_can_build_building_energy_grid = {
@@ -1484,12 +1499,12 @@ bca_can_build_building_energy_grid = {
                     value > 0
                 }
             }
-            OR = {
-                owner = {
-                    is_ai = no
-                }
-                has_any_generator_district_or_building = yes
+        }
+        OR = {
+            owner = {
+                is_ai = no
             }
+            has_any_generator_district_or_building = yes
         }
     }
     owner = {
@@ -1524,6 +1539,7 @@ bca_can_build_building_generator_districts_1 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_generator_district = yes
     }
@@ -1536,6 +1552,7 @@ bca_can_build_building_generator_districts_2 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_generator_district = yes
     }
@@ -1548,6 +1565,7 @@ bca_can_build_building_generator_districts_3 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_generator_district = yes
     }
@@ -1560,6 +1578,7 @@ bca_can_build_building_generator_districts_4 = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_any_capped_planet_generator_district = yes
     }
@@ -1602,13 +1621,16 @@ bca_can_build_building_resource_silo = {
                                 has_technology = tech_mega_engineering
                             }
                         }
+                        owner = {
+                            country_near_tangible_resource_cap = yes
+                        }
                     }
                 }
             }
         }
     }
     owner = {
-        has_technology = "tech_basic_industry"
+        has_technology = tech_basic_industry
     }
 }
 bca_can_build_building_bio_reactor = {
@@ -1629,7 +1651,7 @@ bca_can_build_building_bio_reactor = {
         }
     }
     owner = {
-        has_technology = "tech_bio_reactor"
+        has_technology = tech_bio_reactor
     }
 }
 bca_can_build_building_bio_reactor_2 = {
@@ -1653,7 +1675,7 @@ bca_can_build_building_bio_reactor_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_bio_reactor_2"
+        has_technology = tech_bio_reactor_2
     }
 }
 bca_can_build_building_foundry_1 = {
@@ -1668,7 +1690,7 @@ bca_can_build_building_foundry_1 = {
                 is_wilderness_empire = no
             }
             OR = {
-                has_planet_flag = ignore_ai_building_limitations
+                has_carrier_flag = ignore_ai_building_limitations
                 owner = {
                     is_ai = no
                 }
@@ -1678,6 +1700,14 @@ bca_can_build_building_foundry_1 = {
                         has_building = building_foundry_1
                         has_building = building_foundry_2
                         has_building = building_foundry_3
+                    }
+                }
+                AND = {
+                    owner = {
+                        is_nomadic = yes
+                    }
+                    tiered_building_below_cap = {
+                        BUILDING = foundry
                     }
                 }
             }
@@ -1725,7 +1755,7 @@ bca_can_build_building_factory_1 = {
             has_modifier = slave_colony
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -1738,6 +1768,14 @@ bca_can_build_building_factory_1 = {
                     has_building = building_factory_1
                     has_building = building_factory_2
                     has_building = building_factory_3
+                }
+            }
+            AND = {
+                owner = {
+                    is_nomadic = yes
+                }
+                tiered_building_below_cap = {
+                    BUILDING = factory
                 }
             }
         }
@@ -1788,7 +1826,7 @@ bca_can_build_building_refinery = {
         }
     }
     owner = {
-        has_technology = "tech_exotic_gases"
+        has_technology = tech_exotic_gases
     }
 }
 bca_can_build_building_chemical_plant = {
@@ -1803,7 +1841,7 @@ bca_can_build_building_chemical_plant = {
         }
     }
     owner = {
-        has_technology = "tech_volatile_motes"
+        has_technology = tech_volatile_motes
     }
 }
 bca_can_build_building_crystal_plant = {
@@ -1818,7 +1856,7 @@ bca_can_build_building_crystal_plant = {
         }
     }
     owner = {
-        has_technology = "tech_rare_crystals"
+        has_technology = tech_rare_crystals
     }
 }
 bca_can_build_building_nanite_transmuter = {
@@ -1848,7 +1886,7 @@ bca_can_build_building_nanite_transmuter = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_nanite_transmutation"
+        has_technology = tech_nanite_transmutation
     }
 }
 bca_can_build_building_ministry_production = {
@@ -1866,7 +1904,7 @@ bca_can_build_building_ministry_production = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_global_production_strategy"
+        has_technology = tech_global_production_strategy
     }
 }
 bca_can_build_building_production_center = {
@@ -1881,7 +1919,7 @@ bca_can_build_building_production_center = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_global_production_strategy"
+        has_technology = tech_global_production_strategy
     }
 }
 bca_can_build_building_coordinated_fulfillment_center_1 = {
@@ -1921,7 +1959,7 @@ bca_can_build_building_archaeo_refinery = {
         }
     }
     owner = {
-        has_technology = "tech_archaeo_refinery"
+        has_technology = tech_archaeo_refinery
     }
 }
 bca_can_build_building_foundry_upkeep_1 = {
@@ -1996,9 +2034,14 @@ bca_can_build_building_offworld_expedition_hub = {
     AND = {
         custom_tooltip = {
             fail_text = offworld_molten_world_req
-            solar_system = {
-                any_system_planet = {
-                    is_planet_class = pc_molten
+            OR = {
+                owner = {
+                    is_nomadic = yes
+                }
+                solar_system = {
+                    any_system_planet = {
+                        is_planet_class = pc_molten
+                    }
                 }
             }
         }
@@ -2017,7 +2060,7 @@ bca_can_build_building_research_lab_1 = {
         }
         is_special_colony_type = no
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2029,10 +2072,18 @@ bca_can_build_building_research_lab_1 = {
                     has_building = building_research_lab_3
                 }
             }
+            AND = {
+                owner = {
+                    is_nomadic = yes
+                }
+                tiered_building_below_cap = {
+                    BUILDING = research_lab
+                }
+            }
         }
     }
     owner = {
-        has_technology = "tech_basic_science_lab_1"
+        has_technology = tech_basic_science_lab_1
     }
 }
 bca_can_build_building_research_lab_2 = {
@@ -2044,7 +2095,7 @@ bca_can_build_building_research_lab_2 = {
         is_special_colony_type = no
     }
     owner = {
-        has_technology = "tech_basic_science_lab_2"
+        has_technology = tech_basic_science_lab_2
     }
 }
 bca_can_build_building_research_lab_3 = {
@@ -2056,7 +2107,7 @@ bca_can_build_building_research_lab_3 = {
         is_special_colony_type = no
     }
     owner = {
-        has_technology = "tech_basic_science_lab_3"
+        has_technology = tech_basic_science_lab_3
     }
 }
 bca_can_build_building_institute = {
@@ -2072,7 +2123,7 @@ bca_can_build_building_institute = {
         }
     }
     owner = {
-        has_technology = "tech_global_research_initiative"
+        has_technology = tech_global_research_initiative
     }
 }
 bca_can_build_building_supercomputer = {
@@ -2092,7 +2143,7 @@ bca_can_build_building_supercomputer = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_global_research_initiative"
+        has_technology = tech_global_research_initiative
     }
 }
 bca_can_build_building_shroud_observatory_1 = {
@@ -2120,7 +2171,7 @@ bca_can_build_building_shroud_observatory_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_psionic_theory"
+        has_technology = tech_psionic_theory
     }
 }
 bca_can_build_building_shroud_observatory_3 = {
@@ -2134,7 +2185,7 @@ bca_can_build_building_shroud_observatory_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_mine_zro"
+        has_technology = tech_mine_zro
     }
 }
 bca_can_build_building_archaeostudies_faculty = {
@@ -2150,7 +2201,7 @@ bca_can_build_building_archaeostudies_faculty = {
         }
     }
     owner = {
-        has_technology = "tech_archaeostudies"
+        has_technology = tech_archaeostudies
     }
 }
 bca_can_build_building_vultaum_reality_computer = {
@@ -2163,7 +2214,7 @@ bca_can_build_building_vultaum_reality_computer = {
         }
     }
     owner = {
-        has_technology = "tech_secrets_vultaum"
+        has_technology = tech_secrets_vultaum
     }
 }
 bca_can_build_building_physics_lab_1 = {
@@ -2178,7 +2229,7 @@ bca_can_build_building_physics_lab_1 = {
             is_wilderness_empire = no
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2187,7 +2238,7 @@ bca_can_build_building_physics_lab_1 = {
         }
     }
     owner = {
-        has_technology = "tech_physics_1"
+        has_technology = tech_physics_1
     }
 }
 bca_can_build_building_physics_lab_2 = {
@@ -2199,7 +2250,7 @@ bca_can_build_building_physics_lab_2 = {
         }
     }
     owner = {
-        has_technology = "tech_physics_2"
+        has_technology = tech_physics_2
     }
 }
 bca_can_build_building_physics_lab_3 = {
@@ -2211,7 +2262,7 @@ bca_can_build_building_physics_lab_3 = {
         }
     }
     owner = {
-        has_technology = "tech_physics_3"
+        has_technology = tech_physics_3
     }
 }
 bca_can_build_building_biolab_1 = {
@@ -2226,7 +2277,7 @@ bca_can_build_building_biolab_1 = {
             is_wilderness_empire = no
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2235,7 +2286,7 @@ bca_can_build_building_biolab_1 = {
         }
     }
     owner = {
-        has_technology = "tech_society_1"
+        has_technology = tech_society_1
     }
 }
 bca_can_build_building_biolab_2 = {
@@ -2251,7 +2302,7 @@ bca_can_build_building_biolab_2 = {
         }
     }
     owner = {
-        has_technology = "tech_society_2"
+        has_technology = tech_society_2
     }
 }
 bca_can_build_building_biolab_3 = {
@@ -2263,7 +2314,7 @@ bca_can_build_building_biolab_3 = {
         }
     }
     owner = {
-        has_technology = "tech_society_3"
+        has_technology = tech_society_3
     }
 }
 bca_can_build_building_engineering_facility_1 = {
@@ -2278,7 +2329,7 @@ bca_can_build_building_engineering_facility_1 = {
             is_wilderness_empire = no
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2287,7 +2338,7 @@ bca_can_build_building_engineering_facility_1 = {
         }
     }
     owner = {
-        has_technology = "tech_engineering_1"
+        has_technology = tech_engineering_1
     }
 }
 bca_can_build_building_engineering_facility_2 = {
@@ -2299,7 +2350,7 @@ bca_can_build_building_engineering_facility_2 = {
         }
     }
     owner = {
-        has_technology = "tech_engineering_2"
+        has_technology = tech_engineering_2
     }
 }
 bca_can_build_building_engineering_facility_3 = {
@@ -2311,7 +2362,7 @@ bca_can_build_building_engineering_facility_3 = {
         }
     }
     owner = {
-        has_technology = "tech_engineering_3"
+        has_technology = tech_engineering_3
     }
 }
 bca_can_build_building_ranger_lodge = {
@@ -2354,7 +2405,7 @@ bca_can_build_building_research_upkeep_1 = {
         }
     }
     owner = {
-        has_technology = "tech_basic_science_lab_2"
+        has_technology = tech_basic_science_lab_2
     }
 }
 bca_can_build_building_research_efficiency_1 = {
@@ -2368,7 +2419,7 @@ bca_can_build_building_research_efficiency_1 = {
         }
     }
     owner = {
-        has_technology = "tech_basic_science_lab_2"
+        has_technology = tech_basic_science_lab_2
     }
 }
 bca_can_build_building_commercial_zone = {
@@ -2385,7 +2436,7 @@ bca_can_build_building_commercial_zone = {
             has_building = building_low_tech_capital
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2400,7 +2451,7 @@ bca_can_build_building_commercial_zone = {
         }
     }
     owner = {
-        has_technology = "tech_interplanetary_commerce"
+        has_technology = tech_interplanetary_commerce
     }
 }
 bca_can_build_building_commercial_megaplex = {
@@ -2415,7 +2466,7 @@ bca_can_build_building_commercial_megaplex = {
         }
     }
     owner = {
-        has_technology = "tech_interstellar_economics"
+        has_technology = tech_interstellar_economics
     }
 }
 bca_can_build_building_galactic_stock_exchange = {
@@ -2427,7 +2478,7 @@ bca_can_build_building_galactic_stock_exchange = {
         }
     }
     owner = {
-        has_technology = "tech_galactic_markets"
+        has_technology = tech_galactic_markets
     }
 }
 bca_can_build_building_maintenance_depot = {
@@ -2438,6 +2489,16 @@ bca_can_build_building_maintenance_depot = {
         }
         owner = {
             is_wilderness_empire = no
+        }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            has_any_trade_zone = yes
+            NOT = {
+                has_building = building_maintenance_depot
+            }
         }
     }
 }
@@ -2455,7 +2516,7 @@ bca_can_build_building_luxury_residence = {
             }
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2475,6 +2536,14 @@ bca_can_build_building_luxury_residence = {
         }
         NOT = {
             has_building = building_low_tech_capital
+        }
+        owner = {
+            OR = {
+                NOT = {
+                    has_origin = origin_forever_cruise
+                }
+                has_country_flag = forever_cruise_over
+            }
         }
     }
 }
@@ -2496,12 +2565,20 @@ bca_can_build_building_paradise_dome = {
             has_modifier = slave_colony
             has_modifier = penal_colony
         }
+        owner = {
+            OR = {
+                NOT = {
+                    has_origin = origin_forever_cruise
+                }
+                has_country_flag = forever_cruise_over
+            }
+        }
     }
     AND = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_paradise_dome"
+        has_technology = tech_paradise_dome
     }
 }
 bca_can_build_building_communal_housing = {
@@ -2516,7 +2593,7 @@ bca_can_build_building_communal_housing = {
             }
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2558,7 +2635,7 @@ bca_can_build_building_communal_housing_large = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_paradise_dome"
+        has_technology = tech_paradise_dome
     }
 }
 bca_can_build_building_drone_storage = {
@@ -2568,7 +2645,7 @@ bca_can_build_building_drone_storage = {
             is_machine_empire = yes
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2585,7 +2662,7 @@ bca_can_build_building_drone_megastorage = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_micro_replicators"
+        has_technology = tech_micro_replicators
     }
 }
 bca_can_build_building_hive_warren = {
@@ -2596,7 +2673,7 @@ bca_can_build_building_hive_warren = {
             is_wilderness_empire = no
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2617,7 +2694,7 @@ bca_can_build_building_expanded_warren = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_housing_2"
+        has_technology = tech_housing_2
     }
 }
 bca_can_build_building_holo_theatres = {
@@ -2634,7 +2711,7 @@ bca_can_build_building_holo_theatres = {
             }
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2645,12 +2722,12 @@ bca_can_build_building_holo_theatres = {
         }
     }
     owner = {
-        has_technology = "tech_holo_entertainment"
+        has_technology = tech_holo_entertainment
     }
 }
 bca_can_build_building_hyper_entertainment_forum = {
     owner = {
-        has_technology = "tech_hyper_entertainment_forum"
+        has_technology = tech_hyper_entertainment_forum
     }
 }
 bca_can_build_building_medical_1 = {
@@ -2665,7 +2742,7 @@ bca_can_build_building_medical_1 = {
             is_individual_machine = no
         }
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -2676,7 +2753,7 @@ bca_can_build_building_medical_1 = {
         }
     }
     owner = {
-        has_technology = "tech_basic_health"
+        has_technology = tech_basic_health
     }
 }
 bca_can_build_building_medical_2 = {
@@ -2718,7 +2795,7 @@ bca_can_build_building_medical_2 = {
         }
     }
     owner = {
-        has_technology = "tech_frontier_health"
+        has_technology = tech_frontier_health
     }
 }
 bca_can_build_building_medical_3 = {
@@ -2751,7 +2828,7 @@ bca_can_build_building_medical_3 = {
         }
     }
     owner = {
-        has_technology = "tech_frontier_hospital"
+        has_technology = tech_frontier_hospital
     }
 }
 bca_can_build_building_overseer_homes = {
@@ -2818,7 +2895,7 @@ bca_can_build_building_autochthon_monument = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_heritage_site = {
@@ -2841,7 +2918,7 @@ bca_can_build_building_heritage_site = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_hypercomms_forum = {
@@ -2864,7 +2941,7 @@ bca_can_build_building_hypercomms_forum = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_bureaucratic_1 = {
@@ -2880,9 +2957,19 @@ bca_can_build_building_bureaucratic_1 = {
             has_modifier = slave_colony
             has_modifier = resort_colony
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_bureaucratic_1
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_bureaucratic_2 = {
@@ -2899,7 +2986,7 @@ bca_can_build_building_bureaucratic_2 = {
         }
     }
     owner = {
-        has_technology = "tech_colonial_bureaucracy"
+        has_technology = tech_colonial_bureaucracy
     }
 }
 bca_can_build_building_bureaucratic_3 = {
@@ -2916,7 +3003,7 @@ bca_can_build_building_bureaucratic_3 = {
         }
     }
     owner = {
-        has_technology = "tech_galactic_bureaucracy"
+        has_technology = tech_galactic_bureaucracy
     }
 }
 bca_can_build_building_temple = {
@@ -2934,9 +3021,19 @@ bca_can_build_building_temple = {
         NOT = {
             has_modifier = slave_colony
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_temple
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_holotemple = {
@@ -2956,7 +3053,7 @@ bca_can_build_building_holotemple = {
         }
     }
     owner = {
-        has_technology = "tech_holographic_rituals"
+        has_technology = tech_holographic_rituals
     }
 }
 bca_can_build_building_sacred_nexus = {
@@ -2976,7 +3073,7 @@ bca_can_build_building_sacred_nexus = {
         }
     }
     owner = {
-        has_technology = "tech_consecration_fields"
+        has_technology = tech_consecration_fields
     }
 }
 bca_can_build_building_uplink_node = {
@@ -2988,9 +3085,19 @@ bca_can_build_building_uplink_node = {
                 has_valid_civic = civic_machine_servitor
             }
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_uplink_node
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_network_junction = {
@@ -3007,7 +3114,7 @@ bca_can_build_building_network_junction = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_colonial_bureaucracy"
+        has_technology = tech_colonial_bureaucracy
     }
 }
 bca_can_build_building_system_conflux = {
@@ -3024,7 +3131,7 @@ bca_can_build_building_system_conflux = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_galactic_bureaucracy"
+        has_technology = tech_galactic_bureaucracy
     }
 }
 bca_can_build_building_hive_node = {
@@ -3034,9 +3141,19 @@ bca_can_build_building_hive_node = {
             is_hive_empire = yes
             is_wilderness_empire = no
         }
+        OR = {
+            has_carrier_flag = ignore_ai_building_limitations
+            owner = {
+                is_ai = no
+            }
+            num_buildings = {
+                type = building_hive_node
+                value < 2
+            }
+        }
     }
     owner = {
-        has_technology = "tech_hive_node"
+        has_technology = tech_hive_node
     }
 }
 bca_can_build_building_hive_cluster = {
@@ -3051,7 +3168,7 @@ bca_can_build_building_hive_cluster = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hive_cluster"
+        has_technology = tech_hive_cluster
     }
 }
 bca_can_build_building_hive_confluence = {
@@ -3066,7 +3183,7 @@ bca_can_build_building_hive_confluence = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hive_confluence"
+        has_technology = tech_hive_confluence
     }
 }
 bca_can_build_building_sacrificial_temple_1 = {
@@ -3080,7 +3197,7 @@ bca_can_build_building_sacrificial_temple_1 = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_sacrificial_temple_2 = {
@@ -3094,7 +3211,7 @@ bca_can_build_building_sacrificial_temple_2 = {
         }
     }
     owner = {
-        has_technology = "tech_holographic_rituals"
+        has_technology = tech_holographic_rituals
     }
 }
 bca_can_build_building_sacrificial_temple_3 = {
@@ -3108,7 +3225,7 @@ bca_can_build_building_sacrificial_temple_3 = {
         }
     }
     owner = {
-        has_technology = "tech_consecration_fields"
+        has_technology = tech_consecration_fields
     }
 }
 bca_can_build_building_galactic_memorial_1 = {
@@ -3122,7 +3239,7 @@ bca_can_build_building_galactic_memorial_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_galactic_memorial_2 = {
@@ -3140,7 +3257,7 @@ bca_can_build_building_galactic_memorial_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_galactic_memorial_3 = {
@@ -3157,7 +3274,7 @@ bca_can_build_building_galactic_memorial_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_simulation_1 = {
@@ -3173,7 +3290,7 @@ bca_can_build_building_simulation_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_simulation_2 = {
@@ -3192,7 +3309,7 @@ bca_can_build_building_simulation_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_simulation_3 = {
@@ -3211,7 +3328,7 @@ bca_can_build_building_simulation_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_corporate_monument = {
@@ -3227,7 +3344,7 @@ bca_can_build_building_corporate_monument = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_corporate_site = {
@@ -3246,7 +3363,7 @@ bca_can_build_building_corporate_site = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_corporate_forum = {
@@ -3265,7 +3382,7 @@ bca_can_build_building_corporate_forum = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_sensorium_1 = {
@@ -3282,7 +3399,7 @@ bca_can_build_building_sensorium_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_sensorium_2 = {
@@ -3302,7 +3419,7 @@ bca_can_build_building_sensorium_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_sensorium_3 = {
@@ -3322,7 +3439,7 @@ bca_can_build_building_sensorium_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_autocurating_vault = {
@@ -3341,7 +3458,7 @@ bca_can_build_building_autocurating_vault = {
         }
     }
     owner = {
-        has_technology = "tech_autocurating_vault"
+        has_technology = tech_autocurating_vault
     }
 }
 bca_can_build_building_citadel_of_faith = {
@@ -3362,7 +3479,7 @@ bca_can_build_building_citadel_of_faith = {
         }
     }
     owner = {
-        has_technology = "tech_transcendent_faith"
+        has_technology = tech_transcendent_faith
     }
 }
 bca_can_build_building_corporate_vault = {
@@ -3379,7 +3496,7 @@ bca_can_build_building_corporate_vault = {
         }
     }
     owner = {
-        has_technology = "tech_autocurating_vault"
+        has_technology = tech_autocurating_vault
     }
 }
 bca_can_build_building_alpha_hub = {
@@ -3396,7 +3513,7 @@ bca_can_build_building_alpha_hub = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_autocurating_vault"
+        has_technology = tech_autocurating_vault
     }
 }
 bca_can_build_building_organic_sanctuary = {
@@ -3404,6 +3521,7 @@ bca_can_build_building_organic_sanctuary = {
         exists = owner
         owner = {
             has_valid_civic = civic_machine_servitor
+            is_hospitality_servitor_empire = no
         }
     }
 }
@@ -3412,10 +3530,11 @@ bca_can_build_building_organic_paradise = {
         exists = owner
         owner = {
             has_valid_civic = civic_machine_servitor
+            is_hospitality_servitor_empire = no
         }
     }
     owner = {
-        has_technology = "tech_paradise_dome"
+        has_technology = tech_paradise_dome
     }
 }
 bca_can_build_building_trophy_vault = {
@@ -3427,7 +3546,7 @@ bca_can_build_building_trophy_vault = {
         }
     }
     owner = {
-        has_technology = "tech_autocurating_vault"
+        has_technology = tech_autocurating_vault
     }
 }
 bca_can_build_building_league_offices = {
@@ -3444,7 +3563,7 @@ bca_can_build_building_league_offices = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_secrets_league"
+        has_technology = tech_secrets_league
     }
 }
 bca_can_build_building_military_academy = {
@@ -3473,7 +3592,7 @@ bca_can_build_building_military_academy = {
         }
     }
     owner = {
-        has_technology = "tech_centralized_command"
+        has_technology = tech_centralized_command
     }
 }
 bca_can_build_building_dread_encampment = {
@@ -3500,7 +3619,7 @@ bca_can_build_building_stronghold = {
     AND = {
         exists = owner
         OR = {
-            has_planet_flag = ignore_ai_building_limitations
+            has_carrier_flag = ignore_ai_building_limitations
             owner = {
                 is_ai = no
             }
@@ -3518,7 +3637,7 @@ bca_can_build_building_stronghold = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_defenses"
+        has_technology = tech_planetary_defenses
     }
 }
 bca_can_build_building_fortress = {
@@ -3532,7 +3651,7 @@ bca_can_build_building_fortress = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_global_defense_grid"
+        has_technology = tech_global_defense_grid
     }
 }
 bca_can_build_building_planetary_shield_generator = {
@@ -3540,6 +3659,7 @@ bca_can_build_building_planetary_shield_generator = {
         exists = owner
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
     }
     AND = {
@@ -3560,40 +3680,43 @@ bca_can_build_building_planetary_shield_generator = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_shield_generator"
+        has_technology = tech_planetary_shield_generator
     }
 }
 bca_can_build_building_mote_harvesters = {
     AND = {
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_volatile_motes_deposit = yes
     }
     owner = {
-        has_technology = "tech_mine_volatile_motes"
+        has_technology = tech_mine_volatile_motes
     }
 }
 bca_can_build_building_gas_extractors = {
     AND = {
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_exotic_gases_deposit = yes
     }
     owner = {
-        has_technology = "tech_mine_exotic_gases"
+        has_technology = tech_mine_exotic_gases
     }
 }
 bca_can_build_building_crystal_mines = {
     AND = {
         owner = {
             is_wilderness_empire = no
+            is_nomadic = no
         }
         has_rare_crystals_deposit = yes
     }
     owner = {
-        has_technology = "tech_mine_rare_crystals"
+        has_technology = tech_mine_rare_crystals
     }
 }
 bca_can_build_building_betharian_power_plant = {
@@ -3603,7 +3726,7 @@ bca_can_build_building_betharian_power_plant = {
         }
     }
     owner = {
-        has_technology = "tech_mine_betharian"
+        has_technology = tech_mine_betharian
     }
 }
 bca_can_build_building_xeno_zoo = {
@@ -3613,7 +3736,7 @@ bca_can_build_building_xeno_zoo = {
             is_regular_empire = yes
             is_guided_sapience_empire = no
         }
-        planet = {
+        colony = {
             OR = {
                 has_modifier = resort_colony
                 OR = {
@@ -3651,7 +3774,7 @@ bca_can_build_building_xeno_zoo = {
         }
     }
     owner = {
-        has_technology = "tech_alien_life_studies"
+        has_technology = tech_alien_life_studies
     }
 }
 bca_can_build_building_crude_huts = {
@@ -4018,7 +4141,7 @@ bca_can_build_building_akx_worm_3 = {
         }
     }
     owner = {
-        has_technology = "tech_akx_worm_3"
+        has_technology = tech_akx_worm_3
     }
 }
 bca_can_build_building_great_pyramid = {
@@ -4080,7 +4203,7 @@ bca_can_build_building_crystal_plant_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_rare_crystals"
+        has_technology = tech_rare_crystals
     }
 }
 bca_can_build_building_zroni_equilibrator = {
@@ -4088,7 +4211,7 @@ bca_can_build_building_zroni_equilibrator = {
         owner = {
             has_country_flag = zroni_legacy
         }
-        has_planet_flag = zroni_legacy_flag
+        has_carrier_flag = zroni_legacy_flag
     }
 }
 bca_can_build_building_composer_sanctum = {
@@ -5060,29 +5183,16 @@ bca_can_build_building_fe_assembly_1 = {
     AND = {
         exists = owner
         OR = {
-            AND = {
-                OR = {
-                    owner = {
-                        is_ai = no
-                    }
-                    NOT = {
-                        exists = assembling_species
-                    }
-                    assembling_species = {
-                        is_robotic_species = yes
-                    }
+            owner = {
+                is_regular_empire = yes
+                NOT = {
+                    has_policy_flag = robots_outlawed
                 }
-                owner = {
-                    is_regular_empire = yes
+                OR = {
                     NOT = {
-                        has_policy_flag = robots_outlawed
+                        has_ascension_perk = ap_engineered_evolution
                     }
-                    OR = {
-                        NOT = {
-                            has_ascension_perk = ap_engineered_evolution
-                        }
-                        is_materialist = yes
-                    }
+                    is_materialist = yes
                 }
             }
             owner = {
@@ -5123,30 +5233,17 @@ bca_can_build_building_fe_assembly_2 = {
     AND = {
         exists = owner
         OR = {
-            AND = {
-                OR = {
-                    owner = {
-                        is_ai = no
-                    }
-                    NOT = {
-                        exists = assembling_species
-                    }
-                    assembling_species = {
-                        is_robotic_species = yes
-                    }
+            owner = {
+                is_regular_empire = yes
+                NOT = {
+                    has_policy_flag = robots_outlawed
                 }
-                owner = {
-                    is_regular_empire = yes
+                OR = {
+                    is_ai = no
                     NOT = {
-                        has_policy_flag = robots_outlawed
+                        has_ascension_perk = ap_engineered_evolution
                     }
-                    OR = {
-                        is_ai = no
-                        NOT = {
-                            has_ascension_perk = ap_engineered_evolution
-                        }
-                        is_materialist = yes
-                    }
+                    is_materialist = yes
                 }
             }
             owner = {
@@ -5797,7 +5894,7 @@ bca_can_build_building_corporate_embassy = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_xeno_diplomacy"
+        has_technology = tech_xeno_diplomacy
     }
 }
 bca_can_build_building_private_security = {
@@ -5899,7 +5996,7 @@ bca_can_build_building_disinformation_center = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_xeno_diplomacy"
+        has_technology = tech_xeno_diplomacy
     }
 }
 bca_can_build_building_subversive_shrine = {
@@ -5931,7 +6028,7 @@ bca_can_build_building_executive_retreat = {
         pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_executive_retreat"
+        has_technology = tech_executive_retreat
     }
 }
 bca_can_build_building_xeno_tourism_agency = {
@@ -5945,7 +6042,7 @@ bca_can_build_building_xeno_tourism_agency = {
         pop_amount >= 2500
     }
     owner = {
-        has_technology = "tech_xeno_tourism_agency"
+        has_technology = tech_xeno_tourism_agency
     }
 }
 bca_can_build_building_imperial_concession_port = {
@@ -6361,7 +6458,10 @@ bca_can_build_holding_idyllic_bloom = {
         is_artificial = no
     }
     AND = {
-        can_build_overlord_gaiaseeder = yes
+        exists = planet
+        planet = {
+            can_build_overlord_gaiaseeder = yes
+        }
     }
 }
 bca_can_build_holding_reemployment_center = {
@@ -6464,6 +6564,7 @@ bca_can_build_holding_organic_sanctuary = {
     AND = {
         owner.overlord = {
             has_valid_civic = civic_machine_servitor
+            is_hospitality_servitor_empire = no
         }
         owner = {
             is_machine_empire = no
@@ -6717,7 +6818,7 @@ bca_can_build_building_storm_attraction_center = {
         }
     }
     owner = {
-        has_technology = "tech_storm_manipulation"
+        has_technology = tech_storm_manipulation
     }
 }
 bca_can_build_building_advanced_storm_attraction_center = {
@@ -6736,7 +6837,7 @@ bca_can_build_building_advanced_storm_attraction_center = {
         }
     }
     owner = {
-        has_technology = "tech_advanced_storm_manipulation"
+        has_technology = tech_advanced_storm_manipulation
     }
 }
 bca_can_build_building_storm_repellent_center = {
@@ -6758,12 +6859,12 @@ bca_can_build_building_storm_repellent_center = {
         }
     }
     owner = {
-        has_technology = "tech_storm_manipulation"
+        has_technology = tech_storm_manipulation
     }
 }
 bca_can_build_building_advanced_storm_repellent_center = {
     owner = {
-        has_technology = "tech_advanced_storm_manipulation"
+        has_technology = tech_advanced_storm_manipulation
     }
 }
 bca_can_build_building_storm_resistant_production = {
@@ -6785,7 +6886,7 @@ bca_can_build_building_storm_resistant_production = {
         }
     }
     owner = {
-        has_technology = "tech_industrial_storm_protection"
+        has_technology = tech_industrial_storm_protection
     }
 }
 bca_can_build_building_advanced_storm_resistant_production = {
@@ -6811,7 +6912,7 @@ bca_can_build_building_advanced_storm_resistant_production = {
         }
     }
     owner = {
-        has_technology = "tech_advanced_industrial_storm_protection"
+        has_technology = tech_advanced_industrial_storm_protection
     }
 }
 bca_can_build_building_adakkaria_patriotic_institute = {
@@ -6820,7 +6921,7 @@ bca_can_build_building_adakkaria_patriotic_institute = {
         owner = {
             has_country_flag = adakkaria_world_found
         }
-        has_planet_flag = adSul_capital
+        has_carrier_flag = adSul_capital
     }
 }
 bca_can_build_building_astrometeorology_observation_center = {
@@ -7429,7 +7530,7 @@ bca_can_build_wildlife_ranch_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_wildlife_ranch_3 = {
@@ -7437,7 +7538,7 @@ bca_can_build_wildlife_ranch_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_hunting_grounds = {
@@ -7462,7 +7563,7 @@ bca_can_build_hunting_grounds_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_hunting_grounds_3 = {
@@ -7470,7 +7571,7 @@ bca_can_build_hunting_grounds_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_wildlife_sanctuary = {
@@ -7485,7 +7586,7 @@ bca_can_build_wildlife_sanctuary_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_wildlife_sanctuary_3 = {
@@ -7493,7 +7594,7 @@ bca_can_build_wildlife_sanctuary_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_primal_arena = {
@@ -7508,7 +7609,7 @@ bca_can_build_primal_arena_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_primal_arena_3 = {
@@ -7516,7 +7617,7 @@ bca_can_build_primal_arena_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_symbiosis_nexus = {
@@ -7531,7 +7632,7 @@ bca_can_build_symbiosis_nexus_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_symbiosis_nexus_3 = {
@@ -7539,7 +7640,7 @@ bca_can_build_symbiosis_nexus_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_colony_shelter_wilderness = {
@@ -7564,7 +7665,7 @@ bca_can_build_building_capital_wilderness = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_government"
+        has_technology = tech_planetary_government
     }
 }
 bca_can_build_building_major_capital_wilderness = {
@@ -7581,7 +7682,7 @@ bca_can_build_building_major_capital_wilderness = {
         }
     }
     owner = {
-        has_technology = "tech_colonial_centralization"
+        has_technology = tech_colonial_centralization
     }
 }
 bca_can_build_building_system_capital_wilderness = {
@@ -7598,7 +7699,7 @@ bca_can_build_building_system_capital_wilderness = {
         }
     }
     owner = {
-        has_technology = "tech_galactic_administration"
+        has_technology = tech_galactic_administration
     }
 }
 bca_can_build_building_imperial_capital_wilderness = {
@@ -7698,7 +7799,7 @@ bca_can_build_building_brain_node_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_basic_science_lab_2"
+        has_technology = tech_basic_science_lab_2
     }
 }
 bca_can_build_building_brain_node_4 = {
@@ -7712,7 +7813,7 @@ bca_can_build_building_brain_node_4 = {
         has_fully_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_basic_science_lab_3"
+        has_technology = tech_basic_science_lab_3
     }
 }
 bca_can_build_building_commensal_clearing_1 = {
@@ -7795,7 +7896,7 @@ bca_can_build_building_massive_growth_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_food_processing_1"
+        has_technology = tech_food_processing_1
     }
 }
 bca_can_build_building_massive_growth_4 = {
@@ -7809,7 +7910,7 @@ bca_can_build_building_massive_growth_4 = {
         has_fully_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_food_processing_2"
+        has_technology = tech_food_processing_2
     }
 }
 bca_can_build_building_bioelectric_stimulator_1 = {
@@ -7889,7 +7990,7 @@ bca_can_build_building_churning_tunnels_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_mineral_purification_1"
+        has_technology = tech_mineral_purification_1
     }
 }
 bca_can_build_building_churning_tunnels_4 = {
@@ -7903,7 +8004,7 @@ bca_can_build_building_churning_tunnels_4 = {
         has_fully_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_mineral_purification_2"
+        has_technology = tech_mineral_purification_2
     }
 }
 bca_can_build_building_natural_furnace_0 = {
@@ -8022,7 +8123,7 @@ bca_can_build_building_mote_aggravator = {
         }
     }
     owner = {
-        has_technology = "tech_volatile_motes"
+        has_technology = tech_volatile_motes
     }
 }
 bca_can_build_building_churning_stomach = {
@@ -8033,7 +8134,7 @@ bca_can_build_building_churning_stomach = {
         }
     }
     owner = {
-        has_technology = "tech_exotic_gases"
+        has_technology = tech_exotic_gases
     }
 }
 bca_can_build_building_crystal_growth = {
@@ -8044,7 +8145,7 @@ bca_can_build_building_crystal_growth = {
         }
     }
     owner = {
-        has_technology = "tech_rare_crystals"
+        has_technology = tech_rare_crystals
     }
 }
 bca_can_build_building_planetary_carapace = {
@@ -8055,7 +8156,7 @@ bca_can_build_building_planetary_carapace = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_defenses"
+        has_technology = tech_planetary_defenses
     }
 }
 bca_can_build_building_planetary_carapace_2 = {
@@ -8069,7 +8170,7 @@ bca_can_build_building_planetary_carapace_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_global_defense_grid"
+        has_technology = tech_global_defense_grid
     }
 }
 bca_can_build_building_ozone_thickener = {
@@ -8097,7 +8198,7 @@ bca_can_build_building_ozone_thickener = {
         }
     }
     owner = {
-        has_technology = "tech_planetary_shield_generator"
+        has_technology = tech_planetary_shield_generator
     }
 }
 bca_can_build_building_wilderness_storm_relief = {
@@ -8116,7 +8217,7 @@ bca_can_build_building_wilderness_storm_relief = {
         }
     }
     owner = {
-        has_technology = "tech_industrial_storm_protection"
+        has_technology = tech_industrial_storm_protection
     }
 }
 bca_can_build_building_subterranean_cache = {
@@ -8150,13 +8251,16 @@ bca_can_build_building_subterranean_cache = {
                                 has_technology = tech_mega_engineering
                             }
                         }
+                        owner = {
+                            country_near_tangible_resource_cap = yes
+                        }
                     }
                 }
             }
         }
     }
     owner = {
-        has_technology = "tech_basic_industry"
+        has_technology = tech_basic_industry
     }
 }
 bca_can_build_building_citadel_uplink = {
@@ -8206,6 +8310,9 @@ bca_can_build_building_cryovault = {
     AND = {
         is_cold = yes
     }
+    owner = {
+        has_technology = tech_cryovault
+    }
 }
 bca_can_build_building_bio_furnace = {
     AND = {
@@ -8213,6 +8320,9 @@ bca_can_build_building_bio_furnace = {
         owner = {
             has_technology = tech_alloy_fossilization
         }
+    }
+    owner = {
+        has_technology = tech_alloy_fossilization
     }
 }
 bca_can_build_building_lifecrypt_1 = {
@@ -8223,7 +8333,7 @@ bca_can_build_building_lifecrypt_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_lifecrypt_2 = {
@@ -8237,7 +8347,7 @@ bca_can_build_building_lifecrypt_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_lifecrypt_3 = {
@@ -8251,7 +8361,7 @@ bca_can_build_building_lifecrypt_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_lifecrypt_machine_1 = {
@@ -8262,7 +8372,7 @@ bca_can_build_building_lifecrypt_machine_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_lifecrypt_machine_2 = {
@@ -8276,7 +8386,7 @@ bca_can_build_building_lifecrypt_machine_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_lifecrypt_machine_3 = {
@@ -8290,7 +8400,7 @@ bca_can_build_building_lifecrypt_machine_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_lifecrypt_hive_mind_1 = {
@@ -8301,7 +8411,7 @@ bca_can_build_building_lifecrypt_hive_mind_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_lifecrypt_hive_mind_2 = {
@@ -8315,7 +8425,7 @@ bca_can_build_building_lifecrypt_hive_mind_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_lifecrypt_hive_mind_3 = {
@@ -8329,7 +8439,7 @@ bca_can_build_building_lifecrypt_hive_mind_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_lifecrypt_corporate_1 = {
@@ -8340,7 +8450,7 @@ bca_can_build_building_lifecrypt_corporate_1 = {
         }
     }
     owner = {
-        has_technology = "tech_cultural_heritage"
+        has_technology = tech_cultural_heritage
     }
 }
 bca_can_build_building_lifecrypt_corporate_2 = {
@@ -8354,7 +8464,7 @@ bca_can_build_building_lifecrypt_corporate_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_heritage_site"
+        has_technology = tech_heritage_site
     }
 }
 bca_can_build_building_lifecrypt_corporate_3 = {
@@ -8368,7 +8478,7 @@ bca_can_build_building_lifecrypt_corporate_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_hypercomms_forum"
+        has_technology = tech_hypercomms_forum
     }
 }
 bca_can_build_building_experimentation_chambers_1 = {
@@ -8383,7 +8493,7 @@ bca_can_build_building_experimentation_chambers_1 = {
         }
     }
     owner = {
-        has_technology = "tech_basic_science_lab_1"
+        has_technology = tech_basic_science_lab_1
     }
 }
 bca_can_build_building_experimentation_chambers_2 = {
@@ -8391,7 +8501,7 @@ bca_can_build_building_experimentation_chambers_2 = {
         has_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_basic_science_lab_2"
+        has_technology = tech_basic_science_lab_2
     }
 }
 bca_can_build_building_experimentation_chambers_3 = {
@@ -8399,7 +8509,7 @@ bca_can_build_building_experimentation_chambers_3 = {
         has_major_upgraded_capital = yes
     }
     owner = {
-        has_technology = "tech_basic_science_lab_3"
+        has_technology = tech_basic_science_lab_3
     }
 }
 bca_can_build_building_cradle_sanctum = {
@@ -8423,7 +8533,7 @@ bca_can_build_building_psionic_suppressor = {
         has_shroud_dlc = yes
     }
     owner = {
-        has_technology = "tech_psionic_suppression"
+        has_technology = tech_psionic_suppression
     }
 }
 bca_can_build_building_ancient_ward_1 = {
@@ -8454,7 +8564,7 @@ bca_can_build_building_materiality_engine = {
         }
     }
     owner = {
-        has_technology = "tech_materiality_engine"
+        has_technology = tech_materiality_engine
     }
 }
 bca_can_build_building_chamber_of_silence = {
@@ -8463,5 +8573,109 @@ bca_can_build_building_chamber_of_silence = {
             has_tradition = tr_psionics_shroud_psi_corps
             has_origin = origin_endbringers
         }
+    }
+}
+bca_can_build_building_passenger_dorms = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+}
+bca_can_build_building_passenger_paradise = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_paradise_dome
+    }
+}
+bca_can_build_building_forever_cruise_passenger_unity = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        OR = {
+            has_technology = tech_autocurating_vault
+            has_technology = tech_transcendent_faith
+        }
+    }
+}
+bca_can_build_building_forever_cruise_passenger_research = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_global_research_initiative
+    }
+}
+bca_can_build_building_forever_cruise_passenger_consumer_goods = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_luxuries_2
+    }
+}
+bca_can_build_building_forever_cruise_crew_resources = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_global_production_strategy
+    }
+}
+bca_can_build_building_forever_cruise_crew_industry = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_global_production_strategy
+    }
+}
+bca_can_build_building_forever_cruise_crew_service = {
+    AND = {
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_interstellar_economics
     }
 }

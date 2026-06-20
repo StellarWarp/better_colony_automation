@@ -1,0 +1,92 @@
+buildings:
+  building_forever_cruise_passenger_unity:
+    construction:
+      - projection: designation
+        context: unity
+        strategy: efficiency
+      - projection: zone
+        context:
+          - unity
+          - bureaucrat
+          - priest
+        strategy: efficiency
+
+  building_forever_cruise_passenger_research:
+    construction:
+      - projection: designation
+        context: research
+        strategy: efficiency
+      - projection: zone
+        context:
+          - research
+          - physics
+          - society
+          - engineering
+        strategy: efficiency
+
+  building_forever_cruise_passenger_consumer_goods:
+    construction:
+      - projection: designation
+        context:
+          - industrial
+          - factory
+        strategy: efficiency
+      - projection: zone
+        context:
+          - industrial
+          - factory
+          - ark_research_unity_consumer_goods
+        strategy: efficiency
+
+  building_forever_cruise_crew_resources:
+    construction:
+      - projection: designation
+        context:
+          - farming
+          - generator
+          - mining
+        strategy: always
+      - projection: zone
+        context:
+          - food
+          - energy
+          - minerals
+        strategy: always
+
+  building_forever_cruise_crew_industry:
+    construction:
+      - projection: designation
+        context:
+          - industrial
+          - foundry
+          - factory
+        strategy: always
+      - projection: zone
+        context:
+          - industrial
+          - foundry
+          - factory
+          - ark_research_alloys_support
+        strategy: always
+
+  building_forever_cruise_crew_service:
+    construction:
+      - projection: designation
+        context:
+          - trade
+          - unity
+        strategy: always
+      - projection: zone
+        context:
+          - trade
+          - unity
+          - bureaucrat
+          - priest
+          - entertainer
+          - duelist
+          - forever_cruise_passenger
+          - forever_cruise_crew
+          - forever_cruise_city_passenger
+          - forever_cruise_city_crew
+          - forever_cruise_city_mixed
+        strategy: always

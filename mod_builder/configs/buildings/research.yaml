@@ -1,0 +1,49 @@
+﻿- designations:
+    - research
+  zone_types:
+    - research
+    - physics
+    - society
+    - engineering
+  groups:
+    - buildings:
+        - building_vultaum_reality_computer
+        - building_institute
+        - building_supercomputer
+        - building_archaeostudies_faculty
+        - building_research_efficiency_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_reasearch
+
+    - buildings:
+        - building_engineering_facility_1
+        - building_physics_lab_1
+        - building_biolab_1
+        - building_fe_lab_1
+      strategy: always
+      destruction:
+        - triggers:
+            - bca_can_remove_building_reasearch
+          remove_series: true
+
+    - buildings:
+        - building_research_lab_1
+      strategy: job_only
+      destruction:
+        - triggers:
+            - bca_can_remove_building_reasearch
+            - bca_advanced_research_building_replace
+          remove_series: true
+
+- designations:
+    - research
+  groups:
+    - buildings:
+        - building_research_upkeep_1
+      strategy: efficiency
+      destruction:
+        - triggers:
+            - bca_can_remove_building_reasearch
+

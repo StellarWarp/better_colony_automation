@@ -507,6 +507,14 @@ planet_event = {
                 remove_planet_flag = bca_pf_has_district_remove_plan
                 remove_planet_flag = bca_pf_district_balanced
             }
+            else_if = {
+                limit = {
+                    num_districts = { type = district_ark_city value > 1 }
+                }
+                remove_district = district_ark_city
+                remove_planet_flag = bca_pf_has_district_remove_plan
+                remove_planet_flag = bca_pf_district_balanced
+            }
         }
         else_if = {
             limit = {
@@ -581,6 +589,14 @@ planet_event = {
                     has_district = district_photosynthesis_fields
                 }
                 remove_district = district_photosynthesis_fields
+                remove_planet_flag = bca_pf_has_district_remove_plan
+                remove_planet_flag = bca_pf_district_balanced
+            }
+            else_if = {
+                limit = {
+                    has_district = district_ark_generator
+                }
+                remove_district = district_ark_generator
                 remove_planet_flag = bca_pf_has_district_remove_plan
                 remove_planet_flag = bca_pf_district_balanced
             }
@@ -661,6 +677,22 @@ planet_event = {
                 remove_planet_flag = bca_pf_has_district_remove_plan
                 remove_planet_flag = bca_pf_district_balanced
             }
+            else_if = {
+                limit = {
+                    has_district = district_ark_military
+                }
+                remove_district = district_ark_military
+                remove_planet_flag = bca_pf_has_district_remove_plan
+                remove_planet_flag = bca_pf_district_balanced
+            }
+            else_if = {
+                limit = {
+                    has_district = district_ark_forever_cruise
+                }
+                remove_district = district_ark_forever_cruise
+                remove_planet_flag = bca_pf_has_district_remove_plan
+                remove_planet_flag = bca_pf_district_balanced
+            }
         }
         else_if = {
             limit = {
@@ -735,6 +767,14 @@ planet_event = {
                     has_district = district_orchard_forests
                 }
                 remove_district = district_orchard_forests
+                remove_planet_flag = bca_pf_has_district_remove_plan
+                remove_planet_flag = bca_pf_district_balanced
+            }
+            else_if = {
+                limit = {
+                    has_district = district_ark_basic
+                }
+                remove_district = district_ark_basic
                 remove_planet_flag = bca_pf_has_district_remove_plan
                 remove_planet_flag = bca_pf_district_balanced
             }

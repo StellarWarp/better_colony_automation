@@ -1,0 +1,333 @@
+building_strategy_zone_contexts:
+- context: food
+  strategy_buckets:
+  - strategy: district_capacity
+    buildings:
+    - building_farming_districts_1
+  - strategy: efficiency
+    buildings:
+    - building_food_processing_facility
+  - strategy: job_low_priority
+    buildings:
+    - building_hydroponics_farm
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_resources
+  types:
+  - food
+- context: agrarian
+  strategy_buckets:
+  - strategy: district_capacity
+    buildings:
+    - building_farming_districts_1
+  - strategy: efficiency
+    buildings:
+    - building_food_processing_facility
+  - strategy: job_low_priority
+    buildings:
+    - building_hydroponics_farm
+  types:
+  - agrarian
+- context: energy
+  strategy_buckets:
+  - strategy: district_capacity
+    buildings:
+    - building_generator_districts_1
+  - strategy: efficiency
+    buildings:
+    - building_energy_grid
+  - strategy: job_low_priority
+    buildings:
+    - building_generator_generic
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_resources
+  types:
+  - energy
+- context: hydroponics
+  strategy_buckets:
+  - strategy: district_capacity
+    buildings:
+    - building_generator_districts_1
+  - strategy: efficiency
+    buildings:
+    - building_energy_grid
+  - strategy: job_low_priority
+    buildings:
+    - building_generator_generic
+  types:
+  - hydroponics
+- context: minerals
+  strategy_buckets:
+  - strategy: district_capacity
+    buildings:
+    - building_mining_districts_1
+  - strategy: efficiency
+    buildings:
+    - building_mineral_purification_plant
+  - strategy: job_low_priority
+    buildings:
+    - building_mine_generic
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_resources
+  types:
+  - minerals
+- context: industrial
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_ministry_production
+    - building_production_center
+    - building_foundry_efficiency_1
+    - building_factory_efficiency_1
+    - building_forever_cruise_passenger_consumer_goods
+  - strategy: always
+    buildings:
+    - building_micro_forge
+    - building_affluence_emporium
+    - building_forever_cruise_crew_industry
+  - strategy: job_only
+    buildings:
+    - building_foundry_1
+    - building_factory_1
+  types:
+  - industrial
+- context: foundry
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_ministry_production
+    - building_production_center
+    - building_foundry_efficiency_1
+  - strategy: always
+    buildings:
+    - building_micro_forge
+    - building_forever_cruise_crew_industry
+  - strategy: job_only
+    buildings:
+    - building_foundry_1
+  types:
+  - foundry
+- context: factory
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_ministry_production
+    - building_production_center
+    - building_factory_efficiency_1
+    - building_forever_cruise_passenger_consumer_goods
+  - strategy: always
+    buildings:
+    - building_affluence_emporium
+    - building_forever_cruise_crew_industry
+  - strategy: job_only
+    buildings:
+    - building_factory_1
+  types:
+  - factory
+- context: trade
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_fe_market_1
+    - building_galactic_stock_exchange
+    - building_commercial_megaplex
+  - strategy: job_only
+    buildings:
+    - building_commercial_zone
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_service
+  types:
+  - trade
+- context: research
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_vultaum_reality_computer
+    - building_institute
+    - building_supercomputer
+    - building_archaeostudies_faculty
+    - building_research_efficiency_1
+    - building_forever_cruise_passenger_research
+  - strategy: always
+    buildings:
+    - building_engineering_facility_1
+    - building_physics_lab_1
+    - building_biolab_1
+    - building_fe_lab_1
+  - strategy: job_only
+    buildings:
+    - building_research_lab_1
+  types:
+  - research
+  - physics
+  - society
+  - engineering
+- context: unity
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_bureaucratic_2
+    - building_holotemple
+    - building_hive_cluster
+    - building_network_junction
+    - building_bureaucratic_3
+    - building_sacred_nexus
+    - building_hive_confluence
+    - building_system_conflux
+    - building_autochthon_monument
+    - building_corporate_monument
+    - building_simulation_1
+    - building_galactic_memorial_1
+    - building_sensorium_1
+    - building_lifecrypt_1
+    - building_lifecrypt_machine_1
+    - building_lifecrypt_hive_mind_1
+    - building_lifecrypt_corporate_1
+    - building_autocurating_vault
+    - building_citadel_of_faith
+    - building_corporate_vault
+    - building_alpha_hub
+    - building_trophy_vault
+    - building_forever_cruise_passenger_unity
+  - strategy: always
+    buildings:
+    - building_fe_administration_1
+    - building_fe_administration_hive_1
+    - building_fe_temple_1
+    - building_fe_administration_machine_1
+    - building_forever_cruise_crew_service
+  - strategy: job_only
+    buildings:
+    - building_bureaucratic_1
+    - building_temple
+    - building_sacrificial_temple_1
+    - building_uplink_node
+    - building_hive_node
+  types:
+  - unity
+  - bureaucrat
+  - priest
+- context: fortress
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_dread_encampment
+    - building_military_academy
+    - building_planetary_shield_generator
+  - strategy: job_only
+    buildings:
+    - building_fe_fortress
+    - building_stronghold
+  types:
+  - fortress
+- context: wilderness_energy
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_bioelectric_stimulator_1
+  types:
+  - wilderness_energy
+- context: wilderness_minerals
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_churning_tunnels_1
+  types:
+  - wilderness_minerals
+- context: wilderness_food
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_massive_growth_1
+  types:
+  - wilderness_food
+- context: wilderness_fortress
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_planetary_carapace
+  types:
+  - wilderness_fortress
+- context: wilderness_research
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_brain_node_1
+  types:
+  - wilderness_research
+- context: wilderness_trade
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_tendril_cradle_1
+    - building_brain_node_1
+  types:
+  - wilderness_trade
+- context: wilderness_foundry
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_natural_furnace_1
+  types:
+  - wilderness_foundry
+- context: wilderness_unity
+  strategy_buckets:
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  - strategy: job_only
+    buildings:
+    - building_commensal_clearing_1
+  types:
+  - wilderness_unity
+- context: ark_research_unity_consumer_goods
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_forever_cruise_passenger_consumer_goods
+  types:
+  - ark_research_unity_consumer_goods
+- context: ark_research_alloys_support
+  strategy_buckets:
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_industry
+  types:
+  - ark_research_alloys_support
+- context: entertainer
+  strategy_buckets:
+  - strategy: always
+    buildings:
+    - building_forever_cruise_crew_service
+  types:
+  - entertainer
+  - duelist
+  - forever_cruise_passenger
+  - forever_cruise_crew
+  - forever_cruise_city_passenger
+  - forever_cruise_city_crew
+  - forever_cruise_city_mixed

@@ -527,7 +527,6 @@ bca_can_build_zone_food = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -537,7 +536,6 @@ bca_can_build_zone_food = {
     AND = {
         if = {
             limit = {
-                exists = owner
                 owner = {
                     is_anglers_empire = yes
                 }
@@ -546,7 +544,6 @@ bca_can_build_zone_food = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -565,7 +562,12 @@ bca_can_build_zone_anglers = {
                 is_anglers_empire = yes
             }
         }
-        is_wet = yes
+        OR = {
+            is_wet = yes
+            owner = {
+                is_nomadic = yes
+            }
+        }
     }
     AND = {
         hidden_trigger = {
@@ -574,7 +576,12 @@ bca_can_build_zone_anglers = {
                 is_anglers_empire = yes
             }
         }
-        is_wet = yes
+        OR = {
+            is_wet = yes
+            owner = {
+                is_nomadic = yes
+            }
+        }
     }
 }
 bca_can_build_zone_exotic_gases = {
@@ -715,7 +722,7 @@ bca_can_build_zone_habitat_knights = {
             }
         }
         OR = {
-            has_planet_flag = toxic_knights_habitat
+            has_carrier_flag = toxic_knights_habitat
             has_building = building_order_castle
         }
     }
@@ -729,7 +736,7 @@ bca_can_build_zone_habitat_knights = {
                 }
             }
             OR = {
-                has_planet_flag = toxic_knights_habitat
+                has_carrier_flag = toxic_knights_habitat
                 has_building = building_order_castle
             }
         }
@@ -785,9 +792,6 @@ bca_can_build_zone_habitat_rare_crystals = {
             has_technology = tech_mine_rare_crystals
         }
     }
-    owner = {
-        has_technology = tech_mine_rare_crystals
-    }
 }
 bca_can_build_zone_habitat_volatile_motes = {
     AND = {
@@ -802,9 +806,6 @@ bca_can_build_zone_habitat_volatile_motes = {
             has_technology = tech_mine_volatile_motes
         }
     }
-    owner = {
-        has_technology = tech_mine_volatile_motes
-    }
 }
 bca_can_build_zone_habitat_exotic_gases = {
     AND = {
@@ -818,9 +819,6 @@ bca_can_build_zone_habitat_exotic_gases = {
         owner = {
             has_technology = tech_mine_exotic_gases
         }
-    }
-    owner = {
-        has_technology = tech_mine_exotic_gases
     }
 }
 bca_can_build_zone_payback_enlightenment = {
@@ -841,7 +839,7 @@ bca_can_build_zone_broken_shackles_memorial = {
 }
 bca_can_build_zone_central_spire = {
     AND = {
-        always = no
+        has_carrier_flag = central_spire_cleared
     }
     AND = {
         always = no
@@ -1492,7 +1490,6 @@ bca_can_build_zone_food_ring_world = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -1502,7 +1499,6 @@ bca_can_build_zone_food_ring_world = {
     AND = {
         if = {
             limit = {
-                exists = owner
                 owner = {
                     is_anglers_empire = yes
                 }
@@ -1511,7 +1507,6 @@ bca_can_build_zone_food_ring_world = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -2074,7 +2069,6 @@ bca_can_build_zone_food_hive = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -2084,7 +2078,6 @@ bca_can_build_zone_food_hive = {
     AND = {
         if = {
             limit = {
-                exists = owner
                 owner = {
                     is_anglers_empire = yes
                 }
@@ -2093,7 +2086,6 @@ bca_can_build_zone_food_hive = {
         }
         else = {
             hidden_trigger = {
-                exists = owner
                 owner = {
                     is_wilderness_empire = no
                 }
@@ -2213,6 +2205,419 @@ bca_can_build_zone_spawning_hive = {
         }
     }
 }
+bca_can_build_zone_ark_research_unity = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = no
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_industrial = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = no
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_research_unity_gestalt = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = yes
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = yes
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_foundry = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = yes
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_nomadic = yes
+                is_gestalt = yes
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_engine_bypass = {
+    AND = {
+        owner = {
+            has_technology = tech_afterburners_1
+        }
+    }
+    owner = {
+        has_technology = tech_afterburners_1
+    }
+}
+bca_can_build_zone_ark_shield_overloader = {
+    AND = {
+        owner = {
+            has_technology = tech_shields_2
+        }
+    }
+    owner = {
+        has_technology = tech_shields_2
+    }
+}
+bca_can_build_zone_ark_reactor_physics = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                has_technology = tech_physics_1
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_physics_1
+    }
+}
+bca_can_build_zone_ark_food = {
+    AND = {
+        if = {
+            limit = {
+                exists = owner
+                owner = {
+                    is_anglers_empire = yes
+                }
+            }
+            is_wet = no
+        }
+        else = {
+            hidden_trigger = {
+                owner = {
+                    is_wilderness_empire = no
+                }
+            }
+        }
+    }
+    AND = {
+        if = {
+            limit = {
+                owner = {
+                    is_anglers_empire = yes
+                }
+            }
+            is_wet = no
+        }
+        else = {
+            hidden_trigger = {
+                owner = {
+                    is_wilderness_empire = no
+                }
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_food_processing_1
+    }
+}
+bca_can_build_zone_ark_farm_society = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                has_technology = tech_society_1
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_society_1
+    }
+}
+bca_can_build_zone_ark_harvest = {
+    AND = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+            has_technology = tech_nomads_mechanized_mining
+        }
+    }
+    owner = {
+        has_technology = tech_nomads_mechanized_mining
+    }
+}
+bca_can_build_zone_ark_waystation_trade = {
+    AND = {
+        owner = {
+            is_nomadic = yes
+            has_technology = tech_waystation_2
+        }
+    }
+    owner = {
+        has_technology = tech_waystation_2
+    }
+}
+bca_can_build_zone_ark_missile_silos = {
+    AND = {
+        owner = {
+            has_technology = tech_missiles_2
+        }
+    }
+    owner = {
+        has_technology = tech_missiles_2
+    }
+}
+bca_can_build_zone_ark_ammunition_lines = {
+    AND = {
+        owner = {
+            has_technology = tech_mass_drivers_2
+        }
+    }
+    owner = {
+        has_technology = tech_mass_drivers_2
+    }
+}
+bca_can_build_zone_ark_laser_capacitors = {
+    AND = {
+        owner = {
+            has_technology = tech_lasers_2
+        }
+    }
+    owner = {
+        has_technology = tech_lasers_2
+    }
+}
+bca_can_build_zone_ark_flight_decks = {
+    AND = {
+        owner = {
+            has_technology = tech_strike_craft_1
+        }
+    }
+    owner = {
+        has_technology = tech_strike_craft_1
+    }
+}
+bca_can_build_zone_ark_military_eco = {
+    AND = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+            has_technology = tech_basic_industry
+        }
+    }
+    owner = {
+        has_technology = tech_basic_industry
+    }
+}
+bca_can_build_zone_ark_shipwright = {
+    AND = {
+        owner = {
+            has_technology = tech_doctrine_navy_size_1
+        }
+    }
+    owner = {
+        has_technology = tech_doctrine_navy_size_1
+    }
+}
+bca_can_build_zone_ark_military_engineering = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                has_technology = tech_engineering_1
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_engineering_1
+    }
+}
+bca_can_build_zone_ark_forever_cruise_passenger = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_forever_cruise_crew = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_forever_cruise_engineering = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                has_technology = tech_engineering_1
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            exists = owner
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+    owner = {
+        has_technology = tech_engineering_1
+    }
+}
+bca_can_build_zone_ark_forever_cruise_city_passenger = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_forever_cruise_city_crew = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_forever_cruise_city_mixed = {
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+    AND = {
+        hidden_trigger = {
+            owner = {
+                is_wilderness_empire = no
+            }
+        }
+    }
+}
+bca_can_build_zone_ark_sacred_path_pilgrims = {
+    AND = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+            has_origin = origin_sacred_path
+        }
+    }
+    AND = {
+        exists = owner
+        owner = {
+            is_wilderness_empire = no
+            has_origin = origin_sacred_path
+        }
+    }
+}
 
 bca_is_uncapped_district_cosmogenesis_world_science = {
     always = yes
@@ -2262,8 +2667,13 @@ bca_can_build_district_mindlink = {
         }
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
-            NOT = {
-                has_planet_flag = arcology_project_construction
+            OR = {
+                owner = {
+                    is_nomadic = yes
+                }
+                NOT = {
+                    has_carrier_flag = arcology_project_construction
+                }
             }
         }
     }
@@ -2287,6 +2697,7 @@ bca_can_build_district_city = {
                             is_country_type = primitive
                             is_hive_empire = no
                         }
+                        is_country_type = mechanocalibrator
                     }
                 }
             }
@@ -2317,7 +2728,7 @@ bca_can_build_district_city = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2355,7 +2766,7 @@ bca_can_build_district_crashed_slaver_ship = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2381,7 +2792,7 @@ bca_can_build_district_resort = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2402,7 +2813,7 @@ bca_can_build_district_resort_1 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2423,7 +2834,7 @@ bca_can_build_district_resort_2 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2444,7 +2855,7 @@ bca_can_build_district_resort_3 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2468,7 +2879,7 @@ bca_can_build_district_prison = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2492,7 +2903,7 @@ bca_can_build_district_slave = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2531,7 +2942,7 @@ bca_can_build_district_hive = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2548,7 +2959,7 @@ bca_can_build_district_hive_1 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2565,7 +2976,7 @@ bca_can_build_district_hive_2 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2582,7 +2993,7 @@ bca_can_build_district_hive_3 = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2620,7 +3031,7 @@ bca_can_build_district_nexus = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2723,7 +3134,7 @@ bca_can_build_district_generator = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2757,7 +3168,7 @@ bca_can_build_district_mining = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2800,13 +3211,13 @@ bca_can_build_district_farming = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
 }
 bca_is_uncapped_district_geothermal = {
-    always = yes
+    is_generator_district_uncapped = yes
 }
 
 bca_can_build_district_geothermal = {
@@ -2822,7 +3233,7 @@ bca_can_build_district_geothermal = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2844,7 +3255,7 @@ bca_can_build_district_melting = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -2871,7 +3282,7 @@ bca_can_build_district_polytechnic = {
         custom_tooltip = {
             fail_text = arcology_project_construction_fail_tt
             NOT = {
-                has_planet_flag = arcology_project_construction
+                has_carrier_flag = arcology_project_construction
             }
         }
     }
@@ -3801,6 +4212,182 @@ bca_can_build_district_resort_proving_grounds = {
         always = no
     }
 }
+bca_is_uncapped_district_ark_generator_physics = {
+    always = yes
+}
+
+bca_can_build_district_ark_generator_physics = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_engine_bypass = {
+    always = yes
+}
+
+bca_can_build_district_ark_engine_bypass = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_shield_overloader = {
+    always = yes
+}
+
+bca_can_build_district_ark_shield_overloader = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_food = {
+    always = yes
+}
+
+bca_can_build_district_ark_food = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_basic_society = {
+    always = yes
+}
+
+bca_can_build_district_ark_basic_society = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_harvest = {
+    always = yes
+}
+
+bca_can_build_district_ark_harvest = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_waystation_trade = {
+    always = yes
+}
+
+bca_can_build_district_ark_waystation_trade = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_military_engineering = {
+    always = yes
+}
+
+bca_can_build_district_ark_military_engineering = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_military_industrial = {
+    always = yes
+}
+
+bca_can_build_district_ark_military_industrial = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_forever_cruise_engineering = {
+    always = yes
+}
+
+bca_can_build_district_ark_forever_cruise_engineering = {
+    AND = {
+        always = no
+    }
+}
+bca_is_uncapped_district_ark_city = {
+    always = yes
+}
+
+bca_can_build_district_ark_city = {
+    AND = {
+        OR = {
+            NOT = {
+                exists = owner
+            }
+            uses_district_set = nomad
+        }
+        NAND = {
+            is_capital = yes
+            owner = {
+                has_menace_perk = menp_behemoth_mind_meld
+            }
+        }
+    }
+    AND = {
+        uses_district_set = nomad
+    }
+}
+bca_is_uncapped_district_ark_generator = {
+    always = yes
+}
+
+bca_can_build_district_ark_generator = {
+    AND = {
+        uses_district_set = nomad
+    }
+}
+bca_is_uncapped_district_ark_basic = {
+    always = yes
+}
+
+bca_can_build_district_ark_basic = {
+    AND = {
+        uses_district_set = nomad
+    }
+}
+bca_is_uncapped_district_ark_military = {
+    always = yes
+}
+
+bca_can_build_district_ark_military = {
+    AND = {
+        uses_district_set = nomad
+        exists = owner
+        owner = {
+            NAND = {
+                has_origin = origin_forever_cruise
+                NOT = {
+                    has_country_flag = forever_cruise_over
+                }
+            }
+        }
+    }
+}
+bca_is_uncapped_district_ark_forever_cruise = {
+    always = yes
+}
+
+bca_can_build_district_ark_forever_cruise = {
+    AND = {
+        uses_district_set = nomad
+        exists = owner
+        owner = {
+            has_origin = origin_forever_cruise
+            NOT = {
+                has_country_flag = forever_cruise_over
+            }
+        }
+    }
+    AND = {
+        owner = {
+            OR = {
+                has_technology = tech_holo_entertainment
+                AND = {
+                    is_gestalt = yes
+                    has_origin = origin_forever_cruise
+                }
+            }
+        }
+    }
+}
 
 bca_primary_district_can_build_zone_urban = {
     bca_can_build_zone_urban = yes
@@ -3827,6 +4414,8 @@ bca_primary_district_can_build_zone_urban = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -3860,6 +4449,8 @@ bca_primary_district_can_build_zone_industrial = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -3893,6 +4484,8 @@ bca_primary_district_can_build_zone_foundry = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -3926,6 +4519,8 @@ bca_primary_district_can_build_zone_factory = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -3959,6 +4554,8 @@ bca_primary_district_can_build_zone_research_unity = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -3993,6 +4590,8 @@ bca_primary_district_can_build_zone_research = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4027,6 +4626,8 @@ bca_primary_district_can_build_zone_research_physics = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4062,6 +4663,8 @@ bca_primary_district_can_build_zone_research_society = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4097,6 +4700,8 @@ bca_primary_district_can_build_zone_research_engineering = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4132,6 +4737,8 @@ bca_primary_district_can_build_zone_unity = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -4168,6 +4775,8 @@ bca_primary_district_can_build_zone_unity_spiritualist = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -4204,6 +4813,8 @@ bca_primary_district_can_build_zone_unity_bio_trophy = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -4240,6 +4851,8 @@ bca_primary_district_can_build_zone_fortress = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
     }
@@ -4273,6 +4886,8 @@ bca_primary_district_can_build_zone_trade = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
         has_district = district_hab_housing
         has_district = district_hab_housing
         has_district = district_resort
@@ -4437,6 +5052,7 @@ bca_secondary_district_can_build_zone_energy = {
         bca_can_build_district_geothermal = yes
         bca_can_build_district_photosynthesis_fields = yes
         bca_can_build_district_hab_energy = yes
+        bca_can_build_district_ark_generator = yes
     }
 }
 bca_primary_district_can_build_zone_volatile_motes = {
@@ -4509,6 +5125,8 @@ bca_primary_district_can_build_zone_spawning = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4540,6 +5158,8 @@ bca_primary_district_can_build_zone_machine_replication = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4680,6 +5300,8 @@ bca_primary_district_can_build_zone_central_spire = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4711,6 +5333,8 @@ bca_primary_district_can_build_zone_urban_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4742,6 +5366,8 @@ bca_primary_district_can_build_zone_foundry_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4773,6 +5399,8 @@ bca_primary_district_can_build_zone_research_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4804,6 +5432,8 @@ bca_primary_district_can_build_zone_unity_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4835,6 +5465,8 @@ bca_primary_district_can_build_zone_research_unity_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4866,6 +5498,8 @@ bca_primary_district_can_build_zone_trade_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -4897,6 +5531,8 @@ bca_primary_district_can_build_zone_fortress_wilderness = {
         has_district = district_rw_hive
         has_district = district_rw_nexus
         has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
     }
 }
 
@@ -5681,4 +6317,328 @@ bca_secondary_district_can_build_zone_spawning_hive = {
         bca_can_build_district_hive_2 = yes
         bca_can_build_district_hive_3 = yes
     }
+}
+bca_primary_district_can_build_zone_ark_research_unity = {
+    bca_can_build_zone_ark_research_unity = yes
+    OR = {
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_research_unity = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_industrial = {
+    bca_can_build_zone_ark_industrial = yes
+    OR = {
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_industrial = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_research_unity_gestalt = {
+    bca_can_build_zone_ark_research_unity_gestalt = yes
+    OR = {
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_research_unity_gestalt = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_foundry = {
+    bca_can_build_zone_ark_foundry = yes
+    OR = {
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_foundry = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_engine_bypass = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_engine_bypass = {
+    bca_can_build_zone_ark_engine_bypass = yes
+    OR = {
+        bca_can_build_district_ark_generator = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_shield_overloader = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_shield_overloader = {
+    bca_can_build_zone_ark_shield_overloader = yes
+    OR = {
+        bca_can_build_district_ark_generator = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_reactor_physics = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_reactor_physics = {
+    bca_can_build_zone_ark_reactor_physics = yes
+    OR = {
+        bca_can_build_district_ark_generator = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_food = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_food = {
+    bca_can_build_zone_ark_food = yes
+    OR = {
+        bca_can_build_district_ark_basic = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_farm_society = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_farm_society = {
+    bca_can_build_zone_ark_farm_society = yes
+    OR = {
+        bca_can_build_district_ark_basic = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_harvest = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_harvest = {
+    bca_can_build_zone_ark_harvest = yes
+    OR = {
+        bca_can_build_district_ark_basic = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_waystation_trade = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_waystation_trade = {
+    bca_can_build_zone_ark_waystation_trade = yes
+    OR = {
+        bca_can_build_district_ark_basic = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_missile_silos = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_missile_silos = {
+    bca_can_build_zone_ark_missile_silos = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_ammunition_lines = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_ammunition_lines = {
+    bca_can_build_zone_ark_ammunition_lines = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_laser_capacitors = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_laser_capacitors = {
+    bca_can_build_zone_ark_laser_capacitors = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_flight_decks = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_flight_decks = {
+    bca_can_build_zone_ark_flight_decks = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_military_eco = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_military_eco = {
+    bca_can_build_zone_ark_military_eco = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_shipwright = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_shipwright = {
+    bca_can_build_zone_ark_shipwright = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_military_engineering = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_military_engineering = {
+    bca_can_build_zone_ark_military_engineering = yes
+    OR = {
+        bca_can_build_district_ark_military = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_passenger = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_passenger = {
+    bca_can_build_zone_ark_forever_cruise_passenger = yes
+    OR = {
+        bca_can_build_district_ark_forever_cruise = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_crew = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_crew = {
+    bca_can_build_zone_ark_forever_cruise_crew = yes
+    OR = {
+        bca_can_build_district_ark_forever_cruise = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_engineering = {
+    always = no
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_engineering = {
+    bca_can_build_zone_ark_forever_cruise_engineering = yes
+    OR = {
+        bca_can_build_district_ark_forever_cruise = yes
+    }
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_city_passenger = {
+    bca_can_build_zone_ark_forever_cruise_city_passenger = yes
+    OR = {
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_city_passenger = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_city_crew = {
+    bca_can_build_zone_ark_forever_cruise_city_crew = yes
+    OR = {
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_city_crew = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_forever_cruise_city_mixed = {
+    bca_can_build_zone_ark_forever_cruise_city_mixed = yes
+    OR = {
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_mindlink
+        has_district = district_city
+        has_district = district_prison
+        has_district = district_slave
+        has_district = district_hive
+        has_district = district_nexus
+        has_district = district_arcology_housing
+        has_district = district_rw_city
+        has_district = district_rw_hive
+        has_district = district_rw_nexus
+        has_district = district_craglands
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_forever_cruise_city_mixed = {
+    always = no
+}
+bca_primary_district_can_build_zone_ark_sacred_path_pilgrims = {
+    bca_can_build_zone_ark_sacred_path_pilgrims = yes
+    OR = {
+        has_district = district_ark_city
+        has_district = district_ark_city
+    }
+}
+
+bca_secondary_district_can_build_zone_ark_sacred_path_pilgrims = {
+    always = no
 }

@@ -18,6 +18,7 @@ bca_clear_designation_flag = {
     remove_planet_flag = bca_pf_ps_designation_col_bureau_spiritualist
     remove_planet_flag = bca_pf_ps_designation_col_bureau_hive
     remove_planet_flag = bca_pf_ps_designation_col_bureau_machine
+    remove_planet_flag = bca_pf_ps_designation_col_trade_machine
     remove_planet_flag = bca_pf_ps_designation_col_research
     remove_planet_flag = bca_pf_ps_designation_col_fortress
     remove_planet_flag = bca_pf_ps_designation_col_capital
@@ -85,6 +86,25 @@ bca_clear_designation_flag = {
     remove_planet_flag = bca_pf_ps_designation_col_wilderness_refinery
     remove_planet_flag = bca_pf_ps_designation_col_wilderness_forge
     remove_planet_flag = bca_pf_ps_designation_col_wilderness_unification
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_city
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_farming
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_generator
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_hive
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_nexus
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_industrial
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_foundry
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_factory
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_bureau
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_bureau_spiritualist
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_bureau_machine
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_bureau_hive
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_research
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_fortress
+    remove_planet_flag = bca_pf_ps_designation_col_capital_nomad
+    remove_planet_flag = bca_pf_ps_designation_col_capital_nomad_foundry
+    remove_planet_flag = bca_pf_ps_designation_col_capital_nomad_factory
+    remove_planet_flag = bca_pf_ps_designation_col_capital_nomad_trade
+    remove_planet_flag = bca_pf_ps_designation_col_nomad_trophy_machine
 }
 
 bca_designation_sync_with_system = {
@@ -140,6 +160,10 @@ bca_designation_sync_with_system = {
     else_if = {
         limit = {  has_designation = col_bureau_machine }
         set_planet_flag = bca_pf_ps_designation_col_bureau_machine
+    }
+    else_if = {
+        limit = {  has_designation = col_trade_machine }
+        set_planet_flag = bca_pf_ps_designation_col_trade_machine
     }
     else_if = {
         limit = {  has_designation = col_research }
@@ -409,6 +433,82 @@ bca_designation_sync_with_system = {
         limit = {  has_designation = col_wilderness_unification }
         set_planet_flag = bca_pf_ps_designation_col_wilderness_unification
     }
+    else_if = {
+        limit = {  has_designation = col_nomad_city }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_city
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_farming }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_farming
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_generator }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_generator
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_hive }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_hive
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_nexus }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_nexus
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_industrial }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_industrial
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_foundry }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_foundry
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_factory }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_factory
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_bureau }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_bureau
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_bureau_spiritualist }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_bureau_spiritualist
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_bureau_machine }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_bureau_machine
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_bureau_hive }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_bureau_hive
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_research }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_research
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_fortress }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_fortress
+    }
+    else_if = {
+        limit = {  has_designation = col_capital_nomad }
+        set_planet_flag = bca_pf_ps_designation_col_capital_nomad
+    }
+    else_if = {
+        limit = {  has_designation = col_capital_nomad_foundry }
+        set_planet_flag = bca_pf_ps_designation_col_capital_nomad_foundry
+    }
+    else_if = {
+        limit = {  has_designation = col_capital_nomad_factory }
+        set_planet_flag = bca_pf_ps_designation_col_capital_nomad_factory
+    }
+    else_if = {
+        limit = {  has_designation = col_capital_nomad_trade }
+        set_planet_flag = bca_pf_ps_designation_col_capital_nomad_trade
+    }
+    else_if = {
+        limit = {  has_designation = col_nomad_trophy_machine }
+        set_planet_flag = bca_pf_ps_designation_col_nomad_trophy_machine
+    }
 }
 
 bca_designation_sync_with_prev = {
@@ -463,6 +563,10 @@ bca_designation_sync_with_prev = {
     else_if = {
         limit = {  has_planet_flag = bca_pf_ps_designation_col_bureau_machine }
         set_colony_type = col_bureau_machine
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_trade_machine }
+        set_colony_type = col_trade_machine
     }
     else_if = {
         limit = {  has_planet_flag = bca_pf_ps_designation_col_research }
@@ -731,6 +835,82 @@ bca_designation_sync_with_prev = {
     else_if = {
         limit = {  has_planet_flag = bca_pf_ps_designation_col_wilderness_unification }
         set_colony_type = col_wilderness_unification
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_city }
+        set_colony_type = col_nomad_city
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_farming }
+        set_colony_type = col_nomad_farming
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_generator }
+        set_colony_type = col_nomad_generator
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_hive }
+        set_colony_type = col_nomad_hive
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_nexus }
+        set_colony_type = col_nomad_nexus
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_industrial }
+        set_colony_type = col_nomad_industrial
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_foundry }
+        set_colony_type = col_nomad_foundry
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_factory }
+        set_colony_type = col_nomad_factory
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_bureau }
+        set_colony_type = col_nomad_bureau
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_bureau_spiritualist }
+        set_colony_type = col_nomad_bureau_spiritualist
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_bureau_machine }
+        set_colony_type = col_nomad_bureau_machine
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_bureau_hive }
+        set_colony_type = col_nomad_bureau_hive
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_research }
+        set_colony_type = col_nomad_research
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_fortress }
+        set_colony_type = col_nomad_fortress
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_capital_nomad }
+        set_colony_type = col_capital_nomad
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_capital_nomad_foundry }
+        set_colony_type = col_capital_nomad_foundry
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_capital_nomad_factory }
+        set_colony_type = col_capital_nomad_factory
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_capital_nomad_trade }
+        set_colony_type = col_capital_nomad_trade
+    }
+    else_if = {
+        limit = {  has_planet_flag = bca_pf_ps_designation_col_nomad_trophy_machine }
+        set_colony_type = col_nomad_trophy_machine
     }
 }
 
@@ -1007,6 +1187,24 @@ hidden_effect = {
                     DISTRICT = district_hive_3
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_waystation_trade
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_waystation_trade }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = trade
+                    ZONE = zone_ark_waystation_trade
+                    DISTRICT = district_ark_basic
+                }
+            }
         }
         if = {
             limit = {
@@ -1245,6 +1443,24 @@ hidden_effect = {
                     TYPE = foundry
                     ZONE = zone_foundry_hive
                     DISTRICT = district_hive_3
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_military_eco
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_military_eco }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = foundry
+                    ZONE = zone_ark_military_eco
+                    DISTRICT = district_ark_military
                 }
             }
         }
@@ -1694,6 +1910,24 @@ hidden_effect = {
                     DISTRICT = district_hive_3
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_reactor_physics
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_reactor_physics }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = physics
+                    ZONE = zone_ark_reactor_physics
+                    DISTRICT = district_ark_generator
+                }
+            }
         }
         if = {
             limit = {
@@ -1837,6 +2071,24 @@ hidden_effect = {
                     DISTRICT = district_hive_3
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_farm_society
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_farm_society }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = society
+                    ZONE = zone_ark_farm_society
+                    DISTRICT = district_ark_basic
+                }
+            }
         }
         if = {
             limit = {
@@ -1978,6 +2230,42 @@ hidden_effect = {
                     TYPE = engineering
                     ZONE = zone_research_engineering_hive
                     DISTRICT = district_hive_3
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_military_engineering
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_military_engineering }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = engineering
+                    ZONE = zone_ark_military_engineering
+                    DISTRICT = district_ark_military
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_engineering
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_forever_cruise_engineering }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = engineering
+                    ZONE = zone_ark_forever_cruise_engineering
+                    DISTRICT = district_ark_forever_cruise
                 }
             }
         }
@@ -2742,6 +3030,11 @@ hidden_effect = {
                     ZONE = zone_energy
                     DISTRICT = district_hab_energy
                 }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = energy
+                    ZONE = zone_energy
+                    DISTRICT = district_ark_generator
+                }
             }
             if = {
                 limit = {
@@ -3016,6 +3309,24 @@ hidden_effect = {
                     DISTRICT = district_hive_3
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_harvest
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_harvest }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = minerals
+                    ZONE = zone_ark_harvest
+                    DISTRICT = district_ark_basic
+                }
+            }
         }
         if = {
             limit = {
@@ -3101,6 +3412,24 @@ hidden_effect = {
                     TYPE = food
                     ZONE = zone_food_hive
                     DISTRICT = district_hive_3
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_food
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_food }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = food
+                    ZONE = zone_ark_food
+                    DISTRICT = district_ark_basic
                 }
             }
         }
@@ -3428,6 +3757,24 @@ hidden_effect = {
                     DISTRICT = district_hive_3
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_shield_overloader
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_shield_overloader }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = exotic_gases
+                    ZONE = zone_ark_shield_overloader
+                    DISTRICT = district_ark_generator
+                }
+            }
         }
         if = {
             limit = {
@@ -3653,6 +4000,206 @@ hidden_effect = {
                     TYPE = wilderness_food
                     ZONE = zone_food_wilderness
                     DISTRICT = district_orchard_forests
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_ark_reactor
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_engine_bypass
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_engine_bypass }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_reactor
+                    ZONE = zone_ark_engine_bypass
+                    DISTRICT = district_ark_generator
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_missile
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_missile_silos
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_missile_silos }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = missile
+                    ZONE = zone_ark_missile_silos
+                    DISTRICT = district_ark_military
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_gun
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_ammunition_lines
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_ammunition_lines }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = gun
+                    ZONE = zone_ark_ammunition_lines
+                    DISTRICT = district_ark_military
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_laser
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_laser_capacitors
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_laser_capacitors }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = laser
+                    ZONE = zone_ark_laser_capacitors
+                    DISTRICT = district_ark_military
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_fighter
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_flight_decks
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_flight_decks }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = fighter
+                    ZONE = zone_ark_flight_decks
+                    DISTRICT = district_ark_military
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_forever_cruise_passenger
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_passenger
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_forever_cruise_passenger }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_passenger
+                    ZONE = zone_ark_forever_cruise_passenger
+                    DISTRICT = district_ark_forever_cruise
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_forever_cruise_crew
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_shipwright
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_shipwright }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_crew
+                    ZONE = zone_ark_shipwright
+                    DISTRICT = district_ark_military
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_crew
+                        value > 0
+                    }
+                }
+                export_trigger_value_to_variable = {
+                    trigger = num_zones
+                    parameters = { type = zone_ark_forever_cruise_crew }
+                    variable = temp_num_zones
+                }
+                bca_secondary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_crew
+                    ZONE = zone_ark_forever_cruise_crew
+                    DISTRICT = district_ark_forever_cruise
                 }
             }
         }
@@ -4271,6 +4818,150 @@ hidden_effect = {
                 }
             }
         }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_research_unity_consumer_goods
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_research_unity
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_research_unity_consumer_goods
+                    ZONE = zone_ark_research_unity
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_research_unity_gestalt
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_research_unity_consumer_goods
+                    ZONE = zone_ark_research_unity_gestalt
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_research_alloys_support
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_industrial
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_research_alloys_support
+                    ZONE = zone_ark_industrial
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_foundry
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_research_alloys_support
+                    ZONE = zone_ark_foundry
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_passenger
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_city_passenger
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_city_passenger
+                    ZONE = zone_ark_forever_cruise_city_passenger
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_crew
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_city_crew
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_city_crew
+                    ZONE = zone_ark_forever_cruise_city_crew
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_mixed
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_forever_cruise_city_mixed
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = forever_cruise_city_mixed
+                    ZONE = zone_ark_forever_cruise_city_mixed
+                }
+            }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_pilgrimage
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_sacred_path_pilgrims
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = ark_pilgrimage
+                    ZONE = zone_ark_sacred_path_pilgrims
+                }
+            }
+        }
     remove_planet_flag = tp_zone_processed_z1
     remove_planet_flag = tp_zone_processed_z2
     clear_variable = temp_num_zones
@@ -4335,6 +5026,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_trade_hive
             }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_waystation_trade
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_waystation_trade
+            }
         }
         else_if = {
             limit = {
@@ -4398,6 +5095,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_foundry_hive
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_foundry_hive
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_eco
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_eco
             }
         }
         else_if = {
@@ -4519,6 +5222,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_hive
             }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_reactor_physics
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_reactor_physics
+            }
         }
         else_if = {
             limit = {
@@ -4557,6 +5266,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_research_society_hive
             }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_farm_society
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_farm_society
+            }
         }
         else_if = {
             limit = {
@@ -4594,6 +5309,18 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_hive
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_hive
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_engineering
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_engineering
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_engineering
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_engineering
             }
         }
         else_if = {
@@ -4901,6 +5628,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_minerals_hive
             }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_harvest
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_harvest
+            }
         }
         else_if = {
             limit = {
@@ -4926,6 +5659,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_food_hive
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_food_hive
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_food
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_food
             }
         }
         else_if = {
@@ -5022,6 +5761,12 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases_hive
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases_hive
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_shield_overloader
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_shield_overloader
             }
         }
         else_if = {
@@ -5120,6 +5865,110 @@ bca_set_zx_for_identical_secondary_zone_plan = {
                     has_planet_flag = bca_pf_ps_selected_zone_z3_zone_food_wilderness
                 }
                 set_planet_flag = bca_pf_ps_selected_zone_zx_zone_food_wilderness
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_ark_reactor
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_ark_reactor
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_ark_reactor
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_ark_reactor
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_engine_bypass
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_engine_bypass
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_missile
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_missile
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_missile
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_missile
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_missile_silos
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_missile_silos
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_gun
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_gun
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_gun
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_gun
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_ammunition_lines
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_ammunition_lines
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_laser
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_laser
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_laser
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_laser
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_laser_capacitors
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_laser_capacitors
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_fighter
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_fighter
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_fighter
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_fighter
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_flight_decks
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_flight_decks
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_passenger
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_passenger
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_passenger
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_passenger
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_passenger
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_passenger
+            }
+        }
+        else_if = {
+            limit = {
+                has_planet_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_crew
+                has_planet_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_crew
+                has_planet_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_crew
+            }
+            set_planet_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_crew
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_shipwright
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_shipwright
+            }
+            if = {
+                limit = {
+                    has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_crew
+                }
+                set_planet_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_crew
             }
         }
     else = {

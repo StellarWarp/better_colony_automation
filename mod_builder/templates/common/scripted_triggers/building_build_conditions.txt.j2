@@ -1,3 +1,23 @@
+{% macro render_prerequisites(node, indent=0) -%}
+{% if node["kind"] == "group" -%}
+{% if node["operator"] == "and" -%}
+{% for item in node["items"] -%}
+{#  #}{{ render_prerequisites(item, indent) }}{#  #}
+{% endfor -%}
+{% else -%}
+{{ " " * indent }}{{ node["operator"] | upper }} = {
+{% for item in node["items"] -%}
+{#  #}{{ render_prerequisites(item, indent + 4) }}{#  #}
+{% endfor -%}
+{{ " " * indent }}}
+{% endif -%}
+{% elif node["kind"] == "tech" -%}
+{{ " " * indent }}has_technology = {{ node["name"] }}
+{% elif node["kind"] == "raw" -%}
+{{ node["source"] | indent(indent, true) }}
+{% endif -%}
+{%- endmacro %}
+
 {% for b in bca_buildings %}
 bca_can_build_{{ b.name }} = {
 {% if b.potential %}
@@ -17,9 +37,7 @@ bca_can_build_{{ b.name }} = {
 {% endif %}
 {% if b.prerequisites %}
     owner = {
-{% for prereq in b.prerequisites %}
-        has_technology = {{ prereq }}
-{% endfor %}
+{#  #}{{ render_prerequisites(b.prerequisites, 8) }}{#  #}
     }
 {% endif %}
 }

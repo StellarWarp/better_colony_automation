@@ -181,6 +181,13 @@ num_primary_district = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_city
+        }
+        mode = add
+    }
 }
 
 num_secondary_district = {
@@ -373,6 +380,34 @@ num_secondary_district = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_generator
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_basic
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_military
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_forever_cruise
+        }
+        mode = add
+    }
 }
 
 num_district_d0 = {
@@ -467,6 +502,13 @@ num_district_d0 = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_city
+        }
+        mode = add
+    }
 }
 num_district_d1 = {
     complex_trigger_modifier = {
@@ -529,6 +571,13 @@ num_district_d1 = {
         trigger = num_districts
         parameters = {
             type = district_photosynthesis_fields
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_generator
         }
         mode = add
     }
@@ -597,6 +646,20 @@ num_district_d2 = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_military
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_forever_cruise
+        }
+        mode = add
+    }
 }
 num_district_d3 = {
     complex_trigger_modifier = {
@@ -659,6 +722,13 @@ num_district_d3 = {
         trigger = num_districts
         parameters = {
             type = district_orchard_forests
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_basic
         }
         mode = add
     }
@@ -794,6 +864,16 @@ num_free_primary_district = {
         mode = set
         potential = {
             bca_can_build_district_craglands = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = district_ark_city
+        }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_city = yes
         }
     }
 }
@@ -1069,6 +1149,46 @@ num_free_secondary_district = {
             bca_can_build_district_orchard_forests = yes
         }
     }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = district_ark_generator
+        }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_generator = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = district_ark_basic
+        }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_basic = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = district_ark_military
+        }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_military = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = district_ark_forever_cruise
+        }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_forever_cruise = yes
+        }
+    }
 }
 
 num_free_district_d0 = {
@@ -1176,6 +1296,14 @@ num_free_district_d0 = {
             bca_can_build_district_craglands = yes
         }
     }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_city }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_city = yes
+        }
+    }
 }
 num_free_district_d1 = {
     complex_trigger_modifier = {
@@ -1248,6 +1376,14 @@ num_free_district_d1 = {
         mode = set
         potential = {
             bca_can_build_district_photosynthesis_fields = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_generator }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_generator = yes
         }
     }
 }
@@ -1324,6 +1460,22 @@ num_free_district_d2 = {
             bca_can_build_district_hollow_mountains = yes
         }
     }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_military }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_military = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_forever_cruise }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_forever_cruise = yes
+        }
+    }
 }
 num_free_district_d3 = {
     complex_trigger_modifier = {
@@ -1398,9 +1550,73 @@ num_free_district_d3 = {
             bca_can_build_district_orchard_forests = yes
         }
     }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_basic }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_basic = yes
+        }
+    }
 }
 
 num_zones_primary_district = {
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_forever_cruise_city_crew
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_forever_cruise_city_mixed
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_forever_cruise_city_passenger
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_foundry
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_industrial
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_research_unity
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_research_unity_gestalt
+		}
+		mode = add
+	}
+	complex_trigger_modifier = {
+		trigger = num_zones
+		parameters = {
+			type = zone_ark_sacred_path_pilgrims
+		}
+		mode = add
+	}
 	complex_trigger_modifier = {
 		trigger = num_zones
 		parameters = {
@@ -1618,6 +1834,125 @@ num_zones_secondary_district = {
         trigger = num_zones
         parameters = {
             type = zone_anglers
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_ammunition_lines
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_engine_bypass
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_farm_society
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_flight_decks
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_food
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_crew
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_engineering
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_passenger
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_harvest
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_laser_capacitors
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_eco
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_engineering
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_missile_silos
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_reactor_physics
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shield_overloader
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shipwright
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_waystation_trade
         }
         mode = add
     }
@@ -2396,6 +2731,13 @@ num_secondary_zones_of_type_trade = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_waystation_trade
+        }
+        mode = add
+    }
 }
 
 num_secondary_zone_plan_of_type_trade = {
@@ -2551,6 +2893,13 @@ num_secondary_zones_of_type_foundry = {
         trigger = num_zones
         parameters = {
             type = zone_foundry_hive
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_eco
         }
         mode = add
     }
@@ -2826,6 +3175,13 @@ num_secondary_zones_of_type_physics = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_reactor_physics
+        }
+        mode = add
+    }
 }
 
 num_secondary_zone_plan_of_type_physics = {
@@ -2912,6 +3268,13 @@ num_secondary_zones_of_type_society = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_farm_society
+        }
+        mode = add
+    }
 }
 
 num_secondary_zone_plan_of_type_society = {
@@ -2995,6 +3358,20 @@ num_secondary_zones_of_type_engineering = {
         trigger = num_zones
         parameters = {
             type = zone_research_engineering_hive
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_engineering
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_engineering
         }
         mode = add
     }
@@ -3764,6 +4141,13 @@ num_secondary_zones_of_type_minerals = {
         }
         mode = add
     }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_harvest
+        }
+        mode = add
+    }
 }
 
 num_secondary_zone_plan_of_type_minerals = {
@@ -3812,6 +4196,13 @@ num_secondary_zones_of_type_food = {
         trigger = num_zones
         parameters = {
             type = zone_food_hive
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_food
         }
         mode = add
     }
@@ -3986,6 +4377,13 @@ num_secondary_zones_of_type_exotic_gases = {
         trigger = num_zones
         parameters = {
             type = zone_exotic_gases_hive
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shield_overloader
         }
         mode = add
     }
@@ -4466,6 +4864,412 @@ num_secondary_zone_plan_of_type_wilderness_food = {
     }
 }
 
+num_primary_zones_of_type_ark_research_unity_consumer_goods = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_research_unity
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_research_unity_gestalt
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_ark_research_unity_consumer_goods = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_ark_research_unity_consumer_goods
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_ark_research_unity_consumer_goods
+        add = 1
+    }
+}
+
+num_primary_zones_of_type_ark_research_alloys_support = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_industrial
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_foundry
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_ark_research_alloys_support = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_ark_research_alloys_support
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_ark_research_alloys_support
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_ark_reactor = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_engine_bypass
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_ark_reactor = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_ark_reactor
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_ark_reactor
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_ark_reactor
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_missile = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_missile_silos
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_missile = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_missile
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_missile
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_missile
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_gun = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_ammunition_lines
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_gun = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_gun
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_gun
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_gun
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_laser = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_laser_capacitors
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_laser = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_laser
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_laser
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_laser
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_fighter = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_flight_decks
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_fighter = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_fighter
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_fighter
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_fighter
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_forever_cruise_passenger = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_passenger
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_forever_cruise_passenger = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_secondary_zones_of_type_forever_cruise_crew = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shipwright
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_crew
+        }
+        mode = add
+    }
+}
+
+num_secondary_zone_plan_of_type_forever_cruise_crew = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+num_primary_zones_of_type_forever_cruise_city_passenger = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_passenger
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_forever_cruise_city_passenger = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_forever_cruise_city_passenger
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_forever_cruise_city_passenger
+        add = 1
+    }
+}
+
+num_primary_zones_of_type_forever_cruise_city_crew = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_crew
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_forever_cruise_city_crew = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_forever_cruise_city_crew
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_forever_cruise_city_crew
+        add = 1
+    }
+}
+
+num_primary_zones_of_type_forever_cruise_city_mixed = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_mixed
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_forever_cruise_city_mixed = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_forever_cruise_city_mixed
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_forever_cruise_city_mixed
+        add = 1
+    }
+}
+
+num_primary_zones_of_type_ark_pilgrimage = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_sacred_path_pilgrims
+        }
+        mode = add
+    }
+}
+
+num_primary_zone_plan_of_type_ark_pilgrimage = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z1_ark_pilgrimage
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_type_z2_ark_pilgrimage
+        add = 1
+    }
+}
+
 
 
 num_zones_of_zone_urban = {
@@ -4813,6 +5617,50 @@ num_zone_plan_of_zone_trade_hive = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_trade_hive
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_waystation_trade = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_waystation_trade
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_waystation_trade = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_waystation_trade
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_waystation_trade
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_waystation_trade
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_waystation_trade
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_waystation_trade
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0
@@ -5253,6 +6101,50 @@ num_zone_plan_of_zone_foundry_hive = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_foundry_hive
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_military_eco = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_eco
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_military_eco = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_military_eco
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_military_eco
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_eco
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_military_eco
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_military_eco
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0
@@ -6052,6 +6944,50 @@ num_zone_plan_of_zone_research_physics_hive = {
         add = 1
     }
 }
+num_zones_of_zone_ark_reactor_physics = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_reactor_physics
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_reactor_physics = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_reactor_physics
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_reactor_physics
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_reactor_physics
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_reactor_physics
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_reactor_physics
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 num_zones_of_zone_research_society = {
     complex_trigger_modifier = {
         trigger = num_zones
@@ -6272,6 +7208,50 @@ num_zone_plan_of_zone_research_society_hive = {
         add = 1
     }
 }
+num_zones_of_zone_ark_farm_society = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_farm_society
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_farm_society = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_farm_society
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_farm_society
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_farm_society
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_farm_society
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_farm_society
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 num_zones_of_zone_research_engineering = {
     complex_trigger_modifier = {
         trigger = num_zones
@@ -6485,6 +7465,94 @@ num_zone_plan_of_zone_research_engineering_hive = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_research_engineering_hive
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_military_engineering = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_military_engineering
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_military_engineering = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_military_engineering
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_military_engineering
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_engineering
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_military_engineering
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_military_engineering
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_engineering = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_engineering
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_engineering = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_engineering
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_engineering
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_engineering
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_engineering
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_engineering
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0
@@ -8208,6 +9276,50 @@ num_zone_plan_of_zone_minerals_hive = {
         add = 1
     }
 }
+num_zones_of_zone_ark_harvest = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_harvest
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_harvest = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_harvest
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_harvest
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_harvest
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_harvest
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_harvest
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 num_zones_of_zone_food = {
     complex_trigger_modifier = {
         trigger = num_zones
@@ -8333,6 +9445,50 @@ num_zone_plan_of_zone_food_hive = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_food_hive
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_food = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_food
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_food = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_food
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_food
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_food
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_food
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_food
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0
@@ -8861,6 +10017,50 @@ num_zone_plan_of_zone_exotic_gases_hive = {
     }
     modifier = {
         has_planet_flag = bca_pf_ps_selected_zone_z5_zone_exotic_gases_hive
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_shield_overloader = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shield_overloader
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_shield_overloader = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_shield_overloader
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_shield_overloader
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_shield_overloader
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_shield_overloader
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_shield_overloader
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0
@@ -9572,6 +10772,710 @@ num_zone_plan_of_zone_food_wilderness = {
         add = 1
     }
 }
+num_zones_of_zone_ark_research_unity = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_research_unity
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_research_unity = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_research_unity
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_research_unity
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_research_unity
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_research_unity
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_research_unity
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_research_unity_gestalt = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_research_unity_gestalt
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_research_unity_gestalt = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_research_unity_gestalt
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_research_unity_gestalt
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_research_unity_gestalt
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_research_unity_gestalt
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_research_unity_gestalt
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_industrial = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_industrial
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_industrial = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_industrial
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_industrial
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_industrial
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_industrial
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_industrial
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_foundry = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_foundry
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_foundry = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_foundry
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_foundry
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_foundry
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_foundry
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_foundry
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_engine_bypass = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_engine_bypass
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_engine_bypass = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_engine_bypass
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_engine_bypass
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_engine_bypass
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_engine_bypass
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_engine_bypass
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_missile_silos = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_missile_silos
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_missile_silos = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_missile_silos
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_missile_silos
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_missile_silos
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_missile_silos
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_missile_silos
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_ammunition_lines = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_ammunition_lines
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_ammunition_lines = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_ammunition_lines
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_ammunition_lines
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_ammunition_lines
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_ammunition_lines
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_ammunition_lines
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_laser_capacitors = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_laser_capacitors
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_laser_capacitors = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_laser_capacitors
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_laser_capacitors
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_laser_capacitors
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_laser_capacitors
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_laser_capacitors
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_flight_decks = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_flight_decks
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_flight_decks = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_flight_decks
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_flight_decks
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_flight_decks
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_flight_decks
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_flight_decks
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_passenger = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_passenger
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_passenger = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_passenger
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_passenger
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_shipwright = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_shipwright
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_shipwright = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_shipwright
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_shipwright
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_shipwright
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_shipwright
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_shipwright
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_crew = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_crew
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_crew = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_crew
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_crew
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_city_passenger = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_passenger
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_city_passenger = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_city_passenger
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_city_passenger
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_city_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_city_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_city_passenger
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_city_crew = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_crew
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_city_crew = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_city_crew
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_city_crew
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_city_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_city_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_city_crew
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_forever_cruise_city_mixed = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_forever_cruise_city_mixed
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_forever_cruise_city_mixed = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_city_mixed
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_city_mixed
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_city_mixed
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_city_mixed
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_city_mixed
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+num_zones_of_zone_ark_sacred_path_pilgrims = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_sacred_path_pilgrims
+        }
+        mode = add
+    }
+}
+
+num_zone_plan_of_zone_ark_sacred_path_pilgrims = {
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z1_zone_ark_sacred_path_pilgrims
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z2_zone_ark_sacred_path_pilgrims
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z3_zone_ark_sacred_path_pilgrims
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z4_zone_ark_sacred_path_pilgrims
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_planet_flag = bca_pf_ps_selected_zone_z5_zone_ark_sacred_path_pilgrims
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
 
 bca_planet_max_districts_subtract_one = {
     set = value:bca_planet_max_districts
@@ -9580,6 +11484,7 @@ bca_planet_max_districts_subtract_one = {
 
 bca_district_max_add_d1 = {
     add = value:bca_planet_max_districts_of|type|district_generator|
+    add = value:bca_planet_max_districts_of|type|district_geothermal|
     add = value:bca_planet_max_districts_of|type|district_hab_energy|
     add = value:bca_planet_max_districts_of|type|district_photosynthesis_fields|
     modifier = {
@@ -9603,7 +11508,7 @@ bca_district_max_add_d1 = {
          set = value:bca_planet_max_districts
     }
     modifier = {
-         bca_can_build_district_geothermal = yes
+         bca_can_build_district_ark_generator = yes
          set = value:bca_planet_max_districts
     }
 }
@@ -9641,6 +11546,14 @@ bca_district_max_add_d2 = {
          bca_can_build_district_rw_urban_2 = yes
          set = value:bca_planet_max_districts
     }
+    modifier = {
+         bca_can_build_district_ark_military = yes
+         set = value:bca_planet_max_districts
+    }
+    modifier = {
+         bca_can_build_district_ark_forever_cruise = yes
+         set = value:bca_planet_max_districts
+    }
 }
 
 bca_district_max_build_d2 = {
@@ -9676,6 +11589,10 @@ bca_district_max_add_d3 = {
          bca_can_build_district_rw_urban_3 = yes
          set = value:bca_planet_max_districts
     }
+    modifier = {
+         bca_can_build_district_ark_basic = yes
+         set = value:bca_planet_max_districts
+    }
 }
 
 bca_district_max_build_d3 = {
@@ -9689,6 +11606,7 @@ bca_district_max_build_d3 = {
 
 bca_potential_district_max_add_d1 = {
     add = value:bca_planet_max_districts_of|type|district_generator|
+    add = value:bca_planet_max_districts_of|type|district_geothermal|
     add = value:bca_planet_max_districts_of|type|district_hab_energy|
     add = value:bca_planet_max_districts_of|type|district_photosynthesis_fields|
     modifier = {
@@ -9712,7 +11630,7 @@ bca_potential_district_max_add_d1 = {
          set = value:bca_planet_max_districts
     }
     modifier = {
-         bca_can_build_district_geothermal = yes
+         bca_can_build_district_ark_generator = yes
          set = value:bca_planet_max_districts
     }
 
@@ -9756,6 +11674,14 @@ bca_potential_district_max_add_d2 = {
          bca_can_build_district_rw_urban_2 = yes
          set = value:bca_planet_max_districts
     }
+    modifier = {
+         bca_can_build_district_ark_military = yes
+         set = value:bca_planet_max_districts
+    }
+    modifier = {
+         bca_can_build_district_ark_forever_cruise = yes
+         set = value:bca_planet_max_districts
+    }
 
     modifier = {
 		bca_can_build_building_mining_districts_1 = yes
@@ -9795,6 +11721,10 @@ bca_potential_district_max_add_d3 = {
     }
     modifier = {
          bca_can_build_district_rw_urban_3 = yes
+         set = value:bca_planet_max_districts
+    }
+    modifier = {
+         bca_can_build_district_ark_basic = yes
          set = value:bca_planet_max_districts
     }
 

@@ -60,6 +60,10 @@ bca_add_district_d0 = {
         add_district = { district_type = district_craglands }
     }
     else_if = {
+        limit = { has_district = district_ark_city }
+        add_district = { district_type = district_ark_city }
+    }
+    else_if = {
         limit = { bca_can_build_district_mindlink = yes }
         add_district = { district_type = district_mindlink }
     }
@@ -110,6 +114,10 @@ bca_add_district_d0 = {
     else_if = {
         limit = { bca_can_build_district_craglands = yes }
         add_district = { district_type = district_craglands }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_city = yes }
+        add_district = { district_type = district_ark_city }
     }
 }
 
@@ -166,6 +174,10 @@ bca_remove_district_d0 = {
         limit = { has_district = district_craglands }
         remove_district = district_craglands
     }
+    else_if = {
+        limit = { has_district = district_ark_city }
+        remove_district = district_ark_city
+    }
 }
 
 
@@ -207,6 +219,10 @@ bca_add_district_d1 = {
         add_district = { district_type = district_photosynthesis_fields }
     }
     else_if = {
+        limit = { has_district = district_ark_generator }
+        add_district = { district_type = district_ark_generator }
+    }
+    else_if = {
         limit = { bca_can_build_district_resort_1 = yes }
         add_district = { district_type = district_resort_1 }
     }
@@ -241,6 +257,10 @@ bca_add_district_d1 = {
     else_if = {
         limit = { bca_can_build_district_photosynthesis_fields = yes }
         add_district = { district_type = district_photosynthesis_fields }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_generator = yes }
+        add_district = { district_type = district_ark_generator }
     }
 }
 
@@ -280,6 +300,10 @@ bca_remove_district_d1 = {
     else_if = {
         limit = { has_district = district_photosynthesis_fields }
         remove_district = district_photosynthesis_fields
+    }
+    else_if = {
+        limit = { has_district = district_ark_generator }
+        remove_district = district_ark_generator
     }
 }
 
@@ -322,6 +346,14 @@ bca_add_district_d2 = {
         add_district = { district_type = district_hollow_mountains }
     }
     else_if = {
+        limit = { has_district = district_ark_military }
+        add_district = { district_type = district_ark_military }
+    }
+    else_if = {
+        limit = { has_district = district_ark_forever_cruise }
+        add_district = { district_type = district_ark_forever_cruise }
+    }
+    else_if = {
         limit = { bca_can_build_district_resort_2 = yes }
         add_district = { district_type = district_resort_2 }
     }
@@ -356,6 +388,14 @@ bca_add_district_d2 = {
     else_if = {
         limit = { bca_can_build_district_hollow_mountains = yes }
         add_district = { district_type = district_hollow_mountains }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_military = yes }
+        add_district = { district_type = district_ark_military }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_forever_cruise = yes }
+        add_district = { district_type = district_ark_forever_cruise }
     }
 }
 
@@ -395,6 +435,14 @@ bca_remove_district_d2 = {
     else_if = {
         limit = { has_district = district_hollow_mountains }
         remove_district = district_hollow_mountains
+    }
+    else_if = {
+        limit = { has_district = district_ark_military }
+        remove_district = district_ark_military
+    }
+    else_if = {
+        limit = { has_district = district_ark_forever_cruise }
+        remove_district = district_ark_forever_cruise
     }
 }
 
@@ -437,6 +485,10 @@ bca_add_district_d3 = {
         add_district = { district_type = district_orchard_forests }
     }
     else_if = {
+        limit = { has_district = district_ark_basic }
+        add_district = { district_type = district_ark_basic }
+    }
+    else_if = {
         limit = { bca_can_build_district_resort_3 = yes }
         add_district = { district_type = district_resort_3 }
     }
@@ -471,6 +523,10 @@ bca_add_district_d3 = {
     else_if = {
         limit = { bca_can_build_district_orchard_forests = yes }
         add_district = { district_type = district_orchard_forests }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_basic = yes }
+        add_district = { district_type = district_ark_basic }
     }
 }
 
@@ -510,6 +566,10 @@ bca_remove_district_d3 = {
     else_if = {
         limit = { has_district = district_orchard_forests }
         remove_district = district_orchard_forests
+    }
+    else_if = {
+        limit = { has_district = district_ark_basic }
+        remove_district = district_ark_basic
     }
 }
 

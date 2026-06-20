@@ -92,12 +92,16 @@ Examples:
 
 - [`../../common/colony_automation_exceptions/03_bca_building_rare_resources.txt`](../../common/colony_automation_exceptions/03_bca_building_rare_resources.txt)
 - [`../../common/colony_automation_exceptions/02_bca_building_medical.txt`](../../common/colony_automation_exceptions/02_bca_building_medical.txt)
-- [`../../common/colony_automation_exceptions/40_bca_building_rural_job.txt`](../../common/colony_automation_exceptions/40_bca_building_rural_job.txt)
+- [`../../common/colony_automation_exceptions/31_bca_capital.txt`](../../common/colony_automation_exceptions/31_bca_capital.txt)
+
+General designation building rules are generated in
+[`../../common/colony_automation_exceptions/31_bca_designation_buildings.txt`](../../common/colony_automation_exceptions/31_bca_designation_buildings.txt).
 
 Why it matters:
 
 - these implement actual building choices
-- a bug in "what gets built" may be here even if plan flags are correct
+- a bug in "what gets built" may be in either a retained handwritten exception
+  or the building strategy source/template
 
 ## Runtime constants and helper files
 
