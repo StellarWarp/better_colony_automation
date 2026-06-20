@@ -1,4 +1,4 @@
-# Better Colony Automation (BCA) - Colony Automation Overhaul (4.3)
+# Better Colony Automation (BCA) - Colony Automation Overhaul (4.4)
 
 ## Overview
 
@@ -66,6 +66,12 @@
 - Currently supports only vanilla buildings and districts.
 
 ## Changelog
+
+哇噗 **26-06-20 - v1.7.0**
+- Updated compatibility to Stellaris 4.4.
+- Added automation support for the new Nomad Arkship designations, districts, and zones.
+- Added specialization-aware construction for Forever Cruise passenger and crew enhancement buildings, plus Passenger Dorm housing automation.
+- Reworked the internal building automation configuration for more consistent construction and demolition rules and easier future compatibility updates.
 
 哇噗 **26-06-15 - v1.6.1**
 - Fixed a multiplayer issue where changing empire-wide global automation settings could affect other players in the same lobby.
