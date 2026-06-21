@@ -51,10 +51,23 @@ Scope is the main correctness risk.
 
 Always identify the current scope before writing a trigger or effect:
 
-- `planet` scope for planet flags, planet variables, districts, zones, and buildings
-- `country` scope for empire flags, global settings variables, edicts, and country events
-- `owner` when starting from a planet and needing country state
+- `carrier` or colony-oriented execution paths for colony-local automation
+  state, especially `carrier_flag`
+- `planet` scope for planet data such as districts, zones, buildings, and any
+  logic that still truly depends on planet-native APIs
+- `country` scope for empire flags, global settings variables, edicts, and
+  country events
+- `owner` when starting from a colony/planet and needing country state
 - `event_target:*` when a custom GUI or scripted loc needs a stable scope reference
+
+Carrier-flag rule:
+
+- treat `carrier_flag` as the authoritative colony-local flag API
+- do not document or reason about new logic as if it were using plain planet
+  flags
+- colony scope does not itself persist flags; the implementation mirrors the
+  flag onto carrier and planet so lookups remain stable across colony-oriented
+  code paths
 
 Rules:
 

@@ -45,6 +45,7 @@ class ConstructionSubcase:
 @dataclass(frozen=True)
 class ConstructionRow:
     building: str
+    outputs: tuple[str, ...]
     projection: str
     context: str
     strategy: str
@@ -144,6 +145,15 @@ def _parse_building_ref(value: Any) -> str:
     if not isinstance(value, str):
         raise ValueError(f"Building refs must be strings in the strategy model: {value!r}")
     return value
+
+
+def _parse_output_list(value: Any, key: str) -> tuple[str, ...]:
+    if value is None:
+        return ()
+    outputs = _copy_required_string_list(value, key)
+    if len(set(outputs)) != len(outputs):
+        raise ValueError(f"'{key}' must not contain duplicate values.")
+    return tuple(outputs)
 
 
 def _parse_strategy(value: Any) -> str:
@@ -324,6 +334,10 @@ def _emit_grouped_context_rows(
             buildings = group.get("buildings")
             if not isinstance(buildings, list) or not buildings:
                 raise ValueError(f"{path} context #{context_index} group #{group_index} must define buildings.")
+            outputs = _parse_output_list(
+                group.get("output"),
+                f"{path.name}.contexts[{context_index}].groups[{group_index}].output",
+            )
 
             destruction_entries = _parse_destruction_entries(group.get("destruction"))
 
@@ -333,6 +347,7 @@ def _emit_grouped_context_rows(
                     construction_rows.append(
                         ConstructionRow(
                             building=building,
+                            outputs=outputs,
                             projection="designation",
                             context=designation,
                             strategy=strategy,
@@ -348,6 +363,7 @@ def _emit_grouped_context_rows(
                     construction_rows.append(
                         ConstructionRow(
                             building=building,
+                            outputs=outputs,
                             projection="zone",
                             context=zone_type,
                             strategy=strategy,
@@ -402,10 +418,15 @@ def _emit_building_overlay_rows(
                 raise ValueError(f"{path} entry '{building}' uses designation subcases in a zone projection.")
             strategy = _parse_strategy(item.get("strategy"))
             priority = _parse_priority(item.get("priority"))
+            outputs = _parse_output_list(
+                config.get("output"),
+                f"{path.name}.buildings.{building}.output",
+            )
             for context in contexts:
                 construction_rows.append(
                     ConstructionRow(
                         building=building,
+                        outputs=outputs,
                         projection=projection,
                         context=context,
                         strategy=strategy,
@@ -691,6 +712,7 @@ def _build_construction_projection(
             contexts.append(
                 {
                     "context": context,
+                    "building_outputs": _build_context_building_outputs(context_rows),
                     "job_provider_districts": _serialize_job_provider_districts(
                         context_config.job_provider_districts
                     ),
@@ -710,6 +732,7 @@ def _build_construction_projection(
             contexts.append(
                 {
                     "context": context,
+                    "building_outputs": _build_context_building_outputs(context_rows),
                     "strategy_buckets": strategy_buckets,
                     "_sort_key": min(row.source_order for row in context_rows),
                 }
@@ -731,6 +754,21 @@ def _strategy_buckets_key(strategy_buckets: list[dict[str, Any]]) -> tuple[tuple
     )
 
 
+def _build_context_building_outputs(rows: list[ConstructionRow]) -> dict[str, list[str]]:
+    result: dict[str, list[str]] = {}
+    for row in sorted(rows, key=lambda item: item.source_order):
+        outputs = list(row.outputs)
+        existing = result.get(row.building)
+        if existing is None:
+            result[row.building] = outputs
+            continue
+        if existing != outputs:
+            raise ValueError(
+                f"Building '{row.building}' has inconsistent outputs within context '{row.context}'."
+            )
+    return result
+
+
 def _merge_equivalent_zone_contexts(contexts: list[dict[str, Any]]) -> list[dict[str, Any]]:
     merged: list[dict[str, Any]] = []
     index_by_key: dict[tuple[tuple[str, tuple[str, ...]], ...], int] = {}
@@ -745,8 +783,29 @@ def _merge_equivalent_zone_contexts(contexts: list[dict[str, Any]]) -> list[dict
 
         existing = merged[existing_index]
         existing["types"].extend(context["types"])
+        if existing.get("building_outputs") != context.get("building_outputs"):
+            raise ValueError(
+                f"Equivalent zone contexts for types {existing['types']} have mismatched building outputs."
+            )
 
     return merged
+
+
+def _load_zone_type_resource_outputs(base_dir: Path) -> dict[str, list[str]]:
+    path = base_dir / "configs" / "zone_type_resources.yaml"
+    if not path.exists():
+        return {}
+
+    raw_data = _load_yaml(path) or {}
+    if not isinstance(raw_data, dict):
+        raise ValueError(f"{path} must be a mapping of zone_type -> [resource].")
+
+    result: dict[str, list[str]] = {}
+    for zone_type, outputs in raw_data.items():
+        if not isinstance(zone_type, str) or not zone_type:
+            raise ValueError(f"{path} contains an invalid zone type key: {zone_type!r}")
+        result[zone_type] = list(_parse_output_list(outputs, f"{path.name}.{zone_type}"))
+    return result
 
 
 def _load_building_metadata(generated_configs_dir: Path) -> dict[str, dict[str, Any]]:
@@ -827,6 +886,8 @@ def _build_normalized_debug(
             "strategy": row.strategy,
             "source_order": row.source_order,
         }
+        if row.outputs:
+            row_data["output"] = list(row.outputs)
         if not row.include_default:
             row_data["include_default"] = False
         if row.subcases:
@@ -879,6 +940,7 @@ def compile_building_strategies(
     )
     designation_context_configs = load_designation_contexts(buildings_dir)
     building_metadata = _load_building_metadata(generated_configs_dir)
+    zone_type_resource_outputs = _load_zone_type_resource_outputs(base_dir)
 
     designation_contexts, designation_warnings = _build_construction_projection(
         construction_rows,
@@ -898,6 +960,9 @@ def compile_building_strategies(
         },
         "zone_building_strategies.yaml": {
             "building_strategy_zone_contexts": zone_contexts,
+        },
+        "economic_resource_mappings.yaml": {
+            "zone_type_resource_outputs": zone_type_resource_outputs,
         },
         "destruction_building_strategies.yaml": {
             "building_strategy_destruction_contexts": destruction_list,

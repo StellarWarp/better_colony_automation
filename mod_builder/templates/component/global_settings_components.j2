@@ -469,3 +469,89 @@
             }
         }
 {%- endmacro %}
+
+{% macro multi_step_value_row(
+    name,
+    text,
+    value_text,
+    tooltip,
+    value_effect,
+    negative_options,
+    positive_options,
+    x,
+    y,
+    width=320,
+    height=40,
+    value_width=72,
+    button_width=48,
+    button_gap=6,
+    control_gap=8
+) -%}
+{% set button_height = height - 8 %}
+{% set padding_x = 14 %}
+{% set negative_width = (negative_options | length) * button_width + ((negative_options | length) - 1) * button_gap %}
+{% set positive_width = (positive_options | length) * button_width + ((positive_options | length) - 1) * button_gap %}
+{% set control_width = negative_width + control_gap + value_width + control_gap + positive_width %}
+{% set control_start_x = width - padding_x - control_width %}
+{% set value_x = control_start_x + negative_width + control_gap %}
+{% set positive_start_x = value_x + value_width + control_gap %}
+{% set label_width = control_start_x - padding_x - 12 %}
+        containerWindowType = {
+            name = "{{ name }}_row"
+            position = { x = {{ x }} y = {{ y }} }
+            size = { width = {{ width }} height = {{ height }} }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "{{ name }}_label"
+                font = "cg_16b"
+                text = "{{ text }}"
+                position = { x = {{ padding_x }} y = 0 }
+                maxWidth = {{ label_width }}
+                maxHeight = {{ height }}
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+{% for option in negative_options %}
+{% set option_x = control_start_x + loop.index0 * (button_width + button_gap) %}
+            effectButtonType = {
+                name = "{{ name }}_{{ option.name }}"
+                position = { x = {{ option_x }} y = 4 }
+                size = { x = {{ button_width }} y = {{ button_height }} }
+                font = "cg_16b"
+                buttonText = "{{ option.text }}"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "{{ option.effect }}"
+            }
+{% endfor %}
+            effectButtonType = {
+                name = "{{ name }}_value"
+                position = { x = {{ value_x }} y = 4 }
+                size = { x = {{ value_width }} y = {{ button_height }} }
+                font = "cg_16b"
+                buttonText = "{{ value_text }}"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "{{ value_effect }}"
+            }
+{% for option in positive_options %}
+{% set option_x = positive_start_x + loop.index0 * (button_width + button_gap) %}
+            effectButtonType = {
+                name = "{{ name }}_{{ option.name }}"
+                position = { x = {{ option_x }} y = 4 }
+                size = { x = {{ button_width }} y = {{ button_height }} }
+                font = "cg_16b"
+                buttonText = "{{ option.text }}"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "{{ option.effect }}"
+            }
+{% endfor %}
+        }
+{%- endmacro %}

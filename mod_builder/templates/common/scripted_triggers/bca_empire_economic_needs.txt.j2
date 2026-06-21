@@ -1,0 +1,25 @@
+{% for need_name, need in economic_need_thresholds.items() %}
+bca_empire_needs_{{ need_name }} = {
+    owner = {
+        OR = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            has_country_flag = bca_economic_target_{{ need_name }}_unlimited
+            AND = {
+                NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
+                {% if need.resource %}
+                resource_revenue_compare = {
+                    resource = {{ need.resource }}
+                    value < {{ need.variable }}
+                }
+                {% else %}
+                check_variable_arithmetic = {
+                    which = value:{{ need.value }}
+                    value < {{ need.variable }}
+                }
+                {% endif %}
+            }
+        }
+    }
+}
+
+{% endfor %}

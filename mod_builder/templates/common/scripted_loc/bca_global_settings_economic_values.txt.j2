@@ -1,0 +1,38 @@
+{% set economic_rows = [
+    {"name": "energy", "variable": "bca_expect_output_energy"},
+    {"name": "minerals", "variable": "bca_expect_output_minerals"},
+    {"name": "food", "variable": "bca_expect_output_food"},
+    {"name": "alloys", "variable": "bca_expect_output_alloys"},
+    {"name": "consumer_goods", "variable": "bca_expect_output_consumer_goods"},
+    {"name": "trade", "variable": "bca_expect_output_trade"},
+    {"name": "unity", "variable": "bca_expect_output_unity"},
+    {"name": "research", "variable": "bca_expect_output_research"},
+    {"name": "rare_crystals", "variable": "bca_expect_output_rare_crystals"},
+    {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes"},
+    {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases"}
+] %}
+
+{% for row in economic_rows %}
+defined_text = {
+    name = bca_gs_expect_output_{{ row.name }}_value_raw
+    value = {{ row.variable }}
+}
+
+defined_text = {
+    name = bca_gs_expect_output_{{ row.name }}_display
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_{{ row.name }}_forbidden
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
+    }
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_{{ row.name }}_unlimited
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_{{ row.name|upper }}"
+}
+
+{% endfor %}

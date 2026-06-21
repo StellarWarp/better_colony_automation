@@ -33,13 +33,16 @@ Why it matters:
 
 ## Building demolition
 
-- [`../../common/scripted_effects/bca_building_destruction.txt`](../../common/scripted_effects/bca_building_destruction.txt)
+- [`../../mod_builder/configs/manual_building_destruction.yaml`](../../mod_builder/configs/manual_building_destruction.yaml)
 
 Why it matters:
 
-- this is a large handwritten ruleset
-- it is not a thin wrapper around generated logic
-- if a bug is about removing the wrong building, start here before touching templates
+- this is the handwritten demolition input for buildings whose construction
+  remains in a special automation category
+- normal building demolition belongs beside construction config under
+  `mod_builder/configs/buildings/`
+- the runtime demolition effect is generated; do not patch its building list
+  directly
 
 ## Panel-level settings and UI mode toggles
 
@@ -93,6 +96,7 @@ Examples:
 - [`../../common/colony_automation_exceptions/03_bca_building_rare_resources.txt`](../../common/colony_automation_exceptions/03_bca_building_rare_resources.txt)
 - [`../../common/colony_automation_exceptions/02_bca_building_medical.txt`](../../common/colony_automation_exceptions/02_bca_building_medical.txt)
 - [`../../common/colony_automation_exceptions/31_bca_capital.txt`](../../common/colony_automation_exceptions/31_bca_capital.txt)
+- [`../../common/colony_automation_exceptions/19_bca_district_housing.txt`](../../common/colony_automation_exceptions/19_bca_district_housing.txt)
 
 General designation building rules are generated in
 [`../../common/colony_automation_exceptions/31_bca_designation_buildings.txt`](../../common/colony_automation_exceptions/31_bca_designation_buildings.txt).
@@ -102,6 +106,8 @@ Why it matters:
 - these implement actual building choices
 - a bug in "what gets built" may be in either a retained handwritten exception
   or the building strategy source/template
+- special construction should stay here when it depends on scenario-specific
+  state that is not represented by a shared strategy
 
 ## Runtime constants and helper files
 

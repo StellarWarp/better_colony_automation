@@ -22,9 +22,11 @@ Entrypoints:
 
 - [`../../mod_builder/generate.py`](../../mod_builder/generate.py)
 - [`../../mod_builder/build_all.py`](../../mod_builder/build_all.py)
+- [`../../mod_builder/parse/build_generated_configs.py`](../../mod_builder/parse/build_generated_configs.py)
 - [`../../mod_builder/parse/copy_configs.py`](../../mod_builder/parse/copy_configs.py)
 - [`../../mod_builder/parse/zone_condition_gen.py`](../../mod_builder/parse/zone_condition_gen.py)
 - [`../../mod_builder/parse/building_condition.py`](../../mod_builder/parse/building_condition.py)
+- [`../../mod_builder/parse/building_strategy_compile.py`](../../mod_builder/parse/building_strategy_compile.py)
 
 ## Input Classes
 
@@ -69,6 +71,16 @@ Its contents come from:
 
 - copy steps from handwritten `configs/`
 - parser/extraction output from Stellaris definitions
+- normalized building strategy projections
+
+Important building-related generated inputs include:
+
+- `building_conditions.yaml`: category, building-set, and upgrade metadata
+- `zone_building_mapping.yaml`: zone allow/deny data and building-set mappings
+- `designation_building_strategies.yaml`: designation construction projection
+- `zone_building_strategies.yaml`: zone construction projection
+- `destruction_building_strategies.yaml`: merged demolition projection
+- `normalized_building_strategy_model.yaml`: compiler inspection output
 
 ### Parser/extraction tooling
 
@@ -84,7 +96,35 @@ This layer acts like a small compiler frontend for Paradox DSL:
 - resolve inline script expansion where needed
 - emit YAML consumed by templates
 
+The parser/toolchain also validates known Stellaris effects, triggers,
+identifiers, and constants. When a game update changes script APIs, update
+`synthetipy/game_definitions/` and `synthetipy/pdx_constants.py` before
+rewriting otherwise valid templates.
+
 This exists because the official runtime DSL API is not rich enough for all automation decisions. Some information must be extracted before runtime.
+
+The parser side is being consolidated around a shared framework:
+
+- `build_generated_configs.py` is the unified entrypoint for generated config production
+- `framework.py` owns shared AST loading, helpers, and derived relation graphs
+- generator modules such as `zone_outputs.py` emit specific YAML artifacts from that shared graph
+
+## Building Strategy Compilation
+
+`build_generated_configs.py` is the preferred generated-config entrypoint.
+`copy_configs.py` is now a compatibility wrapper around it.
+
+The compiler combines:
+
+- normal declarations under `configs/buildings/`;
+- metadata from `configs/buildings/designation_contexts.yaml`;
+- special demolition from `configs/manual_building_destruction.yaml`;
+- category and upgrade metadata from `building_conditions.yaml`.
+
+It validates construction uniqueness, expands context lists and upgrade
+series, applies within-strategy priorities, and emits designation, zone, and
+demolition projections. See
+[Building Automation Pipeline](building-automation-pipeline.md).
 
 ## Rendering Model
 

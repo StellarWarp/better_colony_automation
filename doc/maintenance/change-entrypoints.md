@@ -64,9 +64,21 @@ It is an entrypoint index, not a complete source-of-truth map. Prefer warning he
 
 - Generated config directory: [`../../mod_builder/templates/generated_configs/`](../../mod_builder/templates/generated_configs/)
 - Handwritten source config: [`../../mod_builder/configs/`](../../mod_builder/configs/)
-- Copy entrypoint: [`../../mod_builder/parse/copy_configs.py`](../../mod_builder/parse/copy_configs.py)
+- Unified parse entrypoint: [`../../mod_builder/parse/build_generated_configs.py`](../../mod_builder/parse/build_generated_configs.py)
+- Compatibility wrapper: [`../../mod_builder/parse/copy_configs.py`](../../mod_builder/parse/copy_configs.py)
 - Extraction scripts: [`../../mod_builder/parse/zone_condition_gen.py`](../../mod_builder/parse/zone_condition_gen.py), [`../../mod_builder/parse/building_condition.py`](../../mod_builder/parse/building_condition.py)
+- Building strategy compiler: [`../../mod_builder/parse/building_strategy_compile.py`](../../mod_builder/parse/building_strategy_compile.py)
 - Parser/toolchain: [`../../mod_builder/synthetipy/`](../../mod_builder/synthetipy/)
+
+### Building construction strategies
+
+- Normal source config: [`../../mod_builder/configs/buildings/`](../../mod_builder/configs/buildings/)
+- Designation template: [`../../mod_builder/templates/common/colony_automation_exceptions/31_bca_designation_buildings.txt.j2`](../../mod_builder/templates/common/colony_automation_exceptions/31_bca_designation_buildings.txt.j2)
+- Zone template: [`../../mod_builder/templates/common/colony_automation_exceptions/500_bca_mixd_zones_building.txt.j2`](../../mod_builder/templates/common/colony_automation_exceptions/500_bca_mixd_zones_building.txt.j2)
+- Architecture: [Building Automation Pipeline](../architecture/building-automation-pipeline.md)
+
+Parsed building sets and zone mappings validate physical compatibility. They
+do not by themselves define automation demand contexts.
 
 ### Trigger helpers
 
@@ -107,7 +119,19 @@ It is an entrypoint index, not a complete source-of-truth map. Prefer warning he
 ### Building demolition logic
 
 - Runtime file: [`../../common/scripted_effects/bca_building_destruction.txt`](../../common/scripted_effects/bca_building_destruction.txt)
-- Ownership: handwritten runtime
+- Template: [`../../mod_builder/templates/common/scripted_effects/bca_building_destruction.txt.j2`](../../mod_builder/templates/common/scripted_effects/bca_building_destruction.txt.j2)
+- Normal source: demolition declarations under [`../../mod_builder/configs/buildings/`](../../mod_builder/configs/buildings/)
+- Special source: [`../../mod_builder/configs/manual_building_destruction.yaml`](../../mod_builder/configs/manual_building_destruction.yaml)
+
+### Stellaris API compatibility
+
+- Effect definitions: [`../../mod_builder/synthetipy/game_definitions/effect_rules.py`](../../mod_builder/synthetipy/game_definitions/effect_rules.py)
+- Trigger definitions: [`../../mod_builder/synthetipy/game_definitions/trigger_rules.py`](../../mod_builder/synthetipy/game_definitions/trigger_rules.py)
+- Identifier definitions: [`../../mod_builder/synthetipy/game_definitions/identifiers.py`](../../mod_builder/synthetipy/game_definitions/identifiers.py)
+- Constants: [`../../mod_builder/synthetipy/pdx_constants.py`](../../mod_builder/synthetipy/pdx_constants.py)
+
+Check these when a game update makes many generated files fail on renamed or
+removed APIs.
 
 ### Intro/update messages and release metadata
 
@@ -115,6 +139,7 @@ It is an entrypoint index, not a complete source-of-truth map. Prefer warning he
 - Localisation: [`../../localisation/`](../../localisation/)
 - Mod descriptor: [`../../descriptor.mod`](../../descriptor.mod)
 - Public changelog: [`../../README.md`](../../README.md)
+- Workshop description: [`../../workshop.txt`](../../workshop.txt)
 
 ## Mixed Cases
 
@@ -122,4 +147,6 @@ Changing a default zone choice usually touches ranking config, generated config,
 
 Changing when construction happens usually touches gating triggers, monthly orchestration, and building exception files.
 
-Changing demolition behavior can mean zone demolition, district demolition, building demolition, default country settings, planet flags, or global bulk actions. Do not assume these share one implementation path.
+Changing demolition behavior can mean zone demolition, district demolition,
+building demolition, default country settings, carrier flags, or global bulk
+actions. Do not assume these share one implementation path.

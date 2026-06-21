@@ -1,11 +1,9 @@
 # Building Strategy Model
 
-This document records the current working design for migrating building
-automation authoring toward a building-centered extension model while keeping
-runtime generation aligned with Stellaris automation behavior.
-
-This is an active implementation proposal, not a long-term speculative
-roadmap.
+This document records the design that produced the current building strategy
+compiler. The core model is implemented. For current ownership, generated
+files, and maintenance workflow, see
+[Building Automation Pipeline](../architecture/building-automation-pipeline.md).
 
 ## Goals
 
@@ -413,25 +411,10 @@ mining fallback based on `zone_betharian` is intentionally not preserved.
 
 ## Generated Projections
 
-The exact generated projection shape can be chosen during implementation based
-on template readability and migration cost.
-
-Acceptable shapes include:
+The compiler emits strategy buckets. A zone projection has this shape:
 
 ```yaml
-zone_building_contexts:
-  - context: factory
-    entries:
-      - building: building_factory_efficiency_1
-        strategy: efficiency
-      - building: building_factory_1
-        strategy: job_only
-```
-
-or:
-
-```yaml
-zone_building_contexts:
+building_strategy_zone_contexts:
   - context: factory
     strategy_buckets:
       - strategy: efficiency
@@ -441,9 +424,6 @@ zone_building_contexts:
         buildings:
           - building_factory_1
 ```
-
-During migration, the compiler may also emit legacy bucket fields such as
-`efficiency`, `always`, and `job_only` if that makes template conversion safer.
 
 The required constraints are:
 
@@ -527,26 +507,24 @@ The compiler should:
 - split alternative triggers into independent condition groups;
 - group buildings by trigger and compatible category filter;
 - infer category filters from parsed vanilla or mod building definitions;
-- allow explicit category override when automatic inference is ambiguous;
 - apply structural directives such as `remove_series` before projection;
 - generate the template-facing demolition config.
 
 Category inference is an optimization and safety filter, not a source-level
 authoring burden for normal extension authors.
 
-## Implementation Plan
+## Implementation Status
 
-1. Continue auditing special cases under
-   `common/colony_automation_exceptions/` and define
-   the additional project-owned strategies needed to represent their scheduling,
-   availability, limit, and upgrade semantics.
-2. Migrate designation templates context group by context group, stopping to
-   model genuinely different runtime behavior before replacing handwritten
-   files.
-3. Keep old generated outputs temporarily where useful for diff-based parity
-   checks.
-4. Use the building-centered overlay format as the future website export
-   format.
+- Building-centered and grouped authoring normalize through one compiler.
+- Designation, zone, and demolition projections are generated.
+- Building category, building sets, and upgrade chains are parsed from game data.
+- `job_bookend` supports Wilderness designation and zone projections.
+- Special construction remains handwritten where the shared strategy model is
+  not an appropriate owner.
+- Special demolition input is merged through
+  `manual_building_destruction.yaml`.
+- The building-centered format remains the intended future website export
+  shape.
 
 ## Open Design Points
 

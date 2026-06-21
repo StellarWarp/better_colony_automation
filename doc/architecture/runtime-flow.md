@@ -32,9 +32,12 @@ Main entry:
 
 - [`../../events/bca_planet_monthly_iteration_entry.txt`](../../events/bca_planet_monthly_iteration_entry.txt)
 
-The country event `colony_automation_event.1000` runs on `on_monthly_pulse_country`.
+The country event `colony_automation_event.1000` runs on
+`on_monthly_pulse_country`.
+It iterates `every_owned_colony` and dispatches per-colony work through
+`carrier_event`, rather than calling planet events directly.
 
-For each eligible owned planet:
+For each eligible owned colony:
 
 1. Initialize if missing `bca_pf_ps_initialized`.
 2. Patch secondary defaults.
@@ -66,7 +69,8 @@ Operationally:
 
 ## Initialization And Layout Sync
 
-Initialization is not only default setup. It also synchronizes current game state into internal flags.
+Initialization is not only default setup. It also synchronizes current game
+state into internal carrier flags and variables.
 
 Core file:
 
@@ -89,7 +93,9 @@ Resource designations use a dedicated district planning effect:
 - Event trigger: [`../../events/bca_resource_designation_district_plan.txt`](../../events/bca_resource_designation_district_plan.txt)
 - Planner logic: [`../../common/scripted_effects/bca_resource_planet_controller.txt`](../../common/scripted_effects/bca_resource_planet_controller.txt)
 
-This logic sets `bca_ps_plan_district_count_z3/z4/z5` based on designation, auto district management, selected secondary zone types, storage/arcology flags, and special cases.
+This logic sets `bca_ps_plan_district_count_z3/z4/z5` based on designation,
+auto district management, selected secondary zone types, storage/arcology
+carrier flags, and special cases.
 
 ## District Build/Remove Flow
 
@@ -97,7 +103,7 @@ Main event file:
 
 - [`../../events/bca_district_controller.txt`](../../events/bca_district_controller.txt)
 
-This layer translates plan counts into build/remove flags such as:
+This layer translates plan counts into build/remove carrier flags such as:
 
 - `bca_pf_plan_build_district_d0`
 - `bca_pf_plan_build_district_d1`
@@ -114,7 +120,8 @@ Main event file:
 
 - [`../../events/bca_mix_zones_controller.txt`](../../events/bca_mix_zones_controller.txt)
 
-This layer compares real zone counts with planned counts, emits build flags, and removes obsolete zones when zone auto-demolition is allowed.
+This layer compares real zone counts with planned counts, emits build carrier
+flags, and removes obsolete zones when zone auto-demolition is allowed.
 
 The actual zone automation entries are under:
 
@@ -126,9 +133,15 @@ Building demolition is driven by:
 
 - [`../../common/scripted_effects/bca_building_destruction.txt`](../../common/scripted_effects/bca_building_destruction.txt)
 
-This is a large handwritten ruleset. Building demolition bugs often start here, not in generated zone events.
+The runtime effect is generated from normal demolition declarations under
+`mod_builder/configs/buildings/` and special declarations in
+`mod_builder/configs/manual_building_destruction.yaml`. Building category and
+upgrade-chain expansion are applied by `building_strategy_compile.py`.
 
-## Direct Planet Hooks
+When demolition behavior is wrong, inspect the source declaration, generated
+`destruction_building_strategies.yaml`, and the runtime template in that order.
+
+## Direct Colony Hooks
 
 Additional synchronization entry points:
 

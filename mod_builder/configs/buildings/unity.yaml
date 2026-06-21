@@ -14,6 +14,8 @@
         - building_sacred_nexus
         - building_hive_confluence
         - building_system_conflux
+      output:
+        - unity
       strategy: efficiency
       destruction:
         - triggers:
@@ -29,6 +31,8 @@
         - building_lifecrypt_machine_1
         - building_lifecrypt_hive_mind_1
         - building_lifecrypt_corporate_1
+      output:
+        - unity
       strategy: efficiency
 
     - buildings:
@@ -37,6 +41,8 @@
         - building_corporate_vault
         - building_alpha_hub
         - building_trophy_vault
+      output:
+        - unity
       strategy: efficiency
       destruction:
         - triggers:
@@ -47,6 +53,8 @@
         - building_fe_administration_hive_1
         - building_fe_temple_1
         - building_fe_administration_machine_1
+      output:
+        - unity
       strategy: always
       destruction:
         - triggers:
@@ -58,9 +66,10 @@
         - building_sacrificial_temple_1
         - building_uplink_node
         - building_hive_node
+      output:
+        - unity
       strategy: job_only
       destruction:
         - triggers:
             - bca_can_remove_building_unity
             - bca_advanced_unity_building_replace
-

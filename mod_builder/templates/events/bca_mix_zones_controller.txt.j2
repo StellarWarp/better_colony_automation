@@ -2,6 +2,20 @@
 {% import 'component/planet_variable.j2' as v with context %}
 {% import 'component/conditions.j2' as cond with context %}
 
+{% macro resource_gate(outputs) -%}
+    {% if outputs %}
+        {% if outputs|length == 1 %}
+                    bca_empire_needs_{{ outputs[0] }} = yes
+        {% else %}
+                    OR = {
+                        {% for output in outputs %}
+                        bca_empire_needs_{{ output }} = yes
+                        {% endfor %}
+                    }
+        {% endif %}
+    {% endif %}
+{%- endmacro %}
+
 
 namespace = colony_automation_event
 
@@ -40,6 +54,7 @@ carrier_event = {
                         which = value:num_primary_zones_of_type_{{ type }}
                         value > value:num_primary_zone_plan_of_type_{{ type }}
                     }
+                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
                 }
                 set_carrier_flag = bca_has_zone_to_replace
             }
@@ -78,6 +93,7 @@ carrier_event = {
                         which = value:num_primary_zones_of_type_{{ type }}
                         value < value:num_primary_zone_plan_of_type_{{ type }}
                     }
+                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
                 }
                 {# ensure has slot to build avoid primary zones build on secondary districts #}
                 if = {
@@ -88,18 +104,18 @@ carrier_event = {
                     set_carrier_flag = bca_plan_build_new_zone
                 }
                 else = {
-                    bca_get_num_free_city_zones = yes
+                    bca_get_num_free_zones_d0 = yes
                     if = {
                         limit = {
                             check_variable = {
-                                which = bca_num_free_city_zones
+                                which = bca_num_free_zones_d0
                                 value > 0
                             }
                         }
                         set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
                         set_carrier_flag = bca_plan_build_new_zone
                     }
-                    clear_variable = bca_num_free_city_zones
+                    clear_variable = bca_num_free_zones_d0
                 }
             }
             {% endif %}
@@ -124,6 +140,7 @@ carrier_event = {
                         which = value:num_secondary_zones_of_type_{{ type }}
                         value < value:num_secondary_zone_plan_of_type_{{ type }}
                     }
+                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
                 }
                 set_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
                 set_carrier_flag = bca_plan_build_new_zone

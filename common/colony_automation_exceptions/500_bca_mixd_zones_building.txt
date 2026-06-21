@@ -10,12 +10,18 @@
 
 
 
+
 automate_mixed_zone_food_building = {
 	category = "planet_automation_designation_construction"
 
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                    bca_empire_needs_minerals = yes
+                }
         OR = {
             bca_has_any_zone_of_type_food = yes
         }
@@ -25,16 +31,15 @@ automate_mixed_zone_food_building = {
 	    0 = {
             building = building_food_processing_facility
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_food = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_forever_cruise_crew_resources
-
 	    }
 	}
 }
@@ -44,6 +49,7 @@ automate_mixed_zone_agrarian_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_food = yes
         OR = {
             bca_has_any_zone_of_type_agrarian = yes
         }
@@ -53,12 +59,11 @@ automate_mixed_zone_agrarian_building = {
 	    0 = {
             building = building_food_processing_facility
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	}
 }
@@ -68,6 +73,11 @@ automate_mixed_zone_energy_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_energy = yes
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_minerals = yes
+                }
         OR = {
             bca_has_any_zone_of_type_energy = yes
         }
@@ -77,16 +87,22 @@ automate_mixed_zone_energy_building = {
 	    0 = {
             building = building_energy_grid
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_energy = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_forever_cruise_crew_resources
-
+            available = {
+                OR = {
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                    bca_empire_needs_minerals = yes
+                }
+            }
 	    }
 	}
 }
@@ -96,6 +112,10 @@ automate_mixed_zone_hydroponics_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                }
         OR = {
             bca_has_any_zone_of_type_hydroponics = yes
         }
@@ -105,12 +125,12 @@ automate_mixed_zone_hydroponics_building = {
 	    0 = {
             building = building_energy_grid
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_energy = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	}
 }
@@ -120,6 +140,11 @@ automate_mixed_zone_minerals_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_minerals = yes
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                }
         OR = {
             bca_has_any_zone_of_type_minerals = yes
         }
@@ -129,16 +154,22 @@ automate_mixed_zone_minerals_building = {
 	    0 = {
             building = building_mineral_purification_plant
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_minerals = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_forever_cruise_crew_resources
-
+            available = {
+                OR = {
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                    bca_empire_needs_minerals = yes
+                }
+            }
 	    }
 	}
 }
@@ -148,6 +179,10 @@ automate_mixed_zone_industrial_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
         OR = {
             bca_has_any_zone_of_type_industrial = yes
         }
@@ -157,80 +192,81 @@ automate_mixed_zone_industrial_building = {
 	    0 = {
             building = building_ministry_production
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_production_center
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_foundry_efficiency_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_alloys = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_factory_efficiency_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_consumer_goods = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    4 = {
             building = building_forever_cruise_passenger_consumer_goods
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_consumer_goods = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    5 = {
             building = building_micro_forge
-
+            available = {
+                bca_empire_needs_alloys = yes
+            }
 	    }
 	    6 = {
             building = building_affluence_emporium
-
+            available = {
+                bca_empire_needs_consumer_goods = yes
+            }
 	    }
 	    7 = {
             building = building_forever_cruise_crew_industry
-
 	    }
 	    8 = {
             building = building_foundry_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_alloys = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    9 = {
             building = building_factory_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_consumer_goods = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -240,6 +276,10 @@ automate_mixed_zone_foundry_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
         OR = {
             bca_has_any_zone_of_type_foundry = yes
         }
@@ -249,48 +289,47 @@ automate_mixed_zone_foundry_building = {
 	    0 = {
             building = building_ministry_production
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_production_center
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_foundry_efficiency_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_alloys = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_micro_forge
-
+            available = {
+                bca_empire_needs_alloys = yes
+            }
 	    }
 	    4 = {
             building = building_forever_cruise_crew_industry
-
 	    }
 	    5 = {
             building = building_foundry_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_alloys = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -300,6 +339,10 @@ automate_mixed_zone_factory_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_consumer_goods = yes
+                    bca_empire_needs_alloys = yes
+                }
         OR = {
             bca_has_any_zone_of_type_factory = yes
         }
@@ -310,57 +353,70 @@ automate_mixed_zone_factory_building = {
             building = building_ministry_production
             available = {
                 OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
                 }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_production_center
             available = {
                 OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
                 }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_factory_efficiency_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_consumer_goods = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_forever_cruise_passenger_consumer_goods
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_consumer_goods = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    4 = {
             building = building_affluence_emporium
-
+            available = {
+                bca_empire_needs_consumer_goods = yes
+            }
 	    }
 	    5 = {
             building = building_forever_cruise_crew_industry
-
+            available = {
+                OR = {
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
+            }
 	    }
 	    6 = {
             building = building_factory_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_consumer_goods = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -370,6 +426,10 @@ automate_mixed_zone_trade_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_trade = yes
+                    bca_empire_needs_unity = yes
+                }
         OR = {
             bca_has_any_zone_of_type_trade = yes
         }
@@ -379,44 +439,43 @@ automate_mixed_zone_trade_building = {
 	    0 = {
             building = building_fe_market_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_trade = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_galactic_stock_exchange
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_trade = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_commercial_megaplex
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_trade = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_commercial_zone
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_trade = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    4 = {
             building = building_forever_cruise_crew_service
-
 	    }
 	}
 }
@@ -426,6 +485,7 @@ automate_mixed_zone_research_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_research = yes
         OR = {
             bca_has_any_zone_of_type_research = yes
             bca_has_any_zone_of_type_physics = yes
@@ -438,86 +498,75 @@ automate_mixed_zone_research_building = {
 	    0 = {
             building = building_vultaum_reality_computer
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_institute
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_supercomputer
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_archaeostudies_faculty
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    4 = {
             building = building_research_efficiency_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    5 = {
             building = building_forever_cruise_passenger_research
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    6 = {
             building = building_engineering_facility_1
-
 	    }
 	    7 = {
             building = building_physics_lab_1
-
 	    }
 	    8 = {
             building = building_biolab_1
-
 	    }
 	    9 = {
             building = building_fe_lab_1
-
 	    }
 	    10 = {
             building = building_research_lab_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -527,6 +576,10 @@ automate_mixed_zone_unity_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_unity = yes
+                    bca_empire_needs_trade = yes
+                }
         OR = {
             bca_has_any_zone_of_type_unity = yes
             bca_has_any_zone_of_type_bureaucrat = yes
@@ -538,292 +591,305 @@ automate_mixed_zone_unity_building = {
 	    0 = {
             building = building_bureaucratic_2
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_holotemple
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_hive_cluster
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_network_junction
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    4 = {
             building = building_bureaucratic_3
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    5 = {
             building = building_sacred_nexus
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    6 = {
             building = building_hive_confluence
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    7 = {
             building = building_system_conflux
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    8 = {
             building = building_autochthon_monument
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    9 = {
             building = building_corporate_monument
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    10 = {
             building = building_simulation_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    11 = {
             building = building_galactic_memorial_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    12 = {
             building = building_sensorium_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    13 = {
             building = building_lifecrypt_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    14 = {
             building = building_lifecrypt_machine_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    15 = {
             building = building_lifecrypt_hive_mind_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    16 = {
             building = building_lifecrypt_corporate_1
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    17 = {
             building = building_autocurating_vault
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    18 = {
             building = building_citadel_of_faith
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    19 = {
             building = building_corporate_vault
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    20 = {
             building = building_alpha_hub
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    21 = {
             building = building_trophy_vault
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    22 = {
             building = building_forever_cruise_passenger_unity
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_unity = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    23 = {
             building = building_fe_administration_1
-
+            available = {
+                bca_empire_needs_unity = yes
+            }
 	    }
 	    24 = {
             building = building_fe_administration_hive_1
-
+            available = {
+                bca_empire_needs_unity = yes
+            }
 	    }
 	    25 = {
             building = building_fe_temple_1
-
+            available = {
+                bca_empire_needs_unity = yes
+            }
 	    }
 	    26 = {
             building = building_fe_administration_machine_1
-
+            available = {
+                bca_empire_needs_unity = yes
+            }
 	    }
 	    27 = {
             building = building_forever_cruise_crew_service
-
+            available = {
+                OR = {
+                    bca_empire_needs_trade = yes
+                    bca_empire_needs_unity = yes
+                }
+            }
 	    }
 	    28 = {
             building = building_bureaucratic_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_unity = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    29 = {
             building = building_temple
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_unity = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    30 = {
             building = building_sacrificial_temple_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_unity = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    31 = {
             building = building_uplink_node
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_unity = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    32 = {
             building = building_hive_node
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+                bca_empire_needs_unity = yes
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -842,48 +908,43 @@ automate_mixed_zone_fortress_building = {
 	    0 = {
             building = building_dread_encampment
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    1 = {
             building = building_military_academy
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    2 = {
             building = building_planetary_shield_generator
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	    3 = {
             building = building_fe_fortress
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    4 = {
             building = building_stronghold
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -893,6 +954,7 @@ automate_mixed_zone_wilderness_energy_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_energy = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_energy = yes
         }
@@ -903,26 +965,23 @@ automate_mixed_zone_wilderness_energy_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_bioelectric_stimulator_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -932,6 +991,7 @@ automate_mixed_zone_wilderness_minerals_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_minerals = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_minerals = yes
         }
@@ -942,26 +1002,23 @@ automate_mixed_zone_wilderness_minerals_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_churning_tunnels_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -971,6 +1028,7 @@ automate_mixed_zone_wilderness_food_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_food = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_food = yes
         }
@@ -981,26 +1039,23 @@ automate_mixed_zone_wilderness_food_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_massive_growth_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1020,26 +1075,23 @@ automate_mixed_zone_wilderness_fortress_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_planetary_carapace
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1049,6 +1101,7 @@ automate_mixed_zone_wilderness_research_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_research = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_research = yes
         }
@@ -1059,26 +1112,23 @@ automate_mixed_zone_wilderness_research_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_brain_node_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1088,6 +1138,7 @@ automate_mixed_zone_wilderness_trade_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_trade = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_trade = yes
         }
@@ -1098,34 +1149,30 @@ automate_mixed_zone_wilderness_trade_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_tendril_cradle_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_brain_node_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    3 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1135,6 +1182,7 @@ automate_mixed_zone_wilderness_foundry_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_alloys = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_foundry = yes
         }
@@ -1145,26 +1193,23 @@ automate_mixed_zone_wilderness_foundry_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_natural_furnace_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1174,6 +1219,7 @@ automate_mixed_zone_wilderness_unity_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_unity = yes
         OR = {
             bca_has_any_zone_of_type_wilderness_unity = yes
         }
@@ -1184,26 +1230,23 @@ automate_mixed_zone_wilderness_unity_building = {
             building = building_cradle_of_rebirth
 			planet_limit = 1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    1 = {
             building = building_commensal_clearing_1
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	    2 = {
             building = building_cradle_of_rebirth
             available = {
-                requires_more_job = yes
-                free_district_slots = 0
+            requires_more_job = yes
+            free_district_slots = 0
             }
-
 	    }
 	}
 }
@@ -1213,6 +1256,11 @@ automate_mixed_zone_ark_research_unity_consumer_goods_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_research = yes
+                    bca_empire_needs_unity = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
         OR = {
             bca_has_any_zone_of_type_ark_research_unity_consumer_goods = yes
         }
@@ -1222,12 +1270,12 @@ automate_mixed_zone_ark_research_unity_consumer_goods_building = {
 	    0 = {
             building = building_forever_cruise_passenger_consumer_goods
             available = {
-                OR = {
-                    really_requires_more_job = no
-                    free_district_slots = 0
-                }
+                bca_empire_needs_consumer_goods = yes
+            OR = {
+                really_requires_more_job = no
+                free_district_slots = 0
             }
-
+            }
 	    }
 	}
 }
@@ -1237,6 +1285,11 @@ automate_mixed_zone_ark_research_alloys_support_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_research = yes
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
         OR = {
             bca_has_any_zone_of_type_ark_research_alloys_support = yes
         }
@@ -1245,7 +1298,12 @@ automate_mixed_zone_ark_research_alloys_support_building = {
 	buildings = {
 	    0 = {
             building = building_forever_cruise_crew_industry
-
+            available = {
+                OR = {
+                    bca_empire_needs_alloys = yes
+                    bca_empire_needs_consumer_goods = yes
+                }
+            }
 	    }
 	}
 }
@@ -1255,6 +1313,10 @@ automate_mixed_zone_entertainer_building = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_trade = yes
+                    bca_empire_needs_unity = yes
+                }
         OR = {
             bca_has_any_zone_of_type_entertainer = yes
             bca_has_any_zone_of_type_duelist = yes
@@ -1269,7 +1331,6 @@ automate_mixed_zone_entertainer_building = {
 	buildings = {
 	    0 = {
             building = building_forever_cruise_crew_service
-
 	    }
 	}
 }
@@ -1280,6 +1341,7 @@ automate_mixed_zone_food_building_job_low_priority = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_food = yes
 		requires_more_job = yes
 		free_district_slots = 0
         OR = {
@@ -1299,6 +1361,7 @@ automate_mixed_zone_agrarian_building_job_low_priority = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_food = yes
 		requires_more_job = yes
 		free_district_slots = 0
         OR = {
@@ -1318,6 +1381,7 @@ automate_mixed_zone_energy_building_job_low_priority = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_energy = yes
 		requires_more_job = yes
 		free_district_slots = 0
         OR = {
@@ -1337,6 +1401,10 @@ automate_mixed_zone_hydroponics_building_job_low_priority = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                OR = {
+                    bca_empire_needs_food = yes
+                    bca_empire_needs_energy = yes
+                }
 		requires_more_job = yes
 		free_district_slots = 0
         OR = {
@@ -1347,6 +1415,9 @@ automate_mixed_zone_hydroponics_building_job_low_priority = {
 	buildings = {
         0 = {
             building = building_generator_generic
+            available = {
+                bca_empire_needs_energy = yes
+            }
         }
 	}
 }
@@ -1356,6 +1427,7 @@ automate_mixed_zone_minerals_building_job_low_priority = {
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+                bca_empire_needs_minerals = yes
 		requires_more_job = yes
 		free_district_slots = 0
         OR = {

@@ -7,6 +7,8 @@
         - building_fe_market_1
         - building_galactic_stock_exchange
         - building_commercial_megaplex
+      output:
+        - trade
       strategy: efficiency
       destruction:
         - triggers:
@@ -14,9 +16,10 @@
 
     - buildings:
         - building_commercial_zone
+      output:
+        - trade
       strategy: job_only
       destruction:
         - triggers:
             - bca_can_remove_building_trade
             - bca_advanced_trade_building_replace
-

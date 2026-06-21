@@ -10,6 +10,9 @@
     - buildings:
         - building_ministry_production
         - building_production_center
+      output:
+        - alloys
+        - consumer_goods
       strategy: efficiency
       destruction:
         - triggers:
@@ -24,6 +27,8 @@
   groups:
     - buildings:
         - building_foundry_efficiency_1
+      output:
+        - alloys
       strategy: efficiency
       destruction:
         - triggers:
@@ -38,6 +43,8 @@
   groups:
     - buildings:
         - building_micro_forge
+      output:
+        - alloys
       strategy: always
       destruction:
         - triggers:
@@ -52,6 +59,8 @@
   groups:
     - buildings:
         - building_foundry_1
+      output:
+        - alloys
       strategy: job_only
       destruction:
         - triggers:
@@ -67,6 +76,8 @@
   groups:
     - buildings:
         - building_factory_efficiency_1
+      output:
+        - consumer_goods
       strategy: efficiency
       destruction:
         - triggers:
@@ -80,6 +91,8 @@
   groups:
     - buildings:
         - building_affluence_emporium
+      output:
+        - consumer_goods
       strategy: always
       destruction:
         - triggers:
@@ -94,6 +107,8 @@
   groups:
     - buildings:
         - building_factory_1
+      output:
+        - consumer_goods
       strategy: job_only
       destruction:
         - triggers:
@@ -106,6 +121,8 @@
   groups:
     - buildings:
         - building_foundry_upkeep_1
+      output:
+        - alloys
       strategy: efficiency
       destruction:
         - triggers:
@@ -117,8 +134,9 @@
   groups:
     - buildings:
         - building_factory_upkeep_1
+      output:
+        - consumer_goods
       strategy: efficiency
       destruction:
         - triggers:
             - bca_can_remove_building_factory
-

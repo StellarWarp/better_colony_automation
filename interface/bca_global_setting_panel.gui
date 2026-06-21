@@ -7,13 +7,15 @@
 
 
 
+
+
 guiTypes = {
     containerWindowType = {
         name = "bca_global_setting_panel"
         orientation = center
         origo = center
         moveable = yes
-        size = { width = 860 height = 848 }
+        size = { width = 860 height = 1412 }
 
         background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
 
@@ -212,10 +214,1067 @@ guiTypes = {
         }
 
                 instantTextBoxType = {
+            name = "economic_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION"
+            position = { x = 24 y = 72 }
+            maxWidth = 812
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "economic_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT"
+            position = { x = 24 y = 106 }
+            maxWidth = 812
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "economic_management_row"
+            position = { x = 24 y = 146 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_management_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT"
+                position = { x = 14 y = 0 }
+                maxWidth = 618
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_management_off_selected"
+                position = { x = 644 y = 4 }
+                size = { x = 72 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_economic_management_off_selected"
+            }
+            effectButtonType = {
+                name = "economic_management_off_unselected"
+                position = { x = 644 y = 4 }
+                size = { x = 72 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_economic_management_off_unselected"
+            }
+            effectButtonType = {
+                name = "economic_management_on_selected"
+                position = { x = 726 y = 4 }
+                size = { x = 72 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_enabled"
+                effect = "bca_global_settings_economic_management_on_selected"
+            }
+            effectButtonType = {
+                name = "economic_management_on_unselected"
+                position = { x = 726 y = 4 }
+                size = { x = 72 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_economic_management_on_unselected"
+            }
+        }
+                containerWindowType = {
+            name = "economic_energy_row"
+            position = { x = 24 y = 184 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_energy_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_energy_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_energy_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_energy_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_energy_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_energy_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_energy_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_energy_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_energy_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_energy_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_minerals_row"
+            position = { x = 24 y = 222 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_minerals_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_minerals_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_minerals_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_minerals_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_minerals_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_minerals_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_minerals_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_minerals_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_minerals_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_minerals_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_food_row"
+            position = { x = 24 y = 260 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_food_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_food_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_food_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_food_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_food_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_food_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_food_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_food_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_food_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_food_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_alloys_row"
+            position = { x = 24 y = 298 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_alloys_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_alloys_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_alloys_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_alloys_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_alloys_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_alloys_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_alloys_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_alloys_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_alloys_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_alloys_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_consumer_goods_row"
+            position = { x = 24 y = 336 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_consumer_goods_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_consumer_goods_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_consumer_goods_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_trade_row"
+            position = { x = 24 y = 374 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_trade_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_trade_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_trade_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_trade_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_trade_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_trade_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_trade_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_trade_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_trade_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_trade_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_unity_row"
+            position = { x = 24 y = 412 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_unity_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_unity_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_unity_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_unity_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_unity_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_unity_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_unity_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_unity_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_unity_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_unity_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_research_row"
+            position = { x = 24 y = 450 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_research_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_research_minus_2p5k"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_minus_2p5k"
+            }
+            effectButtonType = {
+                name = "economic_research_minus_500"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_minus_500"
+            }
+            effectButtonType = {
+                name = "economic_research_minus_100"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_minus_100"
+            }
+            effectButtonType = {
+                name = "economic_research_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_research_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_research_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_plus_100"
+            }
+            effectButtonType = {
+                name = "economic_research_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_plus_500"
+            }
+            effectButtonType = {
+                name = "economic_research_plus_2p5k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_research_plus_2p5k"
+            }
+        }
+                containerWindowType = {
+            name = "economic_rare_crystals_row"
+            position = { x = 24 y = 488 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_rare_crystals_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_minus_125"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_minus_125"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_minus_25"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_minus_25"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_minus_5"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_minus_5"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_rare_crystals_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_plus_5"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_plus_5"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_plus_25"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_plus_25"
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_plus_125"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_rare_crystals_plus_125"
+            }
+        }
+                containerWindowType = {
+            name = "economic_volatile_motes_row"
+            position = { x = 24 y = 526 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_volatile_motes_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_minus_125"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_minus_125"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_minus_25"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_minus_25"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_minus_5"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_minus_5"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_volatile_motes_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_plus_5"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_plus_5"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_plus_25"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_plus_25"
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_plus_125"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_volatile_motes_plus_125"
+            }
+        }
+                containerWindowType = {
+            name = "economic_exotic_gases_row"
+            position = { x = 24 y = 564 }
+            size = { width = 812 height = 32 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "economic_exotic_gases_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES"
+                position = { x = 14 y = 0 }
+                maxWidth = 380
+                maxHeight = 32
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_minus_125"
+                position = { x = 406 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_minus_125"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_minus_25"
+                position = { x = 458 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_minus_25"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_minus_5"
+                position = { x = 510 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_minus_5"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_value"
+                position = { x = 564 y = 4 }
+                size = { x = 76 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = no
+                effect = "bca_global_settings_expect_output_exotic_gases_cycle_mode"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_plus_5"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_plus_5"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_plus_25"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_25"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_plus_25"
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_plus_125"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_125"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_expect_output_exotic_gases_plus_125"
+            }
+        }
+        instantTextBoxType = {
             name = "auto_demolition_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
-            position = { x = 24 y = 88 }
+            position = { x = 24 y = 630 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -227,7 +1286,7 @@ guiTypes = {
             name = "auto_demolition_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT"
-            position = { x = 24 y = 124 }
+            position = { x = 24 y = 664 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -238,8 +1297,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "apply_all_row"
-            position = { x = 24 y = 178 }
-            size = { width = 812 height = 44 }
+            position = { x = 24 y = 704 }
+            size = { width = 812 height = 36 }
 
             background = {
                 name = "background"
@@ -282,8 +1341,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "buildings_row"
-            position = { x = 24 y = 234 }
-            size = { width = 812 height = 54 }
+            position = { x = 24 y = 748 }
+            size = { width = 812 height = 44 }
 
             background = {
                 name = "background"
@@ -375,8 +1434,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "districts_row"
-            position = { x = 24 y = 300 }
-            size = { width = 812 height = 54 }
+            position = { x = 24 y = 800 }
+            size = { width = 812 height = 44 }
 
             background = {
                 name = "background"
@@ -468,8 +1527,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "zones_row"
-            position = { x = 24 y = 366 }
-            size = { width = 812 height = 54 }
+            position = { x = 24 y = 852 }
+            size = { width = 812 height = 44 }
 
             background = {
                 name = "background"
@@ -560,302 +1619,11 @@ guiTypes = {
             }
         }
         instantTextBoxType = {
-            name = "reserve_section"
-            font = "malgun_goth_24"
-            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_SECTION"
-            position = { x = 24 y = 432 }
-            maxWidth = 395
-            maxHeight = 28
-            fixedSize = yes
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-        }
-        instantTextBoxType = {
-            name = "reserve_hint"
-            font = "cg_16b"
-            text = "BCA_GLOBAL_SETTINGS_RESOURCE_THRESHOLDS_HINT"
-            position = { x = 24 y = 468 }
-            maxWidth = 395
-            maxHeight = 42
-            fixedSize = yes
-            format = left
-            vertical_alignment = top
-            text_color_code = "H"
-            alwaysTransparent = yes
-        }
-                containerWindowType = {
-            name = "reserve_minerals_row"
-            position = { x = 24 y = 516 }
-            size = { width = 395 height = 40 }
-
-            background = {
-                name = "background"
-                spriteType = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-            }
-
-            instantTextBoxType = {
-                name = "reserve_minerals_label"
-                font = "cg_16b"
-                text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE"
-                position = { x = 14 y = 0 }
-                maxWidth = 139
-                maxHeight = 40
-                fixedSize = yes
-                format = left
-                vertical_alignment = center
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_minerals_value"
-                position = { x = 163 y = 4 }
-                size = { x = 84 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE"
-                text_color_code = "H"
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_minerals_decrease"
-                position = { x = 257 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_minerals_decrease"
-            }
-            effectButtonType = {
-                name = "reserve_minerals_increase"
-                position = { x = 323 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_minerals_increase"
-            }
-        }
-                containerWindowType = {
-            name = "reserve_alloys_row"
-            position = { x = 24 y = 568 }
-            size = { width = 395 height = 40 }
-
-            background = {
-                name = "background"
-                spriteType = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-            }
-
-            instantTextBoxType = {
-                name = "reserve_alloys_label"
-                font = "cg_16b"
-                text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE"
-                position = { x = 14 y = 0 }
-                maxWidth = 139
-                maxHeight = 40
-                fixedSize = yes
-                format = left
-                vertical_alignment = center
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_alloys_value"
-                position = { x = 163 y = 4 }
-                size = { x = 84 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE"
-                text_color_code = "H"
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_alloys_decrease"
-                position = { x = 257 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_alloys_decrease"
-            }
-            effectButtonType = {
-                name = "reserve_alloys_increase"
-                position = { x = 323 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_alloys_increase"
-            }
-        }
-                containerWindowType = {
-            name = "reserve_influence_row"
-            position = { x = 24 y = 620 }
-            size = { width = 395 height = 40 }
-
-            background = {
-                name = "background"
-                spriteType = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-            }
-
-            instantTextBoxType = {
-                name = "reserve_influence_label"
-                font = "cg_16b"
-                text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE"
-                position = { x = 14 y = 0 }
-                maxWidth = 139
-                maxHeight = 40
-                fixedSize = yes
-                format = left
-                vertical_alignment = center
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_influence_value"
-                position = { x = 163 y = 4 }
-                size = { x = 84 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE"
-                text_color_code = "H"
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_influence_decrease"
-                position = { x = 257 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
-                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_influence_decrease"
-            }
-            effectButtonType = {
-                name = "reserve_influence_increase"
-                position = { x = 323 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
-                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_influence_increase"
-            }
-        }
-                containerWindowType = {
-            name = "reserve_job_row"
-            position = { x = 24 y = 672 }
-            size = { width = 395 height = 40 }
-
-            background = {
-                name = "background"
-                spriteType = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-            }
-
-            instantTextBoxType = {
-                name = "reserve_job_label"
-                font = "cg_16b"
-                text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE"
-                position = { x = 14 y = 0 }
-                maxWidth = 139
-                maxHeight = 40
-                fixedSize = yes
-                format = left
-                vertical_alignment = center
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_job_value"
-                position = { x = 163 y = 4 }
-                size = { x = 84 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE"
-                text_color_code = "H"
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "reserve_job_decrease"
-                position = { x = 257 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
-                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_job_decrease"
-            }
-            effectButtonType = {
-                name = "reserve_job_increase"
-                position = { x = 323 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50"
-                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_job_increase"
-            }
-        }
-                containerWindowType = {
-            name = "rare_output_row"
-            position = { x = 24 y = 724 }
-            size = { width = 395 height = 40 }
-
-            background = {
-                name = "background"
-                spriteType = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-            }
-
-            instantTextBoxType = {
-                name = "rare_output_label"
-                font = "cg_16b"
-                text = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS"
-                position = { x = 14 y = 0 }
-                maxWidth = 139
-                maxHeight = 40
-                fixedSize = yes
-                format = left
-                vertical_alignment = center
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "rare_output_value"
-                position = { x = 163 y = 4 }
-                size = { x = 84 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_VALUE"
-                text_color_code = "H"
-                alwaysTransparent = yes
-            }
-            effectButtonType = {
-                name = "rare_output_decrease"
-                position = { x = 257 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_20"
-                tooltipText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_DECREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_expect_output_rare_resource_decrease"
-            }
-            effectButtonType = {
-                name = "rare_output_increase"
-                position = { x = 323 y = 4 }
-                size = { x = 58 y = 32 }
-                font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_20"
-                tooltipText = "BCA_GLOBAL_SETTINGS_RARE_RESOURCE_TARGET_SURPLUS_INCREASE_TOOLTIP"
-                quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_expect_output_rare_resource_increase"
-            }
-        }
-
-        instantTextBoxType = {
             name = "behavior_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION"
-            position = { x = 441 y = 432 }
-            maxWidth = 395
+            position = { x = 24 y = 924 }
+            maxWidth = 812
             maxHeight = 28
             fixedSize = yes
             format = left
@@ -866,8 +1634,8 @@ guiTypes = {
             name = "behavior_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT"
-            position = { x = 441 y = 468 }
-            maxWidth = 395
+            position = { x = 24 y = 958 }
+            maxWidth = 812
             maxHeight = 42
             fixedSize = yes
             format = left
@@ -877,8 +1645,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "rare_buildings_row"
-            position = { x = 441 y = 516 }
-            size = { width = 395 height = 40 }
+            position = { x = 24 y = 998 }
+            size = { width = 812 height = 40 }
 
             background = {
                 name = "background"
@@ -891,7 +1659,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS"
                 position = { x = 14 y = 0 }
-                maxWidth = 161
+                maxWidth = 578
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -900,7 +1668,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "rare_buildings_retain_selected"
-                position = { x = 187 y = 4 }
+                position = { x = 604 y = 4 }
                 size = { x = 92 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_RETAIN"
@@ -910,7 +1678,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "rare_buildings_retain_unselected"
-                position = { x = 187 y = 4 }
+                position = { x = 604 y = 4 }
                 size = { x = 92 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_RETAIN"
@@ -920,7 +1688,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "rare_buildings_remove_selected"
-                position = { x = 289 y = 4 }
+                position = { x = 706 y = 4 }
                 size = { x = 92 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_REMOVE"
@@ -930,7 +1698,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "rare_buildings_remove_unselected"
-                position = { x = 289 y = 4 }
+                position = { x = 706 y = 4 }
                 size = { x = 92 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_REMOVE"
@@ -941,8 +1709,8 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "pop_assembly_row"
-            position = { x = 441 y = 568 }
-            size = { width = 395 height = 40 }
+            position = { x = 24 y = 1050 }
+            size = { width = 812 height = 40 }
 
             background = {
                 name = "background"
@@ -955,7 +1723,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS"
                 position = { x = 14 y = 0 }
-                maxWidth = 81
+                maxWidth = 498
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -964,7 +1732,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_always_selected"
-                position = { x = 107 y = 4 }
+                position = { x = 524 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD"
@@ -974,7 +1742,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_always_unselected"
-                position = { x = 107 y = 4 }
+                position = { x = 524 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD"
@@ -984,7 +1752,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_needed_selected"
-                position = { x = 201 y = 4 }
+                position = { x = 618 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED"
@@ -994,7 +1762,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_needed_unselected"
-                position = { x = 201 y = 4 }
+                position = { x = 618 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED"
@@ -1004,7 +1772,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_demolish_selected"
-                position = { x = 295 y = 4 }
+                position = { x = 712 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE"
@@ -1014,7 +1782,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "pop_assembly_demolish_unselected"
-                position = { x = 295 y = 4 }
+                position = { x = 712 y = 4 }
                 size = { x = 86 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE"
@@ -1023,35 +1791,10 @@ guiTypes = {
                 effect = "bca_global_settings_pop_assemble_demolish_unselected"
             }
         }
-        instantTextBoxType = {
-            name = "testing_section"
-            font = "malgun_goth_24"
-            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_SECTION"
-            position = { x = 441 y = 636 }
-            maxWidth = 395
-            maxHeight = 28
-            fixedSize = yes
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-        }
-        instantTextBoxType = {
-            name = "testing_hint"
-            font = "cg_16b"
-            text = "BCA_GLOBAL_SETTINGS_TESTING_AND_RISK_HINT"
-            position = { x = 441 y = 672 }
-            maxWidth = 395
-            maxHeight = 42
-            fixedSize = yes
-            format = left
-            vertical_alignment = top
-            text_color_code = "H"
-            alwaysTransparent = yes
-        }
                 containerWindowType = {
             name = "deurbanization_row"
-            position = { x = 441 y = 720 }
-            size = { width = 395 height = 40 }
+            position = { x = 24 y = 1102 }
+            size = { width = 812 height = 40 }
 
             background = {
                 name = "background"
@@ -1064,7 +1807,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION"
                 position = { x = 14 y = 0 }
-                maxWidth = 201
+                maxWidth = 618
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -1073,7 +1816,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "deurbanization_off_selected"
-                position = { x = 227 y = 4 }
+                position = { x = 644 y = 4 }
                 size = { x = 72 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
@@ -1083,7 +1826,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "deurbanization_off_unselected"
-                position = { x = 227 y = 4 }
+                position = { x = 644 y = 4 }
                 size = { x = 72 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_DISABLED"
@@ -1093,7 +1836,7 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "deurbanization_on_selected"
-                position = { x = 309 y = 4 }
+                position = { x = 726 y = 4 }
                 size = { x = 72 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
@@ -1103,13 +1846,250 @@ guiTypes = {
             }
             effectButtonType = {
                 name = "deurbanization_on_unselected"
-                position = { x = 309 y = 4 }
+                position = { x = 726 y = 4 }
                 size = { x = 72 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ENABLED"
                 tooltipText = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
                 effect = "bca_global_settings_deurbanization_on_unselected"
+            }
+        }
+        instantTextBoxType = {
+            name = "reserve_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_RESERVES_SECTION"
+            position = { x = 24 y = 1182 }
+            maxWidth = 812
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "reserve_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_RESERVES_HINT"
+            position = { x = 24 y = 1216 }
+            maxWidth = 812
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+                containerWindowType = {
+            name = "reserve_minerals_row"
+            position = { x = 24 y = 1256 }
+            size = { width = 812 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_minerals_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 556
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_minerals_value"
+                position = { x = 580 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_minerals_decrease"
+                position = { x = 674 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_minerals_increase"
+                position = { x = 740 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_alloys_row"
+            position = { x = 24 y = 1308 }
+            size = { width = 812 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_alloys_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 556
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_alloys_value"
+                position = { x = 580 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_alloys_decrease"
+                position = { x = 674 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_alloys_increase"
+                position = { x = 740 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_influence_row"
+            position = { x = 24 y = 1360 }
+            size = { width = 812 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_influence_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 556
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_influence_value"
+                position = { x = 580 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_influence_decrease"
+                position = { x = 674 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_influence_increase"
+                position = { x = 740 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_increase"
+            }
+        }
+                containerWindowType = {
+            name = "reserve_job_row"
+            position = { x = 24 y = 1412 }
+            size = { width = 812 height = 40 }
+
+            background = {
+                name = "background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
+
+            instantTextBoxType = {
+                name = "reserve_job_label"
+                font = "cg_16b"
+                text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE"
+                position = { x = 14 y = 0 }
+                maxWidth = 556
+                maxHeight = 40
+                fixedSize = yes
+                format = left
+                vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_job_value"
+                position = { x = 580 y = 4 }
+                size = { x = 84 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE"
+                text_color_code = "H"
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "reserve_job_decrease"
+                position = { x = 674 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
+                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_decrease"
+            }
+            effectButtonType = {
+                name = "reserve_job_increase"
+                position = { x = 740 y = 4 }
+                size = { x = 58 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50"
+                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_increase"
             }
         }
 

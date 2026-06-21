@@ -7,7 +7,6 @@
 
 
 
-
 namespace = colony_automation_event
 
 carrier_event = {
@@ -24,15 +23,7 @@ carrier_event = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
             }
-            if = {
-                        limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
-                        }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
-            }
+            bca_try_build_district_0 = yes
         }
         else_if = {
             limit = {
@@ -46,115 +37,79 @@ carrier_event = {
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
                 }
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
                 }
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
                 }
             }
@@ -164,153 +119,105 @@ carrier_event = {
                 1 = {
                     if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
                 }
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
                 }
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
                 }
                 1 = {
                     if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z5
-                                value > value:num_district_d3
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d3
+                        bca_try_build_district_3 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d0
+                        bca_try_build_district_0 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z3
-                                value > value:num_district_d1
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d1
+                        bca_try_build_district_1 = yes
                     }
-                    else_if = {
+                    if = {
                         limit = {
-                            check_variable = {
-                                which = bca_ps_plan_district_count_z4
-                                value > value:num_district_d2
-                            }
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
                         }
-                        set_carrier_flag = bca_pf_plan_build_district_d2
+                        bca_try_build_district_2 = yes
                     }
                 }
             }

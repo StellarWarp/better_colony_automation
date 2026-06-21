@@ -91,7 +91,7 @@ bca_test_update_construction_metric_max_with_cost = {
 
 
 
-bca_get_num_free_city_zones = {
+bca_get_num_free_zones_d0 = {
 	add_zone = {
 		district = 0
 		zone = zone_bca_test
@@ -113,7 +113,7 @@ bca_get_num_free_city_zones = {
 		parameters = {
 			type = zone_bca_test
 		}
-		variable = bca_num_free_city_zones
+		variable = bca_num_free_zones_d0
 	}
 
 	remove_zone = {
@@ -124,4 +124,62 @@ bca_get_num_free_city_zones = {
 	}
 }
 
+bca_get_num_free_zones_d1 = {
+	add_zone = {
+		district = 1
+		zone = zone_bca_test
+		zone_slot = 1
+	}
 
+	export_trigger_value_to_variable = {
+		trigger = num_zones
+		parameters = {
+			type = zone_bca_test
+		}
+		variable = bca_num_free_zones_d1
+	}
+
+	remove_zone = {
+		zone = zone_bca_test
+	}
+}
+
+bca_get_num_free_zones_d2 = {
+	add_zone = {
+		district = 2
+		zone = zone_bca_test
+		zone_slot = 1
+	}
+
+	export_trigger_value_to_variable = {
+		trigger = num_zones
+		parameters = {
+			type = zone_bca_test
+		}
+		variable = bca_num_free_zones_d2
+	}
+
+	remove_zone = {
+		zone = zone_bca_test
+	}
+}
+
+bca_get_num_free_zones_d3 = {
+	add_zone = {
+		district = 3
+		zone = zone_bca_test
+		zone_slot = 1
+	}
+
+	export_trigger_value_to_variable = {
+		trigger = num_zones
+		parameters = {
+			type = zone_bca_test
+		}
+		variable = bca_num_free_zones_d2
+	}
+
+	remove_zone = {
+		zone = zone_bca_test
+	}
+}

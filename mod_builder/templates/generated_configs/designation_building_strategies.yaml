@@ -1,5 +1,16 @@
 building_strategy_designation_contexts:
 - context: farming
+  building_outputs:
+    building_farming_districts_1:
+    - food
+    building_food_processing_facility:
+    - food
+    building_hydroponics_farm:
+    - food
+    building_forever_cruise_crew_resources:
+    - food
+    - energy
+    - minerals
   job_provider_districts:
   - district_farming
   branches:
@@ -37,6 +48,21 @@ building_strategy_designation_contexts:
   types:
   - farming
 - context: generator
+  building_outputs:
+    building_generator_districts_1:
+    - energy
+    building_betharian_power_plant:
+    - energy
+    building_energy_grid:
+    - energy
+    building_generator_generic:
+    - energy
+    building_mineral_purification_plant:
+    - minerals
+    building_forever_cruise_crew_resources:
+    - food
+    - energy
+    - minerals
   job_provider_districts:
   - district_generator
   branches:
@@ -75,6 +101,17 @@ building_strategy_designation_contexts:
   types:
   - generator
 - context: mining
+  building_outputs:
+    building_mining_districts_1:
+    - minerals
+    building_mineral_purification_plant:
+    - minerals
+    building_mine_generic:
+    - minerals
+    building_forever_cruise_crew_resources:
+    - food
+    - energy
+    - minerals
   job_provider_districts:
   - district_mining
   - district_melting
@@ -101,6 +138,34 @@ building_strategy_designation_contexts:
   types:
   - mining
 - context: industrial
+  building_outputs:
+    building_ministry_production:
+    - alloys
+    - consumer_goods
+    building_production_center:
+    - alloys
+    - consumer_goods
+    building_foundry_efficiency_1:
+    - alloys
+    building_micro_forge:
+    - alloys
+    building_foundry_1:
+    - alloys
+    building_factory_efficiency_1:
+    - consumer_goods
+    building_affluence_emporium:
+    - consumer_goods
+    building_factory_1:
+    - consumer_goods
+    building_foundry_upkeep_1:
+    - alloys
+    building_factory_upkeep_1:
+    - consumer_goods
+    building_forever_cruise_passenger_consumer_goods:
+    - consumer_goods
+    building_forever_cruise_crew_industry:
+    - alloys
+    - consumer_goods
   job_provider_districts: any
   branches:
   - name: default
@@ -129,6 +194,24 @@ building_strategy_designation_contexts:
   types:
   - industrial
 - context: foundry
+  building_outputs:
+    building_ministry_production:
+    - alloys
+    - consumer_goods
+    building_production_center:
+    - alloys
+    - consumer_goods
+    building_foundry_efficiency_1:
+    - alloys
+    building_micro_forge:
+    - alloys
+    building_foundry_1:
+    - alloys
+    building_foundry_upkeep_1:
+    - alloys
+    building_forever_cruise_crew_industry:
+    - alloys
+    - consumer_goods
   job_provider_districts: any
   branches:
   - name: default
@@ -152,6 +235,26 @@ building_strategy_designation_contexts:
   types:
   - foundry
 - context: factory
+  building_outputs:
+    building_ministry_production:
+    - alloys
+    - consumer_goods
+    building_production_center:
+    - alloys
+    - consumer_goods
+    building_factory_efficiency_1:
+    - consumer_goods
+    building_affluence_emporium:
+    - consumer_goods
+    building_factory_1:
+    - consumer_goods
+    building_factory_upkeep_1:
+    - consumer_goods
+    building_forever_cruise_passenger_consumer_goods:
+    - consumer_goods
+    building_forever_cruise_crew_industry:
+    - alloys
+    - consumer_goods
   job_provider_districts: any
   branches:
   - name: default
@@ -176,6 +279,18 @@ building_strategy_designation_contexts:
   types:
   - factory
 - context: trade
+  building_outputs:
+    building_fe_market_1:
+    - trade
+    building_galactic_stock_exchange:
+    - trade
+    building_commercial_megaplex:
+    - trade
+    building_commercial_zone:
+    - trade
+    building_forever_cruise_crew_service:
+    - trade
+    - unity
   job_provider_districts: any
   branches:
   - name: default
@@ -197,6 +312,31 @@ building_strategy_designation_contexts:
   types:
   - trade
 - context: research
+  building_outputs:
+    building_vultaum_reality_computer:
+    - research
+    building_institute:
+    - research
+    building_supercomputer:
+    - research
+    building_archaeostudies_faculty:
+    - research
+    building_research_efficiency_1:
+    - research
+    building_engineering_facility_1:
+    - research
+    building_physics_lab_1:
+    - research
+    building_biolab_1:
+    - research
+    building_fe_lab_1:
+    - research
+    building_research_lab_1:
+    - research
+    building_research_upkeep_1:
+    - research
+    building_forever_cruise_passenger_research:
+    - research
   job_provider_districts: any
   branches:
   - name: default
@@ -225,6 +365,74 @@ building_strategy_designation_contexts:
   types:
   - research
 - context: unity
+  building_outputs:
+    building_bureaucratic_2:
+    - unity
+    building_holotemple:
+    - unity
+    building_hive_cluster:
+    - unity
+    building_network_junction:
+    - unity
+    building_bureaucratic_3:
+    - unity
+    building_sacred_nexus:
+    - unity
+    building_hive_confluence:
+    - unity
+    building_system_conflux:
+    - unity
+    building_autochthon_monument:
+    - unity
+    building_corporate_monument:
+    - unity
+    building_simulation_1:
+    - unity
+    building_galactic_memorial_1:
+    - unity
+    building_sensorium_1:
+    - unity
+    building_lifecrypt_1:
+    - unity
+    building_lifecrypt_machine_1:
+    - unity
+    building_lifecrypt_hive_mind_1:
+    - unity
+    building_lifecrypt_corporate_1:
+    - unity
+    building_autocurating_vault:
+    - unity
+    building_citadel_of_faith:
+    - unity
+    building_corporate_vault:
+    - unity
+    building_alpha_hub:
+    - unity
+    building_trophy_vault:
+    - unity
+    building_fe_administration_1:
+    - unity
+    building_fe_administration_hive_1:
+    - unity
+    building_fe_temple_1:
+    - unity
+    building_fe_administration_machine_1:
+    - unity
+    building_bureaucratic_1:
+    - unity
+    building_temple:
+    - unity
+    building_sacrificial_temple_1:
+    - unity
+    building_uplink_node:
+    - unity
+    building_hive_node:
+    - unity
+    building_forever_cruise_passenger_unity:
+    - unity
+    building_forever_cruise_crew_service:
+    - trade
+    - unity
   job_provider_districts: any
   branches:
   - name: default
@@ -274,6 +482,12 @@ building_strategy_designation_contexts:
   types:
   - unity
 - context: fortress
+  building_outputs:
+    building_dread_encampment: []
+    building_military_academy: []
+    building_planetary_shield_generator: []
+    building_fe_fortress: []
+    building_stronghold: []
   job_provider_districts: any
   branches:
   - name: default
@@ -293,6 +507,10 @@ building_strategy_designation_contexts:
   types:
   - fortress
 - context: col_wilderness_capital
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_brain_node_1: []
+    building_natural_furnace_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -310,6 +528,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_capital
 - context: col_wilderness_generator
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_bioelectric_stimulator_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -326,6 +547,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_generator
 - context: col_wilderness_mining
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_churning_tunnels_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -342,6 +566,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_mining
 - context: col_wilderness_farming
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_massive_growth_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -358,6 +585,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_farming
 - context: col_wilderness_fortress
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_planetary_carapace: []
   job_provider_districts: any
   branches:
   - name: default
@@ -374,6 +604,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_fortress
 - context: col_wilderness_tech
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_brain_node_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -390,6 +623,10 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_tech
 - context: col_wilderness_nest
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_tendril_cradle_1: []
+    building_brain_node_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -407,6 +644,12 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_nest
 - context: col_wilderness_refinery
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_natural_furnace_1: []
+    building_churning_stomach: []
+    building_crystal_growth: []
+    building_mote_aggravator: []
   job_provider_districts: any
   branches:
   - name: default
@@ -426,6 +669,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_refinery
 - context: col_wilderness_forge
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_natural_furnace_1: []
   job_provider_districts: any
   branches:
   - name: default
@@ -442,6 +688,9 @@ building_strategy_designation_contexts:
   types:
   - col_wilderness_forge
 - context: col_wilderness_unification
+  building_outputs:
+    building_cradle_of_rebirth: []
+    building_commensal_clearing_1: []
   job_provider_districts: any
   branches:
   - name: default

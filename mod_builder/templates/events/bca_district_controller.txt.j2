@@ -1,34 +1,14 @@
+
 {% import 'component/planet_flag_ps.j2' as pf with context %}
 {% import 'component/planet_variable.j2' as v with context %}
-{% import 'component/conditions.j2' as cond with context %}
-
-
-{% macro try_build_district(index) -%}
-{% if index == 0 %}
-                        limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_primary_districts_plan
-                                value > value:num_primary_district
-                            }
-                        }
-                        set_carrier_flag = {{ pf.flag_district_plan_build('d0') }}
-{% else %}
-{% set district_slot = ['d1','d2','d3'][index - 1] %}
-{% set zone_slot = ['z3','z4','z5'][index - 1] %}
-                        limit = {
-                            check_variable = {
-                                which = {{v.var_district_num_plan(zone_slot)}}
-                                value > value:num_district_{{ district_slot }}
-                            }
-                        }
-                        set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
-{% endif %}
-{%- endmacro %}
 
 {% macro try_build_district_by_order(order) -%}
-{% for i in order %}
-                    {{ "if" if loop.first else "else_if" }} = {
-                        {#  #}{{ try_build_district(i) }}{#  #}
+                    {% for i in order %}
+                    if = {
+                        limit = {
+                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+                        }
+                        bca_try_build_district_{{ i }} = yes
                     }
                     {% endfor %}
 {%- endmacro %}
@@ -49,9 +29,7 @@ carrier_event = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
             }
-            if = {
-                {#  #}{{ try_build_district(0) }}{#  #}
-            }
+            bca_try_build_district_0 = yes
         }
         else_if = {
             limit = {

@@ -6,36 +6,50 @@ building_strategy_model:
         context: farming
         strategy: district_capacity
         source_order: 0
+        output:
+        - food
       - projection: zone
         context: food
         strategy: district_capacity
         source_order: 1
+        output:
+        - food
       - projection: zone
         context: agrarian
         strategy: district_capacity
         source_order: 2
+        output:
+        - food
     building_food_processing_facility:
       construction:
       - projection: designation
         context: farming
         strategy: efficiency
         source_order: 3
+        output:
+        - food
         subcases:
         - trigger: bca_is_farming_habitat
       - projection: zone
         context: food
         strategy: efficiency
         source_order: 4
+        output:
+        - food
       - projection: zone
         context: agrarian
         strategy: efficiency
         source_order: 5
+        output:
+        - food
     building_hydroponics_farm:
       construction:
       - projection: designation
         context: farming
         strategy: job_low_priority
         source_order: 6
+        output:
+        - food
         subcases:
         - trigger: bca_is_farming_habitat
           strategy_override: job_only
@@ -43,10 +57,14 @@ building_strategy_model:
         context: food
         strategy: job_low_priority
         source_order: 7
+        output:
+        - food
       - projection: zone
         context: agrarian
         strategy: job_low_priority
         source_order: 8
+        output:
+        - food
       destruction:
       - triggers:
         - bca_can_remove_building_resource
@@ -58,20 +76,28 @@ building_strategy_model:
         context: generator
         strategy: district_capacity
         source_order: 10
+        output:
+        - energy
       - projection: zone
         context: energy
         strategy: district_capacity
         source_order: 11
+        output:
+        - energy
       - projection: zone
         context: hydroponics
         strategy: district_capacity
         source_order: 12
+        output:
+        - energy
     building_betharian_power_plant:
       construction:
       - projection: designation
         context: generator
         strategy: job_only
         source_order: 13
+        output:
+        - energy
         include_default: false
         subcases:
         - trigger: bca_is_generator_betharian
@@ -81,50 +107,70 @@ building_strategy_model:
         context: generator
         strategy: efficiency
         source_order: 14
+        output:
+        - energy
         subcases:
         - trigger: bca_is_generator_betharian
       - projection: zone
         context: energy
         strategy: efficiency
         source_order: 15
+        output:
+        - energy
       - projection: zone
         context: hydroponics
         strategy: efficiency
         source_order: 16
+        output:
+        - energy
     building_generator_generic:
       construction:
       - projection: designation
         context: generator
         strategy: job_low_priority
         source_order: 17
+        output:
+        - energy
       - projection: zone
         context: energy
         strategy: job_low_priority
         source_order: 18
+        output:
+        - energy
       - projection: zone
         context: hydroponics
         strategy: job_low_priority
         source_order: 19
+        output:
+        - energy
     building_mining_districts_1:
       construction:
       - projection: designation
         context: mining
         strategy: district_capacity
         source_order: 20
+        output:
+        - minerals
       - projection: zone
         context: minerals
         strategy: district_capacity
         source_order: 21
+        output:
+        - minerals
     building_mineral_purification_plant:
       construction:
       - projection: designation
         context: mining
         strategy: efficiency
         source_order: 22
+        output:
+        - minerals
       - projection: designation
         context: generator
         strategy: job_only
         source_order: 23
+        output:
+        - minerals
         include_default: false
         subcases:
         - trigger: bca_is_generator_betharian
@@ -132,42 +178,66 @@ building_strategy_model:
         context: minerals
         strategy: efficiency
         source_order: 24
+        output:
+        - minerals
     building_mine_generic:
       construction:
       - projection: designation
         context: mining
         strategy: job_low_priority
         source_order: 25
+        output:
+        - minerals
       - projection: zone
         context: minerals
         strategy: job_low_priority
         source_order: 26
+        output:
+        - minerals
     building_ministry_production:
       construction:
       - projection: designation
         context: industrial
         strategy: efficiency
         source_order: 27
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: foundry
         strategy: efficiency
         source_order: 28
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: efficiency
         source_order: 29
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: efficiency
         source_order: 30
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: foundry
         strategy: efficiency
         source_order: 31
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: efficiency
         source_order: 32
+        output:
+        - alloys
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_industry
@@ -179,26 +249,44 @@ building_strategy_model:
         context: industrial
         strategy: efficiency
         source_order: 34
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: foundry
         strategy: efficiency
         source_order: 35
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: efficiency
         source_order: 36
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: efficiency
         source_order: 37
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: foundry
         strategy: efficiency
         source_order: 38
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: efficiency
         source_order: 39
+        output:
+        - alloys
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_industry
@@ -210,18 +298,26 @@ building_strategy_model:
         context: industrial
         strategy: efficiency
         source_order: 41
+        output:
+        - alloys
       - projection: designation
         context: foundry
         strategy: efficiency
         source_order: 42
+        output:
+        - alloys
       - projection: zone
         context: industrial
         strategy: efficiency
         source_order: 43
+        output:
+        - alloys
       - projection: zone
         context: foundry
         strategy: efficiency
         source_order: 44
+        output:
+        - alloys
       destruction:
       - triggers:
         - bca_can_remove_building_foundry
@@ -233,18 +329,26 @@ building_strategy_model:
         context: industrial
         strategy: always
         source_order: 46
+        output:
+        - alloys
       - projection: designation
         context: foundry
         strategy: always
         source_order: 47
+        output:
+        - alloys
       - projection: zone
         context: industrial
         strategy: always
         source_order: 48
+        output:
+        - alloys
       - projection: zone
         context: foundry
         strategy: always
         source_order: 49
+        output:
+        - alloys
       destruction:
       - triggers:
         - bca_can_remove_building_foundry
@@ -256,18 +360,26 @@ building_strategy_model:
         context: industrial
         strategy: job_only
         source_order: 51
+        output:
+        - alloys
       - projection: designation
         context: foundry
         strategy: job_only
         source_order: 52
+        output:
+        - alloys
       - projection: zone
         context: industrial
         strategy: job_only
         source_order: 53
+        output:
+        - alloys
       - projection: zone
         context: foundry
         strategy: job_only
         source_order: 54
+        output:
+        - alloys
       destruction:
       - triggers:
         - bca_can_remove_building_foundry
@@ -280,18 +392,26 @@ building_strategy_model:
         context: industrial
         strategy: efficiency
         source_order: 56
+        output:
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: efficiency
         source_order: 57
+        output:
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: efficiency
         source_order: 58
+        output:
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: efficiency
         source_order: 59
+        output:
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_factory
@@ -303,18 +423,26 @@ building_strategy_model:
         context: industrial
         strategy: always
         source_order: 61
+        output:
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: always
         source_order: 62
+        output:
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: always
         source_order: 63
+        output:
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: always
         source_order: 64
+        output:
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_factory
@@ -326,18 +454,26 @@ building_strategy_model:
         context: industrial
         strategy: job_only
         source_order: 66
+        output:
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: job_only
         source_order: 67
+        output:
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: job_only
         source_order: 68
+        output:
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: job_only
         source_order: 69
+        output:
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_factory
@@ -350,10 +486,14 @@ building_strategy_model:
         context: industrial
         strategy: efficiency
         source_order: 71
+        output:
+        - alloys
       - projection: designation
         context: foundry
         strategy: efficiency
         source_order: 72
+        output:
+        - alloys
       destruction:
       - triggers:
         - bca_can_remove_building_foundry
@@ -365,10 +505,14 @@ building_strategy_model:
         context: industrial
         strategy: efficiency
         source_order: 74
+        output:
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: efficiency
         source_order: 75
+        output:
+        - consumer_goods
       destruction:
       - triggers:
         - bca_can_remove_building_factory
@@ -380,10 +524,14 @@ building_strategy_model:
         context: trade
         strategy: efficiency
         source_order: 77
+        output:
+        - trade
       - projection: zone
         context: trade
         strategy: efficiency
         source_order: 78
+        output:
+        - trade
       destruction:
       - triggers:
         - bca_can_remove_building_trade
@@ -395,10 +543,14 @@ building_strategy_model:
         context: trade
         strategy: efficiency
         source_order: 80
+        output:
+        - trade
       - projection: zone
         context: trade
         strategy: efficiency
         source_order: 81
+        output:
+        - trade
       destruction:
       - triggers:
         - bca_can_remove_building_trade
@@ -410,10 +562,14 @@ building_strategy_model:
         context: trade
         strategy: efficiency
         source_order: 83
+        output:
+        - trade
       - projection: zone
         context: trade
         strategy: efficiency
         source_order: 84
+        output:
+        - trade
       destruction:
       - triggers:
         - bca_can_remove_building_trade
@@ -425,10 +581,14 @@ building_strategy_model:
         context: trade
         strategy: job_only
         source_order: 86
+        output:
+        - trade
       - projection: zone
         context: trade
         strategy: job_only
         source_order: 87
+        output:
+        - trade
       destruction:
       - triggers:
         - bca_can_remove_building_trade
@@ -441,22 +601,32 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 89
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 90
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 91
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 92
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 93
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -468,22 +638,32 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 95
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 96
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 97
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 98
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 99
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -495,22 +675,32 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 101
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 102
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 103
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 104
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 105
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -522,22 +712,32 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 107
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 108
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 109
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 110
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 111
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -549,22 +749,32 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 113
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 114
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 115
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 116
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 117
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -576,22 +786,32 @@ building_strategy_model:
         context: research
         strategy: always
         source_order: 119
+        output:
+        - research
       - projection: zone
         context: research
         strategy: always
         source_order: 120
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: always
         source_order: 121
+        output:
+        - research
       - projection: zone
         context: society
         strategy: always
         source_order: 122
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: always
         source_order: 123
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -603,22 +823,32 @@ building_strategy_model:
         context: research
         strategy: always
         source_order: 125
+        output:
+        - research
       - projection: zone
         context: research
         strategy: always
         source_order: 126
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: always
         source_order: 127
+        output:
+        - research
       - projection: zone
         context: society
         strategy: always
         source_order: 128
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: always
         source_order: 129
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -630,22 +860,32 @@ building_strategy_model:
         context: research
         strategy: always
         source_order: 131
+        output:
+        - research
       - projection: zone
         context: research
         strategy: always
         source_order: 132
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: always
         source_order: 133
+        output:
+        - research
       - projection: zone
         context: society
         strategy: always
         source_order: 134
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: always
         source_order: 135
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -657,22 +897,32 @@ building_strategy_model:
         context: research
         strategy: always
         source_order: 137
+        output:
+        - research
       - projection: zone
         context: research
         strategy: always
         source_order: 138
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: always
         source_order: 139
+        output:
+        - research
       - projection: zone
         context: society
         strategy: always
         source_order: 140
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: always
         source_order: 141
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -684,22 +934,32 @@ building_strategy_model:
         context: research
         strategy: job_only
         source_order: 143
+        output:
+        - research
       - projection: zone
         context: research
         strategy: job_only
         source_order: 144
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: job_only
         source_order: 145
+        output:
+        - research
       - projection: zone
         context: society
         strategy: job_only
         source_order: 146
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: job_only
         source_order: 147
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -712,6 +972,8 @@ building_strategy_model:
         context: research
         strategy: efficiency
         source_order: 149
+        output:
+        - research
       destruction:
       - triggers:
         - bca_can_remove_building_reasearch
@@ -723,18 +985,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 151
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 152
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 153
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 154
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -746,18 +1016,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 156
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 157
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 158
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 159
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -769,18 +1047,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 161
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 162
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 163
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 164
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -792,18 +1078,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 166
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 167
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 168
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 169
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -815,18 +1109,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 171
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 172
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 173
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 174
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -838,18 +1140,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 176
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 177
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 178
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 179
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -861,18 +1171,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 181
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 182
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 183
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 184
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -884,18 +1202,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 186
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 187
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 188
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 189
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -907,180 +1233,260 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 191
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 192
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 193
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 194
+        output:
+        - unity
     building_corporate_monument:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 195
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 196
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 197
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 198
+        output:
+        - unity
     building_simulation_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 199
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 200
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 201
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 202
+        output:
+        - unity
     building_galactic_memorial_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 203
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 204
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 205
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 206
+        output:
+        - unity
     building_sensorium_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 207
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 208
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 209
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 210
+        output:
+        - unity
     building_lifecrypt_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 211
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 212
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 213
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 214
+        output:
+        - unity
     building_lifecrypt_machine_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 215
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 216
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 217
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 218
+        output:
+        - unity
     building_lifecrypt_hive_mind_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 219
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 220
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 221
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 222
+        output:
+        - unity
     building_lifecrypt_corporate_1:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 223
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 224
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 225
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 226
+        output:
+        - unity
     building_autocurating_vault:
       construction:
       - projection: designation
         context: unity
         strategy: efficiency
         source_order: 227
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 228
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 229
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 230
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1092,18 +1498,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 232
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 233
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 234
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 235
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1115,18 +1529,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 237
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 238
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 239
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 240
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1138,18 +1560,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 242
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 243
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 244
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 245
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1161,18 +1591,26 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 247
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 248
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 249
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 250
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1184,18 +1622,26 @@ building_strategy_model:
         context: unity
         strategy: always
         source_order: 252
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: always
         source_order: 253
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: always
         source_order: 254
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: always
         source_order: 255
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1207,18 +1653,26 @@ building_strategy_model:
         context: unity
         strategy: always
         source_order: 257
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: always
         source_order: 258
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: always
         source_order: 259
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: always
         source_order: 260
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1230,18 +1684,26 @@ building_strategy_model:
         context: unity
         strategy: always
         source_order: 262
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: always
         source_order: 263
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: always
         source_order: 264
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: always
         source_order: 265
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1253,18 +1715,26 @@ building_strategy_model:
         context: unity
         strategy: always
         source_order: 267
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: always
         source_order: 268
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: always
         source_order: 269
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: always
         source_order: 270
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1276,18 +1746,26 @@ building_strategy_model:
         context: unity
         strategy: job_only
         source_order: 272
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: job_only
         source_order: 273
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: job_only
         source_order: 274
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: job_only
         source_order: 275
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1300,18 +1778,26 @@ building_strategy_model:
         context: unity
         strategy: job_only
         source_order: 277
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: job_only
         source_order: 278
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: job_only
         source_order: 279
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: job_only
         source_order: 280
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1324,18 +1810,26 @@ building_strategy_model:
         context: unity
         strategy: job_only
         source_order: 282
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: job_only
         source_order: 283
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: job_only
         source_order: 284
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: job_only
         source_order: 285
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1348,18 +1842,26 @@ building_strategy_model:
         context: unity
         strategy: job_only
         source_order: 287
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: job_only
         source_order: 288
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: job_only
         source_order: 289
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: job_only
         source_order: 290
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1372,18 +1874,26 @@ building_strategy_model:
         context: unity
         strategy: job_only
         source_order: 292
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: job_only
         source_order: 293
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: job_only
         source_order: 294
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: job_only
         source_order: 295
+        output:
+        - unity
       destruction:
       - triggers:
         - bca_can_remove_building_unity
@@ -1663,172 +2173,284 @@ building_strategy_model:
         context: unity
         strategy: efficiency
         source_order: 354
+        output:
+        - unity
       - projection: zone
         context: unity
         strategy: efficiency
         source_order: 355
+        output:
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: efficiency
         source_order: 356
+        output:
+        - unity
       - projection: zone
         context: priest
         strategy: efficiency
         source_order: 357
+        output:
+        - unity
     building_forever_cruise_passenger_research:
       construction:
       - projection: designation
         context: research
         strategy: efficiency
         source_order: 358
+        output:
+        - research
       - projection: zone
         context: research
         strategy: efficiency
         source_order: 359
+        output:
+        - research
       - projection: zone
         context: physics
         strategy: efficiency
         source_order: 360
+        output:
+        - research
       - projection: zone
         context: society
         strategy: efficiency
         source_order: 361
+        output:
+        - research
       - projection: zone
         context: engineering
         strategy: efficiency
         source_order: 362
+        output:
+        - research
     building_forever_cruise_passenger_consumer_goods:
       construction:
       - projection: designation
         context: industrial
         strategy: efficiency
         source_order: 363
+        output:
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: efficiency
         source_order: 364
+        output:
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: efficiency
         source_order: 365
+        output:
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: efficiency
         source_order: 366
+        output:
+        - consumer_goods
       - projection: zone
         context: ark_research_unity_consumer_goods
         strategy: efficiency
         source_order: 367
+        output:
+        - consumer_goods
     building_forever_cruise_crew_resources:
       construction:
       - projection: designation
         context: farming
         strategy: always
         source_order: 368
+        output:
+        - food
+        - energy
+        - minerals
       - projection: designation
         context: generator
         strategy: always
         source_order: 369
+        output:
+        - food
+        - energy
+        - minerals
       - projection: designation
         context: mining
         strategy: always
         source_order: 370
+        output:
+        - food
+        - energy
+        - minerals
       - projection: zone
         context: food
         strategy: always
         source_order: 371
+        output:
+        - food
+        - energy
+        - minerals
       - projection: zone
         context: energy
         strategy: always
         source_order: 372
+        output:
+        - food
+        - energy
+        - minerals
       - projection: zone
         context: minerals
         strategy: always
         source_order: 373
+        output:
+        - food
+        - energy
+        - minerals
     building_forever_cruise_crew_industry:
       construction:
       - projection: designation
         context: industrial
         strategy: always
         source_order: 374
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: foundry
         strategy: always
         source_order: 375
+        output:
+        - alloys
+        - consumer_goods
       - projection: designation
         context: factory
         strategy: always
         source_order: 376
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: industrial
         strategy: always
         source_order: 377
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: foundry
         strategy: always
         source_order: 378
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: factory
         strategy: always
         source_order: 379
+        output:
+        - alloys
+        - consumer_goods
       - projection: zone
         context: ark_research_alloys_support
         strategy: always
         source_order: 380
+        output:
+        - alloys
+        - consumer_goods
     building_forever_cruise_crew_service:
       construction:
       - projection: designation
         context: trade
         strategy: always
         source_order: 381
+        output:
+        - trade
+        - unity
       - projection: designation
         context: unity
         strategy: always
         source_order: 382
+        output:
+        - trade
+        - unity
       - projection: zone
         context: trade
         strategy: always
         source_order: 383
+        output:
+        - trade
+        - unity
       - projection: zone
         context: unity
         strategy: always
         source_order: 384
+        output:
+        - trade
+        - unity
       - projection: zone
         context: bureaucrat
         strategy: always
         source_order: 385
+        output:
+        - trade
+        - unity
       - projection: zone
         context: priest
         strategy: always
         source_order: 386
+        output:
+        - trade
+        - unity
       - projection: zone
         context: entertainer
         strategy: always
         source_order: 387
+        output:
+        - trade
+        - unity
       - projection: zone
         context: duelist
         strategy: always
         source_order: 388
+        output:
+        - trade
+        - unity
       - projection: zone
         context: forever_cruise_passenger
         strategy: always
         source_order: 389
+        output:
+        - trade
+        - unity
       - projection: zone
         context: forever_cruise_crew
         strategy: always
         source_order: 390
+        output:
+        - trade
+        - unity
       - projection: zone
         context: forever_cruise_city_passenger
         strategy: always
         source_order: 391
+        output:
+        - trade
+        - unity
       - projection: zone
         context: forever_cruise_city_crew
         strategy: always
         source_order: 392
+        output:
+        - trade
+        - unity
       - projection: zone
         context: forever_cruise_city_mixed
         strategy: always
         source_order: 393
+        output:
+        - trade
+        - unity
     building_shroud_observatory_1:
       destruction:
       - triggers:

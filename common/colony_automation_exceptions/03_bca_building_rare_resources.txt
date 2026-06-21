@@ -1,9 +1,6 @@
 automate_crystal_deficit_management = {
 	available = {
-		owner = { resource_revenue_compare = {
-			resource = rare_crystals
-			value < bca_expect_output_rare_crystals }
-		}
+		bca_empire_needs_rare_crystals = yes
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}
@@ -25,12 +22,7 @@ automate_crystal_deficit_management = {
 
 automate_mote_deficit_management = {
 	available = {
-		owner = {
-			resource_revenue_compare = {
-				resource = volatile_motes
-				value < bca_expect_output_volatile_motes
-			}
-		}
+		bca_empire_needs_volatile_motes = yes
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}
@@ -52,12 +44,7 @@ automate_mote_deficit_management = {
 
 automate_gas_deficit_management = {
 	available = {
-		owner = {
-			resource_revenue_compare = {
-				resource = exotic_gases
-				value < bca_expect_output_exotic_gases
-			}
-		}
+		bca_empire_needs_exotic_gases = yes
 		bca_has_minerals_to_build = yes
 		has_any_industrial_designation = yes
 	}

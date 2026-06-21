@@ -21,9 +21,10 @@ if __name__ == "__main__":
     if image_gen_script.exists():
         run_script(image_gen_script, base_dir)
 
-    # 2. 从源码解析最新的 YAML 数据 (在 mod_builder/parse 下可能存在主控脚本或可分别调用)
-    # 假设目前还没有完善统一的 parse main 脚本，这里你可以后续添加 run_script(base_dir / "parse" / "build_ast.py", base_dir / "parse")
-    # run_script(base_dir / "parse" / "xxx.py", base_dir / "parse")
+    # 2. 生成 templates/generated_configs 下的统一配置层
+    parse_build_script = base_dir / "parse" / "build_generated_configs.py"
+    if parse_build_script.exists():
+        run_script(parse_build_script, base_dir / "parse")
 
     # 3. 把 YAML 数据渲染到模板生成代码
     generate_script = base_dir / "generate.py"

@@ -12,54 +12,142 @@
 	{% endif %}
 {% endmacro %}
 
-{% macro building_available(strategy, districts) %}
-	{% if strategy == 'district_capacity' %}
-			available = {
-		        {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
-			}
-	{% elif strategy == 'efficiency' %}
-			available = {
+{% macro resource_gate(outputs) %}
+	{% if outputs %}
+		{% if outputs|length == 1 %}
+				bca_empire_needs_{{ outputs[0] }} = yes
+		{% else %}
 				OR = {
-					really_requires_more_job = no
-		            {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
+			{% for output in outputs %}
+					bca_empire_needs_{{ output }} = yes
+			{% endfor %}
 				}
-			}
-	{% elif strategy == 'job_only' or strategy == 'job_low_priority' or strategy == 'job_bookend' %}
-			available = {
-				requires_more_job = yes
-		        {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
-			}
+		{% endif %}
 	{% endif %}
 {% endmacro %}
 
-{% macro building_entry(index, building, strategy, districts, planet_limit=none) %}
+{% macro collect_outputs_for_buildings(buildings, context_building_outputs) %}
+	{% set ns = namespace(outputs=[]) %}
+	{% for building in buildings %}
+		{% for output in context_building_outputs.get(building, []) %}
+			{% if output not in ns.outputs %}
+				{% set _ = ns.outputs.append(output) %}
+			{% endif %}
+		{% endfor %}
+	{% endfor %}
+	{{ ns.outputs }}
+{% endmacro %}
+
+{% macro building_available(strategy, districts) %}
+	{% if strategy == 'district_capacity' %}
+	        {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
+	{% elif strategy == 'efficiency' %}
+			OR = {
+				really_requires_more_job = no
+	            {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
+			}
+	{% elif strategy == 'job_only' or strategy == 'job_low_priority' or strategy == 'job_bookend' %}
+			requires_more_job = yes
+	        {#  #}{{ job_provider_districts_exhausted(districts) }}{#  #}
+	{% endif %}
+{% endmacro %}
+
+{% macro strategy_condition_kind(strategy) %}
+	{% if strategy == 'district_capacity' %}
+		district_capacity
+	{% elif strategy == 'efficiency' %}
+		efficiency
+	{% elif strategy == 'job_only' or strategy == 'job_low_priority' or strategy == 'job_bookend' %}
+		requires_more_job
+	{% else %}
+		always
+	{% endif %}
+{% endmacro %}
+
+{% macro strategy_kind_representative(strategy_kind) %}
+	{% if strategy_kind == 'district_capacity' %}
+		district_capacity
+	{% elif strategy_kind == 'efficiency' %}
+		efficiency
+	{% elif strategy_kind == 'requires_more_job' %}
+		job_only
+	{% else %}
+		always
+	{% endif %}
+{% endmacro %}
+
+{% macro block_resource_gate(item, branch, strategies) %}
+	{% set ns = namespace(outputs=[]) %}
+	{% set context_building_outputs = item.get('building_outputs', {}) %}
+	{% for bucket in branch.strategy_buckets %}
+		{% if bucket.strategy in strategies %}
+			{% for building in bucket.buildings %}
+				{% set building_outputs = context_building_outputs.get(building, []) %}
+				{% for output in building_outputs %}
+					{% if output not in ns.outputs %}
+						{% set _ = ns.outputs.append(output) %}
+					{% endif %}
+				{% endfor %}
+			{% endfor %}
+		{% endif %}
+	{% endfor %}
+	{#  #}{{ resource_gate(ns.outputs) }}{#  #}
+{% endmacro %}
+
+{% macro building_entry(index, building, outputs, block_outputs, strategy, districts, shared_strategy_kind='', planet_limit=none) %}
 		{{ index }} = {
 			building = {{ building }}
 	{% if planet_limit is not none %}
 			planet_limit = {{ planet_limit }}
 	{% endif %}
-			{#  #}{{ building_available(strategy, districts) }}{#  #}
+	{% set own_strategy_kind = strategy_condition_kind(strategy)|trim %}
+	{% if outputs != block_outputs or own_strategy_kind != 'always' and own_strategy_kind != shared_strategy_kind %}
+			available = {
+	{% if outputs != block_outputs %}
+				{#  #}{{ resource_gate(outputs) }}{#  #}
+	{% endif %}
+	{% if own_strategy_kind != 'always' and own_strategy_kind != shared_strategy_kind %}
+				{#  #}{{ building_available(strategy, districts) }}{#  #}
+	{% endif %}
+			}
+	{% endif %}
 		}
 {% endmacro %}
 
 {% macro render_priority_band(strategies, suffix) %}
 	{% for item in building_strategy_designation_contexts %}
+		{% set context_building_outputs = item.get('building_outputs', {}) %}
 		{% for branch in item.branches %}
+			{% set block = namespace(outputs=[]) %}
 			{% set has_buildings = namespace(value=false) %}
+			{% set strategy_kinds = namespace(values=[]) %}
 			{% for strategy in strategies %}
 				{% for bucket in branch.strategy_buckets %}
 					{% if bucket.strategy == strategy and bucket.buildings %}
 						{% set has_buildings.value = true %}
+						{% set strategy_kind = strategy_condition_kind(bucket.strategy)|trim %}
+						{% if strategy_kind not in strategy_kinds.values %}
+							{% set _ = strategy_kinds.values.append(strategy_kind) %}
+						{% endif %}
+						{% for building in bucket.buildings %}
+							{% for output in context_building_outputs.get(building, []) %}
+								{% if output not in block.outputs %}
+									{% set _ = block.outputs.append(output) %}
+								{% endif %}
+							{% endfor %}
+						{% endfor %}
 					{% endif %}
 				{% endfor %}
 			{% endfor %}
 			{% if has_buildings.value %}
+			{% set shared_strategy_kind = strategy_kinds.values[0] if strategy_kinds.values|length == 1 else '' %}
 generated_automate_{{ item.context }}{% if branch.name != 'default' %}_{{ branch.name }}{% endif %}_building_{{ suffix }} = {
 	category = "planet_automation_designation_construction"
 
 	emergency = yes
 	available = {
 		bca_has_minerals_to_build = yes
+		{#  #}{{ resource_gate(block.outputs) }}{#  #}
 		{% if item.context[:4] == 'col_' %}
 		has_designation = {{ item.context }}
 		{% else %}
@@ -75,6 +163,9 @@ generated_automate_{{ item.context }}{% if branch.name != 'default' %}_{{ branch
 			{% endfor %}
 		}
 		{% endif %}
+		{% if shared_strategy_kind and shared_strategy_kind != 'always' %}
+		{#  #}{{ building_available(strategy_kind_representative(shared_strategy_kind)|trim, branch.job_provider_districts) }}{#  #}
+		{% endif %}
 	}
 
 	buildings = {
@@ -83,7 +174,7 @@ generated_automate_{{ item.context }}{% if branch.name != 'default' %}_{{ branch
 				{% for bucket in branch.strategy_buckets %}
 					{% if bucket.strategy == 'job_bookend' %}
 						{% for building in bucket.buildings %}
-							{#  #}{{ building_entry(index.value, building, bucket.strategy, branch.job_provider_districts, 1) }}{#  #}
+							{#  #}{{ building_entry(index.value, building, context_building_outputs.get(building, []), block.outputs, bucket.strategy, branch.job_provider_districts, shared_strategy_kind, 1) }}{#  #}
 							{% set index.value = index.value + 1 %}
 						{% endfor %}
 					{% endif %}
@@ -94,7 +185,7 @@ generated_automate_{{ item.context }}{% if branch.name != 'default' %}_{{ branch
 					{% for bucket in branch.strategy_buckets %}
 						{% if bucket.strategy == strategy %}
 							{% for building in bucket.buildings %}
-								{#  #}{{ building_entry(index.value, building, bucket.strategy, branch.job_provider_districts) }}{#  #}
+								{#  #}{{ building_entry(index.value, building, context_building_outputs.get(building, []), block.outputs, bucket.strategy, branch.job_provider_districts, shared_strategy_kind) }}{#  #}
 								{% set index.value = index.value + 1 %}
 							{% endfor %}
 						{% endif %}
@@ -105,7 +196,7 @@ generated_automate_{{ item.context }}{% if branch.name != 'default' %}_{{ branch
 				{% for bucket in branch.strategy_buckets %}
 					{% if bucket.strategy == 'job_bookend' %}
 						{% for building in bucket.buildings %}
-							{#  #}{{ building_entry(index.value, building, bucket.strategy, branch.job_provider_districts) }}{#  #}
+							{#  #}{{ building_entry(index.value, building, context_building_outputs.get(building, []), block.outputs, bucket.strategy, branch.job_provider_districts, shared_strategy_kind) }}{#  #}
 							{% set index.value = index.value + 1 %}
 						{% endfor %}
 					{% endif %}

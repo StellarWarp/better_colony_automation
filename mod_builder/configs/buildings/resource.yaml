@@ -1,5 +1,7 @@
 buildings:
   building_farming_districts_1:
+    output:
+      - food
     construction:
       - projection: designation
         context: farming
@@ -11,6 +13,8 @@ buildings:
         strategy: district_capacity
 
   building_food_processing_facility:
+    output:
+      - food
     construction:
       - projection: designation
         context: farming
@@ -24,6 +28,8 @@ buildings:
         strategy: efficiency
 
   building_hydroponics_farm:
+    output:
+      - food
     construction:
       - projection: designation
         context: farming
@@ -41,6 +47,8 @@ buildings:
           - bca_can_remove_building_resource
 
   building_generator_districts_1:
+    output:
+      - energy
     construction:
       - projection: designation
         context: generator
@@ -52,6 +60,8 @@ buildings:
         strategy: district_capacity
 
   building_betharian_power_plant:
+    output:
+      - energy
     construction:
       - projection: designation
         context: generator
@@ -61,6 +71,8 @@ buildings:
           - trigger: bca_is_generator_betharian
 
   building_energy_grid:
+    output:
+      - energy
     construction:
       - projection: designation
         context: generator
@@ -74,6 +86,8 @@ buildings:
         strategy: efficiency
 
   building_generator_generic:
+    output:
+      - energy
     construction:
       - projection: designation
         context: generator
@@ -85,6 +99,8 @@ buildings:
         strategy: job_low_priority
 
   building_mining_districts_1:
+    output:
+      - minerals
     construction:
       - projection: designation
         context: mining
@@ -94,6 +110,8 @@ buildings:
         strategy: district_capacity
 
   building_mineral_purification_plant:
+    output:
+      - minerals
     construction:
       - projection: designation
         context: mining
@@ -109,6 +127,8 @@ buildings:
         strategy: efficiency
 
   building_mine_generic:
+    output:
+      - minerals
     construction:
       - projection: designation
         context: mining

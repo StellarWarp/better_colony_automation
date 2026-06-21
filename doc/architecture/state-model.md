@@ -8,7 +8,17 @@ See also:
 
 ## Overview
 
-The mod stores most planet-local intent in flags and variables instead of recomputing everything from scratch each tick.
+The mod stores most colony-local intent in flags and variables instead of
+recomputing everything from scratch each tick.
+
+Important carrier-flag rule:
+
+- most state that used to be described as "planet flags" is now modeled with
+  `carrier_flag`
+- you can treat this as a colony-local flag API
+- colony scope itself does not own persistent flag storage; in practice the
+  flag is written to both the carrier scope and the planet scope so code can
+  query it consistently from colony-oriented execution paths
 
 Important consequence:
 
@@ -17,7 +27,7 @@ Important consequence:
 
 ## State Categories
 
-### Planet initialization and mode flags
+### Colony initialization and mode flags
 
 Examples:
 
@@ -50,7 +60,7 @@ Generated naming rules:
 
 ### Selector state
 
-Selector UI state is transient and stored in flags/variables.
+Selector UI state is transient and stored in carrier flags/variables.
 
 Examples:
 
@@ -79,7 +89,7 @@ These are manipulated by:
 
 ### Build command flags
 
-These flags bridge planning logic to Stellaris automation entries.
+These carrier flags bridge planning logic to Stellaris automation entries.
 
 Examples:
 
@@ -114,7 +124,7 @@ Default values are initialized by:
 
 ## Synchronization Effects
 
-Several effects keep internal state aligned with real planet layout.
+Several effects keep internal state aligned with the real colony layout.
 
 Important examples:
 
@@ -145,7 +155,7 @@ Generated from:
 
 ## Failure Patterns
 
-Stale selected plan flags:
+Stale selected carrier flags:
 
 - GUI icon does not match actual built zones.
 - Wrong zone type is planned after transfer or planet class change.

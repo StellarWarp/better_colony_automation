@@ -1,31 +1,39 @@
+from __future__ import annotations
+
 from pathlib import Path
 import sys
 
 import yaml
 
-if __package__ in (None, ""):
-    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-    from synthetipy.ast_loadder import ASTLoader
-    from synthetipy.ast_nodes import *
-    from synthetipy.compiler import compile_ast
-else:
-    from ..synthetipy.ast_loadder import ASTLoader
-    from ..synthetipy.ast_nodes import *
-    from ..synthetipy.compiler import compile_ast
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from synthetipy.ast_loadder import ASTLoader
+from synthetipy.ast_nodes import (
+    BlockNode,
+    ComparisonNode,
+    ConditionNode,
+    IdentifierExpressionNode,
+    InlineArithmeticNode,
+    ListNode,
+    LiteralNode,
+    PropertyNode,
+    ScopeNode,
+)
+from synthetipy.compiler import compile_ast
 
 
 CONFIG = {
-    'common': {
-        "buildings"
+    "common": {
+        "buildings",
     },
 }
 
 GAME_ROOT = Path(r"D:\SteamLibrary\steamapps\common\Stellaris")
+GENERATED_CONFIG_DIR = Path(__file__).resolve().parents[1] / "templates" / "generated_configs"
 
-ast = ASTLoader(GAME_ROOT, CONFIG).load()
 
 def node_to_string(node):
-    if not node: return ""
+    if not node:
+        return ""
     if isinstance(node, BlockNode):
         return "\n".join([compile_ast(stmt) for stmt in node.statements])
     elif isinstance(node, ListNode):
@@ -129,49 +137,8 @@ def prerequisites_to_data(node):
         return None
     return data
 
-buildings_data = []
 
-for name, zone in ast['common/buildings'].items():
-    potential = ""
-    allow = ""
-    abort_trigger = ""
-    prerequisites = None
-    category = None
-    building_sets = []
-    upgrades = []
-    for stat in zone.body.statements:
-        if not isinstance(stat, PropertyNode): continue
-        key = str(stat.key)
-        if key == 'potential':
-            potential = node_to_string(stat.value)
-        elif key == 'allow':
-            allow = node_to_string(stat.value)
-        elif key == 'abort_trigger':
-            abort_trigger = node_to_string(stat.value)
-        elif key == 'prerequisites':
-            prerequisites = prerequisites_to_data(stat.value)
-        elif key == 'category':
-            category = _node_to_source(stat.value)
-        elif key == 'building_sets':
-            building_sets = _node_to_string_items(stat.value)
-        elif key == 'upgrades':
-            upgrades = _node_to_string_items(stat.value)
-
-    buildings_data.append({
-        "name": str(zone.name.identifier),
-        "category": category,
-        "building_sets": building_sets,
-        "upgrades": upgrades,
-        "potential": potential,
-        "allow": allow,
-        "abort_trigger": abort_trigger,
-        "prerequisites": prerequisites
-    })
-
-building_by_name = {item["name"]: item for item in buildings_data}
-
-
-def _upgrade_chain_for(building_name, visiting=None):
+def _upgrade_chain_for(building_name, building_by_name, visiting=None):
     visiting = visiting or set()
     if building_name in visiting:
         return []
@@ -182,7 +149,7 @@ def _upgrade_chain_for(building_name, visiting=None):
         if upgrade in chain:
             continue
         chain.append(upgrade)
-        for descendant in _upgrade_chain_for(upgrade, visiting):
+        for descendant in _upgrade_chain_for(upgrade, building_by_name, visiting):
             if descendant not in chain:
                 chain.append(descendant)
 
@@ -190,8 +157,58 @@ def _upgrade_chain_for(building_name, visiting=None):
     return chain
 
 
-for building in buildings_data:
-    building["upgrade_chain"] = _upgrade_chain_for(building["name"])
+def render_building_conditions() -> None:
+    ast = ASTLoader(GAME_ROOT, CONFIG).load()
+    buildings_data = []
 
-with open("../templates/generated_configs/building_conditions.yaml", "w", encoding="utf-8") as f:
-    yaml.dump({"bca_buildings": buildings_data}, f, allow_unicode=True, sort_keys=False)
+    for _, building in ast["common/buildings"].items():
+        potential = ""
+        allow = ""
+        abort_trigger = ""
+        prerequisites = None
+        category = None
+        building_sets = []
+        upgrades = []
+        for stat in building.body.statements:
+            if not isinstance(stat, PropertyNode):
+                continue
+            key = str(stat.key)
+            if key == "potential":
+                potential = node_to_string(stat.value)
+            elif key == "allow":
+                allow = node_to_string(stat.value)
+            elif key == "abort_trigger":
+                abort_trigger = node_to_string(stat.value)
+            elif key == "prerequisites":
+                prerequisites = prerequisites_to_data(stat.value)
+            elif key == "category":
+                category = _node_to_source(stat.value)
+            elif key == "building_sets":
+                building_sets = _node_to_string_items(stat.value)
+            elif key == "upgrades":
+                upgrades = _node_to_string_items(stat.value)
+
+        buildings_data.append(
+            {
+                "name": str(building.name.identifier),
+                "category": category,
+                "building_sets": building_sets,
+                "upgrades": upgrades,
+                "potential": potential,
+                "allow": allow,
+                "abort_trigger": abort_trigger,
+                "prerequisites": prerequisites,
+            }
+        )
+
+    building_by_name = {item["name"]: item for item in buildings_data}
+    for item in buildings_data:
+        item["upgrade_chain"] = _upgrade_chain_for(item["name"], building_by_name)
+
+    GENERATED_CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    with (GENERATED_CONFIG_DIR / "building_conditions.yaml").open("w", encoding="utf-8") as handle:
+        yaml.safe_dump({"bca_buildings": buildings_data}, handle, allow_unicode=True, sort_keys=False)
+
+
+if __name__ == "__main__":
+    render_building_conditions()

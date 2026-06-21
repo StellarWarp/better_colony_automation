@@ -91,7 +91,9 @@ Start with:
 Important distinction:
 
 - the global settings panel writes country flags for default behavior
-- the same panel triggers bulk country events for already-owned planets
+- the same panel triggers bulk country-level application flows for
+  already-owned colonies, which then fan out into per-colony `carrier_event`
+  work
 
 ### Change empire settings center GUI
 
@@ -189,11 +191,13 @@ When preparing a public release, update these in one pass:
 2. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in relevant files under [`../../localisation/`](../../localisation/).
 3. Bump the version string in [`../../descriptor.mod`](../../descriptor.mod).
 4. Update the public-facing changelog in [`../../README.md`](../../README.md).
+5. Review the current bilingual Workshop description in [`../../workshop.txt`](../../workshop.txt), especially the supported game version, Quick Guide entrypoints, compatibility notes, and recent feature summary.
 
 Release note rule:
 
 - keep the intro popup short and player-facing
 - keep `README.md` slightly more descriptive
+- keep `workshop.txt` focused on current features rather than detailed version history
 - if a release changes global settings behavior, mention both the new default behavior and the primary entry point
 
 ## Documentation Maintenance Rule

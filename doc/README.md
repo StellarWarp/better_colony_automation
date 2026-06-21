@@ -7,8 +7,9 @@ The docs have two reading paths:
 1. Understand the project architecture.
 2. Maintain the project safely, including DSL and AI coding practices.
 
-Proposal documents for active design work live under `proposal/`, including
-the [Building Strategy Model](proposal/building-strategy-model.md).
+Design records and active proposals live under `proposal/`. The
+[Building Strategy Model](proposal/building-strategy-model.md) records the
+design that led to the current building automation compiler.
 
 ## Architecture Path
 
@@ -16,8 +17,9 @@ Read these when you need to understand how the mod is organized and executed:
 
 1. [Architecture Overview](architecture/overview.md)
 2. [Generation Pipeline](architecture/generation-pipeline.md)
-3. [Runtime Flow](architecture/runtime-flow.md)
-4. [State Model](architecture/state-model.md)
+3. [Building Automation Pipeline](architecture/building-automation-pipeline.md)
+4. [Runtime Flow](architecture/runtime-flow.md)
+5. [State Model](architecture/state-model.md)
 
 ## Maintenance And AI Coding Path
 

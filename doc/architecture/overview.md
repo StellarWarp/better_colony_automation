@@ -3,6 +3,7 @@
 See also:
 
 - [Generation Pipeline](generation-pipeline.md)
+- [Building Automation Pipeline](building-automation-pipeline.md)
 - [Runtime Flow](runtime-flow.md)
 - [State Model](state-model.md)
 - [Maintenance Playbook](../maintenance/playbook.md)
@@ -28,6 +29,12 @@ It contains handwritten source data and tools that extract missing information f
 - Parser/extraction scripts: [`../../mod_builder/parse/`](../../mod_builder/parse/)
 - Paradox script parser/toolchain: [`../../mod_builder/synthetipy/`](../../mod_builder/synthetipy/)
 - Generated config output: [`../../mod_builder/templates/generated_configs/`](../../mod_builder/templates/generated_configs/)
+
+Within `parse/`, the intended flow is:
+
+- shared parse framework and derived relation graph
+- generated-config builders
+- then template rendering
 
 Why it exists:
 
@@ -67,7 +74,7 @@ This layer contains:
 - scripted effects
 - scripted triggers
 - scripted values
-- flags and variables
+- carrier flags and colony/carrier-scope variables
 - automation categories and exceptions
 
 Some files here are handwritten, some are generated, and some features are split across both. Check the file header and [Change Entrypoints](../maintenance/change-entrypoints.md) before editing.
@@ -98,7 +105,7 @@ This project is not a pile of script files. It is a pipeline:
 
 ```text
 handwritten config + parsed Stellaris definitions
-        -> generated config inputs
+        -> normalized strategy and generated config inputs
         -> Jinja templates
         -> common/events runtime logic
         -> interface/localisation player experience

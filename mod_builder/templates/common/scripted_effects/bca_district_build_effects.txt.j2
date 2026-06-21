@@ -1,0 +1,78 @@
+{% import 'component/planet_flag_ps.j2' as pf with context %}
+{% import 'component/planet_variable.j2' as v with context %}
+
+{% macro resource_gate(outputs) -%}
+    {% if outputs %}
+    {% if outputs|length == 1 %}
+    bca_empire_needs_{{ outputs[0] }} = yes
+    {% else %}
+    OR = {
+        {% for output in outputs %}
+        bca_empire_needs_{{ output }} = yes
+        {% endfor %}
+    }
+    {% endif %}
+    {% endif %}
+{%- endmacro %}
+
+{% macro zone_output_gate(zone, outputs, zone_slots) -%}
+    AND = {
+        {% if zone_slots|length == 1 %}
+        has_carrier_flag = {{ pf.flag_selected_zone(zone_slots[0], zone) }}
+        {% else %}
+        OR = {
+            {% for zone_slot in zone_slots %}
+            has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+            {% endfor %}
+        }
+        {% endif %}
+        {{ resource_gate(outputs) }}{#  #}
+    }
+{%- endmacro %}
+
+{% macro district_slot_economic_allowed(slot_key, zone_slots) -%}
+    {% set zone_outputs = economic_district_slot_zone_outputs.get(slot_key, {}) %}
+    {% if zone_outputs %}
+    OR = {
+        {% for zone, outputs in zone_outputs.items() %}
+        {{ zone_output_gate(zone, outputs, zone_slots) }}{#  #}
+        {% endfor %}
+    }
+    {% endif %}
+{%- endmacro %}
+
+{% macro try_build_district(index) -%}
+{% if index == 0 %}
+    if = {
+        limit = {
+            check_variable_arithmetic = {
+                which = value:bca_num_primary_districts_plan
+                value > value:num_primary_district
+            }
+            {{ district_slot_economic_allowed('d0', ['z1', 'z2']) }}{#  #}
+        }
+        set_carrier_flag = {{ pf.flag_district_plan_build('d0') }}
+    }
+{% else %}
+{% set district_slot = ['d1','d2','d3'][index - 1] %}
+{% set zone_slot = ['z3','z4','z5'][index - 1] %}
+    if = {
+        limit = {
+            check_variable = {
+                which = {{ v.var_district_num_plan(zone_slot) }}
+                value > value:num_district_{{ district_slot }}
+            }
+            {{ district_slot_economic_allowed(district_slot, [zone_slot]) }}{#  #}
+        }
+        set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+    }
+{% endif %}
+{%- endmacro %}
+
+{% for i in range(4) %}
+bca_try_build_district_{{ i }} = {
+    optimize_memory
+    {{ try_build_district(i) }}{#  #}
+}
+
+{% endfor %}

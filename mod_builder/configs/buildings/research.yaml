@@ -12,6 +12,8 @@
         - building_supercomputer
         - building_archaeostudies_faculty
         - building_research_efficiency_1
+      output:
+        - research
       strategy: efficiency
       destruction:
         - triggers:
@@ -22,6 +24,8 @@
         - building_physics_lab_1
         - building_biolab_1
         - building_fe_lab_1
+      output:
+        - research
       strategy: always
       destruction:
         - triggers:
@@ -30,6 +34,8 @@
 
     - buildings:
         - building_research_lab_1
+      output:
+        - research
       strategy: job_only
       destruction:
         - triggers:
@@ -42,8 +48,9 @@
   groups:
     - buildings:
         - building_research_upkeep_1
+      output:
+        - research
       strategy: efficiency
       destruction:
         - triggers:
             - bca_can_remove_building_reasearch
-
