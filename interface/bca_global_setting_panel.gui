@@ -15,7 +15,7 @@ guiTypes = {
         orientation = center
         origo = center
         moveable = yes
-        size = { width = 860 height = 1412 }
+        size = { width = 860 height = 850 }
 
         background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
 
@@ -213,11 +213,21 @@ guiTypes = {
             alwaysTransparent = yes
         }
 
-                instantTextBoxType = {
+                containerWindowType = {
+            name = "settings_scroll_container"
+            position = { x = 0 y = 60 }
+            size = { width = 860 height = 774 }
+            verticalScrollbar = "right_vertical_slider"
+            background = {
+                name = "background"
+                spriteType = "GFX_tiles_dark_area_cut_8"
+            }
+
+        instantTextBoxType = {
             name = "economic_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION"
-            position = { x = 24 y = 72 }
+            position = { x = 24 y = 12 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -229,7 +239,7 @@ guiTypes = {
             name = "economic_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT"
-            position = { x = 24 y = 106 }
+            position = { x = 24 y = 46 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -240,7 +250,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_management_row"
-            position = { x = 24 y = 146 }
+            position = { x = 24 y = 86 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -304,7 +314,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_energy_row"
-            position = { x = 24 y = 184 }
+            position = { x = 24 y = 124 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -318,11 +328,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_energy_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -358,6 +376,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_energy_cycle_mode"
@@ -392,7 +411,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_minerals_row"
-            position = { x = 24 y = 222 }
+            position = { x = 24 y = 162 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -406,11 +425,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_minerals_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -446,6 +473,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_minerals_cycle_mode"
@@ -480,7 +508,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_food_row"
-            position = { x = 24 y = 260 }
+            position = { x = 24 y = 200 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -494,11 +522,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_food_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -534,6 +570,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_food_cycle_mode"
@@ -568,7 +605,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_alloys_row"
-            position = { x = 24 y = 298 }
+            position = { x = 24 y = 238 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -582,11 +619,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_alloys_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -622,6 +667,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_alloys_cycle_mode"
@@ -656,7 +702,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_consumer_goods_row"
-            position = { x = 24 y = 336 }
+            position = { x = 24 y = 276 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -670,11 +716,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_consumer_goods_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -710,6 +764,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_consumer_goods_cycle_mode"
@@ -744,7 +799,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_trade_row"
-            position = { x = 24 y = 374 }
+            position = { x = 24 y = 314 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -758,11 +813,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_trade_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -798,6 +861,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_trade_cycle_mode"
@@ -832,7 +896,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_unity_row"
-            position = { x = 24 y = 412 }
+            position = { x = 24 y = 352 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -846,11 +910,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_unity_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -886,6 +958,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_unity_cycle_mode"
@@ -920,7 +993,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_research_row"
-            position = { x = 24 y = 450 }
+            position = { x = 24 y = 390 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -934,11 +1007,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_research_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -974,6 +1055,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_research_cycle_mode"
@@ -1008,7 +1090,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_rare_crystals_row"
-            position = { x = 24 y = 488 }
+            position = { x = 24 y = 428 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1022,11 +1104,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_rare_crystals_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -1062,6 +1152,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_rare_crystals_cycle_mode"
@@ -1096,7 +1187,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_volatile_motes_row"
-            position = { x = 24 y = 526 }
+            position = { x = 24 y = 466 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1110,11 +1201,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_volatile_motes_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -1150,6 +1249,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_volatile_motes_cycle_mode"
@@ -1184,7 +1284,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_exotic_gases_row"
-            position = { x = 24 y = 564 }
+            position = { x = 24 y = 504 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1198,11 +1298,19 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES"
                 position = { x = 14 y = 0 }
-                maxWidth = 380
+                maxWidth = 302
                 maxHeight = 32
                 fixedSize = yes
                 format = left
                 vertical_alignment = center
+                alwaysTransparent = yes
+            }
+            effectButtonType = {
+                name = "economic_exotic_gases_status"
+                position = { x = 328 y = 4 }
+                size = { x = 70 y = 24 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_STATUS"
                 alwaysTransparent = yes
             }
             effectButtonType = {
@@ -1238,6 +1346,7 @@ guiTypes = {
                 size = { x = 76 y = 24 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE"
+                tooltipText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP"
                 text_color_code = "H"
                 alwaysTransparent = no
                 effect = "bca_global_settings_expect_output_exotic_gases_cycle_mode"
@@ -1274,7 +1383,7 @@ guiTypes = {
             name = "auto_demolition_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
-            position = { x = 24 y = 630 }
+            position = { x = 24 y = 570 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1286,7 +1395,7 @@ guiTypes = {
             name = "auto_demolition_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT"
-            position = { x = 24 y = 664 }
+            position = { x = 24 y = 604 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1297,7 +1406,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "apply_all_row"
-            position = { x = 24 y = 704 }
+            position = { x = 24 y = 644 }
             size = { width = 812 height = 36 }
 
             background = {
@@ -1341,7 +1450,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "buildings_row"
-            position = { x = 24 y = 748 }
+            position = { x = 24 y = 688 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1434,7 +1543,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "districts_row"
-            position = { x = 24 y = 800 }
+            position = { x = 24 y = 740 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1527,7 +1636,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "zones_row"
-            position = { x = 24 y = 852 }
+            position = { x = 24 y = 792 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1622,7 +1731,7 @@ guiTypes = {
             name = "behavior_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION"
-            position = { x = 24 y = 924 }
+            position = { x = 24 y = 864 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1634,7 +1743,7 @@ guiTypes = {
             name = "behavior_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT"
-            position = { x = 24 y = 958 }
+            position = { x = 24 y = 898 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1645,7 +1754,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "rare_buildings_row"
-            position = { x = 24 y = 998 }
+            position = { x = 24 y = 938 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1709,7 +1818,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "pop_assembly_row"
-            position = { x = 24 y = 1050 }
+            position = { x = 24 y = 990 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1793,7 +1902,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "deurbanization_row"
-            position = { x = 24 y = 1102 }
+            position = { x = 24 y = 1042 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1859,7 +1968,7 @@ guiTypes = {
             name = "reserve_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_RESERVES_SECTION"
-            position = { x = 24 y = 1182 }
+            position = { x = 24 y = 1122 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1871,7 +1980,7 @@ guiTypes = {
             name = "reserve_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_RESERVES_HINT"
-            position = { x = 24 y = 1216 }
+            position = { x = 24 y = 1156 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1882,7 +1991,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "reserve_minerals_row"
-            position = { x = 24 y = 1256 }
+            position = { x = 24 y = 1196 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1896,7 +2005,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE"
                 position = { x = 14 y = 0 }
-                maxWidth = 556
+                maxWidth = 372
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -1904,8 +2013,35 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
+                name = "reserve_minerals_minus_2k"
+                position = { x = 398 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_minus_2k"
+            }
+            effectButtonType = {
+                name = "reserve_minerals_minus_500"
+                position = { x = 450 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_minus_500"
+            }
+            effectButtonType = {
+                name = "reserve_minerals_minus_100"
+                position = { x = 502 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_minus_100"
+            }
+            effectButtonType = {
                 name = "reserve_minerals_value"
-                position = { x = 580 y = 4 }
+                position = { x = 556 y = 4 }
                 size = { x = 84 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE"
@@ -1913,29 +2049,36 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
-                name = "reserve_minerals_decrease"
-                position = { x = 674 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_minerals_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_minerals_decrease"
+                effect = "bca_global_settings_reserve_minerals_plus_100"
             }
             effectButtonType = {
-                name = "reserve_minerals_increase"
-                position = { x = 740 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_minerals_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_minerals_plus_500"
+            }
+            effectButtonType = {
+                name = "reserve_minerals_plus_2k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_minerals_increase"
+                effect = "bca_global_settings_reserve_minerals_plus_2k"
             }
         }
                 containerWindowType = {
             name = "reserve_alloys_row"
-            position = { x = 24 y = 1308 }
+            position = { x = 24 y = 1248 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1949,7 +2092,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE"
                 position = { x = 14 y = 0 }
-                maxWidth = 556
+                maxWidth = 372
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -1957,8 +2100,35 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
+                name = "reserve_alloys_minus_2k"
+                position = { x = 398 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_minus_2k"
+            }
+            effectButtonType = {
+                name = "reserve_alloys_minus_500"
+                position = { x = 450 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_minus_500"
+            }
+            effectButtonType = {
+                name = "reserve_alloys_minus_100"
+                position = { x = 502 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_minus_100"
+            }
+            effectButtonType = {
                 name = "reserve_alloys_value"
-                position = { x = 580 y = 4 }
+                position = { x = 556 y = 4 }
                 size = { x = 84 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE"
@@ -1966,29 +2136,36 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
-                name = "reserve_alloys_decrease"
-                position = { x = 674 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_alloys_plus_100"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_alloys_decrease"
+                effect = "bca_global_settings_reserve_alloys_plus_100"
             }
             effectButtonType = {
-                name = "reserve_alloys_increase"
-                position = { x = 740 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_alloys_plus_500"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_alloys_plus_500"
+            }
+            effectButtonType = {
+                name = "reserve_alloys_plus_2k"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K"
-                tooltipText = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_alloys_increase"
+                effect = "bca_global_settings_reserve_alloys_plus_2k"
             }
         }
                 containerWindowType = {
             name = "reserve_influence_row"
-            position = { x = 24 y = 1360 }
+            position = { x = 24 y = 1300 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2002,7 +2179,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE"
                 position = { x = 14 y = 0 }
-                maxWidth = 556
+                maxWidth = 372
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -2010,8 +2187,35 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
+                name = "reserve_influence_minus_100"
+                position = { x = 398 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_minus_100"
+            }
+            effectButtonType = {
+                name = "reserve_influence_minus_50"
+                position = { x = 450 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_minus_50"
+            }
+            effectButtonType = {
+                name = "reserve_influence_minus_20"
+                position = { x = 502 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_20"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_minus_20"
+            }
+            effectButtonType = {
                 name = "reserve_influence_value"
-                position = { x = 580 y = 4 }
+                position = { x = 556 y = 4 }
                 size = { x = 84 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE"
@@ -2019,29 +2223,36 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
-                name = "reserve_influence_decrease"
-                position = { x = 674 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_influence_plus_20"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
-                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_20"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_influence_decrease"
+                effect = "bca_global_settings_reserve_influence_plus_20"
             }
             effectButtonType = {
-                name = "reserve_influence_increase"
-                position = { x = 740 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_influence_plus_50"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_influence_plus_50"
+            }
+            effectButtonType = {
+                name = "reserve_influence_plus_100"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
-                tooltipText = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_influence_increase"
+                effect = "bca_global_settings_reserve_influence_plus_100"
             }
         }
                 containerWindowType = {
             name = "reserve_job_row"
-            position = { x = 24 y = 1412 }
+            position = { x = 24 y = 1352 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2055,7 +2266,7 @@ guiTypes = {
                 font = "cg_16b"
                 text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE"
                 position = { x = 14 y = 0 }
-                maxWidth = 556
+                maxWidth = 372
                 maxHeight = 40
                 fixedSize = yes
                 format = left
@@ -2063,8 +2274,35 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
+                name = "reserve_job_minus_100"
+                position = { x = 398 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_minus_100"
+            }
+            effectButtonType = {
+                name = "reserve_job_minus_50"
+                position = { x = 450 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_minus_50"
+            }
+            effectButtonType = {
+                name = "reserve_job_minus_20"
+                position = { x = 502 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_20"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_minus_20"
+            }
+            effectButtonType = {
                 name = "reserve_job_value"
-                position = { x = 580 y = 4 }
+                position = { x = 556 y = 4 }
                 size = { x = 84 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE"
@@ -2072,25 +2310,33 @@ guiTypes = {
                 alwaysTransparent = yes
             }
             effectButtonType = {
-                name = "reserve_job_decrease"
-                position = { x = 674 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_job_plus_20"
+                position = { x = 648 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
-                buttonText = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50"
-                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_20"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_job_decrease"
+                effect = "bca_global_settings_reserve_job_plus_20"
             }
             effectButtonType = {
-                name = "reserve_job_increase"
-                position = { x = 740 y = 4 }
-                size = { x = 58 y = 32 }
+                name = "reserve_job_plus_50"
+                position = { x = 700 y = 4 }
+                size = { x = 46 y = 32 }
                 font = "cg_16b"
                 buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50"
-                tooltipText = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP"
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
-                effect = "bca_global_settings_reserve_job_increase"
+                effect = "bca_global_settings_reserve_job_plus_50"
             }
+            effectButtonType = {
+                name = "reserve_job_plus_100"
+                position = { x = 752 y = 4 }
+                size = { x = 46 y = 32 }
+                font = "cg_16b"
+                buttonText = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                effect = "bca_global_settings_reserve_job_plus_100"
+            }
+        }
         }
 
     }

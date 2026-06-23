@@ -139,7 +139,7 @@ removed APIs.
 - Localisation: [`../../localisation/`](../../localisation/)
 - Mod descriptor: [`../../descriptor.mod`](../../descriptor.mod)
 - Public changelog: [`../../README.md`](../../README.md)
-- Workshop description: [`../../workshop.txt`](../../workshop.txt)
+- Workshop descriptions: [`../../workshop_en.txt`](../../workshop_en.txt), [`../../workshop_cn.txt`](../../workshop_cn.txt)
 
 ## Mixed Cases
 

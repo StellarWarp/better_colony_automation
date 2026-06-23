@@ -35,4 +35,15 @@ defined_text = {
     default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_{{ row.name|upper }}"
 }
 
+defined_text = {
+    name = bca_gs_expect_output_{{ row.name }}_status
+    text = {
+        trigger = {
+            bca_country_needs_{{ row.name }} = yes
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+}
+
 {% endfor %}

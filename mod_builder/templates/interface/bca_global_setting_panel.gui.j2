@@ -2,7 +2,9 @@
 {% import 'component/global_settings_components.j2' as gsc %}
 
 {% set panel_width = 860 %}
-{% set panel_height = 1412 %}
+{% set panel_height = 850 %}
+{% set scroll_container_y = 60 %}
+{% set scroll_container_height = panel_height - scroll_container_y - 16 %}
 {% set outer_padding_x = 24 %}
 {% set full_width = panel_width - outer_padding_x * 2 %}
 {% set content_x = outer_padding_x %}
@@ -69,17 +71,17 @@
 ] %}
 
 {% set economic_rows = [
-    {"name": "energy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_energy", "mode_effect": "bca_global_settings_expect_output_energy_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "minerals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_minerals", "mode_effect": "bca_global_settings_expect_output_minerals_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "food", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_food", "mode_effect": "bca_global_settings_expect_output_food_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "alloys", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_alloys", "mode_effect": "bca_global_settings_expect_output_alloys_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "consumer_goods", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_consumer_goods", "mode_effect": "bca_global_settings_expect_output_consumer_goods_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "trade", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_trade", "mode_effect": "bca_global_settings_expect_output_trade_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "unity", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_unity", "mode_effect": "bca_global_settings_expect_output_unity_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "research", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_research", "mode_effect": "bca_global_settings_expect_output_research_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "rare_crystals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_rare_crystals", "mode_effect": "bca_global_settings_expect_output_rare_crystals_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
-    {"name": "volatile_motes", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_volatile_motes", "mode_effect": "bca_global_settings_expect_output_volatile_motes_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
-    {"name": "exotic_gases", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_exotic_gases", "mode_effect": "bca_global_settings_expect_output_exotic_gases_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options}
+    {"name": "energy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_energy", "mode_effect": "bca_global_settings_expect_output_energy_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "minerals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_minerals", "mode_effect": "bca_global_settings_expect_output_minerals_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "food", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_food", "mode_effect": "bca_global_settings_expect_output_food_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "alloys", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_alloys", "mode_effect": "bca_global_settings_expect_output_alloys_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "consumer_goods", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_consumer_goods", "mode_effect": "bca_global_settings_expect_output_consumer_goods_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "trade", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_trade", "mode_effect": "bca_global_settings_expect_output_trade_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "unity", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_unity", "mode_effect": "bca_global_settings_expect_output_unity_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "research", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_research", "mode_effect": "bca_global_settings_expect_output_research_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
+    {"name": "rare_crystals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_rare_crystals", "mode_effect": "bca_global_settings_expect_output_rare_crystals_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
+    {"name": "volatile_motes", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_volatile_motes", "mode_effect": "bca_global_settings_expect_output_volatile_motes_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
+    {"name": "exotic_gases", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_exotic_gases", "mode_effect": "bca_global_settings_expect_output_exotic_gases_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options}
 ] %}
 
 {% call shell.event_window_shell(
@@ -89,12 +91,22 @@
     height = panel_height,
     show_native_event_text = false
 ) %}
+        containerWindowType = {
+            name = "settings_scroll_container"
+            position = { x = 0 y = {{ scroll_container_y }} }
+            size = { width = {{ panel_width }} height = {{ scroll_container_height }} }
+            verticalScrollbar = "right_vertical_slider"
+            background = {
+                name = "background"
+                spriteType = "GFX_tiles_dark_area_cut_8"
+            }
+
         {{
         gsc.section_title(
             name = "economic_section",
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION",
             x = content_x,
-            y = section_title_y,
+            y = section_title_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -103,7 +115,7 @@
             name = "economic_hint",
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT",
             x = content_x,
-            y = section_hint_y,
+            y = section_hint_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -113,7 +125,7 @@
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT",
             tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP",
             x = content_x,
-            y = economy_toggle_row_y,
+            y = economy_toggle_row_y - scroll_container_y,
             width = full_width,
             height = 32,
             button_width = 72,
@@ -144,12 +156,14 @@
             name = "economic_" ~ row.name,
             text = row.text,
             value_text = row.value_text,
+            status_text = row.status_text,
             tooltip = row.tooltip,
             value_effect = row.mode_effect,
+            value_tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP",
             negative_options = negative_options,
             positive_options = positive_options,
             x = content_x,
-            y = row_y,
+            y = row_y - scroll_container_y,
             width = full_width,
             height = economy_row_height,
             value_width = 76,
@@ -164,7 +178,7 @@
             name = "auto_demolition_section",
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION",
             x = content_x,
-            y = auto_demo_section_title_y,
+            y = auto_demo_section_title_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -173,7 +187,7 @@
             name = "auto_demolition_hint",
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT",
             x = content_x,
-            y = auto_demo_section_hint_y,
+            y = auto_demo_section_hint_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -182,7 +196,7 @@
             name = "apply_all",
             text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION",
             x = content_x,
-            y = auto_demo_first_row_y,
+            y = auto_demo_first_row_y - scroll_container_y,
             width = full_width,
             height = auto_demo_all_row_height,
             show_default = false,
@@ -210,7 +224,7 @@
             apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP",
             apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP",
             x = content_x,
-            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap,
+            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap - scroll_container_y,
             width = full_width,
             height = auto_demo_row_height
         )
@@ -233,7 +247,7 @@
             apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP",
             apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP",
             x = content_x,
-            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap + auto_demo_row_height + auto_demo_row_gap,
+            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap + auto_demo_row_height + auto_demo_row_gap - scroll_container_y,
             width = full_width,
             height = auto_demo_row_height
         )
@@ -256,7 +270,7 @@
             apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP",
             apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP",
             x = content_x,
-            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap + (auto_demo_row_height + auto_demo_row_gap) * 2,
+            y = auto_demo_first_row_y + auto_demo_all_row_height + auto_demo_row_gap + (auto_demo_row_height + auto_demo_row_gap) * 2 - scroll_container_y,
             width = full_width,
             height = auto_demo_row_height
         )
@@ -266,7 +280,7 @@
             name = "behavior_section",
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION",
             x = content_x,
-            y = behavior_section_title_y,
+            y = behavior_section_title_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -275,7 +289,7 @@
             name = "behavior_hint",
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT",
             x = content_x,
-            y = behavior_section_hint_y,
+            y = behavior_section_hint_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -285,7 +299,7 @@
             text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS",
             tooltip = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_TOOLTIP",
             x = content_x,
-            y = behavior_first_row_y,
+            y = behavior_first_row_y - scroll_container_y,
             width = full_width,
             height = behavior_row_height,
             button_width = 92,
@@ -299,7 +313,7 @@
             text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS",
             tooltip = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
             x = content_x,
-            y = behavior_first_row_y + behavior_row_height + behavior_row_gap,
+            y = behavior_first_row_y + behavior_row_height + behavior_row_gap - scroll_container_y,
             width = full_width,
             height = behavior_row_height,
             button_width = 86,
@@ -313,7 +327,7 @@
             text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION",
             tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",
             x = content_x,
-            y = behavior_first_row_y + (behavior_row_height + behavior_row_gap) * 2,
+            y = behavior_first_row_y + (behavior_row_height + behavior_row_gap) * 2 - scroll_container_y,
             width = full_width,
             height = behavior_row_height,
             button_width = 72,
@@ -326,7 +340,7 @@
             name = "reserve_section",
             text = "BCA_GLOBAL_SETTINGS_RESERVES_SECTION",
             x = content_x,
-            y = reserve_section_title_y,
+            y = reserve_section_title_y - scroll_container_y,
             width = full_width
         )
         }}
@@ -335,92 +349,47 @@
             name = "reserve_hint",
             text = "BCA_GLOBAL_SETTINGS_RESERVES_HINT",
             x = content_x,
-            y = reserve_section_hint_y,
+            y = reserve_section_hint_y - scroll_container_y,
             width = full_width
         )
         }}
+{% for row in bca_global_settings_reserve_rows %}
+{% set row_y = reserve_first_row_y + loop.index0 * (reserve_row_height + reserve_row_gap) %}
+{% set negative_options = [] %}
+{% for option in row.negative_options %}
+{% set _ = negative_options.append({
+    "name": option.name,
+    "text": option.text,
+    "effect": row.effect_prefix ~ "_" ~ option.name
+}) %}
+{% endfor %}
+{% set positive_options = [] %}
+{% for option in row.positive_options %}
+{% set _ = positive_options.append({
+    "name": option.name,
+    "text": option.text,
+    "effect": row.effect_prefix ~ "_" ~ option.name
+}) %}
+{% endfor %}
         {{
-        gsc.value_adjust_row(
-            name = "reserve_minerals",
-            text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE",
-            value_text = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_VALUE",
-            tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_TOOLTIP",
-            decrease_effect = "bca_global_settings_reserve_minerals_decrease",
-            increase_effect = "bca_global_settings_reserve_minerals_increase",
-            decrease_tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_DECREASE_TOOLTIP",
-            increase_tooltip = "BCA_GLOBAL_SETTINGS_MINERAL_RESERVE_INCREASE_TOOLTIP",
-            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K",
-            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K",
+        gsc.multi_step_value_row(
+            name = "reserve_" ~ row.name,
+            text = row.text,
+            value_text = row.value_text,
+            tooltip = row.tooltip,
+            value_effect = "",
+            negative_options = negative_options,
+            positive_options = positive_options,
             x = content_x,
-            y = reserve_first_row_y,
+            y = row_y - scroll_container_y,
             width = full_width,
             height = reserve_row_height,
             value_width = 84,
-            button_width = 58,
-            button_gap = 8
+            button_width = 46,
+            button_gap = 6,
+            control_gap = 8
         )
         }}
-        {{
-        gsc.value_adjust_row(
-            name = "reserve_alloys",
-            text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE",
-            value_text = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_VALUE",
-            tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_TOOLTIP",
-            decrease_effect = "bca_global_settings_reserve_alloys_decrease",
-            increase_effect = "bca_global_settings_reserve_alloys_increase",
-            decrease_tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_DECREASE_TOOLTIP",
-            increase_tooltip = "BCA_GLOBAL_SETTINGS_ALLOY_RESERVE_INCREASE_TOOLTIP",
-            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_2K",
-            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_2K",
-            x = content_x,
-            y = reserve_first_row_y + (reserve_row_height + reserve_row_gap),
-            width = full_width,
-            height = reserve_row_height,
-            value_width = 84,
-            button_width = 58,
-            button_gap = 8
-        )
-        }}
-        {{
-        gsc.value_adjust_row(
-            name = "reserve_influence",
-            text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE",
-            value_text = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_VALUE",
-            tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_TOOLTIP",
-            decrease_effect = "bca_global_settings_reserve_influence_decrease",
-            increase_effect = "bca_global_settings_reserve_influence_increase",
-            decrease_tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_DECREASE_TOOLTIP",
-            increase_tooltip = "BCA_GLOBAL_SETTINGS_INFLUENCE_RESERVE_INCREASE_TOOLTIP",
-            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_100",
-            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_100",
-            x = content_x,
-            y = reserve_first_row_y + (reserve_row_height + reserve_row_gap) * 2,
-            width = full_width,
-            height = reserve_row_height,
-            value_width = 84,
-            button_width = 58,
-            button_gap = 8
-        )
-        }}
-        {{
-        gsc.value_adjust_row(
-            name = "reserve_job",
-            text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE",
-            value_text = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_VALUE",
-            tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_TOOLTIP",
-            decrease_effect = "bca_global_settings_reserve_job_decrease",
-            increase_effect = "bca_global_settings_reserve_job_increase",
-            decrease_tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_DECREASE_TOOLTIP",
-            increase_tooltip = "BCA_GLOBAL_SETTINGS_JOB_RESERVE_INCREASE_TOOLTIP",
-            decrease_text = "BCA_GLOBAL_SETTINGS_STEP_MINUS_50",
-            increase_text = "BCA_GLOBAL_SETTINGS_STEP_PLUS_50",
-            x = content_x,
-            y = reserve_first_row_y + (reserve_row_height + reserve_row_gap) * 3,
-            width = full_width,
-            height = reserve_row_height,
-            value_width = 84,
-            button_width = 58,
-            button_gap = 8
-        )
-        }}
+{% endfor %}
+        }
 {% endcall %}

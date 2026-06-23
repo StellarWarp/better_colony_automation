@@ -4,17 +4,35 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: common/scripted_triggers/bca_empire_economic_needs.txt.j2
+bca_country_needs_energy = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_energy_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_energy_forbidden }
+            resource_income_compare = {
+                resource = energy
+                value < bca_expect_output_energy
+            }
+        }
+    }
+}
+
 bca_empire_needs_energy = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_energy_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_energy_forbidden }
-                resource_income_compare = {
-                    resource = energy
-                    value < bca_expect_output_energy
-                }
+        bca_country_needs_energy = yes
+    }
+}
+
+bca_country_needs_minerals = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_minerals_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_minerals_forbidden }
+            resource_income_compare = {
+                resource = minerals
+                value < bca_expect_output_minerals
             }
         }
     }
@@ -22,15 +40,19 @@ bca_empire_needs_energy = {
 
 bca_empire_needs_minerals = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_minerals_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_minerals_forbidden }
-                resource_income_compare = {
-                    resource = minerals
-                    value < bca_expect_output_minerals
-                }
+        bca_country_needs_minerals = yes
+    }
+}
+
+bca_country_needs_food = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_food_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_food_forbidden }
+            resource_income_compare = {
+                resource = food
+                value < bca_expect_output_food
             }
         }
     }
@@ -38,15 +60,19 @@ bca_empire_needs_minerals = {
 
 bca_empire_needs_food = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_food_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_food_forbidden }
-                resource_income_compare = {
-                    resource = food
-                    value < bca_expect_output_food
-                }
+        bca_country_needs_food = yes
+    }
+}
+
+bca_country_needs_alloys = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_alloys_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_alloys_forbidden }
+            resource_income_compare = {
+                resource = alloys
+                value < bca_expect_output_alloys
             }
         }
     }
@@ -54,15 +80,19 @@ bca_empire_needs_food = {
 
 bca_empire_needs_alloys = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_alloys_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_alloys_forbidden }
-                resource_income_compare = {
-                    resource = alloys
-                    value < bca_expect_output_alloys
-                }
+        bca_country_needs_alloys = yes
+    }
+}
+
+bca_country_needs_consumer_goods = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_consumer_goods_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_consumer_goods_forbidden }
+            resource_income_compare = {
+                resource = consumer_goods
+                value < bca_expect_output_consumer_goods
             }
         }
     }
@@ -70,15 +100,19 @@ bca_empire_needs_alloys = {
 
 bca_empire_needs_consumer_goods = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_consumer_goods_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_consumer_goods_forbidden }
-                resource_income_compare = {
-                    resource = consumer_goods
-                    value < bca_expect_output_consumer_goods
-                }
+        bca_country_needs_consumer_goods = yes
+    }
+}
+
+bca_country_needs_trade = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_trade_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_trade_forbidden }
+            resource_income_compare = {
+                resource = trade
+                value < bca_expect_output_trade
             }
         }
     }
@@ -86,15 +120,19 @@ bca_empire_needs_consumer_goods = {
 
 bca_empire_needs_trade = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_trade_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_trade_forbidden }
-                resource_income_compare = {
-                    resource = trade
-                    value < bca_expect_output_trade
-                }
+        bca_country_needs_trade = yes
+    }
+}
+
+bca_country_needs_unity = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_unity_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_unity_forbidden }
+            resource_income_compare = {
+                resource = unity
+                value < bca_expect_output_unity
             }
         }
     }
@@ -102,15 +140,19 @@ bca_empire_needs_trade = {
 
 bca_empire_needs_unity = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_unity_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_unity_forbidden }
-                resource_income_compare = {
-                    resource = unity
-                    value < bca_expect_output_unity
-                }
+        bca_country_needs_unity = yes
+    }
+}
+
+bca_country_needs_research = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_research_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_research_forbidden }
+            check_variable_arithmetic = {
+                which = value:bca_total_research_revenue
+                value < bca_expect_output_research
             }
         }
     }
@@ -118,15 +160,19 @@ bca_empire_needs_unity = {
 
 bca_empire_needs_research = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_research_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_research_forbidden }
-                check_variable_arithmetic = {
-                    which = value:bca_total_research_revenue
-                    value < bca_expect_output_research
-                }
+        bca_country_needs_research = yes
+    }
+}
+
+bca_country_needs_rare_crystals = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_rare_crystals_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_rare_crystals_forbidden }
+            resource_income_compare = {
+                resource = rare_crystals
+                value < bca_expect_output_rare_crystals
             }
         }
     }
@@ -134,15 +180,19 @@ bca_empire_needs_research = {
 
 bca_empire_needs_rare_crystals = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_rare_crystals_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_rare_crystals_forbidden }
-                resource_income_compare = {
-                    resource = rare_crystals
-                    value < bca_expect_output_rare_crystals
-                }
+        bca_country_needs_rare_crystals = yes
+    }
+}
+
+bca_country_needs_volatile_motes = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_volatile_motes_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_volatile_motes_forbidden }
+            resource_income_compare = {
+                resource = volatile_motes
+                value < bca_expect_output_volatile_motes
             }
         }
     }
@@ -150,15 +200,19 @@ bca_empire_needs_rare_crystals = {
 
 bca_empire_needs_volatile_motes = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_volatile_motes_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_volatile_motes_forbidden }
-                resource_income_compare = {
-                    resource = volatile_motes
-                    value < bca_expect_output_volatile_motes
-                }
+        bca_country_needs_volatile_motes = yes
+    }
+}
+
+bca_country_needs_exotic_gases = {
+    OR = {
+        NOT = { has_country_flag = bca_enable_economic_management }
+        has_country_flag = bca_economic_target_exotic_gases_unlimited
+        AND = {
+            NOT = { has_country_flag = bca_economic_target_exotic_gases_forbidden }
+            resource_income_compare = {
+                resource = exotic_gases
+                value < bca_expect_output_exotic_gases
             }
         }
     }
@@ -166,17 +220,7 @@ bca_empire_needs_volatile_motes = {
 
 bca_empire_needs_exotic_gases = {
     owner = {
-        OR = {
-            NOT = { has_country_flag = bca_enable_economic_management }
-            has_country_flag = bca_economic_target_exotic_gases_unlimited
-            AND = {
-                NOT = { has_country_flag = bca_economic_target_exotic_gases_forbidden }
-                resource_income_compare = {
-                    resource = exotic_gases
-                    value < bca_expect_output_exotic_gases
-                }
-            }
-        }
+        bca_country_needs_exotic_gases = yes
     }
 }
 

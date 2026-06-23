@@ -67,6 +67,11 @@
 
 ## Changelog
 
+哇噗 **26-06-23 - v1.8.0**
+- Added configurable output target thresholds. Automation will expand each output type only while empire monthly revenue is below its configured target; these thresholds are construction gates only and do not change the colony's current plan or panel settings. The vanilla "Avoid Deficit" automation option has been removed and replaced by clearer output target controls.
+- Improved settings synchronization when zone auto-demolition is disabled: the panel now aligns with already built zones.
+- Fixed several incorrect construction strategies, missing Nomad Arkship zone icons, and other smaller UX issues.
+
 哇噗 **26-06-20 - v1.7.0**
 - Updated compatibility to Stellaris 4.4 and adapted changed script APIs that previously prevented automation from functioning.
 - Added automation support for the new Nomad Arkship designations, districts, and zones.

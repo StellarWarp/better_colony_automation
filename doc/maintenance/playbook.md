@@ -191,13 +191,13 @@ When preparing a public release, update these in one pass:
 2. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in relevant files under [`../../localisation/`](../../localisation/).
 3. Bump the version string in [`../../descriptor.mod`](../../descriptor.mod).
 4. Update the public-facing changelog in [`../../README.md`](../../README.md).
-5. Review the current bilingual Workshop description in [`../../workshop.txt`](../../workshop.txt), especially the supported game version, Quick Guide entrypoints, compatibility notes, and recent feature summary.
+5. Update and review the bilingual Workshop descriptions in [`../../workshop_en.txt`](../../workshop_en.txt) and [`../../workshop_cn.txt`](../../workshop_cn.txt), especially the supported game version, Quick Guide entrypoints, compatibility notes, and recent feature summary.
 
 Release note rule:
 
 - keep the intro popup short and player-facing
 - keep `README.md` slightly more descriptive
-- keep `workshop.txt` focused on current features rather than detailed version history
+- keep `workshop_en.txt` and `workshop_cn.txt` focused on current features rather than detailed version history
 - if a release changes global settings behavior, mention both the new default behavior and the primary entry point
 
 ## Documentation Maintenance Rule

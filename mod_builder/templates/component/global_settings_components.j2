@@ -485,7 +485,9 @@
     value_width=72,
     button_width=48,
     button_gap=6,
-    control_gap=8
+    control_gap=8,
+    status_text="",
+    value_tooltip=""
 ) -%}
 {% set button_height = height - 8 %}
 {% set padding_x = 14 %}
@@ -493,9 +495,12 @@
 {% set positive_width = (positive_options | length) * button_width + ((positive_options | length) - 1) * button_gap %}
 {% set control_width = negative_width + control_gap + value_width + control_gap + positive_width %}
 {% set control_start_x = width - padding_x - control_width %}
+{% set status_width = 70 if status_text else 0 %}
+{% set status_gap = control_gap if status_text else 0 %}
+{% set status_x = control_start_x - status_gap - status_width %}
 {% set value_x = control_start_x + negative_width + control_gap %}
 {% set positive_start_x = value_x + value_width + control_gap %}
-{% set label_width = control_start_x - padding_x - 12 %}
+{% set label_width = (status_x if status_text else control_start_x) - padding_x - 12 %}
         containerWindowType = {
             name = "{{ name }}_row"
             position = { x = {{ x }} y = {{ y }} }
@@ -519,6 +524,16 @@
                 vertical_alignment = center
                 alwaysTransparent = yes
             }
+{% if status_text %}
+            effectButtonType = {
+                name = "{{ name }}_status"
+                position = { x = {{ status_x }} y = 4 }
+                size = { x = {{ status_width }} y = {{ button_height }} }
+                font = "cg_16b"
+                buttonText = "{{ status_text }}"
+                alwaysTransparent = yes
+            }
+{% endif %}
 {% for option in negative_options %}
 {% set option_x = control_start_x + loop.index0 * (button_width + button_gap) %}
             effectButtonType = {
@@ -537,9 +552,16 @@
                 size = { x = {{ value_width }} y = {{ button_height }} }
                 font = "cg_16b"
                 buttonText = "{{ value_text }}"
+{% if value_tooltip %}
+                tooltipText = "{{ value_tooltip }}"
+{% endif %}
                 text_color_code = "H"
+{% if value_effect %}
                 alwaysTransparent = no
                 effect = "{{ value_effect }}"
+{% else %}
+                alwaysTransparent = yes
+{% endif %}
             }
 {% for option in positive_options %}
 {% set option_x = positive_start_x + loop.index0 * (button_width + button_gap) %}
