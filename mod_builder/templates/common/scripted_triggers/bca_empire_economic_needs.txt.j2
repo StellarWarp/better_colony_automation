@@ -7,7 +7,7 @@ bca_empire_needs_{{ need_name }} = {
             AND = {
                 NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
                 {% if need.resource %}
-                resource_revenue_compare = {
+                resource_income_compare = {
                     resource = {{ need.resource }}
                     value < {{ need.variable }}
                 }

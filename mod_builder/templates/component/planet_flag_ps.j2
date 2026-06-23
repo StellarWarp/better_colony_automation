@@ -2,6 +2,7 @@
 {% macro flag_zone_selector(zone_slot) -%} bca_pf_ps_ext_zone_{{ zone_slot }} {%- endmacro %}
 {% macro flag_selected_zone_type(zone_slot, type) -%} bca_pf_ps_selected_zone_type_{{ zone_slot }}_{{ type }} {%- endmacro %}
 {% macro flag_selected_zone(zone_slot, zone) -%} bca_pf_ps_selected_zone_{{ zone_slot }}_{{ zone }} {%- endmacro %}
+{% macro flag_zone_selection_matched(zone_slot) -%} bca_pf_ps_zone_selection_matched_{{ zone_slot }} {%- endmacro %}
 
 {% macro flag_zone_option_type_elected(type) -%} bca_pf_ps_zone_option_elected_{{ type }} {%- endmacro %}
 {% macro flag_zone_option_type_elected_idx(selector_slot, type) -%} bca_pf_ps_zone_option_elected_{{ selector_slot }}_{{ type }} {%- endmacro %}

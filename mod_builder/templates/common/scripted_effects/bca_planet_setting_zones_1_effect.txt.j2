@@ -207,6 +207,277 @@ hidden_effect = {
 }
 
 
+bca_sync_primary_zone_selection_match = {
+    optimize_memory
+    {% set zone = "$ZONE$" %}
+    export_trigger_value_to_variable = {
+        trigger = num_zones
+        parameters = { type = {{ zone }} }
+        variable = temp_num_zones
+    }
+    {% for zone_slot in ['z1','z2'] %}
+    if = {
+        limit = {
+            has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+        }
+        if = {
+            limit = {
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                check_variable = { which = bca_num_free_zones_d0 value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_d0 value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        }
+    }
+    {% endfor %}
+    if = {
+        limit = {
+            check_variable = { which = temp_num_zones value > 0 }
+        }
+        set_variable = {
+            which = tp_zone_sync_primary_unmatched_{{ zone }}
+            value = temp_num_zones
+        }
+    }
+}
+
+bca_sync_secondary_zone_selection_match = {
+    optimize_memory
+    {% set zone = "$ZONE$" %}
+    export_trigger_value_to_variable = {
+        trigger = num_zones
+        parameters = { type = {{ zone }} }
+        variable = temp_num_zones
+    }
+    {% for zone_slot in ['z3','z4','z5'] %}
+    if = {
+        limit = {
+            has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+        }
+        if = {
+            limit = {
+                bca_sync_secondary_{{ zone }}_is_compatible = {
+                    ZONE_SLOT = {{ zone_slot }}
+                }
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                bca_sync_secondary_{{ zone }}_is_compatible = {
+                    ZONE_SLOT = {{ zone_slot }}
+                }
+                check_variable = { which = bca_num_free_zones_secondary value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_secondary value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        }
+    }
+    {% endfor %}
+    if = {
+        limit = {
+            check_variable = { which = temp_num_zones value > 0 }
+        }
+        set_variable = {
+            which = tp_zone_sync_secondary_unmatched_{{ zone }}
+            value = temp_num_zones
+        }
+    }
+}
+
+bca_sync_primary_zone_selection_fill_slot = {
+    optimize_memory
+    {% set zone_slot = "$ZONE_SLOT$" %}
+    {% set ns = namespace(first=true) %}
+    {% for item in zones_info %}
+    {% set type = item.type %}
+    {% for zone in item.zones %}
+    {% if zone in primary_districts_for_zone %}
+    {{ "if" if ns.first else "else_if" }} = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_{{ zone }}
+                value > 0
+            }
+        }
+        set_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+        set_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+        set_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_{{ zone }}
+            value = 1
+        }
+    }
+    {% set ns.first = false %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+}
+
+bca_sync_secondary_zone_selection_fill_slot = {
+    optimize_memory
+    {% set zone_slot = "$ZONE_SLOT$" %}
+    {% set ns = namespace(first=true) %}
+    {% for item in zones_info %}
+    {% set type = item.type %}
+    {% for zone in item.zones %}
+    {% if zone in secondary_districts_for_zone %}
+    {{ "if" if ns.first else "else_if" }} = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_{{ zone }}
+                value > 0
+            }
+            bca_sync_secondary_{{ zone }}_is_compatible = {
+                ZONE_SLOT = {{ zone_slot }}
+            }
+        }
+        set_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+        set_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+        set_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_{{ zone }}
+            value = 1
+        }
+    }
+    {% set ns.first = false %}
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+}
+
+bca_sync_primary_zone_selection_if_overplanned = {
+    optimize_memory
+    hidden_effect = {
+        {% for zone_slot in ['z1','z2'] %}
+        remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+        {% endfor %}
+        bca_get_num_potential_free_zones_d0 = yes
+        {% for item in zones_info %}
+        {% for zone in item.zones %}
+        {% if zone in primary_districts_for_zone %}
+        bca_sync_primary_zone_selection_match = { ZONE = {{ zone }} }
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+        {% for zone_slot in ['z1','z2'] %}
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }} }
+            {{ op.clear_zone_selection(zone_slot) }}
+            bca_sync_primary_zone_selection_fill_slot = {
+                ZONE_SLOT = {{ zone_slot }}
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        {% endfor %}
+
+        clear_variable = temp_num_zones
+        clear_variable = bca_num_free_zones_d0
+        {% for item in zones_info %}
+        {% for zone in item.zones %}
+        {% if zone in primary_districts_for_zone %}
+        clear_variable = tp_zone_sync_primary_unmatched_{{ zone }}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    }
+}
+
+bca_sync_secondary_zone_selection_if_overplanned = {
+    optimize_memory
+    hidden_effect = {
+        {% for zone_slot in ['z3','z4','z5','zx'] %}
+        remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+        {% endfor %}
+        bca_set_secondary_district_type_flag = yes
+        bca_get_num_potential_free_zones_d1 = yes
+        bca_get_num_potential_free_zones_d2 = yes
+        bca_get_num_potential_free_zones_d3 = yes
+        set_variable = {
+            which = bca_num_free_zones_secondary
+            value = bca_num_free_zones_d1
+        }
+        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d2 }
+        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d3 }
+
+        {% for item in zones_info %}
+        {% for zone in item.zones %}
+        {% if zone in secondary_districts_for_zone %}
+        bca_sync_secondary_zone_selection_match = { ZONE = {{ zone }} }
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+
+        {% for zone_slot in ['z3','z4','z5'] %}
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }} }
+            {{ op.clear_zone_selection(zone_slot) }}
+            set_carrier_flag = tp_secondary_zone_selection_synced
+            bca_sync_secondary_zone_selection_fill_slot = {
+                ZONE_SLOT = {{ zone_slot }}
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
+        {% endfor %}
+
+        if = {
+            limit = {
+                OR = {
+                    {% for zone_slot in ['z3','z4','z5'] %}
+                    has_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+                    {% endfor %}
+                }
+            }
+            set_carrier_flag = {{ pf.flag_zone_selection_matched('zx') }}
+        }
+
+        if = {
+            limit = { has_carrier_flag = tp_secondary_zone_selection_synced }
+            bca_set_zx_for_identical_secondary_zone_plan = yes
+        }
+        remove_carrier_flag = tp_secondary_zone_selection_synced
+        bca_clean_flags_zone_selector_secondary_district = yes
+        clear_variable = temp_num_zones
+        clear_variable = bca_num_free_zones_d1
+        clear_variable = bca_num_free_zones_d2
+        clear_variable = bca_num_free_zones_d3
+        clear_variable = bca_num_free_zones_secondary
+        {% for item in zones_info %}
+        {% for zone in item.zones %}
+        {% if zone in secondary_districts_for_zone %}
+        clear_variable = tp_zone_sync_secondary_unmatched_{{ zone }}
+        {% endif %}
+        {% endfor %}
+        {% endfor %}
+    }
+}
+
+
 bca_set_zx_for_identical_secondary_zone_plan = {
     optimize_memory
     bca_planet_setting_remove_current_selected_zone = {

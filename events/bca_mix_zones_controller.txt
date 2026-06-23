@@ -3013,3 +3013,45 @@ carrier_event = {
         remove_all_zone_plan_flag = yes
 	}
 }
+
+# synchronize configured zone selections with built zones
+carrier_event = {
+	id = colony_automation_event.22
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		bca_sync_primary_zone_selection_if_overplanned = yes
+		bca_sync_secondary_zone_selection_if_overplanned = yes
+	}
+}
+
+# enable zone auto-destruction and unlock all zone selectors
+carrier_event = {
+	id = colony_automation_event.23
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z1
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z2
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z3
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z4
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z5
+		remove_carrier_flag = bca_pf_ps_zone_selection_matched_zx
+	}
+}
+
+# disable zone auto-destruction, close selectors, and lock matched slots
+carrier_event = {
+	id = colony_automation_event.24
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		clear_open_selector = yes
+		set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+		carrier_event = { id = colony_automation_event.22 }
+	}
+}

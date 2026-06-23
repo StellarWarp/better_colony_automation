@@ -70,6 +70,744 @@ bca_has_zone_plan = {
 }
 
 
+bca_sync_secondary_zone_subterranean_urban_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+    }
+}
+bca_sync_secondary_zone_agrarian_anglers_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_trade_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_trade_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_trade_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_trade_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_waystation_trade_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_basic
+    }
+}
+bca_sync_secondary_zone_industrial_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_industrial_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_industrial_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_industrial_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_foundry_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_foundry_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_foundry_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_foundry_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_military_eco_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_factory_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_factory_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_factory_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_factory_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_research_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_habitat_research_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_science
+    }
+}
+bca_sync_secondary_zone_research_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_research_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_research_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_research_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_research_physics_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_science
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_minerals_physics_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+    }
+}
+bca_sync_secondary_zone_research_physics_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_research_physics_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_research_physics_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_research_physics_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_reactor_physics_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_generator
+    }
+}
+bca_sync_secondary_zone_research_society_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_science
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_research_society_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_research_society_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_research_society_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_research_society_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_farm_society_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_basic
+    }
+}
+bca_sync_secondary_zone_research_engineering_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_science
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_research_engineering_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_research_engineering_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_research_engineering_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_research_engineering_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_military_engineering_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_forever_cruise_engineering_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_forever_cruise
+    }
+}
+bca_sync_secondary_zone_research_unity_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_habitat_research_unity_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_science
+    }
+}
+bca_sync_secondary_zone_unity_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_unity_bio_trophy_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_unity_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_bio_trophy_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_bio_trophy_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_unity_bio_trophy_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_unity_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_unity_spiritualist_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_polytechnic
+    }
+}
+bca_sync_secondary_zone_resort_spiritual_retreat_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_unity_spiritualist_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_spiritualist_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_unity_spiritualist_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_fortress_arcology_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_arcology_urban_3
+    }
+}
+bca_sync_secondary_zone_fortress_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_fortress_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_fortress_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_resort_zoo_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_resort_grand_museum_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_resort_hunting_ground_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_resort_restoration_enclave_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_resort_proving_grounds_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_resort_3
+    }
+}
+bca_sync_secondary_zone_energy_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_generator
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_geothermal
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_photosynthesis_fields
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_generator
+    }
+}
+bca_sync_secondary_zone_energy_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_energy_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_energy_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_betharian_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+    }
+}
+bca_sync_secondary_zone_betharian_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_betharian_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_minerals_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_mining
+    }
+}
+bca_sync_secondary_zone_minerals_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_minerals_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_harvest_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_basic
+    }
+}
+bca_sync_secondary_zone_food_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_food_ring_world_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_rw_urban_3
+    }
+}
+bca_sync_secondary_zone_food_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_food_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_basic
+    }
+}
+bca_sync_secondary_zone_rare_crystals_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+    }
+}
+bca_sync_secondary_zone_habitat_rare_crystals_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_mining
+    }
+}
+bca_sync_secondary_zone_rare_crystals_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_rare_crystals_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_volatile_motes_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_generator
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_geothermal
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_photosynthesis_fields
+    }
+}
+bca_sync_secondary_zone_habitat_volatile_motes_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+    }
+}
+bca_sync_secondary_zone_volatile_motes_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_volatile_motes_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_exotic_gases_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_habitat_exotic_gases_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+    }
+}
+bca_sync_secondary_zone_exotic_gases_nexus_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_nexus_3
+    }
+}
+bca_sync_secondary_zone_exotic_gases_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_ark_shield_overloader_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_generator
+    }
+}
+bca_sync_secondary_zone_anglers_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_agrarian_urban_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_habitat_hydroponics_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hab_energy
+    }
+}
+bca_sync_secondary_zone_spawning_hive_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_1
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_2
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hive_3
+    }
+}
+bca_sync_secondary_zone_minerals_wilderness_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_mining
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_melting
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_hollow_mountains
+    }
+}
+bca_sync_secondary_zone_energy_wilderness_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_generator
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_geothermal
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_photosynthesis_fields
+    }
+}
+bca_sync_secondary_zone_food_wilderness_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_farming
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_orchard_forests
+    }
+}
+bca_sync_secondary_zone_ark_engine_bypass_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_generator
+    }
+}
+bca_sync_secondary_zone_ark_missile_silos_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_ammunition_lines_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_laser_capacitors_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_flight_decks_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_forever_cruise_passenger_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_forever_cruise
+    }
+}
+bca_sync_secondary_zone_ark_shipwright_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_military
+    }
+}
+bca_sync_secondary_zone_ark_forever_cruise_crew_is_compatible = {
+    OR = {
+        has_carrier_flag = bca_pf_ps_zone_district_$ZONE_SLOT$_district_ark_forever_cruise
+    }
+}
+
+
 bca_designation_changed = {
     OR = {
         AND = {

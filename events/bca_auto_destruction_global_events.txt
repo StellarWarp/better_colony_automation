@@ -11,12 +11,9 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
             remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.23 }
         }
     }
 }
@@ -32,12 +29,9 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
             set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-            set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.24 }
         }
     }
 }
@@ -53,9 +47,6 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         }
     }
@@ -72,9 +63,6 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         }
     }
@@ -91,9 +79,6 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
         }
     }
@@ -110,9 +95,6 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
             set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
         }
     }
@@ -129,10 +111,7 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
-            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.23 }
         }
     }
 }
@@ -148,10 +127,7 @@ country_event = {
 
     immediate = {
         every_owned_colony = {
-            limit = {
-                is_colony = yes
-            }
-            set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.24 }
         }
     }
 }

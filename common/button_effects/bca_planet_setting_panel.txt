@@ -61,7 +61,7 @@ bca_planet_setting_auto_destruction_enable = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC
         remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.23 }
     }
 }
 
@@ -81,7 +81,7 @@ bca_planet_setting_auto_destruction_disable = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC
         set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
         set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.24 }
     }
 }
 
@@ -151,7 +151,7 @@ bca_planet_setting_auto_destruction_zones_disable = {
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE_DESC
-        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.24 }
     }
 }
 
@@ -165,7 +165,7 @@ bca_planet_setting_auto_destruction_zones_enable = {
     }
     effect = {
         custom_tooltip = BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE_DESC
-        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.23 }
     }
 }
 

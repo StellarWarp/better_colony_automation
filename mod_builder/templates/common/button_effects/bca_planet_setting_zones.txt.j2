@@ -16,7 +16,13 @@ bca_planet_setting_zone_select_toggle_{{ zone_slot }}_icon = {
         {% endif %}
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }} }
+            }
+        }
     }
     effect = {
         if = {

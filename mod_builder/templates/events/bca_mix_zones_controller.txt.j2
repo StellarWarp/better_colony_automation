@@ -199,3 +199,42 @@ carrier_event = {
 	}
 }
 
+# synchronize configured zone selections with built zones
+carrier_event = {
+	id = colony_automation_event.22
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		bca_sync_primary_zone_selection_if_overplanned = yes
+		bca_sync_secondary_zone_selection_if_overplanned = yes
+	}
+}
+
+# enable zone auto-destruction and unlock all zone selectors
+carrier_event = {
+	id = colony_automation_event.23
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+		{% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
+		remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+		{% endfor %}
+	}
+}
+
+# disable zone auto-destruction, close selectors, and lock matched slots
+carrier_event = {
+	id = colony_automation_event.24
+	is_triggered_only = yes
+	hide_window = yes
+
+	immediate = {
+		clear_open_selector = yes
+		set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+		carrier_event = { id = colony_automation_event.22 }
+	}
+}
+

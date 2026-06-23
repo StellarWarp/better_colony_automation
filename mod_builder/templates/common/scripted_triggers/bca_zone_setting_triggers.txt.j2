@@ -14,6 +14,24 @@ bca_has_zone_plan = {
 }
 
 
+{# These triggers let parameterized sync effects reuse one compatibility check
+   for z3, z4, and z5 without expanding each district list three times. #}
+{% set zone_slot = "$ZONE_SLOT$" %}
+{% for item in zones_info %}
+{% for zone in item.zones %}
+{% if zone in secondary_districts_for_zone %}
+bca_sync_secondary_{{ zone }}_is_compatible = {
+    OR = {
+        {% for district in secondary_districts_for_zone[zone] %}
+        has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+        {% endfor %}
+    }
+}
+{% endif %}
+{% endfor %}
+{% endfor %}
+
+
 bca_designation_changed = {
     OR = {
 {% for designation in all_designations %}

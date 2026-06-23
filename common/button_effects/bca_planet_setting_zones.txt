@@ -14,7 +14,13 @@ bca_planet_setting_zone_select_toggle_z1_icon = {
         always = yes
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_z1 }
+            }
+        }
     }
     effect = {
         if = {
@@ -18126,7 +18132,13 @@ bca_planet_setting_zone_select_toggle_z2_icon = {
         always = yes
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_z2 }
+            }
+        }
     }
     effect = {
         if = {
@@ -36238,7 +36250,13 @@ bca_planet_setting_zone_select_toggle_z3_icon = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_z3 }
+            }
+        }
     }
     effect = {
         if = {
@@ -54367,7 +54385,13 @@ bca_planet_setting_zone_select_toggle_z4_icon = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_z4 }
+            }
+        }
     }
     effect = {
         if = {
@@ -72496,7 +72520,13 @@ bca_planet_setting_zone_select_toggle_z5_icon = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_z5 }
+            }
+        }
     }
     effect = {
         if = {
@@ -90626,7 +90656,13 @@ bca_planet_setting_zone_select_toggle_zx_icon = {
         NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
     }
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                NOT = { has_carrier_flag = bca_pf_ps_zone_selection_matched_zx }
+            }
+        }
     }
     effect = {
         if = {

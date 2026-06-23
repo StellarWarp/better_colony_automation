@@ -19,7 +19,6 @@ event = {
             }
             every_owned_colony = {
                 limit = {
-                    is_colony = yes
                     NOT = {
                         has_carrier_flag = bca_pf_ps_initialized
                    }
@@ -6092,10 +6091,10 @@ carrier_event = {
                         has_country_flag = bca_default_disable_auto_destruction_zone
                     }
                 }
-                set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+                carrier_event = { id = colony_automation_event.24 }
             }
             else = {
-                remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+                carrier_event = { id = colony_automation_event.23 }
             }
             set_carrier_flag = bca_pf_ps_initialized
         }
@@ -12166,10 +12165,10 @@ carrier_event = {
                     has_country_flag = bca_default_disable_auto_destruction_zone
                 }
             }
-            set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.24 }
         }
         else = {
-            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+            carrier_event = { id = colony_automation_event.23 }
         }
         set_carrier_flag = bca_pf_ps_initialized
     }

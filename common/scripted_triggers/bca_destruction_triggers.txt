@@ -278,9 +278,9 @@ bca_advanced_trade_building_replace = {
 
 low_rare_resource_income = {
 	OR = {
-		resource_revenue_compare = { resource = rare_crystals value < bca_expect_output_rare_crystals }
-		resource_revenue_compare = { resource = volatile_motes value < bca_expect_output_volatile_motes }
-		resource_revenue_compare = { resource = exotic_gases value < bca_expect_output_exotic_gases }
+		bca_empire_needs_rare_crystals = yes
+		bca_empire_needs_volatile_motes = yes
+		bca_empire_needs_exotic_gases = yes
 	}
 }
 
@@ -301,21 +301,21 @@ bca_advanced_rare_resource_building_replace = {
 }
 
 bca_rare_crystals_buidling_potential = {
-	resource_revenue_compare = { resource = rare_crystals value < bca_expect_output_rare_crystals }
+	bca_empire_needs_rare_crystals = yes
 	bca_unique_building_potential = {
 		building1 = building_crystal_plant
 	}
 }
 
 bca_volatile_motes_building_potential = {
-	resource_revenue_compare = { resource = volatile_motes value < bca_expect_output_volatile_motes }
+	bca_empire_needs_volatile_motes = yes
 	bca_unique_building_potential = {
 		building1 = building_chemical_plant
 	}
 }
 
 bca_exotic_gases_building_potential = {
-	resource_revenue_compare = { resource = exotic_gases value < bca_expect_output_exotic_gases }
+	bca_empire_needs_exotic_gases = yes
 	bca_unique_building_potential = {
 		building1 = building_refinery
 	}

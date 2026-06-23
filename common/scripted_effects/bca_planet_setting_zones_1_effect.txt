@@ -4970,6 +4970,3212 @@ hidden_effect = {
 }
 
 
+bca_sync_primary_zone_selection_match = {
+    optimize_memory
+    export_trigger_value_to_variable = {
+        trigger = num_zones
+        parameters = { type = $ZONE$ }
+        variable = temp_num_zones
+    }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_z1_$ZONE$
+        }
+        if = {
+            limit = {
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_z1
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                check_variable = { which = bca_num_free_zones_d0 value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_d0 value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_z1
+        }
+    }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_z2_$ZONE$
+        }
+        if = {
+            limit = {
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_z2
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                check_variable = { which = bca_num_free_zones_d0 value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_d0 value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_z2
+        }
+    }
+    if = {
+        limit = {
+            check_variable = { which = temp_num_zones value > 0 }
+        }
+        set_variable = {
+            which = tp_zone_sync_primary_unmatched_$ZONE$
+            value = temp_num_zones
+        }
+    }
+}
+
+bca_sync_secondary_zone_selection_match = {
+    optimize_memory
+    export_trigger_value_to_variable = {
+        trigger = num_zones
+        parameters = { type = $ZONE$ }
+        variable = temp_num_zones
+    }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_z3_$ZONE$
+        }
+        if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z3
+                }
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_z3
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z3
+                }
+                check_variable = { which = bca_num_free_zones_secondary value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_secondary value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_z3
+        }
+    }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_z4_$ZONE$
+        }
+        if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z4
+                }
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_z4
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z4
+                }
+                check_variable = { which = bca_num_free_zones_secondary value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_secondary value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_z4
+        }
+    }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_z5_$ZONE$
+        }
+        if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z5
+                }
+                check_variable = { which = temp_num_zones value > 0 }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_z5
+            subtract_variable = { which = temp_num_zones value = 1 }
+        }
+        else_if = {
+            limit = {
+                bca_sync_secondary_$ZONE$_is_compatible = {
+                    ZONE_SLOT = z5
+                }
+                check_variable = { which = bca_num_free_zones_secondary value > 0 }
+            }
+            subtract_variable = { which = bca_num_free_zones_secondary value = 1 }
+        }
+        else = {
+            set_carrier_flag = tp_zone_sync_rewrite_z5
+        }
+    }
+    if = {
+        limit = {
+            check_variable = { which = temp_num_zones value > 0 }
+        }
+        set_variable = {
+            which = tp_zone_sync_secondary_unmatched_$ZONE$
+            value = temp_num_zones
+        }
+    }
+}
+
+bca_sync_primary_zone_selection_fill_slot = {
+    optimize_memory
+    if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_urban
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_urban
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_urban
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_urban
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_trade
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_trade
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_industrial
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_industrial
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_industrial
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_industrial
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_foundry
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_foundry
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_factory
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_factory
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_factory
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_factory
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_central_spire
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_central_spire
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_central_spire
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_physics
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_physics
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_society
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_society
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_engineering
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_engineering
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_unity
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_bureaucrat
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_habitat_research_unity
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_bureaucrat
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_research_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_habitat_research_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_unity
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_unity_bio_trophy
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_bio_trophy
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_unity_bio_trophy
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_unity_spiritualist
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_spiritualist
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_unity_spiritualist
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_fortress
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_fortress
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_resort
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_resort
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_resort
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_resort_entertainment
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_entertainer
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_entertainment
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_resort_entertainment
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_habitat_knights
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_knight_commander
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_knights
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_habitat_knights
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_spawning
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_spawning
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_spawning
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_spawning
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_machine_replication
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_machine_replication
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_machine_replication
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_machine_replication
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_urban_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_urban
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_urban_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_urban_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_foundry_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_foundry_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_unity_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_unity_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_research_unity_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_spawning
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_unity_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_research_unity_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_trade_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_trade_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_fortress_wilderness
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_fortress_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_research_unity
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_research_unity_consumer_goods
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_research_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_research_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_research_unity_gestalt
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_research_unity_consumer_goods
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_research_unity_gestalt
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_research_unity_gestalt
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_industrial
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_research_alloys_support
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_industrial
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_industrial
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_foundry
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_research_alloys_support
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_foundry
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_foundry
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_passenger
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_city_passenger
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_city_passenger
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_passenger
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_crew
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_city_crew
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_city_crew
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_crew
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_mixed
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_city_mixed
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_city_mixed
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_mixed
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_sacred_path_pilgrims
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_pilgrimage
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_sacred_path_pilgrims
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_sacred_path_pilgrims
+            value = 1
+        }
+    }
+}
+
+bca_sync_secondary_zone_selection_fill_slot = {
+    optimize_memory
+    if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_subterranean_urban
+                value > 0
+            }
+            bca_sync_secondary_zone_subterranean_urban_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_urban
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_subterranean_urban
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_subterranean_urban
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_agrarian_anglers
+                value > 0
+            }
+            bca_sync_secondary_zone_agrarian_anglers_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_urban
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_agrarian_anglers
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_agrarian_anglers
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_trade_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_trade_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_trade_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_trade_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_trade_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_trade_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_trade_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_trade_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_trade_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_trade_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_trade_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_trade_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_trade_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_waystation_trade
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_waystation_trade_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trade
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_waystation_trade
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_waystation_trade
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_industrial_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_industrial_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_industrial
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_industrial_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_industrial_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_industrial_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_industrial_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_industrial
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_industrial_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_industrial_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_industrial_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_industrial_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_industrial
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_industrial_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_industrial_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_industrial_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_industrial_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_industrial
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_industrial_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_industrial_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_foundry_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_foundry_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_foundry_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_foundry_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_foundry_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_foundry_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_foundry_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_foundry_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_foundry_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_foundry_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_foundry_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_foundry_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_foundry_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_military_eco
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_military_eco_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_foundry
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_military_eco
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_military_eco
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_factory_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_factory_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_factory
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_factory_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_factory_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_factory_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_factory_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_factory
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_factory_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_factory_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_factory_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_factory_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_factory
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_factory_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_factory_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_factory_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_factory_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_factory
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_factory_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_factory_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research
+                value > 0
+            }
+            bca_sync_secondary_zone_research_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_research
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_research_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_research
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_research
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_research_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_research_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_research_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_research_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_research
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_physics
+                value > 0
+            }
+            bca_sync_secondary_zone_research_physics_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_physics
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_minerals_physics
+                value > 0
+            }
+            bca_sync_secondary_zone_minerals_physics_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_minerals_physics
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_minerals_physics
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_physics_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_research_physics_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_physics_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_physics_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_research_physics_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_physics_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_physics_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_research_physics_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_physics_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_physics_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_research_physics_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_physics_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_physics_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_reactor_physics
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_reactor_physics_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_physics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_reactor_physics
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_reactor_physics
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_society
+                value > 0
+            }
+            bca_sync_secondary_zone_research_society_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_society
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_society_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_research_society_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_society_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_society_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_research_society_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_society_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_society_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_research_society_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_society_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_society_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_research_society_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_society_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_society_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_farm_society
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_farm_society_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_society
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_farm_society
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_farm_society
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_engineering
+                value > 0
+            }
+            bca_sync_secondary_zone_research_engineering_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_engineering
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_engineering_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_research_engineering_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_engineering_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_engineering_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_research_engineering_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_engineering_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_engineering_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_research_engineering_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_engineering_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_engineering_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_research_engineering_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_engineering_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_engineering_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_military_engineering
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_military_engineering_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_military_engineering
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_military_engineering
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_engineering
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_forever_cruise_engineering_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_engineering
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_engineering
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_engineering
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_research_unity
+                value > 0
+            }
+            bca_sync_secondary_zone_research_unity_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_bureaucrat
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_research_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_research_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_research_unity
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_research_unity_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_bureaucrat
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_research_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_research_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_bio_trophy_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_bio_trophy
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_bio_trophy_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_bio_trophy_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_bio_trophy_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_bio_trophy_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_bio_trophy_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_bio_trophy_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_unity
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_spiritualist_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_spiritualist
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_spiritual_retreat
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_spiritual_retreat_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_spiritual_retreat
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_spiritual_retreat
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_spiritualist_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_spiritualist_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_spiritualist_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_spiritualist_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_unity_spiritualist_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_priest
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_unity_spiritualist_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_fortress_arcology
+                value > 0
+            }
+            bca_sync_secondary_zone_fortress_arcology_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress_arcology
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_fortress_arcology
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_fortress_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_fortress_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_fortress_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_fortress_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_fortress_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_fortress_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_fortress_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_fortress_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fortress
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_fortress_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_fortress_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_zoo
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_zoo_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_zoo
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_zoo
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_zoo
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_grand_museum
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_grand_museum_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_culture_worker
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_grand_museum
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_grand_museum
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_hunting_ground
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_hunting_ground_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_trophy_hunter
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_hunting_ground
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_hunting_ground
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_restoration_enclave
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_restoration_enclave_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_healthcare
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_restoration_enclave
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_restoration_enclave
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_resort_proving_grounds
+                value > 0
+            }
+            bca_sync_secondary_zone_resort_proving_grounds_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_duelist
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_proving_grounds
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_resort_proving_grounds
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_energy
+                value > 0
+            }
+            bca_sync_secondary_zone_energy_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_energy
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_energy
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_energy_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_energy_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_energy
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_energy_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_energy_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_energy_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_energy
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_energy_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_energy_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_energy_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_energy
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_energy_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_betharian
+                value > 0
+            }
+            bca_sync_secondary_zone_betharian_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_betharian
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_betharian
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_betharian
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_betharian_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_betharian_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_betharian
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_betharian_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_betharian_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_betharian_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_betharian_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_betharian
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_betharian_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_betharian_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_minerals
+                value > 0
+            }
+            bca_sync_secondary_zone_minerals_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_minerals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_minerals
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_minerals
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_minerals_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_minerals_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_minerals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_minerals_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_minerals_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_minerals_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_minerals_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_minerals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_minerals_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_minerals_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_harvest
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_harvest_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_minerals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_harvest
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_harvest
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_food
+                value > 0
+            }
+            bca_sync_secondary_zone_food_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_food
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_food
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_food
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_food_ring_world
+                value > 0
+            }
+            bca_sync_secondary_zone_food_ring_world_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_food
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_food_ring_world
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_food_ring_world
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_food_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_food_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_food
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_food_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_food_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_food
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_food_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_food
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_food
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_food
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_rare_crystals
+                value > 0
+            }
+            bca_sync_secondary_zone_rare_crystals_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_rare_crystals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_rare_crystals
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_rare_crystals
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_rare_crystals_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_rare_crystals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_rare_crystals
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_rare_crystals
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_rare_crystals_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_rare_crystals_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_rare_crystals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_rare_crystals_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_rare_crystals_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_rare_crystals_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_rare_crystals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_rare_crystals_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_rare_crystals_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_volatile_motes
+                value > 0
+            }
+            bca_sync_secondary_zone_volatile_motes_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_volatile_motes
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_volatile_motes
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_volatile_motes
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_volatile_motes_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_volatile_motes
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_volatile_motes
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_volatile_motes
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_volatile_motes_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_volatile_motes_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_volatile_motes
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_volatile_motes_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_volatile_motes_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_volatile_motes_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_volatile_motes
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_volatile_motes_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_volatile_motes_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_exotic_gases
+                value > 0
+            }
+            bca_sync_secondary_zone_exotic_gases_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_exotic_gases
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_exotic_gases
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_exotic_gases_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_exotic_gases
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_exotic_gases
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_exotic_gases_nexus
+                value > 0
+            }
+            bca_sync_secondary_zone_exotic_gases_nexus_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases_nexus
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_exotic_gases_nexus
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_exotic_gases_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_exotic_gases_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_exotic_gases_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_exotic_gases_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_shield_overloader
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_shield_overloader_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_exotic_gases
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_shield_overloader
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_shield_overloader
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_anglers
+                value > 0
+            }
+            bca_sync_secondary_zone_anglers_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_angler
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_anglers
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_anglers
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_agrarian_urban
+                value > 0
+            }
+            bca_sync_secondary_zone_agrarian_urban_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_agrarian
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_agrarian_urban
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_agrarian_urban
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_habitat_hydroponics
+                value > 0
+            }
+            bca_sync_secondary_zone_habitat_hydroponics_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_hydroponics
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_hydroponics
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_habitat_hydroponics
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_spawning_hive
+                value > 0
+            }
+            bca_sync_secondary_zone_spawning_hive_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_spawning
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_spawning_hive
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_spawning_hive
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_minerals_wilderness
+                value > 0
+            }
+            bca_sync_secondary_zone_minerals_wilderness_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_minerals
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_minerals_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_minerals_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_energy_wilderness
+                value > 0
+            }
+            bca_sync_secondary_zone_energy_wilderness_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_energy
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_energy_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_food_wilderness
+                value > 0
+            }
+            bca_sync_secondary_zone_food_wilderness_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_wilderness_food
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_food_wilderness
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_food_wilderness
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_engine_bypass
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_engine_bypass_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_ark_reactor
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_engine_bypass
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_engine_bypass
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_missile_silos
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_missile_silos_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_missile
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_missile_silos
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_missile_silos
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_ammunition_lines
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_ammunition_lines_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_gun
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_ammunition_lines
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_ammunition_lines
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_laser_capacitors
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_laser_capacitors_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_laser
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_laser_capacitors
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_laser_capacitors
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_flight_decks
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_flight_decks_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_fighter
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_flight_decks
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_flight_decks
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_passenger
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_forever_cruise_passenger_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_passenger
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_passenger
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_passenger
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_shipwright
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_shipwright_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_crew
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_shipwright
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_shipwright
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_crew
+                value > 0
+            }
+            bca_sync_secondary_zone_ark_forever_cruise_crew_is_compatible = {
+                ZONE_SLOT = $ZONE_SLOT$
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_forever_cruise_crew
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_forever_cruise_crew
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_crew
+            value = 1
+        }
+    }
+}
+
+bca_sync_primary_zone_selection_if_overplanned = {
+    optimize_memory
+    hidden_effect = {
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z1
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z2
+        bca_get_num_potential_free_zones_d0 = yes
+        bca_sync_primary_zone_selection_match = { ZONE = zone_urban }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_trade }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_industrial }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_foundry }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_factory }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_central_spire }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_physics }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_society }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_engineering }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_unity }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_habitat_research_unity }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_unity }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_unity_bio_trophy }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_unity_spiritualist }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_fortress }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_resort }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_resort_entertainment }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_habitat_knights }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_spawning }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_machine_replication }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_urban_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_foundry_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_unity_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_research_unity_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_trade_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_fortress_wilderness }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_research_unity }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_research_unity_gestalt }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_industrial }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_foundry }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_forever_cruise_city_passenger }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_forever_cruise_city_crew }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_forever_cruise_city_mixed }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_sacred_path_pilgrims }
+
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = z1 } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_z1
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_z1 }
+            bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = z1
+    }
+
+            bca_sync_primary_zone_selection_fill_slot = {
+                ZONE_SLOT = z1
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_z1
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = z2 } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_z2
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_z2 }
+            bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = z2
+    }
+
+            bca_sync_primary_zone_selection_fill_slot = {
+                ZONE_SLOT = z2
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_z2
+
+        clear_variable = temp_num_zones
+        clear_variable = bca_num_free_zones_d0
+        clear_variable = tp_zone_sync_primary_unmatched_zone_urban
+        clear_variable = tp_zone_sync_primary_unmatched_zone_trade
+        clear_variable = tp_zone_sync_primary_unmatched_zone_industrial
+        clear_variable = tp_zone_sync_primary_unmatched_zone_foundry
+        clear_variable = tp_zone_sync_primary_unmatched_zone_factory
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research
+        clear_variable = tp_zone_sync_primary_unmatched_zone_central_spire
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_physics
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_society
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_engineering
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_unity
+        clear_variable = tp_zone_sync_primary_unmatched_zone_habitat_research_unity
+        clear_variable = tp_zone_sync_primary_unmatched_zone_unity
+        clear_variable = tp_zone_sync_primary_unmatched_zone_unity_bio_trophy
+        clear_variable = tp_zone_sync_primary_unmatched_zone_unity_spiritualist
+        clear_variable = tp_zone_sync_primary_unmatched_zone_fortress
+        clear_variable = tp_zone_sync_primary_unmatched_zone_resort
+        clear_variable = tp_zone_sync_primary_unmatched_zone_resort_entertainment
+        clear_variable = tp_zone_sync_primary_unmatched_zone_habitat_knights
+        clear_variable = tp_zone_sync_primary_unmatched_zone_spawning
+        clear_variable = tp_zone_sync_primary_unmatched_zone_machine_replication
+        clear_variable = tp_zone_sync_primary_unmatched_zone_urban_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_foundry_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_unity_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_research_unity_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_trade_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_fortress_wilderness
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_research_unity
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_research_unity_gestalt
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_industrial
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_foundry
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_passenger
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_crew
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_forever_cruise_city_mixed
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_sacred_path_pilgrims
+    }
+}
+
+bca_sync_secondary_zone_selection_if_overplanned = {
+    optimize_memory
+    hidden_effect = {
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z3
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z4
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z5
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_zx
+        bca_set_secondary_district_type_flag = yes
+        bca_get_num_potential_free_zones_d1 = yes
+        bca_get_num_potential_free_zones_d2 = yes
+        bca_get_num_potential_free_zones_d3 = yes
+        set_variable = {
+            which = bca_num_free_zones_secondary
+            value = bca_num_free_zones_d1
+        }
+        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d2 }
+        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d3 }
+
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_subterranean_urban }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_agrarian_anglers }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_waystation_trade }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_industrial_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_industrial_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_industrial_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_industrial_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_foundry_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_foundry_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_foundry_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_foundry_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_military_eco }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_factory_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_factory_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_factory_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_factory_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_research }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_physics }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_minerals_physics }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_physics_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_physics_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_physics_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_physics_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_reactor_physics }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_society }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_society_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_society_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_society_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_society_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_farm_society }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_engineering }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_engineering_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_engineering_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_engineering_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_engineering_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_military_engineering }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_forever_cruise_engineering }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_research_unity }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_research_unity }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_bio_trophy }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_bio_trophy_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_bio_trophy_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_bio_trophy_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_spiritualist }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_spiritual_retreat }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_spiritualist_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_spiritualist_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_unity_spiritualist_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_fortress_arcology }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_fortress_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_fortress_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_fortress_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_zoo }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_grand_museum }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_hunting_ground }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_restoration_enclave }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_resort_proving_grounds }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_energy }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_energy_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_energy_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_energy_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_betharian }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_betharian_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_betharian_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_minerals }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_minerals_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_minerals_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_harvest }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_food }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_food_ring_world }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_food_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_food }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_rare_crystals }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_rare_crystals }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_rare_crystals_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_rare_crystals_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_volatile_motes }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_volatile_motes }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_volatile_motes_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_volatile_motes_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_exotic_gases }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_exotic_gases }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_exotic_gases_nexus }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_exotic_gases_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_shield_overloader }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_anglers }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_agrarian_urban }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_habitat_hydroponics }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_spawning_hive }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_minerals_wilderness }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_energy_wilderness }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_food_wilderness }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_engine_bypass }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_missile_silos }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_ammunition_lines }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_laser_capacitors }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_flight_decks }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_forever_cruise_passenger }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_shipwright }
+        bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_forever_cruise_crew }
+
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = z3 } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_z3
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_z3 }
+            bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = z3
+    }
+
+            set_carrier_flag = tp_secondary_zone_selection_synced
+            bca_sync_secondary_zone_selection_fill_slot = {
+                ZONE_SLOT = z3
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_z3
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = z4 } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_z4
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_z4 }
+            bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = z4
+    }
+
+            set_carrier_flag = tp_secondary_zone_selection_synced
+            bca_sync_secondary_zone_selection_fill_slot = {
+                ZONE_SLOT = z4
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_z4
+        if = {
+            limit = {
+                NOT = { bca_has_zone_plan = { ZONE_SLOT = z5 } }
+            }
+            set_carrier_flag = tp_zone_sync_rewrite_z5
+        }
+        if = {
+            limit = { has_carrier_flag = tp_zone_sync_rewrite_z5 }
+            bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = z5
+    }
+
+            set_carrier_flag = tp_secondary_zone_selection_synced
+            bca_sync_secondary_zone_selection_fill_slot = {
+                ZONE_SLOT = z5
+            }
+        }
+        remove_carrier_flag = tp_zone_sync_rewrite_z5
+
+        if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_zone_selection_matched_z3
+                    has_carrier_flag = bca_pf_ps_zone_selection_matched_z4
+                    has_carrier_flag = bca_pf_ps_zone_selection_matched_z5
+                }
+            }
+            set_carrier_flag = bca_pf_ps_zone_selection_matched_zx
+        }
+
+        if = {
+            limit = { has_carrier_flag = tp_secondary_zone_selection_synced }
+            bca_set_zx_for_identical_secondary_zone_plan = yes
+        }
+        remove_carrier_flag = tp_secondary_zone_selection_synced
+        bca_clean_flags_zone_selector_secondary_district = yes
+        clear_variable = temp_num_zones
+        clear_variable = bca_num_free_zones_d1
+        clear_variable = bca_num_free_zones_d2
+        clear_variable = bca_num_free_zones_d3
+        clear_variable = bca_num_free_zones_secondary
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_subterranean_urban
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_agrarian_anglers
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_trade_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_trade_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_trade_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_trade_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_waystation_trade
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_industrial_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_industrial_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_industrial_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_industrial_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_foundry_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_foundry_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_foundry_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_foundry_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_military_eco
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_factory_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_factory_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_factory_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_factory_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_research
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_physics
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_minerals_physics
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_physics_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_physics_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_physics_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_physics_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_reactor_physics
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_society
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_society_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_society_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_society_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_society_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_farm_society
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_engineering
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_engineering_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_engineering_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_engineering_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_engineering_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_military_engineering
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_engineering
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_research_unity
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_research_unity
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_bio_trophy_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_spiritual_retreat
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_unity_spiritualist_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_fortress_arcology
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_fortress_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_fortress_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_fortress_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_zoo
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_grand_museum
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_hunting_ground
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_restoration_enclave
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_resort_proving_grounds
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_energy
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_energy_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_energy_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_energy_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_betharian
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_betharian_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_betharian_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_minerals
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_minerals_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_minerals_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_harvest
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_food
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_food_ring_world
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_food_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_food
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_rare_crystals
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_rare_crystals
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_rare_crystals_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_rare_crystals_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_volatile_motes
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_volatile_motes
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_volatile_motes_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_volatile_motes_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_exotic_gases
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_exotic_gases
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_exotic_gases_nexus
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_exotic_gases_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_shield_overloader
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_anglers
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_agrarian_urban
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_habitat_hydroponics
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_spawning_hive
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_minerals_wilderness
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_energy_wilderness
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_food_wilderness
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_engine_bypass
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_missile_silos
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_ammunition_lines
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_laser_capacitors
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_flight_decks
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_passenger
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_shipwright
+        clear_variable = tp_zone_sync_secondary_unmatched_zone_ark_forever_cruise_crew
+    }
+}
+
+
 bca_set_zx_for_identical_secondary_zone_plan = {
     optimize_memory
     bca_planet_setting_remove_current_selected_zone = {

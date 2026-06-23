@@ -176,10 +176,127 @@ bca_get_num_free_zones_d3 = {
 		parameters = {
 			type = zone_bca_test
 		}
-		variable = bca_num_free_zones_d2
+		variable = bca_num_free_zones_d3
 	}
 
 	remove_zone = {
 		zone = zone_bca_test
+	}
+}
+
+
+bca_get_num_potential_free_zones_d0 = {
+	add_zone = {
+		district = 0
+		zone = zone_bca_test
+		zone_slot = 1
+	}
+
+	add_zone = {
+		district = 0
+		zone = zone_bca_test
+		zone_slot = 2
+	}
+
+	export_trigger_value_to_variable = {
+		trigger = num_zones
+		parameters = {
+			type = zone_bca_test
+		}
+		variable = bca_num_free_zones_d0
+	}
+
+	remove_zone = {
+		zone = zone_bca_test
+	}
+	remove_zone = {
+		zone = zone_bca_test
+	}
+}
+
+bca_get_num_potential_free_zones_d1 = {
+	if = {
+		limit = { bca_has_district_d1 = yes }
+		add_zone = {
+			district = 1
+			zone = zone_bca_test
+			zone_slot = 1
+		}
+
+		export_trigger_value_to_variable = {
+			trigger = num_zones
+			parameters = {
+				type = zone_bca_test
+			}
+			variable = bca_num_free_zones_d1
+		}
+
+		remove_zone = {
+			zone = zone_bca_test
+		}
+	}
+	else = {
+		set_variable = {
+			which = bca_num_free_zones_d1
+			value = 1
+		}
+	}
+}
+
+bca_get_num_potential_free_zones_d2 = {
+	if = {
+		limit = { bca_has_district_d2 = yes }
+		add_zone = {
+			district = 2
+			zone = zone_bca_test
+			zone_slot = 1
+		}
+
+		export_trigger_value_to_variable = {
+			trigger = num_zones
+			parameters = {
+				type = zone_bca_test
+			}
+			variable = bca_num_free_zones_d2
+		}
+
+		remove_zone = {
+			zone = zone_bca_test
+		}
+	}
+	else = {
+		set_variable = {
+			which = bca_num_free_zones_d2
+			value = 1
+		}
+	}
+}
+
+bca_get_num_potential_free_zones_d3 = {
+	if = {
+		limit = { bca_has_district_d3 = yes }
+		add_zone = {
+			district = 3
+			zone = zone_bca_test
+			zone_slot = 1
+		}
+
+		export_trigger_value_to_variable = {
+			trigger = num_zones
+			parameters = {
+				type = zone_bca_test
+			}
+			variable = bca_num_free_zones_d3
+		}
+
+		remove_zone = {
+			zone = zone_bca_test
+		}
+	}
+	else = {
+		set_variable = {
+			which = bca_num_free_zones_d3
+			value = 1
+		}
 	}
 }
