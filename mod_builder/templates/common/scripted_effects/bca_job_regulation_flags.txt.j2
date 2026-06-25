@@ -1,0 +1,15 @@
+{#
+  Phase 5e: 岗位调控标记清除
+  每月评估前清除所有档位标记
+#}
+{% set steps = job_regulation_config.gear_steps %}
+{% set regulated = job_regulation_config.regulated_jobs %}
+
+bca_jr_clear_all_flags = {
+{% for entry in regulated %}
+{% for step in steps %}
+    remove_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
+    remove_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}
+{% endfor %}
+{% endfor %}
+}

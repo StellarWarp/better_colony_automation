@@ -1,0 +1,23 @@
+{#
+  Phase 5b: 月度岗位调控评估事件
+  colony_automation_event.2000 — 清除旧标记 → 评估每个调控岗位
+#}
+namespace = colony_automation_event
+
+carrier_event = {
+    id = colony_automation_event.2000
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        always = yes
+    }
+
+    immediate = {
+        # 清除上一周期的岗位变化标记
+        bca_jr_clear_all_flags = yes
+
+        # 累加 + 更新冷却（含递减） + 评估
+        bca_jr_evaluate_all = yes
+    }
+}

@@ -9,6 +9,10 @@
 
 
 
+
+
+
+
 guiTypes = {
     containerWindowType = {
         name = "bca_global_setting_panel"
@@ -213,21 +217,28 @@ guiTypes = {
             alwaysTransparent = yes
         }
 
-                containerWindowType = {
-            name = "settings_scroll_container"
-            position = { x = 0 y = 60 }
-            size = { width = 860 height = 774 }
-            verticalScrollbar = "right_vertical_slider"
-            background = {
-                name = "background"
-                spriteType = "GFX_tiles_dark_area_cut_8"
+        
+dropDownBoxType = {
+            name = "tab_economy"
+            position = { x = 0 y = 40 }
+            expandButton = {
+                name = "tab_economy_btn"
+                position = { x = 0 y = 0 }
+                size = { width = 170 height = 28 }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION"
+                font = "malgun_goth_24"
             }
-
+            expandedWindow = {
+                name = "tab_economy_win"
+                position = { x = 0 y = 28 }
+                size = { width = 860 height = 766 }
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
         instantTextBoxType = {
             name = "economic_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION"
-            position = { x = 24 y = 12 }
+            position = { x = 24 y = 0 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -239,7 +250,7 @@ guiTypes = {
             name = "economic_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT"
-            position = { x = 24 y = 46 }
+            position = { x = 24 y = 30 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -250,7 +261,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_management_row"
-            position = { x = 24 y = 86 }
+            position = { x = 24 y = 64 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -314,7 +325,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_energy_row"
-            position = { x = 24 y = 124 }
+            position = { x = 24 y = 104 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -411,7 +422,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_minerals_row"
-            position = { x = 24 y = 162 }
+            position = { x = 24 y = 142 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -508,7 +519,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_food_row"
-            position = { x = 24 y = 200 }
+            position = { x = 24 y = 180 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -605,7 +616,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_alloys_row"
-            position = { x = 24 y = 238 }
+            position = { x = 24 y = 218 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -702,7 +713,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_consumer_goods_row"
-            position = { x = 24 y = 276 }
+            position = { x = 24 y = 256 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -799,7 +810,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_trade_row"
-            position = { x = 24 y = 314 }
+            position = { x = 24 y = 294 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -896,7 +907,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_unity_row"
-            position = { x = 24 y = 352 }
+            position = { x = 24 y = 332 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -993,7 +1004,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_research_row"
-            position = { x = 24 y = 390 }
+            position = { x = 24 y = 370 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1090,7 +1101,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_rare_crystals_row"
-            position = { x = 24 y = 428 }
+            position = { x = 24 y = 408 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1187,7 +1198,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_volatile_motes_row"
-            position = { x = 24 y = 466 }
+            position = { x = 24 y = 446 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1284,7 +1295,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "economic_exotic_gases_row"
-            position = { x = 24 y = 504 }
+            position = { x = 24 y = 484 }
             size = { width = 812 height = 32 }
 
             background = {
@@ -1379,11 +1390,30 @@ guiTypes = {
                 effect = "bca_global_settings_expect_output_exotic_gases_plus_125"
             }
         }
+
+            }
+        }
+dropDownBoxType = {
+            name = "tab_jobs"
+            position = { x = 0 y = 40 }
+            expandButton = {
+                name = "tab_jobs_btn"
+                position = { x = 172 y = 0 }
+                size = { width = 170 height = 28 }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION"
+                font = "malgun_goth_24"
+            }
+            expandedWindow = {
+                name = "tab_jobs_win"
+                position = { x = 0 y = 28 }
+                size = { width = 860 height = 766 }
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
         instantTextBoxType = {
-            name = "auto_demolition_section"
+            name = "jr_section"
             font = "malgun_goth_24"
-            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
-            position = { x = 24 y = 570 }
+            text = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION"
+            position = { x = 24 y = 0 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1392,10 +1422,164 @@ guiTypes = {
             alwaysTransparent = yes
         }
         instantTextBoxType = {
-            name = "auto_demolition_hint"
+            name = "jr_hint"
+            font = "cg_16b"
+            text = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_HINT"
+            position = { x = 24 y = 30 }
+            maxWidth = 812
+            maxHeight = 42
+            fixedSize = yes
+            format = left
+            vertical_alignment = top
+            text_color_code = "H"
+            alwaysTransparent = yes
+        }
+
+        instantTextBoxType = { name = "jr_global_label" position = { x = 24 y = 6 } font = "cg_16b" text = "BCA_JR_GLOBAL_ENABLE" maxWidth = 200 alwaysTransparent = yes }
+        effectButtonType = { name = "jr_global_toggle" position = { x = 234 y = 8 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_toggle_global" }
+
+                effectButtonType = { name = "jr_cat_btn_alloys" position = { x = 24 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_alloys" }
+        effectButtonType = { name = "jr_cat_btn_consumer_goods" position = { x = 126 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_consumer_goods" }
+        effectButtonType = { name = "jr_cat_btn_energy" position = { x = 228 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_energy" }
+        effectButtonType = { name = "jr_cat_btn_food" position = { x = 330 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_food" }
+        effectButtonType = { name = "jr_cat_btn_minerals" position = { x = 432 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_minerals" }
+        effectButtonType = { name = "jr_cat_btn_physics_research" position = { x = 534 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_physics_research" }
+        effectButtonType = { name = "jr_cat_btn_society_research" position = { x = 636 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_society_research" }
+        effectButtonType = { name = "jr_cat_btn_engineering_research" position = { x = 738 y = 64 } size = { x = 100 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_engineering_research" }
+
+
+        instantTextBoxType = { name = "jr_hdr_job"    position = { x = 34  y = 34 } font = "cg_16b" text = "BCA_JR_HEADER_JOB"      maxWidth = 170 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_wf"     position = { x = 204 y = 34 } font = "cg_16b" text = "BCA_JR_HEADER_WORKFORCE" maxWidth = 120 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_output" position = { x = 334 y = 34 } font = "cg_16b" text = "BCA_JR_HEADER_OUTPUT"    maxWidth = 160 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_status" position = { x = 504 y = 34 } font = "cg_16b" text = "BCA_JR_HEADER_STATUS"    maxWidth = 80  alwaysTransparent = yes }
+
+                effectButtonType = { name = "jr_slot_bg_s1" position = { x = 4 y = 4 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s1" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s1" position = { x = 10 y = 10 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s1" position = { x = 180 y = 10 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s1" position = { x = 310 y = 10 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s1" position = { x = 480 y = 10 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s1" position = { x = 570 y = 10 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s1" }
+        effectButtonType = { name = "jr_slot_bg_s2" position = { x = 4 y = 48 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s2" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s2" position = { x = 10 y = 54 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s2" position = { x = 180 y = 54 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s2" position = { x = 310 y = 54 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s2" position = { x = 480 y = 54 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s2" position = { x = 570 y = 54 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s2" }
+        effectButtonType = { name = "jr_slot_bg_s3" position = { x = 4 y = 92 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s3" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s3" position = { x = 10 y = 98 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s3" position = { x = 180 y = 98 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s3" position = { x = 310 y = 98 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s3" position = { x = 480 y = 98 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s3" position = { x = 570 y = 98 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s3" }
+        effectButtonType = { name = "jr_slot_bg_s4" position = { x = 4 y = 136 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s4" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s4" position = { x = 10 y = 142 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s4" position = { x = 180 y = 142 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s4" position = { x = 310 y = 142 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s4" position = { x = 480 y = 142 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s4" position = { x = 570 y = 142 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s4" }
+        effectButtonType = { name = "jr_slot_bg_s5" position = { x = 4 y = 180 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s5" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s5" position = { x = 10 y = 186 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s5" position = { x = 180 y = 186 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s5" position = { x = 310 y = 186 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s5" position = { x = 480 y = 186 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s5" position = { x = 570 y = 186 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s5" }
+        effectButtonType = { name = "jr_slot_bg_s6" position = { x = 4 y = 224 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s6" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s6" position = { x = 10 y = 230 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s6" position = { x = 180 y = 230 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s6" position = { x = 310 y = 230 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s6" position = { x = 480 y = 230 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s6" position = { x = 570 y = 230 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s6" }
+        effectButtonType = { name = "jr_slot_bg_s7" position = { x = 4 y = 268 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s7" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s7" position = { x = 10 y = 274 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s7" position = { x = 180 y = 274 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s7" position = { x = 310 y = 274 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s7" position = { x = 480 y = 274 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s7" position = { x = 570 y = 274 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s7" }
+        effectButtonType = { name = "jr_slot_bg_s8" position = { x = 4 y = 312 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s8" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s8" position = { x = 10 y = 318 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s8" position = { x = 180 y = 318 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s8" position = { x = 310 y = 318 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s8" position = { x = 480 y = 318 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s8" position = { x = 570 y = 318 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s8" }
+        effectButtonType = { name = "jr_slot_bg_s9" position = { x = 4 y = 356 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s9" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s9" position = { x = 10 y = 362 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s9" position = { x = 180 y = 362 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s9" position = { x = 310 y = 362 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s9" position = { x = 480 y = 362 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s9" position = { x = 570 y = 362 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s9" }
+        effectButtonType = { name = "jr_slot_bg_s10" position = { x = 4 y = 400 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s10" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s10" position = { x = 10 y = 406 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s10" position = { x = 180 y = 406 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s10" position = { x = 310 y = 406 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s10" position = { x = 480 y = 406 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s10" position = { x = 570 y = 406 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s10" }
+        effectButtonType = { name = "jr_slot_bg_s11" position = { x = 4 y = 444 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s11" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s11" position = { x = 10 y = 450 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s11" position = { x = 180 y = 450 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s11" position = { x = 310 y = 450 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s11" position = { x = 480 y = 450 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s11" position = { x = 570 y = 450 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s11" }
+        effectButtonType = { name = "jr_slot_bg_s12" position = { x = 4 y = 488 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s12" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s12" position = { x = 10 y = 494 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s12" position = { x = 180 y = 494 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s12" position = { x = 310 y = 494 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s12" position = { x = 480 y = 494 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s12" position = { x = 570 y = 494 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s12" }
+        effectButtonType = { name = "jr_slot_bg_s13" position = { x = 4 y = 532 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s13" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s13" position = { x = 10 y = 538 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s13" position = { x = 180 y = 538 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s13" position = { x = 310 y = 538 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s13" position = { x = 480 y = 538 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s13" position = { x = 570 y = 538 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s13" }
+        effectButtonType = { name = "jr_slot_bg_s14" position = { x = 4 y = 576 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s14" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s14" position = { x = 10 y = 582 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s14" position = { x = 180 y = 582 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s14" position = { x = 310 y = 582 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s14" position = { x = 480 y = 582 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s14" position = { x = 570 y = 582 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s14" }
+        effectButtonType = { name = "jr_slot_bg_s15" position = { x = 4 y = 620 } size = { x = 802 y = 42 } effect = "bca_jr_slot_visible_s15" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_s15" position = { x = 10 y = 626 } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_s15" position = { x = 180 y = 626 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_s15" position = { x = 310 y = 626 } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_s15" position = { x = 480 y = 626 } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_s15" position = { x = 570 y = 626 } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_s15" }
+
+
+            }
+        }
+dropDownBoxType = {
+            name = "tab_demolition"
+            position = { x = 0 y = 40 }
+            expandButton = {
+                name = "tab_demolition_btn"
+                position = { x = 344 y = 0 }
+                size = { width = 170 height = 28 }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
+                font = "malgun_goth_24"
+            }
+            expandedWindow = {
+                name = "tab_demolition_win"
+                position = { x = 0 y = 28 }
+                size = { width = 860 height = 766 }
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
+        instantTextBoxType = {
+            name = "demo_section"
+            font = "malgun_goth_24"
+            text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_SECTION"
+            position = { x = 24 y = 0 }
+            maxWidth = 812
+            maxHeight = 28
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+            alwaysTransparent = yes
+        }
+        instantTextBoxType = {
+            name = "demo_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTO_DEMOLITION_HINT"
-            position = { x = 24 y = 604 }
+            position = { x = 24 y = 30 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1406,7 +1590,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "apply_all_row"
-            position = { x = 24 y = 644 }
+            position = { x = 24 y = 104 }
             size = { width = 812 height = 36 }
 
             background = {
@@ -1450,7 +1634,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "buildings_row"
-            position = { x = 24 y = 688 }
+            position = { x = 24 y = 148 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1543,7 +1727,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "districts_row"
-            position = { x = 24 y = 740 }
+            position = { x = 24 y = 200 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1636,7 +1820,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "zones_row"
-            position = { x = 24 y = 792 }
+            position = { x = 24 y = 252 }
             size = { width = 812 height = 44 }
 
             background = {
@@ -1727,11 +1911,30 @@ guiTypes = {
                 effect = "bca_global_settings_auto_destruction_zones_disable"
             }
         }
+
+            }
+        }
+dropDownBoxType = {
+            name = "tab_behavior"
+            position = { x = 0 y = 40 }
+            expandButton = {
+                name = "tab_behavior_btn"
+                position = { x = 516 y = 0 }
+                size = { width = 170 height = 28 }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION"
+                font = "malgun_goth_24"
+            }
+            expandedWindow = {
+                name = "tab_behavior_win"
+                position = { x = 0 y = 28 }
+                size = { width = 860 height = 766 }
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
         instantTextBoxType = {
             name = "behavior_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION"
-            position = { x = 24 y = 864 }
+            position = { x = 24 y = 0 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1743,7 +1946,7 @@ guiTypes = {
             name = "behavior_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT"
-            position = { x = 24 y = 898 }
+            position = { x = 24 y = 30 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1754,7 +1957,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "rare_buildings_row"
-            position = { x = 24 y = 938 }
+            position = { x = 24 y = 104 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1818,7 +2021,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "pop_assembly_row"
-            position = { x = 24 y = 990 }
+            position = { x = 24 y = 156 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1902,7 +2105,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "deurbanization_row"
-            position = { x = 24 y = 1042 }
+            position = { x = 24 y = 208 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -1964,11 +2167,30 @@ guiTypes = {
                 effect = "bca_global_settings_deurbanization_on_unselected"
             }
         }
+
+            }
+        }
+dropDownBoxType = {
+            name = "tab_reserve"
+            position = { x = 0 y = 40 }
+            expandButton = {
+                name = "tab_reserve_btn"
+                position = { x = 688 y = 0 }
+                size = { width = 170 height = 28 }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "BCA_GLOBAL_SETTINGS_RESERVES_SECTION"
+                font = "malgun_goth_24"
+            }
+            expandedWindow = {
+                name = "tab_reserve_win"
+                position = { x = 0 y = 28 }
+                size = { width = 860 height = 766 }
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
         instantTextBoxType = {
             name = "reserve_section"
             font = "malgun_goth_24"
             text = "BCA_GLOBAL_SETTINGS_RESERVES_SECTION"
-            position = { x = 24 y = 1122 }
+            position = { x = 24 y = 0 }
             maxWidth = 812
             maxHeight = 28
             fixedSize = yes
@@ -1980,7 +2202,7 @@ guiTypes = {
             name = "reserve_hint"
             font = "cg_16b"
             text = "BCA_GLOBAL_SETTINGS_RESERVES_HINT"
-            position = { x = 24 y = 1156 }
+            position = { x = 24 y = 30 }
             maxWidth = 812
             maxHeight = 42
             fixedSize = yes
@@ -1991,7 +2213,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "reserve_minerals_row"
-            position = { x = 24 y = 1196 }
+            position = { x = 24 y = 104 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2078,7 +2300,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "reserve_alloys_row"
-            position = { x = 24 y = 1248 }
+            position = { x = 24 y = 156 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2165,7 +2387,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "reserve_influence_row"
-            position = { x = 24 y = 1300 }
+            position = { x = 24 y = 208 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2252,7 +2474,7 @@ guiTypes = {
         }
                 containerWindowType = {
             name = "reserve_job_row"
-            position = { x = 24 y = 1352 }
+            position = { x = 24 y = 260 }
             size = { width = 812 height = 40 }
 
             background = {
@@ -2337,6 +2559,8 @@ guiTypes = {
                 effect = "bca_global_settings_reserve_job_plus_100"
             }
         }
+
+            }
         }
 
     }

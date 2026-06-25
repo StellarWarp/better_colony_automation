@@ -315,11 +315,6 @@ bca_can_build_zone_resort_zoo = {
             is_wilderness_empire = no
         }
         has_modifier = resort_colony
-        NOT = {
-            has_zone = {
-                zone = zone_resort_zoo
-            }
-        }
     }
     AND = {
         has_modifier = resort_colony
@@ -330,11 +325,6 @@ bca_can_build_zone_resort_grand_museum = {
         exists = owner
         owner = {
             is_wilderness_empire = no
-        }
-        NOT = {
-            has_zone = {
-                zone = zone_resort_grand_museum
-            }
         }
     }
     AND = {
@@ -347,11 +337,6 @@ bca_can_build_zone_resort_hunting_ground = {
         owner = {
             is_wilderness_empire = no
             is_xenophile = no
-            NOT = {
-                has_zone = {
-                    zone = zone_resort_hunting_ground
-                }
-            }
         }
     }
     AND = {
@@ -364,11 +349,6 @@ bca_can_build_zone_resort_spiritual_retreat = {
         owner = {
             is_wilderness_empire = no
             is_spiritualist = yes
-            NOT = {
-                has_zone = {
-                    zone = zone_resort_spiritual_retreat
-                }
-            }
         }
     }
     AND = {
@@ -380,11 +360,6 @@ bca_can_build_zone_resort_restoration_enclave = {
         exists = owner
         owner = {
             is_wilderness_empire = no
-            NOT = {
-                has_zone = {
-                    zone = zone_resort_restoration_enclave
-                }
-            }
         }
     }
     AND = {
@@ -399,11 +374,6 @@ bca_can_build_zone_resort_proving_grounds = {
             OR = {
                 has_valid_civic = civic_warrior_culture
                 is_militarist = yes
-            }
-            NOT = {
-                has_zone = {
-                    zone = zone_resort_proving_grounds
-                }
             }
         }
     }

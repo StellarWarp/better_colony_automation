@@ -1,0 +1,123 @@
+{#
+  Phase 7: 劳动力累加 + 冷却（合并版）
+  递减 → 累加（跳过冷却中的岗位）→ 满/空时设冷却
+#}
+{% set regulated = job_regulation_config.regulated_jobs %}
+
+{# ---- 清零所有累加器 ---- #}
+bca_jr_clear_accumulators = {
+    clear_variable = bca_jr_v_size
+    clear_variable = bca_jr_v_eff
+{% for entry in regulated %}
+    clear_variable = bca_jr_acc_raw_{{ entry.job }}
+    clear_variable = bca_jr_acc_eff_{{ entry.job }}
+{% endfor %}
+}
+
+{# ---- 递减冷却 + 累加 + 满/空设冷却 ---- #}
+bca_jr_accumulate_all = {
+
+    # ==== Phase 1: 递减所有冷却 ====
+{% for entry in regulated if entry.pop_category %}
+    if = {
+        limit = {
+            check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value > 0 }
+        }
+        subtract_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value = 1 }
+        if = {
+            limit = {
+                check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+            }
+            clear_variable = bca_jr_cooldown_full_{{ entry.job }}
+        }
+    }
+    if = {
+        limit = {
+            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value > 0 }
+        }
+        subtract_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 1 }
+        if = {
+            limit = {
+                check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
+            }
+            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
+        }
+    }
+{% endfor %}
+
+    # ==== Phase 2: 单次遍历累加（冷却中跳过） ====
+    every_owned_pop_job = {
+{% for entry in regulated if entry.pop_category %}
+        if = {
+            limit = {
+                has_job_type = {{ entry.job }}
+                check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+            }
+            every_job_pop_group = {
+                limit = { pop_group_size > 1 }
+
+                export_trigger_value_to_variable = {
+                    trigger = pop_group_size
+                    variable = bca_jr_v_size
+                }
+
+                set_variable = {
+                    which = bca_jr_v_eff
+                    value = bca_jr_v_size
+                }
+                multiply_variable = {
+                    which = bca_jr_v_eff
+                    value = value:bca_jr_f1_{{ entry.job }}
+                }
+                multiply_variable = {
+                    which = bca_jr_v_eff
+                    value = value:bca_jr_f2_{{ entry.job }}
+                }
+
+                colony = {
+                    add_variable = {
+                        which = bca_jr_acc_raw_{{ entry.job }}
+                        value = prev.bca_jr_v_size
+                    }
+                    add_variable = {
+                        which = bca_jr_acc_eff_{{ entry.job }}
+                        value = prev.bca_jr_v_eff
+                    }
+                    # 累加后判断满/空，设冷却（只在计算实际发生时执行）
+                    set_variable = {
+                        which = bca_jr_tmp_slots
+                        value = modifier:job_{{ entry.job }}_add
+                    }
+                    if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = bca_jr_acc_raw_{{ entry.job }}
+                                value >= bca_jr_tmp_slots
+                            }
+                        }
+                        set_variable = {
+                            which = bca_jr_cooldown_full_{{ entry.job }}
+                            value = 6
+                        }
+                    }
+                }
+            }
+        }
+{% endfor %}
+    }
+
+    # 空岗冷却：岗位不存在时无累加，在此处设冷却
+{% for entry in regulated if entry.pop_category %}
+    if = {
+        limit = {
+            check_variable_arithmetic = {
+                which = bca_jr_acc_raw_{{ entry.job }}
+                value <= 0
+            }
+            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
+        }
+        set_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 6 }
+    }
+{% endfor %}
+    clear_variable = bca_jr_tmp_slots
+}

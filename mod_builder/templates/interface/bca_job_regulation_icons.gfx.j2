@@ -1,0 +1,10 @@
+{# Phase 8: 岗位调控面板图标 spriteType #}
+{% set regulated = job_regulation_config.regulated_jobs %}
+spriteTypes = {
+{% for entry in regulated if entry.icon %}
+    spriteType = {
+        name = "GFX_text_jr_icon_{{ entry.icon }}"
+        texturefile = "gfx/interface/icons/jobs/{{ entry.icon }}.dds"
+    }
+{% endfor %}
+}

@@ -1,0 +1,40 @@
+{# 岗位调控面板 GUI 组件宏 #}
+
+{% macro global_toggle(x, y) -%}
+        instantTextBoxType = { name = "jr_global_label" position = { x = {{ x }} y = {{ y + 2 }} } font = "cg_16b" text = "BCA_JR_GLOBAL_ENABLE" maxWidth = 200 alwaysTransparent = yes }
+        effectButtonType = { name = "jr_global_toggle" position = { x = {{ x + 210 }} y = {{ y + 4 }} } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_toggle_global" }
+{%- endmacro %}
+
+{% macro category_button(cat, x, y, w) -%}
+        effectButtonType = { name = "jr_cat_btn_{{ cat }}" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_{{ cat }}" }
+{%- endmacro %}
+
+{% macro category_bar(categories, x, y, btn_w, btn_gap) -%}
+{% for cat in categories %}
+        {{ category_button(cat, x + loop.index0 * (btn_w + btn_gap), y, btn_w) }}
+{% endfor %}
+{%- endmacro %}
+
+{% macro table_header(x, y) -%}
+        instantTextBoxType = { name = "jr_hdr_job"    position = { x = {{ x + 10 }}  y = {{ y }} } font = "cg_16b" text = "BCA_JR_HEADER_JOB"      maxWidth = 170 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_wf"     position = { x = {{ x + 180 }} y = {{ y }} } font = "cg_16b" text = "BCA_JR_HEADER_WORKFORCE" maxWidth = 120 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_output" position = { x = {{ x + 310 }} y = {{ y }} } font = "cg_16b" text = "BCA_JR_HEADER_OUTPUT"    maxWidth = 160 alwaysTransparent = yes }
+        instantTextBoxType = { name = "jr_hdr_status" position = { x = {{ x + 480 }} y = {{ y }} } font = "cg_16b" text = "BCA_JR_HEADER_STATUS"    maxWidth = 80  alwaysTransparent = yes }
+{%- endmacro %}
+
+{% macro slot_row(s_name, x, y, row_w, row_h) -%}
+        effectButtonType = { name = "jr_slot_bg_{{ s_name }}" position = { x = {{ x }} y = {{ y }} } size = { x = {{ row_w }} y = {{ row_h - 2 }} } effect = "bca_jr_slot_visible_{{ s_name }}" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_line_{{ s_name }}" position = { x = {{ x + 6 }} y = {{ y + 6 }} } size = { x = 164 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_LINE" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_wf_{{ s_name }}" position = { x = {{ x + 176 }} y = {{ y + 6 }} } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_WF" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_output_{{ s_name }}" position = { x = {{ x + 306 }} y = {{ y + 6 }} } size = { x = 160 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_OUTPUT" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_status_{{ s_name }}" position = { x = {{ x + 476 }} y = {{ y + 6 }} } size = { x = 80 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_STATUS" alwaysTransparent = yes }
+        effectButtonType = { name = "jr_slot_toggle_{{ s_name }}" position = { x = {{ x + 566 }} y = {{ y + 6 }} } size = { x = 52 y = 30 } font = "cg_16b" quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_{{ s_name }}" }
+{%- endmacro %}
+
+{% macro slot_list(slots, x, start_y, row_h, row_w) -%}
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+{% set s_y = start_y + s * row_h %}
+        {{ slot_row(s_name, x, s_y, row_w, row_h) }}
+{% endfor %}
+{%- endmacro %}

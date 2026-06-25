@@ -1,0 +1,105 @@
+{#
+  Phase 7: 岗位调控评估（单次遍历 + 配额版）
+  1. 清零累加器 → 一次 every_owned_pop_job 遍历 → 累加 raw/eff 到各 job
+  2. 按 needs_category 分组 INC，配额消费，至少 50 永执行
+  3. DEC 每岗独立
+#}
+{% set regulated = job_regulation_config.regulated_jobs %}
+
+{# ---- INC 分组 ---- #}
+{% set inc_groups = {} %}
+{% for entry in regulated %}
+{% for nc in entry.needs_categories %}
+{% set _ = inc_groups.setdefault(nc, []).append(entry) %}
+{% endfor %}
+{% endfor %}
+
+bca_jr_evaluate_all = {
+
+    # ==== 清零 + 累加(含冷却递减/跳过/重设) ====
+    bca_jr_clear_accumulators = yes
+    bca_jr_accumulate_all = yes
+
+    # ==== 初始配额 ====
+{% for nc in inc_groups.keys() | sort %}
+    set_variable = { which = bca_jr_quota_{{ nc }} value = 3200 }
+{% endfor %}
+
+    # ==== INC: 配额 + 需求 ====
+{% for nc, jobs in inc_groups.items() | sort %}
+    # ── needs_{{ nc }} ──
+    if = {
+        limit = {
+            bca_empire_needs_{{ nc }} = yes
+            check_variable_arithmetic = { which = bca_jr_quota_{{ nc }} value > 0 }
+        }
+{% for entry in jobs %}
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = bca_jr_quota_{{ nc }} value > 0 }
+                bca_jr_should_inc_{{ entry.job }}_for_{{ nc }} = yes
+                check_variable_arithmetic = { which = bca_jr_acc_raw_{{ entry.job }} value >= 1 }
+                check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+            }
+            # target = min(acc_raw / 4, quota), 至少 50
+            set_variable = { which = bca_jr_target value = bca_jr_acc_raw_{{ entry.job }} }
+            divide_variable = { which = bca_jr_target value = 4 }
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = bca_jr_target value > bca_jr_quota_{{ nc }} }
+                }
+                set_variable = { which = bca_jr_target value = bca_jr_quota_{{ nc }} }
+            }
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = bca_jr_target value < 50 }
+                }
+                set_variable = { which = bca_jr_target value = 50 }
+            }
+            # 消费配额
+            subtract_variable = {
+                which = bca_jr_quota_{{ nc }}
+                value = bca_jr_target
+            }
+            # 清除对端冷却（增加岗位说明不再为空）
+            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
+            bca_jr_apply_inc_gears = { JOB = {{ entry.job }} TARGET = bca_jr_target }
+        }
+{% endfor %}
+    }
+{% endfor %}
+
+    # ==== DEC: 每岗独立 ====
+{% for entry in regulated if entry.needs_categories and entry.pop_category %}
+    # ── dec {{ entry.job }} ──
+    else_if = {
+        limit = {
+            bca_jr_should_dec_{{ entry.job }} = yes
+            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = bca_jr_acc_raw_{{ entry.job }} value >= 1 }
+            }
+            set_variable = { which = bca_jr_target value = bca_jr_acc_raw_{{ entry.job }} }
+            divide_variable = { which = bca_jr_target value = 4 }
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = bca_jr_target value < 50 }
+                }
+                set_variable = { which = bca_jr_target value = 50 }
+            }
+            # 清除对端冷却（减少岗位说明不再满）
+            clear_variable = bca_jr_cooldown_full_{{ entry.job }}
+            bca_jr_apply_dec_gears = { JOB = {{ entry.job }} TARGET = bca_jr_target }
+        }
+    }
+{% endfor %}
+
+    # ==== 清理临时变量 ====
+    clear_variable = bca_jr_target
+{% for nc in inc_groups.keys() | sort %}
+    clear_variable = bca_jr_quota_{{ nc }}
+{% endfor %}
+
+}

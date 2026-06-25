@@ -6,6 +6,7 @@ import sys
 import yaml
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+from game_paths import GAME_ROOT
 from synthetipy.ast_loadder import ASTLoader
 from synthetipy.ast_nodes import (
     BlockNode,
@@ -27,7 +28,6 @@ CONFIG = {
     },
 }
 
-GAME_ROOT = Path(r"D:\SteamLibrary\steamapps\common\Stellaris")
 GENERATED_CONFIG_DIR = Path(__file__).resolve().parents[1] / "templates" / "generated_configs"
 
 

@@ -1,5 +1,10 @@
 import os
+import sys
+from pathlib import Path
 from PIL import Image
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from game_paths import GAME_ROOT
 
 def resize_dds_batch(input_folder, output_folder, length = 50):
     if not os.path.exists(output_folder):
@@ -14,7 +19,7 @@ def resize_dds_batch(input_folder, output_folder, length = 50):
                 print(f"已处理: {filename} -> {new_size}")
 
 
-INPUT_DIR = r"C:\Program Files (x86)\Steam\steamapps\common\Stellaris\gfx\interface\icons\districts\district_specialization_icons"
+INPUT_DIR = str(GAME_ROOT / "gfx" / "interface" / "icons" / "districts" / "district_specialization_icons")
 OUTPUT_DIR_50 = r"../gfx/interface/bca_districts/large"
 OUTPUT_DIR_25 = r"../gfx/interface/bca_districts/small"
 resize_dds_batch(INPUT_DIR, OUTPUT_DIR_50, length=50)

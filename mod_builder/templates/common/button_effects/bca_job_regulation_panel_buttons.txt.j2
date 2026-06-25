@@ -1,0 +1,75 @@
+{# Phase 8: 岗位调控面板按钮效果（from 防御版） #}
+{% set regulated = job_regulation_config.regulated_jobs %}
+{% set slots = job_regulation_config.display_slots | default(15) %}
+{% set categories = ['alloys','consumer_goods','energy','food','minerals','physics_research','society_research','engineering_research'] %}
+
+{# ---- 类别选择（触发数据刷新 + 填槽）---- #}
+{% for cat in categories %}
+bca_jr_select_category_{{ cat }} = {
+    potential = { exists = from }
+    allow = { always = yes }
+    effect = {
+        from = {
+            set_variable = { which = bca_jr_gui_category value = {{ loop.index0 }} }
+            bca_jr_refresh_slot_data = yes
+        }
+    }
+}
+{% endfor %}
+
+{# ---- 槽位可见性 ---- #}
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+bca_jr_slot_visible_{{ s_name }} = {
+    potential = {
+        exists = from
+        from = { check_variable_arithmetic = { which = bca_jr_display_count value >= {{ s + 1 }} } }
+    }
+    allow = { always = yes }
+}
+{% endfor %}
+
+{# ---- 槽位开关按钮 ---- #}
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+bca_jr_slot_toggle_{{ s_name }} = {
+    potential = {
+        exists = from
+        from = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped }
+    }
+    allow = { always = yes }
+    effect = {
+        from = {
+{% for entry in regulated %}
+            if = {
+                limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
+                if = {
+                    limit = { has_country_flag = bca_jr_disable_{{ entry.job }} }
+                    remove_country_flag = bca_jr_disable_{{ entry.job }}
+                }
+                else = {
+                    set_country_flag = bca_jr_disable_{{ entry.job }}
+                }
+            }
+{% endfor %}
+        }
+    }
+}
+{% endfor %}
+
+{# ---- 全局开关 ---- #}
+bca_jr_toggle_global = {
+    potential = { exists = from }
+    allow = { always = yes }
+    effect = {
+        from = {
+            if = {
+                limit = { has_country_flag = bca_jr_enabled }
+                remove_country_flag = bca_jr_enabled
+            }
+            else = {
+                set_country_flag = bca_jr_enabled
+            }
+        }
+    }
+}

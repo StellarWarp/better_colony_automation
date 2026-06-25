@@ -1,0 +1,24 @@
+{# Phase 8: 岗位调控面板本地化（all: 自动分发） #}
+{% set slots = job_regulation_config.display_slots | default(15) %}
+{% set regulated = job_regulation_config.regulated_jobs %}
+all:
+
+{% for entry in regulated if entry.icon %}
+ BCA_JR_LINE_{{ entry.job }}:0 "£jr_icon_{{ entry.icon }}£ {{ entry.job }}"
+{% endfor %}
+
+{% for entry in regulated %}
+ BCA_JR_WF_{{ entry.job }}:0 "[From.bca_jr_gui_wf_{{ entry.job }}] / [From.bca_jr_gui_slots_{{ entry.job }}]"
+{% endfor %}
+
+{% for entry in regulated %}
+ BCA_JR_OUTPUT_{{ entry.job }}:0 "[From.bca_jr_gui_output_{{ entry.job }}]"
+{% endfor %}
+
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+ BCA_JR_SLOT_{{ s_name }}_LINE:0 "[From.BCA_JR_SLOT_{{ s_name }}_LINE_script]"
+ BCA_JR_SLOT_{{ s_name }}_WF:0 "[From.BCA_JR_SLOT_{{ s_name }}_WF_script]"
+ BCA_JR_SLOT_{{ s_name }}_OUTPUT:0 "[From.BCA_JR_SLOT_{{ s_name }}_OUTPUT_script]"
+ BCA_JR_SLOT_{{ s_name }}_STATUS:0 "[From.BCA_JR_SLOT_{{ s_name }}_STATUS_script]"
+{% endfor %}

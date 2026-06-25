@@ -1,0 +1,64 @@
+{#
+  Phase 4: 岗位产出 script value 模板
+  为每个调控岗位 × 每种经济资源生成:
+    _base  — 基础产出（来自 produces 解析）
+    _mult  — 乘数链
+    _add   — 加数链
+    _per_worker — 每劳动力产出 = (base + add) * mult
+#}
+{% set regulated = job_regulation_config.regulated_jobs %}
+{% set economic_set = ['energy','minerals','food','alloys','consumer_goods','physics_research','society_research','engineering_research'] %}
+
+{% for entry in regulated %}
+{% for resource in entry.economic_resources if resource in economic_set %}
+# ── {{ entry.job }} → {{ resource }} ──
+
+# -- 基础产出 --
+bca_job_{{ entry.job }}_{{ resource }}_base = {
+{% set base_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}
+{% for prod in base_produces %}
+{% if prod.trigger %}
+    modifier = {
+        add = {{ prod.amount }}
+        {{ prod.trigger | replace('\n', '\n        ') }}
+    }
+{% else %}
+    base = {{ prod.amount }}
+{% endif %}
+{% else %}
+    base = 0
+{% endfor %}
+}
+
+# -- 乘数链 --
+bca_job_{{ entry.job }}_{{ resource }}_mult = {
+    base = 1
+    add = modifier:planet_jobs_produces_mult
+    add = modifier:planet_jobs_productive_produces_mult
+    add = modifier:planet_jobs_complex_and_simple_drone_produces_mult
+{% if entry.pop_category %}
+    add = modifier:planet_jobs_{{ entry.pop_category }}_produces_mult
+{% endif %}
+    add = modifier:planet_jobs_{{ resource }}_produces_mult
+{% if entry.economic_category %}
+    add = modifier:{{ entry.economic_category }}_produces_mult
+    add = modifier:{{ entry.economic_category }}_{{ resource }}_produces_mult
+{% endif %}
+}
+
+# -- 加数链 --
+bca_job_{{ entry.job }}_{{ resource }}_add = {
+{% if entry.economic_category %}
+    add = modifier:{{ entry.economic_category }}_{{ resource }}_produces_add
+{% endif %}
+}
+
+# -- 每劳动力产出 --
+bca_job_{{ entry.job }}_{{ resource }}_per_worker = {
+    add = value:bca_job_{{ entry.job }}_{{ resource }}_base
+    add = value:bca_job_{{ entry.job }}_{{ resource }}_add
+    mult = value:bca_job_{{ entry.job }}_{{ resource }}_mult
+}
+
+{% endfor %}
+{% endfor %}

@@ -104,6 +104,14 @@ def build():
                 output_path = os.path.join(output_dir, output_name)
                 print(f"渲染 Events: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
                 render_to_file(tpl_path, output_path, config_data)
+    LANG_DIRS = ['english', 'simp_chinese', 'japanese', 'russian']
+    LANG_PREFIXES = {
+        'english': 'l_english',
+        'simp_chinese': 'l_simp_chinese',
+        'japanese': 'l_japanese',
+        'russian': 'l_russian',
+    }
+
     for root, _, files in os.walk(TPL_LOCALISATION_DIR):
         for filename in files:
             if filename.endswith('.yml.j2'):
@@ -111,11 +119,31 @@ def build():
                 rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
-                output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
-                os.makedirs(output_dir, exist_ok=True)
-                output_path = os.path.join(output_dir, output_name)
-                print(f"渲染 Localisation: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
-                render_to_file(tpl_path, output_path, config_data, encoding='utf-8-sig')
+                rel_dir = os.path.dirname(rel_path)
+
+                # 判断是否是 all: 模板（直接在 localisation/ 根下，无语言子目录）
+                is_all_template = (os.path.normpath(rel_dir) == 'localisation')
+
+                if is_all_template:
+                    # all: → 渲染一次，替换语言头 + 文件名 _all → _<lang>，输出到各语言目录
+                    template = env.get_template(tpl_path)
+                    content = template.render(**config_data)
+                    base_name = output_name.replace('_all', '')
+                    for lang_key, lang_prefix in LANG_PREFIXES.items():
+                        lang_content = content.replace('all:', f'{lang_prefix}:')
+                        lang_output_name = base_name.replace('.yml', f'_{lang_key}.yml')
+                        output_dir = os.path.join(ROOT_DIR, 'localisation', lang_key)
+                        os.makedirs(output_dir, exist_ok=True)
+                        output_path = os.path.join(output_dir, lang_output_name)
+                        with open(output_path, 'w', encoding='utf-8-sig') as f:
+                            f.write(prepend_generated_warning(lang_content, tpl_path))
+                    print(f"渲染 Localisation(all): {rel_path} -> localisation/<lang>/{base_name}_{{lang}}.yml")
+                else:
+                    output_dir = os.path.join(ROOT_DIR, rel_dir)
+                    os.makedirs(output_dir, exist_ok=True)
+                    output_path = os.path.join(output_dir, output_name)
+                    print(f"渲染 Localisation: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
+                    render_to_file(tpl_path, output_path, config_data, encoding='utf-8-sig')
 
     print("生成完成！")
 

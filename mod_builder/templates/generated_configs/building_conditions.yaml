@@ -2554,8 +2554,9 @@ bca_buildings:
   allow: "exists = owner\nNOR = {\n    has_modifier = slave_colony\n    has_modifier\
     \ = penal_colony\n}\nowner = {\n    is_regular_empire = yes\n    is_individual_machine\
     \ = no\n}\nOR = {\n    has_carrier_flag = ignore_ai_building_limitations\n   \
-    \ owner = {\n        is_ai = no\n    }\n    free_amenities < @amenity_ai_limit\n\
-    }\nNOT = {\n    has_building = building_low_tech_capital\n}"
+    \ free_amenities < @amenity_ai_limit\n    OR = {\n        buildings_stop_pop =\
+    \ no\n        owner = {\n            is_ai = no\n        }\n    }\n}\nNOT = {\n\
+    \    has_building = building_low_tech_capital\n}"
   abort_trigger: ''
   prerequisites:
     kind: group

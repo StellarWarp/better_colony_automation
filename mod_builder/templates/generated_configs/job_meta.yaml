@@ -1,0 +1,4378 @@
+job_meta:
+  civilian:
+    pop_category: civilian
+    economic_category: planet_civilians
+    icon: null
+    produces:
+    - resource: trade
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 1.0
+      trigger: "exists = owner\n            has_modifier = resort_colony"
+    is_economic_producer: false
+    economic_resources: []
+  servant:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  slave_overseer:
+    pop_category: worker
+    economic_category: planet_enforcers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  slave_toiler:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  organic_battery:
+    pop_category: worker
+    economic_category: planet_organic_batteries
+    icon: null
+    produces:
+    - resource: energy
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  livestock:
+    pop_category: worker
+    economic_category: planet_livestock_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  livestock_infernal:
+    pop_category: worker
+    economic_category: planet_livestock_metallurgists
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 0.75
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  livestock_zoo_animal:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_farmers
+    icon: job_farmer
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  livestock_zoo_beast:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_farmers
+    icon: job_farmer
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  bio_trophy:
+    pop_category: bio_trophy
+    economic_category: planet_bio_trophies
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  purge:
+    pop_category: purge
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  crisis_purge:
+    pop_category: purge
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  assimilation:
+    pop_category: assimilation
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  criminal:
+    pop_category: criminal
+    economic_category: planet_criminals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  deviant_drone:
+    pop_category: deviant_drone
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  corrupt_drone:
+    pop_category: corrupt_drone
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fotd_protectors:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  organic_exhibit:
+    pop_category: bio_trophy
+    economic_category: planet_bio_trophies
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  livestock_lithoid:
+    pop_category: worker
+    economic_category: planet_livestock_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  livestock_zoo_animal_lithoid:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_miners
+    icon: job_miner
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  livestock_zoo_beast_lithoid:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_miners
+    icon: job_miner
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  purge_lithoid:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  purge_robot:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  purge_processing:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: food
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: food
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_facility\n\
+        }"
+    - resource: food
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_center\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - society_research
+  purge_processing_lithoid:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: minerals
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: minerals
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+        }"
+    - resource: minerals
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_hub\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - society_research
+  purge_processing_infernal:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 2.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 2.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: alloys
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_foundry_1\n}"
+    - resource: alloys
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_foundry_2\n}"
+    - resource: alloys
+      amount: 3.0
+      trigger: "colony = {\n    has_active_building = building_foundry_3\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - society_research
+  purge_processing_robot:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 3.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: alloys
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_foundry_2\n}"
+    - resource: alloys
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_foundry_3\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - society_research
+  purge_labor_camps:
+    pop_category: purge
+    economic_category: pop_category_purge
+    icon: null
+    produces:
+    - resource: food
+      amount: 3.0
+      trigger: null
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: food
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_facility\n\
+        }"
+    - resource: food
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_center\n\
+        }"
+    - resource: minerals
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+        }"
+    - resource: minerals
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_hub\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - minerals
+    - society_research
+  purge_matrix:
+    pop_category: purge
+    economic_category: pop_category_purge
+    icon: null
+    produces:
+    - resource: energy
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    - resource: energy
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_energy_grid\n}"
+    - resource: energy
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_energy_nexus\n}"
+    is_economic_producer: true
+    economic_resources:
+    - energy
+    - society_research
+  purge_sacrifice:
+    pop_category: purge
+    economic_category: pop_category_purge
+    icon: null
+    produces:
+    - resource: unity
+      amount: 2.5
+      trigger: null
+    - resource: sr_zro
+      amount: 2.0
+      trigger: "owner = {\n    OR = {\n        has_patron_relation = {\n         \
+        \   patron = the_eater_of_worlds\n        }\n    }\n    AND = {\n        has_origin\
+        \ = origin_nomadic_purger\n        overlord = {\n            has_country_flag\
+        \ = devour_war_active\n        }\n    }\n}"
+    is_economic_producer: false
+    economic_resources: []
+  bio_trophy_unemployment:
+    pop_category: bio_trophy_unemployment
+    economic_category: unemployment_resources
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  slave_unemployment:
+    pop_category: slave_unemployment
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  politician:
+    pop_category: ruler
+    economic_category: planet_politicians
+    icon: null
+    produces:
+    - resource: unity
+      amount: 5.0
+      trigger: null
+    - resource: trade
+      amount: 4.0
+      trigger: politician_is_executive = yes
+    - resource: unity
+      amount: -1.5
+      trigger: "colony = {\n    OR = {\n        politician_is_merchant = yes\n   \
+        \     politician_is_augmentation_merchant = yes\n        politician_is_ashbroker\
+        \ = yes\n    }\n}"
+    - resource: trade
+      amount: 6.0
+      trigger: "colony = {\n    OR = {\n        politician_is_merchant = yes\n   \
+        \     politician_is_augmentation_merchant = yes\n        politician_is_ashbroker\
+        \ = yes\n    }\n}"
+    - resource: unity
+      amount: -1.0
+      trigger: "colony = {\n    politician_is_science_director = yes\n}"
+    - resource: physics_research
+      amount: 1.0
+      trigger: "colony = {\n    politician_is_science_director = yes\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "colony = {\n    politician_is_science_director = yes\n}"
+    - resource: engineering_research
+      amount: 1.0
+      trigger: "colony = {\n    politician_is_science_director = yes\n}"
+    - resource: unity
+      amount: 1.0
+      trigger: "colony = {\n    OR = {\n        politician_is_high_priest = yes\n\
+        \        politician_is_fire_oracle = yes\n    }\n}"
+    - resource: unity
+      amount: 2.0
+      trigger: "colony = {\n    politician_is_sacred_path_elite = yes\n}"
+    - resource: engineering_research
+      amount: 2.0
+      trigger: "colony = {\n    politician_is_technophant = yes\n}"
+    - resource: unity
+      amount: 1.5
+      trigger: "colony = {\n    politician_is_blazewright = yes\n    politician_is_radiant_priest\
+        \ = yes\n}"
+    - resource: unity
+      amount: 2.0
+      trigger: "colony = {\n    politician_is_blazing_harbinger = yes\n}"
+    - resource: unity
+      amount: 1.0
+      trigger: "colony = {\n    politician_is_superstitious_beliefs_high_priest =\
+        \ yes\n}"
+    - resource: trade
+      amount: 6.0
+      trigger: "colony = {\n    politician_is_superstitious_beliefs_high_priest_corporate\
+        \ = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - society_research
+    - engineering_research
+  knight_commander:
+    pop_category: ruler
+    economic_category: planet_knights
+    icon: null
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: exists = owner
+    - resource: physics_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: engineering_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: society_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: advanced_logic
+      amount: 1.0
+      trigger: "owner = {\n    has_country_flag = cosmogenesis_knights\n}"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  dystopian_enforcer:
+    pop_category: ruler
+    economic_category: planet_enforcers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  dystopian_telepath:
+    pop_category: ruler
+    economic_category: planet_telepaths
+    icon: null
+    produces:
+    - resource: unity
+      amount: 4.5
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: "exists = owner\n            owner = {\n    has_active_tradition =\
+        \ tr_domination_judgment_corps\n}"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: society_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    - resource: society_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  head_researcher:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  high_priest:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  noble:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  merchant:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  executive:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  warden:
+    pop_category: ruler
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  physicist:
+    pop_category: specialist
+    economic_category: planet_physicists
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 3.0
+      trigger: null
+    - resource: physics_research
+      amount: 2.0
+      trigger: "colony = {\n    physicist_is_astrometeorologist_trigger = yes\n  \
+        \  solar_system = {\n        OR = {\n            has_environmental_effects\
+        \ = yes\n            has_star_flag = storm_system\n        }\n    }\n}"
+    - resource: physics_research
+      amount: 1.0
+      trigger: physicist_is_space_time_researcher_trigger = yes
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: physicist_is_space_time_researcher_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+  biologist:
+    pop_category: specialist
+    economic_category: planet_biologists
+    icon: job_researcher
+    produces:
+    - resource: society_research
+      amount: 3.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: biologist_is_zookeeper_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  engineer:
+    pop_category: specialist
+    economic_category: planet_engineers
+    icon: job_researcher
+    produces:
+    - resource: engineering_research
+      amount: 3.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: engineer_is_nanotech_researcher_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  xeno_zoo_keeper:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  bureaucrat:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: bureaucrat_is_manager = yes
+    - resource: trade
+      amount: 1.0
+      trigger: bureaucrat_is_steward = yes
+    - resource: unity
+      amount: -1.0
+      trigger: "OR = {\n    bureaucrat_is_death_priest = yes\n    bureaucrat_is_cremator\
+        \ = yes\n}"
+    - resource: society_research
+      amount: 0.5
+      trigger: "OR = {\n    bureaucrat_is_death_priest = yes\n    bureaucrat_is_cremator\
+        \ = yes\n}"
+    - resource: unity
+      amount: -1.0
+      trigger: bureaucrat_is_haruspex = yes
+    - resource: engineering_research
+      amount: 1.0
+      trigger: bureaucrat_is_haruspex = yes
+    - resource: unity
+      amount: -1.0
+      trigger: "colony = {\n    bureaucrat_is_low_tech = yes\n}"
+    - resource: unity
+      amount: -2.0
+      trigger: "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - resource: trade
+      amount: 2.0
+      trigger: "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - resource: unity
+      amount: -1.0
+      trigger: "colony = {\n    bureaucrat_is_low_tech_manager = yes\n}"
+    - resource: trade
+      amount: 2.0
+      trigger: "colony = {\n    bureaucrat_is_low_tech_manager = yes\n}"
+    - resource: unity
+      amount: -1.0
+      trigger: "colony = {\n    bureaucrat_is_low_tech_priest = yes\n}"
+    - resource: unity
+      amount: -1.0
+      trigger: "colony = {\n    bureaucrat_is_numistic_priest = yes\n}"
+    - resource: trade
+      amount: 6.0
+      trigger: "colony = {\n    bureaucrat_is_numistic_priest = yes\n}"
+    - resource: society_research
+      amount: 0.5
+      trigger: "OR = {\n    bureaucrat_is_corpse_reader = yes\n    bureaucrat_is_corpse_broker\
+        \ = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+  enforcer:
+    pop_category: specialist
+    economic_category: planet_enforcers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  educator:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  telepath:
+    pop_category: specialist
+    economic_category: planet_telepaths
+    icon: null
+    produces:
+    - resource: unity
+      amount: 4.5
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: "exists = owner\n            owner = {\n    has_active_tradition =\
+        \ tr_domination_judgment_corps\n}"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: society_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+        }"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    - resource: society_research
+      amount: 1.5
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  entertainer:
+    pop_category: specialist
+    economic_category: planet_entertainers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: entertainer_is_curator_trigger = yes
+    - resource: unity
+      amount: 0.5
+      trigger: entertainer_is_duelist_trigger = yes
+    - resource: unity
+      amount: 1.5
+      trigger: entertainer_is_storm_dancer_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  culture_worker:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  unifier:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chemist:
+    pop_category: specialist
+    economic_category: planet_chemists
+    icon: null
+    produces:
+    - resource: volatile_motes
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: volatile_motes
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  translucer:
+    pop_category: specialist
+    economic_category: planet_translucers
+    icon: null
+    produces:
+    - resource: rare_crystals
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: rare_crystals
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  gas_refiner:
+    pop_category: specialist
+    economic_category: planet_refiners
+    icon: null
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: exotic_gases
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  roboticist:
+    pop_category: specialist
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  healthcare:
+    pop_category: specialist
+    economic_category: planet_doctors
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 1.75
+      trigger: "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}"
+    - resource: society_research
+      amount: 1.75
+      trigger: "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}\n\
+        \            owner = {\n    has_completed_genetic_situation = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  trader:
+    pop_category: specialist
+    economic_category: planet_traders
+    icon: null
+    produces:
+    - resource: trade
+      amount: 8.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: trader_is_subterranean = yes
+    is_economic_producer: false
+    economic_resources: []
+  numistic_priest:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  preacher:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  manager:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  steward:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  necromancer:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  death_chronicler:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  necro_apprentice:
+    pop_category: specialist
+    economic_category: planet_necro_apprentices
+    icon: null
+    produces:
+    - resource: unity
+      amount: 0.75
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  foundry:
+    pop_category: specialist
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  catalytic_technician:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  artisan:
+    pop_category: specialist
+    economic_category: planet_artisans
+    icon: job_artisan
+    produces:
+    - resource: consumer_goods
+      amount: 6.0
+      trigger: null
+    - resource: consumer_goods
+      amount: 2.0
+      trigger: artisan_is_artificer_trigger = yes
+    - resource: trade
+      amount: 2.0
+      trigger: artisan_is_artificer_trigger = yes
+    - resource: trade
+      amount: 2.0
+      trigger: "colony = {\n    artisan_is_pearl_diver_trigger = yes\n}"
+    - resource: consumer_goods
+      amount: 1.5
+      trigger: industrial_jobs_are_catalytic_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  artificer:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  pearl_diver:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  reassigner:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  bath_attendant:
+    pop_category: specialist
+    economic_category: planet_bath_attendants
+    icon: job_bath_attendant
+    produces:
+    - resource: trade
+      amount: 2.0
+      trigger: "owner = {\n    is_megacorp = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  bath_attendant_individual_machine:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  knight:
+    pop_category: specialist
+    economic_category: planet_knights
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: exists = owner
+    - resource: physics_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: engineering_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: society_research
+      amount: 1.0
+      trigger: exists = owner
+    - resource: advanced_logic
+      amount: 0.5
+      trigger: "owner = {\n    has_country_flag = cosmogenesis_knights\n}"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  archaeoengineers:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  resort_worker:
+    pop_category: specialist
+    economic_category: planet_entertainers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 4.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  polytechnic_mentor:
+    pop_category: specialist
+    economic_category: planet_mentors
+    icon: job_polytechnic_mentor
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  offworld_prospector:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  soldier:
+    pop_category: specialist
+    economic_category: planet_soldiers
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 0.5
+      trigger: soldier_is_necromancer = yes
+    - resource: engineering_research
+      amount: 0.5
+      trigger: soldier_is_necromancer = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+  battle_thrall:
+    pop_category: specialist
+    economic_category: planet_soldiers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  colonist:
+    pop_category: worker
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: food
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_lithoid_empire = no\n\
+        \    is_infernal_empire = no\n    is_individual_machine = no\n}"
+    - resource: minerals
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_lithoid_empire = yes\n\
+        }"
+    - resource: alloys
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_infernal_empire = yes\n\
+        }"
+    - resource: energy
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_individual_machine =\
+        \ yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - minerals
+    - alloys
+    - energy
+  clerk:
+    pop_category: worker
+    economic_category: planet_clerks
+    icon: null
+    produces:
+    - resource: trade
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  technician:
+    pop_category: worker
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 6.0
+      trigger: null
+    - resource: energy
+      amount: 2.0
+      trigger: "owner = {\n    is_robot_empire = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  miner:
+    pop_category: worker
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 4.0
+      trigger: null
+    - resource: minerals
+      amount: -2.0
+      trigger: "colony = {\n    miner_is_scrap_miner_trigger = yes\n}"
+    - resource: alloys
+      amount: 1.0
+      trigger: "colony = {\n    miner_is_scrap_miner_trigger = yes\n}"
+    - resource: minerals
+      amount: 2.0
+      trigger: "colony = {\n    miner_is_cave_cleaner_trigger = yes\n}"
+    - resource: minerals
+      amount: -1.0
+      trigger: "colony = {\n    miner_is_turtle_miner_trigger = yes\n}"
+    - resource: food
+      amount: 3.0
+      trigger: "colony = {\n    miner_is_turtle_miner_trigger = yes\n}"
+    - resource: minerals
+      amount: 1.0
+      trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    - resource: alloys
+      amount: 0.5
+      trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - alloys
+    - food
+  crystal_miner:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  gas_extractor:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  mote_harvester:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  farmer:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 6.0
+      trigger: null
+    - resource: food
+      amount: -1.0
+      trigger: "owner = {\n    is_robot_empire = yes\n}"
+    - resource: trade
+      amount: 2.0
+      trigger: "colony = {\n    farmer_is_angler_trigger = yes\n}"
+    - resource: food
+      amount: 2.0
+      trigger: farmer_is_titan_hunter_trigger = yes
+    - resource: trade
+      amount: 8.0
+      trigger: farmer_is_titan_hunter_trigger = yes
+    - resource: alloys
+      amount: 1.0
+      trigger: farmer_is_puddle_technician_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - alloys
+  mortal_initiate:
+    pop_category: worker
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  scrap_miner:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  angler:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  ranger:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  squire:
+    pop_category: worker
+    economic_category: planet_squires
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  foundry_prison_worker:
+    pop_category: worker
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 1.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  catalytic_technician_prison_worker:
+    pop_category: worker
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 1.875
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  artisan_prison_worker:
+    pop_category: worker
+    economic_category: planet_artisans
+    icon: job_artisan
+    produces:
+    - resource: consumer_goods
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  artificer_prison_worker:
+    pop_category: worker
+    economic_category: planet_artisans
+    icon: job_artisan
+    produces:
+    - resource: consumer_goods
+      amount: 3.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  spawning_drone:
+    pop_category: complex_drone
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 1.75
+      trigger: "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}"
+    - resource: society_research
+      amount: 1.75
+      trigger: "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}\n\
+        \            owner = {\n    has_completed_genetic_situation = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  offspring_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  replicator:
+    pop_category: complex_drone
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  gestation_drone:
+    pop_category: complex_drone
+    economic_category: planet_doctors
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+  evaluator:
+    pop_category: complex_drone
+    economic_category: planet_evaluators
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  coordinator:
+    pop_category: complex_drone
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: "owner = {\n    is_memorialist_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  synapse_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chronicle_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  calculator_physicist:
+    pop_category: complex_drone
+    economic_category: planet_physicists
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 3.0
+      trigger: "colony = {\n    physicist_is_extradimensional_research_unit_trigger\
+        \ = no\n}"
+    - resource: physics_research
+      amount: 2.0
+      trigger: "colony = {\n    physicist_is_astrometeorologist_trigger = yes\n  \
+        \  solar_system = {\n        OR = {\n            has_environmental_effects\
+        \ = yes\n            has_star_flag = storm_system\n        }\n    }\n}"
+    - resource: alloys
+      amount: 2.0
+      trigger: "colony = {\n    physicist_is_extradimensional_research_unit_trigger\
+        \ = yes\n}"
+    - resource: minerals
+      amount: 4.0
+      trigger: "colony = {\n    physicist_is_extradimensional_research_unit_trigger\
+        \ = yes\n}"
+    - resource: physics_research
+      amount: 3.0
+      trigger: "colony = {\n    physicist_is_extradimensional_research_unit_trigger\
+        \ = yes\n}"
+    - resource: physics_research
+      amount: 1.0
+      trigger: physicist_is_space_time_researcher_trigger = yes
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: physicist_is_space_time_researcher_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - alloys
+    - minerals
+  brain_drone_physicist:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  calculator_biologist:
+    pop_category: complex_drone
+    economic_category: planet_biologists
+    icon: job_researcher
+    produces:
+    - resource: society_research
+      amount: 3.0
+      trigger: null
+    - resource: physics_research
+      amount: 4.5
+      trigger: "colony = {\n    biologist_is_observator_trigger = yes\n}"
+    - resource: society_research
+      amount: 1.5
+      trigger: "colony = {\n    biologist_is_observator_trigger = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - physics_research
+  brain_drone_biologist:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  archaeo_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  archaeo_unit:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  calculator_engineer:
+    pop_category: complex_drone
+    economic_category: planet_engineers
+    icon: job_researcher
+    produces:
+    - resource: engineering_research
+      amount: 3.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: engineer_is_nanotech_researcher_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  brain_drone_engineer:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  artisan_drone:
+    pop_category: complex_drone
+    economic_category: planet_artisans
+    icon: job_artisan
+    produces:
+    - resource: consumer_goods
+      amount: 10.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  fabricator:
+    pop_category: complex_drone
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  alloy_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  catalytic_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chemist_drone:
+    pop_category: complex_drone
+    economic_category: planet_chemists
+    icon: null
+    produces:
+    - resource: volatile_motes
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: volatile_motes
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  translucer_drone:
+    pop_category: complex_drone
+    economic_category: planet_translucers
+    icon: null
+    produces:
+    - resource: rare_crystals
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: rare_crystals
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  gas_refiner_drone:
+    pop_category: complex_drone
+    economic_category: planet_refiners
+    icon: null
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: exotic_gases
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  patrol_drone:
+    pop_category: complex_drone
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  mote_harvesting_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  crystal_mining_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  gas_extraction_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  logistics_drone:
+    pop_category: complex_drone
+    economic_category: planet_traders
+    icon: null
+    produces:
+    - resource: trade
+      amount: 6.0
+      trigger: null
+    - resource: trade
+      amount: 3.0
+      trigger: trader_is_subterranean = yes
+    is_economic_producer: false
+    economic_resources: []
+  mining_drone:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 4.0
+      trigger: "colony = {\n    NOR = {\n        has_deposit = d_space_ship_graveyard\n\
+        \        is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - resource: minerals
+      amount: 2.0
+      trigger: "colony = {\n    OR = {\n        has_deposit = d_space_ship_graveyard\n\
+        \        is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - resource: alloys
+      amount: 1.0
+      trigger: "colony = {\n    OR = {\n        has_deposit = d_space_ship_graveyard\n\
+        \        is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - resource: minerals
+      amount: 1.0
+      trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    - resource: alloys
+      amount: 0.5
+      trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - alloys
+  scrap_miner_drone:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  agri_drone:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 6.0
+      trigger: null
+    - resource: food
+      amount: -1.0
+      trigger: "owner = {\n    is_robot_empire = yes\n    is_catalytic_empire = no\n\
+        }"
+    - resource: alloys
+      amount: 1.0
+      trigger: farmer_is_puddle_technician_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - alloys
+  technician_drone:
+    pop_category: simple_drone
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 6.0
+      trigger: null
+    - resource: energy
+      amount: 2.0
+      trigger: "owner = {\n    is_robot_empire = yes\n}"
+    - resource: energy
+      amount: 4.0
+      trigger: "owner = {\n    is_nomadic = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  maintenance_drone:
+    pop_category: maintenance_drone
+    economic_category: planet_maintenance_drones
+    icon: null
+    produces:
+    - resource: trade
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  wilderness_maintenance_drone:
+    pop_category: wilderness_heart_strata
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  warrior_drone:
+    pop_category: complex_drone
+    economic_category: planet_soldiers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  bath_attendant_machine:
+    pop_category: simple_drone
+    economic_category: planet_bath_attendants_machine
+    icon: job_bath_attendant
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  bath_attendant_hive:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  polytechnic_drone:
+    pop_category: complex_drone
+    economic_category: planet_mentors
+    icon: job_polytechnic_mentor
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  offworld_prospector_drone:
+    pop_category: complex_drone
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  pre_sapient:
+    pop_category: pre_sapients
+    economic_category: pop_category_pre_sapients
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  pre_sapient_nascent:
+    pop_category: pre_sapients
+    economic_category: pop_category_pre_sapients
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  hunted_pre_sapient:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 4.0
+      trigger: null
+    - resource: food
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_facility\n\
+        }"
+    - resource: food
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_center\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - food
+  hunted_pre_sapient_lithoid:
+    pop_category: pre_sapients
+    economic_category: planet_livestock_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 2.0
+      trigger: null
+    - resource: minerals
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+        }"
+    - resource: minerals
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_mineral_purification_hub\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  xeno_zoo_animal:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_animal_nascent:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_animal_lithoid:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_animal_lithoid_nascent:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_beast:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_beast_nascent:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_beast_lithoid:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  xeno_zoo_beast_lithoid_nascent:
+    pop_category: pre_sapients
+    economic_category: planet_xeno_zoo_animals
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  hunter_gatherer:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  hunter_gatherer_lithoid:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: minerals
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  peasant:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  peasant_lithoid:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: minerals
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  primitive_warrior:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_noble:
+    pop_category: ruler
+    economic_category: planet_politicians
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  primitive_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  primitive_priest:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  primitive_laborer:
+    pop_category: specialist
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: consumer_goods
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - consumer_goods
+  primitive_miner:
+    pop_category: worker
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  primitive_technician:
+    pop_category: worker
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  primitive_farmer:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  primitive_researcher_2:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  primitive_priest_2:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  primitive_entertainer:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_warrior_2:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_bureaucrat:
+    pop_category: ruler
+    economic_category: planet_politicians
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  solarpunk_anarchist:
+    pop_category: ruler
+    economic_category: planet_politicians
+    icon: null
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  primitive_administrator:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  hive_sustenance_drone:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  hive_sustenance_drone_lithoid:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: minerals
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  hive_basic_agri_drone:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  hive_basic_agri_drone_lithoid:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: minerals
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  primitive_hive_warrior:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_hive_synapse_drone:
+    pop_category: complex_drone
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  primitive_hive_cerebellum_drone:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  primitive_hive_factory_drone:
+    pop_category: simple_drone
+    economic_category: planet_artisans
+    icon: job_artisan
+    produces:
+    - resource: alloys
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  primitive_hive_miner:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  primitive_hive_technician:
+    pop_category: simple_drone
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  primitive_hive_farmer:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  primitive_hive_brain_drone:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  primitive_hive_spawning_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_hive_warrior_2:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  primitive_hive_synapse_drone_2:
+    pop_category: complex_drone
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  event_purge:
+    pop_category: purge
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    - resource: society_research
+      amount: 1.0
+      trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  ratling_scavenger:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 1.0
+      trigger: null
+    - resource: minerals
+      amount: 1.0
+      trigger: null
+    - resource: consumer_goods
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - minerals
+    - consumer_goods
+  odd_factory_worker:
+    pop_category: worker
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  odd_factory_drone:
+    pop_category: simple_drone
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  underground_trade_worker:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  underground_contact_drone:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  dimensional_portal_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 6.0
+      trigger: null
+    - resource: physics_research
+      amount: -3.0
+      trigger: has_carrier_flag = dportal_closed
+    - resource: energy
+      amount: 6.0
+      trigger: has_carrier_flag = dportal_energy
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: has_carrier_flag = dportal_void
+    - resource: sr_dark_matter
+      amount: 1.0
+      trigger: has_carrier_flag = dportal_void2
+    - resource: trade
+      amount: 6.0
+      trigger: has_carrier_flag = dportal_trade_normal
+    - resource: trade
+      amount: 12.0
+      trigger: has_carrier_flag = dportal_trade_high
+    - resource: trade
+      amount: 3.0
+      trigger: has_carrier_flag = dportal_trade_low
+    - resource: trade
+      amount: 2.0
+      trigger: has_carrier_flag = dportal_trade_crisis
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - energy
+  dimensional_portal_researcher_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 6.0
+      trigger: null
+    - resource: energy
+      amount: 6.0
+      trigger: "colony = {\n    has_modifier = dportal_trade_normal\n}"
+    - resource: energy
+      amount: 8.0
+      trigger: "colony = {\n    has_modifier = dportal_trade_high\n}"
+    - resource: energy
+      amount: 4.0
+      trigger: "colony = {\n    has_modifier = dportal_trade_low\n}"
+    - resource: energy
+      amount: 2.0
+      trigger: "colony = {\n    has_modifier = dportal_trade_crisis\n}"
+    - resource: physics_research
+      amount: -3.0
+      trigger: has_carrier_flag = dportal_closed
+    - resource: energy
+      amount: 6.0
+      trigger: has_carrier_flag = dportal_energy
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: has_carrier_flag = dportal_void
+    - resource: sr_dark_matter
+      amount: 1.0
+      trigger: has_carrier_flag = dportal_void2
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - energy
+  space_time_anomaly_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 4.0
+      trigger: null
+    - resource: engineering_research
+      amount: 2.0
+      trigger: null
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+  space_time_anomaly_researcher_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 4.0
+      trigger: null
+    - resource: engineering_research
+      amount: 2.0
+      trigger: null
+    - resource: sr_dark_matter
+      amount: 0.2
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+  gas_plant_engineer:
+    pop_category: specialist
+    economic_category: planet_refiners
+    icon: null
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  gas_plant_engineer_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_refiners
+    icon: null
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  cave_cleaner:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  cave_cleaner_gestalt:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 5.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  titan_hunter:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  robot_caretaker:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 2.5
+      trigger: null
+    - resource: engineering_research
+      amount: 2.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  turtle_miner:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  turtle_miner_gestalt:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    - resource: food
+      amount: 2.0
+      trigger: null
+    - resource: food
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_facility\n\
+        }"
+    - resource: food
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_food_processing_center\n\
+        }"
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - food
+  machine_nurse:
+    pop_category: bio_trophy
+    economic_category: planet_bio_trophies
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  manufactorium_specialist:
+    pop_category: specialist
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 5.0
+      trigger: null
+    - resource: unity
+      amount: 0.25
+      trigger: has_carrier_flag = manufactorium_crafters
+    - resource: unity
+      amount: 0.25
+      trigger: has_carrier_flag = manufactorium_subterranean
+    - resource: unity
+      amount: 0.5
+      trigger: has_carrier_flag = manufactorium_dwarven_craft
+    - resource: alloys
+      amount: -1.0
+      trigger: has_carrier_flag = manufactorium_earthquake_production
+    - resource: alloys
+      amount: -1.0
+      trigger: has_carrier_flag = manufactorium_guardians_produce
+    - resource: engineering_research
+      amount: 0.5
+      trigger: has_carrier_flag = manufactorium_engineering
+    - resource: society_research
+      amount: 0.5
+      trigger: has_carrier_flag = manufactorium_society
+    - resource: alloys
+      amount: -1.0
+      trigger: has_carrier_flag = manufactorium_work_production
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_despoilers
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_took_opportunity
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_remnants
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+    - society_research
+  manufactorium_complex_drone:
+    pop_category: complex_drone
+    economic_category: planet_metallurgists
+    icon: job_foundry
+    produces:
+    - resource: alloys
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 0.25
+      trigger: has_carrier_flag = manufactorium_subterranean
+    - resource: alloys
+      amount: -1.0
+      trigger: has_carrier_flag = manufactorium_earthquake_production
+    - resource: engineering_research
+      amount: 0.5
+      trigger: has_carrier_flag = manufactorium_engineering
+    - resource: society_research
+      amount: 0.5
+      trigger: has_carrier_flag = manufactorium_society
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_despoilers
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_took_opportunity
+    - resource: alloys
+      amount: 1.0
+      trigger: has_carrier_flag = manufactorium_remnants
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+    - society_research
+  manufactorium_scraper:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  manufactorium_scraper_drone:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 1.0
+      trigger: null
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 0.25
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - alloys
+    - engineering_research
+  archivist:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 3.0
+      trigger: null
+    - resource: engineering_research
+      amount: 3.0
+      trigger: null
+    - resource: society_research
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  puddle_technician:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 6.0
+      trigger: null
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: food
+      amount: -1.0
+      trigger: "owner = {\n    is_robot_empire = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - alloys
+  puddle_technician_drone:
+    pop_category: simple_drone
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 6.0
+      trigger: null
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: food
+      amount: -1.0
+      trigger: "owner = {\n    is_robot_empire = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - alloys
+  stasis_warden:
+    pop_category: specialist
+    economic_category: planet_enforcers
+    icon: null
+    produces:
+    - resource: physics_research
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+  stasis_warden_drone:
+    pop_category: complex_drone
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: physics_research
+      amount: 2.0
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+  astrogarbage_collector:
+    pop_category: worker
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: alloys
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  astrogarbage_collector_gestalt:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: alloys
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  myrmeku_power_farmer:
+    pop_category: specialist
+    economic_category: planet_technician
+    icon: job_technician
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  myrmeku_power_farmer_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_technician
+    icon: job_technician
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  stratovent_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: society_research
+      amount: 1.5
+      trigger: null
+    - resource: trade
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  stratovent_refiner:
+    pop_category: specialist
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  stratovent_refiner_upg:
+    pop_category: specialist
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  stratovent_refiner_minerals:
+    pop_category: specialist
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: exotic_gases
+      amount: 1.0
+      trigger: null
+    - resource: minerals
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  mineral_diver:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  mineral_diver_drone:
+    pop_category: simple_drone
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+    - alloys
+  alien_hunter:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  fe_overseer:
+    pop_category: precursor
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fe_sky_cardinal:
+    pop_category: precursor
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fe_guardian_bot:
+    pop_category: precursor
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fe_protector:
+    pop_category: precursor
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fe_archivist:
+    pop_category: precursor
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 5.0
+      trigger: null
+    - resource: physics_research
+      amount: 5.0
+      trigger: null
+    - resource: engineering_research
+      amount: 5.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - physics_research
+    - engineering_research
+  fe_acolyte_farm:
+    pop_category: precursor
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 8.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  fe_acolyte_mine:
+    pop_category: precursor
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 6.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  fe_acolyte_generator:
+    pop_category: precursor
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 6.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  fe_augur:
+    pop_category: precursor
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 5.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  fe_xeno_keeper:
+    pop_category: precursor
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  fe_xeno_ward:
+    pop_category: xeno_ward
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  fe_hedonist:
+    pop_category: precursor
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  fe_acolyte_artisan:
+    pop_category: precursor
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: consumer_goods
+      amount: 6.0
+      trigger: null
+    - resource: consumer_goods
+      amount: 1.0
+      trigger: "colony = {\n    has_active_building = building_factory_2\n}"
+    - resource: consumer_goods
+      amount: 2.0
+      trigger: "colony = {\n    has_active_building = building_factory_3\n}"
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  fe_maintenance_bot:
+    pop_category: precursor
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_propagandist:
+    pop_category: specialist
+    economic_category: planet_overlord_propagandists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_propagandist_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_propagandists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_academic:
+    pop_category: specialist
+    economic_category: planet_overlord_academics
+    icon: null
+    produces:
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  overlord_academic_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_academics
+    icon: null
+    produces:
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  overlord_trader:
+    pop_category: specialist
+    economic_category: planet_overlord_traders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_trader_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_traders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  aid_worker:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  aid_worker_drone:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_breeder:
+    pop_category: specialist
+    economic_category: planet_overlord_breeders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_breeder_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_breeders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  mind_thrall:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  mind_thrall_drone:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_offspring_drone_feeder:
+    pop_category: specialist
+    economic_category: planet_overlord_offspring_drone_feeder
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_offspring_drone_feeder_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_offspring_drone_feeder
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_metallurgist:
+    pop_category: specialist
+    economic_category: planet_overlord_metallurgists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_foundry_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_metallurgists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_fabricator:
+    pop_category: complex_drone
+    economic_category: planet_overlord_metallurgists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_catalytic_technician:
+    pop_category: specialist
+    economic_category: planet_overlord_metallurgists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_catalytic_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_metallurgists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_beholder:
+    pop_category: specialist
+    economic_category: planet_overlord_beholders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_beholder_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_beholders
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_necromancer:
+    pop_category: specialist
+    economic_category: planet_overlord_necromancers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_necromancer_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_necromancers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_reassigner:
+    pop_category: specialist
+    economic_category: planet_overlord_reassigners
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_reassigner_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_reassigners
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_recruiter:
+    pop_category: specialist
+    economic_category: planet_overlord_recruiters
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_recruiter_drone:
+    pop_category: complex_drone
+    economic_category: planet_overlord_recruiters
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_ranger:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_ranger_drone:
+    pop_category: simple_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_arborist:
+    pop_category: worker
+    economic_category: planet_overlord_arborists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_arborist_drone:
+    pop_category: simple_drone
+    economic_category: planet_overlord_arborists
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_bio_trophy:
+    pop_category: worker
+    economic_category: planet_overlord_bio_trophies
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  overlord_bio_trophy_drone:
+    pop_category: simple_drone
+    economic_category: planet_overlord_bio_trophies
+    icon: null
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  overlord_manager:
+    pop_category: specialist
+    economic_category: planet_overlord_managers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  overlord_mortal_initiate:
+    pop_category: worker
+    economic_category: planet_overlord_mortal_initiates
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  overlord_mortal_initiate_drone:
+    pop_category: simple_drone
+    economic_category: planet_overlord_mortal_initiates
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+  overlord_knight:
+    pop_category: specialist
+    economic_category: planet_knights
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_knight_drone:
+    pop_category: complex_drone
+    economic_category: planet_knights
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_healthcare:
+    pop_category: specialist
+    economic_category: planet_doctors
+    icon: null
+    produces:
+    - resource: trade
+      amount: 4.0
+      trigger: "owner = {\n    has_valid_civic = civic_private_healthcare_corporate\n\
+        }"
+    - resource: trade
+      amount: 2.0
+      trigger: has_carrier_flag = has_private_clinics
+    is_economic_producer: false
+    economic_resources: []
+  overlord_replicator:
+    pop_category: complex_drone
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_spawning_drone:
+    pop_category: complex_drone
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  overlord_spawning_drone_lithoid:
+    pop_category: complex_drone
+    economic_category: planet_jobs
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  low_tech_laborer:
+    pop_category: worker
+    economic_category: planet_laborer
+    icon: low_tech_laborer
+    produces:
+    - resource: consumer_goods
+      amount: 3.0
+      trigger: null
+    - resource: alloys
+      amount: 1.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+    - alloys
+  low_tech_miner:
+    pop_category: worker
+    economic_category: planet_miners
+    icon: job_miner
+    produces:
+    - resource: minerals
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  low_tech_technician:
+    pop_category: worker
+    economic_category: planet_technician
+    icon: job_technician
+    produces:
+    - resource: energy
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  low_tech_farmer:
+    pop_category: worker
+    economic_category: planet_farmers
+    icon: job_farmer
+    produces:
+    - resource: food
+      amount: 4.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - food
+  low_tech_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.0
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  low_tech_priest:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  low_tech_bureaucrat:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  low_tech_manager:
+    pop_category: specialist
+    economic_category: planet_managers
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  low_tech_warrior:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  broken_shackles_scavenger:
+    pop_category: worker
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - physics_research
+    - engineering_research
+    - society_research
+  captain:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chief_navigator:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  principal_pilot:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  ship_weapons_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  ship_logistics_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  special_operations_commander:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  commanding_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chief_supply_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  intelligence_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  chief_security_officer:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  government_employee:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  researcher:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  none:
+    pop_category: null
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  munitions_decommissioner:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 5.0
+      trigger: null
+    - resource: minor_artifacts
+      amount: 1.0
+      trigger: "has_ancrel = yes\n            owner = {\n    NOT = {\n        has_ascension_perk\
+        \ = ap_archaeoengineers\n    }\n}"
+    - resource: minor_artifacts
+      amount: 2.0
+      trigger: "has_ancrel = yes\n            owner = {\n    has_ascension_perk =\
+        \ ap_archaeoengineers\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+  munitions_decommissioning_unit:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 5.0
+      trigger: null
+    - resource: minor_artifacts
+      amount: 1.0
+      trigger: "has_ancrel = yes\n            owner = {\n    NOT = {\n        has_ascension_perk\
+        \ = ap_archaeoengineers\n    }\n}"
+    - resource: minor_artifacts
+      amount: 2.0
+      trigger: "has_ancrel = yes\n            owner = {\n    has_ascension_perk =\
+        \ ap_archaeoengineers\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+  munitions_decommissioning_unit_lithoid:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 5.0
+      trigger: null
+    - resource: minor_artifacts
+      amount: 1.0
+      trigger: "has_ancrel = yes\n            owner = {\n    NOT = {\n        has_ascension_perk\
+        \ = ap_archaeoengineers\n    }\n}"
+    - resource: minor_artifacts
+      amount: 2.0
+      trigger: "has_ancrel = yes\n            owner = {\n    has_ascension_perk =\
+        \ ap_archaeoengineers\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+  munitions_decommissioning_drone:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: alloys
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 5.0
+      trigger: null
+    - resource: minor_artifacts
+      amount: 1.0
+      trigger: "has_ancrel = yes\n            owner = {\n    NOT = {\n        has_ascension_perk\
+        \ = ap_archaeoengineers\n    }\n}"
+    - resource: minor_artifacts
+      amount: 2.0
+      trigger: "has_ancrel = yes\n            owner = {\n    has_ascension_perk =\
+        \ ap_archaeoengineers\n}"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+    - engineering_research
+  astral_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 2.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    - resource: astral_threads
+      amount: 0.3
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  astral_drone:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 2.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    - resource: astral_threads
+      amount: 0.3
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  astral_unit:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 2.5
+      trigger: null
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    - resource: astral_threads
+      amount: 0.3
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  astrometeorologist:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  astrometeorologist_hive:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  astrometeorologist_machine:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  haruspex:
+    pop_category: specialist
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+    - resource: engineering_research
+      amount: 1.25
+      trigger: null
+    - resource: engineering_research
+      amount: -0.25
+      trigger: "owner = {\n    is_megacorp = yes\n}"
+    - resource: trade
+      amount: 2.0
+      trigger: "owner = {\n    is_megacorp = yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  technophant:
+    pop_category: ruler
+    economic_category: planet_bureaucrats
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 5.0
+      trigger: null
+    - resource: engineering_research
+      amount: 2.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  neural_chip:
+    pop_category: chip_slave
+    economic_category: planet_neural_chips
+    icon: job_neural_chip
+    produces:
+    - resource: society_research
+      amount: 0.375
+      trigger: null
+    - resource: engineering_research
+      amount: 0.375
+      trigger: null
+    - resource: physics_research
+      amount: 0.375
+      trigger: null
+    - resource: advanced_logic
+      amount: 0.025
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+    - physics_research
+  augmentor:
+    pop_category: specialist
+    economic_category: planet_augmentors
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 1.5
+      trigger: is_cyborg_empire = no
+    - resource: engineering_research
+      amount: 1.5
+      trigger: is_cyborg_empire = no
+    - resource: society_research
+      amount: 1.75
+      trigger: is_cyborg_empire = yes
+    - resource: engineering_research
+      amount: 1.75
+      trigger: is_cyborg_empire = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+  augmentor_drone:
+    pop_category: complex_drone
+    economic_category: planet_augmentors
+    icon: null
+    produces:
+    - resource: society_research
+      amount: 1.75
+      trigger: "OR = {\n    is_cyborg_empire = yes\n    owner = {\n        has_valid_civic\
+        \ = civic_machine_assimilator\n    }\n}"
+    - resource: engineering_research
+      amount: 1.75
+      trigger: "OR = {\n    is_cyborg_empire = yes\n    owner = {\n        has_valid_civic\
+        \ = civic_machine_assimilator\n    }\n}"
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - engineering_research
+  identity_designer:
+    pop_category: specialist
+    economic_category: planet_pop_assemblers
+    icon: null
+    produces:
+    - resource: engineering_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "owner = {\n    NOT = {\n        has_country_flag = identity_designer_converter\n\
+        \    }\n}"
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  cyberdome_duelist:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  cyberdome_spectator:
+    pop_category: worker
+    economic_category: planet_cyberdome_spectator
+    icon: null
+    produces:
+    - resource: energy
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+  clip_maximizer:
+    pop_category: purge
+    economic_category: planet_clip_maximizer
+    icon: null
+    produces:
+    - resource: consumer_goods
+      amount: 5.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - consumer_goods
+  nanotech_research_unit:
+    pop_category: complex_drone
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 3.0
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  nanotech_researcher:
+    pop_category: specialist
+    economic_category: planet_researchers
+    icon: job_researcher
+    produces:
+    - resource: physics_research
+      amount: 1.0
+      trigger: null
+    - resource: engineering_research
+      amount: 3.0
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  treasure_gatherer:
+    pop_category: specialist
+    economic_category: planet_treasure_gatherers
+    icon: job_bureaucrat
+    produces:
+    - resource: energy
+      amount: 10.0
+      trigger: null
+    - resource: minerals
+      amount: 4.0
+      trigger: null
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    - resource: trade
+      amount: 3.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+    - minerals
+    - society_research
+  wrangler:
+    pop_category: specialist
+    economic_category: planet_primal_jobs
+    icon: job_bureaucrat
+    produces:
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: food
+      amount: 3.0
+      trigger: "wrangler_is_trophy_hunter_trigger = yes\n            wrangler_is_beastfighter_trigger\
+        \ = no"
+    - resource: society_research
+      amount: -1.0
+      trigger: "wrangler_is_trophy_hunter_trigger = yes\n            wrangler_is_beastfighter_trigger\
+        \ = no"
+    - resource: society_research
+      amount: 0.5
+      trigger: "wrangler_is_animal_handler_trigger = yes\n            wrangler_is_beastfighter_trigger\
+        \ = no"
+    - resource: unity
+      amount: 0.5
+      trigger: "wrangler_is_animal_handler_trigger = yes\n            wrangler_is_beastfighter_trigger\
+        \ = no"
+    - resource: unity
+      amount: 1.0
+      trigger: wrangler_is_beastfighter_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - food
+  drone_wrangler:
+    pop_category: complex_drone
+    economic_category: planet_primal_jobs
+    icon: job_bureaucrat
+    produces:
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: food
+      amount: 5.0
+      trigger: wrangler_is_hunter_drone_trigger = yes
+    - resource: society_research
+      amount: -1.0
+      trigger: wrangler_is_hunter_drone_trigger = yes
+    - resource: unity
+      amount: 0.5
+      trigger: wrangler_is_symbiosis_integrator_trigger = yes
+    - resource: society_research
+      amount: 0.5
+      trigger: wrangler_is_symbiosis_integrator_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - society_research
+    - food
+  treasure_gatherer_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_treasure_gatherers
+    icon: job_bureaucrat
+    produces:
+    - resource: energy
+      amount: 10.0
+      trigger: null
+    - resource: minerals
+      amount: 4.0
+      trigger: null
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: society_research
+      amount: 0.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - energy
+    - minerals
+    - society_research
+  disconnected_drone:
+    pop_category: simple_drone
+    economic_category: planet_disconnected_drones
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  skywatcher:
+    pop_category: specialist
+    economic_category: planet_soldiers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  skywatcher_drone:
+    pop_category: complex_drone
+    economic_category: planet_soldiers
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  genomic_researcher:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  genomic_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  transference_volunteer:
+    pop_category: specialist
+    economic_category: planet_transference_volunteers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  transference_drone:
+    pop_category: complex_drone
+    economic_category: planet_transference_volunteers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  sand_whisperer:
+    pop_category: specialist
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: sr_zro
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  sand_caretaker:
+    pop_category: specialist
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: sr_zro
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  drone_sand_whisperer:
+    pop_category: complex_drone
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: sr_zro
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  drone_sand_caretaker:
+    pop_category: complex_drone
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: sr_zro
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  space_junk_collector:
+    pop_category: specialist
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 5.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  drone_space_junk_collector:
+    pop_category: complex_drone
+    economic_category: planet_jobs_productive
+    icon: null
+    produces:
+    - resource: alloys
+      amount: 5.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - alloys
+  telepath_drone:
+    pop_category: complex_drone
+    economic_category: planet_telepaths
+    icon: null
+    produces:
+    - resource: unity
+      amount: 4.5
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: "owner = {\n    has_active_tradition = tr_domination_judgment_corps\n\
+        }"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - resource: society_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - resource: physics_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+    - resource: engineering_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+    - resource: society_research
+      amount: 1.5
+      trigger: "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+    is_economic_producer: true
+    economic_resources:
+    - physics_research
+    - engineering_research
+    - society_research
+  physician_drone:
+    pop_category: complex_drone
+    economic_category: planet_doctors
+    icon: null
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  observator_drone:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  energy_thrall:
+    pop_category: worker
+    economic_category: planet_energy_thralls
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  drone_energy_thrall:
+    pop_category: simple_drone
+    economic_category: planet_energy_thralls
+    icon: null
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  test_subject:
+    pop_category: criminal
+    economic_category: planet_test_subjects
+    icon: null
+    produces:
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+    - physics_research
+    - society_research
+  test_subject_drone:
+    pop_category: deviant_drone
+    economic_category: planet_test_subjects
+    icon: null
+    produces:
+    - resource: engineering_research
+      amount: 0.5
+      trigger: null
+    - resource: physics_research
+      amount: 0.5
+      trigger: null
+    - resource: society_research
+      amount: 1.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+    - physics_research
+    - society_research
+  experiment_engineer:
+    pop_category: specialist
+    economic_category: planet_experiment_engineer
+    icon: job_researcher
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  experiment_engineer_drone:
+    pop_category: complex_drone
+    economic_category: planet_experiment_engineer
+    icon: job_researcher
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  slave_orderly:
+    pop_category: worker
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  production_overseer:
+    pop_category: specialist
+    economic_category: planet_production_overseers
+    icon: job_bureaucrat
+    produces:
+    - resource: engineering_research
+      amount: 2.0
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - engineering_research
+  spe_colonist:
+    pop_category: specialist
+    economic_category: planet_jobs
+    icon: null
+    produces:
+    - resource: food
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_lithoid_empire = no\n\
+        \    is_infernal_empire = no\n    is_individual_machine = no\n}"
+    - resource: minerals
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_lithoid_empire = yes\n\
+        }"
+    - resource: alloys
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_infernal_empire = yes\n\
+        }"
+    - resource: energy
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_individual_machine =\
+        \ yes\n}"
+    is_economic_producer: true
+    economic_resources:
+    - food
+    - minerals
+    - alloys
+    - energy
+  extradimensional_research_unit:
+    pop_category: complex_drone
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  shroud_trader:
+    pop_category: specialist
+    economic_category: planet_traders
+    icon: null
+    produces:
+    - resource: trade
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 2.0
+      trigger: "owner = {\n    has_breached_shroud = yes\n}"
+    is_economic_producer: false
+    economic_resources: []
+  cruise_passenger:
+    pop_category: cruise_passenger
+    economic_category: planet_cruise_passengers
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  cruise_passenger_unemployment:
+    pop_category: cruise_passenger_unemployment
+    economic_category: planet_cruise_passengers
+    icon: job_bureaucrat
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: "owner = {\n    is_hospitality_servitor_empire = no\n}"
+    is_economic_producer: false
+    economic_resources: []
+  cruise_crew_overseer:
+    pop_category: ruler
+    economic_category: planet_entertainers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  cruise_crew_overseer_drone:
+    pop_category: complex_drone
+    economic_category: planet_entertainers
+    icon: null
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  ark_waystation_trader:
+    pop_category: specialist
+    economic_category: planet_traders
+    icon: null
+    produces:
+    - resource: trade
+      amount: 5.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  ark_harvester:
+    pop_category: specialist
+    economic_category: planet_ark_harvester
+    icon: null
+    produces:
+    - resource: minerals
+      amount: 1.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  ark_waystation_trader_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_traders
+    icon: null
+    produces:
+    - resource: trade
+      amount: 4.0
+      trigger: null
+    is_economic_producer: false
+    economic_resources: []
+  ark_harvester_gestalt:
+    pop_category: complex_drone
+    economic_category: planet_ark_harvester
+    icon: null
+    produces:
+    - resource: minerals
+      amount: 1.5
+      trigger: null
+    is_economic_producer: true
+    economic_resources:
+    - minerals
+  ark_deep_sleep:
+    pop_category: deep_sleep
+    economic_category: planet_ark_deep_sleep
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  duelist:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  historical_curator:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []
+  storm_dancer:
+    pop_category: specialist
+    economic_category: null
+    icon: null
+    produces: []
+    is_economic_producer: false
+    economic_resources: []

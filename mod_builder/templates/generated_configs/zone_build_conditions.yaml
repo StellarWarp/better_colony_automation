@@ -103,38 +103,31 @@ bca_zones:
   show_in_tech: ''
 - name: zone_resort_zoo
   potential: "exists = owner\nowner = {\n    has_technology = tech_alien_life_studies\n\
-    \    is_wilderness_empire = no\n}\nhas_modifier = resort_colony\nNOT = {\n   \
-    \ has_zone = {\n        zone = zone_resort_zoo\n    }\n}"
+    \    is_wilderness_empire = no\n}\nhas_modifier = resort_colony"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_resort_grand_museum
-  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nNOT = {\n\
-    \    has_zone = {\n        zone = zone_resort_grand_museum\n    }\n}"
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_resort_hunting_ground
   potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    is_xenophile\
-    \ = no\n    NOT = {\n        has_zone = {\n            zone = zone_resort_hunting_ground\n\
-    \        }\n    }\n}"
+    \ = no\n}"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_resort_spiritual_retreat
   potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    is_spiritualist\
-    \ = yes\n    NOT = {\n        has_zone = {\n            zone = zone_resort_spiritual_retreat\n\
-    \        }\n    }\n}"
+    \ = yes\n}"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_resort_restoration_enclave
-  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    NOT =\
-    \ {\n        has_zone = {\n            zone = zone_resort_restoration_enclave\n\
-    \        }\n    }\n}"
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_resort_proving_grounds
   potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    OR = {\n\
     \        has_valid_civic = civic_warrior_culture\n        is_militarist = yes\n\
-    \    }\n    NOT = {\n        has_zone = {\n            zone = zone_resort_proving_grounds\n\
-    \        }\n    }\n}"
+    \    }\n}"
   unlock: has_modifier = resort_colony
   show_in_tech: ''
 - name: zone_minerals

@@ -577,3 +577,26 @@
 {% endfor %}
         }
 {%- endmacro %}
+
+{% macro tab_page(name, text, anchor_x, anchor_y, btn_x, btn_y, btn_w, btn_h, win_x, win_y, win_w, win_h) -%}
+        dropDownBoxType = {
+            name = "tab_{{ name }}"
+            position = { x = {{ anchor_x }} y = {{ anchor_y }} }
+            expandButton = {
+                name = "tab_{{ name }}_btn"
+                position = { x = {{ btn_x }} y = {{ btn_y }} }
+                size = { width = {{ btn_w }} height = {{ btn_h }} }
+                quadTextureSprite = "GFX_bca_button_standard_disabled"
+                text = "{{ text }}"
+                font = "malgun_goth_24"
+            }
+            expandedWindow = {
+                name = "tab_{{ name }}_win"
+                position = { x = {{ win_x }} y = {{ win_y }} }
+                size = { width = {{ win_w }} height = {{ win_h }} }
+{#                verticalScrollbar = "right_vertical_slider"#}
+                margin = { top = 8 bottom = 8 left = 24 right = 24 }
+{{ caller() }}
+            }
+        }
+{%- endmacro %}

@@ -1,0 +1,43 @@
+{#
+  Phase 5d: 通用档位分解 effect（参数化，所有岗位复用）
+  从大到小遍历 gear_steps，达标则设 carrier_flag 并减去
+#}
+{% set steps = job_regulation_config.gear_steps %}
+
+# 增加方向
+bca_jr_apply_inc_gears = {
+{% for step in steps %}
+    if = {
+        limit = {
+            check_variable_arithmetic = {
+                which = $TARGET$
+                value >= {{ step }}
+            }
+        }
+        set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
+        subtract_variable = {
+            which = $TARGET$
+            value = {{ step }}
+        }
+    }
+{% endfor %}
+}
+
+# 减少方向
+bca_jr_apply_dec_gears = {
+{% for step in steps %}
+    if = {
+        limit = {
+            check_variable_arithmetic = {
+                which = $TARGET$
+                value >= {{ step }}
+            }
+        }
+        set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
+        subtract_variable = {
+            which = $TARGET$
+            value = {{ step }}
+        }
+    }
+{% endfor %}
+}

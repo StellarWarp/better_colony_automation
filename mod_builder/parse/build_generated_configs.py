@@ -5,7 +5,8 @@ from pathlib import Path
 
 from building_condition import render_building_conditions
 from building_strategy_compile import compile_building_strategies
-from economic_outputs import render_economic_generated_configs
+from economic_outputs import render_economic_generated_configs, render_job_meta
+from job_regulation_compile import compile_job_regulation
 from framework import ParseContext, load_yaml, write_yaml
 from zone_outputs import render_zone_generated_configs
 
@@ -53,7 +54,11 @@ def build_generated_configs() -> None:
     context = ParseContext.build()
     graph = render_zone_generated_configs(context)
     render_economic_generated_configs(context, graph)
+    render_job_meta(context)
     render_building_conditions()
+
+    compile_job_regulation(generated_configs_dir)
+    print("Compiled job regulation config to generated_configs")
 
     compile_building_strategies(
         base_dir / "configs" / "buildings",

@@ -2743,10 +2743,13 @@ bca_can_build_building_medical_1 = {
         }
         OR = {
             has_carrier_flag = ignore_ai_building_limitations
-            owner = {
-                is_ai = no
-            }
             free_amenities < @amenity_ai_limit
+            OR = {
+                buildings_stop_pop = no
+                owner = {
+                    is_ai = no
+                }
+            }
         }
         NOT = {
             has_building = building_low_tech_capital

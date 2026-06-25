@@ -1,0 +1,71 @@
+{# Phase 8: 岗位→槽位映射（workforce 导出 + 排序填槽） #}
+{% set regulated = job_regulation_config.regulated_jobs %}
+{% set slots = job_regulation_config.display_slots | default(15) %}
+
+{# 清除所有槽位映射 flag + 标记已映射 #}
+bca_jr_clear_slot_mapping = {
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+{% for entry in regulated %}
+    remove_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
+{% endfor %}
+    remove_country_flag = bca_jr_slot_{{ s_name }}_mapped
+{% endfor %}
+{% for entry in regulated %}
+    remove_country_flag = bca_jr_slot_mapped_{{ entry.job }}
+{% endfor %}
+    set_variable = { which = bca_jr_display_count value = 0 }
+}
+
+{# 导出 workforce 数据 + 填入槽位 #}
+bca_jr_refresh_slot_data = {
+
+    # ==== 导出 workforce 到 country 变量 ====
+{% for entry in regulated %}
+    export_trigger_value_to_variable = {
+        trigger = count_owned_workforce
+        parameters = { limit = { has_job_type = {{ entry.job }} } count = all }
+        variable = bca_jr_gui_wf_{{ entry.job }}
+    }
+    set_variable = { which = bca_jr_gui_slots_{{ entry.job }} value = modifier:job_{{ entry.job }}_add }
+{% endfor %}
+
+    # ==== 清除槽位 + 填槽 ====
+    bca_jr_clear_slot_mapping = yes
+
+    set_variable = { which = bca_jr_fill_idx value = 1 }
+
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+    # 轮次 {{ s + 1 }}：找 workforce 最大且未映射的岗位
+    set_variable = { which = bca_jr_best_wf value = 0 }
+{% for entry in regulated %}
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
+            check_variable_arithmetic = { which = bca_jr_gui_wf_{{ entry.job }} value > bca_jr_best_wf }
+        }
+        set_variable = { which = bca_jr_best_wf value = bca_jr_gui_wf_{{ entry.job }} }
+    }
+{% endfor %}
+{% for entry in regulated %}
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
+            check_variable_arithmetic = { which = bca_jr_gui_wf_{{ entry.job }} value = bca_jr_best_wf }
+            check_variable_arithmetic = { which = bca_jr_fill_idx value = {{ s + 1 }} }
+        }
+        set_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
+        set_country_flag = bca_jr_slot_{{ s_name }}_mapped
+        set_country_flag = bca_jr_slot_mapped_{{ entry.job }}
+        add_variable = { which = bca_jr_fill_idx value = 1 }
+    }
+{% endfor %}
+{% endfor %}
+
+    # display_count = 已填入数
+    set_variable = { which = bca_jr_display_count value = bca_jr_fill_idx }
+    subtract_variable = { which = bca_jr_display_count value = 1 }
+    clear_variable = bca_jr_fill_idx
+    clear_variable = bca_jr_best_wf
+}
