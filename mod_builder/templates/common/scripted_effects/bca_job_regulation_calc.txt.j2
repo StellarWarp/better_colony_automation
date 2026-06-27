@@ -1,123 +1,168 @@
-{#
-  Phase 7: 劳动力累加 + 冷却（合并版）
-  递减 → 累加（跳过冷却中的岗位）→ 满/空时设冷却
-#}
+{# Phase 7: 岗位统计。统计本身是纯操作，控制器通过临时 check flag 决定要统计哪些岗位。 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
 {# ---- 清零所有累加器 ---- #}
 bca_jr_clear_accumulators = {
     clear_variable = bca_jr_v_size
-    clear_variable = bca_jr_v_eff
+    clear_variable = bca_jr_v_capacity
+    clear_variable = bca_jr_v_productive
+    clear_variable = bca_jr_tmp_job_count
+    clear_variable = bca_jr_tmp_free_job_count
 {% for entry in regulated %}
-    clear_variable = bca_jr_acc_raw_{{ entry.job }}
-    clear_variable = bca_jr_acc_eff_{{ entry.job }}
+    clear_variable = bca_jr_acc_assigned_workforce_{{ entry.job }}
+    clear_variable = bca_jr_acc_capacity_workforce_{{ entry.job }}
+    clear_variable = bca_jr_acc_productive_workforce_{{ entry.job }}
+    clear_variable = bca_jr_acc_total_job_count_{{ entry.job }}
+    clear_variable = bca_jr_acc_free_job_count_{{ entry.job }}
+    clear_variable = bca_jr_acc_open_job_count_{{ entry.job }}
+    clear_variable = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
+{% for resource in entry.economic_resources %}
+    clear_variable = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+{% endfor %}
 {% endfor %}
 }
 
-{# ---- 递减冷却 + 累加 + 满/空设冷却 ---- #}
-bca_jr_accumulate_all = {
+{# ---- 统计被 check flag 选中的岗位 ---- #}
+bca_jr_add_job_workforce_stats = {
+    optimize_memory
+    $TARGET_SCOPE$ = {
+        add_variable = {
+            which = $ASSIGNED_VAR$
+            value = bca_jr_v_size
+        }
+        add_variable = {
+            which = $CAPACITY_VAR$
+            value = bca_jr_v_capacity
+        }
+        add_variable = {
+            which = $PRODUCTIVE_VAR$
+            value = bca_jr_v_productive
+        }
+    }
+}
 
-    # ==== Phase 1: 递减所有冷却 ====
+bca_jr_collect_checked_job_stats = {
 {% for entry in regulated if entry.pop_category %}
     if = {
         limit = {
-            check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value > 0 }
-        }
-        subtract_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value = 1 }
-        if = {
-            limit = {
-                check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+            OR = {
+                has_carrier_flag = bca_jr_check_all_jobs
+                has_carrier_flag = bca_jr_check_{{ entry.job }}
             }
-            clear_variable = bca_jr_cooldown_full_{{ entry.job }}
         }
-    }
-    if = {
-        limit = {
-            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value > 0 }
+        set_variable = {
+            which = bca_jr_acc_total_job_count_{{ entry.job }}
+            value = modifier:job_{{ entry.job }}_add
         }
-        subtract_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 1 }
-        if = {
-            limit = {
-                check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
-            }
-            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
+        export_trigger_value_to_variable = {
+            trigger = free_jobs_of_type
+            parameters = { job = {{ entry.job }} }
+            variable = bca_jr_acc_free_job_count_{{ entry.job }}
         }
     }
 {% endfor %}
 
-    # ==== Phase 2: 单次遍历累加（冷却中跳过） ====
     every_owned_pop_job = {
 {% for entry in regulated if entry.pop_category %}
         if = {
             limit = {
                 has_job_type = {{ entry.job }}
-                check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+                prev = {
+                    OR = {
+                        has_carrier_flag = bca_jr_check_all_jobs
+                        has_carrier_flag = bca_jr_check_{{ entry.job }}
+                    }
+                }
             }
             every_job_pop_group = {
-                limit = { pop_group_size > 1 }
-
-                export_trigger_value_to_variable = {
-                    trigger = pop_group_size
-                    variable = bca_jr_v_size
-                }
-
-                set_variable = {
-                    which = bca_jr_v_eff
-                    value = bca_jr_v_size
-                }
-                multiply_variable = {
-                    which = bca_jr_v_eff
-                    value = value:bca_jr_f1_{{ entry.job }}
-                }
-                multiply_variable = {
-                    which = bca_jr_v_eff
-                    value = value:bca_jr_f2_{{ entry.job }}
-                }
-
+                save_event_target_as = bca_jr_current_pop_group
+                prev = { save_event_target_as = bca_jr_current_pop_job }
                 colony = {
-                    add_variable = {
-                        which = bca_jr_acc_raw_{{ entry.job }}
-                        value = prev.bca_jr_v_size
-                    }
-                    add_variable = {
-                        which = bca_jr_acc_eff_{{ entry.job }}
-                        value = prev.bca_jr_v_eff
-                    }
-                    # 累加后判断满/空，设冷却（只在计算实际发生时执行）
                     set_variable = {
-                        which = bca_jr_tmp_slots
-                        value = modifier:job_{{ entry.job }}_add
+                        which = bca_jr_v_size
+                        value = value:bca_jr_num_pops_assigned_to_job|JOB|event_target:bca_jr_current_pop_job|POP_GROUP|event_target:bca_jr_current_pop_group|
                     }
                     if = {
                         limit = {
-                            check_variable_arithmetic = {
-                                which = bca_jr_acc_raw_{{ entry.job }}
-                                value >= bca_jr_tmp_slots
-                            }
+                            check_variable_arithmetic = { which = bca_jr_v_size value > 0 }
                         }
                         set_variable = {
-                            which = bca_jr_cooldown_full_{{ entry.job }}
-                            value = 6
+                            which = bca_jr_v_capacity
+                            value = bca_jr_v_size
+                        }
+                        multiply_variable = {
+                            which = bca_jr_v_capacity
+                            value = value:bca_jr_workforce_capacity_mult_{{ entry.job }}
+                        }
+                        set_variable = {
+                            which = bca_jr_v_productive
+                            value = bca_jr_v_capacity
+                        }
+                        multiply_variable = {
+                            which = bca_jr_v_productive
+                            value = value:bca_jr_output_efficiency_mult_{{ entry.job }}
+                        }
+
+                        add_variable = {
+                            which = bca_jr_acc_assigned_workforce_{{ entry.job }}
+                            value = bca_jr_v_size
+                        }
+                        add_variable = {
+                            which = bca_jr_acc_capacity_workforce_{{ entry.job }}
+                            value = bca_jr_v_capacity
+                        }
+                        add_variable = {
+                            which = bca_jr_acc_productive_workforce_{{ entry.job }}
+                            value = bca_jr_v_productive
                         }
                     }
+                    clear_variable = bca_jr_v_size
+                    clear_variable = bca_jr_v_capacity
+                    clear_variable = bca_jr_v_productive
                 }
             }
         }
 {% endfor %}
     }
+    clear_variable = bca_jr_tmp_job_count
+}
 
-    # 空岗冷却：岗位不存在时无累加，在此处设冷却
+{# ---- 派生统计量：开放岗位数量与平均产出效率 ---- #}
+bca_jr_finalize_job_stats = {
 {% for entry in regulated if entry.pop_category %}
+    set_variable = {
+        which = bca_jr_acc_open_job_count_{{ entry.job }}
+        value = bca_jr_acc_capacity_workforce_{{ entry.job }}
+    }
+    add_variable = {
+        which = bca_jr_acc_open_job_count_{{ entry.job }}
+        value = bca_jr_acc_free_job_count_{{ entry.job }}
+    }
     if = {
         limit = {
-            check_variable_arithmetic = {
-                which = bca_jr_acc_raw_{{ entry.job }}
-                value <= 0
-            }
-            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
+            check_variable_arithmetic = { which = bca_jr_acc_capacity_workforce_{{ entry.job }} value > 0 }
         }
-        set_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 6 }
+        set_variable = {
+            which = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
+            value = bca_jr_acc_productive_workforce_{{ entry.job }}
+        }
+        divide_variable = {
+            which = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
+            value = bca_jr_acc_capacity_workforce_{{ entry.job }}
+        }
+    }
+    else = {
+        set_variable = { which = bca_jr_acc_avg_output_efficiency_{{ entry.job }} value = 1 }
+    }
+{% for resource in entry.economic_resources %}
+    set_variable = {
+        which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+        value = bca_jr_acc_productive_workforce_{{ entry.job }}
+    }
+    multiply_variable = {
+        which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+        value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker
     }
 {% endfor %}
-    clear_variable = bca_jr_tmp_slots
+{% endfor %}
 }

@@ -1,76 +1,66 @@
-{# Phase 8: 槽位动态 scripted_loc（From 域，二层引用） #}
+{# Phase 8: 槽位动态 scripted_loc（From 域，default 兜底） #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set slots = job_regulation_config.display_slots | default(15) %}
 
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
 
-# ── 槽位 {{ s_name }}: icon + 名称 ──
+# ── 槽位 {{ s_name }}: 图标 ──
 defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_LINE_script
+    name = BCA_JR_SLOT_{{ s_name }}_ICON_script
+{% for icon, entries in regulated | selectattr("icon") | groupby("icon") %}
     text = {
-        trigger = { NOT = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped } }
-        localization_key = BCA_JR_SLOT_EMPTY
+        trigger = {
+{% set icon_entries = entries | list %}
+{% if icon_entries | length == 1 %}
+            has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ icon_entries[0].job }}
+{% else %}
+            OR = {
+{% for entry in icon_entries %}
+                has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
+{% endfor %}
+            }
+{% endif %}
+        }
+        localization_key = BCA_JR_ICON_SPRITE_{{ icon }}
     }
+{% endfor %}
+    default = BCA_JR_ICON_FALLBACK
+}
+
+# ── 槽位 {{ s_name }}: 岗位名 ──
+defined_text = {
+    name = BCA_JR_SLOT_{{ s_name }}_NAME_script
 {% for entry in regulated %}
     text = {
         trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-        localization_key = BCA_JR_LINE_{{ entry.job }}
+        localization_key = job_{{ entry.job }}
     }
 {% endfor %}
+    default = BCA_JR_SLOT_EMPTY_FALLBACK
 }
 
 # ── 槽位 {{ s_name }}: workforce ──
 defined_text = {
     name = BCA_JR_SLOT_{{ s_name }}_WF_script
-    text = {
-        trigger = { NOT = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped } }
-        localization_key = BCA_JR_SLOT_EMPTY
-    }
 {% for entry in regulated %}
     text = {
         trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
         localization_key = BCA_JR_WF_{{ entry.job }}
     }
 {% endfor %}
+    default = BCA_JR_SLOT_EMPTY
 }
 
 # ── 槽位 {{ s_name }}: 每劳动力产出 ──
 defined_text = {
     name = BCA_JR_SLOT_{{ s_name }}_OUTPUT_script
-    text = {
-        trigger = { NOT = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped } }
-        localization_key = BCA_JR_SLOT_EMPTY
-    }
 {% for entry in regulated %}
     text = {
         trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
         localization_key = BCA_JR_OUTPUT_{{ entry.job }}
     }
 {% endfor %}
-}
-
-# ── 槽位 {{ s_name }}: 状态（3 条，条件聚合）──
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_STATUS_script
-    text = {
-        trigger = { NOT = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped } }
-        localization_key = BCA_JR_SLOT_EMPTY
-    }
-    text = {
-        trigger = {
-            has_country_flag = bca_jr_slot_{{ s_name }}_mapped
-            NOR = {
-{% for entry in regulated %}
-                AND = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} has_country_flag = bca_jr_disable_{{ entry.job }} }
-{% endfor %}
-            }
-        }
-        localization_key = BCA_JR_STATUS_ENABLED
-    }
-    text = {
-        trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped }
-        localization_key = BCA_JR_STATUS_DISABLED
-    }
+    default = BCA_JR_SLOT_EMPTY
 }
 {% endfor %}

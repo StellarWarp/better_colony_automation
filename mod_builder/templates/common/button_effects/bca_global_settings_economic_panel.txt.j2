@@ -6,32 +6,34 @@
     {"name": "consumer_goods", "variable": "bca_expect_output_consumer_goods", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
     {"name": "trade", "variable": "bca_expect_output_trade", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
     {"name": "unity", "variable": "bca_expect_output_unity", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
-    {"name": "research", "variable": "bca_expect_output_research", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RESEARCH_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
+    {"name": "physics_research", "variable": "bca_expect_output_physics_research", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
+    {"name": "society_research", "variable": "bca_expect_output_society_research", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
+    {"name": "engineering_research", "variable": "bca_expect_output_engineering_research", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_TOOLTIP", "steps": [{"id": "minus_2p5k", "value": -2500}, {"id": "minus_500", "value": -500}, {"id": "minus_100", "value": -100}, {"id": "plus_100", "value": 100}, {"id": "plus_500", "value": 500}, {"id": "plus_2p5k", "value": 2500}]},
     {"name": "rare_crystals", "variable": "bca_expect_output_rare_crystals", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]},
     {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]},
     {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]}
 ] %}
 
 bca_global_settings_economic_management_off_selected = {
-    potential = { exists = from from = { NOT = { has_country_flag = bca_enable_economic_management } } }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
     effect = { from = { remove_country_flag = bca_enable_economic_management } }
 }
 
 bca_global_settings_economic_management_off_unselected = {
-    potential = { exists = from from = { has_country_flag = bca_enable_economic_management } }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
     effect = { from = { remove_country_flag = bca_enable_economic_management } }
 }
 
 bca_global_settings_economic_management_on_selected = {
-    potential = { exists = from from = { has_country_flag = bca_enable_economic_management } }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
     effect = { from = { set_country_flag = bca_enable_economic_management } }
 }
 
 bca_global_settings_economic_management_on_unselected = {
-    potential = { exists = from from = { NOT = { has_country_flag = bca_enable_economic_management } } }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
     effect = { from = { set_country_flag = bca_enable_economic_management } }
 }
@@ -40,7 +42,7 @@ bca_global_settings_economic_management_on_unselected = {
 {% set unlimited_flag = "bca_economic_target_" ~ row.name ~ "_unlimited" %}
 {% set forbidden_flag = "bca_economic_target_" ~ row.name ~ "_forbidden" %}
 bca_global_settings_expect_output_{{ row.name }}_cycle_mode = {
-    potential = { exists = from }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = { always = yes }
     effect = {
         custom_tooltip = BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP
@@ -65,7 +67,7 @@ bca_global_settings_expect_output_{{ row.name }}_cycle_mode = {
 
 {% for step in row.steps %}
 bca_global_settings_expect_output_{{ row.name }}_{{ step.id }} = {
-    potential = { exists = from }
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
         from = {
             has_country_flag = bca_enable_economic_management

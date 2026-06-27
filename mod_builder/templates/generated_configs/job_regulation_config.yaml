@@ -5,10 +5,38 @@ job_regulation_config:
   - 200
   - 50
   display_slots: 15
+  resources:
+  - energy
+  - minerals
+  - food
+  - alloys
+  - consumer_goods
+  - trade
+  - unity
+  - physics_research
+  - society_research
+  - engineering_research
+  - rare_crystals
+  - volatile_motes
+  - exotic_gases
+  categories:
+  - energy
+  - minerals
+  - food
+  - alloys
+  - consumer_goods
+  - trade
+  - unity
+  - physics_research
+  - society_research
+  - engineering_research
+  - rare_crystals
+  - volatile_motes
+  - exotic_gases
   regulated_jobs:
   - job: agri_drone
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_agri_drone
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -30,7 +58,7 @@ job_regulation_config:
       trigger: farmer_is_puddle_technician_trigger = yes
   - job: alien_hunter
     pop_category: worker
-    icon: job_farmer
+    icon: job_hunter_gatherer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -43,7 +71,7 @@ job_regulation_config:
       trigger: null
   - job: archivist
     pop_category: specialist
-    icon: job_researcher
+    icon: job_fe_archivist
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -66,7 +94,7 @@ job_regulation_config:
       trigger: null
   - job: ark_harvester
     pop_category: specialist
-    icon: null
+    icon: job_ark_harvester
     economic_category: planet_ark_harvester
     economic_resources:
     - minerals
@@ -79,7 +107,7 @@ job_regulation_config:
       trigger: null
   - job: ark_harvester_gestalt
     pop_category: complex_drone
-    icon: null
+    icon: job_ark_harvester
     economic_category: planet_ark_harvester
     economic_resources:
     - minerals
@@ -90,9 +118,35 @@ job_regulation_config:
     - resource: minerals
       amount: 1.5
       trigger: null
+  - job: ark_waystation_trader
+    pop_category: specialist
+    icon: job_ark_waystation_trader
+    economic_category: planet_traders
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 5.0
+      trigger: null
+  - job: ark_waystation_trader_gestalt
+    pop_category: complex_drone
+    icon: job_ark_waystation_trader
+    economic_category: planet_traders
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 4.0
+      trigger: null
   - job: artificer_prison_worker
     pop_category: worker
-    icon: job_artisan
+    icon: job_artificer
     economic_category: planet_artisans
     economic_resources:
     - consumer_goods
@@ -109,8 +163,10 @@ job_regulation_config:
     economic_category: planet_artisans
     economic_resources:
     - consumer_goods
+    - trade
     needs_categories:
     - consumer_goods
+    - trade
     primary_needs: consumer_goods
     produces:
     - resource: consumer_goods
@@ -130,7 +186,7 @@ job_regulation_config:
       trigger: industrial_jobs_are_catalytic_trigger = yes
   - job: artisan_drone
     pop_category: complex_drone
-    icon: job_artisan
+    icon: job_artisan_drone
     economic_category: planet_artisans
     economic_resources:
     - consumer_goods
@@ -156,7 +212,7 @@ job_regulation_config:
       trigger: null
   - job: astral_drone
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_astral_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -182,7 +238,7 @@ job_regulation_config:
       trigger: null
   - job: astral_researcher
     pop_category: specialist
-    icon: job_researcher
+    icon: job_astral_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -208,7 +264,7 @@ job_regulation_config:
       trigger: null
   - job: astral_unit
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_astral_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -234,7 +290,7 @@ job_regulation_config:
       trigger: null
   - job: astrogarbage_collector
     pop_category: worker
-    icon: job_miner
+    icon: job_low_tech_laborer
     economic_category: planet_miners
     economic_resources:
     - alloys
@@ -247,7 +303,7 @@ job_regulation_config:
       trigger: null
   - job: astrogarbage_collector_gestalt
     pop_category: simple_drone
-    icon: job_miner
+    icon: job_gas_refiner_drone
     economic_category: planet_miners
     economic_resources:
     - alloys
@@ -260,7 +316,7 @@ job_regulation_config:
       trigger: null
   - job: augmentor
     pop_category: specialist
-    icon: null
+    icon: job_augmentor
     economic_category: planet_augmentors
     economic_resources:
     - society_research
@@ -284,7 +340,7 @@ job_regulation_config:
       trigger: is_cyborg_empire = yes
   - job: augmentor_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_augmentor
     economic_category: planet_augmentors
     economic_resources:
     - society_research
@@ -302,9 +358,35 @@ job_regulation_config:
       amount: 1.75
       trigger: "OR = {\n    is_cyborg_empire = yes\n    owner = {\n        has_valid_civic\
         \ = civic_machine_assimilator\n    }\n}"
+  - job: bath_attendant
+    pop_category: specialist
+    icon: job_bath_attendant
+    economic_category: planet_bath_attendants
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 2.0
+      trigger: "owner = {\n    is_megacorp = yes\n}"
+  - job: bio_trophy
+    pop_category: bio_trophy
+    icon: job_bio_trophy
+    economic_category: planet_bio_trophies
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: biologist
     pop_category: specialist
-    icon: job_researcher
+    icon: job_biologist
     economic_category: planet_biologists
     economic_resources:
     - society_research
@@ -320,7 +402,7 @@ job_regulation_config:
       trigger: biologist_is_zookeeper_trigger = yes
   - job: broken_shackles_scavenger
     pop_category: worker
-    icon: job_researcher
+    icon: job_broken_shackles_scavenger
     economic_category: planet_researchers
     economic_resources:
     - alloys
@@ -351,12 +433,16 @@ job_regulation_config:
     icon: job_bureaucrat
     economic_category: planet_bureaucrats
     economic_resources:
+    - unity
+    - trade
     - society_research
     - engineering_research
     needs_categories:
+    - unity
+    - trade
     - society_research
     - engineering_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 3.0
@@ -414,7 +500,7 @@ job_regulation_config:
         \ = yes\n}"
   - job: calculator_biologist
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_biologist
     economic_category: planet_biologists
     economic_resources:
     - society_research
@@ -435,7 +521,7 @@ job_regulation_config:
       trigger: "colony = {\n    biologist_is_observator_trigger = yes\n}"
   - job: calculator_engineer
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_engineer
     economic_category: planet_engineers
     economic_resources:
     - engineering_research
@@ -451,7 +537,7 @@ job_regulation_config:
       trigger: engineer_is_nanotech_researcher_trigger = yes
   - job: calculator_physicist
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_physicist
     economic_category: planet_physicists
     economic_resources:
     - physics_research
@@ -492,7 +578,7 @@ job_regulation_config:
       trigger: physicist_is_space_time_researcher_trigger = yes
   - job: catalytic_technician_prison_worker
     pop_category: worker
-    icon: job_foundry
+    icon: job_catalytic_technician
     economic_category: planet_metallurgists
     economic_resources:
     - alloys
@@ -505,7 +591,7 @@ job_regulation_config:
       trigger: null
   - job: cave_cleaner_gestalt
     pop_category: simple_drone
-    icon: job_miner
+    icon: job_mining_drone
     economic_category: planet_miners
     economic_resources:
     - minerals
@@ -516,9 +602,57 @@ job_regulation_config:
     - resource: minerals
       amount: 5.0
       trigger: null
+  - job: chemist
+    pop_category: specialist
+    icon: job_chemist
+    economic_category: planet_chemists
+    economic_resources:
+    - volatile_motes
+    needs_categories:
+    - volatile_motes
+    primary_needs: volatile_motes
+    produces:
+    - resource: volatile_motes
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: volatile_motes
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+  - job: chemist_drone
+    pop_category: complex_drone
+    icon: job_chemist_drone
+    economic_category: planet_chemists
+    economic_resources:
+    - volatile_motes
+    needs_categories:
+    - volatile_motes
+    primary_needs: volatile_motes
+    produces:
+    - resource: volatile_motes
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: volatile_motes
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+  - job: civilian
+    pop_category: civilian
+    icon: job_civilian
+    economic_category: planet_civilians
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 1.0
+      trigger: "exists = owner\n            has_modifier = resort_colony"
   - job: clip_maximizer
     pop_category: purge
-    icon: null
+    icon: job_purge
     economic_category: planet_clip_maximizer
     economic_resources:
     - consumer_goods
@@ -531,7 +665,7 @@ job_regulation_config:
       trigger: null
   - job: colonist
     pop_category: worker
-    icon: null
+    icon: job_colonist
     economic_category: planet_jobs
     economic_resources:
     - food
@@ -561,14 +695,107 @@ job_regulation_config:
       amount: 1.0
       trigger: "exists = owner\n            owner = {\n    is_individual_machine =\
         \ yes\n}"
+  - job: coordinator
+    pop_category: complex_drone
+    icon: job_coordinator
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
+    - resource: unity
+      amount: 0.5
+      trigger: "owner = {\n    is_memorialist_empire = yes\n}"
+  - job: cruise_crew_overseer
+    pop_category: ruler
+    icon: job_cruise_crew_overseer
+    economic_category: planet_entertainers
+    economic_resources:
+    - unity
+    - trade
+    needs_categories:
+    - unity
+    - trade
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+  - job: cruise_crew_overseer_drone
+    pop_category: complex_drone
+    icon: job_cruise_crew_overseer
+    economic_category: planet_entertainers
+    economic_resources:
+    - unity
+    - trade
+    needs_categories:
+    - unity
+    - trade
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
+  - job: cruise_passenger
+    pop_category: cruise_passenger
+    icon: job_cruise_passenger
+    economic_category: planet_cruise_passengers
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+  - job: cruise_passenger_unemployment
+    pop_category: cruise_passenger_unemployment
+    icon: job_cruise_passenger_unemployment
+    economic_category: planet_cruise_passengers
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: "owner = {\n    is_hospitality_servitor_empire = no\n}"
+  - job: cyberdome_duelist
+    pop_category: specialist
+    icon: job_cyberdome_duelist
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: cyberdome_spectator
     pop_category: worker
-    icon: null
+    icon: job_cyberdome_spectator
     economic_category: planet_cyberdome_spectator
     economic_resources:
     - energy
+    - trade
     needs_categories:
     - energy
+    - trade
     primary_needs: energy
     produces:
     - resource: energy
@@ -584,9 +811,11 @@ job_regulation_config:
     economic_resources:
     - physics_research
     - energy
+    - trade
     needs_categories:
     - physics_research
     - energy
+    - trade
     primary_needs: physics_research
     produces:
     - resource: physics_research
@@ -655,9 +884,22 @@ job_regulation_config:
     - resource: sr_dark_matter
       amount: 1.0
       trigger: has_carrier_flag = dportal_void2
+  - job: drone_energy_thrall
+    pop_category: simple_drone
+    icon: job_energy_thrall
+    economic_category: planet_energy_thralls
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: drone_space_junk_collector
     pop_category: complex_drone
-    icon: null
+    icon: job_space_junk_collector
     economic_category: planet_jobs_productive
     economic_resources:
     - alloys
@@ -670,13 +912,15 @@ job_regulation_config:
       trigger: null
   - job: drone_wrangler
     pop_category: complex_drone
-    icon: job_bureaucrat
+    icon: job_wrangler
     economic_category: planet_primal_jobs
     economic_resources:
     - society_research
+    - unity
     - food
     needs_categories:
     - society_research
+    - unity
     - food
     primary_needs: society_research
     produces:
@@ -700,17 +944,19 @@ job_regulation_config:
       trigger: wrangler_is_symbiosis_integrator_trigger = yes
   - job: dystopian_telepath
     pop_category: ruler
-    icon: null
+    icon: job_telepath
     economic_category: planet_telepaths
     economic_resources:
+    - unity
     - physics_research
     - engineering_research
     - society_research
     needs_categories:
+    - unity
     - physics_research
     - engineering_research
     - society_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 4.5
@@ -743,9 +989,22 @@ job_regulation_config:
       amount: 1.5
       trigger: "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
         }"
+  - job: energy_thrall
+    pop_category: worker
+    icon: job_energy_thrall
+    economic_category: planet_energy_thralls
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: engineer
     pop_category: specialist
-    icon: job_researcher
+    icon: job_engineer
     economic_category: planet_engineers
     economic_resources:
     - engineering_research
@@ -761,13 +1020,15 @@ job_regulation_config:
       trigger: engineer_is_nanotech_researcher_trigger = yes
   - job: entertainer
     pop_category: specialist
-    icon: null
+    icon: job_entertainer
     economic_category: planet_entertainers
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 0.5
@@ -781,15 +1042,30 @@ job_regulation_config:
     - resource: unity
       amount: 1.5
       trigger: entertainer_is_storm_dancer_trigger = yes
+  - job: evaluator
+    pop_category: complex_drone
+    icon: job_evaluator
+    economic_category: planet_evaluators
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
   - job: event_purge
     pop_category: purge
-    icon: null
+    icon: job_event_purge
     economic_category: planet_jobs
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -803,9 +1079,11 @@ job_regulation_config:
     economic_category: planet_farmers
     economic_resources:
     - food
+    - trade
     - alloys
     needs_categories:
     - food
+    - trade
     - alloys
     primary_needs: food
     produces:
@@ -829,7 +1107,7 @@ job_regulation_config:
       trigger: farmer_is_puddle_technician_trigger = yes
   - job: fe_acolyte_artisan
     pop_category: precursor
-    icon: null
+    icon: job_artisan
     economic_category: planet_jobs
     economic_resources:
     - consumer_goods
@@ -887,7 +1165,7 @@ job_regulation_config:
       trigger: null
   - job: fe_archivist
     pop_category: precursor
-    icon: null
+    icon: job_fe_archivist
     economic_category: planet_jobs
     economic_resources:
     - society_research
@@ -908,6 +1186,45 @@ job_regulation_config:
     - resource: engineering_research
       amount: 5.0
       trigger: null
+  - job: fe_augur
+    pop_category: precursor
+    icon: job_priest
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 5.0
+      trigger: null
+  - job: fe_hedonist
+    pop_category: precursor
+    icon: job_fe_hedonist
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+  - job: fe_xeno_ward
+    pop_category: xeno_ward
+    icon: job_fe_xeno_ward
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: foundry_prison_worker
     pop_category: worker
     icon: job_foundry
@@ -921,9 +1238,67 @@ job_regulation_config:
     - resource: alloys
       amount: 1.5
       trigger: null
+  - job: gas_plant_engineer
+    pop_category: specialist
+    icon: job_gas_extractor
+    economic_category: planet_refiners
+    economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
+  - job: gas_plant_engineer_gestalt
+    pop_category: complex_drone
+    icon: job_gas_refiner_drone
+    economic_category: planet_refiners
+    economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
+  - job: gas_refiner
+    pop_category: specialist
+    icon: job_gas_refiner
+    economic_category: planet_refiners
+    economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: exotic_gases
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+  - job: gas_refiner_drone
+    pop_category: complex_drone
+    icon: job_gas_refiner_drone
+    economic_category: planet_refiners
+    economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: exotic_gases
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
   - job: gestation_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_healthcare
     economic_category: planet_doctors
     economic_resources:
     - society_research
@@ -941,13 +1316,17 @@ job_regulation_config:
       trigger: null
   - job: haruspex
     pop_category: specialist
-    icon: job_bureaucrat
+    icon: job_haruspex
     economic_category: planet_bureaucrats
     economic_resources:
+    - unity
     - engineering_research
+    - trade
     needs_categories:
+    - unity
     - engineering_research
-    primary_needs: engineering_research
+    - trade
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.5
@@ -963,7 +1342,7 @@ job_regulation_config:
       trigger: "owner = {\n    is_megacorp = yes\n}"
   - job: healthcare
     pop_category: specialist
-    icon: null
+    icon: job_healthcare
     economic_category: planet_doctors
     economic_resources:
     - society_research
@@ -980,7 +1359,7 @@ job_regulation_config:
         \            owner = {\n    has_completed_genetic_situation = yes\n}"
   - job: hive_basic_agri_drone
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_peasant
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -993,7 +1372,7 @@ job_regulation_config:
       trigger: null
   - job: hive_basic_agri_drone_lithoid
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_peasant
     economic_category: planet_farmers
     economic_resources:
     - minerals
@@ -1006,7 +1385,7 @@ job_regulation_config:
       trigger: null
   - job: hive_sustenance_drone
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_hunter_gatherer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1019,7 +1398,7 @@ job_regulation_config:
       trigger: null
   - job: hive_sustenance_drone_lithoid
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_hunter_gatherer
     economic_category: planet_farmers
     economic_resources:
     - minerals
@@ -1032,7 +1411,7 @@ job_regulation_config:
       trigger: null
   - job: hunted_pre_sapient
     pop_category: pre_sapients
-    icon: job_farmer
+    icon: job_livestock
     economic_category: planet_livestock_farmers
     economic_resources:
     - food
@@ -1053,7 +1432,7 @@ job_regulation_config:
         }"
   - job: hunted_pre_sapient_lithoid
     pop_category: pre_sapients
-    icon: job_miner
+    icon: job_livestock
     economic_category: planet_livestock_miners
     economic_resources:
     - minerals
@@ -1074,7 +1453,7 @@ job_regulation_config:
         }"
   - job: hunter_gatherer
     pop_category: worker
-    icon: job_farmer
+    icon: job_hunter_gatherer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1087,7 +1466,7 @@ job_regulation_config:
       trigger: null
   - job: hunter_gatherer_lithoid
     pop_category: worker
-    icon: job_farmer
+    icon: job_hunter_gatherer_lithoid
     economic_category: planet_farmers
     economic_resources:
     - minerals
@@ -1100,7 +1479,7 @@ job_regulation_config:
       trigger: null
   - job: identity_designer
     pop_category: specialist
-    icon: null
+    icon: job_identity_designer
     economic_category: planet_pop_assemblers
     economic_resources:
     - engineering_research
@@ -1117,17 +1496,19 @@ job_regulation_config:
         \    }\n}"
   - job: knight
     pop_category: specialist
-    icon: null
+    icon: job_knight
     economic_category: planet_knights
     economic_resources:
+    - unity
     - physics_research
     - engineering_research
     - society_research
     needs_categories:
+    - unity
     - physics_research
     - engineering_research
     - society_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -1146,17 +1527,19 @@ job_regulation_config:
       trigger: "owner = {\n    has_country_flag = cosmogenesis_knights\n}"
   - job: knight_commander
     pop_category: ruler
-    icon: null
+    icon: job_knight_commander
     economic_category: planet_knights
     economic_resources:
+    - unity
     - physics_research
     - engineering_research
     - society_research
     needs_categories:
+    - unity
     - physics_research
     - engineering_research
     - society_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 2.0
@@ -1175,7 +1558,7 @@ job_regulation_config:
       trigger: "owner = {\n    has_country_flag = cosmogenesis_knights\n}"
   - job: livestock_lithoid
     pop_category: worker
-    icon: job_miner
+    icon: job_livestock_lithoid
     economic_category: planet_livestock_miners
     economic_resources:
     - minerals
@@ -1186,9 +1569,38 @@ job_regulation_config:
     - resource: minerals
       amount: 2.0
       trigger: null
+  - job: logistics_drone
+    pop_category: complex_drone
+    icon: job_low_tech_bureaucrat
+    economic_category: planet_traders
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 6.0
+      trigger: null
+    - resource: trade
+      amount: 3.0
+      trigger: trader_is_subterranean = yes
+  - job: low_tech_bureaucrat
+    pop_category: specialist
+    icon: job_low_tech_bureaucrat
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: low_tech_farmer
     pop_category: worker
-    icon: job_farmer
+    icon: job_low_tech_farmer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1201,7 +1613,7 @@ job_regulation_config:
       trigger: null
   - job: low_tech_laborer
     pop_category: worker
-    icon: low_tech_laborer
+    icon: job_low_tech_laborer
     economic_category: planet_laborer
     economic_resources:
     - consumer_goods
@@ -1217,6 +1629,24 @@ job_regulation_config:
     - resource: alloys
       amount: 1.5
       trigger: null
+  - job: low_tech_manager
+    pop_category: specialist
+    icon: job_low_tech_bureaucrat
+    economic_category: planet_managers
+    economic_resources:
+    - unity
+    - trade
+    needs_categories:
+    - unity
+    - trade
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: null
   - job: low_tech_miner
     pop_category: worker
     icon: job_miner
@@ -1230,9 +1660,22 @@ job_regulation_config:
     - resource: minerals
       amount: 3.0
       trigger: null
+  - job: low_tech_priest
+    pop_category: specialist
+    icon: job_low_tech_priest
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: low_tech_researcher
     pop_category: specialist
-    icon: job_researcher
+    icon: job_low_tech_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -1266,16 +1709,44 @@ job_regulation_config:
     - resource: energy
       amount: 4.0
       trigger: null
+  - job: machine_nurse
+    pop_category: bio_trophy
+    icon: job_machine_nurse
+    economic_category: planet_bio_trophies
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+  - job: maintenance_drone
+    pop_category: maintenance_drone
+    icon: job_maintenance_drone
+    economic_category: planet_maintenance_drones
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 1.0
+      trigger: null
   - job: manufactorium_complex_drone
     pop_category: complex_drone
     icon: job_foundry
     economic_category: planet_metallurgists
     economic_resources:
     - alloys
+    - unity
     - engineering_research
     - society_research
     needs_categories:
     - alloys
+    - unity
     - engineering_research
     - society_research
     primary_needs: alloys
@@ -1333,10 +1804,12 @@ job_regulation_config:
     economic_category: planet_metallurgists
     economic_resources:
     - alloys
+    - unity
     - engineering_research
     - society_research
     needs_categories:
     - alloys
+    - unity
     - engineering_research
     - society_research
     primary_needs: alloys
@@ -1417,7 +1890,7 @@ job_regulation_config:
       trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
   - job: mineral_diver_drone
     pop_category: simple_drone
-    icon: job_miner
+    icon: job_mining_drone
     economic_category: planet_miners
     economic_resources:
     - minerals
@@ -1435,7 +1908,7 @@ job_regulation_config:
       trigger: null
   - job: mining_drone
     pop_category: simple_drone
-    icon: job_miner
+    icon: job_mining_drone
     economic_category: planet_miners
     economic_resources:
     - minerals
@@ -1465,13 +1938,15 @@ job_regulation_config:
       trigger: "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
   - job: mortal_initiate
     pop_category: worker
-    icon: job_bureaucrat
+    icon: job_mortal_initiate
     economic_category: planet_bureaucrats
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -1481,7 +1956,7 @@ job_regulation_config:
       trigger: null
   - job: munitions_decommissioner
     pop_category: specialist
-    icon: job_researcher
+    icon: job_munitions_decommissioner
     economic_category: planet_researchers
     economic_resources:
     - alloys
@@ -1507,7 +1982,7 @@ job_regulation_config:
         \ ap_archaeoengineers\n}"
   - job: munitions_decommissioning_drone
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_munitions_decommissioning_drone
     economic_category: planet_researchers
     economic_resources:
     - alloys
@@ -1533,7 +2008,7 @@ job_regulation_config:
         \ ap_archaeoengineers\n}"
   - job: munitions_decommissioning_unit
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_munitions_decommissioning_unit
     economic_category: planet_researchers
     economic_resources:
     - alloys
@@ -1559,7 +2034,7 @@ job_regulation_config:
         \ ap_archaeoengineers\n}"
   - job: munitions_decommissioning_unit_lithoid
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_munitions_decommissioning_unit_lithoid
     economic_category: planet_researchers
     economic_resources:
     - alloys
@@ -1585,7 +2060,7 @@ job_regulation_config:
         \ ap_archaeoengineers\n}"
   - job: nanotech_research_unit
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_nanotech_research_unit
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -1608,7 +2083,7 @@ job_regulation_config:
       trigger: null
   - job: nanotech_researcher
     pop_category: specialist
-    icon: job_researcher
+    icon: job_nanotech_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -1629,9 +2104,22 @@ job_regulation_config:
     - resource: society_research
       amount: 1.0
       trigger: null
+  - job: necro_apprentice
+    pop_category: specialist
+    icon: job_necro_apprentice
+    economic_category: planet_necro_apprentices
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.75
+      trigger: null
   - job: neural_chip
     pop_category: chip_slave
-    icon: job_neural_chip
+    icon: job_organic_battery
     economic_category: planet_neural_chips
     economic_resources:
     - society_research
@@ -1657,7 +2145,7 @@ job_regulation_config:
       trigger: null
   - job: odd_factory_drone
     pop_category: simple_drone
-    icon: job_foundry
+    icon: job_odd_factory_drone
     economic_category: planet_metallurgists
     economic_resources:
     - alloys
@@ -1670,7 +2158,7 @@ job_regulation_config:
       trigger: null
   - job: odd_factory_worker
     pop_category: worker
-    icon: job_foundry
+    icon: job_odd_factory_worker
     economic_category: planet_metallurgists
     economic_resources:
     - alloys
@@ -1683,7 +2171,7 @@ job_regulation_config:
       trigger: null
   - job: organic_battery
     pop_category: worker
-    icon: null
+    icon: job_organic_battery
     economic_category: planet_organic_batteries
     economic_resources:
     - energy
@@ -1694,9 +2182,22 @@ job_regulation_config:
     - resource: energy
       amount: 4.0
       trigger: null
+  - job: organic_exhibit
+    pop_category: bio_trophy
+    icon: job_organic_exhibit
+    economic_category: planet_bio_trophies
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
   - job: overlord_academic
     pop_category: specialist
-    icon: null
+    icon: job_overlord_academic
     economic_category: planet_overlord_academics
     economic_resources:
     - physics_research
@@ -1719,7 +2220,7 @@ job_regulation_config:
       trigger: null
   - job: overlord_academic_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_overlord_academic
     economic_category: planet_overlord_academics
     economic_resources:
     - physics_research
@@ -1740,15 +2241,78 @@ job_regulation_config:
     - resource: society_research
       amount: 0.5
       trigger: null
+  - job: overlord_bio_trophy
+    pop_category: worker
+    icon: job_bio_trophy
+    economic_category: planet_overlord_bio_trophies
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+  - job: overlord_bio_trophy_drone
+    pop_category: simple_drone
+    icon: job_bio_trophy
+    economic_category: planet_overlord_bio_trophies
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+  - job: overlord_healthcare
+    pop_category: specialist
+    icon: job_overlord_healthcare
+    economic_category: planet_doctors
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 4.0
+      trigger: "owner = {\n    has_valid_civic = civic_private_healthcare_corporate\n\
+        }"
+    - resource: trade
+      amount: 2.0
+      trigger: has_carrier_flag = has_private_clinics
+  - job: overlord_manager
+    pop_category: specialist
+    icon: job_manager
+    economic_category: planet_overlord_managers
+    economic_resources:
+    - unity
+    - trade
+    needs_categories:
+    - unity
+    - trade
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+    - resource: trade
+      amount: 1.0
+      trigger: null
   - job: overlord_mortal_initiate
     pop_category: worker
-    icon: null
+    icon: job_mortal_initiate
     economic_category: planet_overlord_mortal_initiates
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -1758,13 +2322,15 @@ job_regulation_config:
       trigger: null
   - job: overlord_mortal_initiate_drone
     pop_category: simple_drone
-    icon: null
+    icon: job_mortal_initiate
     economic_category: planet_overlord_mortal_initiates
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -1772,9 +2338,22 @@ job_regulation_config:
     - resource: society_research
       amount: 0.5
       trigger: null
+  - job: patrol_drone
+    pop_category: complex_drone
+    icon: job_patrol_drone
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
   - job: peasant
     pop_category: worker
-    icon: job_farmer
+    icon: job_peasant
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1787,7 +2366,7 @@ job_regulation_config:
       trigger: null
   - job: peasant_lithoid
     pop_category: worker
-    icon: job_farmer
+    icon: job_peasant_lithoid
     economic_category: planet_farmers
     economic_resources:
     - minerals
@@ -1798,9 +2377,22 @@ job_regulation_config:
     - resource: minerals
       amount: 2.0
       trigger: null
+  - job: physician_drone
+    pop_category: complex_drone
+    icon: job_aid_worker
+    economic_category: planet_doctors
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
   - job: physicist
     pop_category: specialist
-    icon: job_researcher
+    icon: job_physicist
     economic_category: planet_physicists
     economic_resources:
     - physics_research
@@ -1824,17 +2416,21 @@ job_regulation_config:
       trigger: physicist_is_space_time_researcher_trigger = yes
   - job: politician
     pop_category: ruler
-    icon: null
+    icon: job_politician
     economic_category: planet_politicians
     economic_resources:
+    - unity
+    - trade
     - physics_research
     - society_research
     - engineering_research
     needs_categories:
+    - unity
+    - trade
     - physics_research
     - society_research
     - engineering_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 5.0
@@ -1889,9 +2485,35 @@ job_regulation_config:
       amount: 6.0
       trigger: "colony = {\n    politician_is_superstitious_beliefs_high_priest_corporate\
         \ = yes\n}"
+  - job: primitive_administrator
+    pop_category: specialist
+    icon: job_low_tech_bureaucrat
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.0
+      trigger: null
+  - job: primitive_bureaucrat
+    pop_category: ruler
+    icon: job_primitive_bureaucrat
+    economic_category: planet_politicians
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: primitive_farmer
     pop_category: worker
-    icon: job_farmer
+    icon: job_primitive_farmer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1904,7 +2526,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_hive_brain_drone
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_primitive_hive_brain_drone
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -1927,7 +2549,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_hive_cerebellum_drone
     pop_category: complex_drone
-    icon: job_researcher
+    icon: job_primitive_hive_cerebellum_drone
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -1950,7 +2572,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_hive_factory_drone
     pop_category: simple_drone
-    icon: job_artisan
+    icon: job_primitive_laborer
     economic_category: planet_artisans
     economic_resources:
     - alloys
@@ -1963,7 +2585,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_hive_farmer
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_primitive_farmer
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -1987,6 +2609,32 @@ job_regulation_config:
     - resource: minerals
       amount: 3.0
       trigger: null
+  - job: primitive_hive_synapse_drone
+    pop_category: complex_drone
+    icon: job_synapse_drone
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+  - job: primitive_hive_synapse_drone_2
+    pop_category: complex_drone
+    icon: job_synapse_drone
+    economic_category: planet_bureaucrats
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: primitive_hive_technician
     pop_category: simple_drone
     icon: job_technician
@@ -2002,7 +2650,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_laborer
     pop_category: specialist
-    icon: null
+    icon: job_primitive_laborer
     economic_category: planet_jobs_productive
     economic_resources:
     - alloys
@@ -2031,9 +2679,48 @@ job_regulation_config:
     - resource: minerals
       amount: 3.0
       trigger: null
+  - job: primitive_noble
+    pop_category: ruler
+    icon: job_primitive_noble
+    economic_category: planet_politicians
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+  - job: primitive_priest
+    pop_category: specialist
+    icon: job_primitive_priest
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 0.5
+      trigger: null
+  - job: primitive_priest_2
+    pop_category: specialist
+    icon: job_primitive_priest_2
+    economic_category: planet_jobs
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
   - job: primitive_researcher
     pop_category: specialist
-    icon: job_researcher
+    icon: job_primitive_researcher
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -2056,7 +2743,7 @@ job_regulation_config:
       trigger: null
   - job: primitive_researcher_2
     pop_category: specialist
-    icon: job_researcher
+    icon: job_primitive_researcher_2
     economic_category: planet_researchers
     economic_resources:
     - physics_research
@@ -2092,7 +2779,7 @@ job_regulation_config:
       trigger: null
   - job: production_overseer
     pop_category: specialist
-    icon: job_bureaucrat
+    icon: job_production_overseer
     economic_category: planet_production_overseers
     economic_resources:
     - engineering_research
@@ -2105,7 +2792,7 @@ job_regulation_config:
       trigger: null
   - job: puddle_technician
     pop_category: worker
-    icon: job_farmer
+    icon: job_puddle_technician
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -2126,7 +2813,7 @@ job_regulation_config:
       trigger: "owner = {\n    is_robot_empire = yes\n}"
   - job: puddle_technician_drone
     pop_category: simple_drone
-    icon: job_farmer
+    icon: job_puddle_technician_drone
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -2147,15 +2834,17 @@ job_regulation_config:
       trigger: "owner = {\n    is_robot_empire = yes\n}"
   - job: purge_labor_camps
     pop_category: purge
-    icon: null
+    icon: job_purge_labor_camps
     economic_category: pop_category_purge
     economic_resources:
     - food
     - minerals
+    - unity
     - society_research
     needs_categories:
     - food
     - minerals
+    - unity
     - society_research
     primary_needs: food
     produces:
@@ -2189,13 +2878,15 @@ job_regulation_config:
         }"
   - job: purge_lithoid
     pop_category: purge
-    icon: null
+    icon: job_purge_lithoid
     economic_category: planet_jobs
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -2205,13 +2896,15 @@ job_regulation_config:
       trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
   - job: purge_matrix
     pop_category: purge
-    icon: null
+    icon: job_purge_matrix
     economic_category: pop_category_purge
     economic_resources:
     - energy
+    - unity
     - society_research
     needs_categories:
     - energy
+    - unity
     - society_research
     primary_needs: energy
     produces:
@@ -2232,13 +2925,15 @@ job_regulation_config:
       trigger: "colony = {\n    has_active_building = building_energy_nexus\n}"
   - job: purge_processing
     pop_category: purge
-    icon: null
+    icon: job_purge_processing
     economic_category: planet_jobs
     economic_resources:
     - food
+    - unity
     - society_research
     needs_categories:
     - food
+    - unity
     - society_research
     primary_needs: food
     produces:
@@ -2261,13 +2956,15 @@ job_regulation_config:
         }"
   - job: purge_processing_infernal
     pop_category: purge
-    icon: null
+    icon: job_purge_processing
     economic_category: planet_jobs
     economic_resources:
     - alloys
+    - unity
     - society_research
     needs_categories:
     - alloys
+    - unity
     - society_research
     primary_needs: alloys
     produces:
@@ -2291,13 +2988,15 @@ job_regulation_config:
       trigger: "colony = {\n    has_active_building = building_foundry_3\n}"
   - job: purge_processing_lithoid
     pop_category: purge
-    icon: null
+    icon: job_purge_processing_lithoid
     economic_category: planet_jobs
     economic_resources:
     - minerals
+    - unity
     - society_research
     needs_categories:
     - minerals
+    - unity
     - society_research
     primary_needs: minerals
     produces:
@@ -2320,13 +3019,15 @@ job_regulation_config:
         }"
   - job: purge_processing_robot
     pop_category: purge
-    icon: null
+    icon: job_purge_processing_robot
     economic_category: planet_jobs
     economic_resources:
     - alloys
+    - unity
     - society_research
     needs_categories:
     - alloys
+    - unity
     - society_research
     primary_needs: alloys
     produces:
@@ -2347,13 +3048,15 @@ job_regulation_config:
       trigger: "colony = {\n    has_active_building = building_foundry_3\n}"
   - job: purge_robot
     pop_category: purge
-    icon: null
+    icon: job_purge_robot
     economic_category: planet_jobs
     economic_resources:
+    - unity
     - society_research
     needs_categories:
+    - unity
     - society_research
-    primary_needs: society_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 1.0
@@ -2361,9 +3064,28 @@ job_regulation_config:
     - resource: society_research
       amount: 1.0
       trigger: "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  - job: purge_sacrifice
+    pop_category: purge
+    icon: job_purge_sacrifice
+    economic_category: pop_category_purge
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 2.5
+      trigger: null
+    - resource: sr_zro
+      amount: 2.0
+      trigger: "owner = {\n    OR = {\n        has_patron_relation = {\n         \
+        \   patron = the_eater_of_worlds\n        }\n    }\n    AND = {\n        has_origin\
+        \ = origin_nomadic_purger\n        overlord = {\n            has_country_flag\
+        \ = devour_war_active\n        }\n    }\n}"
   - job: ratling_scavenger
     pop_category: worker
-    icon: job_farmer
+    icon: job_ratling_scavenger
     economic_category: planet_farmers
     economic_resources:
     - food
@@ -2384,15 +3106,35 @@ job_regulation_config:
     - resource: consumer_goods
       amount: 1.0
       trigger: null
+  - job: resort_worker
+    pop_category: specialist
+    icon: job_servant
+    economic_category: planet_entertainers
+    economic_resources:
+    - unity
+    - trade
+    needs_categories:
+    - unity
+    - trade
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: null
+    - resource: trade
+      amount: 4.0
+      trigger: null
   - job: robot_caretaker
     pop_category: specialist
-    icon: job_bureaucrat
+    icon: job_robot_caretaker
     economic_category: planet_bureaucrats
     economic_resources:
+    - unity
     - engineering_research
     needs_categories:
+    - unity
     - engineering_research
-    primary_needs: engineering_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 2.5
@@ -2400,9 +3142,40 @@ job_regulation_config:
     - resource: engineering_research
       amount: 2.5
       trigger: null
+  - job: shroud_trader
+    pop_category: specialist
+    icon: job_telepath
+    economic_category: planet_traders
+    economic_resources:
+    - trade
+    - unity
+    needs_categories:
+    - trade
+    - unity
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 6.0
+      trigger: null
+    - resource: unity
+      amount: 2.0
+      trigger: "owner = {\n    has_breached_shroud = yes\n}"
+  - job: solarpunk_anarchist
+    pop_category: ruler
+    icon: job_ranger
+    economic_category: planet_politicians
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 3.0
+      trigger: null
   - job: soldier
     pop_category: specialist
-    icon: null
+    icon: job_soldier
     economic_category: planet_soldiers
     economic_resources:
     - society_research
@@ -2420,7 +3193,7 @@ job_regulation_config:
       trigger: soldier_is_necromancer = yes
   - job: space_junk_collector
     pop_category: specialist
-    icon: null
+    icon: job_space_junk_collector
     economic_category: planet_jobs_productive
     economic_resources:
     - alloys
@@ -2475,7 +3248,7 @@ job_regulation_config:
       trigger: null
   - job: spawning_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_spawning_drone
     economic_category: planet_pop_assemblers
     economic_resources:
     - society_research
@@ -2492,7 +3265,7 @@ job_regulation_config:
         \            owner = {\n    has_completed_genetic_situation = yes\n}"
   - job: spe_colonist
     pop_category: specialist
-    icon: null
+    icon: job_colonist
     economic_category: planet_jobs
     economic_resources:
     - food
@@ -2524,7 +3297,7 @@ job_regulation_config:
         \ yes\n}"
   - job: stasis_warden
     pop_category: specialist
-    icon: null
+    icon: job_enforcer
     economic_category: planet_enforcers
     economic_resources:
     - physics_research
@@ -2537,12 +3310,14 @@ job_regulation_config:
       trigger: null
   - job: stasis_warden_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_patrol_drone
     economic_category: planet_jobs
     economic_resources:
     - physics_research
+    - unity
     needs_categories:
     - physics_research
+    - unity
     primary_needs: physics_research
     produces:
     - resource: physics_research
@@ -2551,15 +3326,30 @@ job_regulation_config:
     - resource: unity
       amount: 0.5
       trigger: null
-  - job: stratovent_refiner_minerals
+  - job: stratovent_refiner
     pop_category: specialist
-    icon: job_miner
+    icon: job_gas_extractor
     economic_category: planet_miners
     economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 2.0
+      trigger: null
+  - job: stratovent_refiner_minerals
+    pop_category: specialist
+    icon: job_gas_extractor
+    economic_category: planet_miners
+    economic_resources:
+    - exotic_gases
     - minerals
     needs_categories:
+    - exotic_gases
     - minerals
-    primary_needs: minerals
+    primary_needs: exotic_gases
     produces:
     - resource: exotic_gases
       amount: 1.0
@@ -2567,14 +3357,29 @@ job_regulation_config:
     - resource: minerals
       amount: 2.0
       trigger: null
+  - job: stratovent_refiner_upg
+    pop_category: specialist
+    icon: job_gas_extractor
+    economic_category: planet_miners
+    economic_resources:
+    - exotic_gases
+    needs_categories:
+    - exotic_gases
+    primary_needs: exotic_gases
+    produces:
+    - resource: exotic_gases
+      amount: 3.0
+      trigger: null
   - job: stratovent_researcher
     pop_category: specialist
-    icon: job_researcher
+    icon: job_xeno_zoo_keeper
     economic_category: planet_researchers
     economic_resources:
     - society_research
+    - trade
     needs_categories:
     - society_research
+    - trade
     primary_needs: society_research
     produces:
     - resource: society_research
@@ -2601,7 +3406,7 @@ job_regulation_config:
       trigger: "owner = {\n    is_robot_empire = yes\n}"
   - job: technician_drone
     pop_category: simple_drone
-    icon: job_technician
+    icon: job_technician_drone
     economic_category: planet_technician
     economic_resources:
     - energy
@@ -2620,13 +3425,15 @@ job_regulation_config:
       trigger: "owner = {\n    is_nomadic = yes\n}"
   - job: technophant
     pop_category: ruler
-    icon: job_bureaucrat
+    icon: job_technophant
     economic_category: planet_bureaucrats
     economic_resources:
+    - unity
     - engineering_research
     needs_categories:
+    - unity
     - engineering_research
-    primary_needs: engineering_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 5.0
@@ -2636,17 +3443,19 @@ job_regulation_config:
       trigger: null
   - job: telepath
     pop_category: specialist
-    icon: null
+    icon: job_telepath
     economic_category: planet_telepaths
     economic_resources:
+    - unity
     - physics_research
     - engineering_research
     - society_research
     needs_categories:
+    - unity
     - physics_research
     - engineering_research
     - society_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 4.5
@@ -2681,17 +3490,19 @@ job_regulation_config:
         }"
   - job: telepath_drone
     pop_category: complex_drone
-    icon: null
+    icon: job_telepath_drone
     economic_category: planet_telepaths
     economic_resources:
+    - unity
     - physics_research
     - engineering_research
     - society_research
     needs_categories:
+    - unity
     - physics_research
     - engineering_research
     - society_research
-    primary_needs: physics_research
+    primary_needs: unity
     produces:
     - resource: unity
       amount: 4.5
@@ -2720,7 +3531,7 @@ job_regulation_config:
       trigger: "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
   - job: test_subject
     pop_category: criminal
-    icon: null
+    icon: job_test_subject
     economic_category: planet_test_subjects
     economic_resources:
     - engineering_research
@@ -2743,7 +3554,7 @@ job_regulation_config:
       trigger: null
   - job: test_subject_drone
     pop_category: deviant_drone
-    icon: null
+    icon: job_test_subject
     economic_category: planet_test_subjects
     economic_resources:
     - engineering_research
@@ -2764,18 +3575,96 @@ job_regulation_config:
     - resource: society_research
       amount: 1.0
       trigger: null
+  - job: trader
+    pop_category: specialist
+    icon: job_overlord_trader
+    economic_category: planet_traders
+    economic_resources:
+    - trade
+    needs_categories:
+    - trade
+    primary_needs: trade
+    produces:
+    - resource: trade
+      amount: 8.0
+      trigger: null
+    - resource: trade
+      amount: 2.0
+      trigger: trader_is_subterranean = yes
+  - job: transference_drone
+    pop_category: complex_drone
+    icon: job_transference_drone
+    economic_category: planet_transference_volunteers
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+  - job: transference_volunteer
+    pop_category: specialist
+    icon: job_transference_volunteer
+    economic_category: planet_transference_volunteers
+    economic_resources:
+    - unity
+    needs_categories:
+    - unity
+    primary_needs: unity
+    produces:
+    - resource: unity
+      amount: 1.5
+      trigger: null
+  - job: translucer
+    pop_category: specialist
+    icon: job_translucer
+    economic_category: planet_translucers
+    economic_resources:
+    - rare_crystals
+    needs_categories:
+    - rare_crystals
+    primary_needs: rare_crystals
+    produces:
+    - resource: rare_crystals
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: rare_crystals
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
+  - job: translucer_drone
+    pop_category: complex_drone
+    icon: job_translucer_drone
+    economic_category: planet_translucers
+    economic_resources:
+    - rare_crystals
+    needs_categories:
+    - rare_crystals
+    primary_needs: rare_crystals
+    produces:
+    - resource: rare_crystals
+      amount: 2.0
+      trigger: "owner = {\n    is_catalytic_empire = no\n}"
+    - resource: rare_crystals
+      amount: 2.5
+      trigger: "owner = {\n    is_catalytic_empire = yes\n}"
   - job: treasure_gatherer
     pop_category: specialist
-    icon: job_bureaucrat
+    icon: job_treasure_gatherer
     economic_category: planet_treasure_gatherers
     economic_resources:
     - energy
     - minerals
+    - unity
     - society_research
+    - trade
     needs_categories:
     - energy
     - minerals
+    - unity
     - society_research
+    - trade
     primary_needs: energy
     produces:
     - resource: energy
@@ -2795,15 +3684,17 @@ job_regulation_config:
       trigger: null
   - job: treasure_gatherer_gestalt
     pop_category: complex_drone
-    icon: job_bureaucrat
+    icon: job_treasure_gatherer
     economic_category: planet_treasure_gatherers
     economic_resources:
     - energy
     - minerals
+    - unity
     - society_research
     needs_categories:
     - energy
     - minerals
+    - unity
     - society_research
     primary_needs: energy
     produces:
@@ -2821,7 +3712,7 @@ job_regulation_config:
       trigger: null
   - job: turtle_miner_gestalt
     pop_category: simple_drone
-    icon: job_miner
+    icon: job_mining_drone
     economic_category: planet_miners
     economic_resources:
     - minerals
@@ -2847,13 +3738,15 @@ job_regulation_config:
         }"
   - job: wrangler
     pop_category: specialist
-    icon: job_bureaucrat
+    icon: job_wrangler
     economic_category: planet_primal_jobs
     economic_resources:
     - society_research
+    - unity
     - food
     needs_categories:
     - society_research
+    - unity
     - food
     primary_needs: society_research
     produces:
@@ -2882,3 +3775,127 @@ job_regulation_config:
     - resource: unity
       amount: 1.0
       trigger: wrangler_is_beastfighter_trigger = yes
+  icon_sprites:
+  - job_agri_drone
+  - job_hunter_gatherer
+  - job_fe_archivist
+  - job_ark_harvester
+  - job_ark_waystation_trader
+  - job_artificer
+  - job_artisan
+  - job_artisan_drone
+  - job_astral_researcher
+  - job_low_tech_laborer
+  - job_gas_refiner_drone
+  - job_augmentor
+  - job_bath_attendant
+  - job_bio_trophy
+  - job_biologist
+  - job_broken_shackles_scavenger
+  - job_bureaucrat
+  - job_engineer
+  - job_physicist
+  - job_catalytic_technician
+  - job_mining_drone
+  - job_chemist
+  - job_chemist_drone
+  - job_civilian
+  - job_purge
+  - job_colonist
+  - job_coordinator
+  - job_cruise_crew_overseer
+  - job_cruise_passenger
+  - job_cruise_passenger_unemployment
+  - job_cyberdome_duelist
+  - job_cyberdome_spectator
+  - job_researcher
+  - job_energy_thrall
+  - job_space_junk_collector
+  - job_wrangler
+  - job_telepath
+  - job_entertainer
+  - job_evaluator
+  - job_event_purge
+  - job_farmer
+  - job_technician
+  - job_miner
+  - job_priest
+  - job_fe_hedonist
+  - job_fe_xeno_ward
+  - job_foundry
+  - job_gas_extractor
+  - job_gas_refiner
+  - job_healthcare
+  - job_haruspex
+  - job_peasant
+  - job_livestock
+  - job_hunter_gatherer_lithoid
+  - job_identity_designer
+  - job_knight
+  - job_knight_commander
+  - job_livestock_lithoid
+  - job_low_tech_bureaucrat
+  - job_low_tech_farmer
+  - job_low_tech_priest
+  - job_low_tech_researcher
+  - job_machine_nurse
+  - job_maintenance_drone
+  - job_mortal_initiate
+  - job_munitions_decommissioner
+  - job_munitions_decommissioning_drone
+  - job_munitions_decommissioning_unit
+  - job_munitions_decommissioning_unit_lithoid
+  - job_nanotech_research_unit
+  - job_nanotech_researcher
+  - job_necro_apprentice
+  - job_organic_battery
+  - job_odd_factory_drone
+  - job_odd_factory_worker
+  - job_organic_exhibit
+  - job_overlord_academic
+  - job_overlord_healthcare
+  - job_manager
+  - job_patrol_drone
+  - job_peasant_lithoid
+  - job_aid_worker
+  - job_politician
+  - job_primitive_bureaucrat
+  - job_primitive_farmer
+  - job_primitive_hive_brain_drone
+  - job_primitive_hive_cerebellum_drone
+  - job_primitive_laborer
+  - job_synapse_drone
+  - job_primitive_noble
+  - job_primitive_priest
+  - job_primitive_priest_2
+  - job_primitive_researcher
+  - job_primitive_researcher_2
+  - job_production_overseer
+  - job_puddle_technician
+  - job_puddle_technician_drone
+  - job_purge_labor_camps
+  - job_purge_lithoid
+  - job_purge_matrix
+  - job_purge_processing
+  - job_purge_processing_lithoid
+  - job_purge_processing_robot
+  - job_purge_robot
+  - job_purge_sacrifice
+  - job_ratling_scavenger
+  - job_servant
+  - job_robot_caretaker
+  - job_ranger
+  - job_soldier
+  - job_spawning_drone
+  - job_enforcer
+  - job_xeno_zoo_keeper
+  - job_technician_drone
+  - job_technophant
+  - job_telepath_drone
+  - job_test_subject
+  - job_overlord_trader
+  - job_transference_drone
+  - job_transference_volunteer
+  - job_translucer
+  - job_translucer_drone
+  - job_treasure_gatherer

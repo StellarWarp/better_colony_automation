@@ -22,6 +22,8 @@ from synthetipy.ast_nodes import BlockNode, ListNode, PropertyNode
 ECONOMIC_RESOURCES = {
     'energy', 'minerals', 'food', 'alloys', 'consumer_goods',
     'physics_research', 'society_research', 'engineering_research',
+    'trade', 'unity',
+    'rare_crystals', 'volatile_motes', 'exotic_gases',
 }
 
 # ---- output data-class ----
@@ -209,6 +211,36 @@ def _extract_job_pop_categories(context: ParseContext) -> dict[str, str]:
     return categories
 
 
+def _normalize_job_icon(job_name: str, icon_name: str | None) -> str:
+    """返回 gfx/interface/icons/jobs/<icon>.dds 使用的 basename。"""
+    icon = (icon_name or "").strip().strip('"')
+    if not icon:
+        icon = job_name
+    if not icon.startswith("job_"):
+        icon = f"job_{icon}"
+    return icon
+
+
+def _extract_job_icons(context: ParseContext) -> dict[str, str]:
+    """从 pop_jobs/ 中提取岗位图标 basename。
+
+    默认图标是 job_<job>.dds；swappable_data.default.icon 会覆写为 job_<icon>.dds。
+    """
+    icons: dict[str, str] = {}
+    for job_name, job_node in context.ast["common/pop_jobs"].items():
+        override_icon: str | None = None
+        swappable_prop = job_node.body.get_property("swappable_data")
+        if swappable_prop is not None and isinstance(swappable_prop.value, BlockNode):
+            default_prop = swappable_prop.value.get_property("default")
+            if default_prop is not None and isinstance(default_prop.value, BlockNode):
+                icon_prop = default_prop.value.get_property("icon")
+                if icon_prop is not None:
+                    override_icon = str(icon_prop.value)
+
+        icons[job_name] = _normalize_job_icon(job_name, override_icon)
+    return icons
+
+
 def _extract_economic_category_icons(context: ParseContext) -> dict[str, dict]:
     """从 economic_categories/ 中提取 icon 和 parent 链。
 
@@ -316,7 +348,7 @@ def _parse_job_resources(context: ParseContext) -> dict[str, dict]:
 
 def _build_job_meta(
     pop_categories: dict[str, str],
-    eco_cat_data: dict[str, dict],
+    job_icons: dict[str, str],
     job_resources: dict[str, dict],
 ) -> dict[str, dict]:
     """综合 pop_category + icon + resources 数据，构建统一的 job_meta。"""
@@ -325,11 +357,7 @@ def _build_job_meta(
     for job_name, res_info in job_resources.items():
         pop_category = pop_categories.get(job_name)
         economic_category = res_info.get("economic_category")
-
-        # 解析 icon
-        icon: str | None = None
-        if economic_category:
-            icon = _resolve_economic_category_icon(economic_category, eco_cat_data)
+        icon = job_icons.get(job_name, _normalize_job_icon(job_name, None))
 
         # 从 produces 条目中提取资源产出列表
         all_resource_outputs: list[str] = []
@@ -365,9 +393,9 @@ def _build_job_meta(
 def render_job_meta(context: ParseContext) -> dict[str, dict]:
     """生成 job_meta.yaml 的入口函数。"""
     pop_categories = _extract_job_pop_categories(context)
-    eco_cat_data = _extract_economic_category_icons(context)
+    job_icons = _extract_job_icons(context)
     job_resources = _parse_job_resources(context)
-    job_meta = _build_job_meta(pop_categories, eco_cat_data, job_resources)
+    job_meta = _build_job_meta(pop_categories, job_icons, job_resources)
 
     context.write_generated_yaml("job_meta.yaml", {"job_meta": job_meta})
 

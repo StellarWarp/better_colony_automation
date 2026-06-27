@@ -22,42 +22,41 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
 
     # 加载手写配置
     regulation = load_yaml(CONFIGS_DIR / "job_regulation.yaml").get("job_regulation", {})
+    economic_need_thresholds = load_yaml(CONFIGS_DIR / "economic_need_thresholds.yaml").get(
+        "economic_need_thresholds", {}
+    )
     gear_steps = regulation.get("gear_steps", [3200, 800, 200, 50])
     blacklist = set(regulation.get("blacklist_jobs", []))
 
     # 加载解析生成的 job_meta
     job_meta = load_yaml(generated_configs_dir / "job_meta.yaml").get("job_meta", {})
 
-    # 资源 → needs_category 映射
-    RESOURCE_NEEDS_MAP = {
-        "energy": "energy",
-        "minerals": "minerals",
-        "food": "food",
-        "alloys": "alloys",
-        "consumer_goods": "consumer_goods",
-        "physics_research": "physics_research",
-        "society_research": "society_research",
-        "engineering_research": "engineering_research",
-    }
+    # 资源顺序跟随经济阈值配置，模板和 GUI 统一消费这份列表。
+    resources = list(economic_need_thresholds.keys())
+    resource_set = set(resources)
 
     # 筛选经济岗位
     regulated_jobs: list[dict] = []
+    icon_sprites: list[str] = []
+    seen_icons: set[str] = set()
     for job_name, meta in sorted(job_meta.items()):
         if not meta.get("is_economic_producer"):
             continue
         if job_name in blacklist:
             continue
 
-        economic_resources = meta.get("economic_resources", [])
+        economic_resources = [r for r in meta.get("economic_resources", []) if r in resource_set]
         # 去重 needs_category
-        needs_cats = list(dict.fromkeys(
-            RESOURCE_NEEDS_MAP.get(r, r) for r in economic_resources
-        ))
+        needs_cats = list(dict.fromkeys(economic_resources))
+        icon = meta.get("icon")
+        if icon and icon not in seen_icons:
+            seen_icons.add(icon)
+            icon_sprites.append(icon)
 
         entry = {
             "job": job_name,
             "pop_category": meta.get("pop_category"),
-            "icon": meta.get("icon"),
+            "icon": icon,
             "economic_category": meta.get("economic_category"),
             "economic_resources": economic_resources,
             "needs_categories": needs_cats,
@@ -69,7 +68,10 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
     config = {
         "gear_steps": gear_steps,
         "display_slots": regulation.get("display_slots", 15),
+        "resources": resources,
+        "categories": resources,
         "regulated_jobs": regulated_jobs,
+        "icon_sprites": icon_sprites,
     }
 
     # 写入 YAML

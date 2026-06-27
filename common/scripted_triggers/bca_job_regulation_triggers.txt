@@ -159,6 +159,48 @@ bca_jr_should_dec_ark_harvester_gestalt = {
     }
 }
 
+# ark_waystation_trader → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_ark_waystation_trader_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_ark_waystation_trader_for_trade = {
+    OR = {
+        bca_jr_has_output_ark_waystation_trader_trade = yes
+    }
+}
+
+bca_jr_should_dec_ark_waystation_trader = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_ark_waystation_trader_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# ark_waystation_trader_gestalt → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_ark_waystation_trader_gestalt_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_ark_waystation_trader_gestalt_for_trade = {
+    OR = {
+        bca_jr_has_output_ark_waystation_trader_gestalt_trade = yes
+    }
+}
+
+bca_jr_should_dec_ark_waystation_trader_gestalt = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_ark_waystation_trader_gestalt_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
 # artificer_prison_worker → consumer_goods 有无条件产出（base）或全部无条件
 bca_jr_has_output_artificer_prison_worker_consumer_goods = {
     always = yes
@@ -185,10 +227,30 @@ bca_jr_has_output_artisan_consumer_goods = {
     always = yes
 }
 
+# artisan → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_artisan_trade = {
+    OR = {
+        AND = {
+            artisan_is_artificer_trigger = yes
+        }
+        AND = {
+            colony = {
+                artisan_is_pearl_diver_trigger = yes
+            }
+        }
+    }
+}
+
 
 bca_jr_should_inc_artisan_for_consumer_goods = {
     OR = {
         bca_jr_has_output_artisan_consumer_goods = yes
+    }
+}
+
+bca_jr_should_inc_artisan_for_trade = {
+    OR = {
+        bca_jr_has_output_artisan_trade = yes
     }
 }
 
@@ -197,6 +259,10 @@ bca_jr_should_dec_artisan = {
         AND = {
             bca_jr_has_output_artisan_consumer_goods = yes
             NOT = { bca_empire_has_surplus_consumer_goods = yes }
+        }
+        AND = {
+            bca_jr_has_output_artisan_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -542,6 +608,54 @@ bca_jr_should_dec_augmentor_drone = {
     }
 }
 
+# bath_attendant → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_bath_attendant_trade = {
+    OR = {
+        AND = {
+            owner = {
+                is_megacorp = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_bath_attendant_for_trade = {
+    OR = {
+        bca_jr_has_output_bath_attendant_trade = yes
+    }
+}
+
+bca_jr_should_dec_bath_attendant = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_bath_attendant_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# bio_trophy → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_bio_trophy_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_bio_trophy_for_unity = {
+    OR = {
+        bca_jr_has_output_bio_trophy_unity = yes
+    }
+}
+
+bca_jr_should_dec_bio_trophy = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_bio_trophy_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # biologist → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_biologist_society_research = {
     always = yes
@@ -629,6 +743,38 @@ bca_jr_should_dec_broken_shackles_scavenger = {
     }
 }
 
+# bureaucrat → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_bureaucrat_unity = {
+    always = yes
+}
+
+# bureaucrat → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_bureaucrat_trade = {
+    OR = {
+        AND = {
+            bureaucrat_is_manager = yes
+        }
+        AND = {
+            bureaucrat_is_steward = yes
+        }
+        AND = {
+            colony = {
+                bureaucrat_is_sacred_path_specialist = yes
+            }
+        }
+        AND = {
+            colony = {
+                bureaucrat_is_low_tech_manager = yes
+            }
+        }
+        AND = {
+            colony = {
+                bureaucrat_is_numistic_priest = yes
+            }
+        }
+    }
+}
+
 # bureaucrat → society_research 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_bureaucrat_society_research = {
     OR = {
@@ -662,6 +808,18 @@ bca_jr_has_output_bureaucrat_engineering_research = {
 }
 
 
+bca_jr_should_inc_bureaucrat_for_unity = {
+    OR = {
+        bca_jr_has_output_bureaucrat_unity = yes
+    }
+}
+
+bca_jr_should_inc_bureaucrat_for_trade = {
+    OR = {
+        bca_jr_has_output_bureaucrat_trade = yes
+    }
+}
+
 bca_jr_should_inc_bureaucrat_for_society_research = {
     OR = {
         bca_jr_has_output_bureaucrat_society_research = yes
@@ -676,6 +834,14 @@ bca_jr_should_inc_bureaucrat_for_engineering_research = {
 
 bca_jr_should_dec_bureaucrat = {
     NOR = {
+        AND = {
+            bca_jr_has_output_bureaucrat_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_bureaucrat_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
         AND = {
             bca_jr_has_output_bureaucrat_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
@@ -880,6 +1046,91 @@ bca_jr_should_dec_cave_cleaner_gestalt = {
     }
 }
 
+# chemist → volatile_motes 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_chemist_volatile_motes = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_chemist_for_volatile_motes = {
+    OR = {
+        bca_jr_has_output_chemist_volatile_motes = yes
+    }
+}
+
+bca_jr_should_dec_chemist = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_chemist_volatile_motes = yes
+            NOT = { bca_empire_has_surplus_volatile_motes = yes }
+        }
+    }
+}
+
+# chemist_drone → volatile_motes 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_chemist_drone_volatile_motes = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_chemist_drone_for_volatile_motes = {
+    OR = {
+        bca_jr_has_output_chemist_drone_volatile_motes = yes
+    }
+}
+
+bca_jr_should_dec_chemist_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_chemist_drone_volatile_motes = yes
+            NOT = { bca_empire_has_surplus_volatile_motes = yes }
+        }
+    }
+}
+
+# civilian → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_civilian_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_civilian_for_trade = {
+    OR = {
+        bca_jr_has_output_civilian_trade = yes
+    }
+}
+
+bca_jr_should_dec_civilian = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_civilian_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
 # clip_maximizer → consumer_goods 有无条件产出（base）或全部无条件
 bca_jr_has_output_clip_maximizer_consumer_goods = {
     always = yes
@@ -997,8 +1248,175 @@ bca_jr_should_dec_colonist = {
     }
 }
 
+# coordinator → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_coordinator_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_coordinator_for_unity = {
+    OR = {
+        bca_jr_has_output_coordinator_unity = yes
+    }
+}
+
+bca_jr_should_dec_coordinator = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_coordinator_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# cruise_crew_overseer → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_cruise_crew_overseer_unity = {
+    always = yes
+}
+
+# cruise_crew_overseer → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_cruise_crew_overseer_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_cruise_crew_overseer_for_unity = {
+    OR = {
+        bca_jr_has_output_cruise_crew_overseer_unity = yes
+    }
+}
+
+bca_jr_should_inc_cruise_crew_overseer_for_trade = {
+    OR = {
+        bca_jr_has_output_cruise_crew_overseer_trade = yes
+    }
+}
+
+bca_jr_should_dec_cruise_crew_overseer = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_cruise_crew_overseer_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_cruise_crew_overseer_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# cruise_crew_overseer_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_cruise_crew_overseer_drone_unity = {
+    always = yes
+}
+
+# cruise_crew_overseer_drone → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_cruise_crew_overseer_drone_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_cruise_crew_overseer_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_cruise_crew_overseer_drone_unity = yes
+    }
+}
+
+bca_jr_should_inc_cruise_crew_overseer_drone_for_trade = {
+    OR = {
+        bca_jr_has_output_cruise_crew_overseer_drone_trade = yes
+    }
+}
+
+bca_jr_should_dec_cruise_crew_overseer_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_cruise_crew_overseer_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_cruise_crew_overseer_drone_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# cruise_passenger → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_cruise_passenger_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_cruise_passenger_for_unity = {
+    OR = {
+        bca_jr_has_output_cruise_passenger_unity = yes
+    }
+}
+
+bca_jr_should_dec_cruise_passenger = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_cruise_passenger_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# cruise_passenger_unemployment → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_cruise_passenger_unemployment_unity = {
+    OR = {
+        AND = {
+            owner = {
+                is_hospitality_servitor_empire = no
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_cruise_passenger_unemployment_for_unity = {
+    OR = {
+        bca_jr_has_output_cruise_passenger_unemployment_unity = yes
+    }
+}
+
+bca_jr_should_dec_cruise_passenger_unemployment = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_cruise_passenger_unemployment_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# cyberdome_duelist → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_cyberdome_duelist_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_cyberdome_duelist_for_unity = {
+    OR = {
+        bca_jr_has_output_cyberdome_duelist_unity = yes
+    }
+}
+
+bca_jr_should_dec_cyberdome_duelist = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_cyberdome_duelist_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # cyberdome_spectator → energy 有无条件产出（base）或全部无条件
 bca_jr_has_output_cyberdome_spectator_energy = {
+    always = yes
+}
+
+# cyberdome_spectator → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_cyberdome_spectator_trade = {
     always = yes
 }
 
@@ -1009,11 +1427,21 @@ bca_jr_should_inc_cyberdome_spectator_for_energy = {
     }
 }
 
+bca_jr_should_inc_cyberdome_spectator_for_trade = {
+    OR = {
+        bca_jr_has_output_cyberdome_spectator_trade = yes
+    }
+}
+
 bca_jr_should_dec_cyberdome_spectator = {
     NOR = {
         AND = {
             bca_jr_has_output_cyberdome_spectator_energy = yes
             NOT = { bca_empire_has_surplus_energy = yes }
+        }
+        AND = {
+            bca_jr_has_output_cyberdome_spectator_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -1032,6 +1460,24 @@ bca_jr_has_output_dimensional_portal_researcher_energy = {
     }
 }
 
+# dimensional_portal_researcher → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_dimensional_portal_researcher_trade = {
+    OR = {
+        AND = {
+            has_carrier_flag = dportal_trade_normal
+        }
+        AND = {
+            has_carrier_flag = dportal_trade_high
+        }
+        AND = {
+            has_carrier_flag = dportal_trade_low
+        }
+        AND = {
+            has_carrier_flag = dportal_trade_crisis
+        }
+    }
+}
+
 
 bca_jr_should_inc_dimensional_portal_researcher_for_physics_research = {
     OR = {
@@ -1045,6 +1491,12 @@ bca_jr_should_inc_dimensional_portal_researcher_for_energy = {
     }
 }
 
+bca_jr_should_inc_dimensional_portal_researcher_for_trade = {
+    OR = {
+        bca_jr_has_output_dimensional_portal_researcher_trade = yes
+    }
+}
+
 bca_jr_should_dec_dimensional_portal_researcher = {
     NOR = {
         AND = {
@@ -1054,6 +1506,10 @@ bca_jr_should_dec_dimensional_portal_researcher = {
         AND = {
             bca_jr_has_output_dimensional_portal_researcher_energy = yes
             NOT = { bca_empire_has_surplus_energy = yes }
+        }
+        AND = {
+            bca_jr_has_output_dimensional_portal_researcher_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -1118,6 +1574,27 @@ bca_jr_should_dec_dimensional_portal_researcher_gestalt = {
     }
 }
 
+# drone_energy_thrall → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_drone_energy_thrall_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_drone_energy_thrall_for_unity = {
+    OR = {
+        bca_jr_has_output_drone_energy_thrall_unity = yes
+    }
+}
+
+bca_jr_should_dec_drone_energy_thrall = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_drone_energy_thrall_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # drone_space_junk_collector → alloys 有无条件产出（base）或全部无条件
 bca_jr_has_output_drone_space_junk_collector_alloys = {
     always = yes
@@ -1144,6 +1621,11 @@ bca_jr_has_output_drone_wrangler_society_research = {
     always = yes
 }
 
+# drone_wrangler → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_drone_wrangler_unity = {
+    always = yes
+}
+
 # drone_wrangler → food 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_drone_wrangler_food = {
     OR = {
@@ -1160,6 +1642,12 @@ bca_jr_should_inc_drone_wrangler_for_society_research = {
     }
 }
 
+bca_jr_should_inc_drone_wrangler_for_unity = {
+    OR = {
+        bca_jr_has_output_drone_wrangler_unity = yes
+    }
+}
+
 bca_jr_should_inc_drone_wrangler_for_food = {
     OR = {
         bca_jr_has_output_drone_wrangler_food = yes
@@ -1173,10 +1661,19 @@ bca_jr_should_dec_drone_wrangler = {
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
         AND = {
+            bca_jr_has_output_drone_wrangler_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_drone_wrangler_food = yes
             NOT = { bca_empire_has_surplus_food = yes }
         }
     }
+}
+
+# dystopian_telepath → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_dystopian_telepath_unity = {
+    always = yes
 }
 
 # dystopian_telepath → physics_research 全部产出均有条件，需满足任一 trigger
@@ -1234,6 +1731,12 @@ bca_jr_has_output_dystopian_telepath_society_research = {
 }
 
 
+bca_jr_should_inc_dystopian_telepath_for_unity = {
+    OR = {
+        bca_jr_has_output_dystopian_telepath_unity = yes
+    }
+}
+
 bca_jr_should_inc_dystopian_telepath_for_physics_research = {
     OR = {
         bca_jr_has_output_dystopian_telepath_physics_research = yes
@@ -1255,6 +1758,10 @@ bca_jr_should_inc_dystopian_telepath_for_society_research = {
 bca_jr_should_dec_dystopian_telepath = {
     NOR = {
         AND = {
+            bca_jr_has_output_dystopian_telepath_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_dystopian_telepath_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
         }
@@ -1265,6 +1772,27 @@ bca_jr_should_dec_dystopian_telepath = {
         AND = {
             bca_jr_has_output_dystopian_telepath_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# energy_thrall → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_energy_thrall_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_energy_thrall_for_unity = {
+    OR = {
+        bca_jr_has_output_energy_thrall_unity = yes
+    }
+}
+
+bca_jr_should_dec_energy_thrall = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_energy_thrall_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -1290,6 +1818,11 @@ bca_jr_should_dec_engineer = {
     }
 }
 
+# entertainer → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_entertainer_unity = {
+    always = yes
+}
+
 # entertainer → society_research 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_entertainer_society_research = {
     OR = {
@@ -1300,6 +1833,12 @@ bca_jr_has_output_entertainer_society_research = {
 }
 
 
+bca_jr_should_inc_entertainer_for_unity = {
+    OR = {
+        bca_jr_has_output_entertainer_unity = yes
+    }
+}
+
 bca_jr_should_inc_entertainer_for_society_research = {
     OR = {
         bca_jr_has_output_entertainer_society_research = yes
@@ -1309,8 +1848,44 @@ bca_jr_should_inc_entertainer_for_society_research = {
 bca_jr_should_dec_entertainer = {
     NOR = {
         AND = {
+            bca_jr_has_output_entertainer_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_entertainer_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# evaluator → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_evaluator_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_evaluator_for_unity = {
+    OR = {
+        bca_jr_has_output_evaluator_unity = yes
+    }
+}
+
+bca_jr_should_dec_evaluator = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_evaluator_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# event_purge → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_event_purge_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
         }
     }
 }
@@ -1327,6 +1902,12 @@ bca_jr_has_output_event_purge_society_research = {
 }
 
 
+bca_jr_should_inc_event_purge_for_unity = {
+    OR = {
+        bca_jr_has_output_event_purge_unity = yes
+    }
+}
+
 bca_jr_should_inc_event_purge_for_society_research = {
     OR = {
         bca_jr_has_output_event_purge_society_research = yes
@@ -1335,6 +1916,10 @@ bca_jr_should_inc_event_purge_for_society_research = {
 
 bca_jr_should_dec_event_purge = {
     NOR = {
+        AND = {
+            bca_jr_has_output_event_purge_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
         AND = {
             bca_jr_has_output_event_purge_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
@@ -1345,6 +1930,20 @@ bca_jr_should_dec_event_purge = {
 # farmer → food 有无条件产出（base）或全部无条件
 bca_jr_has_output_farmer_food = {
     always = yes
+}
+
+# farmer → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_farmer_trade = {
+    OR = {
+        AND = {
+            colony = {
+                farmer_is_angler_trigger = yes
+            }
+        }
+        AND = {
+            farmer_is_titan_hunter_trigger = yes
+        }
+    }
 }
 
 # farmer → alloys 全部产出均有条件，需满足任一 trigger
@@ -1363,6 +1962,12 @@ bca_jr_should_inc_farmer_for_food = {
     }
 }
 
+bca_jr_should_inc_farmer_for_trade = {
+    OR = {
+        bca_jr_has_output_farmer_trade = yes
+    }
+}
+
 bca_jr_should_inc_farmer_for_alloys = {
     OR = {
         bca_jr_has_output_farmer_alloys = yes
@@ -1374,6 +1979,10 @@ bca_jr_should_dec_farmer = {
         AND = {
             bca_jr_has_output_farmer_food = yes
             NOT = { bca_empire_has_surplus_food = yes }
+        }
+        AND = {
+            bca_jr_has_output_farmer_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
         AND = {
             bca_jr_has_output_farmer_alloys = yes
@@ -1517,6 +2126,69 @@ bca_jr_should_dec_fe_archivist = {
     }
 }
 
+# fe_augur → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_fe_augur_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_fe_augur_for_unity = {
+    OR = {
+        bca_jr_has_output_fe_augur_unity = yes
+    }
+}
+
+bca_jr_should_dec_fe_augur = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_fe_augur_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# fe_hedonist → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_fe_hedonist_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_fe_hedonist_for_unity = {
+    OR = {
+        bca_jr_has_output_fe_hedonist_unity = yes
+    }
+}
+
+bca_jr_should_dec_fe_hedonist = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_fe_hedonist_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# fe_xeno_ward → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_fe_xeno_ward_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_fe_xeno_ward_for_unity = {
+    OR = {
+        bca_jr_has_output_fe_xeno_ward_unity = yes
+    }
+}
+
+bca_jr_should_dec_fe_xeno_ward = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_fe_xeno_ward_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # foundry_prison_worker → alloys 有无条件产出（base）或全部无条件
 bca_jr_has_output_foundry_prison_worker_alloys = {
     always = yes
@@ -1534,6 +2206,112 @@ bca_jr_should_dec_foundry_prison_worker = {
         AND = {
             bca_jr_has_output_foundry_prison_worker_alloys = yes
             NOT = { bca_empire_has_surplus_alloys = yes }
+        }
+    }
+}
+
+# gas_plant_engineer → exotic_gases 有无条件产出（base）或全部无条件
+bca_jr_has_output_gas_plant_engineer_exotic_gases = {
+    always = yes
+}
+
+
+bca_jr_should_inc_gas_plant_engineer_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_gas_plant_engineer_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_gas_plant_engineer = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_gas_plant_engineer_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+    }
+}
+
+# gas_plant_engineer_gestalt → exotic_gases 有无条件产出（base）或全部无条件
+bca_jr_has_output_gas_plant_engineer_gestalt_exotic_gases = {
+    always = yes
+}
+
+
+bca_jr_should_inc_gas_plant_engineer_gestalt_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_gas_plant_engineer_gestalt_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_gas_plant_engineer_gestalt = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_gas_plant_engineer_gestalt_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+    }
+}
+
+# gas_refiner → exotic_gases 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_gas_refiner_exotic_gases = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_gas_refiner_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_gas_refiner_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_gas_refiner = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_gas_refiner_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+    }
+}
+
+# gas_refiner_drone → exotic_gases 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_gas_refiner_drone_exotic_gases = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_gas_refiner_drone_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_gas_refiner_drone_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_gas_refiner_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_gas_refiner_drone_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
         }
     }
 }
@@ -1574,11 +2352,33 @@ bca_jr_should_dec_gestation_drone = {
     }
 }
 
+# haruspex → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_haruspex_unity = {
+    always = yes
+}
+
 # haruspex → engineering_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_haruspex_engineering_research = {
     always = yes
 }
 
+# haruspex → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_haruspex_trade = {
+    OR = {
+        AND = {
+            owner = {
+                is_megacorp = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_haruspex_for_unity = {
+    OR = {
+        bca_jr_has_output_haruspex_unity = yes
+    }
+}
 
 bca_jr_should_inc_haruspex_for_engineering_research = {
     OR = {
@@ -1586,11 +2386,25 @@ bca_jr_should_inc_haruspex_for_engineering_research = {
     }
 }
 
+bca_jr_should_inc_haruspex_for_trade = {
+    OR = {
+        bca_jr_has_output_haruspex_trade = yes
+    }
+}
+
 bca_jr_should_dec_haruspex = {
     NOR = {
         AND = {
+            bca_jr_has_output_haruspex_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_haruspex_engineering_research = yes
             NOT = { bca_empire_has_surplus_engineering_research = yes }
+        }
+        AND = {
+            bca_jr_has_output_haruspex_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -1819,6 +2633,15 @@ bca_jr_should_dec_identity_designer = {
     }
 }
 
+# knight → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_knight_unity = {
+    OR = {
+        AND = {
+            exists = owner
+        }
+    }
+}
+
 # knight → physics_research 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_knight_physics_research = {
     OR = {
@@ -1847,6 +2670,12 @@ bca_jr_has_output_knight_society_research = {
 }
 
 
+bca_jr_should_inc_knight_for_unity = {
+    OR = {
+        bca_jr_has_output_knight_unity = yes
+    }
+}
+
 bca_jr_should_inc_knight_for_physics_research = {
     OR = {
         bca_jr_has_output_knight_physics_research = yes
@@ -1868,6 +2697,10 @@ bca_jr_should_inc_knight_for_society_research = {
 bca_jr_should_dec_knight = {
     NOR = {
         AND = {
+            bca_jr_has_output_knight_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_knight_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
         }
@@ -1878,6 +2711,15 @@ bca_jr_should_dec_knight = {
         AND = {
             bca_jr_has_output_knight_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# knight_commander → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_knight_commander_unity = {
+    OR = {
+        AND = {
+            exists = owner
         }
     }
 }
@@ -1910,6 +2752,12 @@ bca_jr_has_output_knight_commander_society_research = {
 }
 
 
+bca_jr_should_inc_knight_commander_for_unity = {
+    OR = {
+        bca_jr_has_output_knight_commander_unity = yes
+    }
+}
+
 bca_jr_should_inc_knight_commander_for_physics_research = {
     OR = {
         bca_jr_has_output_knight_commander_physics_research = yes
@@ -1930,6 +2778,10 @@ bca_jr_should_inc_knight_commander_for_society_research = {
 
 bca_jr_should_dec_knight_commander = {
     NOR = {
+        AND = {
+            bca_jr_has_output_knight_commander_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
         AND = {
             bca_jr_has_output_knight_commander_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
@@ -1962,6 +2814,48 @@ bca_jr_should_dec_livestock_lithoid = {
         AND = {
             bca_jr_has_output_livestock_lithoid_minerals = yes
             NOT = { bca_empire_has_surplus_minerals = yes }
+        }
+    }
+}
+
+# logistics_drone → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_logistics_drone_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_logistics_drone_for_trade = {
+    OR = {
+        bca_jr_has_output_logistics_drone_trade = yes
+    }
+}
+
+bca_jr_should_dec_logistics_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_logistics_drone_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# low_tech_bureaucrat → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_low_tech_bureaucrat_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_low_tech_bureaucrat_for_unity = {
+    OR = {
+        bca_jr_has_output_low_tech_bureaucrat_unity = yes
+    }
+}
+
+bca_jr_should_dec_low_tech_bureaucrat = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_low_tech_bureaucrat_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -2023,6 +2917,42 @@ bca_jr_should_dec_low_tech_laborer = {
     }
 }
 
+# low_tech_manager → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_low_tech_manager_unity = {
+    always = yes
+}
+
+# low_tech_manager → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_low_tech_manager_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_low_tech_manager_for_unity = {
+    OR = {
+        bca_jr_has_output_low_tech_manager_unity = yes
+    }
+}
+
+bca_jr_should_inc_low_tech_manager_for_trade = {
+    OR = {
+        bca_jr_has_output_low_tech_manager_trade = yes
+    }
+}
+
+bca_jr_should_dec_low_tech_manager = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_low_tech_manager_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_low_tech_manager_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
 # low_tech_miner → minerals 有无条件产出（base）或全部无条件
 bca_jr_has_output_low_tech_miner_minerals = {
     always = yes
@@ -2040,6 +2970,27 @@ bca_jr_should_dec_low_tech_miner = {
         AND = {
             bca_jr_has_output_low_tech_miner_minerals = yes
             NOT = { bca_empire_has_surplus_minerals = yes }
+        }
+    }
+}
+
+# low_tech_priest → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_low_tech_priest_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_low_tech_priest_for_unity = {
+    OR = {
+        bca_jr_has_output_low_tech_priest_unity = yes
+    }
+}
+
+bca_jr_should_dec_low_tech_priest = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_low_tech_priest_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -2116,9 +3067,60 @@ bca_jr_should_dec_low_tech_technician = {
     }
 }
 
+# machine_nurse → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_machine_nurse_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_machine_nurse_for_unity = {
+    OR = {
+        bca_jr_has_output_machine_nurse_unity = yes
+    }
+}
+
+bca_jr_should_dec_machine_nurse = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_machine_nurse_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# maintenance_drone → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_maintenance_drone_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_maintenance_drone_for_trade = {
+    OR = {
+        bca_jr_has_output_maintenance_drone_trade = yes
+    }
+}
+
+bca_jr_should_dec_maintenance_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_maintenance_drone_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
 # manufactorium_complex_drone → alloys 有无条件产出（base）或全部无条件
 bca_jr_has_output_manufactorium_complex_drone_alloys = {
     always = yes
+}
+
+# manufactorium_complex_drone → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_manufactorium_complex_drone_unity = {
+    OR = {
+        AND = {
+            has_carrier_flag = manufactorium_subterranean
+        }
+    }
 }
 
 # manufactorium_complex_drone → engineering_research 全部产出均有条件，需满足任一 trigger
@@ -2146,6 +3148,12 @@ bca_jr_should_inc_manufactorium_complex_drone_for_alloys = {
     }
 }
 
+bca_jr_should_inc_manufactorium_complex_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_manufactorium_complex_drone_unity = yes
+    }
+}
+
 bca_jr_should_inc_manufactorium_complex_drone_for_engineering_research = {
     OR = {
         bca_jr_has_output_manufactorium_complex_drone_engineering_research = yes
@@ -2163,6 +3171,10 @@ bca_jr_should_dec_manufactorium_complex_drone = {
         AND = {
             bca_jr_has_output_manufactorium_complex_drone_alloys = yes
             NOT = { bca_empire_has_surplus_alloys = yes }
+        }
+        AND = {
+            bca_jr_has_output_manufactorium_complex_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
         AND = {
             bca_jr_has_output_manufactorium_complex_drone_engineering_research = yes
@@ -2231,6 +3243,21 @@ bca_jr_has_output_manufactorium_specialist_alloys = {
     always = yes
 }
 
+# manufactorium_specialist → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_manufactorium_specialist_unity = {
+    OR = {
+        AND = {
+            has_carrier_flag = manufactorium_crafters
+        }
+        AND = {
+            has_carrier_flag = manufactorium_subterranean
+        }
+        AND = {
+            has_carrier_flag = manufactorium_dwarven_craft
+        }
+    }
+}
+
 # manufactorium_specialist → engineering_research 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_manufactorium_specialist_engineering_research = {
     OR = {
@@ -2256,6 +3283,12 @@ bca_jr_should_inc_manufactorium_specialist_for_alloys = {
     }
 }
 
+bca_jr_should_inc_manufactorium_specialist_for_unity = {
+    OR = {
+        bca_jr_has_output_manufactorium_specialist_unity = yes
+    }
+}
+
 bca_jr_should_inc_manufactorium_specialist_for_engineering_research = {
     OR = {
         bca_jr_has_output_manufactorium_specialist_engineering_research = yes
@@ -2273,6 +3306,10 @@ bca_jr_should_dec_manufactorium_specialist = {
         AND = {
             bca_jr_has_output_manufactorium_specialist_alloys = yes
             NOT = { bca_empire_has_surplus_alloys = yes }
+        }
+        AND = {
+            bca_jr_has_output_manufactorium_specialist_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
         AND = {
             bca_jr_has_output_manufactorium_specialist_engineering_research = yes
@@ -2461,11 +3498,22 @@ bca_jr_should_dec_mining_drone = {
     }
 }
 
+# mortal_initiate → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_mortal_initiate_unity = {
+    always = yes
+}
+
 # mortal_initiate → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_mortal_initiate_society_research = {
     always = yes
 }
 
+
+bca_jr_should_inc_mortal_initiate_for_unity = {
+    OR = {
+        bca_jr_has_output_mortal_initiate_unity = yes
+    }
+}
 
 bca_jr_should_inc_mortal_initiate_for_society_research = {
     OR = {
@@ -2475,6 +3523,10 @@ bca_jr_should_inc_mortal_initiate_for_society_research = {
 
 bca_jr_should_dec_mortal_initiate = {
     NOR = {
+        AND = {
+            bca_jr_has_output_mortal_initiate_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
         AND = {
             bca_jr_has_output_mortal_initiate_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
@@ -2728,6 +3780,27 @@ bca_jr_should_dec_nanotech_researcher = {
     }
 }
 
+# necro_apprentice → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_necro_apprentice_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_necro_apprentice_for_unity = {
+    OR = {
+        bca_jr_has_output_necro_apprentice_unity = yes
+    }
+}
+
+bca_jr_should_dec_necro_apprentice = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_necro_apprentice_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # neural_chip → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_neural_chip_society_research = {
     always = yes
@@ -2842,6 +3915,27 @@ bca_jr_should_dec_organic_battery = {
     }
 }
 
+# organic_exhibit → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_organic_exhibit_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_organic_exhibit_for_unity = {
+    OR = {
+        bca_jr_has_output_organic_exhibit_unity = yes
+    }
+}
+
+bca_jr_should_dec_organic_exhibit = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_organic_exhibit_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # overlord_academic → physics_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_overlord_academic_physics_research = {
     always = yes
@@ -2944,11 +4038,130 @@ bca_jr_should_dec_overlord_academic_drone = {
     }
 }
 
+# overlord_bio_trophy → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_bio_trophy_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_overlord_bio_trophy_for_unity = {
+    OR = {
+        bca_jr_has_output_overlord_bio_trophy_unity = yes
+    }
+}
+
+bca_jr_should_dec_overlord_bio_trophy = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_overlord_bio_trophy_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# overlord_bio_trophy_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_bio_trophy_drone_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_overlord_bio_trophy_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_overlord_bio_trophy_drone_unity = yes
+    }
+}
+
+bca_jr_should_dec_overlord_bio_trophy_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_overlord_bio_trophy_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# overlord_healthcare → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_overlord_healthcare_trade = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_private_healthcare_corporate
+            }
+        }
+        AND = {
+            has_carrier_flag = has_private_clinics
+        }
+    }
+}
+
+
+bca_jr_should_inc_overlord_healthcare_for_trade = {
+    OR = {
+        bca_jr_has_output_overlord_healthcare_trade = yes
+    }
+}
+
+bca_jr_should_dec_overlord_healthcare = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_overlord_healthcare_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# overlord_manager → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_manager_unity = {
+    always = yes
+}
+
+# overlord_manager → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_manager_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_overlord_manager_for_unity = {
+    OR = {
+        bca_jr_has_output_overlord_manager_unity = yes
+    }
+}
+
+bca_jr_should_inc_overlord_manager_for_trade = {
+    OR = {
+        bca_jr_has_output_overlord_manager_trade = yes
+    }
+}
+
+bca_jr_should_dec_overlord_manager = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_overlord_manager_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_overlord_manager_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# overlord_mortal_initiate → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_mortal_initiate_unity = {
+    always = yes
+}
+
 # overlord_mortal_initiate → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_overlord_mortal_initiate_society_research = {
     always = yes
 }
 
+
+bca_jr_should_inc_overlord_mortal_initiate_for_unity = {
+    OR = {
+        bca_jr_has_output_overlord_mortal_initiate_unity = yes
+    }
+}
 
 bca_jr_should_inc_overlord_mortal_initiate_for_society_research = {
     OR = {
@@ -2959,10 +4172,19 @@ bca_jr_should_inc_overlord_mortal_initiate_for_society_research = {
 bca_jr_should_dec_overlord_mortal_initiate = {
     NOR = {
         AND = {
+            bca_jr_has_output_overlord_mortal_initiate_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_overlord_mortal_initiate_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
     }
+}
+
+# overlord_mortal_initiate_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_overlord_mortal_initiate_drone_unity = {
+    always = yes
 }
 
 # overlord_mortal_initiate_drone → society_research 有无条件产出（base）或全部无条件
@@ -2970,6 +4192,12 @@ bca_jr_has_output_overlord_mortal_initiate_drone_society_research = {
     always = yes
 }
 
+
+bca_jr_should_inc_overlord_mortal_initiate_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_overlord_mortal_initiate_drone_unity = yes
+    }
+}
 
 bca_jr_should_inc_overlord_mortal_initiate_drone_for_society_research = {
     OR = {
@@ -2980,8 +4208,33 @@ bca_jr_should_inc_overlord_mortal_initiate_drone_for_society_research = {
 bca_jr_should_dec_overlord_mortal_initiate_drone = {
     NOR = {
         AND = {
+            bca_jr_has_output_overlord_mortal_initiate_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_overlord_mortal_initiate_drone_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# patrol_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_patrol_drone_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_patrol_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_patrol_drone_unity = yes
+    }
+}
+
+bca_jr_should_dec_patrol_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_patrol_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -3028,6 +4281,27 @@ bca_jr_should_dec_peasant_lithoid = {
     }
 }
 
+# physician_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_physician_drone_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_physician_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_physician_drone_unity = yes
+    }
+}
+
+bca_jr_should_dec_physician_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_physician_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # physicist → physics_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_physicist_physics_research = {
     always = yes
@@ -3045,6 +4319,34 @@ bca_jr_should_dec_physicist = {
         AND = {
             bca_jr_has_output_physicist_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
+        }
+    }
+}
+
+# politician → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_politician_unity = {
+    always = yes
+}
+
+# politician → trade 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_politician_trade = {
+    OR = {
+        AND = {
+            politician_is_executive = yes
+        }
+        AND = {
+            colony = {
+                OR = {
+                    politician_is_merchant = yes
+                    politician_is_augmentation_merchant = yes
+                    politician_is_ashbroker = yes
+                }
+            }
+        }
+        AND = {
+            colony = {
+                politician_is_superstitious_beliefs_high_priest_corporate = yes
+            }
         }
     }
 }
@@ -3088,6 +4390,18 @@ bca_jr_has_output_politician_engineering_research = {
 }
 
 
+bca_jr_should_inc_politician_for_unity = {
+    OR = {
+        bca_jr_has_output_politician_unity = yes
+    }
+}
+
+bca_jr_should_inc_politician_for_trade = {
+    OR = {
+        bca_jr_has_output_politician_trade = yes
+    }
+}
+
 bca_jr_should_inc_politician_for_physics_research = {
     OR = {
         bca_jr_has_output_politician_physics_research = yes
@@ -3109,6 +4423,14 @@ bca_jr_should_inc_politician_for_engineering_research = {
 bca_jr_should_dec_politician = {
     NOR = {
         AND = {
+            bca_jr_has_output_politician_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_politician_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+        AND = {
             bca_jr_has_output_politician_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
         }
@@ -3119,6 +4441,48 @@ bca_jr_should_dec_politician = {
         AND = {
             bca_jr_has_output_politician_engineering_research = yes
             NOT = { bca_empire_has_surplus_engineering_research = yes }
+        }
+    }
+}
+
+# primitive_administrator → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_administrator_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_administrator_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_administrator_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_administrator = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_administrator_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# primitive_bureaucrat → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_bureaucrat_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_bureaucrat_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_bureaucrat_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_bureaucrat = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_bureaucrat_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -3309,6 +4673,48 @@ bca_jr_should_dec_primitive_hive_miner = {
     }
 }
 
+# primitive_hive_synapse_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_hive_synapse_drone_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_hive_synapse_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_hive_synapse_drone_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_hive_synapse_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_hive_synapse_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# primitive_hive_synapse_drone_2 → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_hive_synapse_drone_2_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_hive_synapse_drone_2_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_hive_synapse_drone_2_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_hive_synapse_drone_2 = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_hive_synapse_drone_2_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
 # primitive_hive_technician → energy 有无条件产出（base）或全部无条件
 bca_jr_has_output_primitive_hive_technician_energy = {
     always = yes
@@ -3383,6 +4789,69 @@ bca_jr_should_dec_primitive_miner = {
         AND = {
             bca_jr_has_output_primitive_miner_minerals = yes
             NOT = { bca_empire_has_surplus_minerals = yes }
+        }
+    }
+}
+
+# primitive_noble → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_noble_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_noble_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_noble_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_noble = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_noble_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# primitive_priest → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_priest_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_priest_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_priest_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_priest = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_priest_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# primitive_priest_2 → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_primitive_priest_2_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_primitive_priest_2_for_unity = {
+    OR = {
+        bca_jr_has_output_primitive_priest_2_unity = yes
+    }
+}
+
+bca_jr_should_dec_primitive_priest_2 = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_primitive_priest_2_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -3613,6 +5082,17 @@ bca_jr_has_output_purge_labor_camps_minerals = {
     always = yes
 }
 
+# purge_labor_camps → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_labor_camps_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
+}
+
 # purge_labor_camps → society_research 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_purge_labor_camps_society_research = {
     OR = {
@@ -3637,6 +5117,12 @@ bca_jr_should_inc_purge_labor_camps_for_minerals = {
     }
 }
 
+bca_jr_should_inc_purge_labor_camps_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_labor_camps_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_labor_camps_for_society_research = {
     OR = {
         bca_jr_has_output_purge_labor_camps_society_research = yes
@@ -3654,8 +5140,23 @@ bca_jr_should_dec_purge_labor_camps = {
             NOT = { bca_empire_has_surplus_minerals = yes }
         }
         AND = {
+            bca_jr_has_output_purge_labor_camps_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_labor_camps_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# purge_lithoid → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_lithoid_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
         }
     }
 }
@@ -3672,6 +5173,12 @@ bca_jr_has_output_purge_lithoid_society_research = {
 }
 
 
+bca_jr_should_inc_purge_lithoid_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_lithoid_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_lithoid_for_society_research = {
     OR = {
         bca_jr_has_output_purge_lithoid_society_research = yes
@@ -3680,6 +5187,10 @@ bca_jr_should_inc_purge_lithoid_for_society_research = {
 
 bca_jr_should_dec_purge_lithoid = {
     NOR = {
+        AND = {
+            bca_jr_has_output_purge_lithoid_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
         AND = {
             bca_jr_has_output_purge_lithoid_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
@@ -3690,6 +5201,17 @@ bca_jr_should_dec_purge_lithoid = {
 # purge_matrix → energy 有无条件产出（base）或全部无条件
 bca_jr_has_output_purge_matrix_energy = {
     always = yes
+}
+
+# purge_matrix → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_matrix_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
 }
 
 # purge_matrix → society_research 全部产出均有条件，需满足任一 trigger
@@ -3710,6 +5232,12 @@ bca_jr_should_inc_purge_matrix_for_energy = {
     }
 }
 
+bca_jr_should_inc_purge_matrix_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_matrix_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_matrix_for_society_research = {
     OR = {
         bca_jr_has_output_purge_matrix_society_research = yes
@@ -3723,6 +5251,10 @@ bca_jr_should_dec_purge_matrix = {
             NOT = { bca_empire_has_surplus_energy = yes }
         }
         AND = {
+            bca_jr_has_output_purge_matrix_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_matrix_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
@@ -3732,6 +5264,17 @@ bca_jr_should_dec_purge_matrix = {
 # purge_processing → food 有无条件产出（base）或全部无条件
 bca_jr_has_output_purge_processing_food = {
     always = yes
+}
+
+# purge_processing → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_processing_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
 }
 
 # purge_processing → society_research 全部产出均有条件，需满足任一 trigger
@@ -3752,6 +5295,12 @@ bca_jr_should_inc_purge_processing_for_food = {
     }
 }
 
+bca_jr_should_inc_purge_processing_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_processing_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_processing_for_society_research = {
     OR = {
         bca_jr_has_output_purge_processing_society_research = yes
@@ -3765,6 +5314,10 @@ bca_jr_should_dec_purge_processing = {
             NOT = { bca_empire_has_surplus_food = yes }
         }
         AND = {
+            bca_jr_has_output_purge_processing_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_processing_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
@@ -3774,6 +5327,17 @@ bca_jr_should_dec_purge_processing = {
 # purge_processing_infernal → alloys 有无条件产出（base）或全部无条件
 bca_jr_has_output_purge_processing_infernal_alloys = {
     always = yes
+}
+
+# purge_processing_infernal → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_processing_infernal_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
 }
 
 # purge_processing_infernal → society_research 全部产出均有条件，需满足任一 trigger
@@ -3794,6 +5358,12 @@ bca_jr_should_inc_purge_processing_infernal_for_alloys = {
     }
 }
 
+bca_jr_should_inc_purge_processing_infernal_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_processing_infernal_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_processing_infernal_for_society_research = {
     OR = {
         bca_jr_has_output_purge_processing_infernal_society_research = yes
@@ -3807,6 +5377,10 @@ bca_jr_should_dec_purge_processing_infernal = {
             NOT = { bca_empire_has_surplus_alloys = yes }
         }
         AND = {
+            bca_jr_has_output_purge_processing_infernal_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_processing_infernal_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
@@ -3816,6 +5390,17 @@ bca_jr_should_dec_purge_processing_infernal = {
 # purge_processing_lithoid → minerals 有无条件产出（base）或全部无条件
 bca_jr_has_output_purge_processing_lithoid_minerals = {
     always = yes
+}
+
+# purge_processing_lithoid → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_processing_lithoid_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
 }
 
 # purge_processing_lithoid → society_research 全部产出均有条件，需满足任一 trigger
@@ -3836,6 +5421,12 @@ bca_jr_should_inc_purge_processing_lithoid_for_minerals = {
     }
 }
 
+bca_jr_should_inc_purge_processing_lithoid_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_processing_lithoid_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_processing_lithoid_for_society_research = {
     OR = {
         bca_jr_has_output_purge_processing_lithoid_society_research = yes
@@ -3849,6 +5440,10 @@ bca_jr_should_dec_purge_processing_lithoid = {
             NOT = { bca_empire_has_surplus_minerals = yes }
         }
         AND = {
+            bca_jr_has_output_purge_processing_lithoid_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_processing_lithoid_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
@@ -3858,6 +5453,17 @@ bca_jr_should_dec_purge_processing_lithoid = {
 # purge_processing_robot → alloys 有无条件产出（base）或全部无条件
 bca_jr_has_output_purge_processing_robot_alloys = {
     always = yes
+}
+
+# purge_processing_robot → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_processing_robot_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
+        }
+    }
 }
 
 # purge_processing_robot → society_research 全部产出均有条件，需满足任一 trigger
@@ -3878,6 +5484,12 @@ bca_jr_should_inc_purge_processing_robot_for_alloys = {
     }
 }
 
+bca_jr_should_inc_purge_processing_robot_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_processing_robot_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_processing_robot_for_society_research = {
     OR = {
         bca_jr_has_output_purge_processing_robot_society_research = yes
@@ -3891,8 +5503,23 @@ bca_jr_should_dec_purge_processing_robot = {
             NOT = { bca_empire_has_surplus_alloys = yes }
         }
         AND = {
+            bca_jr_has_output_purge_processing_robot_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_processing_robot_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# purge_robot → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_purge_robot_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_valid_civic = civic_fanatic_purifiers
+            }
         }
     }
 }
@@ -3909,6 +5536,12 @@ bca_jr_has_output_purge_robot_society_research = {
 }
 
 
+bca_jr_should_inc_purge_robot_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_robot_unity = yes
+    }
+}
+
 bca_jr_should_inc_purge_robot_for_society_research = {
     OR = {
         bca_jr_has_output_purge_robot_society_research = yes
@@ -3918,8 +5551,33 @@ bca_jr_should_inc_purge_robot_for_society_research = {
 bca_jr_should_dec_purge_robot = {
     NOR = {
         AND = {
+            bca_jr_has_output_purge_robot_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_purge_robot_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+    }
+}
+
+# purge_sacrifice → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_purge_sacrifice_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_purge_sacrifice_for_unity = {
+    OR = {
+        bca_jr_has_output_purge_sacrifice_unity = yes
+    }
+}
+
+bca_jr_should_dec_purge_sacrifice = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_purge_sacrifice_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -3975,11 +5633,58 @@ bca_jr_should_dec_ratling_scavenger = {
     }
 }
 
+# resort_worker → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_resort_worker_unity = {
+    always = yes
+}
+
+# resort_worker → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_resort_worker_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_resort_worker_for_unity = {
+    OR = {
+        bca_jr_has_output_resort_worker_unity = yes
+    }
+}
+
+bca_jr_should_inc_resort_worker_for_trade = {
+    OR = {
+        bca_jr_has_output_resort_worker_trade = yes
+    }
+}
+
+bca_jr_should_dec_resort_worker = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_resort_worker_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
+            bca_jr_has_output_resort_worker_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# robot_caretaker → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_robot_caretaker_unity = {
+    always = yes
+}
+
 # robot_caretaker → engineering_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_robot_caretaker_engineering_research = {
     always = yes
 }
 
+
+bca_jr_should_inc_robot_caretaker_for_unity = {
+    OR = {
+        bca_jr_has_output_robot_caretaker_unity = yes
+    }
+}
 
 bca_jr_should_inc_robot_caretaker_for_engineering_research = {
     OR = {
@@ -3990,8 +5695,75 @@ bca_jr_should_inc_robot_caretaker_for_engineering_research = {
 bca_jr_should_dec_robot_caretaker = {
     NOR = {
         AND = {
+            bca_jr_has_output_robot_caretaker_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_robot_caretaker_engineering_research = yes
             NOT = { bca_empire_has_surplus_engineering_research = yes }
+        }
+    }
+}
+
+# shroud_trader → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_shroud_trader_trade = {
+    always = yes
+}
+
+# shroud_trader → unity 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_shroud_trader_unity = {
+    OR = {
+        AND = {
+            owner = {
+                has_breached_shroud = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_shroud_trader_for_trade = {
+    OR = {
+        bca_jr_has_output_shroud_trader_trade = yes
+    }
+}
+
+bca_jr_should_inc_shroud_trader_for_unity = {
+    OR = {
+        bca_jr_has_output_shroud_trader_unity = yes
+    }
+}
+
+bca_jr_should_dec_shroud_trader = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_shroud_trader_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+        AND = {
+            bca_jr_has_output_shroud_trader_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# solarpunk_anarchist → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_solarpunk_anarchist_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_solarpunk_anarchist_for_unity = {
+    OR = {
+        bca_jr_has_output_solarpunk_anarchist_unity = yes
+    }
+}
+
+bca_jr_should_dec_solarpunk_anarchist = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_solarpunk_anarchist_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
     }
 }
@@ -4290,10 +6062,21 @@ bca_jr_has_output_stasis_warden_drone_physics_research = {
     always = yes
 }
 
+# stasis_warden_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_stasis_warden_drone_unity = {
+    always = yes
+}
+
 
 bca_jr_should_inc_stasis_warden_drone_for_physics_research = {
     OR = {
         bca_jr_has_output_stasis_warden_drone_physics_research = yes
+    }
+}
+
+bca_jr_should_inc_stasis_warden_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_stasis_warden_drone_unity = yes
     }
 }
 
@@ -4303,7 +6086,37 @@ bca_jr_should_dec_stasis_warden_drone = {
             bca_jr_has_output_stasis_warden_drone_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
         }
+        AND = {
+            bca_jr_has_output_stasis_warden_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
     }
+}
+
+# stratovent_refiner → exotic_gases 有无条件产出（base）或全部无条件
+bca_jr_has_output_stratovent_refiner_exotic_gases = {
+    always = yes
+}
+
+
+bca_jr_should_inc_stratovent_refiner_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_stratovent_refiner_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_stratovent_refiner = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_stratovent_refiner_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+    }
+}
+
+# stratovent_refiner_minerals → exotic_gases 有无条件产出（base）或全部无条件
+bca_jr_has_output_stratovent_refiner_minerals_exotic_gases = {
+    always = yes
 }
 
 # stratovent_refiner_minerals → minerals 有无条件产出（base）或全部无条件
@@ -4311,6 +6124,12 @@ bca_jr_has_output_stratovent_refiner_minerals_minerals = {
     always = yes
 }
 
+
+bca_jr_should_inc_stratovent_refiner_minerals_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_stratovent_refiner_minerals_exotic_gases = yes
+    }
+}
 
 bca_jr_should_inc_stratovent_refiner_minerals_for_minerals = {
     OR = {
@@ -4321,14 +6140,44 @@ bca_jr_should_inc_stratovent_refiner_minerals_for_minerals = {
 bca_jr_should_dec_stratovent_refiner_minerals = {
     NOR = {
         AND = {
+            bca_jr_has_output_stratovent_refiner_minerals_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+        AND = {
             bca_jr_has_output_stratovent_refiner_minerals_minerals = yes
             NOT = { bca_empire_has_surplus_minerals = yes }
         }
     }
 }
 
+# stratovent_refiner_upg → exotic_gases 有无条件产出（base）或全部无条件
+bca_jr_has_output_stratovent_refiner_upg_exotic_gases = {
+    always = yes
+}
+
+
+bca_jr_should_inc_stratovent_refiner_upg_for_exotic_gases = {
+    OR = {
+        bca_jr_has_output_stratovent_refiner_upg_exotic_gases = yes
+    }
+}
+
+bca_jr_should_dec_stratovent_refiner_upg = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_stratovent_refiner_upg_exotic_gases = yes
+            NOT = { bca_empire_has_surplus_exotic_gases = yes }
+        }
+    }
+}
+
 # stratovent_researcher → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_stratovent_researcher_society_research = {
+    always = yes
+}
+
+# stratovent_researcher → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_stratovent_researcher_trade = {
     always = yes
 }
 
@@ -4339,11 +6188,21 @@ bca_jr_should_inc_stratovent_researcher_for_society_research = {
     }
 }
 
+bca_jr_should_inc_stratovent_researcher_for_trade = {
+    OR = {
+        bca_jr_has_output_stratovent_researcher_trade = yes
+    }
+}
+
 bca_jr_should_dec_stratovent_researcher = {
     NOR = {
         AND = {
             bca_jr_has_output_stratovent_researcher_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+        AND = {
+            bca_jr_has_output_stratovent_researcher_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -4390,11 +6249,22 @@ bca_jr_should_dec_technician_drone = {
     }
 }
 
+# technophant → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_technophant_unity = {
+    always = yes
+}
+
 # technophant → engineering_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_technophant_engineering_research = {
     always = yes
 }
 
+
+bca_jr_should_inc_technophant_for_unity = {
+    OR = {
+        bca_jr_has_output_technophant_unity = yes
+    }
+}
 
 bca_jr_should_inc_technophant_for_engineering_research = {
     OR = {
@@ -4405,10 +6275,19 @@ bca_jr_should_inc_technophant_for_engineering_research = {
 bca_jr_should_dec_technophant = {
     NOR = {
         AND = {
+            bca_jr_has_output_technophant_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_technophant_engineering_research = yes
             NOT = { bca_empire_has_surplus_engineering_research = yes }
         }
     }
+}
+
+# telepath → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_telepath_unity = {
+    always = yes
 }
 
 # telepath → physics_research 全部产出均有条件，需满足任一 trigger
@@ -4466,6 +6345,12 @@ bca_jr_has_output_telepath_society_research = {
 }
 
 
+bca_jr_should_inc_telepath_for_unity = {
+    OR = {
+        bca_jr_has_output_telepath_unity = yes
+    }
+}
+
 bca_jr_should_inc_telepath_for_physics_research = {
     OR = {
         bca_jr_has_output_telepath_physics_research = yes
@@ -4487,6 +6372,10 @@ bca_jr_should_inc_telepath_for_society_research = {
 bca_jr_should_dec_telepath = {
     NOR = {
         AND = {
+            bca_jr_has_output_telepath_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_telepath_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
         }
@@ -4499,6 +6388,11 @@ bca_jr_should_dec_telepath = {
             NOT = { bca_empire_has_surplus_society_research = yes }
         }
     }
+}
+
+# telepath_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_telepath_drone_unity = {
+    always = yes
 }
 
 # telepath_drone → physics_research 全部产出均有条件，需满足任一 trigger
@@ -4550,6 +6444,12 @@ bca_jr_has_output_telepath_drone_society_research = {
 }
 
 
+bca_jr_should_inc_telepath_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_telepath_drone_unity = yes
+    }
+}
+
 bca_jr_should_inc_telepath_drone_for_physics_research = {
     OR = {
         bca_jr_has_output_telepath_drone_physics_research = yes
@@ -4570,6 +6470,10 @@ bca_jr_should_inc_telepath_drone_for_society_research = {
 
 bca_jr_should_dec_telepath_drone = {
     NOR = {
+        AND = {
+            bca_jr_has_output_telepath_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
         AND = {
             bca_jr_has_output_telepath_drone_physics_research = yes
             NOT = { bca_empire_has_surplus_physics_research = yes }
@@ -4687,6 +6591,133 @@ bca_jr_should_dec_test_subject_drone = {
     }
 }
 
+# trader → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_trader_trade = {
+    always = yes
+}
+
+
+bca_jr_should_inc_trader_for_trade = {
+    OR = {
+        bca_jr_has_output_trader_trade = yes
+    }
+}
+
+bca_jr_should_dec_trader = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_trader_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
+        }
+    }
+}
+
+# transference_drone → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_transference_drone_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_transference_drone_for_unity = {
+    OR = {
+        bca_jr_has_output_transference_drone_unity = yes
+    }
+}
+
+bca_jr_should_dec_transference_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_transference_drone_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# transference_volunteer → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_transference_volunteer_unity = {
+    always = yes
+}
+
+
+bca_jr_should_inc_transference_volunteer_for_unity = {
+    OR = {
+        bca_jr_has_output_transference_volunteer_unity = yes
+    }
+}
+
+bca_jr_should_dec_transference_volunteer = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_transference_volunteer_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+    }
+}
+
+# translucer → rare_crystals 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_translucer_rare_crystals = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_translucer_for_rare_crystals = {
+    OR = {
+        bca_jr_has_output_translucer_rare_crystals = yes
+    }
+}
+
+bca_jr_should_dec_translucer = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_translucer_rare_crystals = yes
+            NOT = { bca_empire_has_surplus_rare_crystals = yes }
+        }
+    }
+}
+
+# translucer_drone → rare_crystals 全部产出均有条件，需满足任一 trigger
+bca_jr_has_output_translucer_drone_rare_crystals = {
+    OR = {
+        AND = {
+            owner = {
+                is_catalytic_empire = no
+            }
+        }
+        AND = {
+            owner = {
+                is_catalytic_empire = yes
+            }
+        }
+    }
+}
+
+
+bca_jr_should_inc_translucer_drone_for_rare_crystals = {
+    OR = {
+        bca_jr_has_output_translucer_drone_rare_crystals = yes
+    }
+}
+
+bca_jr_should_dec_translucer_drone = {
+    NOR = {
+        AND = {
+            bca_jr_has_output_translucer_drone_rare_crystals = yes
+            NOT = { bca_empire_has_surplus_rare_crystals = yes }
+        }
+    }
+}
+
 # treasure_gatherer → energy 有无条件产出（base）或全部无条件
 bca_jr_has_output_treasure_gatherer_energy = {
     always = yes
@@ -4697,8 +6728,18 @@ bca_jr_has_output_treasure_gatherer_minerals = {
     always = yes
 }
 
+# treasure_gatherer → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_treasure_gatherer_unity = {
+    always = yes
+}
+
 # treasure_gatherer → society_research 有无条件产出（base）或全部无条件
 bca_jr_has_output_treasure_gatherer_society_research = {
+    always = yes
+}
+
+# treasure_gatherer → trade 有无条件产出（base）或全部无条件
+bca_jr_has_output_treasure_gatherer_trade = {
     always = yes
 }
 
@@ -4715,9 +6756,21 @@ bca_jr_should_inc_treasure_gatherer_for_minerals = {
     }
 }
 
+bca_jr_should_inc_treasure_gatherer_for_unity = {
+    OR = {
+        bca_jr_has_output_treasure_gatherer_unity = yes
+    }
+}
+
 bca_jr_should_inc_treasure_gatherer_for_society_research = {
     OR = {
         bca_jr_has_output_treasure_gatherer_society_research = yes
+    }
+}
+
+bca_jr_should_inc_treasure_gatherer_for_trade = {
+    OR = {
+        bca_jr_has_output_treasure_gatherer_trade = yes
     }
 }
 
@@ -4732,8 +6785,16 @@ bca_jr_should_dec_treasure_gatherer = {
             NOT = { bca_empire_has_surplus_minerals = yes }
         }
         AND = {
+            bca_jr_has_output_treasure_gatherer_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
+        }
+        AND = {
             bca_jr_has_output_treasure_gatherer_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+        AND = {
+            bca_jr_has_output_treasure_gatherer_trade = yes
+            NOT = { bca_empire_has_surplus_trade = yes }
         }
     }
 }
@@ -4745,6 +6806,11 @@ bca_jr_has_output_treasure_gatherer_gestalt_energy = {
 
 # treasure_gatherer_gestalt → minerals 有无条件产出（base）或全部无条件
 bca_jr_has_output_treasure_gatherer_gestalt_minerals = {
+    always = yes
+}
+
+# treasure_gatherer_gestalt → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_treasure_gatherer_gestalt_unity = {
     always = yes
 }
 
@@ -4766,6 +6832,12 @@ bca_jr_should_inc_treasure_gatherer_gestalt_for_minerals = {
     }
 }
 
+bca_jr_should_inc_treasure_gatherer_gestalt_for_unity = {
+    OR = {
+        bca_jr_has_output_treasure_gatherer_gestalt_unity = yes
+    }
+}
+
 bca_jr_should_inc_treasure_gatherer_gestalt_for_society_research = {
     OR = {
         bca_jr_has_output_treasure_gatherer_gestalt_society_research = yes
@@ -4781,6 +6853,10 @@ bca_jr_should_dec_treasure_gatherer_gestalt = {
         AND = {
             bca_jr_has_output_treasure_gatherer_gestalt_minerals = yes
             NOT = { bca_empire_has_surplus_minerals = yes }
+        }
+        AND = {
+            bca_jr_has_output_treasure_gatherer_gestalt_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
         AND = {
             bca_jr_has_output_treasure_gatherer_gestalt_society_research = yes
@@ -4830,6 +6906,11 @@ bca_jr_has_output_wrangler_society_research = {
     always = yes
 }
 
+# wrangler → unity 有无条件产出（base）或全部无条件
+bca_jr_has_output_wrangler_unity = {
+    always = yes
+}
+
 # wrangler → food 全部产出均有条件，需满足任一 trigger
 bca_jr_has_output_wrangler_food = {
     OR = {
@@ -4847,6 +6928,12 @@ bca_jr_should_inc_wrangler_for_society_research = {
     }
 }
 
+bca_jr_should_inc_wrangler_for_unity = {
+    OR = {
+        bca_jr_has_output_wrangler_unity = yes
+    }
+}
+
 bca_jr_should_inc_wrangler_for_food = {
     OR = {
         bca_jr_has_output_wrangler_food = yes
@@ -4858,6 +6945,10 @@ bca_jr_should_dec_wrangler = {
         AND = {
             bca_jr_has_output_wrangler_society_research = yes
             NOT = { bca_empire_has_surplus_society_research = yes }
+        }
+        AND = {
+            bca_jr_has_output_wrangler_unity = yes
+            NOT = { bca_empire_has_surplus_unity = yes }
         }
         AND = {
             bca_jr_has_output_wrangler_food = yes

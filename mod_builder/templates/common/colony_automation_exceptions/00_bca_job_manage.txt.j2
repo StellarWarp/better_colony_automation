@@ -12,8 +12,8 @@ automate_job_{{ entry.job }} = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_{{ entry.job }} }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
     }
 
     emergency = yes

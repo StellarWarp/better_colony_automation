@@ -16,12 +16,22 @@ The goal is not to teach the whole language. The goal is to reduce errors from s
 
 Use these references in this order:
 
-1. Existing game scripts are the gold sample for Paradox DSL style and engine-supported patterns.
-2. Existing verified project code is the gold sample for project conventions.
-3. Trusted mods can be used as examples for custom GUI and unusual script patterns.
-4. API details should be checked in the Stellaris user document (`%USERPROFILE%\Documents\Paradox Interactive\Stellaris\logs\script_documentation` on Windows).
+1. **`.config/stellaris/` rule files** are the primary source for Stellaris DSL
+   syntax, effects, triggers, scopes, modifiers, and enums. These `.cwt` files
+   define the authoritative API surface for the targeted game version.
+2. The **Stellaris user document** (`%USERPROFILE%\Documents\Paradox
+   Interactive\Stellaris\logs\script_documentation` on Windows) is the
+   secondary reference for API details and version-specific behavior.
+3. Existing game scripts are the gold sample for Paradox DSL style and
+   engine-supported patterns.
+4. Existing verified project code is the gold sample for project conventions.
+5. Trusted mods can be used as examples for custom GUI and unusual script
+   patterns.
 
-Do not hardcode machine-specific absolute paths to `script_documentation` in docs or comments. Describe it by location relative to the Stellaris user document/logs directory.
+Do not hardcode machine-specific absolute paths to `script_documentation` in
+docs or comments. Describe it by location relative to the Stellaris user
+document/logs directory. Paths to `.config/stellaris/` should be relative to
+the workspace root.
 
 AI agents usually have some prior knowledge of Paradox DSL because it is publicly discussed and widely modded. That prior knowledge is useful, but it is not enough for project correctness. Version-specific API behavior, scope semantics, and this repository's generation pipeline must be checked locally.
 

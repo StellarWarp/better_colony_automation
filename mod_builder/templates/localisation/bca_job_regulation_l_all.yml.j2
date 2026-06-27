@@ -3,22 +3,22 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 all:
 
-{% for entry in regulated if entry.icon %}
- BCA_JR_LINE_{{ entry.job }}:0 "£jr_icon_{{ entry.icon }}£ {{ entry.job }}"
+{% for icon in job_regulation_config.icon_sprites | default([]) %}
+ BCA_JR_ICON_SPRITE_{{ icon }}: "£jr_icon_{{ icon }}£"
 {% endfor %}
 
 {% for entry in regulated %}
- BCA_JR_WF_{{ entry.job }}:0 "[From.bca_jr_gui_wf_{{ entry.job }}] / [From.bca_jr_gui_slots_{{ entry.job }}]"
+ BCA_JR_WF_{{ entry.job }}: "[From.bca_jr_total_capacity_workforce_{{ entry.job }}] / [From.bca_jr_total_job_count_{{ entry.job }}]"
 {% endfor %}
 
 {% for entry in regulated %}
- BCA_JR_OUTPUT_{{ entry.job }}:0 "[From.bca_jr_gui_output_{{ entry.job }}]"
+ BCA_JR_OUTPUT_{{ entry.job }}: "{% for resource in entry.economic_resources %}£{{ resource }}£[From.bca_jr_display_output_{{ entry.job }}_{{ resource }}]{% if not loop.last %} {% endif %}{% endfor %}"
 {% endfor %}
 
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
- BCA_JR_SLOT_{{ s_name }}_LINE:0 "[From.BCA_JR_SLOT_{{ s_name }}_LINE_script]"
- BCA_JR_SLOT_{{ s_name }}_WF:0 "[From.BCA_JR_SLOT_{{ s_name }}_WF_script]"
- BCA_JR_SLOT_{{ s_name }}_OUTPUT:0 "[From.BCA_JR_SLOT_{{ s_name }}_OUTPUT_script]"
- BCA_JR_SLOT_{{ s_name }}_STATUS:0 "[From.BCA_JR_SLOT_{{ s_name }}_STATUS_script]"
+ BCA_JR_SLOT_{{ s_name }}_ICON: "[From.BCA_JR_SLOT_{{ s_name }}_ICON_script]"
+ BCA_JR_SLOT_{{ s_name }}_NAME: "[From.BCA_JR_SLOT_{{ s_name }}_NAME_script]"
+ BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_WF_script]"
+ BCA_JR_SLOT_{{ s_name }}_OUTPUT: "[From.BCA_JR_SLOT_{{ s_name }}_OUTPUT_script]"
 {% endfor %}

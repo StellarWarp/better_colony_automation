@@ -11,8 +11,8 @@ automate_job_agri_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_agri_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_agri_drone } }
     }
 
     emergency = yes
@@ -88,8 +88,8 @@ automate_job_alien_hunter = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_alien_hunter }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_alien_hunter } }
     }
 
     emergency = yes
@@ -165,8 +165,8 @@ automate_job_archivist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_archivist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_archivist } }
     }
 
     emergency = yes
@@ -242,8 +242,8 @@ automate_job_ark_harvester = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_ark_harvester }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_ark_harvester } }
     }
 
     emergency = yes
@@ -319,8 +319,8 @@ automate_job_ark_harvester_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_ark_harvester_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_ark_harvester_gestalt } }
     }
 
     emergency = yes
@@ -390,14 +390,168 @@ automate_job_ark_harvester_gestalt = {
     }
 }
 
+automate_job_ark_waystation_trader = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_ark_waystation_trader } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        ark_waystation_trader_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_g3200
+            }
+            job = ark_waystation_trader
+            amount = 3200
+        }
+
+        ark_waystation_trader_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_g3200
+            }
+            job = ark_waystation_trader
+            amount = -3200
+        }
+        ark_waystation_trader_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_g800
+            }
+            job = ark_waystation_trader
+            amount = 800
+        }
+
+        ark_waystation_trader_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_g800
+            }
+            job = ark_waystation_trader
+            amount = -800
+        }
+        ark_waystation_trader_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_g200
+            }
+            job = ark_waystation_trader
+            amount = 200
+        }
+
+        ark_waystation_trader_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_g200
+            }
+            job = ark_waystation_trader
+            amount = -200
+        }
+        ark_waystation_trader_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_g50
+            }
+            job = ark_waystation_trader
+            amount = 50
+        }
+
+        ark_waystation_trader_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_g50
+            }
+            job = ark_waystation_trader
+            amount = -50
+        }
+    }
+}
+
+automate_job_ark_waystation_trader_gestalt = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_ark_waystation_trader_gestalt } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        ark_waystation_trader_gestalt_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_gestalt_g3200
+            }
+            job = ark_waystation_trader_gestalt
+            amount = 3200
+        }
+
+        ark_waystation_trader_gestalt_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_gestalt_g3200
+            }
+            job = ark_waystation_trader_gestalt
+            amount = -3200
+        }
+        ark_waystation_trader_gestalt_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_gestalt_g800
+            }
+            job = ark_waystation_trader_gestalt
+            amount = 800
+        }
+
+        ark_waystation_trader_gestalt_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_gestalt_g800
+            }
+            job = ark_waystation_trader_gestalt
+            amount = -800
+        }
+        ark_waystation_trader_gestalt_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_gestalt_g200
+            }
+            job = ark_waystation_trader_gestalt
+            amount = 200
+        }
+
+        ark_waystation_trader_gestalt_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_gestalt_g200
+            }
+            job = ark_waystation_trader_gestalt
+            amount = -200
+        }
+        ark_waystation_trader_gestalt_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_ark_waystation_trader_gestalt_g50
+            }
+            job = ark_waystation_trader_gestalt
+            amount = 50
+        }
+
+        ark_waystation_trader_gestalt_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_ark_waystation_trader_gestalt_g50
+            }
+            job = ark_waystation_trader_gestalt
+            amount = -50
+        }
+    }
+}
+
 automate_job_artificer_prison_worker = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_artificer_prison_worker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_artificer_prison_worker } }
     }
 
     emergency = yes
@@ -473,8 +627,8 @@ automate_job_artisan = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_artisan }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_artisan } }
     }
 
     emergency = yes
@@ -550,8 +704,8 @@ automate_job_artisan_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_artisan_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_artisan_drone } }
     }
 
     emergency = yes
@@ -627,8 +781,8 @@ automate_job_artisan_prison_worker = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_artisan_prison_worker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_artisan_prison_worker } }
     }
 
     emergency = yes
@@ -704,8 +858,8 @@ automate_job_astral_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_astral_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_astral_drone } }
     }
 
     emergency = yes
@@ -781,8 +935,8 @@ automate_job_astral_researcher = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_astral_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_astral_researcher } }
     }
 
     emergency = yes
@@ -858,8 +1012,8 @@ automate_job_astral_unit = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_astral_unit }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_astral_unit } }
     }
 
     emergency = yes
@@ -935,8 +1089,8 @@ automate_job_astrogarbage_collector = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_astrogarbage_collector }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_astrogarbage_collector } }
     }
 
     emergency = yes
@@ -1012,8 +1166,8 @@ automate_job_astrogarbage_collector_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_astrogarbage_collector_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_astrogarbage_collector_gestalt } }
     }
 
     emergency = yes
@@ -1089,8 +1243,8 @@ automate_job_augmentor = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_augmentor }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_augmentor } }
     }
 
     emergency = yes
@@ -1166,8 +1320,8 @@ automate_job_augmentor_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_augmentor_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_augmentor_drone } }
     }
 
     emergency = yes
@@ -1237,14 +1391,168 @@ automate_job_augmentor_drone = {
     }
 }
 
+automate_job_bath_attendant = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_bath_attendant } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        bath_attendant_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bath_attendant_g3200
+            }
+            job = bath_attendant
+            amount = 3200
+        }
+
+        bath_attendant_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bath_attendant_g3200
+            }
+            job = bath_attendant
+            amount = -3200
+        }
+        bath_attendant_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bath_attendant_g800
+            }
+            job = bath_attendant
+            amount = 800
+        }
+
+        bath_attendant_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bath_attendant_g800
+            }
+            job = bath_attendant
+            amount = -800
+        }
+        bath_attendant_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bath_attendant_g200
+            }
+            job = bath_attendant
+            amount = 200
+        }
+
+        bath_attendant_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bath_attendant_g200
+            }
+            job = bath_attendant
+            amount = -200
+        }
+        bath_attendant_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bath_attendant_g50
+            }
+            job = bath_attendant
+            amount = 50
+        }
+
+        bath_attendant_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bath_attendant_g50
+            }
+            job = bath_attendant
+            amount = -50
+        }
+    }
+}
+
+automate_job_bio_trophy = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_bio_trophy } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        bio_trophy_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bio_trophy_g3200
+            }
+            job = bio_trophy
+            amount = 3200
+        }
+
+        bio_trophy_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bio_trophy_g3200
+            }
+            job = bio_trophy
+            amount = -3200
+        }
+        bio_trophy_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bio_trophy_g800
+            }
+            job = bio_trophy
+            amount = 800
+        }
+
+        bio_trophy_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bio_trophy_g800
+            }
+            job = bio_trophy
+            amount = -800
+        }
+        bio_trophy_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bio_trophy_g200
+            }
+            job = bio_trophy
+            amount = 200
+        }
+
+        bio_trophy_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bio_trophy_g200
+            }
+            job = bio_trophy
+            amount = -200
+        }
+        bio_trophy_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_bio_trophy_g50
+            }
+            job = bio_trophy
+            amount = 50
+        }
+
+        bio_trophy_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_bio_trophy_g50
+            }
+            job = bio_trophy
+            amount = -50
+        }
+    }
+}
+
 automate_job_biologist = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_biologist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_biologist } }
     }
 
     emergency = yes
@@ -1320,8 +1628,8 @@ automate_job_broken_shackles_scavenger = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_broken_shackles_scavenger }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_broken_shackles_scavenger } }
     }
 
     emergency = yes
@@ -1397,8 +1705,8 @@ automate_job_bureaucrat = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_bureaucrat }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_bureaucrat } }
     }
 
     emergency = yes
@@ -1474,8 +1782,8 @@ automate_job_calculator_biologist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_calculator_biologist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_calculator_biologist } }
     }
 
     emergency = yes
@@ -1551,8 +1859,8 @@ automate_job_calculator_engineer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_calculator_engineer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_calculator_engineer } }
     }
 
     emergency = yes
@@ -1628,8 +1936,8 @@ automate_job_calculator_physicist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_calculator_physicist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_calculator_physicist } }
     }
 
     emergency = yes
@@ -1705,8 +2013,8 @@ automate_job_catalytic_technician_prison_worker = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_catalytic_technician_prison_worker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_catalytic_technician_prison_worker } }
     }
 
     emergency = yes
@@ -1782,8 +2090,8 @@ automate_job_cave_cleaner_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_cave_cleaner_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cave_cleaner_gestalt } }
     }
 
     emergency = yes
@@ -1853,14 +2161,245 @@ automate_job_cave_cleaner_gestalt = {
     }
 }
 
+automate_job_chemist = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_chemist } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        chemist_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_g3200
+            }
+            job = chemist
+            amount = 3200
+        }
+
+        chemist_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_g3200
+            }
+            job = chemist
+            amount = -3200
+        }
+        chemist_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_g800
+            }
+            job = chemist
+            amount = 800
+        }
+
+        chemist_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_g800
+            }
+            job = chemist
+            amount = -800
+        }
+        chemist_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_g200
+            }
+            job = chemist
+            amount = 200
+        }
+
+        chemist_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_g200
+            }
+            job = chemist
+            amount = -200
+        }
+        chemist_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_g50
+            }
+            job = chemist
+            amount = 50
+        }
+
+        chemist_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_g50
+            }
+            job = chemist
+            amount = -50
+        }
+    }
+}
+
+automate_job_chemist_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_chemist_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        chemist_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_drone_g3200
+            }
+            job = chemist_drone
+            amount = 3200
+        }
+
+        chemist_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_drone_g3200
+            }
+            job = chemist_drone
+            amount = -3200
+        }
+        chemist_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_drone_g800
+            }
+            job = chemist_drone
+            amount = 800
+        }
+
+        chemist_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_drone_g800
+            }
+            job = chemist_drone
+            amount = -800
+        }
+        chemist_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_drone_g200
+            }
+            job = chemist_drone
+            amount = 200
+        }
+
+        chemist_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_drone_g200
+            }
+            job = chemist_drone
+            amount = -200
+        }
+        chemist_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_chemist_drone_g50
+            }
+            job = chemist_drone
+            amount = 50
+        }
+
+        chemist_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_chemist_drone_g50
+            }
+            job = chemist_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_civilian = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_civilian } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        civilian_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_civilian_g3200
+            }
+            job = civilian
+            amount = 3200
+        }
+
+        civilian_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_civilian_g3200
+            }
+            job = civilian
+            amount = -3200
+        }
+        civilian_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_civilian_g800
+            }
+            job = civilian
+            amount = 800
+        }
+
+        civilian_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_civilian_g800
+            }
+            job = civilian
+            amount = -800
+        }
+        civilian_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_civilian_g200
+            }
+            job = civilian
+            amount = 200
+        }
+
+        civilian_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_civilian_g200
+            }
+            job = civilian
+            amount = -200
+        }
+        civilian_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_civilian_g50
+            }
+            job = civilian
+            amount = 50
+        }
+
+        civilian_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_civilian_g50
+            }
+            job = civilian
+            amount = -50
+        }
+    }
+}
+
 automate_job_clip_maximizer = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_clip_maximizer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_clip_maximizer } }
     }
 
     emergency = yes
@@ -1936,8 +2475,8 @@ automate_job_colonist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_colonist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_colonist } }
     }
 
     emergency = yes
@@ -2007,14 +2546,476 @@ automate_job_colonist = {
     }
 }
 
+automate_job_coordinator = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_coordinator } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        coordinator_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_coordinator_g3200
+            }
+            job = coordinator
+            amount = 3200
+        }
+
+        coordinator_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_coordinator_g3200
+            }
+            job = coordinator
+            amount = -3200
+        }
+        coordinator_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_coordinator_g800
+            }
+            job = coordinator
+            amount = 800
+        }
+
+        coordinator_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_coordinator_g800
+            }
+            job = coordinator
+            amount = -800
+        }
+        coordinator_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_coordinator_g200
+            }
+            job = coordinator
+            amount = 200
+        }
+
+        coordinator_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_coordinator_g200
+            }
+            job = coordinator
+            amount = -200
+        }
+        coordinator_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_coordinator_g50
+            }
+            job = coordinator
+            amount = 50
+        }
+
+        coordinator_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_coordinator_g50
+            }
+            job = coordinator
+            amount = -50
+        }
+    }
+}
+
+automate_job_cruise_crew_overseer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cruise_crew_overseer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        cruise_crew_overseer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_g3200
+            }
+            job = cruise_crew_overseer
+            amount = 3200
+        }
+
+        cruise_crew_overseer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_g3200
+            }
+            job = cruise_crew_overseer
+            amount = -3200
+        }
+        cruise_crew_overseer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_g800
+            }
+            job = cruise_crew_overseer
+            amount = 800
+        }
+
+        cruise_crew_overseer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_g800
+            }
+            job = cruise_crew_overseer
+            amount = -800
+        }
+        cruise_crew_overseer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_g200
+            }
+            job = cruise_crew_overseer
+            amount = 200
+        }
+
+        cruise_crew_overseer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_g200
+            }
+            job = cruise_crew_overseer
+            amount = -200
+        }
+        cruise_crew_overseer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_g50
+            }
+            job = cruise_crew_overseer
+            amount = 50
+        }
+
+        cruise_crew_overseer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_g50
+            }
+            job = cruise_crew_overseer
+            amount = -50
+        }
+    }
+}
+
+automate_job_cruise_crew_overseer_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cruise_crew_overseer_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        cruise_crew_overseer_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_drone_g3200
+            }
+            job = cruise_crew_overseer_drone
+            amount = 3200
+        }
+
+        cruise_crew_overseer_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_drone_g3200
+            }
+            job = cruise_crew_overseer_drone
+            amount = -3200
+        }
+        cruise_crew_overseer_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_drone_g800
+            }
+            job = cruise_crew_overseer_drone
+            amount = 800
+        }
+
+        cruise_crew_overseer_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_drone_g800
+            }
+            job = cruise_crew_overseer_drone
+            amount = -800
+        }
+        cruise_crew_overseer_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_drone_g200
+            }
+            job = cruise_crew_overseer_drone
+            amount = 200
+        }
+
+        cruise_crew_overseer_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_drone_g200
+            }
+            job = cruise_crew_overseer_drone
+            amount = -200
+        }
+        cruise_crew_overseer_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_crew_overseer_drone_g50
+            }
+            job = cruise_crew_overseer_drone
+            amount = 50
+        }
+
+        cruise_crew_overseer_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_crew_overseer_drone_g50
+            }
+            job = cruise_crew_overseer_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_cruise_passenger = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cruise_passenger } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        cruise_passenger_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_g3200
+            }
+            job = cruise_passenger
+            amount = 3200
+        }
+
+        cruise_passenger_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_g3200
+            }
+            job = cruise_passenger
+            amount = -3200
+        }
+        cruise_passenger_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_g800
+            }
+            job = cruise_passenger
+            amount = 800
+        }
+
+        cruise_passenger_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_g800
+            }
+            job = cruise_passenger
+            amount = -800
+        }
+        cruise_passenger_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_g200
+            }
+            job = cruise_passenger
+            amount = 200
+        }
+
+        cruise_passenger_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_g200
+            }
+            job = cruise_passenger
+            amount = -200
+        }
+        cruise_passenger_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_g50
+            }
+            job = cruise_passenger
+            amount = 50
+        }
+
+        cruise_passenger_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_g50
+            }
+            job = cruise_passenger
+            amount = -50
+        }
+    }
+}
+
+automate_job_cruise_passenger_unemployment = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cruise_passenger_unemployment } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        cruise_passenger_unemployment_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_unemployment_g3200
+            }
+            job = cruise_passenger_unemployment
+            amount = 3200
+        }
+
+        cruise_passenger_unemployment_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_unemployment_g3200
+            }
+            job = cruise_passenger_unemployment
+            amount = -3200
+        }
+        cruise_passenger_unemployment_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_unemployment_g800
+            }
+            job = cruise_passenger_unemployment
+            amount = 800
+        }
+
+        cruise_passenger_unemployment_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_unemployment_g800
+            }
+            job = cruise_passenger_unemployment
+            amount = -800
+        }
+        cruise_passenger_unemployment_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_unemployment_g200
+            }
+            job = cruise_passenger_unemployment
+            amount = 200
+        }
+
+        cruise_passenger_unemployment_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_unemployment_g200
+            }
+            job = cruise_passenger_unemployment
+            amount = -200
+        }
+        cruise_passenger_unemployment_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cruise_passenger_unemployment_g50
+            }
+            job = cruise_passenger_unemployment
+            amount = 50
+        }
+
+        cruise_passenger_unemployment_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cruise_passenger_unemployment_g50
+            }
+            job = cruise_passenger_unemployment
+            amount = -50
+        }
+    }
+}
+
+automate_job_cyberdome_duelist = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cyberdome_duelist } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        cyberdome_duelist_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cyberdome_duelist_g3200
+            }
+            job = cyberdome_duelist
+            amount = 3200
+        }
+
+        cyberdome_duelist_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cyberdome_duelist_g3200
+            }
+            job = cyberdome_duelist
+            amount = -3200
+        }
+        cyberdome_duelist_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cyberdome_duelist_g800
+            }
+            job = cyberdome_duelist
+            amount = 800
+        }
+
+        cyberdome_duelist_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cyberdome_duelist_g800
+            }
+            job = cyberdome_duelist
+            amount = -800
+        }
+        cyberdome_duelist_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cyberdome_duelist_g200
+            }
+            job = cyberdome_duelist
+            amount = 200
+        }
+
+        cyberdome_duelist_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cyberdome_duelist_g200
+            }
+            job = cyberdome_duelist
+            amount = -200
+        }
+        cyberdome_duelist_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_cyberdome_duelist_g50
+            }
+            job = cyberdome_duelist
+            amount = 50
+        }
+
+        cyberdome_duelist_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_cyberdome_duelist_g50
+            }
+            job = cyberdome_duelist
+            amount = -50
+        }
+    }
+}
+
 automate_job_cyberdome_spectator = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_cyberdome_spectator }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_cyberdome_spectator } }
     }
 
     emergency = yes
@@ -2090,8 +3091,8 @@ automate_job_dimensional_portal_researcher = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_dimensional_portal_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_dimensional_portal_researcher } }
     }
 
     emergency = yes
@@ -2167,8 +3168,8 @@ automate_job_dimensional_portal_researcher_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_dimensional_portal_researcher_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_dimensional_portal_researcher_gestalt } }
     }
 
     emergency = yes
@@ -2238,14 +3239,91 @@ automate_job_dimensional_portal_researcher_gestalt = {
     }
 }
 
+automate_job_drone_energy_thrall = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_drone_energy_thrall } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        drone_energy_thrall_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_drone_energy_thrall_g3200
+            }
+            job = drone_energy_thrall
+            amount = 3200
+        }
+
+        drone_energy_thrall_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_drone_energy_thrall_g3200
+            }
+            job = drone_energy_thrall
+            amount = -3200
+        }
+        drone_energy_thrall_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_drone_energy_thrall_g800
+            }
+            job = drone_energy_thrall
+            amount = 800
+        }
+
+        drone_energy_thrall_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_drone_energy_thrall_g800
+            }
+            job = drone_energy_thrall
+            amount = -800
+        }
+        drone_energy_thrall_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_drone_energy_thrall_g200
+            }
+            job = drone_energy_thrall
+            amount = 200
+        }
+
+        drone_energy_thrall_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_drone_energy_thrall_g200
+            }
+            job = drone_energy_thrall
+            amount = -200
+        }
+        drone_energy_thrall_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_drone_energy_thrall_g50
+            }
+            job = drone_energy_thrall
+            amount = 50
+        }
+
+        drone_energy_thrall_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_drone_energy_thrall_g50
+            }
+            job = drone_energy_thrall
+            amount = -50
+        }
+    }
+}
+
 automate_job_drone_space_junk_collector = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_drone_space_junk_collector }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_drone_space_junk_collector } }
     }
 
     emergency = yes
@@ -2321,8 +3399,8 @@ automate_job_drone_wrangler = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_drone_wrangler }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_drone_wrangler } }
     }
 
     emergency = yes
@@ -2398,8 +3476,8 @@ automate_job_dystopian_telepath = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_dystopian_telepath }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_dystopian_telepath } }
     }
 
     emergency = yes
@@ -2469,14 +3547,91 @@ automate_job_dystopian_telepath = {
     }
 }
 
+automate_job_energy_thrall = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_energy_thrall } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        energy_thrall_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_energy_thrall_g3200
+            }
+            job = energy_thrall
+            amount = 3200
+        }
+
+        energy_thrall_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_energy_thrall_g3200
+            }
+            job = energy_thrall
+            amount = -3200
+        }
+        energy_thrall_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_energy_thrall_g800
+            }
+            job = energy_thrall
+            amount = 800
+        }
+
+        energy_thrall_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_energy_thrall_g800
+            }
+            job = energy_thrall
+            amount = -800
+        }
+        energy_thrall_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_energy_thrall_g200
+            }
+            job = energy_thrall
+            amount = 200
+        }
+
+        energy_thrall_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_energy_thrall_g200
+            }
+            job = energy_thrall
+            amount = -200
+        }
+        energy_thrall_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_energy_thrall_g50
+            }
+            job = energy_thrall
+            amount = 50
+        }
+
+        energy_thrall_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_energy_thrall_g50
+            }
+            job = energy_thrall
+            amount = -50
+        }
+    }
+}
+
 automate_job_engineer = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_engineer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_engineer } }
     }
 
     emergency = yes
@@ -2552,8 +3707,8 @@ automate_job_entertainer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_entertainer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_entertainer } }
     }
 
     emergency = yes
@@ -2623,14 +3778,91 @@ automate_job_entertainer = {
     }
 }
 
+automate_job_evaluator = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_evaluator } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        evaluator_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_evaluator_g3200
+            }
+            job = evaluator
+            amount = 3200
+        }
+
+        evaluator_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_evaluator_g3200
+            }
+            job = evaluator
+            amount = -3200
+        }
+        evaluator_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_evaluator_g800
+            }
+            job = evaluator
+            amount = 800
+        }
+
+        evaluator_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_evaluator_g800
+            }
+            job = evaluator
+            amount = -800
+        }
+        evaluator_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_evaluator_g200
+            }
+            job = evaluator
+            amount = 200
+        }
+
+        evaluator_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_evaluator_g200
+            }
+            job = evaluator
+            amount = -200
+        }
+        evaluator_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_evaluator_g50
+            }
+            job = evaluator
+            amount = 50
+        }
+
+        evaluator_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_evaluator_g50
+            }
+            job = evaluator
+            amount = -50
+        }
+    }
+}
+
 automate_job_event_purge = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_event_purge }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_event_purge } }
     }
 
     emergency = yes
@@ -2706,8 +3938,8 @@ automate_job_farmer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_farmer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_farmer } }
     }
 
     emergency = yes
@@ -2783,8 +4015,8 @@ automate_job_fe_acolyte_artisan = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_fe_acolyte_artisan }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_acolyte_artisan } }
     }
 
     emergency = yes
@@ -2860,8 +4092,8 @@ automate_job_fe_acolyte_farm = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_fe_acolyte_farm }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_acolyte_farm } }
     }
 
     emergency = yes
@@ -2937,8 +4169,8 @@ automate_job_fe_acolyte_generator = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_fe_acolyte_generator }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_acolyte_generator } }
     }
 
     emergency = yes
@@ -3014,8 +4246,8 @@ automate_job_fe_acolyte_mine = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_fe_acolyte_mine }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_acolyte_mine } }
     }
 
     emergency = yes
@@ -3091,8 +4323,8 @@ automate_job_fe_archivist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_fe_archivist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_archivist } }
     }
 
     emergency = yes
@@ -3162,14 +4394,245 @@ automate_job_fe_archivist = {
     }
 }
 
+automate_job_fe_augur = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_augur } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        fe_augur_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_augur_g3200
+            }
+            job = fe_augur
+            amount = 3200
+        }
+
+        fe_augur_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_augur_g3200
+            }
+            job = fe_augur
+            amount = -3200
+        }
+        fe_augur_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_augur_g800
+            }
+            job = fe_augur
+            amount = 800
+        }
+
+        fe_augur_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_augur_g800
+            }
+            job = fe_augur
+            amount = -800
+        }
+        fe_augur_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_augur_g200
+            }
+            job = fe_augur
+            amount = 200
+        }
+
+        fe_augur_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_augur_g200
+            }
+            job = fe_augur
+            amount = -200
+        }
+        fe_augur_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_augur_g50
+            }
+            job = fe_augur
+            amount = 50
+        }
+
+        fe_augur_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_augur_g50
+            }
+            job = fe_augur
+            amount = -50
+        }
+    }
+}
+
+automate_job_fe_hedonist = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_hedonist } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        fe_hedonist_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_hedonist_g3200
+            }
+            job = fe_hedonist
+            amount = 3200
+        }
+
+        fe_hedonist_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_hedonist_g3200
+            }
+            job = fe_hedonist
+            amount = -3200
+        }
+        fe_hedonist_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_hedonist_g800
+            }
+            job = fe_hedonist
+            amount = 800
+        }
+
+        fe_hedonist_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_hedonist_g800
+            }
+            job = fe_hedonist
+            amount = -800
+        }
+        fe_hedonist_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_hedonist_g200
+            }
+            job = fe_hedonist
+            amount = 200
+        }
+
+        fe_hedonist_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_hedonist_g200
+            }
+            job = fe_hedonist
+            amount = -200
+        }
+        fe_hedonist_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_hedonist_g50
+            }
+            job = fe_hedonist
+            amount = 50
+        }
+
+        fe_hedonist_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_hedonist_g50
+            }
+            job = fe_hedonist
+            amount = -50
+        }
+    }
+}
+
+automate_job_fe_xeno_ward = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fe_xeno_ward } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        fe_xeno_ward_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_xeno_ward_g3200
+            }
+            job = fe_xeno_ward
+            amount = 3200
+        }
+
+        fe_xeno_ward_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_xeno_ward_g3200
+            }
+            job = fe_xeno_ward
+            amount = -3200
+        }
+        fe_xeno_ward_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_xeno_ward_g800
+            }
+            job = fe_xeno_ward
+            amount = 800
+        }
+
+        fe_xeno_ward_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_xeno_ward_g800
+            }
+            job = fe_xeno_ward
+            amount = -800
+        }
+        fe_xeno_ward_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_xeno_ward_g200
+            }
+            job = fe_xeno_ward
+            amount = 200
+        }
+
+        fe_xeno_ward_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_xeno_ward_g200
+            }
+            job = fe_xeno_ward
+            amount = -200
+        }
+        fe_xeno_ward_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fe_xeno_ward_g50
+            }
+            job = fe_xeno_ward
+            amount = 50
+        }
+
+        fe_xeno_ward_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fe_xeno_ward_g50
+            }
+            job = fe_xeno_ward
+            amount = -50
+        }
+    }
+}
+
 automate_job_foundry_prison_worker = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_foundry_prison_worker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_foundry_prison_worker } }
     }
 
     emergency = yes
@@ -3239,14 +4702,322 @@ automate_job_foundry_prison_worker = {
     }
 }
 
+automate_job_gas_plant_engineer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_gas_plant_engineer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        gas_plant_engineer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_g3200
+            }
+            job = gas_plant_engineer
+            amount = 3200
+        }
+
+        gas_plant_engineer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_g3200
+            }
+            job = gas_plant_engineer
+            amount = -3200
+        }
+        gas_plant_engineer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_g800
+            }
+            job = gas_plant_engineer
+            amount = 800
+        }
+
+        gas_plant_engineer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_g800
+            }
+            job = gas_plant_engineer
+            amount = -800
+        }
+        gas_plant_engineer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_g200
+            }
+            job = gas_plant_engineer
+            amount = 200
+        }
+
+        gas_plant_engineer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_g200
+            }
+            job = gas_plant_engineer
+            amount = -200
+        }
+        gas_plant_engineer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_g50
+            }
+            job = gas_plant_engineer
+            amount = 50
+        }
+
+        gas_plant_engineer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_g50
+            }
+            job = gas_plant_engineer
+            amount = -50
+        }
+    }
+}
+
+automate_job_gas_plant_engineer_gestalt = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_gas_plant_engineer_gestalt } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        gas_plant_engineer_gestalt_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_gestalt_g3200
+            }
+            job = gas_plant_engineer_gestalt
+            amount = 3200
+        }
+
+        gas_plant_engineer_gestalt_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_gestalt_g3200
+            }
+            job = gas_plant_engineer_gestalt
+            amount = -3200
+        }
+        gas_plant_engineer_gestalt_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_gestalt_g800
+            }
+            job = gas_plant_engineer_gestalt
+            amount = 800
+        }
+
+        gas_plant_engineer_gestalt_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_gestalt_g800
+            }
+            job = gas_plant_engineer_gestalt
+            amount = -800
+        }
+        gas_plant_engineer_gestalt_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_gestalt_g200
+            }
+            job = gas_plant_engineer_gestalt
+            amount = 200
+        }
+
+        gas_plant_engineer_gestalt_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_gestalt_g200
+            }
+            job = gas_plant_engineer_gestalt
+            amount = -200
+        }
+        gas_plant_engineer_gestalt_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_plant_engineer_gestalt_g50
+            }
+            job = gas_plant_engineer_gestalt
+            amount = 50
+        }
+
+        gas_plant_engineer_gestalt_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_plant_engineer_gestalt_g50
+            }
+            job = gas_plant_engineer_gestalt
+            amount = -50
+        }
+    }
+}
+
+automate_job_gas_refiner = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_gas_refiner } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        gas_refiner_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_g3200
+            }
+            job = gas_refiner
+            amount = 3200
+        }
+
+        gas_refiner_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_g3200
+            }
+            job = gas_refiner
+            amount = -3200
+        }
+        gas_refiner_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_g800
+            }
+            job = gas_refiner
+            amount = 800
+        }
+
+        gas_refiner_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_g800
+            }
+            job = gas_refiner
+            amount = -800
+        }
+        gas_refiner_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_g200
+            }
+            job = gas_refiner
+            amount = 200
+        }
+
+        gas_refiner_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_g200
+            }
+            job = gas_refiner
+            amount = -200
+        }
+        gas_refiner_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_g50
+            }
+            job = gas_refiner
+            amount = 50
+        }
+
+        gas_refiner_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_g50
+            }
+            job = gas_refiner
+            amount = -50
+        }
+    }
+}
+
+automate_job_gas_refiner_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_gas_refiner_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        gas_refiner_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_drone_g3200
+            }
+            job = gas_refiner_drone
+            amount = 3200
+        }
+
+        gas_refiner_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_drone_g3200
+            }
+            job = gas_refiner_drone
+            amount = -3200
+        }
+        gas_refiner_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_drone_g800
+            }
+            job = gas_refiner_drone
+            amount = 800
+        }
+
+        gas_refiner_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_drone_g800
+            }
+            job = gas_refiner_drone
+            amount = -800
+        }
+        gas_refiner_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_drone_g200
+            }
+            job = gas_refiner_drone
+            amount = 200
+        }
+
+        gas_refiner_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_drone_g200
+            }
+            job = gas_refiner_drone
+            amount = -200
+        }
+        gas_refiner_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_gas_refiner_drone_g50
+            }
+            job = gas_refiner_drone
+            amount = 50
+        }
+
+        gas_refiner_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_gas_refiner_drone_g50
+            }
+            job = gas_refiner_drone
+            amount = -50
+        }
+    }
+}
+
 automate_job_gestation_drone = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_gestation_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_gestation_drone } }
     }
 
     emergency = yes
@@ -3322,8 +5093,8 @@ automate_job_haruspex = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_haruspex }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_haruspex } }
     }
 
     emergency = yes
@@ -3399,8 +5170,8 @@ automate_job_healthcare = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_healthcare }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_healthcare } }
     }
 
     emergency = yes
@@ -3476,8 +5247,8 @@ automate_job_hive_basic_agri_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hive_basic_agri_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hive_basic_agri_drone } }
     }
 
     emergency = yes
@@ -3553,8 +5324,8 @@ automate_job_hive_basic_agri_drone_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hive_basic_agri_drone_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hive_basic_agri_drone_lithoid } }
     }
 
     emergency = yes
@@ -3630,8 +5401,8 @@ automate_job_hive_sustenance_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hive_sustenance_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hive_sustenance_drone } }
     }
 
     emergency = yes
@@ -3707,8 +5478,8 @@ automate_job_hive_sustenance_drone_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hive_sustenance_drone_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hive_sustenance_drone_lithoid } }
     }
 
     emergency = yes
@@ -3784,8 +5555,8 @@ automate_job_hunted_pre_sapient = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hunted_pre_sapient }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hunted_pre_sapient } }
     }
 
     emergency = yes
@@ -3861,8 +5632,8 @@ automate_job_hunted_pre_sapient_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hunted_pre_sapient_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hunted_pre_sapient_lithoid } }
     }
 
     emergency = yes
@@ -3938,8 +5709,8 @@ automate_job_hunter_gatherer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hunter_gatherer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hunter_gatherer } }
     }
 
     emergency = yes
@@ -4015,8 +5786,8 @@ automate_job_hunter_gatherer_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_hunter_gatherer_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_hunter_gatherer_lithoid } }
     }
 
     emergency = yes
@@ -4092,8 +5863,8 @@ automate_job_identity_designer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_identity_designer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_identity_designer } }
     }
 
     emergency = yes
@@ -4169,8 +5940,8 @@ automate_job_knight = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_knight }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_knight } }
     }
 
     emergency = yes
@@ -4246,8 +6017,8 @@ automate_job_knight_commander = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_knight_commander }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_knight_commander } }
     }
 
     emergency = yes
@@ -4323,8 +6094,8 @@ automate_job_livestock_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_livestock_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_livestock_lithoid } }
     }
 
     emergency = yes
@@ -4394,14 +6165,168 @@ automate_job_livestock_lithoid = {
     }
 }
 
+automate_job_logistics_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_logistics_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        logistics_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_logistics_drone_g3200
+            }
+            job = logistics_drone
+            amount = 3200
+        }
+
+        logistics_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_logistics_drone_g3200
+            }
+            job = logistics_drone
+            amount = -3200
+        }
+        logistics_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_logistics_drone_g800
+            }
+            job = logistics_drone
+            amount = 800
+        }
+
+        logistics_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_logistics_drone_g800
+            }
+            job = logistics_drone
+            amount = -800
+        }
+        logistics_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_logistics_drone_g200
+            }
+            job = logistics_drone
+            amount = 200
+        }
+
+        logistics_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_logistics_drone_g200
+            }
+            job = logistics_drone
+            amount = -200
+        }
+        logistics_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_logistics_drone_g50
+            }
+            job = logistics_drone
+            amount = 50
+        }
+
+        logistics_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_logistics_drone_g50
+            }
+            job = logistics_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_low_tech_bureaucrat = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_bureaucrat } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        low_tech_bureaucrat_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_bureaucrat_g3200
+            }
+            job = low_tech_bureaucrat
+            amount = 3200
+        }
+
+        low_tech_bureaucrat_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_bureaucrat_g3200
+            }
+            job = low_tech_bureaucrat
+            amount = -3200
+        }
+        low_tech_bureaucrat_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_bureaucrat_g800
+            }
+            job = low_tech_bureaucrat
+            amount = 800
+        }
+
+        low_tech_bureaucrat_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_bureaucrat_g800
+            }
+            job = low_tech_bureaucrat
+            amount = -800
+        }
+        low_tech_bureaucrat_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_bureaucrat_g200
+            }
+            job = low_tech_bureaucrat
+            amount = 200
+        }
+
+        low_tech_bureaucrat_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_bureaucrat_g200
+            }
+            job = low_tech_bureaucrat
+            amount = -200
+        }
+        low_tech_bureaucrat_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_bureaucrat_g50
+            }
+            job = low_tech_bureaucrat
+            amount = 50
+        }
+
+        low_tech_bureaucrat_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_bureaucrat_g50
+            }
+            job = low_tech_bureaucrat
+            amount = -50
+        }
+    }
+}
+
 automate_job_low_tech_farmer = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_low_tech_farmer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_farmer } }
     }
 
     emergency = yes
@@ -4477,8 +6402,8 @@ automate_job_low_tech_laborer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_low_tech_laborer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_laborer } }
     }
 
     emergency = yes
@@ -4548,14 +6473,91 @@ automate_job_low_tech_laborer = {
     }
 }
 
+automate_job_low_tech_manager = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_manager } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        low_tech_manager_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_manager_g3200
+            }
+            job = low_tech_manager
+            amount = 3200
+        }
+
+        low_tech_manager_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_manager_g3200
+            }
+            job = low_tech_manager
+            amount = -3200
+        }
+        low_tech_manager_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_manager_g800
+            }
+            job = low_tech_manager
+            amount = 800
+        }
+
+        low_tech_manager_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_manager_g800
+            }
+            job = low_tech_manager
+            amount = -800
+        }
+        low_tech_manager_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_manager_g200
+            }
+            job = low_tech_manager
+            amount = 200
+        }
+
+        low_tech_manager_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_manager_g200
+            }
+            job = low_tech_manager
+            amount = -200
+        }
+        low_tech_manager_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_manager_g50
+            }
+            job = low_tech_manager
+            amount = 50
+        }
+
+        low_tech_manager_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_manager_g50
+            }
+            job = low_tech_manager
+            amount = -50
+        }
+    }
+}
+
 automate_job_low_tech_miner = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_low_tech_miner }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_miner } }
     }
 
     emergency = yes
@@ -4625,14 +6627,91 @@ automate_job_low_tech_miner = {
     }
 }
 
+automate_job_low_tech_priest = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_priest } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        low_tech_priest_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_priest_g3200
+            }
+            job = low_tech_priest
+            amount = 3200
+        }
+
+        low_tech_priest_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_priest_g3200
+            }
+            job = low_tech_priest
+            amount = -3200
+        }
+        low_tech_priest_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_priest_g800
+            }
+            job = low_tech_priest
+            amount = 800
+        }
+
+        low_tech_priest_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_priest_g800
+            }
+            job = low_tech_priest
+            amount = -800
+        }
+        low_tech_priest_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_priest_g200
+            }
+            job = low_tech_priest
+            amount = 200
+        }
+
+        low_tech_priest_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_priest_g200
+            }
+            job = low_tech_priest
+            amount = -200
+        }
+        low_tech_priest_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_low_tech_priest_g50
+            }
+            job = low_tech_priest
+            amount = 50
+        }
+
+        low_tech_priest_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_low_tech_priest_g50
+            }
+            job = low_tech_priest
+            amount = -50
+        }
+    }
+}
+
 automate_job_low_tech_researcher = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_low_tech_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_researcher } }
     }
 
     emergency = yes
@@ -4708,8 +6787,8 @@ automate_job_low_tech_technician = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_low_tech_technician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_low_tech_technician } }
     }
 
     emergency = yes
@@ -4779,14 +6858,168 @@ automate_job_low_tech_technician = {
     }
 }
 
+automate_job_machine_nurse = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_machine_nurse } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        machine_nurse_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_machine_nurse_g3200
+            }
+            job = machine_nurse
+            amount = 3200
+        }
+
+        machine_nurse_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_machine_nurse_g3200
+            }
+            job = machine_nurse
+            amount = -3200
+        }
+        machine_nurse_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_machine_nurse_g800
+            }
+            job = machine_nurse
+            amount = 800
+        }
+
+        machine_nurse_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_machine_nurse_g800
+            }
+            job = machine_nurse
+            amount = -800
+        }
+        machine_nurse_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_machine_nurse_g200
+            }
+            job = machine_nurse
+            amount = 200
+        }
+
+        machine_nurse_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_machine_nurse_g200
+            }
+            job = machine_nurse
+            amount = -200
+        }
+        machine_nurse_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_machine_nurse_g50
+            }
+            job = machine_nurse
+            amount = 50
+        }
+
+        machine_nurse_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_machine_nurse_g50
+            }
+            job = machine_nurse
+            amount = -50
+        }
+    }
+}
+
+automate_job_maintenance_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_maintenance_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        maintenance_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_maintenance_drone_g3200
+            }
+            job = maintenance_drone
+            amount = 3200
+        }
+
+        maintenance_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_maintenance_drone_g3200
+            }
+            job = maintenance_drone
+            amount = -3200
+        }
+        maintenance_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_maintenance_drone_g800
+            }
+            job = maintenance_drone
+            amount = 800
+        }
+
+        maintenance_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_maintenance_drone_g800
+            }
+            job = maintenance_drone
+            amount = -800
+        }
+        maintenance_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_maintenance_drone_g200
+            }
+            job = maintenance_drone
+            amount = 200
+        }
+
+        maintenance_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_maintenance_drone_g200
+            }
+            job = maintenance_drone
+            amount = -200
+        }
+        maintenance_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_maintenance_drone_g50
+            }
+            job = maintenance_drone
+            amount = 50
+        }
+
+        maintenance_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_maintenance_drone_g50
+            }
+            job = maintenance_drone
+            amount = -50
+        }
+    }
+}
+
 automate_job_manufactorium_complex_drone = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_manufactorium_complex_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_manufactorium_complex_drone } }
     }
 
     emergency = yes
@@ -4862,8 +7095,8 @@ automate_job_manufactorium_scraper_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_manufactorium_scraper_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_manufactorium_scraper_drone } }
     }
 
     emergency = yes
@@ -4939,8 +7172,8 @@ automate_job_manufactorium_specialist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_manufactorium_specialist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_manufactorium_specialist } }
     }
 
     emergency = yes
@@ -5016,8 +7249,8 @@ automate_job_miner = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_miner }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_miner } }
     }
 
     emergency = yes
@@ -5093,8 +7326,8 @@ automate_job_mineral_diver_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_mineral_diver_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_mineral_diver_drone } }
     }
 
     emergency = yes
@@ -5170,8 +7403,8 @@ automate_job_mining_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_mining_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_mining_drone } }
     }
 
     emergency = yes
@@ -5247,8 +7480,8 @@ automate_job_mortal_initiate = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_mortal_initiate }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_mortal_initiate } }
     }
 
     emergency = yes
@@ -5324,8 +7557,8 @@ automate_job_munitions_decommissioner = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_munitions_decommissioner }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_munitions_decommissioner } }
     }
 
     emergency = yes
@@ -5401,8 +7634,8 @@ automate_job_munitions_decommissioning_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_munitions_decommissioning_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_munitions_decommissioning_drone } }
     }
 
     emergency = yes
@@ -5478,8 +7711,8 @@ automate_job_munitions_decommissioning_unit = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_munitions_decommissioning_unit }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_munitions_decommissioning_unit } }
     }
 
     emergency = yes
@@ -5555,8 +7788,8 @@ automate_job_munitions_decommissioning_unit_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_munitions_decommissioning_unit_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_munitions_decommissioning_unit_lithoid } }
     }
 
     emergency = yes
@@ -5632,8 +7865,8 @@ automate_job_nanotech_research_unit = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_nanotech_research_unit }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_nanotech_research_unit } }
     }
 
     emergency = yes
@@ -5709,8 +7942,8 @@ automate_job_nanotech_researcher = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_nanotech_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_nanotech_researcher } }
     }
 
     emergency = yes
@@ -5780,14 +8013,91 @@ automate_job_nanotech_researcher = {
     }
 }
 
+automate_job_necro_apprentice = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_necro_apprentice } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        necro_apprentice_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_necro_apprentice_g3200
+            }
+            job = necro_apprentice
+            amount = 3200
+        }
+
+        necro_apprentice_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_necro_apprentice_g3200
+            }
+            job = necro_apprentice
+            amount = -3200
+        }
+        necro_apprentice_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_necro_apprentice_g800
+            }
+            job = necro_apprentice
+            amount = 800
+        }
+
+        necro_apprentice_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_necro_apprentice_g800
+            }
+            job = necro_apprentice
+            amount = -800
+        }
+        necro_apprentice_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_necro_apprentice_g200
+            }
+            job = necro_apprentice
+            amount = 200
+        }
+
+        necro_apprentice_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_necro_apprentice_g200
+            }
+            job = necro_apprentice
+            amount = -200
+        }
+        necro_apprentice_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_necro_apprentice_g50
+            }
+            job = necro_apprentice
+            amount = 50
+        }
+
+        necro_apprentice_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_necro_apprentice_g50
+            }
+            job = necro_apprentice
+            amount = -50
+        }
+    }
+}
+
 automate_job_neural_chip = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_neural_chip }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_neural_chip } }
     }
 
     emergency = yes
@@ -5863,8 +8173,8 @@ automate_job_odd_factory_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_odd_factory_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_odd_factory_drone } }
     }
 
     emergency = yes
@@ -5940,8 +8250,8 @@ automate_job_odd_factory_worker = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_odd_factory_worker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_odd_factory_worker } }
     }
 
     emergency = yes
@@ -6017,8 +8327,8 @@ automate_job_organic_battery = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_organic_battery }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_organic_battery } }
     }
 
     emergency = yes
@@ -6088,14 +8398,91 @@ automate_job_organic_battery = {
     }
 }
 
+automate_job_organic_exhibit = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_organic_exhibit } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        organic_exhibit_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_organic_exhibit_g3200
+            }
+            job = organic_exhibit
+            amount = 3200
+        }
+
+        organic_exhibit_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_organic_exhibit_g3200
+            }
+            job = organic_exhibit
+            amount = -3200
+        }
+        organic_exhibit_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_organic_exhibit_g800
+            }
+            job = organic_exhibit
+            amount = 800
+        }
+
+        organic_exhibit_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_organic_exhibit_g800
+            }
+            job = organic_exhibit
+            amount = -800
+        }
+        organic_exhibit_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_organic_exhibit_g200
+            }
+            job = organic_exhibit
+            amount = 200
+        }
+
+        organic_exhibit_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_organic_exhibit_g200
+            }
+            job = organic_exhibit
+            amount = -200
+        }
+        organic_exhibit_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_organic_exhibit_g50
+            }
+            job = organic_exhibit
+            amount = 50
+        }
+
+        organic_exhibit_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_organic_exhibit_g50
+            }
+            job = organic_exhibit
+            amount = -50
+        }
+    }
+}
+
 automate_job_overlord_academic = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_overlord_academic }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_academic } }
     }
 
     emergency = yes
@@ -6171,8 +8558,8 @@ automate_job_overlord_academic_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_overlord_academic_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_academic_drone } }
     }
 
     emergency = yes
@@ -6242,14 +8629,322 @@ automate_job_overlord_academic_drone = {
     }
 }
 
+automate_job_overlord_bio_trophy = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_bio_trophy } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        overlord_bio_trophy_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_g3200
+            }
+            job = overlord_bio_trophy
+            amount = 3200
+        }
+
+        overlord_bio_trophy_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_g3200
+            }
+            job = overlord_bio_trophy
+            amount = -3200
+        }
+        overlord_bio_trophy_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_g800
+            }
+            job = overlord_bio_trophy
+            amount = 800
+        }
+
+        overlord_bio_trophy_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_g800
+            }
+            job = overlord_bio_trophy
+            amount = -800
+        }
+        overlord_bio_trophy_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_g200
+            }
+            job = overlord_bio_trophy
+            amount = 200
+        }
+
+        overlord_bio_trophy_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_g200
+            }
+            job = overlord_bio_trophy
+            amount = -200
+        }
+        overlord_bio_trophy_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_g50
+            }
+            job = overlord_bio_trophy
+            amount = 50
+        }
+
+        overlord_bio_trophy_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_g50
+            }
+            job = overlord_bio_trophy
+            amount = -50
+        }
+    }
+}
+
+automate_job_overlord_bio_trophy_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_bio_trophy_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        overlord_bio_trophy_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_drone_g3200
+            }
+            job = overlord_bio_trophy_drone
+            amount = 3200
+        }
+
+        overlord_bio_trophy_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_drone_g3200
+            }
+            job = overlord_bio_trophy_drone
+            amount = -3200
+        }
+        overlord_bio_trophy_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_drone_g800
+            }
+            job = overlord_bio_trophy_drone
+            amount = 800
+        }
+
+        overlord_bio_trophy_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_drone_g800
+            }
+            job = overlord_bio_trophy_drone
+            amount = -800
+        }
+        overlord_bio_trophy_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_drone_g200
+            }
+            job = overlord_bio_trophy_drone
+            amount = 200
+        }
+
+        overlord_bio_trophy_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_drone_g200
+            }
+            job = overlord_bio_trophy_drone
+            amount = -200
+        }
+        overlord_bio_trophy_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_bio_trophy_drone_g50
+            }
+            job = overlord_bio_trophy_drone
+            amount = 50
+        }
+
+        overlord_bio_trophy_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_bio_trophy_drone_g50
+            }
+            job = overlord_bio_trophy_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_overlord_healthcare = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_healthcare } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        overlord_healthcare_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_healthcare_g3200
+            }
+            job = overlord_healthcare
+            amount = 3200
+        }
+
+        overlord_healthcare_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_healthcare_g3200
+            }
+            job = overlord_healthcare
+            amount = -3200
+        }
+        overlord_healthcare_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_healthcare_g800
+            }
+            job = overlord_healthcare
+            amount = 800
+        }
+
+        overlord_healthcare_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_healthcare_g800
+            }
+            job = overlord_healthcare
+            amount = -800
+        }
+        overlord_healthcare_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_healthcare_g200
+            }
+            job = overlord_healthcare
+            amount = 200
+        }
+
+        overlord_healthcare_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_healthcare_g200
+            }
+            job = overlord_healthcare
+            amount = -200
+        }
+        overlord_healthcare_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_healthcare_g50
+            }
+            job = overlord_healthcare
+            amount = 50
+        }
+
+        overlord_healthcare_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_healthcare_g50
+            }
+            job = overlord_healthcare
+            amount = -50
+        }
+    }
+}
+
+automate_job_overlord_manager = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_manager } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        overlord_manager_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_manager_g3200
+            }
+            job = overlord_manager
+            amount = 3200
+        }
+
+        overlord_manager_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_manager_g3200
+            }
+            job = overlord_manager
+            amount = -3200
+        }
+        overlord_manager_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_manager_g800
+            }
+            job = overlord_manager
+            amount = 800
+        }
+
+        overlord_manager_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_manager_g800
+            }
+            job = overlord_manager
+            amount = -800
+        }
+        overlord_manager_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_manager_g200
+            }
+            job = overlord_manager
+            amount = 200
+        }
+
+        overlord_manager_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_manager_g200
+            }
+            job = overlord_manager
+            amount = -200
+        }
+        overlord_manager_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_overlord_manager_g50
+            }
+            job = overlord_manager
+            amount = 50
+        }
+
+        overlord_manager_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_overlord_manager_g50
+            }
+            job = overlord_manager
+            amount = -50
+        }
+    }
+}
+
 automate_job_overlord_mortal_initiate = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_overlord_mortal_initiate }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_mortal_initiate } }
     }
 
     emergency = yes
@@ -6325,8 +9020,8 @@ automate_job_overlord_mortal_initiate_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_overlord_mortal_initiate_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_overlord_mortal_initiate_drone } }
     }
 
     emergency = yes
@@ -6396,14 +9091,91 @@ automate_job_overlord_mortal_initiate_drone = {
     }
 }
 
+automate_job_patrol_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_patrol_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        patrol_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_patrol_drone_g3200
+            }
+            job = patrol_drone
+            amount = 3200
+        }
+
+        patrol_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_patrol_drone_g3200
+            }
+            job = patrol_drone
+            amount = -3200
+        }
+        patrol_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_patrol_drone_g800
+            }
+            job = patrol_drone
+            amount = 800
+        }
+
+        patrol_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_patrol_drone_g800
+            }
+            job = patrol_drone
+            amount = -800
+        }
+        patrol_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_patrol_drone_g200
+            }
+            job = patrol_drone
+            amount = 200
+        }
+
+        patrol_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_patrol_drone_g200
+            }
+            job = patrol_drone
+            amount = -200
+        }
+        patrol_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_patrol_drone_g50
+            }
+            job = patrol_drone
+            amount = 50
+        }
+
+        patrol_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_patrol_drone_g50
+            }
+            job = patrol_drone
+            amount = -50
+        }
+    }
+}
+
 automate_job_peasant = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_peasant }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_peasant } }
     }
 
     emergency = yes
@@ -6479,8 +9251,8 @@ automate_job_peasant_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_peasant_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_peasant_lithoid } }
     }
 
     emergency = yes
@@ -6550,14 +9322,91 @@ automate_job_peasant_lithoid = {
     }
 }
 
+automate_job_physician_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_physician_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        physician_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_physician_drone_g3200
+            }
+            job = physician_drone
+            amount = 3200
+        }
+
+        physician_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_physician_drone_g3200
+            }
+            job = physician_drone
+            amount = -3200
+        }
+        physician_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_physician_drone_g800
+            }
+            job = physician_drone
+            amount = 800
+        }
+
+        physician_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_physician_drone_g800
+            }
+            job = physician_drone
+            amount = -800
+        }
+        physician_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_physician_drone_g200
+            }
+            job = physician_drone
+            amount = 200
+        }
+
+        physician_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_physician_drone_g200
+            }
+            job = physician_drone
+            amount = -200
+        }
+        physician_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_physician_drone_g50
+            }
+            job = physician_drone
+            amount = 50
+        }
+
+        physician_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_physician_drone_g50
+            }
+            job = physician_drone
+            amount = -50
+        }
+    }
+}
+
 automate_job_physicist = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_physicist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_physicist } }
     }
 
     emergency = yes
@@ -6633,8 +9482,8 @@ automate_job_politician = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_politician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_politician } }
     }
 
     emergency = yes
@@ -6704,14 +9553,168 @@ automate_job_politician = {
     }
 }
 
+automate_job_primitive_administrator = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_administrator } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_administrator_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_administrator_g3200
+            }
+            job = primitive_administrator
+            amount = 3200
+        }
+
+        primitive_administrator_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_administrator_g3200
+            }
+            job = primitive_administrator
+            amount = -3200
+        }
+        primitive_administrator_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_administrator_g800
+            }
+            job = primitive_administrator
+            amount = 800
+        }
+
+        primitive_administrator_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_administrator_g800
+            }
+            job = primitive_administrator
+            amount = -800
+        }
+        primitive_administrator_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_administrator_g200
+            }
+            job = primitive_administrator
+            amount = 200
+        }
+
+        primitive_administrator_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_administrator_g200
+            }
+            job = primitive_administrator
+            amount = -200
+        }
+        primitive_administrator_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_administrator_g50
+            }
+            job = primitive_administrator
+            amount = 50
+        }
+
+        primitive_administrator_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_administrator_g50
+            }
+            job = primitive_administrator
+            amount = -50
+        }
+    }
+}
+
+automate_job_primitive_bureaucrat = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_bureaucrat } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_bureaucrat_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_bureaucrat_g3200
+            }
+            job = primitive_bureaucrat
+            amount = 3200
+        }
+
+        primitive_bureaucrat_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_bureaucrat_g3200
+            }
+            job = primitive_bureaucrat
+            amount = -3200
+        }
+        primitive_bureaucrat_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_bureaucrat_g800
+            }
+            job = primitive_bureaucrat
+            amount = 800
+        }
+
+        primitive_bureaucrat_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_bureaucrat_g800
+            }
+            job = primitive_bureaucrat
+            amount = -800
+        }
+        primitive_bureaucrat_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_bureaucrat_g200
+            }
+            job = primitive_bureaucrat
+            amount = 200
+        }
+
+        primitive_bureaucrat_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_bureaucrat_g200
+            }
+            job = primitive_bureaucrat
+            amount = -200
+        }
+        primitive_bureaucrat_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_bureaucrat_g50
+            }
+            job = primitive_bureaucrat
+            amount = 50
+        }
+
+        primitive_bureaucrat_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_bureaucrat_g50
+            }
+            job = primitive_bureaucrat
+            amount = -50
+        }
+    }
+}
+
 automate_job_primitive_farmer = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_farmer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_farmer } }
     }
 
     emergency = yes
@@ -6787,8 +9790,8 @@ automate_job_primitive_hive_brain_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_brain_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_brain_drone } }
     }
 
     emergency = yes
@@ -6864,8 +9867,8 @@ automate_job_primitive_hive_cerebellum_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_cerebellum_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_cerebellum_drone } }
     }
 
     emergency = yes
@@ -6941,8 +9944,8 @@ automate_job_primitive_hive_factory_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_factory_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_factory_drone } }
     }
 
     emergency = yes
@@ -7018,8 +10021,8 @@ automate_job_primitive_hive_farmer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_farmer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_farmer } }
     }
 
     emergency = yes
@@ -7095,8 +10098,8 @@ automate_job_primitive_hive_miner = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_miner }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_miner } }
     }
 
     emergency = yes
@@ -7166,14 +10169,168 @@ automate_job_primitive_hive_miner = {
     }
 }
 
+automate_job_primitive_hive_synapse_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_synapse_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_hive_synapse_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_g3200
+            }
+            job = primitive_hive_synapse_drone
+            amount = 3200
+        }
+
+        primitive_hive_synapse_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_g3200
+            }
+            job = primitive_hive_synapse_drone
+            amount = -3200
+        }
+        primitive_hive_synapse_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_g800
+            }
+            job = primitive_hive_synapse_drone
+            amount = 800
+        }
+
+        primitive_hive_synapse_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_g800
+            }
+            job = primitive_hive_synapse_drone
+            amount = -800
+        }
+        primitive_hive_synapse_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_g200
+            }
+            job = primitive_hive_synapse_drone
+            amount = 200
+        }
+
+        primitive_hive_synapse_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_g200
+            }
+            job = primitive_hive_synapse_drone
+            amount = -200
+        }
+        primitive_hive_synapse_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_g50
+            }
+            job = primitive_hive_synapse_drone
+            amount = 50
+        }
+
+        primitive_hive_synapse_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_g50
+            }
+            job = primitive_hive_synapse_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_primitive_hive_synapse_drone_2 = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_synapse_drone_2 } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_hive_synapse_drone_2_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_2_g3200
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = 3200
+        }
+
+        primitive_hive_synapse_drone_2_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_2_g3200
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = -3200
+        }
+        primitive_hive_synapse_drone_2_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_2_g800
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = 800
+        }
+
+        primitive_hive_synapse_drone_2_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_2_g800
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = -800
+        }
+        primitive_hive_synapse_drone_2_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_2_g200
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = 200
+        }
+
+        primitive_hive_synapse_drone_2_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_2_g200
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = -200
+        }
+        primitive_hive_synapse_drone_2_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_hive_synapse_drone_2_g50
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = 50
+        }
+
+        primitive_hive_synapse_drone_2_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_hive_synapse_drone_2_g50
+            }
+            job = primitive_hive_synapse_drone_2
+            amount = -50
+        }
+    }
+}
+
 automate_job_primitive_hive_technician = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_hive_technician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_hive_technician } }
     }
 
     emergency = yes
@@ -7249,8 +10406,8 @@ automate_job_primitive_laborer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_laborer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_laborer } }
     }
 
     emergency = yes
@@ -7326,8 +10483,8 @@ automate_job_primitive_miner = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_miner }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_miner } }
     }
 
     emergency = yes
@@ -7397,14 +10554,245 @@ automate_job_primitive_miner = {
     }
 }
 
+automate_job_primitive_noble = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_noble } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_noble_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_noble_g3200
+            }
+            job = primitive_noble
+            amount = 3200
+        }
+
+        primitive_noble_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_noble_g3200
+            }
+            job = primitive_noble
+            amount = -3200
+        }
+        primitive_noble_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_noble_g800
+            }
+            job = primitive_noble
+            amount = 800
+        }
+
+        primitive_noble_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_noble_g800
+            }
+            job = primitive_noble
+            amount = -800
+        }
+        primitive_noble_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_noble_g200
+            }
+            job = primitive_noble
+            amount = 200
+        }
+
+        primitive_noble_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_noble_g200
+            }
+            job = primitive_noble
+            amount = -200
+        }
+        primitive_noble_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_noble_g50
+            }
+            job = primitive_noble
+            amount = 50
+        }
+
+        primitive_noble_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_noble_g50
+            }
+            job = primitive_noble
+            amount = -50
+        }
+    }
+}
+
+automate_job_primitive_priest = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_priest } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_priest_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_g3200
+            }
+            job = primitive_priest
+            amount = 3200
+        }
+
+        primitive_priest_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_g3200
+            }
+            job = primitive_priest
+            amount = -3200
+        }
+        primitive_priest_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_g800
+            }
+            job = primitive_priest
+            amount = 800
+        }
+
+        primitive_priest_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_g800
+            }
+            job = primitive_priest
+            amount = -800
+        }
+        primitive_priest_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_g200
+            }
+            job = primitive_priest
+            amount = 200
+        }
+
+        primitive_priest_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_g200
+            }
+            job = primitive_priest
+            amount = -200
+        }
+        primitive_priest_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_g50
+            }
+            job = primitive_priest
+            amount = 50
+        }
+
+        primitive_priest_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_g50
+            }
+            job = primitive_priest
+            amount = -50
+        }
+    }
+}
+
+automate_job_primitive_priest_2 = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_priest_2 } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        primitive_priest_2_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_2_g3200
+            }
+            job = primitive_priest_2
+            amount = 3200
+        }
+
+        primitive_priest_2_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_2_g3200
+            }
+            job = primitive_priest_2
+            amount = -3200
+        }
+        primitive_priest_2_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_2_g800
+            }
+            job = primitive_priest_2
+            amount = 800
+        }
+
+        primitive_priest_2_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_2_g800
+            }
+            job = primitive_priest_2
+            amount = -800
+        }
+        primitive_priest_2_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_2_g200
+            }
+            job = primitive_priest_2
+            amount = 200
+        }
+
+        primitive_priest_2_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_2_g200
+            }
+            job = primitive_priest_2
+            amount = -200
+        }
+        primitive_priest_2_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_primitive_priest_2_g50
+            }
+            job = primitive_priest_2
+            amount = 50
+        }
+
+        primitive_priest_2_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_primitive_priest_2_g50
+            }
+            job = primitive_priest_2
+            amount = -50
+        }
+    }
+}
+
 automate_job_primitive_researcher = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_researcher } }
     }
 
     emergency = yes
@@ -7480,8 +10868,8 @@ automate_job_primitive_researcher_2 = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_researcher_2 }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_researcher_2 } }
     }
 
     emergency = yes
@@ -7557,8 +10945,8 @@ automate_job_primitive_technician = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_primitive_technician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_primitive_technician } }
     }
 
     emergency = yes
@@ -7634,8 +11022,8 @@ automate_job_production_overseer = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_production_overseer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_production_overseer } }
     }
 
     emergency = yes
@@ -7711,8 +11099,8 @@ automate_job_puddle_technician = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_puddle_technician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_puddle_technician } }
     }
 
     emergency = yes
@@ -7788,8 +11176,8 @@ automate_job_puddle_technician_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_puddle_technician_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_puddle_technician_drone } }
     }
 
     emergency = yes
@@ -7865,8 +11253,8 @@ automate_job_purge_labor_camps = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_labor_camps }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_labor_camps } }
     }
 
     emergency = yes
@@ -7942,8 +11330,8 @@ automate_job_purge_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_lithoid } }
     }
 
     emergency = yes
@@ -8019,8 +11407,8 @@ automate_job_purge_matrix = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_matrix }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_matrix } }
     }
 
     emergency = yes
@@ -8096,8 +11484,8 @@ automate_job_purge_processing = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_processing }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_processing } }
     }
 
     emergency = yes
@@ -8173,8 +11561,8 @@ automate_job_purge_processing_infernal = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_processing_infernal }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_processing_infernal } }
     }
 
     emergency = yes
@@ -8250,8 +11638,8 @@ automate_job_purge_processing_lithoid = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_processing_lithoid }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_processing_lithoid } }
     }
 
     emergency = yes
@@ -8327,8 +11715,8 @@ automate_job_purge_processing_robot = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_processing_robot }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_processing_robot } }
     }
 
     emergency = yes
@@ -8404,8 +11792,8 @@ automate_job_purge_robot = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_purge_robot }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_robot } }
     }
 
     emergency = yes
@@ -8475,14 +11863,91 @@ automate_job_purge_robot = {
     }
 }
 
+automate_job_purge_sacrifice = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_purge_sacrifice } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        purge_sacrifice_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_purge_sacrifice_g3200
+            }
+            job = purge_sacrifice
+            amount = 3200
+        }
+
+        purge_sacrifice_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_purge_sacrifice_g3200
+            }
+            job = purge_sacrifice
+            amount = -3200
+        }
+        purge_sacrifice_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_purge_sacrifice_g800
+            }
+            job = purge_sacrifice
+            amount = 800
+        }
+
+        purge_sacrifice_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_purge_sacrifice_g800
+            }
+            job = purge_sacrifice
+            amount = -800
+        }
+        purge_sacrifice_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_purge_sacrifice_g200
+            }
+            job = purge_sacrifice
+            amount = 200
+        }
+
+        purge_sacrifice_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_purge_sacrifice_g200
+            }
+            job = purge_sacrifice
+            amount = -200
+        }
+        purge_sacrifice_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_purge_sacrifice_g50
+            }
+            job = purge_sacrifice
+            amount = 50
+        }
+
+        purge_sacrifice_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_purge_sacrifice_g50
+            }
+            job = purge_sacrifice
+            amount = -50
+        }
+    }
+}
+
 automate_job_ratling_scavenger = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_ratling_scavenger }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_ratling_scavenger } }
     }
 
     emergency = yes
@@ -8552,14 +12017,91 @@ automate_job_ratling_scavenger = {
     }
 }
 
+automate_job_resort_worker = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_resort_worker } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        resort_worker_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_resort_worker_g3200
+            }
+            job = resort_worker
+            amount = 3200
+        }
+
+        resort_worker_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_resort_worker_g3200
+            }
+            job = resort_worker
+            amount = -3200
+        }
+        resort_worker_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_resort_worker_g800
+            }
+            job = resort_worker
+            amount = 800
+        }
+
+        resort_worker_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_resort_worker_g800
+            }
+            job = resort_worker
+            amount = -800
+        }
+        resort_worker_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_resort_worker_g200
+            }
+            job = resort_worker
+            amount = 200
+        }
+
+        resort_worker_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_resort_worker_g200
+            }
+            job = resort_worker
+            amount = -200
+        }
+        resort_worker_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_resort_worker_g50
+            }
+            job = resort_worker
+            amount = 50
+        }
+
+        resort_worker_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_resort_worker_g50
+            }
+            job = resort_worker
+            amount = -50
+        }
+    }
+}
+
 automate_job_robot_caretaker = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_robot_caretaker }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_robot_caretaker } }
     }
 
     emergency = yes
@@ -8629,14 +12171,168 @@ automate_job_robot_caretaker = {
     }
 }
 
+automate_job_shroud_trader = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_shroud_trader } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        shroud_trader_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_shroud_trader_g3200
+            }
+            job = shroud_trader
+            amount = 3200
+        }
+
+        shroud_trader_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_shroud_trader_g3200
+            }
+            job = shroud_trader
+            amount = -3200
+        }
+        shroud_trader_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_shroud_trader_g800
+            }
+            job = shroud_trader
+            amount = 800
+        }
+
+        shroud_trader_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_shroud_trader_g800
+            }
+            job = shroud_trader
+            amount = -800
+        }
+        shroud_trader_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_shroud_trader_g200
+            }
+            job = shroud_trader
+            amount = 200
+        }
+
+        shroud_trader_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_shroud_trader_g200
+            }
+            job = shroud_trader
+            amount = -200
+        }
+        shroud_trader_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_shroud_trader_g50
+            }
+            job = shroud_trader
+            amount = 50
+        }
+
+        shroud_trader_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_shroud_trader_g50
+            }
+            job = shroud_trader
+            amount = -50
+        }
+    }
+}
+
+automate_job_solarpunk_anarchist = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_solarpunk_anarchist } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        solarpunk_anarchist_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_solarpunk_anarchist_g3200
+            }
+            job = solarpunk_anarchist
+            amount = 3200
+        }
+
+        solarpunk_anarchist_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_solarpunk_anarchist_g3200
+            }
+            job = solarpunk_anarchist
+            amount = -3200
+        }
+        solarpunk_anarchist_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_solarpunk_anarchist_g800
+            }
+            job = solarpunk_anarchist
+            amount = 800
+        }
+
+        solarpunk_anarchist_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_solarpunk_anarchist_g800
+            }
+            job = solarpunk_anarchist
+            amount = -800
+        }
+        solarpunk_anarchist_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_solarpunk_anarchist_g200
+            }
+            job = solarpunk_anarchist
+            amount = 200
+        }
+
+        solarpunk_anarchist_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_solarpunk_anarchist_g200
+            }
+            job = solarpunk_anarchist
+            amount = -200
+        }
+        solarpunk_anarchist_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_solarpunk_anarchist_g50
+            }
+            job = solarpunk_anarchist
+            amount = 50
+        }
+
+        solarpunk_anarchist_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_solarpunk_anarchist_g50
+            }
+            job = solarpunk_anarchist
+            amount = -50
+        }
+    }
+}
+
 automate_job_soldier = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_soldier }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_soldier } }
     }
 
     emergency = yes
@@ -8712,8 +12408,8 @@ automate_job_space_junk_collector = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_space_junk_collector }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_space_junk_collector } }
     }
 
     emergency = yes
@@ -8789,8 +12485,8 @@ automate_job_space_time_anomaly_researcher = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_space_time_anomaly_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_space_time_anomaly_researcher } }
     }
 
     emergency = yes
@@ -8866,8 +12562,8 @@ automate_job_space_time_anomaly_researcher_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_space_time_anomaly_researcher_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_space_time_anomaly_researcher_gestalt } }
     }
 
     emergency = yes
@@ -8943,8 +12639,8 @@ automate_job_spawning_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_spawning_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_spawning_drone } }
     }
 
     emergency = yes
@@ -9020,8 +12716,8 @@ automate_job_spe_colonist = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_spe_colonist }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_spe_colonist } }
     }
 
     emergency = yes
@@ -9097,8 +12793,8 @@ automate_job_stasis_warden = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_stasis_warden }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stasis_warden } }
     }
 
     emergency = yes
@@ -9174,8 +12870,8 @@ automate_job_stasis_warden_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_stasis_warden_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stasis_warden_drone } }
     }
 
     emergency = yes
@@ -9245,14 +12941,91 @@ automate_job_stasis_warden_drone = {
     }
 }
 
+automate_job_stratovent_refiner = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stratovent_refiner } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        stratovent_refiner_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_g3200
+            }
+            job = stratovent_refiner
+            amount = 3200
+        }
+
+        stratovent_refiner_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_g3200
+            }
+            job = stratovent_refiner
+            amount = -3200
+        }
+        stratovent_refiner_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_g800
+            }
+            job = stratovent_refiner
+            amount = 800
+        }
+
+        stratovent_refiner_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_g800
+            }
+            job = stratovent_refiner
+            amount = -800
+        }
+        stratovent_refiner_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_g200
+            }
+            job = stratovent_refiner
+            amount = 200
+        }
+
+        stratovent_refiner_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_g200
+            }
+            job = stratovent_refiner
+            amount = -200
+        }
+        stratovent_refiner_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_g50
+            }
+            job = stratovent_refiner
+            amount = 50
+        }
+
+        stratovent_refiner_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_g50
+            }
+            job = stratovent_refiner
+            amount = -50
+        }
+    }
+}
+
 automate_job_stratovent_refiner_minerals = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_stratovent_refiner_minerals }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stratovent_refiner_minerals } }
     }
 
     emergency = yes
@@ -9322,14 +13095,91 @@ automate_job_stratovent_refiner_minerals = {
     }
 }
 
+automate_job_stratovent_refiner_upg = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stratovent_refiner_upg } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        stratovent_refiner_upg_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_upg_g3200
+            }
+            job = stratovent_refiner_upg
+            amount = 3200
+        }
+
+        stratovent_refiner_upg_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_upg_g3200
+            }
+            job = stratovent_refiner_upg
+            amount = -3200
+        }
+        stratovent_refiner_upg_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_upg_g800
+            }
+            job = stratovent_refiner_upg
+            amount = 800
+        }
+
+        stratovent_refiner_upg_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_upg_g800
+            }
+            job = stratovent_refiner_upg
+            amount = -800
+        }
+        stratovent_refiner_upg_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_upg_g200
+            }
+            job = stratovent_refiner_upg
+            amount = 200
+        }
+
+        stratovent_refiner_upg_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_upg_g200
+            }
+            job = stratovent_refiner_upg
+            amount = -200
+        }
+        stratovent_refiner_upg_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_stratovent_refiner_upg_g50
+            }
+            job = stratovent_refiner_upg
+            amount = 50
+        }
+
+        stratovent_refiner_upg_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_stratovent_refiner_upg_g50
+            }
+            job = stratovent_refiner_upg
+            amount = -50
+        }
+    }
+}
+
 automate_job_stratovent_researcher = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_stratovent_researcher }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_stratovent_researcher } }
     }
 
     emergency = yes
@@ -9405,8 +13255,8 @@ automate_job_technician = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_technician }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_technician } }
     }
 
     emergency = yes
@@ -9482,8 +13332,8 @@ automate_job_technician_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_technician_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_technician_drone } }
     }
 
     emergency = yes
@@ -9559,8 +13409,8 @@ automate_job_technophant = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_technophant }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_technophant } }
     }
 
     emergency = yes
@@ -9636,8 +13486,8 @@ automate_job_telepath = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_telepath }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_telepath } }
     }
 
     emergency = yes
@@ -9713,8 +13563,8 @@ automate_job_telepath_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_telepath_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_telepath_drone } }
     }
 
     emergency = yes
@@ -9790,8 +13640,8 @@ automate_job_test_subject = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_test_subject }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_test_subject } }
     }
 
     emergency = yes
@@ -9867,8 +13717,8 @@ automate_job_test_subject_drone = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_test_subject_drone }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_test_subject_drone } }
     }
 
     emergency = yes
@@ -9938,14 +13788,399 @@ automate_job_test_subject_drone = {
     }
 }
 
+automate_job_trader = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_trader } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        trader_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_trader_g3200
+            }
+            job = trader
+            amount = 3200
+        }
+
+        trader_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_trader_g3200
+            }
+            job = trader
+            amount = -3200
+        }
+        trader_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_trader_g800
+            }
+            job = trader
+            amount = 800
+        }
+
+        trader_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_trader_g800
+            }
+            job = trader
+            amount = -800
+        }
+        trader_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_trader_g200
+            }
+            job = trader
+            amount = 200
+        }
+
+        trader_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_trader_g200
+            }
+            job = trader
+            amount = -200
+        }
+        trader_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_trader_g50
+            }
+            job = trader
+            amount = 50
+        }
+
+        trader_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_trader_g50
+            }
+            job = trader
+            amount = -50
+        }
+    }
+}
+
+automate_job_transference_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_transference_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        transference_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_drone_g3200
+            }
+            job = transference_drone
+            amount = 3200
+        }
+
+        transference_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_drone_g3200
+            }
+            job = transference_drone
+            amount = -3200
+        }
+        transference_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_drone_g800
+            }
+            job = transference_drone
+            amount = 800
+        }
+
+        transference_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_drone_g800
+            }
+            job = transference_drone
+            amount = -800
+        }
+        transference_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_drone_g200
+            }
+            job = transference_drone
+            amount = 200
+        }
+
+        transference_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_drone_g200
+            }
+            job = transference_drone
+            amount = -200
+        }
+        transference_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_drone_g50
+            }
+            job = transference_drone
+            amount = 50
+        }
+
+        transference_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_drone_g50
+            }
+            job = transference_drone
+            amount = -50
+        }
+    }
+}
+
+automate_job_transference_volunteer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_transference_volunteer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        transference_volunteer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_volunteer_g3200
+            }
+            job = transference_volunteer
+            amount = 3200
+        }
+
+        transference_volunteer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_volunteer_g3200
+            }
+            job = transference_volunteer
+            amount = -3200
+        }
+        transference_volunteer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_volunteer_g800
+            }
+            job = transference_volunteer
+            amount = 800
+        }
+
+        transference_volunteer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_volunteer_g800
+            }
+            job = transference_volunteer
+            amount = -800
+        }
+        transference_volunteer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_volunteer_g200
+            }
+            job = transference_volunteer
+            amount = 200
+        }
+
+        transference_volunteer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_volunteer_g200
+            }
+            job = transference_volunteer
+            amount = -200
+        }
+        transference_volunteer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_transference_volunteer_g50
+            }
+            job = transference_volunteer
+            amount = 50
+        }
+
+        transference_volunteer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_transference_volunteer_g50
+            }
+            job = transference_volunteer
+            amount = -50
+        }
+    }
+}
+
+automate_job_translucer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_translucer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        translucer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_g3200
+            }
+            job = translucer
+            amount = 3200
+        }
+
+        translucer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_g3200
+            }
+            job = translucer
+            amount = -3200
+        }
+        translucer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_g800
+            }
+            job = translucer
+            amount = 800
+        }
+
+        translucer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_g800
+            }
+            job = translucer
+            amount = -800
+        }
+        translucer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_g200
+            }
+            job = translucer
+            amount = 200
+        }
+
+        translucer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_g200
+            }
+            job = translucer
+            amount = -200
+        }
+        translucer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_g50
+            }
+            job = translucer
+            amount = 50
+        }
+
+        translucer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_g50
+            }
+            job = translucer
+            amount = -50
+        }
+    }
+}
+
+automate_job_translucer_drone = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_translucer_drone } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        translucer_drone_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_drone_g3200
+            }
+            job = translucer_drone
+            amount = 3200
+        }
+
+        translucer_drone_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_drone_g3200
+            }
+            job = translucer_drone
+            amount = -3200
+        }
+        translucer_drone_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_drone_g800
+            }
+            job = translucer_drone
+            amount = 800
+        }
+
+        translucer_drone_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_drone_g800
+            }
+            job = translucer_drone
+            amount = -800
+        }
+        translucer_drone_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_drone_g200
+            }
+            job = translucer_drone
+            amount = 200
+        }
+
+        translucer_drone_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_drone_g200
+            }
+            job = translucer_drone
+            amount = -200
+        }
+        translucer_drone_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_translucer_drone_g50
+            }
+            job = translucer_drone
+            amount = 50
+        }
+
+        translucer_drone_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_translucer_drone_g50
+            }
+            job = translucer_drone
+            amount = -50
+        }
+    }
+}
+
 automate_job_treasure_gatherer = {
     should_ai_use_job_micro = no
 
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_treasure_gatherer }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_treasure_gatherer } }
     }
 
     emergency = yes
@@ -10021,8 +14256,8 @@ automate_job_treasure_gatherer_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_treasure_gatherer_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_treasure_gatherer_gestalt } }
     }
 
     emergency = yes
@@ -10098,8 +14333,8 @@ automate_job_turtle_miner_gestalt = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_turtle_miner_gestalt }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_turtle_miner_gestalt } }
     }
 
     emergency = yes
@@ -10175,8 +14410,8 @@ automate_job_wrangler = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_jr_enabled
-        NOT = { has_carrier_flag = bca_jr_disable_wrangler }
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_wrangler } }
     }
 
     emergency = yes

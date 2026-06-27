@@ -6,7 +6,11 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 
 bca_jr_clear_all_flags = {
+    remove_carrier_flag = bca_jr_check_all_jobs
 {% for entry in regulated %}
+    remove_carrier_flag = bca_jr_check_{{ entry.job }}
+    remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+    remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
 {% for step in steps %}
     remove_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
     remove_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}

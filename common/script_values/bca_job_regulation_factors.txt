@@ -5,1599 +5,2259 @@
 # ====================================================================
 # Source template: common/script_values/bca_job_regulation_factors.txt.j2
 
-bca_jr_f1_agri_drone = {
+bca_jr_workforce_capacity_mult_agri_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_agri_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_agri_drone_workforce_mult
 }
 
-bca_jr_f2_agri_drone = {
+bca_jr_output_efficiency_mult_agri_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_agri_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_agri_drone_bonus_workforce_mult
 }
-bca_jr_f1_alien_hunter = {
+bca_jr_workforce_capacity_mult_alien_hunter = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_alien_hunter_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_alien_hunter_workforce_mult
 }
 
-bca_jr_f2_alien_hunter = {
+bca_jr_output_efficiency_mult_alien_hunter = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_alien_hunter_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_alien_hunter_bonus_workforce_mult
 }
-bca_jr_f1_archivist = {
+bca_jr_workforce_capacity_mult_archivist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_archivist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_archivist_workforce_mult
 }
 
-bca_jr_f2_archivist = {
+bca_jr_output_efficiency_mult_archivist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_archivist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_archivist_bonus_workforce_mult
 }
-bca_jr_f1_ark_harvester = {
+bca_jr_workforce_capacity_mult_ark_harvester = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_ark_harvester_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_ark_harvester_workforce_mult
 }
 
-bca_jr_f2_ark_harvester = {
+bca_jr_output_efficiency_mult_ark_harvester = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_ark_harvester_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_ark_harvester_bonus_workforce_mult
 }
-bca_jr_f1_ark_harvester_gestalt = {
+bca_jr_workforce_capacity_mult_ark_harvester_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_ark_harvester_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_ark_harvester_gestalt_workforce_mult
 }
 
-bca_jr_f2_ark_harvester_gestalt = {
+bca_jr_output_efficiency_mult_ark_harvester_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_ark_harvester_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_ark_harvester_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_artificer_prison_worker = {
+bca_jr_workforce_capacity_mult_ark_waystation_trader = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_artificer_prison_worker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_ark_waystation_trader_workforce_mult
 }
 
-bca_jr_f2_artificer_prison_worker = {
+bca_jr_output_efficiency_mult_ark_waystation_trader = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_artificer_prison_worker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_ark_waystation_trader_bonus_workforce_mult
 }
-bca_jr_f1_artisan = {
+bca_jr_workforce_capacity_mult_ark_waystation_trader_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_artisan_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_ark_waystation_trader_gestalt_workforce_mult
 }
 
-bca_jr_f2_artisan = {
+bca_jr_output_efficiency_mult_ark_waystation_trader_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_artisan_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_ark_waystation_trader_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_artisan_drone = {
+bca_jr_workforce_capacity_mult_artificer_prison_worker = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_artisan_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_artificer_prison_worker_workforce_mult
 }
 
-bca_jr_f2_artisan_drone = {
+bca_jr_output_efficiency_mult_artificer_prison_worker = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_artisan_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_artificer_prison_worker_bonus_workforce_mult
 }
-bca_jr_f1_artisan_prison_worker = {
+bca_jr_workforce_capacity_mult_artisan = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_artisan_prison_worker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_artisan_workforce_mult
 }
 
-bca_jr_f2_artisan_prison_worker = {
+bca_jr_output_efficiency_mult_artisan = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_artisan_prison_worker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_artisan_bonus_workforce_mult
 }
-bca_jr_f1_astral_drone = {
+bca_jr_workforce_capacity_mult_artisan_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_astral_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_artisan_drone_workforce_mult
 }
 
-bca_jr_f2_astral_drone = {
+bca_jr_output_efficiency_mult_artisan_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_astral_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_artisan_drone_bonus_workforce_mult
 }
-bca_jr_f1_astral_researcher = {
+bca_jr_workforce_capacity_mult_artisan_prison_worker = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_astral_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_artisan_prison_worker_workforce_mult
 }
 
-bca_jr_f2_astral_researcher = {
+bca_jr_output_efficiency_mult_artisan_prison_worker = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_astral_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_artisan_prison_worker_bonus_workforce_mult
 }
-bca_jr_f1_astral_unit = {
+bca_jr_workforce_capacity_mult_astral_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_astral_unit_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_astral_drone_workforce_mult
 }
 
-bca_jr_f2_astral_unit = {
+bca_jr_output_efficiency_mult_astral_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_astral_unit_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_astral_drone_bonus_workforce_mult
 }
-bca_jr_f1_astrogarbage_collector = {
+bca_jr_workforce_capacity_mult_astral_researcher = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_astrogarbage_collector_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_astral_researcher_workforce_mult
 }
 
-bca_jr_f2_astrogarbage_collector = {
+bca_jr_output_efficiency_mult_astral_researcher = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_astrogarbage_collector_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_astral_researcher_bonus_workforce_mult
 }
-bca_jr_f1_astrogarbage_collector_gestalt = {
+bca_jr_workforce_capacity_mult_astral_unit = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_astrogarbage_collector_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_astral_unit_workforce_mult
 }
 
-bca_jr_f2_astrogarbage_collector_gestalt = {
+bca_jr_output_efficiency_mult_astral_unit = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_astrogarbage_collector_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_astral_unit_bonus_workforce_mult
 }
-bca_jr_f1_augmentor = {
+bca_jr_workforce_capacity_mult_astrogarbage_collector = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_augmentor_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_astrogarbage_collector_workforce_mult
 }
 
-bca_jr_f2_augmentor = {
+bca_jr_output_efficiency_mult_astrogarbage_collector = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_augmentor_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_astrogarbage_collector_bonus_workforce_mult
 }
-bca_jr_f1_augmentor_drone = {
+bca_jr_workforce_capacity_mult_astrogarbage_collector_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_augmentor_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_astrogarbage_collector_gestalt_workforce_mult
 }
 
-bca_jr_f2_augmentor_drone = {
+bca_jr_output_efficiency_mult_astrogarbage_collector_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_augmentor_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_astrogarbage_collector_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_biologist = {
+bca_jr_workforce_capacity_mult_augmentor = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_biologist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_augmentor_workforce_mult
 }
 
-bca_jr_f2_biologist = {
+bca_jr_output_efficiency_mult_augmentor = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_biologist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_augmentor_bonus_workforce_mult
 }
-bca_jr_f1_broken_shackles_scavenger = {
+bca_jr_workforce_capacity_mult_augmentor_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_broken_shackles_scavenger_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_augmentor_drone_workforce_mult
 }
 
-bca_jr_f2_broken_shackles_scavenger = {
+bca_jr_output_efficiency_mult_augmentor_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_broken_shackles_scavenger_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_augmentor_drone_bonus_workforce_mult
 }
-bca_jr_f1_bureaucrat = {
+bca_jr_workforce_capacity_mult_bath_attendant = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_bureaucrat_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_bath_attendant_workforce_mult
 }
 
-bca_jr_f2_bureaucrat = {
+bca_jr_output_efficiency_mult_bath_attendant = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_bureaucrat_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_bath_attendant_bonus_workforce_mult
 }
-bca_jr_f1_calculator_biologist = {
+bca_jr_workforce_capacity_mult_bio_trophy = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_calculator_biologist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_bio_trophy_workforce_mult
 }
 
-bca_jr_f2_calculator_biologist = {
+bca_jr_output_efficiency_mult_bio_trophy = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_calculator_biologist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_bio_trophy_bonus_workforce_mult
+    add = prev.modifier:pop_bio_trophy_bonus_workforce_mult
 }
-bca_jr_f1_calculator_engineer = {
+bca_jr_workforce_capacity_mult_biologist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_calculator_engineer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_biologist_workforce_mult
 }
 
-bca_jr_f2_calculator_engineer = {
+bca_jr_output_efficiency_mult_biologist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_calculator_engineer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_biologist_bonus_workforce_mult
 }
-bca_jr_f1_calculator_physicist = {
+bca_jr_workforce_capacity_mult_broken_shackles_scavenger = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_calculator_physicist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_broken_shackles_scavenger_workforce_mult
 }
 
-bca_jr_f2_calculator_physicist = {
+bca_jr_output_efficiency_mult_broken_shackles_scavenger = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_calculator_physicist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_broken_shackles_scavenger_bonus_workforce_mult
 }
-bca_jr_f1_catalytic_technician_prison_worker = {
+bca_jr_workforce_capacity_mult_bureaucrat = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_catalytic_technician_prison_worker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_bureaucrat_workforce_mult
 }
 
-bca_jr_f2_catalytic_technician_prison_worker = {
+bca_jr_output_efficiency_mult_bureaucrat = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_catalytic_technician_prison_worker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_bureaucrat_bonus_workforce_mult
 }
-bca_jr_f1_cave_cleaner_gestalt = {
+bca_jr_workforce_capacity_mult_calculator_biologist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_cave_cleaner_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_calculator_biologist_workforce_mult
 }
 
-bca_jr_f2_cave_cleaner_gestalt = {
+bca_jr_output_efficiency_mult_calculator_biologist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_cave_cleaner_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_calculator_biologist_bonus_workforce_mult
 }
-bca_jr_f1_clip_maximizer = {
+bca_jr_workforce_capacity_mult_calculator_engineer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_clip_maximizer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_calculator_engineer_workforce_mult
 }
 
-bca_jr_f2_clip_maximizer = {
+bca_jr_output_efficiency_mult_calculator_engineer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_clip_maximizer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_calculator_engineer_bonus_workforce_mult
 }
-bca_jr_f1_colonist = {
+bca_jr_workforce_capacity_mult_calculator_physicist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_colonist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_calculator_physicist_workforce_mult
 }
 
-bca_jr_f2_colonist = {
+bca_jr_output_efficiency_mult_calculator_physicist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_colonist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_calculator_physicist_bonus_workforce_mult
 }
-bca_jr_f1_cyberdome_spectator = {
+bca_jr_workforce_capacity_mult_catalytic_technician_prison_worker = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_cyberdome_spectator_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_catalytic_technician_prison_worker_workforce_mult
 }
 
-bca_jr_f2_cyberdome_spectator = {
+bca_jr_output_efficiency_mult_catalytic_technician_prison_worker = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_cyberdome_spectator_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_catalytic_technician_prison_worker_bonus_workforce_mult
 }
-bca_jr_f1_dimensional_portal_researcher = {
+bca_jr_workforce_capacity_mult_cave_cleaner_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_dimensional_portal_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cave_cleaner_gestalt_workforce_mult
 }
 
-bca_jr_f2_dimensional_portal_researcher = {
+bca_jr_output_efficiency_mult_cave_cleaner_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_dimensional_portal_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_cave_cleaner_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_dimensional_portal_researcher_gestalt = {
+bca_jr_workforce_capacity_mult_chemist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_dimensional_portal_researcher_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_chemist_workforce_mult
 }
 
-bca_jr_f2_dimensional_portal_researcher_gestalt = {
+bca_jr_output_efficiency_mult_chemist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_dimensional_portal_researcher_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_chemist_bonus_workforce_mult
 }
-bca_jr_f1_drone_space_junk_collector = {
+bca_jr_workforce_capacity_mult_chemist_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_drone_space_junk_collector_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_chemist_drone_workforce_mult
 }
 
-bca_jr_f2_drone_space_junk_collector = {
+bca_jr_output_efficiency_mult_chemist_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_drone_space_junk_collector_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_chemist_drone_bonus_workforce_mult
 }
-bca_jr_f1_drone_wrangler = {
+bca_jr_workforce_capacity_mult_civilian = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_drone_wrangler_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_civilian_workforce_mult
 }
 
-bca_jr_f2_drone_wrangler = {
+bca_jr_output_efficiency_mult_civilian = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_drone_wrangler_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_civilian_bonus_workforce_mult
+    add = prev.modifier:pop_civilian_bonus_workforce_mult
 }
-bca_jr_f1_dystopian_telepath = {
+bca_jr_workforce_capacity_mult_clip_maximizer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_dystopian_telepath_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_clip_maximizer_workforce_mult
 }
 
-bca_jr_f2_dystopian_telepath = {
+bca_jr_output_efficiency_mult_clip_maximizer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_ruler_bonus_workforce_mult
-    add = modifier:pop_dystopian_telepath_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_clip_maximizer_bonus_workforce_mult
 }
-bca_jr_f1_engineer = {
+bca_jr_workforce_capacity_mult_colonist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_engineer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_colonist_workforce_mult
 }
 
-bca_jr_f2_engineer = {
+bca_jr_output_efficiency_mult_colonist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_engineer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_colonist_bonus_workforce_mult
 }
-bca_jr_f1_entertainer = {
+bca_jr_workforce_capacity_mult_coordinator = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_entertainer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_coordinator_workforce_mult
 }
 
-bca_jr_f2_entertainer = {
+bca_jr_output_efficiency_mult_coordinator = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_entertainer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_coordinator_bonus_workforce_mult
 }
-bca_jr_f1_event_purge = {
+bca_jr_workforce_capacity_mult_cruise_crew_overseer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_event_purge_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cruise_crew_overseer_workforce_mult
 }
 
-bca_jr_f2_event_purge = {
+bca_jr_output_efficiency_mult_cruise_crew_overseer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_event_purge_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_cruise_crew_overseer_bonus_workforce_mult
 }
-bca_jr_f1_farmer = {
+bca_jr_workforce_capacity_mult_cruise_crew_overseer_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_farmer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cruise_crew_overseer_drone_workforce_mult
 }
 
-bca_jr_f2_farmer = {
+bca_jr_output_efficiency_mult_cruise_crew_overseer_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_farmer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_cruise_crew_overseer_drone_bonus_workforce_mult
 }
-bca_jr_f1_fe_acolyte_artisan = {
+bca_jr_workforce_capacity_mult_cruise_passenger = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_fe_acolyte_artisan_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cruise_passenger_workforce_mult
 }
 
-bca_jr_f2_fe_acolyte_artisan = {
+bca_jr_output_efficiency_mult_cruise_passenger = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_precursor_bonus_workforce_mult
-    add = modifier:pop_fe_acolyte_artisan_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_cruise_passenger_bonus_workforce_mult
+    add = prev.modifier:pop_cruise_passenger_bonus_workforce_mult
 }
-bca_jr_f1_fe_acolyte_farm = {
+bca_jr_workforce_capacity_mult_cruise_passenger_unemployment = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_fe_acolyte_farm_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cruise_passenger_unemployment_workforce_mult
 }
 
-bca_jr_f2_fe_acolyte_farm = {
+bca_jr_output_efficiency_mult_cruise_passenger_unemployment = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_precursor_bonus_workforce_mult
-    add = modifier:pop_fe_acolyte_farm_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_cruise_passenger_unemployment_bonus_workforce_mult
+    add = prev.modifier:pop_cruise_passenger_unemployment_bonus_workforce_mult
 }
-bca_jr_f1_fe_acolyte_generator = {
+bca_jr_workforce_capacity_mult_cyberdome_duelist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_fe_acolyte_generator_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cyberdome_duelist_workforce_mult
 }
 
-bca_jr_f2_fe_acolyte_generator = {
+bca_jr_output_efficiency_mult_cyberdome_duelist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_precursor_bonus_workforce_mult
-    add = modifier:pop_fe_acolyte_generator_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_cyberdome_duelist_bonus_workforce_mult
 }
-bca_jr_f1_fe_acolyte_mine = {
+bca_jr_workforce_capacity_mult_cyberdome_spectator = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_fe_acolyte_mine_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_cyberdome_spectator_workforce_mult
 }
 
-bca_jr_f2_fe_acolyte_mine = {
+bca_jr_output_efficiency_mult_cyberdome_spectator = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_precursor_bonus_workforce_mult
-    add = modifier:pop_fe_acolyte_mine_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_cyberdome_spectator_bonus_workforce_mult
 }
-bca_jr_f1_fe_archivist = {
+bca_jr_workforce_capacity_mult_dimensional_portal_researcher = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_fe_archivist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_dimensional_portal_researcher_workforce_mult
 }
 
-bca_jr_f2_fe_archivist = {
+bca_jr_output_efficiency_mult_dimensional_portal_researcher = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_precursor_bonus_workforce_mult
-    add = modifier:pop_fe_archivist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_dimensional_portal_researcher_bonus_workforce_mult
 }
-bca_jr_f1_foundry_prison_worker = {
+bca_jr_workforce_capacity_mult_dimensional_portal_researcher_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_foundry_prison_worker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_dimensional_portal_researcher_gestalt_workforce_mult
 }
 
-bca_jr_f2_foundry_prison_worker = {
+bca_jr_output_efficiency_mult_dimensional_portal_researcher_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_foundry_prison_worker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_dimensional_portal_researcher_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_gestation_drone = {
+bca_jr_workforce_capacity_mult_drone_energy_thrall = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_gestation_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_drone_energy_thrall_workforce_mult
 }
 
-bca_jr_f2_gestation_drone = {
+bca_jr_output_efficiency_mult_drone_energy_thrall = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_gestation_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_drone_energy_thrall_bonus_workforce_mult
 }
-bca_jr_f1_haruspex = {
+bca_jr_workforce_capacity_mult_drone_space_junk_collector = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_haruspex_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_drone_space_junk_collector_workforce_mult
 }
 
-bca_jr_f2_haruspex = {
+bca_jr_output_efficiency_mult_drone_space_junk_collector = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_haruspex_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_drone_space_junk_collector_bonus_workforce_mult
 }
-bca_jr_f1_healthcare = {
+bca_jr_workforce_capacity_mult_drone_wrangler = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_healthcare_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_drone_wrangler_workforce_mult
 }
 
-bca_jr_f2_healthcare = {
+bca_jr_output_efficiency_mult_drone_wrangler = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_healthcare_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_drone_wrangler_bonus_workforce_mult
 }
-bca_jr_f1_hive_basic_agri_drone = {
+bca_jr_workforce_capacity_mult_dystopian_telepath = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hive_basic_agri_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_dystopian_telepath_workforce_mult
 }
 
-bca_jr_f2_hive_basic_agri_drone = {
+bca_jr_output_efficiency_mult_dystopian_telepath = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_hive_basic_agri_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_dystopian_telepath_bonus_workforce_mult
 }
-bca_jr_f1_hive_basic_agri_drone_lithoid = {
+bca_jr_workforce_capacity_mult_energy_thrall = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hive_basic_agri_drone_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_energy_thrall_workforce_mult
 }
 
-bca_jr_f2_hive_basic_agri_drone_lithoid = {
+bca_jr_output_efficiency_mult_energy_thrall = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_hive_basic_agri_drone_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_energy_thrall_bonus_workforce_mult
 }
-bca_jr_f1_hive_sustenance_drone = {
+bca_jr_workforce_capacity_mult_engineer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hive_sustenance_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_engineer_workforce_mult
 }
 
-bca_jr_f2_hive_sustenance_drone = {
+bca_jr_output_efficiency_mult_engineer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_hive_sustenance_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_engineer_bonus_workforce_mult
 }
-bca_jr_f1_hive_sustenance_drone_lithoid = {
+bca_jr_workforce_capacity_mult_entertainer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hive_sustenance_drone_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_entertainer_workforce_mult
 }
 
-bca_jr_f2_hive_sustenance_drone_lithoid = {
+bca_jr_output_efficiency_mult_entertainer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_hive_sustenance_drone_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_entertainer_bonus_workforce_mult
 }
-bca_jr_f1_hunted_pre_sapient = {
+bca_jr_workforce_capacity_mult_evaluator = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hunted_pre_sapient_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_evaluator_workforce_mult
 }
 
-bca_jr_f2_hunted_pre_sapient = {
+bca_jr_output_efficiency_mult_evaluator = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_pre_sapients_bonus_workforce_mult
-    add = modifier:pop_hunted_pre_sapient_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_evaluator_bonus_workforce_mult
 }
-bca_jr_f1_hunted_pre_sapient_lithoid = {
+bca_jr_workforce_capacity_mult_event_purge = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hunted_pre_sapient_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_event_purge_workforce_mult
 }
 
-bca_jr_f2_hunted_pre_sapient_lithoid = {
+bca_jr_output_efficiency_mult_event_purge = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_pre_sapients_bonus_workforce_mult
-    add = modifier:pop_hunted_pre_sapient_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_event_purge_bonus_workforce_mult
 }
-bca_jr_f1_hunter_gatherer = {
+bca_jr_workforce_capacity_mult_farmer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hunter_gatherer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_farmer_workforce_mult
 }
 
-bca_jr_f2_hunter_gatherer = {
+bca_jr_output_efficiency_mult_farmer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_hunter_gatherer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_farmer_bonus_workforce_mult
 }
-bca_jr_f1_hunter_gatherer_lithoid = {
+bca_jr_workforce_capacity_mult_fe_acolyte_artisan = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_hunter_gatherer_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_artisan_workforce_mult
 }
 
-bca_jr_f2_hunter_gatherer_lithoid = {
+bca_jr_output_efficiency_mult_fe_acolyte_artisan = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_hunter_gatherer_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_artisan_bonus_workforce_mult
 }
-bca_jr_f1_identity_designer = {
+bca_jr_workforce_capacity_mult_fe_acolyte_farm = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_identity_designer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_farm_workforce_mult
 }
 
-bca_jr_f2_identity_designer = {
+bca_jr_output_efficiency_mult_fe_acolyte_farm = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_identity_designer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_farm_bonus_workforce_mult
 }
-bca_jr_f1_knight = {
+bca_jr_workforce_capacity_mult_fe_acolyte_generator = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_knight_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_generator_workforce_mult
 }
 
-bca_jr_f2_knight = {
+bca_jr_output_efficiency_mult_fe_acolyte_generator = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_knight_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_generator_bonus_workforce_mult
 }
-bca_jr_f1_knight_commander = {
+bca_jr_workforce_capacity_mult_fe_acolyte_mine = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_knight_commander_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_mine_workforce_mult
 }
 
-bca_jr_f2_knight_commander = {
+bca_jr_output_efficiency_mult_fe_acolyte_mine = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_ruler_bonus_workforce_mult
-    add = modifier:pop_knight_commander_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_acolyte_mine_bonus_workforce_mult
 }
-bca_jr_f1_livestock_lithoid = {
+bca_jr_workforce_capacity_mult_fe_archivist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_livestock_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_archivist_workforce_mult
 }
 
-bca_jr_f2_livestock_lithoid = {
+bca_jr_output_efficiency_mult_fe_archivist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_livestock_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_archivist_bonus_workforce_mult
 }
-bca_jr_f1_low_tech_farmer = {
+bca_jr_workforce_capacity_mult_fe_augur = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_low_tech_farmer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_augur_workforce_mult
 }
 
-bca_jr_f2_low_tech_farmer = {
+bca_jr_output_efficiency_mult_fe_augur = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_low_tech_farmer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_augur_bonus_workforce_mult
 }
-bca_jr_f1_low_tech_laborer = {
+bca_jr_workforce_capacity_mult_fe_hedonist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_low_tech_laborer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_hedonist_workforce_mult
 }
 
-bca_jr_f2_low_tech_laborer = {
+bca_jr_output_efficiency_mult_fe_hedonist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_low_tech_laborer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_precursor_bonus_workforce_mult
+    add = prev.modifier:pop_fe_hedonist_bonus_workforce_mult
 }
-bca_jr_f1_low_tech_miner = {
+bca_jr_workforce_capacity_mult_fe_xeno_ward = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_low_tech_miner_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fe_xeno_ward_workforce_mult
 }
 
-bca_jr_f2_low_tech_miner = {
+bca_jr_output_efficiency_mult_fe_xeno_ward = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_low_tech_miner_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_xeno_ward_bonus_workforce_mult
+    add = prev.modifier:pop_fe_xeno_ward_bonus_workforce_mult
 }
-bca_jr_f1_low_tech_researcher = {
+bca_jr_workforce_capacity_mult_foundry_prison_worker = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_low_tech_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_foundry_prison_worker_workforce_mult
 }
 
-bca_jr_f2_low_tech_researcher = {
+bca_jr_output_efficiency_mult_foundry_prison_worker = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_low_tech_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_foundry_prison_worker_bonus_workforce_mult
 }
-bca_jr_f1_low_tech_technician = {
+bca_jr_workforce_capacity_mult_gas_plant_engineer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_low_tech_technician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_gas_plant_engineer_workforce_mult
 }
 
-bca_jr_f2_low_tech_technician = {
+bca_jr_output_efficiency_mult_gas_plant_engineer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_low_tech_technician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_gas_plant_engineer_bonus_workforce_mult
 }
-bca_jr_f1_manufactorium_complex_drone = {
+bca_jr_workforce_capacity_mult_gas_plant_engineer_gestalt = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_manufactorium_complex_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_gas_plant_engineer_gestalt_workforce_mult
 }
 
-bca_jr_f2_manufactorium_complex_drone = {
+bca_jr_output_efficiency_mult_gas_plant_engineer_gestalt = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_manufactorium_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_gas_plant_engineer_gestalt_bonus_workforce_mult
 }
-bca_jr_f1_manufactorium_scraper_drone = {
+bca_jr_workforce_capacity_mult_gas_refiner = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_manufactorium_scraper_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_gas_refiner_workforce_mult
 }
 
-bca_jr_f2_manufactorium_scraper_drone = {
+bca_jr_output_efficiency_mult_gas_refiner = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_manufactorium_scraper_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_gas_refiner_bonus_workforce_mult
 }
-bca_jr_f1_manufactorium_specialist = {
+bca_jr_workforce_capacity_mult_gas_refiner_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_manufactorium_specialist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_gas_refiner_drone_workforce_mult
 }
 
-bca_jr_f2_manufactorium_specialist = {
+bca_jr_output_efficiency_mult_gas_refiner_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_manufactorium_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_gas_refiner_drone_bonus_workforce_mult
 }
-bca_jr_f1_miner = {
+bca_jr_workforce_capacity_mult_gestation_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_miner_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_gestation_drone_workforce_mult
 }
 
-bca_jr_f2_miner = {
+bca_jr_output_efficiency_mult_gestation_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_miner_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_gestation_drone_bonus_workforce_mult
 }
-bca_jr_f1_mineral_diver_drone = {
+bca_jr_workforce_capacity_mult_haruspex = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_mineral_diver_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_haruspex_workforce_mult
 }
 
-bca_jr_f2_mineral_diver_drone = {
+bca_jr_output_efficiency_mult_haruspex = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_mineral_diver_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_haruspex_bonus_workforce_mult
 }
-bca_jr_f1_mining_drone = {
+bca_jr_workforce_capacity_mult_healthcare = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_mining_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_healthcare_workforce_mult
 }
 
-bca_jr_f2_mining_drone = {
+bca_jr_output_efficiency_mult_healthcare = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_mining_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_healthcare_bonus_workforce_mult
 }
-bca_jr_f1_mortal_initiate = {
+bca_jr_workforce_capacity_mult_hive_basic_agri_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_mortal_initiate_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hive_basic_agri_drone_workforce_mult
 }
 
-bca_jr_f2_mortal_initiate = {
+bca_jr_output_efficiency_mult_hive_basic_agri_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_mortal_initiate_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_hive_basic_agri_drone_bonus_workforce_mult
 }
-bca_jr_f1_munitions_decommissioner = {
+bca_jr_workforce_capacity_mult_hive_basic_agri_drone_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_munitions_decommissioner_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hive_basic_agri_drone_lithoid_workforce_mult
 }
 
-bca_jr_f2_munitions_decommissioner = {
+bca_jr_output_efficiency_mult_hive_basic_agri_drone_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_munitions_decommissioner_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_hive_basic_agri_drone_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_munitions_decommissioning_drone = {
+bca_jr_workforce_capacity_mult_hive_sustenance_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_munitions_decommissioning_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hive_sustenance_drone_workforce_mult
 }
 
-bca_jr_f2_munitions_decommissioning_drone = {
+bca_jr_output_efficiency_mult_hive_sustenance_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_munitions_decommissioning_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_hive_sustenance_drone_bonus_workforce_mult
 }
-bca_jr_f1_munitions_decommissioning_unit = {
+bca_jr_workforce_capacity_mult_hive_sustenance_drone_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_munitions_decommissioning_unit_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hive_sustenance_drone_lithoid_workforce_mult
 }
 
-bca_jr_f2_munitions_decommissioning_unit = {
+bca_jr_output_efficiency_mult_hive_sustenance_drone_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_munitions_decommissioning_unit_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_hive_sustenance_drone_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_munitions_decommissioning_unit_lithoid = {
+bca_jr_workforce_capacity_mult_hunted_pre_sapient = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_munitions_decommissioning_unit_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hunted_pre_sapient_workforce_mult
 }
 
-bca_jr_f2_munitions_decommissioning_unit_lithoid = {
+bca_jr_output_efficiency_mult_hunted_pre_sapient = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_munitions_decommissioning_unit_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_pre_sapients_bonus_workforce_mult
+    add = prev.modifier:pop_hunted_pre_sapient_bonus_workforce_mult
 }
-bca_jr_f1_nanotech_research_unit = {
+bca_jr_workforce_capacity_mult_hunted_pre_sapient_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_nanotech_research_unit_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hunted_pre_sapient_lithoid_workforce_mult
 }
 
-bca_jr_f2_nanotech_research_unit = {
+bca_jr_output_efficiency_mult_hunted_pre_sapient_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_nanotech_research_unit_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_pre_sapients_bonus_workforce_mult
+    add = prev.modifier:pop_hunted_pre_sapient_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_nanotech_researcher = {
+bca_jr_workforce_capacity_mult_hunter_gatherer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_nanotech_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hunter_gatherer_workforce_mult
 }
 
-bca_jr_f2_nanotech_researcher = {
+bca_jr_output_efficiency_mult_hunter_gatherer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_nanotech_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_hunter_gatherer_bonus_workforce_mult
 }
-bca_jr_f1_neural_chip = {
+bca_jr_workforce_capacity_mult_hunter_gatherer_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_neural_chip_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_hunter_gatherer_lithoid_workforce_mult
 }
 
-bca_jr_f2_neural_chip = {
+bca_jr_output_efficiency_mult_hunter_gatherer_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_chip_slave_bonus_workforce_mult
-    add = modifier:pop_neural_chip_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_hunter_gatherer_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_odd_factory_drone = {
+bca_jr_workforce_capacity_mult_identity_designer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_odd_factory_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_identity_designer_workforce_mult
 }
 
-bca_jr_f2_odd_factory_drone = {
+bca_jr_output_efficiency_mult_identity_designer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_odd_factory_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_identity_designer_bonus_workforce_mult
 }
-bca_jr_f1_odd_factory_worker = {
+bca_jr_workforce_capacity_mult_knight = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_odd_factory_worker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_knight_workforce_mult
 }
 
-bca_jr_f2_odd_factory_worker = {
+bca_jr_output_efficiency_mult_knight = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_odd_factory_worker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_knight_bonus_workforce_mult
 }
-bca_jr_f1_organic_battery = {
+bca_jr_workforce_capacity_mult_knight_commander = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_organic_battery_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_knight_commander_workforce_mult
 }
 
-bca_jr_f2_organic_battery = {
+bca_jr_output_efficiency_mult_knight_commander = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_organic_battery_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_knight_commander_bonus_workforce_mult
 }
-bca_jr_f1_overlord_academic = {
+bca_jr_workforce_capacity_mult_livestock_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_overlord_academic_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_livestock_lithoid_workforce_mult
 }
 
-bca_jr_f2_overlord_academic = {
+bca_jr_output_efficiency_mult_livestock_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_overlord_academic_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_livestock_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_overlord_academic_drone = {
+bca_jr_workforce_capacity_mult_logistics_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_overlord_academic_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_logistics_drone_workforce_mult
 }
 
-bca_jr_f2_overlord_academic_drone = {
+bca_jr_output_efficiency_mult_logistics_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_overlord_academic_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_logistics_drone_bonus_workforce_mult
 }
-bca_jr_f1_overlord_mortal_initiate = {
+bca_jr_workforce_capacity_mult_low_tech_bureaucrat = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_overlord_mortal_initiate_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_bureaucrat_workforce_mult
 }
 
-bca_jr_f2_overlord_mortal_initiate = {
+bca_jr_output_efficiency_mult_low_tech_bureaucrat = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_overlord_mortal_initiate_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_bureaucrat_bonus_workforce_mult
 }
-bca_jr_f1_overlord_mortal_initiate_drone = {
+bca_jr_workforce_capacity_mult_low_tech_farmer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_overlord_mortal_initiate_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_farmer_workforce_mult
 }
 
-bca_jr_f2_overlord_mortal_initiate_drone = {
+bca_jr_output_efficiency_mult_low_tech_farmer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_overlord_mortal_initiate_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_farmer_bonus_workforce_mult
 }
-bca_jr_f1_peasant = {
+bca_jr_workforce_capacity_mult_low_tech_laborer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_peasant_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_laborer_workforce_mult
 }
 
-bca_jr_f2_peasant = {
+bca_jr_output_efficiency_mult_low_tech_laborer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_peasant_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_laborer_bonus_workforce_mult
 }
-bca_jr_f1_peasant_lithoid = {
+bca_jr_workforce_capacity_mult_low_tech_manager = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_peasant_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_manager_workforce_mult
 }
 
-bca_jr_f2_peasant_lithoid = {
+bca_jr_output_efficiency_mult_low_tech_manager = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_peasant_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_manager_bonus_workforce_mult
 }
-bca_jr_f1_physicist = {
+bca_jr_workforce_capacity_mult_low_tech_miner = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_physicist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_miner_workforce_mult
 }
 
-bca_jr_f2_physicist = {
+bca_jr_output_efficiency_mult_low_tech_miner = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_physicist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_miner_bonus_workforce_mult
 }
-bca_jr_f1_politician = {
+bca_jr_workforce_capacity_mult_low_tech_priest = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_politician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_priest_workforce_mult
 }
 
-bca_jr_f2_politician = {
+bca_jr_output_efficiency_mult_low_tech_priest = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_ruler_bonus_workforce_mult
-    add = modifier:pop_politician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_priest_bonus_workforce_mult
 }
-bca_jr_f1_primitive_farmer = {
+bca_jr_workforce_capacity_mult_low_tech_researcher = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_farmer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_researcher_workforce_mult
 }
 
-bca_jr_f2_primitive_farmer = {
+bca_jr_output_efficiency_mult_low_tech_researcher = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_primitive_farmer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_researcher_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_brain_drone = {
+bca_jr_workforce_capacity_mult_low_tech_technician = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_brain_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_low_tech_technician_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_brain_drone = {
+bca_jr_output_efficiency_mult_low_tech_technician = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_brain_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_low_tech_technician_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_cerebellum_drone = {
+bca_jr_workforce_capacity_mult_machine_nurse = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_cerebellum_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_machine_nurse_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_cerebellum_drone = {
+bca_jr_output_efficiency_mult_machine_nurse = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_cerebellum_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_bio_trophy_bonus_workforce_mult
+    add = prev.modifier:pop_machine_nurse_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_factory_drone = {
+bca_jr_workforce_capacity_mult_maintenance_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_factory_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_maintenance_drone_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_factory_drone = {
+bca_jr_output_efficiency_mult_maintenance_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_factory_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_maintenance_drone_bonus_workforce_mult
+    add = prev.modifier:pop_maintenance_drone_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_farmer = {
+bca_jr_workforce_capacity_mult_manufactorium_complex_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_farmer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_manufactorium_complex_drone_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_farmer = {
+bca_jr_output_efficiency_mult_manufactorium_complex_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_farmer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_manufactorium_complex_drone_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_miner = {
+bca_jr_workforce_capacity_mult_manufactorium_scraper_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_miner_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_manufactorium_scraper_drone_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_miner = {
+bca_jr_output_efficiency_mult_manufactorium_scraper_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_miner_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_manufactorium_scraper_drone_bonus_workforce_mult
 }
-bca_jr_f1_primitive_hive_technician = {
+bca_jr_workforce_capacity_mult_manufactorium_specialist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_hive_technician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_manufactorium_specialist_workforce_mult
 }
 
-bca_jr_f2_primitive_hive_technician = {
+bca_jr_output_efficiency_mult_manufactorium_specialist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_primitive_hive_technician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_manufactorium_specialist_bonus_workforce_mult
 }
-bca_jr_f1_primitive_laborer = {
+bca_jr_workforce_capacity_mult_miner = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_laborer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_miner_workforce_mult
 }
 
-bca_jr_f2_primitive_laborer = {
+bca_jr_output_efficiency_mult_miner = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_primitive_laborer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_miner_bonus_workforce_mult
 }
-bca_jr_f1_primitive_miner = {
+bca_jr_workforce_capacity_mult_mineral_diver_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_miner_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_mineral_diver_drone_workforce_mult
 }
 
-bca_jr_f2_primitive_miner = {
+bca_jr_output_efficiency_mult_mineral_diver_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_primitive_miner_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_mineral_diver_drone_bonus_workforce_mult
 }
-bca_jr_f1_primitive_researcher = {
+bca_jr_workforce_capacity_mult_mining_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_mining_drone_workforce_mult
 }
 
-bca_jr_f2_primitive_researcher = {
+bca_jr_output_efficiency_mult_mining_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_primitive_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_mining_drone_bonus_workforce_mult
 }
-bca_jr_f1_primitive_researcher_2 = {
+bca_jr_workforce_capacity_mult_mortal_initiate = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_researcher_2_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_mortal_initiate_workforce_mult
 }
 
-bca_jr_f2_primitive_researcher_2 = {
+bca_jr_output_efficiency_mult_mortal_initiate = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_primitive_researcher_2_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_mortal_initiate_bonus_workforce_mult
 }
-bca_jr_f1_primitive_technician = {
+bca_jr_workforce_capacity_mult_munitions_decommissioner = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_primitive_technician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioner_workforce_mult
 }
 
-bca_jr_f2_primitive_technician = {
+bca_jr_output_efficiency_mult_munitions_decommissioner = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_primitive_technician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioner_bonus_workforce_mult
 }
-bca_jr_f1_production_overseer = {
+bca_jr_workforce_capacity_mult_munitions_decommissioning_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_production_overseer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_drone_workforce_mult
 }
 
-bca_jr_f2_production_overseer = {
+bca_jr_output_efficiency_mult_munitions_decommissioning_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_production_overseer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_drone_bonus_workforce_mult
 }
-bca_jr_f1_puddle_technician = {
+bca_jr_workforce_capacity_mult_munitions_decommissioning_unit = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_puddle_technician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_unit_workforce_mult
 }
 
-bca_jr_f2_puddle_technician = {
+bca_jr_output_efficiency_mult_munitions_decommissioning_unit = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_puddle_technician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_unit_bonus_workforce_mult
 }
-bca_jr_f1_puddle_technician_drone = {
+bca_jr_workforce_capacity_mult_munitions_decommissioning_unit_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_puddle_technician_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_unit_lithoid_workforce_mult
 }
 
-bca_jr_f2_puddle_technician_drone = {
+bca_jr_output_efficiency_mult_munitions_decommissioning_unit_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_puddle_technician_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_munitions_decommissioning_unit_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_purge_labor_camps = {
+bca_jr_workforce_capacity_mult_nanotech_research_unit = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_labor_camps_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_nanotech_research_unit_workforce_mult
 }
 
-bca_jr_f2_purge_labor_camps = {
+bca_jr_output_efficiency_mult_nanotech_research_unit = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_labor_camps_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_nanotech_research_unit_bonus_workforce_mult
 }
-bca_jr_f1_purge_lithoid = {
+bca_jr_workforce_capacity_mult_nanotech_researcher = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_nanotech_researcher_workforce_mult
 }
 
-bca_jr_f2_purge_lithoid = {
+bca_jr_output_efficiency_mult_nanotech_researcher = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_nanotech_researcher_bonus_workforce_mult
 }
-bca_jr_f1_purge_matrix = {
+bca_jr_workforce_capacity_mult_necro_apprentice = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_matrix_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_necro_apprentice_workforce_mult
 }
 
-bca_jr_f2_purge_matrix = {
+bca_jr_output_efficiency_mult_necro_apprentice = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_matrix_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_necro_apprentice_bonus_workforce_mult
 }
-bca_jr_f1_purge_processing = {
+bca_jr_workforce_capacity_mult_neural_chip = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_processing_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_neural_chip_workforce_mult
 }
 
-bca_jr_f2_purge_processing = {
+bca_jr_output_efficiency_mult_neural_chip = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_processing_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_chip_slave_bonus_workforce_mult
+    add = prev.modifier:pop_neural_chip_bonus_workforce_mult
 }
-bca_jr_f1_purge_processing_infernal = {
+bca_jr_workforce_capacity_mult_odd_factory_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_processing_infernal_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_odd_factory_drone_workforce_mult
 }
 
-bca_jr_f2_purge_processing_infernal = {
+bca_jr_output_efficiency_mult_odd_factory_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_processing_infernal_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_odd_factory_drone_bonus_workforce_mult
 }
-bca_jr_f1_purge_processing_lithoid = {
+bca_jr_workforce_capacity_mult_odd_factory_worker = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_processing_lithoid_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_odd_factory_worker_workforce_mult
 }
 
-bca_jr_f2_purge_processing_lithoid = {
+bca_jr_output_efficiency_mult_odd_factory_worker = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_processing_lithoid_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_odd_factory_worker_bonus_workforce_mult
 }
-bca_jr_f1_purge_processing_robot = {
+bca_jr_workforce_capacity_mult_organic_battery = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_processing_robot_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_organic_battery_workforce_mult
 }
 
-bca_jr_f2_purge_processing_robot = {
+bca_jr_output_efficiency_mult_organic_battery = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_processing_robot_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_organic_battery_bonus_workforce_mult
 }
-bca_jr_f1_purge_robot = {
+bca_jr_workforce_capacity_mult_organic_exhibit = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_purge_robot_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_organic_exhibit_workforce_mult
 }
 
-bca_jr_f2_purge_robot = {
+bca_jr_output_efficiency_mult_organic_exhibit = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_purge_bonus_workforce_mult
-    add = modifier:pop_purge_robot_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_bio_trophy_bonus_workforce_mult
+    add = prev.modifier:pop_organic_exhibit_bonus_workforce_mult
 }
-bca_jr_f1_ratling_scavenger = {
+bca_jr_workforce_capacity_mult_overlord_academic = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_ratling_scavenger_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_academic_workforce_mult
 }
 
-bca_jr_f2_ratling_scavenger = {
+bca_jr_output_efficiency_mult_overlord_academic = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_ratling_scavenger_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_academic_bonus_workforce_mult
 }
-bca_jr_f1_robot_caretaker = {
+bca_jr_workforce_capacity_mult_overlord_academic_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_robot_caretaker_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_academic_drone_workforce_mult
 }
 
-bca_jr_f2_robot_caretaker = {
+bca_jr_output_efficiency_mult_overlord_academic_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_robot_caretaker_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_academic_drone_bonus_workforce_mult
 }
-bca_jr_f1_soldier = {
+bca_jr_workforce_capacity_mult_overlord_bio_trophy = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_soldier_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_bio_trophy_workforce_mult
 }
 
-bca_jr_f2_soldier = {
+bca_jr_output_efficiency_mult_overlord_bio_trophy = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_soldier_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_bio_trophy_bonus_workforce_mult
 }
-bca_jr_f1_space_junk_collector = {
+bca_jr_workforce_capacity_mult_overlord_bio_trophy_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_space_junk_collector_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_bio_trophy_drone_workforce_mult
 }
 
-bca_jr_f2_space_junk_collector = {
+bca_jr_output_efficiency_mult_overlord_bio_trophy_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_space_junk_collector_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_bio_trophy_drone_bonus_workforce_mult
 }
-bca_jr_f1_space_time_anomaly_researcher = {
+bca_jr_workforce_capacity_mult_overlord_healthcare = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_space_time_anomaly_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_healthcare_workforce_mult
 }
 
-bca_jr_f2_space_time_anomaly_researcher = {
+bca_jr_output_efficiency_mult_overlord_healthcare = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_space_time_anomaly_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_healthcare_bonus_workforce_mult
 }
-bca_jr_f1_space_time_anomaly_researcher_gestalt = {
+bca_jr_workforce_capacity_mult_overlord_manager = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_space_time_anomaly_researcher_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_manager_workforce_mult
 }
 
-bca_jr_f2_space_time_anomaly_researcher_gestalt = {
+bca_jr_output_efficiency_mult_overlord_manager = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_space_time_anomaly_researcher_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_manager_bonus_workforce_mult
 }
-bca_jr_f1_spawning_drone = {
+bca_jr_workforce_capacity_mult_overlord_mortal_initiate = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_spawning_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_mortal_initiate_workforce_mult
 }
 
-bca_jr_f2_spawning_drone = {
+bca_jr_output_efficiency_mult_overlord_mortal_initiate = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_spawning_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_mortal_initiate_bonus_workforce_mult
 }
-bca_jr_f1_spe_colonist = {
+bca_jr_workforce_capacity_mult_overlord_mortal_initiate_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_spe_colonist_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_overlord_mortal_initiate_drone_workforce_mult
 }
 
-bca_jr_f2_spe_colonist = {
+bca_jr_output_efficiency_mult_overlord_mortal_initiate_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_spe_colonist_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_overlord_mortal_initiate_drone_bonus_workforce_mult
 }
-bca_jr_f1_stasis_warden = {
+bca_jr_workforce_capacity_mult_patrol_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_stasis_warden_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_patrol_drone_workforce_mult
 }
 
-bca_jr_f2_stasis_warden = {
+bca_jr_output_efficiency_mult_patrol_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_stasis_warden_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_patrol_drone_bonus_workforce_mult
 }
-bca_jr_f1_stasis_warden_drone = {
+bca_jr_workforce_capacity_mult_peasant = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_stasis_warden_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_peasant_workforce_mult
 }
 
-bca_jr_f2_stasis_warden_drone = {
+bca_jr_output_efficiency_mult_peasant = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_stasis_warden_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_peasant_bonus_workforce_mult
 }
-bca_jr_f1_stratovent_refiner_minerals = {
+bca_jr_workforce_capacity_mult_peasant_lithoid = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_stratovent_refiner_minerals_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_peasant_lithoid_workforce_mult
 }
 
-bca_jr_f2_stratovent_refiner_minerals = {
+bca_jr_output_efficiency_mult_peasant_lithoid = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_stratovent_refiner_minerals_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_peasant_lithoid_bonus_workforce_mult
 }
-bca_jr_f1_stratovent_researcher = {
+bca_jr_workforce_capacity_mult_physician_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_stratovent_researcher_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_physician_drone_workforce_mult
 }
 
-bca_jr_f2_stratovent_researcher = {
+bca_jr_output_efficiency_mult_physician_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_stratovent_researcher_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_physician_drone_bonus_workforce_mult
 }
-bca_jr_f1_technician = {
+bca_jr_workforce_capacity_mult_physicist = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_technician_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_physicist_workforce_mult
 }
 
-bca_jr_f2_technician = {
+bca_jr_output_efficiency_mult_physicist = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_worker_bonus_workforce_mult
-    add = modifier:pop_technician_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_physicist_bonus_workforce_mult
 }
-bca_jr_f1_technician_drone = {
+bca_jr_workforce_capacity_mult_politician = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_technician_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_politician_workforce_mult
 }
 
-bca_jr_f2_technician_drone = {
+bca_jr_output_efficiency_mult_politician = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_technician_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_politician_bonus_workforce_mult
 }
-bca_jr_f1_technophant = {
+bca_jr_workforce_capacity_mult_primitive_administrator = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_technophant_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_administrator_workforce_mult
 }
 
-bca_jr_f2_technophant = {
+bca_jr_output_efficiency_mult_primitive_administrator = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_ruler_bonus_workforce_mult
-    add = modifier:pop_technophant_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_administrator_bonus_workforce_mult
 }
-bca_jr_f1_telepath = {
+bca_jr_workforce_capacity_mult_primitive_bureaucrat = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_telepath_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_bureaucrat_workforce_mult
 }
 
-bca_jr_f2_telepath = {
+bca_jr_output_efficiency_mult_primitive_bureaucrat = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_telepath_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_bureaucrat_bonus_workforce_mult
 }
-bca_jr_f1_telepath_drone = {
+bca_jr_workforce_capacity_mult_primitive_farmer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_telepath_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_farmer_workforce_mult
 }
 
-bca_jr_f2_telepath_drone = {
+bca_jr_output_efficiency_mult_primitive_farmer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_telepath_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_farmer_bonus_workforce_mult
 }
-bca_jr_f1_test_subject = {
+bca_jr_workforce_capacity_mult_primitive_hive_brain_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_test_subject_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_brain_drone_workforce_mult
 }
 
-bca_jr_f2_test_subject = {
+bca_jr_output_efficiency_mult_primitive_hive_brain_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_criminal_bonus_workforce_mult
-    add = modifier:pop_test_subject_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_brain_drone_bonus_workforce_mult
 }
-bca_jr_f1_test_subject_drone = {
+bca_jr_workforce_capacity_mult_primitive_hive_cerebellum_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_test_subject_drone_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_cerebellum_drone_workforce_mult
 }
 
-bca_jr_f2_test_subject_drone = {
+bca_jr_output_efficiency_mult_primitive_hive_cerebellum_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_deviant_drone_bonus_workforce_mult
-    add = modifier:pop_test_subject_drone_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_cerebellum_drone_bonus_workforce_mult
 }
-bca_jr_f1_treasure_gatherer = {
+bca_jr_workforce_capacity_mult_primitive_hive_factory_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_treasure_gatherer_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_factory_drone_workforce_mult
 }
 
-bca_jr_f2_treasure_gatherer = {
+bca_jr_output_efficiency_mult_primitive_hive_factory_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_treasure_gatherer_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_factory_drone_bonus_workforce_mult
 }
-bca_jr_f1_treasure_gatherer_gestalt = {
+bca_jr_workforce_capacity_mult_primitive_hive_farmer = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_treasure_gatherer_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_farmer_workforce_mult
 }
 
-bca_jr_f2_treasure_gatherer_gestalt = {
+bca_jr_output_efficiency_mult_primitive_hive_farmer = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_complex_drone_bonus_workforce_mult
-    add = modifier:pop_treasure_gatherer_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_farmer_bonus_workforce_mult
 }
-bca_jr_f1_turtle_miner_gestalt = {
+bca_jr_workforce_capacity_mult_primitive_hive_miner = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_turtle_miner_gestalt_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_miner_workforce_mult
 }
 
-bca_jr_f2_turtle_miner_gestalt = {
+bca_jr_output_efficiency_mult_primitive_hive_miner = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_simple_drone_bonus_workforce_mult
-    add = modifier:pop_turtle_miner_gestalt_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_miner_bonus_workforce_mult
 }
-bca_jr_f1_wrangler = {
+bca_jr_workforce_capacity_mult_primitive_hive_synapse_drone = {
     base = 1
-    add = modifier:pop_workforce_mult
-    add = modifier:pop_wrangler_workforce_mult
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_synapse_drone_workforce_mult
 }
 
-bca_jr_f2_wrangler = {
+bca_jr_output_efficiency_mult_primitive_hive_synapse_drone = {
     base = 1
-    add = modifier:pop_bonus_workforce_mult
-    add = modifier:pop_cat_specialist_bonus_workforce_mult
-    add = modifier:pop_wrangler_bonus_workforce_mult
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_synapse_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_hive_synapse_drone_2 = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_synapse_drone_2_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_hive_synapse_drone_2 = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_synapse_drone_2_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_hive_technician = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_hive_technician_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_hive_technician = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_hive_technician_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_laborer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_laborer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_laborer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_laborer_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_miner = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_miner_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_miner = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_miner_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_noble = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_noble_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_noble = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_noble_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_priest = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_priest_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_priest = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_priest_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_priest_2 = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_priest_2_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_priest_2 = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_priest_2_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_researcher = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_researcher_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_researcher = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_researcher_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_researcher_2 = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_researcher_2_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_researcher_2 = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_researcher_2_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_primitive_technician = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_primitive_technician_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_primitive_technician = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_primitive_technician_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_production_overseer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_production_overseer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_production_overseer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_production_overseer_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_puddle_technician = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_puddle_technician_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_puddle_technician = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_puddle_technician_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_puddle_technician_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_puddle_technician_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_puddle_technician_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_puddle_technician_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_labor_camps = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_labor_camps_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_labor_camps = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_labor_camps_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_lithoid = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_lithoid_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_lithoid = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_lithoid_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_matrix = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_matrix_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_matrix = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_matrix_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_processing = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_processing_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_processing = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_processing_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_processing_infernal = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_processing_infernal_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_processing_infernal = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_processing_infernal_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_processing_lithoid = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_processing_lithoid_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_processing_lithoid = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_processing_lithoid_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_processing_robot = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_processing_robot_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_processing_robot = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_processing_robot_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_robot = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_robot_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_robot = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_robot_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_purge_sacrifice = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_purge_sacrifice_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_purge_sacrifice = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_purge_bonus_workforce_mult
+    add = prev.modifier:pop_purge_sacrifice_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_ratling_scavenger = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_ratling_scavenger_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_ratling_scavenger = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_ratling_scavenger_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_resort_worker = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_resort_worker_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_resort_worker = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_resort_worker_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_robot_caretaker = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_robot_caretaker_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_robot_caretaker = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_robot_caretaker_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_shroud_trader = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_shroud_trader_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_shroud_trader = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_shroud_trader_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_solarpunk_anarchist = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_solarpunk_anarchist_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_solarpunk_anarchist = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_solarpunk_anarchist_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_soldier = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_soldier_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_soldier = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_soldier_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_space_junk_collector = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_space_junk_collector_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_space_junk_collector = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_space_junk_collector_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_space_time_anomaly_researcher = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_space_time_anomaly_researcher_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_space_time_anomaly_researcher = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_space_time_anomaly_researcher_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_space_time_anomaly_researcher_gestalt = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_space_time_anomaly_researcher_gestalt_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_space_time_anomaly_researcher_gestalt = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_space_time_anomaly_researcher_gestalt_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_spawning_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_spawning_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_spawning_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_spawning_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_spe_colonist = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_spe_colonist_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_spe_colonist = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_spe_colonist_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stasis_warden = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stasis_warden_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stasis_warden = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_stasis_warden_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stasis_warden_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stasis_warden_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stasis_warden_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_stasis_warden_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stratovent_refiner = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stratovent_refiner = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stratovent_refiner_minerals = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_minerals_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stratovent_refiner_minerals = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_minerals_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stratovent_refiner_upg = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_upg_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stratovent_refiner_upg = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_stratovent_refiner_upg_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_stratovent_researcher = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_stratovent_researcher_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_stratovent_researcher = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_stratovent_researcher_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_technician = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_technician_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_technician = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_technician_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_technician_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_technician_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_technician_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_technician_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_technophant = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_technophant_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_technophant = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_technophant_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_telepath = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_telepath_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_telepath = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_telepath_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_telepath_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_telepath_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_telepath_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_telepath_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_test_subject = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_test_subject_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_test_subject = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_criminal_bonus_workforce_mult
+    add = prev.modifier:pop_test_subject_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_test_subject_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_test_subject_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_test_subject_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_deviant_drone_bonus_workforce_mult
+    add = prev.modifier:pop_test_subject_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_trader = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_trader_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_trader = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_trader_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_transference_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_transference_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_transference_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_transference_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_transference_volunteer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_transference_volunteer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_transference_volunteer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_transference_volunteer_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_translucer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_translucer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_translucer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_translucer_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_translucer_drone = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_translucer_drone_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_translucer_drone = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_translucer_drone_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_treasure_gatherer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_treasure_gatherer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_treasure_gatherer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_treasure_gatherer_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_treasure_gatherer_gestalt = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_treasure_gatherer_gestalt_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_treasure_gatherer_gestalt = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_treasure_gatherer_gestalt_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_turtle_miner_gestalt = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_turtle_miner_gestalt_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_turtle_miner_gestalt = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_simple_drone_bonus_workforce_mult
+    add = prev.modifier:pop_turtle_miner_gestalt_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_wrangler = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_wrangler_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_wrangler = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_wrangler_bonus_workforce_mult
 }

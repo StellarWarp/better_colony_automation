@@ -1,17 +1,36 @@
 {# Phase 8: 岗位调控面板按钮效果（from 防御版） #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set slots = job_regulation_config.display_slots | default(15) %}
-{% set categories = ['alloys','consumer_goods','energy','food','minerals','physics_research','society_research','engineering_research'] %}
+{% set categories = job_regulation_config.categories %}
 
 {# ---- 类别选择（触发数据刷新 + 填槽）---- #}
 {% for cat in categories %}
-bca_jr_select_category_{{ cat }} = {
-    potential = { exists = from }
+bca_jr_select_category_{{ cat }}_selected = {
+    potential = {
+        exists = from
+        from = {
+            check_variable = { which = bca_gui_active_tab value = 1 }
+            check_variable = { which = bca_jr_gui_category value = {{ loop.index0 }} }
+        }
+    }
+    allow = { always = yes }
+}
+bca_jr_select_category_{{ cat }}_unselected = {
+    potential = {
+        exists = from
+        from = {
+            check_variable = { which = bca_gui_active_tab value = 1 }
+            NOR = { check_variable = { which = bca_jr_gui_category value = {{ loop.index0 }} } }
+        }
+    }
     allow = { always = yes }
     effect = {
-        from = {
-            set_variable = { which = bca_jr_gui_category value = {{ loop.index0 }} }
-            bca_jr_refresh_slot_data = yes
+        hidden_effect = {
+            from = {
+                set_variable = { which = bca_jr_gui_category value = {{ loop.index0 }} }
+                bca_jr_clear_slot_mapping = yes
+                bca_jr_refresh_slot_data = yes
+            }
         }
     }
 }
@@ -23,51 +42,163 @@ bca_jr_select_category_{{ cat }} = {
 bca_jr_slot_visible_{{ s_name }} = {
     potential = {
         exists = from
-        from = { check_variable_arithmetic = { which = bca_jr_display_count value >= {{ s + 1 }} } }
+        from = {
+            check_variable = { which = bca_gui_active_tab value = 1 }
+            check_variable_arithmetic = { which = bca_jr_display_count value >= {{ s + 1 }} }
+        }
     }
     allow = { always = yes }
 }
 {% endfor %}
 
-{# ---- 槽位开关按钮 ---- #}
+{# ---- 槽位开关按钮：启用/禁用两个互斥按钮，用按钮状态替代状态列 ---- #}
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
-bca_jr_slot_toggle_{{ s_name }} = {
+bca_jr_slot_toggle_{{ s_name }}_enabled = {
     potential = {
         exists = from
-        from = { has_country_flag = bca_jr_slot_{{ s_name }}_mapped }
+        from = {
+            has_country_flag = bca_jr_slot_{{ s_name }}_mapped
+            check_variable = { which = bca_gui_active_tab value = 1 }
+            NOR = {
+{% for entry in regulated %}
+                AND = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} has_country_flag = bca_jr_disable_{{ entry.job }} }
+{% endfor %}
+            }
+        }
     }
     allow = { always = yes }
     effect = {
-        from = {
+        hidden_effect = {
+            from = {
 {% for entry in regulated %}
-            if = {
-                limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
                 if = {
-                    limit = { has_country_flag = bca_jr_disable_{{ entry.job }} }
-                    remove_country_flag = bca_jr_disable_{{ entry.job }}
-                }
-                else = {
+                    limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
                     set_country_flag = bca_jr_disable_{{ entry.job }}
                 }
-            }
 {% endfor %}
+            }
+        }
+    }
+}
+bca_jr_slot_toggle_{{ s_name }}_disabled = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = bca_jr_slot_{{ s_name }}_mapped
+            check_variable = { which = bca_gui_active_tab value = 1 }
+            OR = {
+{% for entry in regulated %}
+                AND = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} has_country_flag = bca_jr_disable_{{ entry.job }} }
+{% endfor %}
+            }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+{% for entry in regulated %}
+                if = {
+                    limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
+                    remove_country_flag = bca_jr_disable_{{ entry.job }}
+                }
+{% endfor %}
+            }
         }
     }
 }
 {% endfor %}
 
-{# ---- 全局开关 ---- #}
-bca_jr_toggle_global = {
-    potential = { exists = from }
+{# ---- Tab 选择（choice_row 自动加 _selected/_unselected 后缀）---- #}
+{% set tab_names = ['economy','jobs','automation'] %}
+{% for tab in tab_names %}
+bca_gui_select_tab_{{ tab }}_selected = {
+    potential = {
+        exists = from
+        from = { check_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} } }
+    }
+    allow = { always = yes }
+}
+bca_gui_select_tab_{{ tab }}_unselected = {
+    potential = {
+        exists = from
+        from = { NOR = { check_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} } } }
+    }
     allow = { always = yes }
     effect = {
-        from = {
-            if = {
-                limit = { has_country_flag = bca_jr_enabled }
+        hidden_effect = {
+            from = {
+                set_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} }
+{% if tab == 'jobs' %}
+                country_event = { id = colony_automation_event.2001 }
+{% endif %}
+            }
+        }
+    }
+}
+{% endfor %}
+
+{# ---- 各 Tab 元素可见性 ---- #}
+bca_tab_visible_0 = {
+    potential = { exists = from from = { check_variable_arithmetic = { which = bca_gui_active_tab value <= 0 } } }
+    allow = { always = yes }
+}
+bca_tab_visible_1 = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } } }
+    allow = { always = yes }
+}
+bca_tab_visible_2 = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } } }
+    allow = { always = yes }
+}
+
+{# ---- Jobs tab 元素可见性（兼容旧引用）---- #}
+bca_jr_tab_visible_1 = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } } }
+    allow = { always = yes }
+}
+
+{# ---- 全局开关：复用 choice_row 的 selected/unselected 形态 ---- #}
+bca_jr_global_off_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } NOT = { has_country_flag = bca_jr_enabled } } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
                 remove_country_flag = bca_jr_enabled
             }
-            else = {
+        }
+    }
+}
+bca_jr_global_off_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } has_country_flag = bca_jr_enabled } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                remove_country_flag = bca_jr_enabled
+            }
+        }
+    }
+}
+bca_jr_global_on_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } has_country_flag = bca_jr_enabled } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                set_country_flag = bca_jr_enabled
+            }
+        }
+    }
+}
+bca_jr_global_on_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } NOT = { has_country_flag = bca_jr_enabled } } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
                 set_country_flag = bca_jr_enabled
             }
         }

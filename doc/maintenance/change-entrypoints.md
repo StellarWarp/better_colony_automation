@@ -123,15 +123,16 @@ do not by themselves define automation demand contexts.
 - Normal source: demolition declarations under [`../../mod_builder/configs/buildings/`](../../mod_builder/configs/buildings/)
 - Special source: [`../../mod_builder/configs/manual_building_destruction.yaml`](../../mod_builder/configs/manual_building_destruction.yaml)
 
-### Stellaris API compatibility
+### Stellaris API reference
 
-- Effect definitions: [`../../mod_builder/synthetipy/game_definitions/effect_rules.py`](../../mod_builder/synthetipy/game_definitions/effect_rules.py)
-- Trigger definitions: [`../../mod_builder/synthetipy/game_definitions/trigger_rules.py`](../../mod_builder/synthetipy/game_definitions/trigger_rules.py)
-- Identifier definitions: [`../../mod_builder/synthetipy/game_definitions/identifiers.py`](../../mod_builder/synthetipy/game_definitions/identifiers.py)
-- Constants: [`../../mod_builder/synthetipy/pdx_constants.py`](../../mod_builder/synthetipy/pdx_constants.py)
+- Primary syntax definitions: [`.config/stellaris/`](../../.config/stellaris/)
+  (effects, triggers, scopes, modifiers, enums — `.cwt` rule files)
+- Secondary reference: Stellaris user document
+  `logs/script_documentation` (see DSL Style Guide for location)
 
-Check these when a game update makes many generated files fail on renamed or
-removed APIs.
+Consult `.config/stellaris/` first when a game update renames or removes
+script APIs. The `.cwt` files are the authoritative API surface for the
+targeted game version.
 
 ### Intro/update messages and release metadata
 

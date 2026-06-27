@@ -96,12 +96,14 @@ This layer acts like a small compiler frontend for Paradox DSL:
 - resolve inline script expansion where needed
 - emit YAML consumed by templates
 
-The parser/toolchain also validates known Stellaris effects, triggers,
-identifiers, and constants. When a game update changes script APIs, update
-`synthetipy/game_definitions/` and `synthetipy/pdx_constants.py` before
-rewriting otherwise valid templates.
+This exists because the official runtime DSL API is not rich enough for all
+automation decisions. Some information must be extracted before runtime.
 
-This exists because the official runtime DSL API is not rich enough for all automation decisions. Some information must be extracted before runtime.
+For Stellaris DSL syntax reference (effects, triggers, scopes, modifiers,
+enums), consult `.config/stellaris/` as the primary source and the Stellaris
+user document `logs/script_documentation` as the secondary reference. See the
+[DSL Style Guide](../maintenance/dsl-style-guide.md) for the full reference
+priority.
 
 The parser side is being consolidated around a shared framework:
 

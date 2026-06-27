@@ -237,32 +237,98 @@ defined_text = {
 }
 
 defined_text = {
-    name = bca_gs_expect_output_research_value_raw
-    value = bca_expect_output_research
+    name = bca_gs_expect_output_physics_research_value_raw
+    value = bca_expect_output_physics_research
 }
 
 defined_text = {
-    name = bca_gs_expect_output_research_display
+    name = bca_gs_expect_output_physics_research_display
     text = {
         trigger = {
-            has_country_flag = bca_economic_target_research_forbidden
+            has_country_flag = bca_economic_target_physics_research_forbidden
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
     }
     text = {
         trigger = {
-            has_country_flag = bca_economic_target_research_unlimited
+            has_country_flag = bca_economic_target_physics_research_unlimited
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_RESEARCH"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_PHYSICS_RESEARCH"
 }
 
 defined_text = {
-    name = bca_gs_expect_output_research_status
+    name = bca_gs_expect_output_physics_research_status
     text = {
         trigger = {
-            bca_country_needs_research = yes
+            bca_country_needs_physics_research = yes
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+}
+
+defined_text = {
+    name = bca_gs_expect_output_society_research_value_raw
+    value = bca_expect_output_society_research
+}
+
+defined_text = {
+    name = bca_gs_expect_output_society_research_display
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_society_research_forbidden
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
+    }
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_society_research_unlimited
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_SOCIETY_RESEARCH"
+}
+
+defined_text = {
+    name = bca_gs_expect_output_society_research_status
+    text = {
+        trigger = {
+            bca_country_needs_society_research = yes
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+}
+
+defined_text = {
+    name = bca_gs_expect_output_engineering_research_value_raw
+    value = bca_expect_output_engineering_research
+}
+
+defined_text = {
+    name = bca_gs_expect_output_engineering_research_display
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_engineering_research_forbidden
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
+    }
+    text = {
+        trigger = {
+            has_country_flag = bca_economic_target_engineering_research_unlimited
+        }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_ENGINEERING_RESEARCH"
+}
+
+defined_text = {
+    name = bca_gs_expect_output_engineering_research_status
+    text = {
+        trigger = {
+            bca_country_needs_engineering_research = yes
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
     }

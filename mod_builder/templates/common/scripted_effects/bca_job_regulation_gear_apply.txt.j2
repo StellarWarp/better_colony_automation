@@ -15,6 +15,10 @@ bca_jr_apply_inc_gears = {
             }
         }
         set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
+        add_variable = {
+            which = bca_jr_actual_job_change
+            value = {{ step }}
+        }
         subtract_variable = {
             which = $TARGET$
             value = {{ step }}
@@ -34,6 +38,10 @@ bca_jr_apply_dec_gears = {
             }
         }
         set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
+        add_variable = {
+            which = bca_jr_actual_job_change
+            value = {{ step }}
+        }
         subtract_variable = {
             which = $TARGET$
             value = {{ step }}

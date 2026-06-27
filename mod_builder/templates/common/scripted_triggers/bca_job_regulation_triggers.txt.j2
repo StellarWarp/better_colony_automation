@@ -3,7 +3,7 @@
   判断某岗位的某个产出是否在当前星球上激活（考虑条件 trigger）
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
-{% set economic_set = ['energy','minerals','food','alloys','consumer_goods','physics_research','society_research','engineering_research'] %}
+{% set economic_set = job_regulation_config.resources %}
 
 {% for entry in regulated %}
 {% for resource in entry.economic_resources if resource in economic_set %}
@@ -33,13 +33,7 @@ bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
 {# INC 条件: 该岗位在 needs_category 组中是否实际产出对应资源 #}
 {% for nc in entry.needs_categories %}
 bca_jr_should_inc_{{ entry.job }}_for_{{ nc }} = {
-{% set matching = entry.economic_resources | select('in', ['energy','minerals','food','alloys','consumer_goods','physics_research','society_research','engineering_research']) | list %}
-{% set nc_resources = [] %}
-{% for res in matching %}
-{% if {'energy':'energy','minerals':'minerals','food':'food','alloys':'alloys','consumer_goods':'consumer_goods','physics_research':'physics_research','society_research':'society_research','engineering_research':'engineering_research'}[res] == nc %}
-{% set _ = nc_resources.append(res) %}
-{% endif %}
-{% endfor %}
+{% set nc_resources = entry.economic_resources | select('equalto', nc) | list %}
 {% if nc_resources %}
     OR = {
 {% for res in nc_resources %}

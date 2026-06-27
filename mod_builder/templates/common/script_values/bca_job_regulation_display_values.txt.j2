@@ -1,0 +1,18 @@
+{# GUI display-only values for job regulation. #}
+
+bca_jr_rounded_value = {
+    set = $VALUE$
+    round = yes
+}
+
+bca_jr_num_pops_assigned_to_job = {
+    base = 0
+    complex_trigger_modifier = {
+        trigger_scope = $JOB|this$
+        trigger = num_pops_assigned_to_job
+        parameters = {
+            pop_group = $POP_GROUP$
+        }
+        mode = add
+    }
+}

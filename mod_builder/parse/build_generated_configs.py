@@ -16,7 +16,6 @@ def copy_handwritten_configs(base_dir: Path, generated_configs_dir: Path) -> Non
     generated_configs_dir.mkdir(parents=True, exist_ok=True)
 
     files_to_copy = [
-        "job_config.yaml",
         "job_tag_outputs.yaml",
         "district_direct_outputs.yaml",
         "other_district_config.yaml",

@@ -1,10 +1,11 @@
 {#
-  Phase 7: 岗位调控评估（单次遍历 + 配额版）
-  1. 清零累加器 → 一次 every_owned_pop_job 遍历 → 累加 raw/eff 到各 job
-  2. 按 needs_category 分组 INC，配额消费，至少 50 永执行
-  3. DEC 每岗独立
+  Phase 7: 岗位调控评估
+  1. 根据资源状态和冷却发放 check/plan flag
+  2. 只统计被 check 的岗位
+  3. 按统计结果发放 job_changes gear flag，并更新冷却
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
+{% set economic_set = job_regulation_config.resources %}
 
 {# ---- INC 分组 ---- #}
 {% set inc_groups = {} %}
@@ -14,92 +15,240 @@
 {% endfor %}
 {% endfor %}
 
-bca_jr_evaluate_all = {
-
-    # ==== 清零 + 累加(含冷却递减/跳过/重设) ====
-    bca_jr_clear_accumulators = yes
-    bca_jr_accumulate_all = yes
-
-    # ==== 初始配额 ====
-{% for nc in inc_groups.keys() | sort %}
-    set_variable = { which = bca_jr_quota_{{ nc }} value = 3200 }
+{# ---- DEC 分组：用 primary_needs 做外层资源过滤，完整 surplus 判断仍在 bca_jr_should_dec_x 中 ---- #}
+{% set dec_groups = {} %}
+{% for entry in regulated if entry.needs_categories and entry.pop_category and entry.primary_needs %}
+{% set _ = dec_groups.setdefault(entry.primary_needs, []).append(entry) %}
 {% endfor %}
 
-    # ==== INC: 配额 + 需求 ====
+bca_jr_initialize_resource_remaining = {
+{% for need_name, need in economic_need_thresholds.items() if need_name in economic_set %}
+    clear_variable = bca_jr_income_{{ need_name }}
+    clear_variable = bca_jr_remaining_inc_{{ need_name }}
+    clear_variable = bca_jr_remaining_dec_{{ need_name }}
+    export_resource_income_to_variable = { resource = {{ need.resource }} variable = bca_jr_income_{{ need_name }} }
+
+    set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = {{ need.variable }} }
+    subtract_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+    if = {
+        limit = { check_variable_arithmetic = { which = bca_jr_remaining_inc_{{ need_name }} value < 0 } }
+        clear_variable = bca_jr_remaining_inc_{{ need_name }}
+    }
+
+    set_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+    subtract_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = {{ need.variable }} }
+    if = {
+        limit = { check_variable_arithmetic = { which = bca_jr_remaining_dec_{{ need_name }} value < 0 } }
+        clear_variable = bca_jr_remaining_dec_{{ need_name }}
+    }
+{% endfor %}
+}
+
+bca_jr_tick_cooldowns = {
+{% for entry in regulated if entry.pop_category %}
+    if = {
+        limit = { check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value > 0 } }
+        subtract_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value = 1 }
+        if = {
+            limit = { check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 } }
+            clear_variable = bca_jr_cooldown_full_{{ entry.job }}
+        }
+    }
+    if = {
+        limit = { check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value > 0 } }
+        subtract_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 1 }
+        if = {
+            limit = { check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 } }
+            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
+        }
+    }
+{% endfor %}
+}
+
+bca_jr_plan_job_checks = {
+    # ==== INC: 任一需要资源命中即可计划增加 ====
 {% for nc, jobs in inc_groups.items() | sort %}
     # ── needs_{{ nc }} ──
     if = {
         limit = {
             bca_empire_needs_{{ nc }} = yes
-            check_variable_arithmetic = { which = bca_jr_quota_{{ nc }} value > 0 }
         }
 {% for entry in jobs %}
         if = {
             limit = {
-                check_variable_arithmetic = { which = bca_jr_quota_{{ nc }} value > 0 }
                 bca_jr_should_inc_{{ entry.job }}_for_{{ nc }} = yes
-                check_variable_arithmetic = { which = bca_jr_acc_raw_{{ entry.job }} value >= 1 }
+                owner = { check_variable_arithmetic = { which = bca_jr_remaining_inc_{{ nc }} value > 0 } }
+                owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
                 check_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value <= 0 }
+                NOT = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
             }
-            # target = min(acc_raw / 4, quota), 至少 50
-            set_variable = { which = bca_jr_target value = bca_jr_acc_raw_{{ entry.job }} }
-            divide_variable = { which = bca_jr_target value = 4 }
-            if = {
-                limit = {
-                    check_variable_arithmetic = { which = bca_jr_target value > bca_jr_quota_{{ nc }} }
-                }
-                set_variable = { which = bca_jr_target value = bca_jr_quota_{{ nc }} }
-            }
-            if = {
-                limit = {
-                    check_variable_arithmetic = { which = bca_jr_target value < 50 }
-                }
-                set_variable = { which = bca_jr_target value = 50 }
-            }
-            # 消费配额
-            subtract_variable = {
-                which = bca_jr_quota_{{ nc }}
-                value = bca_jr_target
-            }
-            # 清除对端冷却（增加岗位说明不再为空）
-            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
-            bca_jr_apply_inc_gears = { JOB = {{ entry.job }} TARGET = bca_jr_target }
+            set_carrier_flag = bca_jr_check_{{ entry.job }}
+            set_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+            remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
         }
 {% endfor %}
     }
 {% endfor %}
 
-    # ==== DEC: 每岗独立 ====
-{% for entry in regulated if entry.needs_categories and entry.pop_category %}
-    # ── dec {{ entry.job }} ──
-    else_if = {
+    # ==== DEC: 所有有效产出都 surplus 才计划减少，且 INC 优先 ====
+{% for nc, jobs in dec_groups.items() | sort %}
+    # ── surplus_{{ nc }} ──
+    if = {
         limit = {
-            bca_jr_should_dec_{{ entry.job }} = yes
-            check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
+            bca_empire_has_surplus_{{ nc }} = yes
         }
+{% for entry in jobs %}
+        # ── dec {{ entry.job }} ──
         if = {
             limit = {
-                check_variable_arithmetic = { which = bca_jr_acc_raw_{{ entry.job }} value >= 1 }
+                NOT = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
+                bca_jr_should_dec_{{ entry.job }} = yes
+                owner = { check_variable_arithmetic = { which = bca_jr_remaining_dec_{{ nc }} value > 0 } }
+                owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
+                check_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value <= 0 }
             }
-            set_variable = { which = bca_jr_target value = bca_jr_acc_raw_{{ entry.job }} }
-            divide_variable = { which = bca_jr_target value = 4 }
+            set_carrier_flag = bca_jr_check_{{ entry.job }}
+            set_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+        }
+{% endfor %}
+    }
+{% endfor %}
+}
+
+bca_jr_apply_planned_job_changes = {
+{% for entry in regulated if entry.pop_category %}
+    if = {
+        limit = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
+        set_variable = { which = bca_jr_target value = bca_jr_acc_total_job_count_{{ entry.job }} }
+        subtract_variable = { which = bca_jr_target value = bca_jr_acc_open_job_count_{{ entry.job }} }
+{% for resource in entry.economic_resources if resource in economic_set %}
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker value > 0 }
+                owner = { check_variable_arithmetic = { which = bca_jr_remaining_inc_{{ resource }} value > 0 } }
+            }
+            set_variable = { which = bca_jr_tmp_candidate value = owner.bca_jr_remaining_inc_{{ resource }} }
+            divide_variable = { which = bca_jr_tmp_candidate value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker }
+            divide_variable = { which = bca_jr_tmp_candidate value = bca_jr_acc_avg_output_efficiency_{{ entry.job }} }
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_target value > bca_jr_tmp_candidate } }
+                set_variable = { which = bca_jr_target value = bca_jr_tmp_candidate }
+            }
+        }
+{% endfor %}
+        if = {
+            limit = { check_variable_arithmetic = { which = bca_jr_target value <= 0 } }
+            set_variable = { which = bca_jr_cooldown_full_{{ entry.job }} value = 6 }
+        }
+        else = {
+            clear_variable = bca_jr_actual_job_change
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_target value > 3200 } }
+                set_variable = { which = bca_jr_target value = 3200 }
+            }
+            clear_variable = bca_jr_cooldown_empty_{{ entry.job }}
+            bca_jr_apply_inc_gears = { JOB = {{ entry.job }} TARGET = bca_jr_target }
+{% for resource in entry.economic_resources if resource in economic_set %}
             if = {
                 limit = {
-                    check_variable_arithmetic = { which = bca_jr_target value < 50 }
+                    check_variable_arithmetic = { which = bca_jr_actual_job_change value > 0 }
+                    check_variable_arithmetic = { which = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker value > 0 }
                 }
-                set_variable = { which = bca_jr_target value = 50 }
+                set_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_actual_job_change }
+                multiply_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_acc_avg_output_efficiency_{{ entry.job }} }
+                multiply_variable = { which = bca_jr_tmp_resource_delta value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker }
+                owner = {
+                    subtract_variable = { which = bca_jr_remaining_inc_{{ resource }} value = prev.bca_jr_tmp_resource_delta }
+                    if = {
+                        limit = { check_variable_arithmetic = { which = bca_jr_remaining_inc_{{ resource }} value < 0 } }
+                        clear_variable = bca_jr_remaining_inc_{{ resource }}
+                    }
+                }
             }
-            # 清除对端冷却（减少岗位说明不再满）
+{% endfor %}
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_jr_plan_dec_{{ entry.job }} }
+        set_variable = { which = bca_jr_target value = bca_jr_acc_assigned_workforce_{{ entry.job }} }
+        set_variable = { which = bca_jr_tmp_free_capacity value = bca_jr_acc_free_job_count_{{ entry.job }} }
+        add_variable = { which = bca_jr_target value = bca_jr_tmp_free_capacity }
+{% for resource in entry.economic_resources if resource in economic_set %}
+        if = {
+            limit = {
+                check_variable_arithmetic = { which = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker value > 0 }
+                owner = { check_variable_arithmetic = { which = bca_jr_remaining_dec_{{ resource }} value > 0 } }
+            }
+            set_variable = { which = bca_jr_tmp_candidate value = owner.bca_jr_remaining_dec_{{ resource }} }
+            divide_variable = { which = bca_jr_tmp_candidate value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker }
+            divide_variable = { which = bca_jr_tmp_candidate value = bca_jr_acc_avg_output_efficiency_{{ entry.job }} }
+            add_variable = { which = bca_jr_tmp_candidate value = bca_jr_acc_free_job_count_{{ entry.job }} }
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_target value > bca_jr_tmp_candidate } }
+                set_variable = { which = bca_jr_target value = bca_jr_tmp_candidate }
+            }
+        }
+{% endfor %}
+        if = {
+            limit = { check_variable_arithmetic = { which = bca_jr_target value <= 0 } }
+            set_variable = { which = bca_jr_cooldown_empty_{{ entry.job }} value = 6 }
+        }
+        else = {
+            clear_variable = bca_jr_actual_job_change
+            set_variable = { which = bca_jr_tmp_open_capacity value = bca_jr_acc_open_job_count_{{ entry.job }} }
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_target value > bca_jr_tmp_open_capacity } }
+                set_variable = { which = bca_jr_target value = bca_jr_tmp_open_capacity }
+            }
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_target value > 3200 } }
+                set_variable = { which = bca_jr_target value = 3200 }
+            }
             clear_variable = bca_jr_cooldown_full_{{ entry.job }}
             bca_jr_apply_dec_gears = { JOB = {{ entry.job }} TARGET = bca_jr_target }
+            set_variable = { which = bca_jr_tmp_assigned_delta value = bca_jr_actual_job_change }
+            subtract_variable = { which = bca_jr_tmp_assigned_delta value = bca_jr_acc_free_job_count_{{ entry.job }} }
+            if = {
+                limit = { check_variable_arithmetic = { which = bca_jr_tmp_assigned_delta value < 0 } }
+                clear_variable = bca_jr_tmp_assigned_delta
+            }
+{% for resource in entry.economic_resources if resource in economic_set %}
+            if = {
+                limit = {
+                    check_variable_arithmetic = { which = bca_jr_tmp_assigned_delta value > 0 }
+                    check_variable_arithmetic = { which = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker value > 0 }
+                }
+                set_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_tmp_assigned_delta }
+                multiply_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_acc_avg_output_efficiency_{{ entry.job }} }
+                multiply_variable = { which = bca_jr_tmp_resource_delta value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker }
+                owner = {
+                    subtract_variable = { which = bca_jr_remaining_dec_{{ resource }} value = prev.bca_jr_tmp_resource_delta }
+                    if = {
+                        limit = { check_variable_arithmetic = { which = bca_jr_remaining_dec_{{ resource }} value < 0 } }
+                        clear_variable = bca_jr_remaining_dec_{{ resource }}
+                    }
+                }
+            }
+{% endfor %}
         }
     }
 {% endfor %}
-
-    # ==== 清理临时变量 ====
     clear_variable = bca_jr_target
-{% for nc in inc_groups.keys() | sort %}
-    clear_variable = bca_jr_quota_{{ nc }}
-{% endfor %}
+    clear_variable = bca_jr_tmp_free_capacity
+    clear_variable = bca_jr_tmp_open_capacity
+    clear_variable = bca_jr_tmp_candidate
+    clear_variable = bca_jr_tmp_resource_delta
+    clear_variable = bca_jr_tmp_assigned_delta
+    clear_variable = bca_jr_actual_job_change
+}
+
+bca_jr_evaluate_all = {
+    bca_jr_clear_all_flags = yes
+    bca_jr_tick_cooldowns = yes
+    bca_jr_plan_job_checks = yes
+    bca_jr_clear_accumulators = yes
+    bca_jr_collect_checked_job_stats = yes
+    bca_jr_finalize_job_stats = yes
+    bca_jr_apply_planned_job_changes = yes
 
 }

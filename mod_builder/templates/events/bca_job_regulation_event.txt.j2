@@ -10,7 +10,8 @@ carrier_event = {
     is_triggered_only = yes
 
     trigger = {
-        always = yes
+        exists = owner
+        owner = { has_country_flag = bca_jr_enabled }
     }
 
     immediate = {
@@ -19,5 +20,66 @@ carrier_event = {
 
         # 累加 + 更新冷却（含递减） + 评估
         bca_jr_evaluate_all = yes
+    }
+}
+
+{# GUI 数据刷新：聚合所有殖民地 workforce 到 country 变量 #}
+{% set regulated = job_regulation_config.regulated_jobs %}
+country_event = {
+    id = colony_automation_event.2001
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        # 清零 country 级累加器
+{% for entry in regulated %}
+        clear_variable = bca_jr_total_assigned_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_job_count_{{ entry.job }}
+        clear_variable = bca_jr_total_free_job_count_{{ entry.job }}
+        clear_variable = bca_jr_total_open_job_count_{{ entry.job }}
+{% for resource in entry.economic_resources %}
+        clear_variable = bca_jr_total_output_{{ entry.job }}_{{ resource }}
+        clear_variable = bca_jr_display_output_{{ entry.job }}_{{ resource }}
+{% endfor %}
+{% endfor %}
+
+        # 各殖民地：只刷新统计数据，不触发月度调控或冷却变化
+        every_owned_colony = {
+            set_carrier_flag = bca_jr_check_all_jobs
+            bca_jr_clear_accumulators = yes
+            bca_jr_collect_checked_job_stats = yes
+            bca_jr_finalize_job_stats = yes
+            remove_carrier_flag = bca_jr_check_all_jobs
+        }
+
+        # 聚合 colony 数据到 country
+        every_owned_colony = {
+            owner = {
+{% for entry in regulated %}
+                add_variable = { which = bca_jr_total_assigned_workforce_{{ entry.job }} value = prev.bca_jr_acc_assigned_workforce_{{ entry.job }} }
+                add_variable = { which = bca_jr_total_capacity_workforce_{{ entry.job }} value = prev.bca_jr_acc_capacity_workforce_{{ entry.job }} }
+                add_variable = { which = bca_jr_total_productive_workforce_{{ entry.job }} value = prev.bca_jr_acc_productive_workforce_{{ entry.job }} }
+                add_variable = { which = bca_jr_total_job_count_{{ entry.job }} value = prev.bca_jr_acc_total_job_count_{{ entry.job }} }
+                add_variable = { which = bca_jr_total_free_job_count_{{ entry.job }} value = prev.bca_jr_acc_free_job_count_{{ entry.job }} }
+                add_variable = { which = bca_jr_total_open_job_count_{{ entry.job }} value = prev.bca_jr_acc_open_job_count_{{ entry.job }} }
+{% for resource in entry.economic_resources %}
+                add_variable = { which = bca_jr_total_output_{{ entry.job }}_{{ resource }} value = prev.bca_jr_acc_output_{{ entry.job }}_{{ resource }} }
+{% endfor %}
+{% endfor %}
+            }
+        }
+
+        # GUI 只显示取整后的产出，底层调控继续使用原始小数。
+{% for entry in regulated %}
+{% for resource in entry.economic_resources %}
+        set_variable = { which = bca_jr_display_output_{{ entry.job }}_{{ resource }} value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_{{ entry.job }}_{{ resource }}| }
+{% endfor %}
+{% endfor %}
+
+        # 填槽位
+        bca_jr_clear_slot_mapping = yes
+        bca_jr_refresh_slot_data = yes
     }
 }

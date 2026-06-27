@@ -4,10 +4,10 @@
     _base  — 基础产出（来自 produces 解析）
     _mult  — 乘数链
     _add   — 加数链
-    _per_worker — 每劳动力产出 = (base + add) * mult
+    _per_worker — 每 1 workforce 产出 = (base + add) * mult / 100
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
-{% set economic_set = ['energy','minerals','food','alloys','consumer_goods','physics_research','society_research','engineering_research'] %}
+{% set economic_set = job_regulation_config.resources %}
 
 {% for entry in regulated %}
 {% for resource in entry.economic_resources if resource in economic_set %}
@@ -53,11 +53,12 @@ bca_job_{{ entry.job }}_{{ resource }}_add = {
 {% endif %}
 }
 
-# -- 每劳动力产出 --
+# -- 每 1 workforce 产出 --
 bca_job_{{ entry.job }}_{{ resource }}_per_worker = {
     add = value:bca_job_{{ entry.job }}_{{ resource }}_base
     add = value:bca_job_{{ entry.job }}_{{ resource }}_add
     mult = value:bca_job_{{ entry.job }}_{{ resource }}_mult
+    divide = 100
 }
 
 {% endfor %}
