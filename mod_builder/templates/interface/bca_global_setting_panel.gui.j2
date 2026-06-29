@@ -5,8 +5,11 @@
 {% set panel_width = 860 %}
 {% set panel_height = 850 %}
 {% set outer_padding_x = 24 %}
-{% set full_width = panel_width - outer_padding_x * 2 %}
 {% set content_x = outer_padding_x %}
+{% set content_left = content_x %}
+{% set content_right = panel_width - outer_padding_x %}
+{% set content_width = content_right - content_left %}
+{% set full_width = content_width %}
 
 {% set scroll_container_y = 60 %}
 {% set scroll_container_height = panel_height - scroll_container_y - 16 %}
@@ -22,9 +25,9 @@
 {% set economy_row_gap = 6 %}
 
 {# ---- Demolition ---- #}
-{% set demo_row_height = 44 %}
-{% set demo_row_gap = 8 %}
-{% set demo_all_row_height = 36 %}
+{% set demo_row_height = 58 %}
+{% set demo_row_gap = 10 %}
+{% set demo_all_row_height = 42 %}
 
 {# ---- Behavior ---- #}
 {% set behavior_row_height = 40 %}
@@ -38,14 +41,44 @@
 {% set jr_slots = job_regulation_config.display_slots | default(15) %}
 {% set jr_slot_h = 44 %}
 {% set jr_global_y = tab_content_y %}
-{% set jr_cat_bar_y = tab_content_y + 42 %}
-{% set jr_cat_button_height = 40 %}
+{% set jr_group_bar_y = tab_content_y + 42 %}
+{% set jr_cat_button_height = 36 %}
+{% set jr_group_button_height = jr_cat_button_height %}
+{% set jr_cat_bar_y = jr_group_bar_y + jr_group_button_height + 2 %}
 {% set jr_header_y = jr_cat_bar_y + jr_cat_button_height + 10 %}
 {% set jr_list_start_y = jr_header_y + 28 %}
 {% set jr_cat_button_gap = 2 %}
+{% set jr_table_x = content_left %}
+{% set jr_table_width = content_width %}
+{% set jr_col_gap = 4 %}
+{% set jr_locate_x = 4 %}
+{% set jr_locate_w = 24 %}
+{% set jr_icon_x = jr_locate_x + jr_locate_w + jr_col_gap %}
+{% set jr_icon_w = 30 %}
+{% set jr_job_x = jr_icon_x + jr_icon_w + jr_col_gap %}
+{% set jr_job_w = 120 %}
+{% set jr_wf_x = jr_job_x + jr_job_w + jr_col_gap %}
+{% set jr_wf_w = 110 %}
+{% set jr_change_x = jr_wf_x + jr_wf_w + jr_col_gap %}
+{% set jr_change_w = 50 %}
+{% set jr_rate_x = jr_change_x + jr_change_w + jr_col_gap %}
+{% set jr_rate_w = 54 %}
+{% set jr_mode_w = 42 %}
+{% set jr_action_w = 58 %}
+{% set jr_mode_x = jr_table_width - jr_mode_w %}
+{% set jr_action_x = jr_mode_x - jr_action_w - jr_col_gap %}
+{% set jr_output_x = jr_rate_x + jr_rate_w + jr_col_gap %}
+{% set jr_output_w = jr_action_x - jr_output_x - jr_col_gap %}
 
 {% set categories = job_regulation_config.categories %}
-{% set jr_cat_button_width = (full_width - (categories | length - 1) * jr_cat_button_gap) // (categories | length) %}
+{% set jr_cat_count = categories | length + 1 %}
+{% set jr_category_groups = [
+    {"name": "basic", "resources": ["energy", "minerals", "food"]},
+    {"name": "industry", "resources": ["alloys", "consumer_goods", "trade"]},
+    {"name": "knowledge", "resources": ["unity", "physics_research", "society_research", "engineering_research"]},
+    {"name": "rare", "resources": ["rare_crystals", "volatile_motes", "exotic_gases"]},
+] %}
+{% set jr_cat_button_width = (full_width - (jr_cat_count - 1) * jr_cat_button_gap) // jr_cat_count %}
 
 {% set rare_building_choices = [
     {"name": "retain", "text": "BCA_GLOBAL_SETTINGS_OPTION_RETAIN", "effect": "bca_global_settings_retain_low_level_rare_resource_buildings", "tooltip": "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_RETAIN_TOOLTIP"},
@@ -120,7 +153,7 @@
             }
 
         {# ---- Tab 按钮栏 ---- #}
-{% set tab_button_width = (full_width - content_x - 20) // 3 %}
+{% set tab_button_width = (full_width - 2 * 2) // 3 %}
         {{
         gsc.choice_row(
             name = "tab_select", text = "", tooltip = "",
@@ -192,12 +225,15 @@
             label_effect = "bca_tab_visible_1"
         )
         }}
+        {{ jr.refresh_button(content_right - 240, jr_global_y + 4, 72, 24) }}
+
+        {{ jr.category_group_bar(categories, jr_category_groups, content_x, jr_group_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_group_button_height) }}
 
         {{ jr.category_bar(categories, content_x, jr_cat_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_cat_button_height) }}
 
-        {{ jr.table_header(content_x, jr_header_y) }}
+        {{ jr.table_header(jr_table_x, jr_header_y, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_table_width - jr_action_x) }}
 
-        {{ jr.slot_list(jr_slots, content_x + 4, jr_list_start_y + 4, jr_slot_h, full_width - 10) }}
+        {{ jr.slot_list(jr_slots, jr_table_x, jr_list_start_y + 4, jr_slot_h, jr_table_width, jr_locate_x, jr_locate_w, jr_icon_x, jr_icon_w, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_action_w, jr_mode_x, jr_mode_w) }}
 
         {# ═══════════════════════════════════════════════════════ #}
         {# Tab 2: Automation                                         #}

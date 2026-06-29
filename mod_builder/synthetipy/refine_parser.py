@@ -15,16 +15,21 @@ class RefineParser(ParserContextHelper):
             self._refine_object(stmt)
             
     def _refine_object(self, obj: ObjectNode):
-        if str(obj.name) == 'inline_script':
-            self._parse_inline_script(obj, None, None)  # 直接传入对象本身，后续方法会处理替换
-        body = obj.body
-        for idx, stmt in enumerate(body.statements):
-            self._refine_statement(stmt, body, idx)
+        self._refine_block(obj.body)
+
+    def _refine_block(self, block: BlockNode):
+        for idx, stmt in enumerate(list(block.statements)):
+            self._refine_statement(stmt, block, idx)
             
     def _refine_statement(self, stmt, parent, index):
         if isinstance(stmt, PropertyNode):
             if str(stmt.key) == 'inline_script':
                 self._parse_inline_script(stmt, parent, index)
+                return
+            if isinstance(stmt.value, BlockNode):
+                self._refine_block(stmt.value)
+        elif isinstance(stmt, ObjectNode):
+            self._refine_object(stmt)
                 
                 
     def _parse_inline_script(self, node: Union[ObjectNode, PropertyNode], parent, index):

@@ -17,3 +17,19 @@ bca_jr_clear_all_flags = {
 {% endfor %}
 {% endfor %}
 }
+
+bca_jr_clear_transient_flags = {
+    remove_carrier_flag = bca_jr_check_all_jobs
+{% for entry in regulated %}
+    remove_carrier_flag = bca_jr_check_{{ entry.job }}
+    remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+    remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+{% endfor %}
+}
+
+bca_jr_clear_skip_flags = {
+{% for entry in regulated %}
+    remove_carrier_flag = bca_jr_skip_full_{{ entry.job }}
+    remove_carrier_flag = bca_jr_skip_empty_{{ entry.job }}
+{% endfor %}
+}

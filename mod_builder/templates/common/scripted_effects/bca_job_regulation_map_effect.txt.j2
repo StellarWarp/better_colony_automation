@@ -2,15 +2,130 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set slots = job_regulation_config.display_slots | default(15) %}
 {% set categories = job_regulation_config.categories %}
+{% set resources = job_regulation_config.resources %}
+{% set display_numbers = [
+    "assigned_workforce",
+    "capacity_workforce",
+    "pop_productive_workforce",
+    "productive_workforce",
+    "automated_capacity_workforce",
+    "automated_productive_workforce",
+    "pop_capacity_limit",
+    "total_job_count",
+    "free_job_count",
+    "open_job_count",
+    "open_total_capacity",
+    "automation_rate",
+    "pop_efficiency_delta",
+    "automated_efficiency_delta",
+    "total_efficiency_delta",
+    "closable_capacity_workforce",
+] %}
+
+{# 生成三位有效数显示用变量：普通值、K、M 三套都预计算，scripted_loc 决定使用哪套。 #}
+bca_jr_prepare_display_number = {
+    optimize_memory
+    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
+    set_variable = { which = $OUT$_int value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
+    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
+    multiply_variable = { which = bca_jr_fmt_tmp value = 10 }
+    set_variable = { which = $OUT$_one value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
+    divide_variable = { which = $OUT$_one value = 10 }
+    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
+    multiply_variable = { which = bca_jr_fmt_tmp value = 100 }
+    set_variable = { which = $OUT$_two value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
+    divide_variable = { which = $OUT$_two value = 100 }
+    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
+    divide_variable = { which = bca_jr_fmt_tmp value = 10 }
+    set_variable = { which = $OUT$_k value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
+    divide_variable = { which = $OUT$_k value = 100 }
+    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
+    divide_variable = { which = bca_jr_fmt_tmp value = 10000 }
+    set_variable = { which = $OUT$_m value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
+    divide_variable = { which = $OUT$_m value = 100 }
+    clear_variable = bca_jr_fmt_tmp
+}
+
+bca_jr_locate_job_colonies = {
+    optimize_memory
+    every_owned_colony = {
+        limit = {
+            check_modifier_value = {
+                modifier = job_$JOB$_add
+                value > 0
+            }
+        }
+        owner = {
+            create_message = {
+                type = MESSAGE_BCA_JOB_LOCATE
+                days = 1
+                localization = MESSAGE_BCA_JOB_LOCATE_DESC
+                target = prev
+                variable = {
+                    type = name
+                    localization = PLANET
+                    scope = prev
+                }
+            }
+        }
+    }
+}
+
+bca_jr_locate_slot_job = {
+    optimize_memory
+{% for entry in regulated %}
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }} }
+        bca_jr_locate_job_colonies = { JOB = {{ entry.job }} }
+    }
+{% endfor %}
+}
 
 {# 清除所有槽位映射 flag #}
+bca_jr_clear_slot_mapping_for_slot = {
+    optimize_memory
+{% for entry in regulated %}
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }}
+{% endfor %}
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
+    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce
+    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit
+    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count
+    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count
+    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count
+    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity
+    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate
+    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta
+    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta
+    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta
+    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce
+{% for number in display_numbers %}
+    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_int
+    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_one
+    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_two
+    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_k
+    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_m
+{% endfor %}
+{% for resource in resources %}
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = 0 }
+    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_int
+    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_one
+    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_two
+    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_k
+    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_m
+{% endfor %}
+}
+
 bca_jr_clear_slot_mapping = {
+    optimize_memory
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
-{% for entry in regulated %}
-    remove_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
-{% endfor %}
-    remove_country_flag = bca_jr_slot_{{ s_name }}_mapped
+    bca_jr_clear_slot_mapping_for_slot = { SLOT_NAME = {{ s_name }} }
 {% endfor %}
 {% for entry in regulated %}
     remove_country_flag = bca_jr_slot_mapped_{{ entry.job }}
@@ -18,72 +133,81 @@ bca_jr_clear_slot_mapping = {
     set_variable = { which = bca_jr_display_count value = 0 }
 }
 
-{# 找最佳候选：遍历所有未映射岗位，取 assigned workforce 最大值 #}
+{# 找最佳候选：遍历所有未映射岗位，取排序分数最大值 #}
 bca_jr_find_best_for_slot = {
     optimize_memory
-    set_variable = { which = bca_jr_best_wf value = 0 }
+    set_variable = { which = bca_jr_best_score value = 0 }
 {% for entry in regulated %}
-{% set active_categories = [] %}
-{% for cat in categories %}
-{% if cat in entry.needs_categories %}
-{% set _ = active_categories.append(cat) %}
-{% endif %}
-{% endfor %}
     if = {
         limit = {
             NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
-{% if active_categories %}
-            OR = {
-{% for cat in active_categories %}
-                AND = {
-                    check_variable = { which = bca_jr_gui_category value = {{ categories.index(cat) }} }
-                    check_variable_arithmetic = { which = bca_jr_total_output_{{ entry.job }}_{{ cat }} value > 0 }
-                }
-{% endfor %}
-            }
-{% else %}
-            always = no
-{% endif %}
-            check_variable_arithmetic = { which = bca_jr_total_assigned_workforce_{{ entry.job }} value > bca_jr_best_wf }
+            bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
+            check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value > bca_jr_best_score }
         }
-        set_variable = { which = bca_jr_best_wf value = bca_jr_total_assigned_workforce_{{ entry.job }} }
+        set_variable = { which = bca_jr_best_score value = value:bca_jr_sort_score_{{ entry.job }} }
     }
 {% endfor %}
 }
 
-{# 填入当前槽位：匹配 best_wf 的第一个未映射岗位 #}
+{# 填入当前槽位：匹配 best_score 的第一个未映射岗位 #}
+bca_jr_fill_slot_job_stats = {
+    optimize_memory
+    set_country_flag = bca_jr_slot_$SLOT_NAME$_job_$JOB$
+    set_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
+    set_country_flag = bca_jr_slot_mapped_$JOB$
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_assigned_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_capacity_workforce value = bca_jr_total_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce value = bca_jr_total_pop_productive_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_productive_workforce value = bca_jr_total_productive_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce value = bca_jr_total_automated_productive_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit value = bca_jr_total_pop_capacity_limit_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_total_job_count value = bca_jr_total_job_count_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_free_job_count value = bca_jr_total_free_job_count_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_job_count value = bca_jr_total_open_job_count_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce value = bca_jr_total_closable_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = bca_jr_total_open_job_count_$JOB$ }
+    add_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = 0 }
+    if = {
+        limit = { check_variable = { which = bca_jr_slot_$SLOT_NAME$_total_job_count value > 0 } }
+        set_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+        multiply_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = 100 }
+        divide_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = bca_jr_slot_$SLOT_NAME$_total_job_count }
+    }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta value = bca_jr_total_pop_productive_workforce_$JOB$ }
+    subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta value = bca_jr_total_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta value = bca_jr_total_automated_productive_workforce_$JOB$ }
+    subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = bca_jr_total_productive_workforce_$JOB$ }
+    subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
+{% for resource in resources %}
+    if = {
+        limit = { is_variable_set = bca_jr_total_output_$JOB$_{{ resource }} }
+        set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = bca_jr_total_output_$JOB$_{{ resource }} }
+    }
+{% endfor %}
+}
+
 bca_jr_fill_current_slot = {
     optimize_memory
 {% for entry in regulated %}
-{% set active_categories = [] %}
-{% for cat in categories %}
-{% if cat in entry.needs_categories %}
-{% set _ = active_categories.append(cat) %}
-{% endif %}
-{% endfor %}
     if = {
         limit = {
             NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
-{% if active_categories %}
-            OR = {
-{% for cat in active_categories %}
-                AND = {
-                    check_variable = { which = bca_jr_gui_category value = {{ categories.index(cat) }} }
-                    check_variable_arithmetic = { which = bca_jr_total_output_{{ entry.job }}_{{ cat }} value > 0 }
-                }
-{% endfor %}
-            }
-{% else %}
-            always = no
-{% endif %}
-            check_variable_arithmetic = { which = bca_jr_total_assigned_workforce_{{ entry.job }} value = bca_jr_best_wf }
+            bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
+            check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value = bca_jr_best_score }
             check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
         }
-        set_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }}
-        set_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
-        set_country_flag = bca_jr_slot_mapped_{{ entry.job }}
+        bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = {{ entry.job }} }
         add_variable = { which = bca_jr_fill_idx value = 1 }
     }
+{% endfor %}
+{% for number in display_numbers %}
+    bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
+{% endfor %}
+{% for resource in resources %}
+    bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
 {% endfor %}
 }
 
@@ -97,7 +221,7 @@ bca_jr_refresh_slot_data = {
     bca_jr_find_best_for_slot = yes
     if = {
         limit = {
-            check_variable = { which = bca_jr_best_wf value > 0 }
+            check_variable = { which = bca_jr_best_score value > 0 }
         }
         bca_jr_fill_current_slot = { SLOT_NAME = {{ s_name }} SLOT_NUM = {{ s + 1 }} }
     }
@@ -106,5 +230,5 @@ bca_jr_refresh_slot_data = {
     set_variable = { which = bca_jr_display_count value = bca_jr_fill_idx }
     subtract_variable = { which = bca_jr_display_count value = 1 }
     clear_variable = bca_jr_fill_idx
-    clear_variable = bca_jr_best_wf
+    clear_variable = bca_jr_best_score
 }

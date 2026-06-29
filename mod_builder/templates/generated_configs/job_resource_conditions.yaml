@@ -1,0 +1,1116 @@
+job_resource_conditions:
+  civilian:
+    trade:
+    - null
+    - "exists = owner\n            has_modifier = resort_colony"
+    - "exists = owner\n            owner = {\n    is_egalitarian = yes\n}\n      \
+      \      colony = {\n    has_ethics_output = yes\n}"
+    physics_research:
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    has_ethics_output = yes\n}"
+    society_research:
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    has_ethics_output = yes\n}"
+    engineering_research:
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    has_ethics_output = yes\n}"
+    unity:
+    - "exists = owner\n            owner = {\n    is_spiritualist = yes\n}\n     \
+      \       colony = {\n    has_ethics_output = yes\n}"
+  slave_overseer:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+  organic_battery:
+    energy:
+    - null
+  livestock:
+    food:
+    - null
+  livestock_infernal:
+    alloys:
+    - null
+  bio_trophy:
+    unity:
+    - null
+  organic_exhibit:
+    unity:
+    - null
+  livestock_lithoid:
+    minerals:
+    - null
+  purge_lithoid:
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_robot:
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_processing:
+    food:
+    - null
+    - "colony = {\n    has_active_building = building_food_processing_facility\n}"
+    - "colony = {\n    has_active_building = building_food_processing_center\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_processing_lithoid:
+    minerals:
+    - null
+    - "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+      }"
+    - "colony = {\n    has_active_building = building_mineral_purification_hub\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_processing_infernal:
+    alloys:
+    - null
+    - "colony = {\n    has_active_building = building_foundry_1\n}"
+    - "colony = {\n    has_active_building = building_foundry_2\n}"
+    - "colony = {\n    has_active_building = building_foundry_3\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_processing_robot:
+    alloys:
+    - null
+    - "colony = {\n    has_active_building = building_foundry_2\n}"
+    - "colony = {\n    has_active_building = building_foundry_3\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_labor_camps:
+    food:
+    - null
+    - "colony = {\n    has_active_building = building_food_processing_facility\n}"
+    - "colony = {\n    has_active_building = building_food_processing_center\n}"
+    minerals:
+    - null
+    - "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+      }"
+    - "colony = {\n    has_active_building = building_mineral_purification_hub\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_matrix:
+    energy:
+    - null
+    - "colony = {\n    has_active_building = building_energy_grid\n}"
+    - "colony = {\n    has_active_building = building_energy_nexus\n}"
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  purge_sacrifice:
+    unity:
+    - null
+  politician:
+    unity:
+    - null
+    - "colony = {\n    OR = {\n        politician_is_merchant = yes\n        politician_is_augmentation_merchant\
+      \ = yes\n        politician_is_ashbroker = yes\n    }\n}"
+    - "colony = {\n    politician_is_science_director = yes\n}"
+    - "colony = {\n    OR = {\n        politician_is_high_priest = yes\n        politician_is_fire_oracle\
+      \ = yes\n    }\n}"
+    - "colony = {\n    politician_is_sacred_path_elite = yes\n}"
+    - "colony = {\n    politician_is_blazewright = yes\n    politician_is_radiant_priest\
+      \ = yes\n}"
+    - "colony = {\n    politician_is_blazing_harbinger = yes\n}"
+    - "colony = {\n    politician_is_superstitious_beliefs_high_priest = yes\n}"
+    trade:
+    - politician_is_executive = yes
+    - "colony = {\n    OR = {\n        politician_is_merchant = yes\n        politician_is_augmentation_merchant\
+      \ = yes\n        politician_is_ashbroker = yes\n    }\n}"
+    - "colony = {\n    politician_is_superstitious_beliefs_high_priest_corporate =\
+      \ yes\n}"
+    physics_research:
+    - "colony = {\n    politician_is_science_director = yes\n}"
+    society_research:
+    - "colony = {\n    politician_is_science_director = yes\n}"
+    engineering_research:
+    - "colony = {\n    politician_is_science_director = yes\n}"
+    - "colony = {\n    politician_is_technophant = yes\n}"
+  knight_commander:
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
+    engineering_research:
+    - exists = owner
+    society_research:
+    - exists = owner
+  dystopian_enforcer:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+  dystopian_telepath:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+    - null
+    - "exists = owner\n            owner = {\n    has_active_tradition = tr_domination_judgment_corps\n\
+      }"
+    physics_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+    engineering_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+    society_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+  physicist:
+    physics_research:
+    - null
+    - "colony = {\n    physicist_is_astrometeorologist_trigger = yes\n    solar_system\
+      \ = {\n        OR = {\n            has_environmental_effects = yes\n       \
+      \     has_star_flag = storm_system\n        }\n    }\n}"
+    - physicist_is_space_time_researcher_trigger = yes
+  biologist:
+    society_research:
+    - null
+    - biologist_is_zookeeper_trigger = yes
+  engineer:
+    engineering_research:
+    - null
+    - engineer_is_nanotech_researcher_trigger = yes
+  bureaucrat:
+    unity:
+    - null
+    - "OR = {\n    bureaucrat_is_death_priest = yes\n    bureaucrat_is_cremator =\
+      \ yes\n}"
+    - bureaucrat_is_haruspex = yes
+    - "colony = {\n    bureaucrat_is_low_tech = yes\n}"
+    - "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - "colony = {\n    bureaucrat_is_low_tech_manager = yes\n}"
+    - "colony = {\n    bureaucrat_is_low_tech_priest = yes\n}"
+    - "colony = {\n    bureaucrat_is_numistic_priest = yes\n}"
+    - "exists = owner\n            owner = {\n    is_spiritualist = yes\n}\n     \
+      \       colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    trade:
+    - bureaucrat_is_manager = yes
+    - bureaucrat_is_steward = yes
+    - "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - "colony = {\n    bureaucrat_is_low_tech_manager = yes\n}"
+    - "colony = {\n    bureaucrat_is_numistic_priest = yes\n}"
+    - "exists = owner\n            owner = {\n    is_egalitarian = yes\n}\n      \
+      \      colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    society_research:
+    - "OR = {\n    bureaucrat_is_death_priest = yes\n    bureaucrat_is_cremator =\
+      \ yes\n}"
+    - "colony = {\n    bureaucrat_is_sacred_path_specialist = yes\n}"
+    - "OR = {\n    bureaucrat_is_corpse_reader = yes\n    bureaucrat_is_corpse_broker\
+      \ = yes\n}"
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    engineering_research:
+    - bureaucrat_is_haruspex = yes
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    physics_research:
+    - "exists = owner\n            owner = {\n    is_materialist = yes\n}\n      \
+      \      colony = {\n    bureaucrat_is_memorialist = yes\n}"
+  enforcer:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+  telepath:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+    - null
+    - "exists = owner\n            owner = {\n    has_active_tradition = tr_domination_judgment_corps\n\
+      }"
+    physics_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+    engineering_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+    society_research:
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_confirmed\n\
+      }"
+    - "exists = owner\n            owner = {\n    has_country_flag = whisperers_covenant_rank_1\n\
+      }"
+  entertainer:
+    unity:
+    - null
+    - entertainer_is_duelist_trigger = yes
+    - entertainer_is_storm_dancer_trigger = yes
+    society_research:
+    - entertainer_is_curator_trigger = yes
+  chemist:
+    volatile_motes:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  translucer:
+    rare_crystals:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  gas_refiner:
+    exotic_gases:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  healthcare:
+    society_research:
+    - "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}"
+    - "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}\n       \
+      \     owner = {\n    has_completed_genetic_situation = yes\n}"
+  trader:
+    trade:
+    - null
+    - trader_is_subterranean = yes
+  necro_apprentice:
+    unity:
+    - null
+  foundry:
+    alloys:
+    - null
+    - industrial_jobs_are_catalytic_trigger = yes
+    - "exists = owner\n            owner = {\n    is_robot_empire = yes\n}"
+    - "exists = owner\n            owner = {\n    is_robot_empire = yes\n}\n     \
+      \       industrial_jobs_are_catalytic_trigger = yes"
+  artisan:
+    consumer_goods:
+    - null
+    - artisan_is_artificer_trigger = yes
+    - industrial_jobs_are_catalytic_trigger = yes
+    trade:
+    - artisan_is_artificer_trigger = yes
+    - "colony = {\n    artisan_is_pearl_diver_trigger = yes\n}"
+  bath_attendant:
+    trade:
+    - "owner = {\n    is_megacorp = yes\n}"
+  knight:
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
+    engineering_research:
+    - exists = owner
+    society_research:
+    - exists = owner
+  resort_worker:
+    unity:
+    - null
+    trade:
+    - null
+  soldier:
+    society_research:
+    - soldier_is_necromancer = yes
+    engineering_research:
+    - soldier_is_necromancer = yes
+  colonist:
+    food:
+    - "exists = owner\n            owner = {\n    is_lithoid_empire = no\n    is_infernal_empire\
+      \ = no\n    is_individual_machine = no\n}"
+    minerals:
+    - "exists = owner\n            owner = {\n    is_lithoid_empire = yes\n}"
+    alloys:
+    - "exists = owner\n            owner = {\n    is_infernal_empire = yes\n}"
+    energy:
+    - "exists = owner\n            owner = {\n    is_individual_machine = yes\n}"
+  clerk:
+    trade:
+    - null
+  technician:
+    energy:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n}"
+  miner:
+    minerals:
+    - null
+    - "colony = {\n    miner_is_scrap_miner_trigger = yes\n}"
+    - "colony = {\n    miner_is_cave_cleaner_trigger = yes\n}"
+    - "colony = {\n    miner_is_turtle_miner_trigger = yes\n}"
+    - "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    alloys:
+    - "colony = {\n    miner_is_scrap_miner_trigger = yes\n}"
+    - "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    food:
+    - "colony = {\n    miner_is_turtle_miner_trigger = yes\n}"
+  farmer:
+    food:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n}"
+    - farmer_is_titan_hunter_trigger = yes
+    trade:
+    - "colony = {\n    farmer_is_angler_trigger = yes\n}"
+    - farmer_is_titan_hunter_trigger = yes
+    alloys:
+    - farmer_is_puddle_technician_trigger = yes
+  mortal_initiate:
+    unity:
+    - null
+    society_research:
+    - null
+  foundry_prison_worker:
+    alloys:
+    - null
+  catalytic_technician_prison_worker:
+    alloys:
+    - null
+  artisan_prison_worker:
+    consumer_goods:
+    - null
+  artificer_prison_worker:
+    consumer_goods:
+    - null
+  spawning_drone:
+    society_research:
+    - "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}"
+    - "colony = {\n    healthcare_is_genomic_researcher_trigger = yes\n}\n       \
+      \     owner = {\n    has_completed_genetic_situation = yes\n}"
+  gestation_drone:
+    society_research:
+    - null
+    engineering_research:
+    - null
+  evaluator:
+    unity:
+    - null
+  coordinator:
+    unity:
+    - null
+    - "owner = {\n    is_memorialist_empire = yes\n}"
+  calculator_physicist:
+    physics_research:
+    - "colony = {\n    physicist_is_extradimensional_research_unit_trigger = no\n}"
+    - "colony = {\n    physicist_is_astrometeorologist_trigger = yes\n    solar_system\
+      \ = {\n        OR = {\n            has_environmental_effects = yes\n       \
+      \     has_star_flag = storm_system\n        }\n    }\n}"
+    - "colony = {\n    physicist_is_extradimensional_research_unit_trigger = yes\n\
+      }"
+    - physicist_is_space_time_researcher_trigger = yes
+    alloys:
+    - "colony = {\n    physicist_is_extradimensional_research_unit_trigger = yes\n\
+      }"
+    minerals:
+    - "colony = {\n    physicist_is_extradimensional_research_unit_trigger = yes\n\
+      }"
+  calculator_biologist:
+    society_research:
+    - null
+    - "colony = {\n    biologist_is_observator_trigger = yes\n}"
+    physics_research:
+    - "colony = {\n    biologist_is_observator_trigger = yes\n}"
+  calculator_engineer:
+    engineering_research:
+    - null
+    - engineer_is_nanotech_researcher_trigger = yes
+  artisan_drone:
+    consumer_goods:
+    - null
+  fabricator:
+    alloys:
+    - null
+    - industrial_jobs_are_catalytic_trigger = yes
+    - "exists = owner\n            owner = {\n    is_robot_empire = yes\n}"
+    - "exists = owner\n            owner = {\n    is_robot_empire = yes\n}\n     \
+      \       industrial_jobs_are_catalytic_trigger = yes"
+  chemist_drone:
+    volatile_motes:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  translucer_drone:
+    rare_crystals:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  gas_refiner_drone:
+    exotic_gases:
+    - "owner = {\n    is_catalytic_empire = no\n}"
+    - "owner = {\n    is_catalytic_empire = yes\n}"
+  patrol_drone:
+    unity:
+    - null
+  logistics_drone:
+    trade:
+    - null
+    - trader_is_subterranean = yes
+  mining_drone:
+    minerals:
+    - "colony = {\n    NOR = {\n        has_deposit = d_space_ship_graveyard\n   \
+      \     is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - "colony = {\n    OR = {\n        has_deposit = d_space_ship_graveyard\n    \
+      \    is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+    alloys:
+    - "colony = {\n    OR = {\n        has_deposit = d_space_ship_graveyard\n    \
+      \    is_planet_class = pc_shattered_ring_habitable\n    }\n}"
+    - "colony = {\n    miner_is_thermoforger_trigger = yes\n}"
+  agri_drone:
+    food:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n    is_catalytic_empire = no\n}"
+    alloys:
+    - farmer_is_puddle_technician_trigger = yes
+  technician_drone:
+    energy:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n}"
+    - "owner = {\n    is_nomadic = yes\n}"
+  maintenance_drone:
+    trade:
+    - null
+  hunted_pre_sapient:
+    food:
+    - null
+    - "colony = {\n    has_active_building = building_food_processing_facility\n}"
+    - "colony = {\n    has_active_building = building_food_processing_center\n}"
+  hunted_pre_sapient_lithoid:
+    minerals:
+    - null
+    - "colony = {\n    has_active_building = building_mineral_purification_plant\n\
+      }"
+    - "colony = {\n    has_active_building = building_mineral_purification_hub\n}"
+  hunter_gatherer:
+    food:
+    - null
+  hunter_gatherer_lithoid:
+    minerals:
+    - null
+  peasant:
+    food:
+    - null
+  peasant_lithoid:
+    minerals:
+    - null
+  primitive_noble:
+    unity:
+    - null
+  primitive_researcher:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  primitive_priest:
+    unity:
+    - null
+  primitive_laborer:
+    alloys:
+    - null
+    consumer_goods:
+    - null
+  primitive_miner:
+    minerals:
+    - null
+  primitive_technician:
+    energy:
+    - null
+  primitive_farmer:
+    food:
+    - null
+  primitive_researcher_2:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  primitive_priest_2:
+    unity:
+    - null
+  primitive_bureaucrat:
+    unity:
+    - null
+  solarpunk_anarchist:
+    unity:
+    - null
+  primitive_administrator:
+    unity:
+    - null
+  hive_sustenance_drone:
+    food:
+    - null
+  hive_sustenance_drone_lithoid:
+    minerals:
+    - null
+  hive_basic_agri_drone:
+    food:
+    - null
+  hive_basic_agri_drone_lithoid:
+    minerals:
+    - null
+  primitive_hive_synapse_drone:
+    unity:
+    - null
+  primitive_hive_cerebellum_drone:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  primitive_hive_factory_drone:
+    alloys:
+    - null
+  primitive_hive_miner:
+    minerals:
+    - null
+  primitive_hive_technician:
+    energy:
+    - null
+  primitive_hive_farmer:
+    food:
+    - null
+  primitive_hive_brain_drone:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  primitive_hive_synapse_drone_2:
+    unity:
+    - null
+  event_purge:
+    unity:
+    - "owner = {\n    has_valid_civic = civic_fanatic_purifiers\n}"
+    society_research:
+    - "owner = {\n    has_valid_civic = civic_hive_devouring_swarm\n}"
+  ratling_scavenger:
+    food:
+    - null
+    minerals:
+    - null
+    consumer_goods:
+    - null
+  odd_factory_worker:
+    alloys:
+    - null
+  odd_factory_drone:
+    alloys:
+    - null
+  dimensional_portal_researcher:
+    physics_research:
+    - null
+    - has_carrier_flag = dportal_closed
+    energy:
+    - has_carrier_flag = dportal_energy
+    trade:
+    - has_carrier_flag = dportal_trade_normal
+    - has_carrier_flag = dportal_trade_high
+    - has_carrier_flag = dportal_trade_low
+    - has_carrier_flag = dportal_trade_crisis
+  dimensional_portal_researcher_gestalt:
+    physics_research:
+    - null
+    - has_carrier_flag = dportal_closed
+    energy:
+    - "colony = {\n    has_modifier = dportal_trade_normal\n}"
+    - "colony = {\n    has_modifier = dportal_trade_high\n}"
+    - "colony = {\n    has_modifier = dportal_trade_low\n}"
+    - "colony = {\n    has_modifier = dportal_trade_crisis\n}"
+    - has_carrier_flag = dportal_energy
+  space_time_anomaly_researcher:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+  space_time_anomaly_researcher_gestalt:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+  gas_plant_engineer:
+    exotic_gases:
+    - null
+  gas_plant_engineer_gestalt:
+    exotic_gases:
+    - null
+  cave_cleaner_gestalt:
+    minerals:
+    - null
+  robot_caretaker:
+    unity:
+    - null
+    engineering_research:
+    - null
+  turtle_miner_gestalt:
+    minerals:
+    - null
+    food:
+    - null
+    - "colony = {\n    has_active_building = building_food_processing_facility\n}"
+    - "colony = {\n    has_active_building = building_food_processing_center\n}"
+  machine_nurse:
+    unity:
+    - null
+  manufactorium_specialist:
+    alloys:
+    - null
+    - has_carrier_flag = manufactorium_earthquake_production
+    - has_carrier_flag = manufactorium_guardians_produce
+    - has_carrier_flag = manufactorium_work_production
+    - has_carrier_flag = manufactorium_despoilers
+    - has_carrier_flag = manufactorium_took_opportunity
+    - has_carrier_flag = manufactorium_remnants
+    unity:
+    - has_carrier_flag = manufactorium_crafters
+    - has_carrier_flag = manufactorium_subterranean
+    - has_carrier_flag = manufactorium_dwarven_craft
+    engineering_research:
+    - has_carrier_flag = manufactorium_engineering
+    society_research:
+    - has_carrier_flag = manufactorium_society
+  manufactorium_complex_drone:
+    alloys:
+    - null
+    - has_carrier_flag = manufactorium_earthquake_production
+    - has_carrier_flag = manufactorium_despoilers
+    - has_carrier_flag = manufactorium_took_opportunity
+    - has_carrier_flag = manufactorium_remnants
+    unity:
+    - has_carrier_flag = manufactorium_subterranean
+    engineering_research:
+    - has_carrier_flag = manufactorium_engineering
+    society_research:
+    - has_carrier_flag = manufactorium_society
+  manufactorium_scraper_drone:
+    minerals:
+    - null
+    alloys:
+    - null
+    engineering_research:
+    - null
+  archivist:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  puddle_technician:
+    food:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n}"
+    alloys:
+    - null
+  puddle_technician_drone:
+    food:
+    - null
+    - "owner = {\n    is_robot_empire = yes\n}"
+    alloys:
+    - null
+  stasis_warden:
+    unity:
+    - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+      }"
+    - enforcer_is_educator_trigger = yes
+    physics_research:
+    - null
+  stasis_warden_drone:
+    physics_research:
+    - null
+    unity:
+    - null
+  astrogarbage_collector:
+    alloys:
+    - null
+  astrogarbage_collector_gestalt:
+    alloys:
+    - null
+  stratovent_researcher:
+    society_research:
+    - null
+    trade:
+    - null
+  stratovent_refiner:
+    exotic_gases:
+    - null
+  stratovent_refiner_upg:
+    exotic_gases:
+    - null
+  stratovent_refiner_minerals:
+    exotic_gases:
+    - null
+    minerals:
+    - null
+  mineral_diver_drone:
+    minerals:
+    - null
+    alloys:
+    - null
+  alien_hunter:
+    food:
+    - null
+  fe_archivist:
+    society_research:
+    - null
+    physics_research:
+    - null
+    engineering_research:
+    - null
+  fe_acolyte_farm:
+    food:
+    - null
+  fe_acolyte_mine:
+    minerals:
+    - null
+  fe_acolyte_generator:
+    energy:
+    - null
+  fe_augur:
+    unity:
+    - null
+  fe_xeno_ward:
+    unity:
+    - null
+  fe_hedonist:
+    unity:
+    - null
+  fe_acolyte_artisan:
+    consumer_goods:
+    - null
+    - "colony = {\n    has_active_building = building_factory_2\n}"
+    - "colony = {\n    has_active_building = building_factory_3\n}"
+  overlord_academic:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  overlord_academic_drone:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  overlord_bio_trophy:
+    unity:
+    - null
+  overlord_bio_trophy_drone:
+    unity:
+    - null
+  overlord_manager:
+    unity:
+    - null
+    trade:
+    - null
+  overlord_mortal_initiate:
+    unity:
+    - null
+    society_research:
+    - null
+  overlord_mortal_initiate_drone:
+    unity:
+    - null
+    society_research:
+    - null
+  overlord_healthcare:
+    trade:
+    - "owner = {\n    has_valid_civic = civic_private_healthcare_corporate\n}"
+    - has_carrier_flag = has_private_clinics
+  low_tech_laborer:
+    consumer_goods:
+    - null
+    alloys:
+    - null
+  low_tech_miner:
+    minerals:
+    - null
+  low_tech_technician:
+    energy:
+    - null
+  low_tech_farmer:
+    food:
+    - null
+  low_tech_researcher:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  low_tech_priest:
+    unity:
+    - null
+  low_tech_bureaucrat:
+    unity:
+    - null
+  low_tech_manager:
+    unity:
+    - null
+    trade:
+    - null
+  broken_shackles_scavenger:
+    alloys:
+    - null
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  munitions_decommissioner:
+    alloys:
+    - null
+    engineering_research:
+    - null
+  munitions_decommissioning_unit:
+    alloys:
+    - null
+    engineering_research:
+    - null
+  munitions_decommissioning_unit_lithoid:
+    alloys:
+    - null
+    engineering_research:
+    - null
+  munitions_decommissioning_drone:
+    alloys:
+    - null
+    engineering_research:
+    - null
+  astral_researcher:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  astral_drone:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  astral_unit:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  haruspex:
+    unity:
+    - null
+    engineering_research:
+    - null
+    - "owner = {\n    is_megacorp = yes\n}"
+    trade:
+    - "owner = {\n    is_megacorp = yes\n}"
+  technophant:
+    unity:
+    - null
+    engineering_research:
+    - null
+  neural_chip:
+    society_research:
+    - null
+    engineering_research:
+    - null
+    physics_research:
+    - null
+  augmentor:
+    society_research:
+    - is_cyborg_empire = no
+    - is_cyborg_empire = yes
+    engineering_research:
+    - is_cyborg_empire = no
+    - is_cyborg_empire = yes
+  augmentor_drone:
+    society_research:
+    - "OR = {\n    is_cyborg_empire = yes\n    owner = {\n        has_valid_civic\
+      \ = civic_machine_assimilator\n    }\n}"
+    engineering_research:
+    - "OR = {\n    is_cyborg_empire = yes\n    owner = {\n        has_valid_civic\
+      \ = civic_machine_assimilator\n    }\n}"
+  identity_designer:
+    engineering_research:
+    - null
+    - "owner = {\n    NOT = {\n        has_country_flag = identity_designer_converter\n\
+      \    }\n}"
+  cyberdome_duelist:
+    unity:
+    - null
+  cyberdome_spectator:
+    energy:
+    - null
+    trade:
+    - null
+  clip_maximizer:
+    consumer_goods:
+    - null
+  nanotech_research_unit:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  nanotech_researcher:
+    physics_research:
+    - null
+    engineering_research:
+    - null
+    society_research:
+    - null
+  treasure_gatherer:
+    energy:
+    - null
+    minerals:
+    - null
+    unity:
+    - null
+    society_research:
+    - null
+    trade:
+    - null
+  wrangler:
+    society_research:
+    - null
+    - "wrangler_is_trophy_hunter_trigger = yes\n            wrangler_is_beastfighter_trigger\
+      \ = no"
+    - "wrangler_is_animal_handler_trigger = yes\n            wrangler_is_beastfighter_trigger\
+      \ = no"
+    unity:
+    - null
+    - "wrangler_is_animal_handler_trigger = yes\n            wrangler_is_beastfighter_trigger\
+      \ = no"
+    - wrangler_is_beastfighter_trigger = yes
+    food:
+    - "wrangler_is_trophy_hunter_trigger = yes\n            wrangler_is_beastfighter_trigger\
+      \ = no"
+  drone_wrangler:
+    society_research:
+    - null
+    - wrangler_is_hunter_drone_trigger = yes
+    - wrangler_is_symbiosis_integrator_trigger = yes
+    unity:
+    - null
+    - wrangler_is_symbiosis_integrator_trigger = yes
+    food:
+    - wrangler_is_hunter_drone_trigger = yes
+  treasure_gatherer_gestalt:
+    energy:
+    - null
+    minerals:
+    - null
+    unity:
+    - null
+    society_research:
+    - null
+  transference_volunteer:
+    unity:
+    - null
+  transference_drone:
+    unity:
+    - null
+  space_junk_collector:
+    alloys:
+    - null
+  drone_space_junk_collector:
+    alloys:
+    - null
+  telepath_drone:
+    unity:
+    - null
+    - "owner = {\n    has_active_tradition = tr_domination_judgment_corps\n}"
+    physics_research:
+    - "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+    engineering_research:
+    - "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+    society_research:
+    - "owner = {\n    has_country_flag = whisperers_covenant_confirmed\n}"
+    - "owner = {\n    has_country_flag = whisperers_covenant_rank_1\n}"
+  physician_drone:
+    unity:
+    - null
+  energy_thrall:
+    unity:
+    - null
+  drone_energy_thrall:
+    unity:
+    - null
+  test_subject:
+    engineering_research:
+    - null
+    physics_research:
+    - null
+    society_research:
+    - null
+  test_subject_drone:
+    engineering_research:
+    - null
+    physics_research:
+    - null
+    society_research:
+    - null
+  production_overseer:
+    engineering_research:
+    - null
+  spe_colonist:
+    food:
+    - "exists = owner\n            owner = {\n    is_lithoid_empire = no\n    is_infernal_empire\
+      \ = no\n    is_individual_machine = no\n}"
+    minerals:
+    - "exists = owner\n            owner = {\n    is_lithoid_empire = yes\n}"
+    alloys:
+    - "exists = owner\n            owner = {\n    is_infernal_empire = yes\n}"
+    energy:
+    - "exists = owner\n            owner = {\n    is_individual_machine = yes\n}"
+  shroud_trader:
+    trade:
+    - null
+    unity:
+    - "owner = {\n    has_breached_shroud = yes\n}"
+  cruise_passenger:
+    unity:
+    - null
+  cruise_passenger_unemployment:
+    unity:
+    - "owner = {\n    is_hospitality_servitor_empire = no\n}"
+  cruise_crew_overseer:
+    unity:
+    - null
+    trade:
+    - null
+  cruise_crew_overseer_drone:
+    unity:
+    - null
+    trade:
+    - null
+  ark_waystation_trader:
+    trade:
+    - null
+  ark_harvester:
+    minerals:
+    - null
+  ark_waystation_trader_gestalt:
+    trade:
+    - null
+  ark_harvester_gestalt:
+    minerals:
+    - null

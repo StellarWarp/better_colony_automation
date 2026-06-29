@@ -50,3 +50,30 @@ bca_empire_has_surplus_{{ need_name }} = {
 }
 
 {% endfor %}
+bca_country_needs_research = {
+    OR = {
+        bca_country_needs_physics_research = yes
+        bca_country_needs_society_research = yes
+        bca_country_needs_engineering_research = yes
+    }
+}
+
+bca_empire_needs_research = {
+    owner = {
+        bca_country_needs_research = yes
+    }
+}
+
+bca_country_surplus_research = {
+    AND = {
+        bca_country_surplus_physics_research = yes
+        bca_country_surplus_society_research = yes
+        bca_country_surplus_engineering_research = yes
+    }
+}
+
+bca_empire_has_surplus_research = {
+    owner = {
+        bca_country_surplus_research = yes
+    }
+}

@@ -1,4 +1,6 @@
 {# GUI display-only values for job regulation. #}
+{% set regulated = job_regulation_config.regulated_jobs %}
+{% set resources = job_regulation_config.resources %}
 
 bca_jr_rounded_value = {
     set = $VALUE$
@@ -16,3 +18,49 @@ bca_jr_num_pops_assigned_to_job = {
         mode = add
     }
 }
+
+{% for entry in regulated %}
+bca_jr_sort_score_{{ entry.job }} = {
+    base = 0
+    modifier = {
+        OR = {
+            has_country_flag = bca_jr_sort_workforce
+            NOR = {
+                has_country_flag = bca_jr_sort_output
+                has_country_flag = bca_jr_sort_status
+            }
+        }
+        add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} }
+        add = 100000000
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
+    }
+{% for resource in entry.economic_resources %}
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_{{ resource }}
+        add = this.bca_jr_total_output_{{ entry.job }}_{{ resource }}
+    }
+{% endfor %}
+{% if entry.economic_resources %}
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        NOR = {
+{% for resource in resources %}
+            has_country_flag = bca_jr_filter_{{ resource }}
+{% endfor %}
+        }
+{% for resource in entry.economic_resources %}
+        add = this.bca_jr_total_output_{{ entry.job }}_{{ resource }}
+{% endfor %}
+    }
+{% endif %}
+}
+
+{% endfor %}

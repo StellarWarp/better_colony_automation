@@ -81,7 +81,7 @@ class InlineScriptResolver:
         
         # 加载脚本文本
         script_text = self.load_script(script_path)
-        if not script_text:
+        if script_text is None:
             raise FileNotFoundError(f"Inline script not found: {script_path}")
         
         # 替换参数（文本级别）
@@ -90,7 +90,11 @@ class InlineScriptResolver:
         
 
         wrapped = f"_wrapper = {{\n{script_text}\n}}"
-        ast = refined_parse(wrapped)
+        try:
+            ast = refined_parse(wrapped)
+        except Exception as exc:
+            print(f"Warning: Failed to parse inline script {script_path}: {exc}")
+            return [node]
         
         if not ast.statements or not isinstance(ast.statements[0], ObjectNode):
             raise ValueError(f"Parsed inline script does not contain expected object structure: {script_path}")

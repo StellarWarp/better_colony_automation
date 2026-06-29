@@ -5,6 +5,23 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
 
+bca_jr_job_matches_selected_filters = {
+    OR = {
+        NOR = {
+{% for resource in economic_set %}
+            has_country_flag = bca_jr_filter_{{ resource }}
+{% endfor %}
+        }
+{% for resource in economic_set %}
+        AND = {
+            has_country_flag = bca_jr_filter_{{ resource }}
+            is_variable_set = bca_jr_total_output_$JOB$_{{ resource }}
+            check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
+        }
+{% endfor %}
+    }
+}
+
 {% for entry in regulated %}
 {% for resource in entry.economic_resources if resource in economic_set %}
 {% set all_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}

@@ -2,6 +2,7 @@
 
 See also:
 
+- [Development Setup](setup.md)
 - [DSL Style Guide](dsl-style-guide.md)
 - [Change Entrypoints](change-entrypoints.md)
 - [Generation Pipeline](../architecture/generation-pipeline.md)
@@ -20,11 +21,13 @@ Development reality:
 
 ## Before You Edit Anything
 
-1. Classify the change by layer: config/frontend, template, game logic, presentation, or documentation.
-2. Check whether the file is generated. Generated warning headers are the first edit-site signal.
-3. If generated, go back to the template, handwritten config, or parser/extraction tool.
-4. Check whether the same behavior also has handwritten siblings.
-5. If DSL syntax, scope, or API usage is uncertain, check [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document `logs/script_documentation`.
+1. Complete [Development Setup](setup.md), including the
+   `.config/stellaris` link used for local DSL reference and validation.
+2. Classify the change by layer: config/frontend, template, game logic, presentation, or documentation.
+3. Check whether the file is generated. Generated warning headers are the first edit-site signal.
+4. If generated, go back to the template, handwritten config, or parser/extraction tool.
+5. Check whether the same behavior also has handwritten siblings.
+6. If DSL syntax, scope, or API usage is uncertain, check [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document `logs/script_documentation`.
 
 Useful starting questions:
 
@@ -208,4 +211,5 @@ When changing behavior, update whichever docs become stale:
 - state semantics changes -> [`../architecture/state-model.md`](../architecture/state-model.md)
 - generator inputs/outputs change -> [`../architecture/generation-pipeline.md`](../architecture/generation-pipeline.md)
 - DSL or Jinja conventions change -> [`dsl-style-guide.md`](dsl-style-guide.md)
+- development prerequisites or external tool setup change -> [`setup.md`](setup.md)
 - common change entrypoints change -> [`change-entrypoints.md`](change-entrypoints.md)

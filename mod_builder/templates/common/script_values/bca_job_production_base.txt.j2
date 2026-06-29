@@ -3,11 +3,16 @@
   为每个调控岗位 × 每种经济资源生成:
     _base  — 基础产出（来自 produces 解析）
     _mult  — 乘数链
-    _add   — 加数链
     _per_worker — 每 1 workforce 产出 = (base + add) * mult / 100
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
+{% set known_modifiers = known_modifiers | default([]) %}
+{% macro add_modifier(name) -%}
+{% if name in known_modifiers %}
+    add = modifier:{{ name }}
+{% endif %}
+{%- endmacro %}
 
 {% for entry in regulated %}
 {% for resource in entry.economic_resources if resource in economic_set %}
@@ -33,30 +38,32 @@ bca_job_{{ entry.job }}_{{ resource }}_base = {
 # -- 乘数链 --
 bca_job_{{ entry.job }}_{{ resource }}_mult = {
     base = 1
-    add = modifier:planet_jobs_produces_mult
-    add = modifier:planet_jobs_productive_produces_mult
-    add = modifier:planet_jobs_complex_and_simple_drone_produces_mult
+{{ add_modifier("planet_jobs_produces_mult") }}
+{{ add_modifier("planet_jobs_productive_produces_mult") }}
+{{ add_modifier("planet_jobs_complex_and_simple_drone_produces_mult") }}
 {% if entry.pop_category %}
-    add = modifier:planet_jobs_{{ entry.pop_category }}_produces_mult
+{{ add_modifier("planet_jobs_" ~ entry.pop_category ~ "_produces_mult") }}
 {% endif %}
-    add = modifier:planet_jobs_{{ resource }}_produces_mult
+{{ add_modifier("planet_jobs_" ~ resource ~ "_produces_mult") }}
 {% if entry.economic_category %}
-    add = modifier:{{ entry.economic_category }}_produces_mult
-    add = modifier:{{ entry.economic_category }}_{{ resource }}_produces_mult
-{% endif %}
-}
-
-# -- 加数链 --
-bca_job_{{ entry.job }}_{{ resource }}_add = {
-{% if entry.economic_category %}
-    add = modifier:{{ entry.economic_category }}_{{ resource }}_produces_add
+{{ add_modifier(entry.economic_category ~ "_produces_mult") }}
+{{ add_modifier(entry.economic_category ~ "_" ~ resource ~ "_produces_mult") }}
 {% endif %}
 }
 
 # -- 每 1 workforce 产出 --
 bca_job_{{ entry.job }}_{{ resource }}_per_worker = {
     add = value:bca_job_{{ entry.job }}_{{ resource }}_base
-    add = value:bca_job_{{ entry.job }}_{{ resource }}_add
+{% set output_categories = [] %}
+{% if entry.economic_category %}
+{% set _ = output_categories.append(entry.economic_category) %}
+{% endif %}
+{% for parent in entry.economic_category_parents | default([]) %}
+{% set _ = output_categories.append(parent) %}
+{% endfor %}
+{% for category in output_categories %}
+{{ add_modifier(category ~ "_" ~ resource ~ "_produces_add") }}
+{% endfor %}
     mult = value:bca_job_{{ entry.job }}_{{ resource }}_mult
     divide = 100
 }

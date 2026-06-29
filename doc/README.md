@@ -25,10 +25,11 @@ Read these when you need to understand how the mod is organized and executed:
 
 Read these when you are about to change behavior, templates, GUI, localisation, or release metadata:
 
-1. [Maintenance Playbook](maintenance/playbook.md)
-2. [DSL Style Guide](maintenance/dsl-style-guide.md)
-3. [Change Entrypoints](maintenance/change-entrypoints.md)
-4. [Handwritten Hotspots](maintenance/handwritten-hotspots.md)
+1. [Development Setup](maintenance/setup.md)
+2. [Maintenance Playbook](maintenance/playbook.md)
+3. [DSL Style Guide](maintenance/dsl-style-guide.md)
+4. [Change Entrypoints](maintenance/change-entrypoints.md)
+5. [Handwritten Hotspots](maintenance/handwritten-hotspots.md)
 
 ## Project Ownership Model
 
@@ -46,6 +47,9 @@ Do not assume that a long file under `common/`, `events/`, `interface/`, or `loc
 
 ## Development Constraints
 
+- Clone the CWTools Stellaris configuration repository and link its `config/`
+  directory to `.config/stellaris` as described in
+  [Development Setup](maintenance/setup.md).
 - Stellaris mod logic does not support hot reload; after logic edits, re-enter the game to test.
 - Event-window tests are the fastest practical feedback loop for scripted logic.
 - Use a dedicated test event such as [`../events/test_event.txt`](../events/test_event.txt) for manual in-game testing.

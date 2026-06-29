@@ -11,6 +11,15 @@ country_event = {
     }
 
     immediate = {
+        add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
+        if = {
+            limit = { check_variable = { which = bca_jr_skip_refresh_counter value >= 6 } }
+            every_owned_colony = {
+                bca_jr_clear_skip_flags = yes
+            }
+            clear_variable = bca_jr_skip_refresh_counter
+        }
+
         bca_jr_initialize_resource_remaining = yes
 
         every_owned_colony = {
@@ -33,5 +42,7 @@ country_event = {
             bca_auto_building_destruction_entry = yes # 建筑自动拆除
             carrier_event = { id = colony_automation_event.2000 } # 岗位调控评估
         }
+
+        bca_jr_clear_resource_remaining = yes
     }
 }

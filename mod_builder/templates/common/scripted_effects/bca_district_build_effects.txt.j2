@@ -1,21 +1,54 @@
 {% import 'component/planet_flag_ps.j2' as pf with context %}
 {% import 'component/planet_variable.j2' as v with context %}
 
-{% macro resource_gate(outputs) -%}
-    {% if outputs %}
-    {% if outputs|length == 1 %}
-    bca_empire_needs_{{ outputs[0] }} = yes
+{% macro output_condition(conditions) -%}
+    {% set conditional = conditions | reject('equalto', none) | list %}
+    {% set has_unconditional = conditions | select('equalto', none) | list | length > 0 %}
+    {% if conditional and not has_unconditional %}
+    {% if conditional|length == 1 %}
+    AND = {
+        {{ conditional[0] | replace('\n', '\n        ') }}
+    }
     {% else %}
     OR = {
-        {% for output in outputs %}
-        bca_empire_needs_{{ output }} = yes
+        {% for condition in conditional %}
+        AND = {
+            {{ condition | replace('\n', '\n            ') }}
+        }
         {% endfor %}
     }
     {% endif %}
     {% endif %}
 {%- endmacro %}
 
-{% macro zone_output_gate(zone, outputs, zone_slots) -%}
+{% macro resource_need(output, conditions) -%}
+    {% set conditional = conditions | reject('equalto', none) | list %}
+    {% set has_unconditional = conditions | select('equalto', none) | list | length > 0 %}
+    {% if conditional and not has_unconditional %}
+    AND = {
+        bca_empire_needs_{{ output }} = yes
+        {{ output_condition(conditions) }}{#  #}
+    }
+    {% else %}
+    bca_empire_needs_{{ output }} = yes
+    {% endif %}
+{%- endmacro %}
+
+{% macro resource_gate(outputs, resource_conditions) -%}
+    {% if outputs %}
+    {% if outputs|length == 1 %}
+    {{ resource_need(outputs[0], resource_conditions.get(outputs[0], [])) }}{#  #}
+    {% else %}
+    OR = {
+        {% for output in outputs %}
+        {{ resource_need(output, resource_conditions.get(output, [])) }}{#  #}
+        {% endfor %}
+    }
+    {% endif %}
+    {% endif %}
+{%- endmacro %}
+
+{% macro zone_output_gate(zone, outputs, resource_conditions, zone_slots) -%}
     AND = {
         {% if zone_slots|length == 1 %}
         has_carrier_flag = {{ pf.flag_selected_zone(zone_slots[0], zone) }}
@@ -26,16 +59,17 @@
             {% endfor %}
         }
         {% endif %}
-        {{ resource_gate(outputs) }}{#  #}
+        {{ resource_gate(outputs, resource_conditions) }}{#  #}
     }
 {%- endmacro %}
 
 {% macro district_slot_economic_allowed(slot_key, zone_slots) -%}
     {% set zone_outputs = economic_district_slot_zone_outputs.get(slot_key, {}) %}
+    {% set zone_output_conditions = economic_district_slot_zone_output_conditions.get(slot_key, {}) %}
     {% if zone_outputs %}
     OR = {
         {% for zone, outputs in zone_outputs.items() %}
-        {{ zone_output_gate(zone, outputs, zone_slots) }}{#  #}
+        {{ zone_output_gate(zone, outputs, zone_output_conditions.get(zone, {}), zone_slots) }}{#  #}
         {% endfor %}
     }
     {% endif %}

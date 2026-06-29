@@ -2,6 +2,10 @@ job_meta:
   civilian:
     pop_category: civilian
     economic_category: planet_civilians
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_civilian
     produces:
     - resource: trade
@@ -10,12 +14,37 @@ job_meta:
     - resource: trade
       amount: 1.0
       trigger: "exists = owner\n            has_modifier = resort_colony"
+    - resource: physics_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    has_ethics_output = yes\n}"
+    - resource: society_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    has_ethics_output = yes\n}"
+    - resource: engineering_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    has_ethics_output = yes\n}"
+    - resource: unity
+      amount: 0.25
+      trigger: "exists = owner\n            owner = {\n    is_spiritualist = yes\n\
+        }\n            colony = {\n    has_ethics_output = yes\n}"
+    - resource: trade
+      amount: 0.5
+      trigger: "exists = owner\n            owner = {\n    is_egalitarian = yes\n\
+        }\n            colony = {\n    has_ethics_output = yes\n}"
     is_economic_producer: true
     economic_resources:
     - trade
+    - physics_research
+    - society_research
+    - engineering_research
+    - unity
   servant:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_servant
     produces: []
     is_economic_producer: false
@@ -23,13 +52,28 @@ job_meta:
   slave_overseer:
     pop_category: worker
     economic_category: planet_enforcers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_enforcer
-    produces: []
-    is_economic_producer: false
-    economic_resources: []
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - unity
   slave_toiler:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_primitive_laborer
     produces: []
     is_economic_producer: false
@@ -37,6 +81,11 @@ job_meta:
   organic_battery:
     pop_category: worker
     economic_category: planet_organic_batteries
+    economic_category_parents:
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_organic_battery
     produces:
     - resource: energy
@@ -48,6 +97,13 @@ job_meta:
   livestock:
     pop_category: worker
     economic_category: planet_livestock_farmers
+    economic_category_parents:
+    - planet_farmers
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock
     produces:
     - resource: food
@@ -59,6 +115,12 @@ job_meta:
   livestock_infernal:
     pop_category: worker
     economic_category: planet_livestock_metallurgists
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock
     produces:
     - resource: alloys
@@ -70,6 +132,13 @@ job_meta:
   livestock_zoo_animal:
     pop_category: pre_sapients
     economic_category: planet_livestock_farmers
+    economic_category_parents:
+    - planet_farmers
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock_zoo_animal
     produces: []
     is_economic_producer: false
@@ -77,6 +146,13 @@ job_meta:
   livestock_zoo_beast:
     pop_category: pre_sapients
     economic_category: planet_livestock_farmers
+    economic_category_parents:
+    - planet_farmers
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock_zoo_beast
     produces: []
     is_economic_producer: false
@@ -84,6 +160,14 @@ job_meta:
   bio_trophy:
     pop_category: bio_trophy
     economic_category: planet_bio_trophies
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_bio_trophy
     produces:
     - resource: unity
@@ -95,6 +179,7 @@ job_meta:
   purge:
     pop_category: purge
     economic_category: null
+    economic_category_parents: []
     icon: job_purge
     produces: []
     is_economic_producer: false
@@ -102,6 +187,7 @@ job_meta:
   crisis_purge:
     pop_category: purge
     economic_category: null
+    economic_category_parents: []
     icon: job_purge
     produces: []
     is_economic_producer: false
@@ -109,6 +195,9 @@ job_meta:
   assimilation:
     pop_category: assimilation
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_assimilation
     produces: []
     is_economic_producer: false
@@ -116,6 +205,10 @@ job_meta:
   criminal:
     pop_category: criminal
     economic_category: planet_criminals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_criminal
     produces: []
     is_economic_producer: false
@@ -123,6 +216,9 @@ job_meta:
   deviant_drone:
     pop_category: deviant_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_criminal
     produces: []
     is_economic_producer: false
@@ -130,6 +226,9 @@ job_meta:
   corrupt_drone:
     pop_category: corrupt_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_criminal
     produces: []
     is_economic_producer: false
@@ -137,6 +236,7 @@ job_meta:
   fotd_protectors:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_enforcer
     produces: []
     is_economic_producer: false
@@ -144,6 +244,14 @@ job_meta:
   organic_exhibit:
     pop_category: bio_trophy
     economic_category: planet_bio_trophies
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_organic_exhibit
     produces:
     - resource: unity
@@ -155,6 +263,13 @@ job_meta:
   livestock_lithoid:
     pop_category: worker
     economic_category: planet_livestock_miners
+    economic_category_parents:
+    - planet_miners
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock_lithoid
     produces:
     - resource: minerals
@@ -166,6 +281,13 @@ job_meta:
   livestock_zoo_animal_lithoid:
     pop_category: pre_sapients
     economic_category: planet_livestock_miners
+    economic_category_parents:
+    - planet_miners
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock_zoo_animal_lithoid
     produces: []
     is_economic_producer: false
@@ -173,6 +295,13 @@ job_meta:
   livestock_zoo_beast_lithoid:
     pop_category: pre_sapients
     economic_category: planet_livestock_miners
+    economic_category_parents:
+    - planet_miners
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock_zoo_beast_lithoid
     produces: []
     is_economic_producer: false
@@ -180,6 +309,9 @@ job_meta:
   purge_lithoid:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_lithoid
     produces:
     - resource: unity
@@ -195,6 +327,9 @@ job_meta:
   purge_robot:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_robot
     produces:
     - resource: unity
@@ -210,6 +345,9 @@ job_meta:
   purge_processing:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_processing
     produces:
     - resource: food
@@ -237,6 +375,9 @@ job_meta:
   purge_processing_lithoid:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_processing_lithoid
     produces:
     - resource: minerals
@@ -264,6 +405,9 @@ job_meta:
   purge_processing_infernal:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_processing
     produces:
     - resource: alloys
@@ -292,6 +436,9 @@ job_meta:
   purge_processing_robot:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_purge_processing_robot
     produces:
     - resource: alloys
@@ -317,6 +464,10 @@ job_meta:
   purge_labor_camps:
     pop_category: purge
     economic_category: pop_category_purge
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_purge_labor_camps
     produces:
     - resource: food
@@ -356,6 +507,10 @@ job_meta:
   purge_matrix:
     pop_category: purge
     economic_category: pop_category_purge
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_purge_matrix
     produces:
     - resource: energy
@@ -381,6 +536,10 @@ job_meta:
   purge_sacrifice:
     pop_category: purge
     economic_category: pop_category_purge
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_purge_sacrifice
     produces:
     - resource: unity
@@ -398,6 +557,10 @@ job_meta:
   bio_trophy_unemployment:
     pop_category: bio_trophy_unemployment
     economic_category: unemployment_resources
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_unemployment
     produces: []
     is_economic_producer: false
@@ -405,6 +568,7 @@ job_meta:
   slave_unemployment:
     pop_category: slave_unemployment
     economic_category: null
+    economic_category_parents: []
     icon: job_unemployment
     produces: []
     is_economic_producer: false
@@ -412,6 +576,12 @@ job_meta:
   politician:
     pop_category: ruler
     economic_category: planet_politicians
+    economic_category_parents:
+    - planet_jobs_ruler
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_politician
     produces:
     - resource: unity
@@ -477,6 +647,12 @@ job_meta:
   knight_commander:
     pop_category: ruler
     economic_category: planet_knights
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_knight_commander
     produces:
     - resource: unity
@@ -503,15 +679,43 @@ job_meta:
   dystopian_enforcer:
     pop_category: ruler
     economic_category: planet_enforcers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_enforcer
-    produces: []
-    is_economic_producer: false
-    economic_resources: []
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - unity
   dystopian_telepath:
     pop_category: ruler
     economic_category: planet_telepaths
+    economic_category_parents:
+    - planet_enforcers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_telepath
     produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
     - resource: unity
       amount: 4.5
       trigger: null
@@ -552,6 +756,7 @@ job_meta:
   head_researcher:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_researcher
     produces: []
     is_economic_producer: false
@@ -559,6 +764,7 @@ job_meta:
   high_priest:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_high_priest
     produces: []
     is_economic_producer: false
@@ -566,6 +772,7 @@ job_meta:
   noble:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_noble
     produces: []
     is_economic_producer: false
@@ -573,6 +780,7 @@ job_meta:
   merchant:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_merchant
     produces: []
     is_economic_producer: false
@@ -580,6 +788,7 @@ job_meta:
   executive:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_executive
     produces: []
     is_economic_producer: false
@@ -587,6 +796,7 @@ job_meta:
   warden:
     pop_category: ruler
     economic_category: null
+    economic_category_parents: []
     icon: job_enforcer
     produces: []
     is_economic_producer: false
@@ -594,6 +804,13 @@ job_meta:
   physicist:
     pop_category: specialist
     economic_category: planet_physicists
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_physicist
     produces:
     - resource: physics_research
@@ -616,6 +833,13 @@ job_meta:
   biologist:
     pop_category: specialist
     economic_category: planet_biologists
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_biologist
     produces:
     - resource: society_research
@@ -630,6 +854,13 @@ job_meta:
   engineer:
     pop_category: specialist
     economic_category: planet_engineers
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_engineer
     produces:
     - resource: engineering_research
@@ -644,6 +875,7 @@ job_meta:
   xeno_zoo_keeper:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_xeno_zoo_keeper
     produces: []
     is_economic_producer: false
@@ -651,6 +883,12 @@ job_meta:
   bureaucrat:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_bureaucrat
     produces:
     - resource: unity
@@ -707,22 +945,58 @@ job_meta:
       amount: 0.5
       trigger: "OR = {\n    bureaucrat_is_corpse_reader = yes\n    bureaucrat_is_corpse_broker\
         \ = yes\n}"
+    - resource: physics_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    - resource: society_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    - resource: engineering_research
+      amount: 0.1
+      trigger: "exists = owner\n            owner = {\n    is_materialist = yes\n\
+        }\n            colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    - resource: unity
+      amount: 0.25
+      trigger: "exists = owner\n            owner = {\n    is_spiritualist = yes\n\
+        }\n            colony = {\n    bureaucrat_is_memorialist = yes\n}"
+    - resource: trade
+      amount: 0.5
+      trigger: "exists = owner\n            owner = {\n    is_egalitarian = yes\n\
+        }\n            colony = {\n    bureaucrat_is_memorialist = yes\n}"
     is_economic_producer: true
     economic_resources:
     - unity
     - trade
     - society_research
     - engineering_research
+    - physics_research
   enforcer:
     pop_category: specialist
     economic_category: planet_enforcers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_enforcer
-    produces: []
-    is_economic_producer: false
-    economic_resources: []
+    produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
+    is_economic_producer: true
+    economic_resources:
+    - unity
   educator:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_educator
     produces: []
     is_economic_producer: false
@@ -730,8 +1004,22 @@ job_meta:
   telepath:
     pop_category: specialist
     economic_category: planet_telepaths
+    economic_category_parents:
+    - planet_enforcers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_telepath
     produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
     - resource: unity
       amount: 4.5
       trigger: null
@@ -772,6 +1060,12 @@ job_meta:
   entertainer:
     pop_category: specialist
     economic_category: planet_entertainers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_entertainer
     produces:
     - resource: unity
@@ -793,6 +1087,7 @@ job_meta:
   culture_worker:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_culture_worker
     produces: []
     is_economic_producer: false
@@ -800,6 +1095,7 @@ job_meta:
   unifier:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_overlord_propagandist
     produces: []
     is_economic_producer: false
@@ -807,6 +1103,12 @@ job_meta:
   chemist:
     pop_category: specialist
     economic_category: planet_chemists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_chemist
     produces:
     - resource: volatile_motes
@@ -821,6 +1123,12 @@ job_meta:
   translucer:
     pop_category: specialist
     economic_category: planet_translucers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_translucer
     produces:
     - resource: rare_crystals
@@ -835,6 +1143,12 @@ job_meta:
   gas_refiner:
     pop_category: specialist
     economic_category: planet_refiners
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_refiner
     produces:
     - resource: exotic_gases
@@ -849,6 +1163,10 @@ job_meta:
   roboticist:
     pop_category: specialist
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_roboticist
     produces: []
     is_economic_producer: false
@@ -856,6 +1174,12 @@ job_meta:
   healthcare:
     pop_category: specialist
     economic_category: planet_doctors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_healthcare
     produces:
     - resource: society_research
@@ -871,6 +1195,12 @@ job_meta:
   trader:
     pop_category: specialist
     economic_category: planet_traders
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_trader
     produces:
     - resource: trade
@@ -885,6 +1215,7 @@ job_meta:
   numistic_priest:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_numistic_priest
     produces: []
     is_economic_producer: false
@@ -892,6 +1223,7 @@ job_meta:
   preacher:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_numistic_priest
     produces: []
     is_economic_producer: false
@@ -899,6 +1231,7 @@ job_meta:
   manager:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_manager
     produces: []
     is_economic_producer: false
@@ -906,6 +1239,7 @@ job_meta:
   steward:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_manager
     produces: []
     is_economic_producer: false
@@ -913,6 +1247,7 @@ job_meta:
   necromancer:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_necromancer
     produces: []
     is_economic_producer: false
@@ -920,6 +1255,7 @@ job_meta:
   death_chronicler:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_death_chronicler
     produces: []
     is_economic_producer: false
@@ -927,6 +1263,11 @@ job_meta:
   necro_apprentice:
     pop_category: specialist
     economic_category: planet_necro_apprentices
+    economic_category_parents:
+    - planet_pop_assemblers
+    - planet_jobs
+    - planets
+    - country
     icon: job_necro_apprentice
     produces:
     - resource: unity
@@ -938,13 +1279,35 @@ job_meta:
   foundry:
     pop_category: specialist
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_foundry
-    produces: []
-    is_economic_producer: false
-    economic_resources: []
+    produces:
+    - resource: alloys
+      amount: 3.0
+      trigger: null
+    - resource: alloys
+      amount: 0.75
+      trigger: industrial_jobs_are_catalytic_trigger = yes
+    - resource: alloys
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_robot_empire = yes\n\
+        }"
+    - resource: alloys
+      amount: 0.25
+      trigger: "exists = owner\n            owner = {\n    is_robot_empire = yes\n\
+        }\n            industrial_jobs_are_catalytic_trigger = yes"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
   catalytic_technician:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_catalytic_technician
     produces: []
     is_economic_producer: false
@@ -952,6 +1315,12 @@ job_meta:
   artisan:
     pop_category: specialist
     economic_category: planet_artisans
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_artisan
     produces:
     - resource: consumer_goods
@@ -976,6 +1345,7 @@ job_meta:
   artificer:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_artificer
     produces: []
     is_economic_producer: false
@@ -983,6 +1353,7 @@ job_meta:
   pearl_diver:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_pearl_diver
     produces: []
     is_economic_producer: false
@@ -990,6 +1361,9 @@ job_meta:
   reassigner:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_necromancer
     produces: []
     is_economic_producer: false
@@ -997,6 +1371,12 @@ job_meta:
   bath_attendant:
     pop_category: specialist
     economic_category: planet_bath_attendants
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_bath_attendant
     produces:
     - resource: trade
@@ -1008,6 +1388,7 @@ job_meta:
   bath_attendant_individual_machine:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_bath_attendant_individual_machine
     produces: []
     is_economic_producer: false
@@ -1015,6 +1396,12 @@ job_meta:
   knight:
     pop_category: specialist
     economic_category: planet_knights
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_knight
     produces:
     - resource: unity
@@ -1041,6 +1428,7 @@ job_meta:
   archaeoengineers:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_archaeoengineers
     produces: []
     is_economic_producer: false
@@ -1048,6 +1436,12 @@ job_meta:
   resort_worker:
     pop_category: specialist
     economic_category: planet_entertainers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_servant
     produces:
     - resource: unity
@@ -1063,6 +1457,13 @@ job_meta:
   polytechnic_mentor:
     pop_category: specialist
     economic_category: planet_mentors
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_polytechnic_mentor
     produces: []
     is_economic_producer: false
@@ -1070,6 +1471,9 @@ job_meta:
   offworld_prospector:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_offworld_prospector
     produces: []
     is_economic_producer: false
@@ -1077,6 +1481,12 @@ job_meta:
   soldier:
     pop_category: specialist
     economic_category: planet_soldiers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_soldier
     produces:
     - resource: society_research
@@ -1092,6 +1502,12 @@ job_meta:
   battle_thrall:
     pop_category: specialist
     economic_category: planet_soldiers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_battle_thrall
     produces: []
     is_economic_producer: false
@@ -1099,6 +1515,9 @@ job_meta:
   colonist:
     pop_category: worker
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_colonist
     produces:
     - resource: food
@@ -1126,6 +1545,12 @@ job_meta:
   clerk:
     pop_category: worker
     economic_category: planet_clerks
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_clerk
     produces:
     - resource: trade
@@ -1137,6 +1562,12 @@ job_meta:
   technician:
     pop_category: worker
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces:
     - resource: energy
@@ -1151,6 +1582,12 @@ job_meta:
   miner:
     pop_category: worker
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -1185,6 +1622,7 @@ job_meta:
   crystal_miner:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_crystal_miner
     produces: []
     is_economic_producer: false
@@ -1192,6 +1630,7 @@ job_meta:
   gas_extractor:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_gas_extractor
     produces: []
     is_economic_producer: false
@@ -1199,6 +1638,7 @@ job_meta:
   mote_harvester:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_mote_harvester
     produces: []
     is_economic_producer: false
@@ -1206,6 +1646,12 @@ job_meta:
   farmer:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_farmer
     produces:
     - resource: food
@@ -1234,6 +1680,12 @@ job_meta:
   mortal_initiate:
     pop_category: worker
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_mortal_initiate
     produces:
     - resource: unity
@@ -1249,6 +1701,7 @@ job_meta:
   scrap_miner:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -1256,6 +1709,7 @@ job_meta:
   angler:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_angler
     produces: []
     is_economic_producer: false
@@ -1263,6 +1717,7 @@ job_meta:
   ranger:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_ranger
     produces: []
     is_economic_producer: false
@@ -1270,6 +1725,12 @@ job_meta:
   squire:
     pop_category: worker
     economic_category: planet_squires
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_squire
     produces: []
     is_economic_producer: false
@@ -1277,6 +1738,12 @@ job_meta:
   foundry_prison_worker:
     pop_category: worker
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_foundry
     produces:
     - resource: alloys
@@ -1288,6 +1755,12 @@ job_meta:
   catalytic_technician_prison_worker:
     pop_category: worker
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_catalytic_technician
     produces:
     - resource: alloys
@@ -1299,6 +1772,12 @@ job_meta:
   artisan_prison_worker:
     pop_category: worker
     economic_category: planet_artisans
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_artisan
     produces:
     - resource: consumer_goods
@@ -1310,6 +1789,12 @@ job_meta:
   artificer_prison_worker:
     pop_category: worker
     economic_category: planet_artisans
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_artificer
     produces:
     - resource: consumer_goods
@@ -1321,6 +1806,10 @@ job_meta:
   spawning_drone:
     pop_category: complex_drone
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_spawning_drone
     produces:
     - resource: society_research
@@ -1336,6 +1825,7 @@ job_meta:
   offspring_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_spawning_drone
     produces: []
     is_economic_producer: false
@@ -1343,6 +1833,10 @@ job_meta:
   replicator:
     pop_category: complex_drone
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_replicator
     produces: []
     is_economic_producer: false
@@ -1350,6 +1844,12 @@ job_meta:
   gestation_drone:
     pop_category: complex_drone
     economic_category: planet_doctors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_healthcare
     produces:
     - resource: society_research
@@ -1365,6 +1865,13 @@ job_meta:
   evaluator:
     pop_category: complex_drone
     economic_category: planet_evaluators
+    economic_category_parents:
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_evaluator
     produces:
     - resource: unity
@@ -1376,6 +1883,12 @@ job_meta:
   coordinator:
     pop_category: complex_drone
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_coordinator
     produces:
     - resource: unity
@@ -1390,6 +1903,7 @@ job_meta:
   synapse_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_synapse_drone
     produces: []
     is_economic_producer: false
@@ -1397,6 +1911,7 @@ job_meta:
   chronicle_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_chronicle_drone
     produces: []
     is_economic_producer: false
@@ -1404,6 +1919,13 @@ job_meta:
   calculator_physicist:
     pop_category: complex_drone
     economic_category: planet_physicists
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_physicist
     produces:
     - resource: physics_research
@@ -1441,6 +1963,7 @@ job_meta:
   brain_drone_physicist:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_brain_drone_physicist
     produces: []
     is_economic_producer: false
@@ -1448,6 +1971,13 @@ job_meta:
   calculator_biologist:
     pop_category: complex_drone
     economic_category: planet_biologists
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_biologist
     produces:
     - resource: society_research
@@ -1466,6 +1996,7 @@ job_meta:
   brain_drone_biologist:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_brain_drone_biologist
     produces: []
     is_economic_producer: false
@@ -1473,6 +2004,7 @@ job_meta:
   archaeo_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_archaeo_drone
     produces: []
     is_economic_producer: false
@@ -1480,6 +2012,7 @@ job_meta:
   archaeo_unit:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_archaeo_unit
     produces: []
     is_economic_producer: false
@@ -1487,6 +2020,13 @@ job_meta:
   calculator_engineer:
     pop_category: complex_drone
     economic_category: planet_engineers
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_engineer
     produces:
     - resource: engineering_research
@@ -1501,6 +2041,7 @@ job_meta:
   brain_drone_engineer:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_brain_drone_engineer
     produces: []
     is_economic_producer: false
@@ -1508,6 +2049,12 @@ job_meta:
   artisan_drone:
     pop_category: complex_drone
     economic_category: planet_artisans
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_artisan_drone
     produces:
     - resource: consumer_goods
@@ -1519,13 +2066,35 @@ job_meta:
   fabricator:
     pop_category: complex_drone
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_fabricator
-    produces: []
-    is_economic_producer: false
-    economic_resources: []
+    produces:
+    - resource: alloys
+      amount: 3.0
+      trigger: null
+    - resource: alloys
+      amount: 0.75
+      trigger: industrial_jobs_are_catalytic_trigger = yes
+    - resource: alloys
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    is_robot_empire = yes\n\
+        }"
+    - resource: alloys
+      amount: 0.25
+      trigger: "exists = owner\n            owner = {\n    is_robot_empire = yes\n\
+        }\n            industrial_jobs_are_catalytic_trigger = yes"
+    is_economic_producer: true
+    economic_resources:
+    - alloys
   alloy_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_alloy_drone
     produces: []
     is_economic_producer: false
@@ -1533,6 +2102,7 @@ job_meta:
   catalytic_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_catalytic_drone
     produces: []
     is_economic_producer: false
@@ -1540,6 +2110,12 @@ job_meta:
   chemist_drone:
     pop_category: complex_drone
     economic_category: planet_chemists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_chemist_drone
     produces:
     - resource: volatile_motes
@@ -1554,6 +2130,12 @@ job_meta:
   translucer_drone:
     pop_category: complex_drone
     economic_category: planet_translucers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_translucer_drone
     produces:
     - resource: rare_crystals
@@ -1568,6 +2150,12 @@ job_meta:
   gas_refiner_drone:
     pop_category: complex_drone
     economic_category: planet_refiners
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_refiner_drone
     produces:
     - resource: exotic_gases
@@ -1582,6 +2170,9 @@ job_meta:
   patrol_drone:
     pop_category: complex_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_patrol_drone
     produces:
     - resource: unity
@@ -1593,6 +2184,7 @@ job_meta:
   mote_harvesting_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_mote_harvesting_drone
     produces: []
     is_economic_producer: false
@@ -1600,6 +2192,7 @@ job_meta:
   crystal_mining_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_crystal_mining_drone
     produces: []
     is_economic_producer: false
@@ -1607,6 +2200,7 @@ job_meta:
   gas_extraction_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_gas_extraction_drone
     produces: []
     is_economic_producer: false
@@ -1614,6 +2208,12 @@ job_meta:
   logistics_drone:
     pop_category: complex_drone
     economic_category: planet_traders
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_bureaucrat
     produces:
     - resource: trade
@@ -1628,6 +2228,12 @@ job_meta:
   mining_drone:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_mining_drone
     produces:
     - resource: minerals
@@ -1655,6 +2261,7 @@ job_meta:
   scrap_miner_drone:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -1662,6 +2269,12 @@ job_meta:
   agri_drone:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_agri_drone
     produces:
     - resource: food
@@ -1681,6 +2294,12 @@ job_meta:
   technician_drone:
     pop_category: simple_drone
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician_drone
     produces:
     - resource: energy
@@ -1698,6 +2317,10 @@ job_meta:
   maintenance_drone:
     pop_category: maintenance_drone
     economic_category: planet_maintenance_drones
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_maintenance_drone
     produces:
     - resource: trade
@@ -1709,6 +2332,7 @@ job_meta:
   wilderness_maintenance_drone:
     pop_category: wilderness_heart_strata
     economic_category: null
+    economic_category_parents: []
     icon: job_wilderness_maintenance_drone
     produces: []
     is_economic_producer: false
@@ -1716,6 +2340,12 @@ job_meta:
   warrior_drone:
     pop_category: complex_drone
     economic_category: planet_soldiers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_warrior_drone
     produces: []
     is_economic_producer: false
@@ -1723,6 +2353,12 @@ job_meta:
   bath_attendant_machine:
     pop_category: simple_drone
     economic_category: planet_bath_attendants_machine
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_bath_attendant_machine
     produces: []
     is_economic_producer: false
@@ -1730,6 +2366,7 @@ job_meta:
   bath_attendant_hive:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_bath_attendant_hive
     produces: []
     is_economic_producer: false
@@ -1737,6 +2374,13 @@ job_meta:
   polytechnic_drone:
     pop_category: complex_drone
     economic_category: planet_mentors
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_polytechnic_drone
     produces: []
     is_economic_producer: false
@@ -1744,6 +2388,9 @@ job_meta:
   offworld_prospector_drone:
     pop_category: complex_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_offworld_prospector_drone
     produces: []
     is_economic_producer: false
@@ -1751,6 +2398,10 @@ job_meta:
   pre_sapient:
     pop_category: pre_sapients
     economic_category: pop_category_pre_sapients
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_pre_sapient
     produces: []
     is_economic_producer: false
@@ -1758,6 +2409,10 @@ job_meta:
   pre_sapient_nascent:
     pop_category: pre_sapients
     economic_category: pop_category_pre_sapients
+    economic_category_parents:
+    - planet_pops
+    - planets
+    - country
     icon: job_pre_sapient
     produces: []
     is_economic_producer: false
@@ -1765,6 +2420,13 @@ job_meta:
   hunted_pre_sapient:
     pop_category: pre_sapients
     economic_category: planet_livestock_farmers
+    economic_category_parents:
+    - planet_farmers
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock
     produces:
     - resource: food
@@ -1784,6 +2446,13 @@ job_meta:
   hunted_pre_sapient_lithoid:
     pop_category: pre_sapients
     economic_category: planet_livestock_miners
+    economic_category_parents:
+    - planet_miners
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_livestock
     produces:
     - resource: minerals
@@ -1803,6 +2472,10 @@ job_meta:
   xeno_zoo_animal:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_animal
     produces: []
     is_economic_producer: false
@@ -1810,6 +2483,10 @@ job_meta:
   xeno_zoo_animal_nascent:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_animal_nascent
     produces: []
     is_economic_producer: false
@@ -1817,6 +2494,10 @@ job_meta:
   xeno_zoo_animal_lithoid:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_animal_lithoid
     produces: []
     is_economic_producer: false
@@ -1824,6 +2505,10 @@ job_meta:
   xeno_zoo_animal_lithoid_nascent:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_animal_lithoid_nascent
     produces: []
     is_economic_producer: false
@@ -1831,6 +2516,10 @@ job_meta:
   xeno_zoo_beast:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_beast
     produces: []
     is_economic_producer: false
@@ -1838,6 +2527,10 @@ job_meta:
   xeno_zoo_beast_nascent:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_beast_nascent
     produces: []
     is_economic_producer: false
@@ -1845,6 +2538,10 @@ job_meta:
   xeno_zoo_beast_lithoid:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_beast_lithoid
     produces: []
     is_economic_producer: false
@@ -1852,6 +2549,10 @@ job_meta:
   xeno_zoo_beast_lithoid_nascent:
     pop_category: pre_sapients
     economic_category: planet_xeno_zoo_animals
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_beast_lithoid_nascent
     produces: []
     is_economic_producer: false
@@ -1859,6 +2560,12 @@ job_meta:
   hunter_gatherer:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_hunter_gatherer
     produces:
     - resource: food
@@ -1870,6 +2577,12 @@ job_meta:
   hunter_gatherer_lithoid:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_hunter_gatherer_lithoid
     produces:
     - resource: minerals
@@ -1881,6 +2594,12 @@ job_meta:
   peasant:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_peasant
     produces:
     - resource: food
@@ -1892,6 +2611,12 @@ job_meta:
   peasant_lithoid:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_peasant_lithoid
     produces:
     - resource: minerals
@@ -1903,6 +2628,7 @@ job_meta:
   primitive_warrior:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_primitive_warrior
     produces: []
     is_economic_producer: false
@@ -1910,6 +2636,12 @@ job_meta:
   primitive_noble:
     pop_category: ruler
     economic_category: planet_politicians
+    economic_category_parents:
+    - planet_jobs_ruler
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_noble
     produces:
     - resource: unity
@@ -1921,6 +2653,12 @@ job_meta:
   primitive_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_researcher
     produces:
     - resource: physics_research
@@ -1940,6 +2678,9 @@ job_meta:
   primitive_priest:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_primitive_priest
     produces:
     - resource: unity
@@ -1951,6 +2692,10 @@ job_meta:
   primitive_laborer:
     pop_category: specialist
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_laborer
     produces:
     - resource: alloys
@@ -1966,6 +2711,12 @@ job_meta:
   primitive_miner:
     pop_category: worker
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -1977,6 +2728,12 @@ job_meta:
   primitive_technician:
     pop_category: worker
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces:
     - resource: energy
@@ -1988,6 +2745,12 @@ job_meta:
   primitive_farmer:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_farmer
     produces:
     - resource: food
@@ -1999,6 +2762,12 @@ job_meta:
   primitive_researcher_2:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_researcher_2
     produces:
     - resource: physics_research
@@ -2018,6 +2787,9 @@ job_meta:
   primitive_priest_2:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_primitive_priest_2
     produces:
     - resource: unity
@@ -2029,6 +2801,7 @@ job_meta:
   primitive_entertainer:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_entertainer
     produces: []
     is_economic_producer: false
@@ -2036,6 +2809,7 @@ job_meta:
   primitive_warrior_2:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_primitive_warrior_2
     produces: []
     is_economic_producer: false
@@ -2043,6 +2817,12 @@ job_meta:
   primitive_bureaucrat:
     pop_category: ruler
     economic_category: planet_politicians
+    economic_category_parents:
+    - planet_jobs_ruler
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_bureaucrat
     produces:
     - resource: unity
@@ -2054,6 +2834,12 @@ job_meta:
   solarpunk_anarchist:
     pop_category: ruler
     economic_category: planet_politicians
+    economic_category_parents:
+    - planet_jobs_ruler
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ranger
     produces:
     - resource: unity
@@ -2065,6 +2851,12 @@ job_meta:
   primitive_administrator:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_bureaucrat
     produces:
     - resource: unity
@@ -2076,6 +2868,12 @@ job_meta:
   hive_sustenance_drone:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_hunter_gatherer
     produces:
     - resource: food
@@ -2087,6 +2885,12 @@ job_meta:
   hive_sustenance_drone_lithoid:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_hunter_gatherer
     produces:
     - resource: minerals
@@ -2098,6 +2902,12 @@ job_meta:
   hive_basic_agri_drone:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_peasant
     produces:
     - resource: food
@@ -2109,6 +2919,12 @@ job_meta:
   hive_basic_agri_drone_lithoid:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_peasant
     produces:
     - resource: minerals
@@ -2120,6 +2936,7 @@ job_meta:
   primitive_hive_warrior:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_primitive_warrior
     produces: []
     is_economic_producer: false
@@ -2127,6 +2944,12 @@ job_meta:
   primitive_hive_synapse_drone:
     pop_category: complex_drone
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_synapse_drone
     produces:
     - resource: unity
@@ -2138,6 +2961,12 @@ job_meta:
   primitive_hive_cerebellum_drone:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_hive_cerebellum_drone
     produces:
     - resource: physics_research
@@ -2157,6 +2986,12 @@ job_meta:
   primitive_hive_factory_drone:
     pop_category: simple_drone
     economic_category: planet_artisans
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_laborer
     produces:
     - resource: alloys
@@ -2168,6 +3003,12 @@ job_meta:
   primitive_hive_miner:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -2179,6 +3020,12 @@ job_meta:
   primitive_hive_technician:
     pop_category: simple_drone
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces:
     - resource: energy
@@ -2190,6 +3037,12 @@ job_meta:
   primitive_hive_farmer:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_farmer
     produces:
     - resource: food
@@ -2201,6 +3054,12 @@ job_meta:
   primitive_hive_brain_drone:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_primitive_hive_brain_drone
     produces:
     - resource: physics_research
@@ -2220,6 +3079,7 @@ job_meta:
   primitive_hive_spawning_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_spawning_drone
     produces: []
     is_economic_producer: false
@@ -2227,6 +3087,7 @@ job_meta:
   primitive_hive_warrior_2:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_warrior_drone
     produces: []
     is_economic_producer: false
@@ -2234,6 +3095,12 @@ job_meta:
   primitive_hive_synapse_drone_2:
     pop_category: complex_drone
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_synapse_drone
     produces:
     - resource: unity
@@ -2245,6 +3112,9 @@ job_meta:
   event_purge:
     pop_category: purge
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_event_purge
     produces:
     - resource: unity
@@ -2260,6 +3130,12 @@ job_meta:
   ratling_scavenger:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ratling_scavenger
     produces:
     - resource: food
@@ -2279,6 +3155,12 @@ job_meta:
   odd_factory_worker:
     pop_category: worker
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_odd_factory_worker
     produces:
     - resource: alloys
@@ -2290,6 +3172,12 @@ job_meta:
   odd_factory_drone:
     pop_category: simple_drone
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_odd_factory_drone
     produces:
     - resource: alloys
@@ -2301,6 +3189,7 @@ job_meta:
   underground_trade_worker:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_clerk
     produces: []
     is_economic_producer: false
@@ -2308,6 +3197,7 @@ job_meta:
   underground_contact_drone:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_spawning_drone
     produces: []
     is_economic_producer: false
@@ -2315,6 +3205,12 @@ job_meta:
   dimensional_portal_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_researcher
     produces:
     - resource: physics_research
@@ -2352,6 +3248,12 @@ job_meta:
   dimensional_portal_researcher_gestalt:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_researcher
     produces:
     - resource: physics_research
@@ -2388,6 +3290,12 @@ job_meta:
   space_time_anomaly_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_researcher
     produces:
     - resource: physics_research
@@ -2406,6 +3314,12 @@ job_meta:
   space_time_anomaly_researcher_gestalt:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_researcher
     produces:
     - resource: physics_research
@@ -2424,6 +3338,12 @@ job_meta:
   gas_plant_engineer:
     pop_category: specialist
     economic_category: planet_refiners
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_extractor
     produces:
     - resource: exotic_gases
@@ -2435,6 +3355,12 @@ job_meta:
   gas_plant_engineer_gestalt:
     pop_category: complex_drone
     economic_category: planet_refiners
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_refiner_drone
     produces:
     - resource: exotic_gases
@@ -2446,6 +3372,7 @@ job_meta:
   cave_cleaner:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -2453,6 +3380,12 @@ job_meta:
   cave_cleaner_gestalt:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_mining_drone
     produces:
     - resource: minerals
@@ -2464,6 +3397,7 @@ job_meta:
   titan_hunter:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_hunter_gatherer
     produces: []
     is_economic_producer: false
@@ -2471,6 +3405,12 @@ job_meta:
   robot_caretaker:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_robot_caretaker
     produces:
     - resource: unity
@@ -2486,6 +3426,7 @@ job_meta:
   turtle_miner:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -2493,6 +3434,12 @@ job_meta:
   turtle_miner_gestalt:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_mining_drone
     produces:
     - resource: minerals
@@ -2516,6 +3463,14 @@ job_meta:
   machine_nurse:
     pop_category: bio_trophy
     economic_category: planet_bio_trophies
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_machine_nurse
     produces:
     - resource: unity
@@ -2527,6 +3482,12 @@ job_meta:
   manufactorium_specialist:
     pop_category: specialist
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_foundry
     produces:
     - resource: alloys
@@ -2574,6 +3535,12 @@ job_meta:
   manufactorium_complex_drone:
     pop_category: complex_drone
     economic_category: planet_metallurgists
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_foundry
     produces:
     - resource: alloys
@@ -2609,6 +3576,7 @@ job_meta:
   manufactorium_scraper:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -2616,6 +3584,12 @@ job_meta:
   manufactorium_scraper_drone:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -2635,6 +3609,12 @@ job_meta:
   archivist:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_fe_archivist
     produces:
     - resource: physics_research
@@ -2654,6 +3634,12 @@ job_meta:
   puddle_technician:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_puddle_technician
     produces:
     - resource: food
@@ -2672,6 +3658,12 @@ job_meta:
   puddle_technician_drone:
     pop_category: simple_drone
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_puddle_technician_drone
     produces:
     - resource: food
@@ -2690,17 +3682,34 @@ job_meta:
   stasis_warden:
     pop_category: specialist
     economic_category: planet_enforcers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_enforcer
     produces:
+    - resource: unity
+      amount: 1.0
+      trigger: "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+        }"
+    - resource: unity
+      amount: 2.5
+      trigger: enforcer_is_educator_trigger = yes
     - resource: physics_research
       amount: 2.0
       trigger: null
     is_economic_producer: true
     economic_resources:
+    - unity
     - physics_research
   stasis_warden_drone:
     pop_category: complex_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_patrol_drone
     produces:
     - resource: physics_research
@@ -2716,6 +3725,12 @@ job_meta:
   astrogarbage_collector:
     pop_category: worker
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_laborer
     produces:
     - resource: alloys
@@ -2727,6 +3742,12 @@ job_meta:
   astrogarbage_collector_gestalt:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_refiner_drone
     produces:
     - resource: alloys
@@ -2738,6 +3759,12 @@ job_meta:
   myrmeku_power_farmer:
     pop_category: specialist
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces: []
     is_economic_producer: false
@@ -2745,6 +3772,12 @@ job_meta:
   myrmeku_power_farmer_gestalt:
     pop_category: complex_drone
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician_drone
     produces: []
     is_economic_producer: false
@@ -2752,6 +3785,12 @@ job_meta:
   stratovent_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_xeno_zoo_keeper
     produces:
     - resource: society_research
@@ -2767,6 +3806,12 @@ job_meta:
   stratovent_refiner:
     pop_category: specialist
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_extractor
     produces:
     - resource: exotic_gases
@@ -2778,6 +3823,12 @@ job_meta:
   stratovent_refiner_upg:
     pop_category: specialist
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_extractor
     produces:
     - resource: exotic_gases
@@ -2789,6 +3840,12 @@ job_meta:
   stratovent_refiner_minerals:
     pop_category: specialist
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_gas_extractor
     produces:
     - resource: exotic_gases
@@ -2804,6 +3861,7 @@ job_meta:
   mineral_diver:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_miner
     produces: []
     is_economic_producer: false
@@ -2811,6 +3869,12 @@ job_meta:
   mineral_diver_drone:
     pop_category: simple_drone
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_mining_drone
     produces:
     - resource: minerals
@@ -2826,6 +3890,12 @@ job_meta:
   alien_hunter:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_hunter_gatherer
     produces:
     - resource: food
@@ -2837,6 +3907,7 @@ job_meta:
   fe_overseer:
     pop_category: precursor
     economic_category: null
+    economic_category_parents: []
     icon: job_politician
     produces: []
     is_economic_producer: false
@@ -2844,6 +3915,7 @@ job_meta:
   fe_sky_cardinal:
     pop_category: precursor
     economic_category: null
+    economic_category_parents: []
     icon: job_high_priest
     produces: []
     is_economic_producer: false
@@ -2851,6 +3923,7 @@ job_meta:
   fe_guardian_bot:
     pop_category: precursor
     economic_category: null
+    economic_category_parents: []
     icon: job_soldier
     produces: []
     is_economic_producer: false
@@ -2858,6 +3931,7 @@ job_meta:
   fe_protector:
     pop_category: precursor
     economic_category: null
+    economic_category_parents: []
     icon: job_enforcer
     produces: []
     is_economic_producer: false
@@ -2865,6 +3939,9 @@ job_meta:
   fe_archivist:
     pop_category: precursor
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_fe_archivist
     produces:
     - resource: society_research
@@ -2884,6 +3961,12 @@ job_meta:
   fe_acolyte_farm:
     pop_category: precursor
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_farmer
     produces:
     - resource: food
@@ -2895,6 +3978,12 @@ job_meta:
   fe_acolyte_mine:
     pop_category: precursor
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -2906,6 +3995,12 @@ job_meta:
   fe_acolyte_generator:
     pop_category: precursor
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces:
     - resource: energy
@@ -2917,6 +4012,9 @@ job_meta:
   fe_augur:
     pop_category: precursor
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_priest
     produces:
     - resource: unity
@@ -2928,6 +4026,7 @@ job_meta:
   fe_xeno_keeper:
     pop_category: precursor
     economic_category: null
+    economic_category_parents: []
     icon: job_culture_worker
     produces: []
     is_economic_producer: false
@@ -2935,6 +4034,9 @@ job_meta:
   fe_xeno_ward:
     pop_category: xeno_ward
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_fe_xeno_ward
     produces:
     - resource: unity
@@ -2946,6 +4048,9 @@ job_meta:
   fe_hedonist:
     pop_category: precursor
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_fe_hedonist
     produces:
     - resource: unity
@@ -2957,6 +4062,9 @@ job_meta:
   fe_acolyte_artisan:
     pop_category: precursor
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_artisan
     produces:
     - resource: consumer_goods
@@ -2974,6 +4082,9 @@ job_meta:
   fe_maintenance_bot:
     pop_category: precursor
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_maintenance_drone
     produces: []
     is_economic_producer: false
@@ -2981,6 +4092,11 @@ job_meta:
   overlord_propagandist:
     pop_category: specialist
     economic_category: planet_overlord_propagandists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_propagandist
     produces: []
     is_economic_producer: false
@@ -2988,6 +4104,11 @@ job_meta:
   overlord_propagandist_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_propagandists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_propagandist
     produces: []
     is_economic_producer: false
@@ -2995,6 +4116,11 @@ job_meta:
   overlord_academic:
     pop_category: specialist
     economic_category: planet_overlord_academics
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_academic
     produces:
     - resource: physics_research
@@ -3014,6 +4140,11 @@ job_meta:
   overlord_academic_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_academics
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_academic
     produces:
     - resource: physics_research
@@ -3033,6 +4164,11 @@ job_meta:
   overlord_trader:
     pop_category: specialist
     economic_category: planet_overlord_traders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_trader
     produces: []
     is_economic_producer: false
@@ -3040,6 +4176,11 @@ job_meta:
   overlord_trader_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_traders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_trader
     produces: []
     is_economic_producer: false
@@ -3047,6 +4188,7 @@ job_meta:
   aid_worker:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_aid_worker
     produces: []
     is_economic_producer: false
@@ -3054,6 +4196,7 @@ job_meta:
   aid_worker_drone:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_aid_worker
     produces: []
     is_economic_producer: false
@@ -3061,6 +4204,11 @@ job_meta:
   overlord_breeder:
     pop_category: specialist
     economic_category: planet_overlord_breeders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_breeder
     produces: []
     is_economic_producer: false
@@ -3068,6 +4216,11 @@ job_meta:
   overlord_breeder_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_breeders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_breeder
     produces: []
     is_economic_producer: false
@@ -3075,6 +4228,7 @@ job_meta:
   mind_thrall:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_mind_thrall
     produces: []
     is_economic_producer: false
@@ -3082,6 +4236,7 @@ job_meta:
   mind_thrall_drone:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_mind_thrall
     produces: []
     is_economic_producer: false
@@ -3089,6 +4244,11 @@ job_meta:
   overlord_offspring_drone_feeder:
     pop_category: specialist
     economic_category: planet_overlord_offspring_drone_feeder
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_spawning_drone
     produces: []
     is_economic_producer: false
@@ -3096,6 +4256,11 @@ job_meta:
   overlord_offspring_drone_feeder_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_offspring_drone_feeder
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_spawning_drone
     produces: []
     is_economic_producer: false
@@ -3103,6 +4268,11 @@ job_meta:
   overlord_metallurgist:
     pop_category: specialist
     economic_category: planet_overlord_metallurgists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_foundry
     produces: []
     is_economic_producer: false
@@ -3110,6 +4280,11 @@ job_meta:
   overlord_foundry_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_metallurgists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_alloy_drone
     produces: []
     is_economic_producer: false
@@ -3117,6 +4292,11 @@ job_meta:
   overlord_fabricator:
     pop_category: complex_drone
     economic_category: planet_overlord_metallurgists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_fabricator
     produces: []
     is_economic_producer: false
@@ -3124,6 +4304,11 @@ job_meta:
   overlord_catalytic_technician:
     pop_category: specialist
     economic_category: planet_overlord_metallurgists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_catalytic_technician
     produces: []
     is_economic_producer: false
@@ -3131,6 +4316,11 @@ job_meta:
   overlord_catalytic_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_metallurgists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_catalytic_drone
     produces: []
     is_economic_producer: false
@@ -3138,6 +4328,11 @@ job_meta:
   overlord_beholder:
     pop_category: specialist
     economic_category: planet_overlord_beholders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_beholder
     produces: []
     is_economic_producer: false
@@ -3145,6 +4340,11 @@ job_meta:
   overlord_beholder_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_beholders
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_beholder
     produces: []
     is_economic_producer: false
@@ -3152,6 +4352,11 @@ job_meta:
   overlord_necromancer:
     pop_category: specialist
     economic_category: planet_overlord_necromancers
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_necromancer
     produces: []
     is_economic_producer: false
@@ -3159,6 +4364,11 @@ job_meta:
   overlord_necromancer_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_necromancers
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_beholder
     produces: []
     is_economic_producer: false
@@ -3166,6 +4376,11 @@ job_meta:
   overlord_reassigner:
     pop_category: specialist
     economic_category: planet_overlord_reassigners
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_necromancer
     produces: []
     is_economic_producer: false
@@ -3173,6 +4388,11 @@ job_meta:
   overlord_reassigner_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_reassigners
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_beholder
     produces: []
     is_economic_producer: false
@@ -3180,6 +4400,11 @@ job_meta:
   overlord_recruiter:
     pop_category: specialist
     economic_category: planet_overlord_recruiters
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_soldier
     produces: []
     is_economic_producer: false
@@ -3187,6 +4412,11 @@ job_meta:
   overlord_recruiter_drone:
     pop_category: complex_drone
     economic_category: planet_overlord_recruiters
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_beholder
     produces: []
     is_economic_producer: false
@@ -3194,6 +4424,7 @@ job_meta:
   overlord_ranger:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_ranger
     produces: []
     is_economic_producer: false
@@ -3201,6 +4432,7 @@ job_meta:
   overlord_ranger_drone:
     pop_category: simple_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_ranger
     produces: []
     is_economic_producer: false
@@ -3208,6 +4440,11 @@ job_meta:
   overlord_arborist:
     pop_category: worker
     economic_category: planet_overlord_arborists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_ranger
     produces: []
     is_economic_producer: false
@@ -3215,6 +4452,11 @@ job_meta:
   overlord_arborist_drone:
     pop_category: simple_drone
     economic_category: planet_overlord_arborists
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_ranger
     produces: []
     is_economic_producer: false
@@ -3222,6 +4464,11 @@ job_meta:
   overlord_bio_trophy:
     pop_category: worker
     economic_category: planet_overlord_bio_trophies
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_bio_trophy
     produces:
     - resource: unity
@@ -3233,6 +4480,11 @@ job_meta:
   overlord_bio_trophy_drone:
     pop_category: simple_drone
     economic_category: planet_overlord_bio_trophies
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_bio_trophy
     produces:
     - resource: unity
@@ -3244,6 +4496,11 @@ job_meta:
   overlord_manager:
     pop_category: specialist
     economic_category: planet_overlord_managers
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_manager
     produces:
     - resource: unity
@@ -3259,6 +4516,11 @@ job_meta:
   overlord_mortal_initiate:
     pop_category: worker
     economic_category: planet_overlord_mortal_initiates
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_mortal_initiate
     produces:
     - resource: unity
@@ -3274,6 +4536,11 @@ job_meta:
   overlord_mortal_initiate_drone:
     pop_category: simple_drone
     economic_category: planet_overlord_mortal_initiates
+    economic_category_parents:
+    - holdings_jobs
+    - planet_jobs
+    - planets
+    - country
     icon: job_mortal_initiate
     produces:
     - resource: unity
@@ -3289,6 +4556,12 @@ job_meta:
   overlord_knight:
     pop_category: specialist
     economic_category: planet_knights
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_knight
     produces: []
     is_economic_producer: false
@@ -3296,6 +4569,12 @@ job_meta:
   overlord_knight_drone:
     pop_category: complex_drone
     economic_category: planet_knights
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_knight
     produces: []
     is_economic_producer: false
@@ -3303,6 +4582,12 @@ job_meta:
   overlord_healthcare:
     pop_category: specialist
     economic_category: planet_doctors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_healthcare
     produces:
     - resource: trade
@@ -3318,6 +4603,10 @@ job_meta:
   overlord_replicator:
     pop_category: complex_drone
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_replicator
     produces: []
     is_economic_producer: false
@@ -3325,6 +4614,10 @@ job_meta:
   overlord_spawning_drone:
     pop_category: complex_drone
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_overlord_spawning_drone
     produces: []
     is_economic_producer: false
@@ -3332,6 +4625,9 @@ job_meta:
   overlord_spawning_drone_lithoid:
     pop_category: complex_drone
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_overlord_spawning_drone_lithoid
     produces: []
     is_economic_producer: false
@@ -3339,6 +4635,12 @@ job_meta:
   low_tech_laborer:
     pop_category: worker
     economic_category: planet_laborer
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_laborer
     produces:
     - resource: consumer_goods
@@ -3354,6 +4656,12 @@ job_meta:
   low_tech_miner:
     pop_category: worker
     economic_category: planet_miners
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_miner
     produces:
     - resource: minerals
@@ -3365,6 +4673,12 @@ job_meta:
   low_tech_technician:
     pop_category: worker
     economic_category: planet_technician
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technician
     produces:
     - resource: energy
@@ -3376,6 +4690,12 @@ job_meta:
   low_tech_farmer:
     pop_category: worker
     economic_category: planet_farmers
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_farmer
     produces:
     - resource: food
@@ -3387,6 +4707,12 @@ job_meta:
   low_tech_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_researcher
     produces:
     - resource: physics_research
@@ -3406,6 +4732,12 @@ job_meta:
   low_tech_priest:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_priest
     produces:
     - resource: unity
@@ -3417,6 +4749,12 @@ job_meta:
   low_tech_bureaucrat:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_bureaucrat
     produces:
     - resource: unity
@@ -3428,6 +4766,13 @@ job_meta:
   low_tech_manager:
     pop_category: specialist
     economic_category: planet_managers
+    economic_category_parents:
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_low_tech_bureaucrat
     produces:
     - resource: unity
@@ -3443,6 +4788,7 @@ job_meta:
   low_tech_warrior:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_low_tech_warrior
     produces: []
     is_economic_producer: false
@@ -3450,6 +4796,12 @@ job_meta:
   broken_shackles_scavenger:
     pop_category: worker
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_broken_shackles_scavenger
     produces:
     - resource: alloys
@@ -3473,6 +4825,7 @@ job_meta:
   captain:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3480,6 +4833,7 @@ job_meta:
   chief_navigator:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3487,6 +4841,7 @@ job_meta:
   principal_pilot:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3494,6 +4849,7 @@ job_meta:
   ship_weapons_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3501,6 +4857,7 @@ job_meta:
   ship_logistics_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3508,6 +4865,7 @@ job_meta:
   special_operations_commander:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3515,6 +4873,7 @@ job_meta:
   commanding_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3522,6 +4881,7 @@ job_meta:
   chief_supply_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3529,6 +4889,7 @@ job_meta:
   intelligence_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3536,6 +4897,7 @@ job_meta:
   chief_security_officer:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3543,6 +4905,7 @@ job_meta:
   government_employee:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3550,6 +4913,7 @@ job_meta:
   researcher:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_researcher
     produces: []
     is_economic_producer: false
@@ -3557,6 +4921,7 @@ job_meta:
   none:
     pop_category: null
     economic_category: null
+    economic_category_parents: []
     icon: job_colonist
     produces: []
     is_economic_producer: false
@@ -3564,6 +4929,12 @@ job_meta:
   munitions_decommissioner:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_munitions_decommissioner
     produces:
     - resource: alloys
@@ -3587,6 +4958,12 @@ job_meta:
   munitions_decommissioning_unit:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_munitions_decommissioning_unit
     produces:
     - resource: alloys
@@ -3610,6 +4987,12 @@ job_meta:
   munitions_decommissioning_unit_lithoid:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_munitions_decommissioning_unit_lithoid
     produces:
     - resource: alloys
@@ -3633,6 +5016,12 @@ job_meta:
   munitions_decommissioning_drone:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_munitions_decommissioning_drone
     produces:
     - resource: alloys
@@ -3656,6 +5045,12 @@ job_meta:
   astral_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_astral_researcher
     produces:
     - resource: physics_research
@@ -3678,6 +5073,12 @@ job_meta:
   astral_drone:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_astral_researcher
     produces:
     - resource: physics_research
@@ -3700,6 +5101,12 @@ job_meta:
   astral_unit:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_astral_researcher
     produces:
     - resource: physics_research
@@ -3722,6 +5129,7 @@ job_meta:
   astrometeorologist:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_astrometeorologist
     produces: []
     is_economic_producer: false
@@ -3729,6 +5137,7 @@ job_meta:
   astrometeorologist_hive:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_astrometeorologist_hive
     produces: []
     is_economic_producer: false
@@ -3736,6 +5145,7 @@ job_meta:
   astrometeorologist_machine:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_astrometeorologist_machine
     produces: []
     is_economic_producer: false
@@ -3743,6 +5153,12 @@ job_meta:
   haruspex:
     pop_category: specialist
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_haruspex
     produces:
     - resource: unity
@@ -3765,6 +5181,12 @@ job_meta:
   technophant:
     pop_category: ruler
     economic_category: planet_bureaucrats
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_technophant
     produces:
     - resource: unity
@@ -3780,6 +5202,11 @@ job_meta:
   neural_chip:
     pop_category: chip_slave
     economic_category: planet_neural_chips
+    economic_category_parents:
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_organic_battery
     produces:
     - resource: society_research
@@ -3802,6 +5229,12 @@ job_meta:
   augmentor:
     pop_category: specialist
     economic_category: planet_augmentors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_augmentor
     produces:
     - resource: society_research
@@ -3823,6 +5256,12 @@ job_meta:
   augmentor_drone:
     pop_category: complex_drone
     economic_category: planet_augmentors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_augmentor
     produces:
     - resource: society_research
@@ -3840,6 +5279,10 @@ job_meta:
   identity_designer:
     pop_category: specialist
     economic_category: planet_pop_assemblers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_identity_designer
     produces:
     - resource: engineering_research
@@ -3855,6 +5298,9 @@ job_meta:
   cyberdome_duelist:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_cyberdome_duelist
     produces:
     - resource: unity
@@ -3866,6 +5312,10 @@ job_meta:
   cyberdome_spectator:
     pop_category: worker
     economic_category: planet_cyberdome_spectator
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_cyberdome_spectator
     produces:
     - resource: energy
@@ -3881,6 +5331,10 @@ job_meta:
   clip_maximizer:
     pop_category: purge
     economic_category: planet_clip_maximizer
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_purge
     produces:
     - resource: consumer_goods
@@ -3892,6 +5346,12 @@ job_meta:
   nanotech_research_unit:
     pop_category: complex_drone
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_nanotech_research_unit
     produces:
     - resource: physics_research
@@ -3911,6 +5371,12 @@ job_meta:
   nanotech_researcher:
     pop_category: specialist
     economic_category: planet_researchers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_nanotech_researcher
     produces:
     - resource: physics_research
@@ -3930,6 +5396,14 @@ job_meta:
   treasure_gatherer:
     pop_category: specialist
     economic_category: planet_treasure_gatherers
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_treasure_gatherer
     produces:
     - resource: energy
@@ -3957,6 +5431,14 @@ job_meta:
   wrangler:
     pop_category: specialist
     economic_category: planet_primal_jobs
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_wrangler
     produces:
     - resource: society_research
@@ -3992,6 +5474,14 @@ job_meta:
   drone_wrangler:
     pop_category: complex_drone
     economic_category: planet_primal_jobs
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_wrangler
     produces:
     - resource: society_research
@@ -4020,6 +5510,14 @@ job_meta:
   treasure_gatherer_gestalt:
     pop_category: complex_drone
     economic_category: planet_treasure_gatherers
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_treasure_gatherer
     produces:
     - resource: energy
@@ -4043,6 +5541,11 @@ job_meta:
   disconnected_drone:
     pop_category: simple_drone
     economic_category: planet_disconnected_drones
+    economic_category_parents:
+    - unemployment_resources
+    - planet_pops
+    - planets
+    - country
     icon: job_synapse_drone
     produces: []
     is_economic_producer: false
@@ -4050,6 +5553,12 @@ job_meta:
   skywatcher:
     pop_category: specialist
     economic_category: planet_soldiers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_skywatcher
     produces: []
     is_economic_producer: false
@@ -4057,6 +5566,12 @@ job_meta:
   skywatcher_drone:
     pop_category: complex_drone
     economic_category: planet_soldiers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_skywatcher
     produces: []
     is_economic_producer: false
@@ -4064,6 +5579,7 @@ job_meta:
   genomic_researcher:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_genomic_researcher
     produces: []
     is_economic_producer: false
@@ -4071,6 +5587,7 @@ job_meta:
   genomic_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_genomic_drone
     produces: []
     is_economic_producer: false
@@ -4078,6 +5595,10 @@ job_meta:
   transference_volunteer:
     pop_category: specialist
     economic_category: planet_transference_volunteers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_transference_volunteer
     produces:
     - resource: unity
@@ -4089,6 +5610,10 @@ job_meta:
   transference_drone:
     pop_category: complex_drone
     economic_category: planet_transference_volunteers
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_transference_drone
     produces:
     - resource: unity
@@ -4100,6 +5625,10 @@ job_meta:
   sand_whisperer:
     pop_category: specialist
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_sand_whisperer
     produces:
     - resource: sr_zro
@@ -4110,6 +5639,10 @@ job_meta:
   sand_caretaker:
     pop_category: specialist
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_sand_whisperer
     produces:
     - resource: sr_zro
@@ -4120,6 +5653,10 @@ job_meta:
   drone_sand_whisperer:
     pop_category: complex_drone
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_sand_whisperer
     produces:
     - resource: sr_zro
@@ -4130,6 +5667,10 @@ job_meta:
   drone_sand_caretaker:
     pop_category: complex_drone
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_sand_whisperer
     produces:
     - resource: sr_zro
@@ -4140,6 +5681,10 @@ job_meta:
   space_junk_collector:
     pop_category: specialist
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_space_junk_collector
     produces:
     - resource: alloys
@@ -4151,6 +5696,10 @@ job_meta:
   drone_space_junk_collector:
     pop_category: complex_drone
     economic_category: planet_jobs_productive
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_space_junk_collector
     produces:
     - resource: alloys
@@ -4162,6 +5711,13 @@ job_meta:
   telepath_drone:
     pop_category: complex_drone
     economic_category: planet_telepaths
+    economic_category_parents:
+    - planet_enforcers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_telepath_drone
     produces:
     - resource: unity
@@ -4198,6 +5754,12 @@ job_meta:
   physician_drone:
     pop_category: complex_drone
     economic_category: planet_doctors
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_aid_worker
     produces:
     - resource: unity
@@ -4209,6 +5771,7 @@ job_meta:
   observator_drone:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_observator_drone
     produces: []
     is_economic_producer: false
@@ -4216,6 +5779,12 @@ job_meta:
   energy_thrall:
     pop_category: worker
     economic_category: planet_energy_thralls
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_energy_thrall
     produces:
     - resource: unity
@@ -4227,6 +5796,12 @@ job_meta:
   drone_energy_thrall:
     pop_category: simple_drone
     economic_category: planet_energy_thralls
+    economic_category_parents:
+    - planet_jobs_worker
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_energy_thrall
     produces:
     - resource: unity
@@ -4238,6 +5813,10 @@ job_meta:
   test_subject:
     pop_category: criminal
     economic_category: planet_test_subjects
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_test_subject
     produces:
     - resource: engineering_research
@@ -4257,6 +5836,10 @@ job_meta:
   test_subject_drone:
     pop_category: deviant_drone
     economic_category: planet_test_subjects
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_test_subject
     produces:
     - resource: engineering_research
@@ -4276,6 +5859,13 @@ job_meta:
   experiment_engineer:
     pop_category: specialist
     economic_category: planet_experiment_engineer
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_experiment_engineer
     produces: []
     is_economic_producer: false
@@ -4283,6 +5873,13 @@ job_meta:
   experiment_engineer_drone:
     pop_category: complex_drone
     economic_category: planet_experiment_engineer
+    economic_category_parents:
+    - planet_researchers
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_experiment_engineer
     produces: []
     is_economic_producer: false
@@ -4290,6 +5887,7 @@ job_meta:
   slave_orderly:
     pop_category: worker
     economic_category: null
+    economic_category_parents: []
     icon: job_slave_orderly
     produces: []
     is_economic_producer: false
@@ -4297,6 +5895,13 @@ job_meta:
   production_overseer:
     pop_category: specialist
     economic_category: planet_production_overseers
+    economic_category_parents:
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_production_overseer
     produces:
     - resource: engineering_research
@@ -4308,6 +5913,9 @@ job_meta:
   spe_colonist:
     pop_category: specialist
     economic_category: planet_jobs
+    economic_category_parents:
+    - planets
+    - country
     icon: job_colonist
     produces:
     - resource: food
@@ -4335,6 +5943,7 @@ job_meta:
   extradimensional_research_unit:
     pop_category: complex_drone
     economic_category: null
+    economic_category_parents: []
     icon: job_extradimensional_research_unit
     produces: []
     is_economic_producer: false
@@ -4342,6 +5951,12 @@ job_meta:
   shroud_trader:
     pop_category: specialist
     economic_category: planet_traders
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_telepath
     produces:
     - resource: trade
@@ -4357,6 +5972,14 @@ job_meta:
   cruise_passenger:
     pop_category: cruise_passenger
     economic_category: planet_cruise_passengers
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_cruise_passenger
     produces:
     - resource: unity
@@ -4368,6 +5991,14 @@ job_meta:
   cruise_passenger_unemployment:
     pop_category: cruise_passenger_unemployment
     economic_category: planet_cruise_passengers
+    economic_category_parents:
+    - planet_culture_workers
+    - planet_bureaucrats
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_cruise_passenger_unemployment
     produces:
     - resource: unity
@@ -4379,6 +6010,12 @@ job_meta:
   cruise_crew_overseer:
     pop_category: ruler
     economic_category: planet_entertainers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_cruise_crew_overseer
     produces:
     - resource: unity
@@ -4394,6 +6031,12 @@ job_meta:
   cruise_crew_overseer_drone:
     pop_category: complex_drone
     economic_category: planet_entertainers
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_cruise_crew_overseer
     produces:
     - resource: unity
@@ -4409,6 +6052,12 @@ job_meta:
   ark_waystation_trader:
     pop_category: specialist
     economic_category: planet_traders
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ark_waystation_trader
     produces:
     - resource: trade
@@ -4420,6 +6069,12 @@ job_meta:
   ark_harvester:
     pop_category: specialist
     economic_category: planet_ark_harvester
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ark_harvester
     produces:
     - resource: minerals
@@ -4431,6 +6086,12 @@ job_meta:
   ark_waystation_trader_gestalt:
     pop_category: complex_drone
     economic_category: planet_traders
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ark_waystation_trader
     produces:
     - resource: trade
@@ -4442,6 +6103,12 @@ job_meta:
   ark_harvester_gestalt:
     pop_category: complex_drone
     economic_category: planet_ark_harvester
+    economic_category_parents:
+    - planet_jobs_specialist
+    - planet_jobs_productive
+    - planet_jobs
+    - planets
+    - country
     icon: job_ark_harvester
     produces:
     - resource: minerals
@@ -4453,6 +6120,10 @@ job_meta:
   ark_deep_sleep:
     pop_category: deep_sleep
     economic_category: planet_ark_deep_sleep
+    economic_category_parents:
+    - planet_jobs
+    - planets
+    - country
     icon: job_ark_deep_sleep
     produces: []
     is_economic_producer: false
@@ -4460,6 +6131,7 @@ job_meta:
   duelist:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_duelist
     produces: []
     is_economic_producer: false
@@ -4467,6 +6139,7 @@ job_meta:
   historical_curator:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_historical_curator
     produces: []
     is_economic_producer: false
@@ -4474,6 +6147,7 @@ job_meta:
   storm_dancer:
     pop_category: specialist
     economic_category: null
+    economic_category_parents: []
     icon: job_storm_dancer
     produces: []
     is_economic_producer: false

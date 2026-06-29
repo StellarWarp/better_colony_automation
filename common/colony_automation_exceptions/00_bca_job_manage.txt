@@ -3470,6 +3470,83 @@ automate_job_drone_wrangler = {
     }
 }
 
+automate_job_dystopian_enforcer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_dystopian_enforcer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        dystopian_enforcer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_dystopian_enforcer_g3200
+            }
+            job = dystopian_enforcer
+            amount = 3200
+        }
+
+        dystopian_enforcer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_dystopian_enforcer_g3200
+            }
+            job = dystopian_enforcer
+            amount = -3200
+        }
+        dystopian_enforcer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_dystopian_enforcer_g800
+            }
+            job = dystopian_enforcer
+            amount = 800
+        }
+
+        dystopian_enforcer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_dystopian_enforcer_g800
+            }
+            job = dystopian_enforcer
+            amount = -800
+        }
+        dystopian_enforcer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_dystopian_enforcer_g200
+            }
+            job = dystopian_enforcer
+            amount = 200
+        }
+
+        dystopian_enforcer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_dystopian_enforcer_g200
+            }
+            job = dystopian_enforcer
+            amount = -200
+        }
+        dystopian_enforcer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_dystopian_enforcer_g50
+            }
+            job = dystopian_enforcer
+            amount = 50
+        }
+
+        dystopian_enforcer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_dystopian_enforcer_g50
+            }
+            job = dystopian_enforcer
+            amount = -50
+        }
+    }
+}
+
 automate_job_dystopian_telepath = {
     should_ai_use_job_micro = no
 
@@ -3619,6 +3696,83 @@ automate_job_energy_thrall = {
                 has_carrier_flag = bca_jr_dec_energy_thrall_g50
             }
             job = energy_thrall
+            amount = -50
+        }
+    }
+}
+
+automate_job_enforcer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_enforcer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        enforcer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_enforcer_g3200
+            }
+            job = enforcer
+            amount = 3200
+        }
+
+        enforcer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_enforcer_g3200
+            }
+            job = enforcer
+            amount = -3200
+        }
+        enforcer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_enforcer_g800
+            }
+            job = enforcer
+            amount = 800
+        }
+
+        enforcer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_enforcer_g800
+            }
+            job = enforcer
+            amount = -800
+        }
+        enforcer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_enforcer_g200
+            }
+            job = enforcer
+            amount = 200
+        }
+
+        enforcer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_enforcer_g200
+            }
+            job = enforcer
+            amount = -200
+        }
+        enforcer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_enforcer_g50
+            }
+            job = enforcer
+            amount = 50
+        }
+
+        enforcer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_enforcer_g50
+            }
+            job = enforcer
             amount = -50
         }
     }
@@ -3927,6 +4081,83 @@ automate_job_event_purge = {
                 has_carrier_flag = bca_jr_dec_event_purge_g50
             }
             job = event_purge
+            amount = -50
+        }
+    }
+}
+
+automate_job_fabricator = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_fabricator } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        fabricator_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fabricator_g3200
+            }
+            job = fabricator
+            amount = 3200
+        }
+
+        fabricator_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fabricator_g3200
+            }
+            job = fabricator
+            amount = -3200
+        }
+        fabricator_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fabricator_g800
+            }
+            job = fabricator
+            amount = 800
+        }
+
+        fabricator_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fabricator_g800
+            }
+            job = fabricator
+            amount = -800
+        }
+        fabricator_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fabricator_g200
+            }
+            job = fabricator
+            amount = 200
+        }
+
+        fabricator_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fabricator_g200
+            }
+            job = fabricator
+            amount = -200
+        }
+        fabricator_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_fabricator_g50
+            }
+            job = fabricator
+            amount = 50
+        }
+
+        fabricator_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_fabricator_g50
+            }
+            job = fabricator
             amount = -50
         }
     }
@@ -4620,6 +4851,83 @@ automate_job_fe_xeno_ward = {
                 has_carrier_flag = bca_jr_dec_fe_xeno_ward_g50
             }
             job = fe_xeno_ward
+            amount = -50
+        }
+    }
+}
+
+automate_job_foundry = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_foundry } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        foundry_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_foundry_g3200
+            }
+            job = foundry
+            amount = 3200
+        }
+
+        foundry_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_foundry_g3200
+            }
+            job = foundry
+            amount = -3200
+        }
+        foundry_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_foundry_g800
+            }
+            job = foundry
+            amount = 800
+        }
+
+        foundry_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_foundry_g800
+            }
+            job = foundry
+            amount = -800
+        }
+        foundry_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_foundry_g200
+            }
+            job = foundry
+            amount = 200
+        }
+
+        foundry_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_foundry_g200
+            }
+            job = foundry
+            amount = -200
+        }
+        foundry_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_foundry_g50
+            }
+            job = foundry
+            amount = 50
+        }
+
+        foundry_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_foundry_g50
+            }
+            job = foundry
             amount = -50
         }
     }
@@ -12243,6 +12551,83 @@ automate_job_shroud_trader = {
                 has_carrier_flag = bca_jr_dec_shroud_trader_g50
             }
             job = shroud_trader
+            amount = -50
+        }
+    }
+}
+
+automate_job_slave_overseer = {
+    should_ai_use_job_micro = no
+
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_disable_slave_overseer } }
+    }
+
+    emergency = yes
+    category = "planet_automation_job_management"
+
+    job_changes = {
+        slave_overseer_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_slave_overseer_g3200
+            }
+            job = slave_overseer
+            amount = 3200
+        }
+
+        slave_overseer_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_slave_overseer_g3200
+            }
+            job = slave_overseer
+            amount = -3200
+        }
+        slave_overseer_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_slave_overseer_g800
+            }
+            job = slave_overseer
+            amount = 800
+        }
+
+        slave_overseer_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_slave_overseer_g800
+            }
+            job = slave_overseer
+            amount = -800
+        }
+        slave_overseer_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_slave_overseer_g200
+            }
+            job = slave_overseer
+            amount = 200
+        }
+
+        slave_overseer_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_slave_overseer_g200
+            }
+            job = slave_overseer
+            amount = -200
+        }
+        slave_overseer_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_slave_overseer_g50
+            }
+            job = slave_overseer
+            amount = 50
+        }
+
+        slave_overseer_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_slave_overseer_g50
+            }
+            job = slave_overseer
             amount = -50
         }
     }

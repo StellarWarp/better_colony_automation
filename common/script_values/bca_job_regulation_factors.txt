@@ -5,6 +5,11 @@
 # ====================================================================
 # Source template: common/script_values/bca_job_regulation_factors.txt.j2
 
+bca_jr_automated_output_efficiency = {
+    base = 1
+    add = modifier:bonus_automated_workforce_mult
+}
+
 bca_jr_workforce_capacity_mult_agri_drone = {
     base = 1
     add = prev.modifier:pop_workforce_mult
@@ -545,6 +550,18 @@ bca_jr_output_efficiency_mult_drone_wrangler = {
     add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
     add = prev.modifier:pop_drone_wrangler_bonus_workforce_mult
 }
+bca_jr_workforce_capacity_mult_dystopian_enforcer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_dystopian_enforcer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_dystopian_enforcer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_ruler_bonus_workforce_mult
+    add = prev.modifier:pop_dystopian_enforcer_bonus_workforce_mult
+}
 bca_jr_workforce_capacity_mult_dystopian_telepath = {
     base = 1
     add = prev.modifier:pop_workforce_mult
@@ -568,6 +585,18 @@ bca_jr_output_efficiency_mult_energy_thrall = {
     add = prev.modifier:pop_bonus_workforce_mult
     add = prev.modifier:pop_cat_worker_bonus_workforce_mult
     add = prev.modifier:pop_energy_thrall_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_enforcer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_enforcer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_enforcer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_enforcer_bonus_workforce_mult
 }
 bca_jr_workforce_capacity_mult_engineer = {
     base = 1
@@ -616,6 +645,18 @@ bca_jr_output_efficiency_mult_event_purge = {
     add = prev.modifier:pop_bonus_workforce_mult
     add = prev.modifier:pop_cat_purge_bonus_workforce_mult
     add = prev.modifier:pop_event_purge_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_fabricator = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_fabricator_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_fabricator = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_complex_drone_bonus_workforce_mult
+    add = prev.modifier:pop_fabricator_bonus_workforce_mult
 }
 bca_jr_workforce_capacity_mult_farmer = {
     base = 1
@@ -724,6 +765,18 @@ bca_jr_output_efficiency_mult_fe_xeno_ward = {
     add = prev.modifier:pop_bonus_workforce_mult
     add = prev.modifier:pop_cat_xeno_ward_bonus_workforce_mult
     add = prev.modifier:pop_fe_xeno_ward_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_foundry = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_foundry_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_foundry = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
+    add = prev.modifier:pop_foundry_bonus_workforce_mult
 }
 bca_jr_workforce_capacity_mult_foundry_prison_worker = {
     base = 1
@@ -1912,6 +1965,18 @@ bca_jr_output_efficiency_mult_shroud_trader = {
     add = prev.modifier:pop_bonus_workforce_mult
     add = prev.modifier:pop_cat_specialist_bonus_workforce_mult
     add = prev.modifier:pop_shroud_trader_bonus_workforce_mult
+}
+bca_jr_workforce_capacity_mult_slave_overseer = {
+    base = 1
+    add = prev.modifier:pop_workforce_mult
+    add = prev.modifier:pop_slave_overseer_workforce_mult
+}
+
+bca_jr_output_efficiency_mult_slave_overseer = {
+    base = 1
+    add = prev.modifier:pop_bonus_workforce_mult
+    add = prev.modifier:pop_cat_worker_bonus_workforce_mult
+    add = prev.modifier:pop_slave_overseer_bonus_workforce_mult
 }
 bca_jr_workforce_capacity_mult_solarpunk_anarchist = {
     base = 1

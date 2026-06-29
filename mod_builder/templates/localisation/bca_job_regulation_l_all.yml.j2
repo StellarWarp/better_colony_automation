@@ -1,24 +1,89 @@
 {# Phase 8: 岗位调控面板本地化（all: 自动分发） #}
 {% set slots = job_regulation_config.display_slots | default(15) %}
 {% set regulated = job_regulation_config.regulated_jobs %}
+{% set resources = job_regulation_config.resources %}
+{% set display_numbers = [
+    "assigned_workforce",
+    "capacity_workforce",
+    "pop_productive_workforce",
+    "productive_workforce",
+    "automated_capacity_workforce",
+    "automated_productive_workforce",
+    "pop_capacity_limit",
+    "total_job_count",
+    "free_job_count",
+    "open_job_count",
+    "open_total_capacity",
+    "automation_rate",
+    "pop_efficiency_delta",
+    "automated_efficiency_delta",
+    "total_efficiency_delta",
+    "closable_capacity_workforce",
+] %}
+{% macro formatted_number_keys(s_name, number) %}
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_int]"
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_one]"
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_TWO: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_two]"
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_k]K"
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_m]M"
+{% endmacro %}
 all:
 
 {% for icon in job_regulation_config.icon_sprites | default([]) %}
  BCA_JR_ICON_SPRITE_{{ icon }}: "£jr_icon_{{ icon }}£"
 {% endfor %}
-
-{% for entry in regulated %}
- BCA_JR_WF_{{ entry.job }}: "[From.bca_jr_total_capacity_workforce_{{ entry.job }}] / [From.bca_jr_total_job_count_{{ entry.job }}]"
-{% endfor %}
-
-{% for entry in regulated %}
- BCA_JR_OUTPUT_{{ entry.job }}: "{% for resource in entry.economic_resources %}£{{ resource }}£[From.bca_jr_display_output_{{ entry.job }}_{{ resource }}]{% if not loop.last %} {% endif %}{% endfor %}"
-{% endfor %}
+ BCA_JR_REFRESH: "刷新"
+ BCA_JR_CAT_ALL: "全部"
+ BCA_JR_HEADER_JOB: "岗位"
+ BCA_JR_HEADER_WORKFORCE: "劳动力"
+ BCA_JR_HEADER_CHANGE: "变化"
+ BCA_JR_HEADER_RATE: "自动率"
+ BCA_JR_HEADER_OUTPUT: "产出"
+ BCA_JR_HEADER_STATUS: "控制"
+ BCA_JR_LOCATE_BUTTON: "◎"
+ BCA_JR_LOCATE_TOOLTIP: "为拥有该岗位的殖民地创建 1 天通知。"
+ BCA_JR_MODE_AUTO: "自动"
+ BCA_JR_MODE_MANUAL: "手动"
+ BCA_JR_MODE_NONE: "-"
+ BCA_JR_MANUAL_MODE_NOT_IMPLEMENTED: "手动开放模式尚未接入。"
+ BCA_JR_SLOT_RATE_EMPTY: "-"
+ MESSAGE_BCA_JOB_LOCATE: "BCA 岗位定位"
+ MESSAGE_BCA_JOB_LOCATE_DESC: "$PLANET$ 拥有所选岗位。"
+ BCA_JR_CAT_GROUP_BASIC: "£energy£ £minerals£ £food£"
+ BCA_JR_CAT_GROUP_INDUSTRY: "£alloys£ £consumer_goods£ £trade£"
+ BCA_JR_CAT_GROUP_KNOWLEDGE: "£unity£ £physics_research£ £society_research£ £engineering_research£"
+ BCA_JR_CAT_GROUP_RARE: "£rare_crystals£ £volatile_motes£ £exotic_gases£"
 
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
  BCA_JR_SLOT_{{ s_name }}_ICON: "[From.BCA_JR_SLOT_{{ s_name }}_ICON_script]"
  BCA_JR_SLOT_{{ s_name }}_NAME: "[From.BCA_JR_SLOT_{{ s_name }}_NAME_script]"
- BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_WF_script]"
- BCA_JR_SLOT_{{ s_name }}_OUTPUT: "[From.BCA_JR_SLOT_{{ s_name }}_OUTPUT_script]"
+ BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] / [From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script]"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE: "-"
+ BCA_JR_SLOT_{{ s_name }}_RATE: "[From.BCA_JR_SLOT_{{ s_name }}_RATE_script]"
+ BCA_JR_SLOT_{{ s_name }}_RATE_VALUE: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATION_RATE_script]%"
+ BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP: "§Y岗位劳动力§!\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script] - 总岗位数量\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] - 已开放岗位容量（含自动化）\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_FREE_JOB_COUNT_script] - 空闲开放岗位\n\n§Y产出劳动力§!\n[From.BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script] - 总产出劳动力\n    [From.BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script] - 人口产出劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_FMT_CAPACITY_WORKFORCE_script] - 人口劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script] - 人口岗位效率\n    [From.BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script] - 自动化产出劳动力\n        §L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_CAPACITY_WORKFORCE_script]§! - 自动化劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script] - 自动化效率"
+ BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_GREEN: "§G[From.BCA_JR_SLOT_{{ s_name }}_FMT_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_RED: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_WHITE: "§W[From.BCA_JR_SLOT_{{ s_name }}_FMT_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_GREEN: "§G[From.BCA_JR_SLOT_{{ s_name }}_FMT_POP_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_RED: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_POP_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_WHITE: "§W[From.BCA_JR_SLOT_{{ s_name }}_FMT_POP_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_DELTA_GREEN: "§G+[From.BCA_JR_SLOT_{{ s_name }}_FMT_POP_EFFICIENCY_DELTA_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_DELTA_RED: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_POP_EFFICIENCY_DELTA_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_POP_DELTA_WHITE: "§W+0§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_GREEN: "§G[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_RED: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_HIGHLIGHT: "§H[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_PRODUCTIVE_WORKFORCE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_GREEN: "§G+[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_EFFICIENCY_DELTA_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_RED: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_EFFICIENCY_DELTA_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_WHITE: "§W+0§!"
+{% for number in display_numbers %}
+{{ formatted_number_keys(s_name, number) }}
+{% endfor %}
+{% for resource in resources %}
+{{ formatted_number_keys(s_name, "output_" ~ resource) }}
+ BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}: "£{{ resource }}£[From.BCA_JR_SLOT_{{ s_name }}_FMT_OUTPUT_{{ resource | upper }}_script] "
+{% endfor %}
+ BCA_JR_SLOT_{{ s_name }}_OUTPUT: "{% for resource in resources %}[From.BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}_script]{% endfor %}"
 {% endfor %}

@@ -2,6 +2,7 @@
 
 See also:
 
+- [Development Setup](setup.md)
 - [Maintenance Playbook](playbook.md)
 - [Generation Pipeline](../architecture/generation-pipeline.md)
 - [State Model](../architecture/state-model.md)
@@ -18,10 +19,12 @@ Use these references in this order:
 
 1. **`.config/stellaris/` rule files** are the primary source for Stellaris DSL
    syntax, effects, triggers, scopes, modifiers, and enums. These `.cwt` files
-   define the authoritative API surface for the targeted game version.
-2. The **Stellaris user document** (`%USERPROFILE%\Documents\Paradox
-   Interactive\Stellaris\logs\script_documentation` on Windows) is the
-   secondary reference for API details and version-specific behavior.
+   define the authoritative API surface for the targeted game version. Follow
+   [Development Setup](setup.md) to link this path to the external
+   `cwtools-stellaris-config` checkout.
+2. The **Stellaris user document** under the Stellaris user data directory at
+   `logs/script_documentation` is the secondary reference for API details and
+   version-specific behavior.
 3. Existing game scripts are the gold sample for Paradox DSL style and
    engine-supported patterns.
 4. Existing verified project code is the gold sample for project conventions.

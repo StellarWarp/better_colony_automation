@@ -11,11 +11,10 @@ from framework import (
     ZoneParseGraph,
     build_zone_parse_graph,
     iter_property_nodes,
-    list_node_values,
     load_yaml,
     node_to_string,
 )
-from synthetipy.ast_nodes import BlockNode, ListNode, PropertyNode
+from synthetipy.ast_nodes import BlockNode, PropertyNode
 
 # ---- resource classification ----
 
@@ -31,13 +30,20 @@ ECONOMIC_RESOURCES = {
 @dataclass(frozen=True)
 class EconomicProfiles:
     job_resource_outputs: dict[str, list[str]]
+    job_resource_conditions: dict[str, dict[str, list[str | None]]]
     zone_resource_outputs: dict[str, list[str]]
+    zone_resource_conditions: dict[str, dict[str, list[str | None]]]
     district_resource_profiles: dict[str, dict[str, object]]
     economic_district_slot_zone_outputs: dict[str, dict[str, list[str]]]
+    economic_district_slot_zone_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]]
 
 # ---- helpers ----
 
 def _ordered_unique(values: list[str]) -> list[str]:
+    return list(OrderedDict.fromkeys(values))
+
+
+def _ordered_unique_optional(values: list[str | None]) -> list[str | None]:
     return list(OrderedDict.fromkeys(values))
 
 
@@ -81,6 +87,42 @@ def _build_slot_zone_outputs(
     }
 
 
+def _merge_resource_conditions(
+    target: dict[str, list[str | None]],
+    source: dict[str, list[str | None]],
+) -> None:
+    for resource, conditions in source.items():
+        target.setdefault(resource, [])
+        target[resource].extend(conditions)
+
+
+def _build_slot_zone_output_conditions(
+    districts: list[str],
+    district_resource_profiles: dict[str, dict[str, object]],
+) -> dict[str, dict[str, list[str | None]]]:
+    zone_conditions: dict[str, dict[str, list[str | None]]] = {}
+
+    for district in districts:
+        profile = district_resource_profiles.get(district, {})
+        direct_conditions = profile.get("direct_output_conditions", {})
+        zone_map = profile.get("zone_output_conditions", {})
+
+        for zone, resource_conditions in zone_map.items():
+            zone_conditions.setdefault(zone, {})
+            _merge_resource_conditions(zone_conditions[zone], direct_conditions)
+            _merge_resource_conditions(zone_conditions[zone], resource_conditions)
+
+    return {
+        zone: {
+            resource: _ordered_unique_optional(conditions)
+            for resource, conditions in sorted(resource_conditions.items())
+            if conditions
+        }
+        for zone, resource_conditions in sorted(zone_conditions.items())
+        if resource_conditions
+    }
+
+
 def _extract_job_keys(node, valid_jobs: set[str]) -> list[str]:
     jobs: list[str] = []
     for prop in iter_property_nodes(node):
@@ -93,24 +135,70 @@ def _extract_job_keys(node, valid_jobs: set[str]) -> list[str]:
     return _ordered_unique(jobs)
 
 
-def _job_tag_outputs(context: ParseContext) -> dict[str, list[str]]:
-    tag_output_mapping = context.load_config("job_tag_outputs.yaml").get("job_tag_outputs", {})
+def _job_resource_outputs_from_produces(context: ParseContext) -> dict[str, list[str]]:
+    job_resources = _parse_job_resources(context)
     job_outputs: dict[str, list[str]] = {}
-
-    for name, job in context.ast["common/pop_jobs"].items():
-        tags: list[str] = []
-        for stat in job.body.statements:
-            if not isinstance(stat, PropertyNode) or str(stat.key) != "tags":
-                continue
-            if isinstance(stat.value, ListNode):
-                tags.extend(list_node_values(stat.value, "tags", name))
+    for job_name, resource_info in job_resources.items():
         outputs: list[str] = []
-        for tag in tags:
-            outputs.extend(tag_output_mapping.get(tag, []))
+        for entry in resource_info.get("produces", []):
+            outputs.extend(
+                resource
+                for resource in entry.get("resources", {})
+                if resource in ECONOMIC_RESOURCES
+            )
         if outputs:
-            job_outputs[name] = _ordered_unique(outputs)
-
+            job_outputs[job_name] = _ordered_unique(outputs)
     return job_outputs
+
+
+def _job_resource_conditions_from_produces(
+    context: ParseContext,
+) -> dict[str, dict[str, list[str | None]]]:
+    job_resources = _parse_job_resources(context)
+    job_conditions: dict[str, dict[str, list[str | None]]] = {}
+    for job_name, resource_info in job_resources.items():
+        resource_conditions: dict[str, list[str | None]] = {}
+        for entry in resource_info.get("produces", []):
+            trigger = entry.get("trigger")
+            for resource in entry.get("resources", {}):
+                if resource not in ECONOMIC_RESOURCES:
+                    continue
+                resource_conditions.setdefault(resource, []).append(trigger)
+        if resource_conditions:
+            job_conditions[job_name] = {
+                resource: _ordered_unique_optional(conditions)
+                for resource, conditions in resource_conditions.items()
+            }
+    return job_conditions
+
+
+def _extract_resource_outputs_from_jobs(
+    node,
+    valid_jobs: set[str],
+    job_resource_outputs: dict[str, list[str]],
+) -> list[str]:
+    outputs: list[str] = []
+    for job_key in _extract_job_keys(node, valid_jobs):
+        outputs.extend(job_resource_outputs.get(job_key, []))
+    return _ordered_unique(outputs)
+
+
+def _extract_resource_conditions_from_jobs(
+    node,
+    valid_jobs: set[str],
+    job_resource_conditions: dict[str, dict[str, list[str | None]]],
+) -> dict[str, list[str | None]]:
+    resource_conditions: dict[str, list[str | None]] = {}
+    for job_key in _extract_job_keys(node, valid_jobs):
+        _merge_resource_conditions(
+            resource_conditions,
+            job_resource_conditions.get(job_key, {}),
+        )
+    return {
+        resource: _ordered_unique_optional(conditions)
+        for resource, conditions in resource_conditions.items()
+        if conditions
+    }
 
 # ---- existing economic profile builders ----
 
@@ -119,7 +207,8 @@ def build_economic_profiles(
     graph: ZoneParseGraph | None = None,
 ) -> EconomicProfiles:
     graph = graph or build_zone_parse_graph(context)
-    job_resource_outputs = _job_tag_outputs(context)
+    job_resource_outputs = _job_resource_outputs_from_produces(context)
+    job_resource_conditions = _job_resource_conditions_from_produces(context)
     valid_jobs = set(context.ast["common/pop_jobs"].keys())
     district_direct_outputs_config = context.load_config("district_direct_outputs.yaml").get(
         "district_direct_outputs",
@@ -127,26 +216,51 @@ def build_economic_profiles(
     )
 
     zone_resource_outputs: dict[str, list[str]] = {}
+    zone_resource_conditions: dict[str, dict[str, list[str | None]]] = {}
     for zone_name, zone in context.ast["common/zones"].items():
-        outputs: list[str] = []
-        for job_key in _extract_job_keys(zone.body, valid_jobs):
-            outputs.extend(job_resource_outputs.get(job_key, []))
+        outputs = _extract_resource_outputs_from_jobs(zone.body, valid_jobs, job_resource_outputs)
         if outputs:
-            zone_resource_outputs[zone_name] = _ordered_unique(outputs)
+            zone_resource_outputs[zone_name] = outputs
+            zone_resource_conditions[zone_name] = _extract_resource_conditions_from_jobs(
+                zone.body,
+                valid_jobs,
+                job_resource_conditions,
+            )
 
     district_resource_profiles: dict[str, dict[str, object]] = {}
     for district_name, district in context.ast["common/districts"].items():
-        direct_outputs = _ordered_unique(district_direct_outputs_config.get(district_name, []))
+        parsed_direct_outputs = _extract_resource_outputs_from_jobs(
+            district.body,
+            valid_jobs,
+            job_resource_outputs,
+        )
+        direct_outputs = _ordered_unique(
+            district_direct_outputs_config.get(district_name, parsed_direct_outputs)
+        )
+        parsed_direct_conditions = _extract_resource_conditions_from_jobs(
+            district.body,
+            valid_jobs,
+            job_resource_conditions,
+        )
+        direct_output_conditions = (
+            {resource: [None] for resource in direct_outputs}
+            if district_name in district_direct_outputs_config
+            else parsed_direct_conditions
+        )
 
         zone_outputs: dict[str, list[str]] = {}
+        zone_output_conditions: dict[str, dict[str, list[str | None]]] = {}
         for zone_name in graph.district_to_zones.get(district_name, []):
             outputs = zone_resource_outputs.get(zone_name, [])
             if outputs:
                 zone_outputs[zone_name] = outputs
+                zone_output_conditions[zone_name] = zone_resource_conditions.get(zone_name, {})
 
         district_resource_profiles[district_name] = {
             "direct_outputs": direct_outputs,
+            "direct_output_conditions": direct_output_conditions,
             "zone_outputs": zone_outputs,
+            "zone_output_conditions": zone_output_conditions,
             "output_zones": _invert_zone_outputs(zone_outputs, direct_outputs),
         }
 
@@ -159,17 +273,25 @@ def build_economic_profiles(
         "d3": other_district_config.get("secondary_districts_d3", []),
     }
     economic_district_slot_zone_outputs: dict[str, dict[str, list[str]]] = {}
+    economic_district_slot_zone_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]] = {}
     for slot, districts in slot_districts.items():
         economic_district_slot_zone_outputs[slot] = _build_slot_zone_outputs(
+            districts,
+            district_resource_profiles,
+        )
+        economic_district_slot_zone_output_conditions[slot] = _build_slot_zone_output_conditions(
             districts,
             district_resource_profiles,
         )
 
     return EconomicProfiles(
         job_resource_outputs=job_resource_outputs,
+        job_resource_conditions=job_resource_conditions,
         zone_resource_outputs=zone_resource_outputs,
+        zone_resource_conditions=zone_resource_conditions,
         district_resource_profiles=district_resource_profiles,
         economic_district_slot_zone_outputs=economic_district_slot_zone_outputs,
+        economic_district_slot_zone_output_conditions=economic_district_slot_zone_output_conditions,
     )
 
 
@@ -183,8 +305,16 @@ def render_economic_generated_configs(
         {"job_resource_outputs": profiles.job_resource_outputs},
     )
     context.write_generated_yaml(
+        "job_resource_conditions.yaml",
+        {"job_resource_conditions": profiles.job_resource_conditions},
+    )
+    context.write_generated_yaml(
         "zone_resource_outputs.yaml",
         {"zone_resource_outputs": profiles.zone_resource_outputs},
+    )
+    context.write_generated_yaml(
+        "zone_resource_conditions.yaml",
+        {"zone_resource_conditions": profiles.zone_resource_conditions},
     )
     context.write_generated_yaml(
         "district_resource_profiles.yaml",
@@ -193,6 +323,14 @@ def render_economic_generated_configs(
     context.write_generated_yaml(
         "economic_district_slot_groups.yaml",
         {"economic_district_slot_zone_outputs": profiles.economic_district_slot_zone_outputs},
+    )
+    context.write_generated_yaml(
+        "economic_district_slot_conditions.yaml",
+        {
+            "economic_district_slot_zone_output_conditions": (
+                profiles.economic_district_slot_zone_output_conditions
+            )
+        },
     )
     return profiles
 
@@ -281,6 +419,30 @@ def _resolve_economic_category_icon(
     return None
 
 
+def _resolve_economic_category_parents(
+    category_name: str | None,
+    cat_data: dict[str, dict],
+) -> list[str]:
+    """Return the parent chain for an economic category, nearest parent first."""
+    if not category_name:
+        return []
+
+    parents: list[str] = []
+    visited: set[str] = set()
+    current = category_name
+    while current and current not in visited:
+        visited.add(current)
+        info = cat_data.get(current)
+        if not info:
+            break
+        parent = info.get("parent")
+        if not parent:
+            break
+        parents.append(parent)
+        current = parent
+    return parents
+
+
 def _parse_job_resources(context: ParseContext) -> dict[str, dict]:
     """解析每个岗位的 resources 块（category + produces 列表）。"""
     result: dict[str, dict] = {}
@@ -350,6 +512,7 @@ def _build_job_meta(
     pop_categories: dict[str, str],
     job_icons: dict[str, str],
     job_resources: dict[str, dict],
+    economic_category_data: dict[str, dict],
 ) -> dict[str, dict]:
     """综合 pop_category + icon + resources 数据，构建统一的 job_meta。"""
     job_meta: dict[str, dict] = {}
@@ -381,6 +544,10 @@ def _build_job_meta(
         job_meta[job_name] = {
             "pop_category": pop_category,
             "economic_category": economic_category,
+            "economic_category_parents": _resolve_economic_category_parents(
+                economic_category,
+                economic_category_data,
+            ),
             "icon": icon,
             "produces": produces_flat,
             "is_economic_producer": is_economic_producer,
@@ -395,7 +562,13 @@ def render_job_meta(context: ParseContext) -> dict[str, dict]:
     pop_categories = _extract_job_pop_categories(context)
     job_icons = _extract_job_icons(context)
     job_resources = _parse_job_resources(context)
-    job_meta = _build_job_meta(pop_categories, job_icons, job_resources)
+    economic_category_data = _extract_economic_category_icons(context)
+    job_meta = _build_job_meta(
+        pop_categories,
+        job_icons,
+        job_resources,
+        economic_category_data,
+    )
 
     context.write_generated_yaml("job_meta.yaml", {"job_meta": job_meta})
 

@@ -82,13 +82,26 @@ def replace_parameters(text: str, params: Dict[str, Any]) -> str:
     """
     result = text
     for key, value in params.items():
-        result = result.replace(f"${key}$", str(value))
+        result = result.replace(f"${key}$", _format_inline_script_param(value))
     return result
 
 
 def is_inline_script(node: ASTNode) -> bool:
     """检查节点是否是 inline_script"""
     return isinstance(node, InlineScriptNode)
+
+
+def _format_inline_script_param(value: Any) -> str:
+    """Format an inline script argument for textual macro replacement."""
+    if isinstance(value, LiteralNode):
+        if value.value_type == "string":
+            return str(value.value)
+        return str(value)
+    if isinstance(value, ASTNode):
+        from .compiler import compile_ast
+
+        return compile_ast(value)
+    return str(value)
 
 
 def format_meta_inline_script(script_path: str, params: Dict[str, Any]) -> str:

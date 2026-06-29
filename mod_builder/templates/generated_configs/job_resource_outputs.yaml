@@ -1,4 +1,12 @@
 job_resource_outputs:
+  civilian:
+  - trade
+  - physics_research
+  - society_research
+  - engineering_research
+  - unity
+  slave_overseer:
+  - unity
   organic_battery:
   - energy
   livestock:
@@ -9,59 +17,131 @@ job_resource_outputs:
   - unity
   organic_exhibit:
   - unity
-  bio_trophy_unemployment:
+  livestock_lithoid:
+  - minerals
+  purge_lithoid:
+  - unity
+  - society_research
+  purge_robot:
+  - unity
+  - society_research
+  purge_processing:
+  - food
+  - unity
+  - society_research
+  purge_processing_lithoid:
+  - minerals
+  - unity
+  - society_research
+  purge_processing_infernal:
+  - alloys
+  - unity
+  - society_research
+  purge_processing_robot:
+  - alloys
+  - unity
+  - society_research
+  purge_labor_camps:
+  - food
+  - minerals
+  - unity
+  - society_research
+  purge_matrix:
+  - energy
+  - unity
+  - society_research
+  purge_sacrifice:
   - unity
   politician:
   - unity
+  - trade
+  - physics_research
+  - society_research
+  - engineering_research
   knight_commander:
   - unity
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
+  dystopian_enforcer:
+  - unity
   dystopian_telepath:
   - unity
+  - physics_research
+  - engineering_research
+  - society_research
   physicist:
-  - research
+  - physics_research
+  biologist:
+  - society_research
+  engineer:
+  - engineering_research
   bureaucrat:
+  - unity
+  - trade
+  - society_research
+  - engineering_research
+  - physics_research
+  enforcer:
   - unity
   telepath:
   - unity
+  - physics_research
+  - engineering_research
+  - society_research
   entertainer:
   - unity
+  - society_research
   chemist:
   - volatile_motes
   translucer:
   - rare_crystals
   gas_refiner:
   - exotic_gases
+  healthcare:
+  - society_research
   trader:
   - trade
   necro_apprentice:
   - unity
   foundry:
   - alloys
-  catalytic_technician:
-  - alloys
   artisan:
   - consumer_goods
+  - trade
+  bath_attendant:
+  - trade
   knight:
   - unity
-  - research
-  archaeoengineers:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   resort_worker:
   - unity
-  offworld_prospector:
-  - volatile_motes
+  - trade
+  soldier:
+  - society_research
+  - engineering_research
+  colonist:
+  - food
+  - minerals
+  - alloys
+  - energy
   clerk:
   - trade
   technician:
   - energy
   miner:
   - minerals
+  - alloys
+  - food
   farmer:
   - food
+  - trade
+  - alloys
   mortal_initiate:
   - unity
-  - research
+  - society_research
   foundry_prison_worker:
   - alloys
   catalytic_technician_prison_worker:
@@ -70,14 +150,24 @@ job_resource_outputs:
   - consumer_goods
   artificer_prison_worker:
   - consumer_goods
+  spawning_drone:
+  - society_research
+  gestation_drone:
+  - society_research
+  - engineering_research
   evaluator:
   - unity
   coordinator:
   - unity
   calculator_physicist:
-  - research
-  brain_drone_physicist:
-  - research
+  - physics_research
+  - alloys
+  - minerals
+  calculator_biologist:
+  - society_research
+  - physics_research
+  calculator_engineer:
+  - engineering_research
   artisan_drone:
   - consumer_goods
   fabricator:
@@ -88,16 +178,92 @@ job_resource_outputs:
   - rare_crystals
   gas_refiner_drone:
   - exotic_gases
+  patrol_drone:
+  - unity
   logistics_drone:
   - trade
   mining_drone:
   - minerals
+  - alloys
   agri_drone:
   - food
+  - alloys
   technician_drone:
   - energy
-  offworld_prospector_drone:
-  - volatile_motes
+  maintenance_drone:
+  - trade
+  hunted_pre_sapient:
+  - food
+  hunted_pre_sapient_lithoid:
+  - minerals
+  hunter_gatherer:
+  - food
+  hunter_gatherer_lithoid:
+  - minerals
+  peasant:
+  - food
+  peasant_lithoid:
+  - minerals
+  primitive_noble:
+  - unity
+  primitive_researcher:
+  - physics_research
+  - engineering_research
+  - society_research
+  primitive_priest:
+  - unity
+  primitive_laborer:
+  - alloys
+  - consumer_goods
+  primitive_miner:
+  - minerals
+  primitive_technician:
+  - energy
+  primitive_farmer:
+  - food
+  primitive_researcher_2:
+  - physics_research
+  - engineering_research
+  - society_research
+  primitive_priest_2:
+  - unity
+  primitive_bureaucrat:
+  - unity
+  solarpunk_anarchist:
+  - unity
+  primitive_administrator:
+  - unity
+  hive_sustenance_drone:
+  - food
+  hive_sustenance_drone_lithoid:
+  - minerals
+  hive_basic_agri_drone:
+  - food
+  hive_basic_agri_drone_lithoid:
+  - minerals
+  primitive_hive_synapse_drone:
+  - unity
+  primitive_hive_cerebellum_drone:
+  - physics_research
+  - engineering_research
+  - society_research
+  primitive_hive_factory_drone:
+  - alloys
+  primitive_hive_miner:
+  - minerals
+  primitive_hive_technician:
+  - energy
+  primitive_hive_farmer:
+  - food
+  primitive_hive_brain_drone:
+  - physics_research
+  - engineering_research
+  - society_research
+  primitive_hive_synapse_drone_2:
+  - unity
+  event_purge:
+  - unity
+  - society_research
   ratling_scavenger:
   - food
   - minerals
@@ -107,13 +273,18 @@ job_resource_outputs:
   odd_factory_drone:
   - alloys
   dimensional_portal_researcher:
-  - research
+  - physics_research
+  - energy
+  - trade
   dimensional_portal_researcher_gestalt:
-  - research
+  - physics_research
+  - energy
   space_time_anomaly_researcher:
-  - research
+  - physics_research
+  - engineering_research
   space_time_anomaly_researcher_gestalt:
-  - research
+  - physics_research
+  - engineering_research
   gas_plant_engineer:
   - exotic_gases
   gas_plant_engineer_gestalt:
@@ -121,8 +292,8 @@ job_resource_outputs:
   cave_cleaner_gestalt:
   - minerals
   robot_caretaker:
-  - research
   - unity
+  - engineering_research
   turtle_miner_gestalt:
   - minerals
   - food
@@ -130,14 +301,22 @@ job_resource_outputs:
   - unity
   manufactorium_specialist:
   - alloys
+  - unity
+  - engineering_research
+  - society_research
   manufactorium_complex_drone:
   - alloys
+  - unity
+  - engineering_research
+  - society_research
   manufactorium_scraper_drone:
   - minerals
   - alloys
-  - research
+  - engineering_research
   archivist:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   puddle_technician:
   - food
   - alloys
@@ -145,19 +324,17 @@ job_resource_outputs:
   - food
   - alloys
   stasis_warden:
-  - research
+  - unity
+  - physics_research
   stasis_warden_drone:
-  - research
+  - physics_research
+  - unity
   astrogarbage_collector:
   - alloys
   astrogarbage_collector_gestalt:
   - alloys
-  myrmeku_power_farmer:
-  - energy
-  myrmeku_power_farmer_gestalt:
-  - energy
   stratovent_researcher:
-  - research
+  - society_research
   - trade
   stratovent_refiner:
   - exotic_gases
@@ -172,7 +349,9 @@ job_resource_outputs:
   alien_hunter:
   - food
   fe_archivist:
-  - research
+  - society_research
+  - physics_research
+  - engineering_research
   fe_acolyte_farm:
   - food
   fe_acolyte_mine:
@@ -188,58 +367,28 @@ job_resource_outputs:
   fe_acolyte_artisan:
   - consumer_goods
   overlord_academic:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   overlord_academic_drone:
-  - research
-  overlord_trader:
-  - trade
-  overlord_trader_drone:
-  - trade
-  mind_thrall:
-  - research
-  mind_thrall_drone:
-  - research
-  overlord_metallurgist:
-  - alloys
-  overlord_foundry_drone:
-  - alloys
-  overlord_fabricator:
-  - alloys
-  overlord_catalytic_technician:
-  - alloys
-  overlord_catalytic_drone:
-  - alloys
-  overlord_necromancer:
-  - research
-  overlord_necromancer_drone:
-  - research
-  overlord_ranger:
-  - unity
-  overlord_ranger_drone:
-  - unity
-  overlord_arborist:
-  - food
-  overlord_arborist_drone:
-  - food
+  - physics_research
+  - engineering_research
+  - society_research
   overlord_bio_trophy:
   - unity
   overlord_bio_trophy_drone:
   - unity
   overlord_manager:
-  - trade
   - unity
+  - trade
   overlord_mortal_initiate:
   - unity
-  - research
+  - society_research
   overlord_mortal_initiate_drone:
   - unity
-  - research
-  overlord_knight:
-  - unity
-  - research
-  overlord_knight_drone:
-  - unity
-  - research
+  - society_research
+  overlord_healthcare:
+  - trade
   low_tech_laborer:
   - consumer_goods
   - alloys
@@ -250,44 +399,64 @@ job_resource_outputs:
   low_tech_farmer:
   - food
   low_tech_researcher:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   low_tech_priest:
   - unity
   low_tech_bureaucrat:
   - unity
   low_tech_manager:
-  - trade
   - unity
+  - trade
   broken_shackles_scavenger:
   - alloys
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   munitions_decommissioner:
   - alloys
-  - research
+  - engineering_research
   munitions_decommissioning_unit:
   - alloys
-  - research
+  - engineering_research
+  munitions_decommissioning_unit_lithoid:
+  - alloys
+  - engineering_research
   munitions_decommissioning_drone:
   - alloys
-  - research
+  - engineering_research
   astral_researcher:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   astral_drone:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   astral_unit:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   haruspex:
   - unity
-  - research
+  - engineering_research
+  - trade
   technophant:
   - unity
-  - research
+  - engineering_research
   neural_chip:
-  - research
+  - society_research
+  - engineering_research
+  - physics_research
   augmentor:
-  - research
+  - society_research
+  - engineering_research
   augmentor_drone:
-  - research
+  - society_research
+  - engineering_research
+  identity_designer:
+  - engineering_research
   cyberdome_duelist:
   - unity
   cyberdome_spectator:
@@ -296,31 +465,45 @@ job_resource_outputs:
   clip_maximizer:
   - consumer_goods
   nanotech_research_unit:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   nanotech_researcher:
-  - research
+  - physics_research
+  - engineering_research
+  - society_research
   treasure_gatherer:
   - energy
-  - unity
   - minerals
-  - research
+  - unity
+  - society_research
+  - trade
   wrangler:
-  - research
+  - society_research
   - unity
+  - food
   drone_wrangler:
-  - research
+  - society_research
   - unity
+  - food
   treasure_gatherer_gestalt:
   - energy
   - minerals
   - unity
-  - research
+  - society_research
   transference_volunteer:
   - unity
   transference_drone:
   - unity
+  space_junk_collector:
+  - alloys
+  drone_space_junk_collector:
+  - alloys
   telepath_drone:
   - unity
+  - physics_research
+  - engineering_research
+  - society_research
   physician_drone:
   - unity
   energy_thrall:
@@ -328,27 +511,38 @@ job_resource_outputs:
   drone_energy_thrall:
   - unity
   test_subject:
-  - research
+  - engineering_research
+  - physics_research
+  - society_research
   test_subject_drone:
-  - research
-  experiment_engineer:
-  - research
-  experiment_engineer_drone:
-  - minerals
-  - research
+  - engineering_research
+  - physics_research
+  - society_research
   production_overseer:
-  - unity
+  - engineering_research
+  spe_colonist:
+  - food
+  - minerals
+  - alloys
+  - energy
   shroud_trader:
   - trade
+  - unity
   cruise_passenger:
   - unity
   cruise_passenger_unemployment:
   - unity
   cruise_crew_overseer:
   - unity
+  - trade
   cruise_crew_overseer_drone:
   - unity
+  - trade
   ark_waystation_trader:
   - trade
+  ark_harvester:
+  - minerals
   ark_waystation_trader_gestalt:
   - trade
+  ark_harvester_gestalt:
+  - minerals

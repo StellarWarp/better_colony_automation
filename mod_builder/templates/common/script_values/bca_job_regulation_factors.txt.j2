@@ -5,6 +5,11 @@
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
+bca_jr_automated_output_efficiency = {
+    base = 1
+    add = modifier:bonus_automated_workforce_mult
+}
+
 {% for entry in regulated if entry.pop_category %}
 bca_jr_workforce_capacity_mult_{{ entry.job }} = {
     base = 1

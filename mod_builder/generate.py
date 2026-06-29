@@ -1,6 +1,8 @@
 import os
+import re
 import shutil
 import yaml
+from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
 # --- 配置区 ---
@@ -29,6 +31,32 @@ GENERATED_WARNING_LINES = [
     "# Edit the corresponding source template or upstream config instead.",
     "# ====================================================================",
 ]
+MODIFIER_DOC_PATH = (
+    Path.home()
+    / "Documents"
+    / "Paradox Interactive"
+    / "Stellaris"
+    / "logs"
+    / "script_documentation"
+    / "modifiers.log"
+)
+MODIFIER_LINE_RE = re.compile(r"^-\s*([A-Za-z0-9_:.\-]+),\s*Category:")
+
+
+def load_known_modifiers(path=MODIFIER_DOC_PATH):
+    """读取游戏导出的 modifier 文档，作为模板渲染时的白名单。"""
+    if not path.exists():
+        print(f"⚠️ 警告: modifier 文档不存在: {path}")
+        return set()
+
+    modifiers = set()
+    with open(path, "r", encoding="utf-8-sig", errors="ignore") as f:
+        for line in f:
+            match = MODIFIER_LINE_RE.match(line.strip())
+            if match:
+                modifiers.add(match.group(1))
+    print(f"加载 Modifier 文档: {len(modifiers)} modifiers")
+    return modifiers
 
 def load_configs():
     """合并 generated_configs 文件夹下的所有 yaml 配置"""
@@ -66,6 +94,7 @@ def build():
 
     # 1. 加载所有配置数据
     config_data = load_configs()
+    config_data["known_modifiers"] = load_known_modifiers()
 
 
     # 3. 渲染所有 .gui.j2 文件

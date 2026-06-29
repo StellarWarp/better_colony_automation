@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import re
 from pathlib import Path
 
 import sys
@@ -13,6 +14,91 @@ GENERATED_CONFIG_DIR = (
     Path(__file__).resolve().parents[1] / "templates" / "generated_configs"
 )
 CONFIGS_DIR = Path(__file__).resolve().parents[1] / "configs"
+MODIFIER_DOC_PATH = (
+    Path.home()
+    / "Documents"
+    / "Paradox Interactive"
+    / "Stellaris"
+    / "logs"
+    / "script_documentation"
+    / "modifiers.log"
+)
+MODIFIER_LINE_RE = re.compile(r"^-\s*([A-Za-z0-9_:.\-]+),\s*Category:")
+
+
+def _load_known_modifiers(path: Path = MODIFIER_DOC_PATH) -> set[str]:
+    if not path.exists():
+        print(f"Warning: modifier documentation not found: {path}")
+        return set()
+
+    modifiers: set[str] = set()
+    with path.open("r", encoding="utf-8-sig", errors="ignore") as f:
+        for line in f:
+            match = MODIFIER_LINE_RE.match(line.strip())
+            if match:
+                modifiers.add(match.group(1))
+    print(f"Loaded modifier documentation: {len(modifiers)} modifiers")
+    return modifiers
+
+
+def _build_category_resource_add_modifiers(
+    known_modifiers: set[str],
+    resources: list[str],
+) -> dict[str, dict[str, str]]:
+    """Find <economic_category>_<resource>_produces_add modifiers for known resources."""
+    by_category: dict[str, dict[str, str]] = {}
+    resources_by_length = sorted(resources, key=len, reverse=True)
+
+    for modifier in known_modifiers:
+        for resource in resources_by_length:
+            suffix = f"_{resource}_produces_add"
+            if not modifier.endswith(suffix):
+                continue
+            category = modifier[: -len(suffix)]
+            by_category.setdefault(category, {})[resource] = modifier
+            break
+
+    return by_category
+
+
+def _modifier_positive_trigger(modifier: str) -> str:
+    return (
+        "check_modifier_value = {\n"
+        f"    modifier = {modifier}\n"
+        "    value > 0\n"
+        "}"
+    )
+
+
+def _category_chain(meta: dict) -> list[str]:
+    category = meta.get("economic_category")
+    chain = [category] if category else []
+    chain.extend(meta.get("economic_category_parents", []))
+    return chain
+
+
+def _apply_modifier_driven_extra_outputs(
+    meta: dict,
+    economic_resources: list[str],
+    produces: list[dict],
+    category_resource_add_modifiers: dict[str, dict[str, str]],
+    resource_set: set[str],
+) -> None:
+    existing_resources = set(economic_resources)
+
+    for category in _category_chain(meta):
+        for resource, modifier in category_resource_add_modifiers.get(category, {}).items():
+            if resource not in resource_set:
+                continue
+            if resource in existing_resources:
+                continue
+            economic_resources.append(resource)
+            existing_resources.add(resource)
+            produces.append({
+                "resource": resource,
+                "amount": 0,
+                "trigger": _modifier_positive_trigger(modifier),
+            })
 
 
 def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
@@ -34,6 +120,10 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
     # 资源顺序跟随经济阈值配置，模板和 GUI 统一消费这份列表。
     resources = list(economic_need_thresholds.keys())
     resource_set = set(resources)
+    category_resource_add_modifiers = _build_category_resource_add_modifiers(
+        _load_known_modifiers(),
+        resources,
+    )
 
     # 筛选经济岗位
     regulated_jobs: list[dict] = []
@@ -46,6 +136,14 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
             continue
 
         economic_resources = [r for r in meta.get("economic_resources", []) if r in resource_set]
+        produces = [dict(prod) for prod in meta.get("produces", [])]
+        _apply_modifier_driven_extra_outputs(
+            meta,
+            economic_resources,
+            produces,
+            category_resource_add_modifiers,
+            resource_set,
+        )
         # 去重 needs_category
         needs_cats = list(dict.fromkeys(economic_resources))
         icon = meta.get("icon")
@@ -58,10 +156,11 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
             "pop_category": meta.get("pop_category"),
             "icon": icon,
             "economic_category": meta.get("economic_category"),
+            "economic_category_parents": meta.get("economic_category_parents", []),
             "economic_resources": economic_resources,
             "needs_categories": needs_cats,
             "primary_needs": needs_cats[0] if needs_cats else None,
-            "produces": meta.get("produces", []),
+            "produces": produces,
         }
         regulated_jobs.append(entry)
 
