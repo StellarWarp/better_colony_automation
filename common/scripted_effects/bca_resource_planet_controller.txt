@@ -6,59 +6,7 @@
 # Source template: common/scripted_effects/bca_resource_planet_controller.txt.j2
 
 
-
-
-
-
-
 bca_resource_planet_controller_district_only = {
-
-if = {
-    limit = {
-        bca_auto_district_manage_enabled = yes
-    }
-    if = {
-        limit = {
-            OR = {
-                has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
-                bca_has_advance_secondary_districts = yes
-            }
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z3
-            value = 1
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z4
-            value = 1
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z5
-            value = 1
-        }
-    }
-    else = {
-        set_variable = {
-            which = bca_ps_plan_district_count_z3
-            value = 0
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z4
-            value = 0
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z5
-            value = 0
-        }
-    }
-}
-
-
-if = {
-    limit = {
-        has_generator_designation = yes
-    }
-
     if = {
         limit = {
             bca_auto_district_manage_enabled = yes
@@ -66,61 +14,45 @@ if = {
         if = {
             limit = {
                 OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                    has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
+                    bca_has_advance_secondary_districts = yes
                 }
             }
             set_variable = {
                 which = bca_ps_plan_district_count_z3
-                value = value:bca_district_max_build_d1
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
-                }
+                value = 1
             }
             set_variable = {
                 which = bca_ps_plan_district_count_z4
-                value = value:bca_district_max_build_d2
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
-                }
+                value = 1
             }
             set_variable = {
                 which = bca_ps_plan_district_count_z5
-                value = value:bca_district_max_build_d3
+                value = 1
             }
+        }
+        else = {
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 0
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 0
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 0
+            }
+        }
+    }
+    if = {
+        limit = {
+            has_generator_designation = yes
         }
         if = {
             limit = {
-                exists = owner
-                owner = { has_technology = tech_mine_betharian }
-                has_deposit = d_betharian_deposit
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-            }
-            if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z4
-                    value = value:bca_district_max_build_d2
-                }
+                bca_auto_district_manage_enabled = yes
             }
             if = {
                 limit = {
@@ -134,125 +66,174 @@ if = {
                     which = bca_ps_plan_district_count_z3
                     value = value:bca_district_max_build_d1
                 }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = value:bca_district_max_build_d2
+                }
+            }
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = value:bca_district_max_build_d3
+                }
+            }
+            if = {
+                limit = {
+                    exists = owner
+                    owner = { has_technology = tech_mine_betharian }
+                    has_deposit = d_betharian_deposit
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                }
                 if = {
                     limit = {
-                        check_variable_arithmetic = {
-                            which = value:bca_num_free_secondary_districts_plan_full_secondary_districts
-                            value < 0
+                        OR = {
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
                         }
                     }
-                    add_variable = {
+                    set_variable = {
+                        which = bca_ps_plan_district_count_z4
+                        value = value:bca_district_max_build_d2
+                    }
+                }
+                if = {
+                    limit = {
+                        OR = {
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                        }
+                    }
+                    set_variable = {
                         which = bca_ps_plan_district_count_z3
-                        value = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                        value = value:bca_district_max_build_d1
+                    }
+                    if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                                value < 0
+                            }
+                        }
+                        add_variable = {
+                            which = bca_ps_plan_district_count_z3
+                            value = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                        }
                     }
                 }
             }
         }
     }
-
-}
-
-
-else_if = {
-    limit = {
-        has_mining_designation = yes
-    }
-
-    if = {
+    else_if = {
         limit = {
-            bca_auto_district_manage_enabled = yes
+            has_mining_designation = yes
         }
         if = {
             limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                bca_auto_district_manage_enabled = yes
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value = value:bca_district_max_build_d1
                 }
             }
-            set_variable = {
-                which = bca_ps_plan_district_count_z3
-                value = value:bca_district_max_build_d1
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = value:bca_district_max_build_d2
                 }
             }
-            set_variable = {
-                which = bca_ps_plan_district_count_z4
-                value = value:bca_district_max_build_d2
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                    }
                 }
-            }
-            set_variable = {
-                which = bca_ps_plan_district_count_z5
-                value = value:bca_district_max_build_d3
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = value:bca_district_max_build_d3
+                }
             }
         }
     }
-
-}
-
-
-else_if = {
-    limit = {
-        has_farming_designation = yes
-    }
-
-    if = {
+    else_if = {
         limit = {
-            bca_auto_district_manage_enabled = yes
+            has_farming_designation = yes
         }
         if = {
             limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+                bca_auto_district_manage_enabled = yes
+            }
+            if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value = value:bca_district_max_build_d1
                 }
             }
-            set_variable = {
-                which = bca_ps_plan_district_count_z3
-                value = value:bca_district_max_build_d1
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+                    }
+                }
+                set_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value = value:bca_district_max_build_d2
                 }
             }
-            set_variable = {
-                which = bca_ps_plan_district_count_z4
-                value = value:bca_district_max_build_d2
-            }
-        }
-        else_if = {
-            limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+            else_if = {
+                limit = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+                    }
                 }
-            }
-            set_variable = {
-                which = bca_ps_plan_district_count_z5
-                value = value:bca_district_max_build_d3
+                set_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value = value:bca_district_max_build_d3
+                }
             }
         }
     }
-
-}
-
 }

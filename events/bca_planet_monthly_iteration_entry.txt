@@ -4,18 +4,19 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: events/bca_planet_monthly_iteration_entry.txt.j2
+
+
 namespace = colony_automation_event
+
 
 country_event = {
     id = colony_automation_event.1000
     hide_window = yes
     is_triggered_only = yes
-
     trigger = {
         is_ai = no
         bca_has_minerals_to_build = yes
     }
-
     immediate = {
         add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
         if = {
@@ -25,9 +26,7 @@ country_event = {
             }
             clear_variable = bca_jr_skip_refresh_counter
         }
-
         bca_jr_initialize_resource_remaining = yes
-
         every_owned_colony = {
             limit = {
                 has_building_construction = no
@@ -48,7 +47,6 @@ country_event = {
             bca_auto_building_destruction_entry = yes # 建筑自动拆除
             carrier_event = { id = colony_automation_event.2000 } # 岗位调控评估
         }
-
         bca_jr_clear_resource_remaining = yes
     }
 }

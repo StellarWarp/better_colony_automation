@@ -5,13 +5,14 @@
 # ====================================================================
 # Source template: common/scripted_effects/bca_planet_district_setting_effect.txt.j2
 
+
 try_set_secondary_districts_plan_zero_to_one = {
     if = {
         limit = {
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 0
-             }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 0
+            }
             check_variable_arithmetic = {
                 which = value:bca_num_free_secondary_districts_plan
                 value > 0
@@ -24,10 +25,10 @@ try_set_secondary_districts_plan_zero_to_one = {
     }
     if = {
         limit = {
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 0
-             }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 0
+            }
             check_variable_arithmetic = {
                 which = value:bca_num_free_secondary_districts_plan
                 value > 0
@@ -40,10 +41,10 @@ try_set_secondary_districts_plan_zero_to_one = {
     }
     if = {
         limit = {
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 0
-             }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 0
+            }
             check_variable_arithmetic = {
                 which = value:bca_num_free_secondary_districts_plan
                 value > 0
@@ -56,16 +57,17 @@ try_set_secondary_districts_plan_zero_to_one = {
     }
 }
 
+
 try_set_secondary_districts_plan_one_to_zero = {
     bca_set_secondary_district_type_flag = yes
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_1
-             NOT = { has_district = district_resort_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_1
+            NOT = { has_district = district_resort_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -74,12 +76,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_2
-             NOT = { has_district = district_resort_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_2
+            NOT = { has_district = district_resort_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -88,12 +90,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_3
-             NOT = { has_district = district_resort_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_resort_3
+            NOT = { has_district = district_resort_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -102,12 +104,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_1
-             NOT = { has_district = district_hive_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_1
+            NOT = { has_district = district_hive_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -116,12 +118,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_2
-             NOT = { has_district = district_hive_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_2
+            NOT = { has_district = district_hive_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -130,12 +132,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_3
-             NOT = { has_district = district_hive_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hive_3
+            NOT = { has_district = district_hive_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -144,12 +146,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_1
-             NOT = { has_district = district_nexus_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_1
+            NOT = { has_district = district_nexus_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -158,12 +160,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_2
-             NOT = { has_district = district_nexus_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_2
+            NOT = { has_district = district_nexus_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -172,12 +174,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_3
-             NOT = { has_district = district_nexus_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_nexus_3
+            NOT = { has_district = district_nexus_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -186,12 +188,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_1
-             NOT = { has_district = district_arcology_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_1
+            NOT = { has_district = district_arcology_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -200,12 +202,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_2
-             NOT = { has_district = district_arcology_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_2
+            NOT = { has_district = district_arcology_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -214,12 +216,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_3
-             NOT = { has_district = district_arcology_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_arcology_urban_3
+            NOT = { has_district = district_arcology_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -228,12 +230,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_generator
-             NOT = { has_district = district_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_generator
+            NOT = { has_district = district_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -242,12 +244,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_mining
-             NOT = { has_district = district_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_mining
+            NOT = { has_district = district_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -256,12 +258,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_farming
-             NOT = { has_district = district_farming }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_farming
+            NOT = { has_district = district_farming }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -270,12 +272,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_geothermal
-             NOT = { has_district = district_geothermal }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_geothermal
+            NOT = { has_district = district_geothermal }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -284,12 +286,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_melting
-             NOT = { has_district = district_melting }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_melting
+            NOT = { has_district = district_melting }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -298,12 +300,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_polytechnic
-             NOT = { has_district = district_polytechnic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_polytechnic
+            NOT = { has_district = district_polytechnic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -312,12 +314,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_energy
-             NOT = { has_district = district_hab_energy }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_energy
+            NOT = { has_district = district_hab_energy }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -326,12 +328,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_mining
-             NOT = { has_district = district_hab_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_mining
+            NOT = { has_district = district_hab_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -340,12 +342,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_science
-             NOT = { has_district = district_hab_science }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hab_science
+            NOT = { has_district = district_hab_science }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -354,12 +356,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_1
-             NOT = { has_district = district_rw_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_1
+            NOT = { has_district = district_rw_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -368,12 +370,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_2
-             NOT = { has_district = district_rw_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_2
+            NOT = { has_district = district_rw_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -382,12 +384,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_3
-             NOT = { has_district = district_rw_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_rw_urban_3
+            NOT = { has_district = district_rw_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -396,12 +398,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_photosynthesis_fields
-             NOT = { has_district = district_photosynthesis_fields }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_photosynthesis_fields
+            NOT = { has_district = district_photosynthesis_fields }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -410,12 +412,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_hollow_mountains
-             NOT = { has_district = district_hollow_mountains }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_hollow_mountains
+            NOT = { has_district = district_hollow_mountains }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -424,12 +426,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_orchard_forests
-             NOT = { has_district = district_orchard_forests }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_orchard_forests
+            NOT = { has_district = district_orchard_forests }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -438,12 +440,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_generator
-             NOT = { has_district = district_ark_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_generator
+            NOT = { has_district = district_ark_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -452,12 +454,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_basic
-             NOT = { has_district = district_ark_basic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_basic
+            NOT = { has_district = district_ark_basic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -466,12 +468,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_military
-             NOT = { has_district = district_ark_military }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_military
+            NOT = { has_district = district_ark_military }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -480,12 +482,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_forever_cruise
-             NOT = { has_district = district_ark_forever_cruise }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z3
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z3_district_ark_forever_cruise
+            NOT = { has_district = district_ark_forever_cruise }
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
@@ -494,12 +496,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_1
-             NOT = { has_district = district_resort_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_1
+            NOT = { has_district = district_resort_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -508,12 +510,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_2
-             NOT = { has_district = district_resort_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_2
+            NOT = { has_district = district_resort_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -522,12 +524,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_3
-             NOT = { has_district = district_resort_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_resort_3
+            NOT = { has_district = district_resort_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -536,12 +538,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_1
-             NOT = { has_district = district_hive_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_1
+            NOT = { has_district = district_hive_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -550,12 +552,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_2
-             NOT = { has_district = district_hive_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_2
+            NOT = { has_district = district_hive_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -564,12 +566,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_3
-             NOT = { has_district = district_hive_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hive_3
+            NOT = { has_district = district_hive_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -578,12 +580,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_1
-             NOT = { has_district = district_nexus_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_1
+            NOT = { has_district = district_nexus_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -592,12 +594,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_2
-             NOT = { has_district = district_nexus_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_2
+            NOT = { has_district = district_nexus_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -606,12 +608,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_3
-             NOT = { has_district = district_nexus_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_nexus_3
+            NOT = { has_district = district_nexus_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -620,12 +622,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_1
-             NOT = { has_district = district_arcology_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_1
+            NOT = { has_district = district_arcology_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -634,12 +636,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_2
-             NOT = { has_district = district_arcology_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_2
+            NOT = { has_district = district_arcology_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -648,12 +650,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_3
-             NOT = { has_district = district_arcology_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_arcology_urban_3
+            NOT = { has_district = district_arcology_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -662,12 +664,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_generator
-             NOT = { has_district = district_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_generator
+            NOT = { has_district = district_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -676,12 +678,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_mining
-             NOT = { has_district = district_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_mining
+            NOT = { has_district = district_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -690,12 +692,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_farming
-             NOT = { has_district = district_farming }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_farming
+            NOT = { has_district = district_farming }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -704,12 +706,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_geothermal
-             NOT = { has_district = district_geothermal }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_geothermal
+            NOT = { has_district = district_geothermal }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -718,12 +720,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_melting
-             NOT = { has_district = district_melting }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_melting
+            NOT = { has_district = district_melting }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -732,12 +734,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_polytechnic
-             NOT = { has_district = district_polytechnic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_polytechnic
+            NOT = { has_district = district_polytechnic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -746,12 +748,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_energy
-             NOT = { has_district = district_hab_energy }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_energy
+            NOT = { has_district = district_hab_energy }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -760,12 +762,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_mining
-             NOT = { has_district = district_hab_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_mining
+            NOT = { has_district = district_hab_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -774,12 +776,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_science
-             NOT = { has_district = district_hab_science }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hab_science
+            NOT = { has_district = district_hab_science }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -788,12 +790,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_1
-             NOT = { has_district = district_rw_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_1
+            NOT = { has_district = district_rw_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -802,12 +804,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_2
-             NOT = { has_district = district_rw_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_2
+            NOT = { has_district = district_rw_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -816,12 +818,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_3
-             NOT = { has_district = district_rw_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_rw_urban_3
+            NOT = { has_district = district_rw_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -830,12 +832,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_photosynthesis_fields
-             NOT = { has_district = district_photosynthesis_fields }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_photosynthesis_fields
+            NOT = { has_district = district_photosynthesis_fields }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -844,12 +846,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_hollow_mountains
-             NOT = { has_district = district_hollow_mountains }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_hollow_mountains
+            NOT = { has_district = district_hollow_mountains }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -858,12 +860,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_orchard_forests
-             NOT = { has_district = district_orchard_forests }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_orchard_forests
+            NOT = { has_district = district_orchard_forests }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -872,12 +874,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_generator
-             NOT = { has_district = district_ark_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_generator
+            NOT = { has_district = district_ark_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -886,12 +888,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_basic
-             NOT = { has_district = district_ark_basic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_basic
+            NOT = { has_district = district_ark_basic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -900,12 +902,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_military
-             NOT = { has_district = district_ark_military }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_military
+            NOT = { has_district = district_ark_military }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -914,12 +916,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_forever_cruise
-             NOT = { has_district = district_ark_forever_cruise }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z4
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z4_district_ark_forever_cruise
+            NOT = { has_district = district_ark_forever_cruise }
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
@@ -928,12 +930,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_1
-             NOT = { has_district = district_resort_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_1
+            NOT = { has_district = district_resort_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -942,12 +944,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_2
-             NOT = { has_district = district_resort_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_2
+            NOT = { has_district = district_resort_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -956,12 +958,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_3
-             NOT = { has_district = district_resort_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_resort_3
+            NOT = { has_district = district_resort_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -970,12 +972,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_1
-             NOT = { has_district = district_hive_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_1
+            NOT = { has_district = district_hive_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -984,12 +986,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_2
-             NOT = { has_district = district_hive_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_2
+            NOT = { has_district = district_hive_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -998,12 +1000,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_3
-             NOT = { has_district = district_hive_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hive_3
+            NOT = { has_district = district_hive_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1012,12 +1014,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_1
-             NOT = { has_district = district_nexus_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_1
+            NOT = { has_district = district_nexus_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1026,12 +1028,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_2
-             NOT = { has_district = district_nexus_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_2
+            NOT = { has_district = district_nexus_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1040,12 +1042,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_3
-             NOT = { has_district = district_nexus_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_nexus_3
+            NOT = { has_district = district_nexus_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1054,12 +1056,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_1
-             NOT = { has_district = district_arcology_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_1
+            NOT = { has_district = district_arcology_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1068,12 +1070,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_2
-             NOT = { has_district = district_arcology_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_2
+            NOT = { has_district = district_arcology_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1082,12 +1084,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_3
-             NOT = { has_district = district_arcology_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_arcology_urban_3
+            NOT = { has_district = district_arcology_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1096,12 +1098,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_generator
-             NOT = { has_district = district_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_generator
+            NOT = { has_district = district_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1110,12 +1112,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_mining
-             NOT = { has_district = district_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_mining
+            NOT = { has_district = district_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1124,12 +1126,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_farming
-             NOT = { has_district = district_farming }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_farming
+            NOT = { has_district = district_farming }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1138,12 +1140,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_geothermal
-             NOT = { has_district = district_geothermal }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_geothermal
+            NOT = { has_district = district_geothermal }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1152,12 +1154,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_melting
-             NOT = { has_district = district_melting }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_melting
+            NOT = { has_district = district_melting }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1166,12 +1168,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_polytechnic
-             NOT = { has_district = district_polytechnic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_polytechnic
+            NOT = { has_district = district_polytechnic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1180,12 +1182,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_energy
-             NOT = { has_district = district_hab_energy }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_energy
+            NOT = { has_district = district_hab_energy }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1194,12 +1196,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_mining
-             NOT = { has_district = district_hab_mining }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_mining
+            NOT = { has_district = district_hab_mining }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1208,12 +1210,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_science
-             NOT = { has_district = district_hab_science }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hab_science
+            NOT = { has_district = district_hab_science }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1222,12 +1224,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_1
-             NOT = { has_district = district_rw_urban_1 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_1
+            NOT = { has_district = district_rw_urban_1 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1236,12 +1238,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_2
-             NOT = { has_district = district_rw_urban_2 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_2
+            NOT = { has_district = district_rw_urban_2 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1250,12 +1252,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_3
-             NOT = { has_district = district_rw_urban_3 }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_rw_urban_3
+            NOT = { has_district = district_rw_urban_3 }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1264,12 +1266,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_photosynthesis_fields
-             NOT = { has_district = district_photosynthesis_fields }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_photosynthesis_fields
+            NOT = { has_district = district_photosynthesis_fields }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1278,12 +1280,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_hollow_mountains
-             NOT = { has_district = district_hollow_mountains }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_hollow_mountains
+            NOT = { has_district = district_hollow_mountains }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1292,12 +1294,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_orchard_forests
-             NOT = { has_district = district_orchard_forests }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_orchard_forests
+            NOT = { has_district = district_orchard_forests }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1306,12 +1308,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_generator
-             NOT = { has_district = district_ark_generator }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_generator
+            NOT = { has_district = district_ark_generator }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1320,12 +1322,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_basic
-             NOT = { has_district = district_ark_basic }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_basic
+            NOT = { has_district = district_ark_basic }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1334,12 +1336,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_military
-             NOT = { has_district = district_ark_military }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_military
+            NOT = { has_district = district_ark_military }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1348,12 +1350,12 @@ try_set_secondary_districts_plan_one_to_zero = {
     }
     if = {
         limit = {
-             has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_forever_cruise
-             NOT = { has_district = district_ark_forever_cruise }
-             check_variable = {
-                 which = bca_ps_plan_district_count_z5
-                 value = 1
-             }
+            has_carrier_flag = bca_pf_ps_zone_district_z5_district_ark_forever_cruise
+            NOT = { has_district = district_ark_forever_cruise }
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
@@ -1363,6 +1365,7 @@ try_set_secondary_districts_plan_one_to_zero = {
     bca_clean_flags_zone_selector_secondary_district = yes
 }
 
+
 bca_set_district_plan_by_ratio = {
     hidden_effect = {
         set_variable = {
@@ -1370,12 +1373,13 @@ bca_set_district_plan_by_ratio = {
             value = value:bca_num_main_districts_from_ratio|RATIO|$RATIO$|
         }
         subtract_variable = {
-             which = new_num_main_districts_plan_diff
-             value = value:bca_num_primary_districts_plan
+            which = new_num_main_districts_plan_diff
+            value = value:bca_num_primary_districts_plan
         }
         bca_set_district_plan_by_diff = yes
     }
 }
+
 
 bca_set_district_plan_inc_1 = {
     set_variable = {
@@ -1385,6 +1389,7 @@ bca_set_district_plan_inc_1 = {
     bca_set_district_plan_by_diff = yes
 }
 
+
 bca_set_district_plan_dec_1 = {
     set_variable = {
         which = new_num_main_districts_plan_diff
@@ -1392,6 +1397,7 @@ bca_set_district_plan_dec_1 = {
     }
     bca_set_district_plan_by_diff = yes
 }
+
 
 bca_set_district_plan_by_diff = {
     while = {
@@ -1409,10 +1415,10 @@ bca_set_district_plan_by_diff = {
                     which = bca_ps_plan_district_count_z3
                     value > value:num_district_d1
                 }
-                 check_variable = {
-                     which = new_num_main_districts_plan_diff
-                     value > 0
-                 }
+                check_variable = {
+                    which = new_num_main_districts_plan_diff
+                    value > 0
+                }
             }
             subtract_variable = {
                 which = bca_ps_plan_district_count_z3
@@ -1430,10 +1436,10 @@ bca_set_district_plan_by_diff = {
                     which = bca_ps_plan_district_count_z4
                     value > value:num_district_d2
                 }
-                 check_variable = {
-                     which = new_num_main_districts_plan_diff
-                     value > 0
-                 }
+                check_variable = {
+                    which = new_num_main_districts_plan_diff
+                    value > 0
+                }
             }
             subtract_variable = {
                 which = bca_ps_plan_district_count_z4
@@ -1451,10 +1457,10 @@ bca_set_district_plan_by_diff = {
                     which = bca_ps_plan_district_count_z5
                     value > value:num_district_d3
                 }
-                 check_variable = {
-                     which = new_num_main_districts_plan_diff
-                     value > 0
-                 }
+                check_variable = {
+                    which = new_num_main_districts_plan_diff
+                    value > 0
+                }
             }
             subtract_variable = {
                 which = bca_ps_plan_district_count_z5
@@ -1488,10 +1494,10 @@ bca_set_district_plan_by_diff = {
                         which = bca_ps_plan_district_count_z3
                         value > 0
                     }
-                     check_variable = {
-                         which = new_num_main_districts_plan_diff
-                         value > 0
-                     }
+                    check_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value > 0
+                    }
                 }
                 subtract_variable = {
                     which = bca_ps_plan_district_count_z3
@@ -1509,10 +1515,10 @@ bca_set_district_plan_by_diff = {
                         which = bca_ps_plan_district_count_z4
                         value > 0
                     }
-                     check_variable = {
-                         which = new_num_main_districts_plan_diff
-                         value > 0
-                     }
+                    check_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value > 0
+                    }
                 }
                 subtract_variable = {
                     which = bca_ps_plan_district_count_z4
@@ -1530,10 +1536,10 @@ bca_set_district_plan_by_diff = {
                         which = bca_ps_plan_district_count_z5
                         value > 0
                     }
-                     check_variable = {
-                         which = new_num_main_districts_plan_diff
-                         value > 0
-                     }
+                    check_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value > 0
+                    }
                 }
                 subtract_variable = {
                     which = bca_ps_plan_district_count_z5
@@ -1548,7 +1554,6 @@ bca_set_district_plan_by_diff = {
         }
     }
     remove_carrier_flag = bca_no_more_planed_secondary_district
-
     while = {
         limit = {
             check_variable = {
@@ -1572,15 +1577,15 @@ bca_set_district_plan_by_diff = {
                     bca_has_advance_secondary_districts = yes
                     AND = {
                         OR = {
-                             has_mining_designation = no
-                             check_variable = {
+                            has_mining_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z4
                                 value >= value:bca_potential_district_max_add_d2
                             }
                         }
                         OR = {
-                             has_farming_designation = no
-                             check_variable = {
+                            has_farming_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z5
                                 value >= value:bca_potential_district_max_add_d3
                             }
@@ -1612,15 +1617,15 @@ bca_set_district_plan_by_diff = {
                     bca_has_advance_secondary_districts = yes
                     AND = {
                         OR = {
-                             has_generator_designation = no
-                             check_variable = {
+                            has_generator_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z3
                                 value >= value:bca_potential_district_max_add_d1
                             }
                         }
                         OR = {
-                             has_farming_designation = no
-                             check_variable = {
+                            has_farming_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z5
                                 value >= value:bca_potential_district_max_add_d3
                             }
@@ -1652,15 +1657,15 @@ bca_set_district_plan_by_diff = {
                     bca_has_advance_secondary_districts = yes
                     AND = {
                         OR = {
-                             has_generator_designation = no
-                             check_variable = {
+                            has_generator_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z3
                                 value >= value:bca_potential_district_max_add_d1
                             }
                         }
                         OR = {
-                             has_mining_designation = no
-                             check_variable = {
+                            has_mining_designation = no
+                            check_variable = {
                                 which = bca_ps_plan_district_count_z4
                                 value >= value:bca_potential_district_max_add_d2
                             }
@@ -1681,6 +1686,4 @@ bca_set_district_plan_by_diff = {
     }
     remove_carrier_flag = bca_no_more_free_secondary_district
     clear_variable = new_num_main_districts_plan_diff
-
-
 }

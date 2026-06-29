@@ -1,35 +1,35 @@
 {#
-  Phase 5e: 岗位调控标记清除
-  每月评估前清除所有档位标记
+Phase 5e: 岗位调控标记清除
+每月评估前清除所有档位标记
 #}
 {% set steps = job_regulation_config.gear_steps %}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
 bca_jr_clear_all_flags = {
     remove_carrier_flag = bca_jr_check_all_jobs
-{% for entry in regulated %}
-    remove_carrier_flag = bca_jr_check_{{ entry.job }}
-    remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-    remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-{% for step in steps %}
-    remove_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
-    remove_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}
-{% endfor %}
-{% endfor %}
+    {% for entry in regulated %}
+        remove_carrier_flag = bca_jr_check_{{ entry.job }}
+        remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+        remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+        {% for step in steps %}
+            remove_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
+            remove_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}
+        {% endfor %}
+    {% endfor %}
 }
 
 bca_jr_clear_transient_flags = {
     remove_carrier_flag = bca_jr_check_all_jobs
-{% for entry in regulated %}
-    remove_carrier_flag = bca_jr_check_{{ entry.job }}
-    remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-    remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-{% endfor %}
+    {% for entry in regulated %}
+        remove_carrier_flag = bca_jr_check_{{ entry.job }}
+        remove_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+        remove_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+    {% endfor %}
 }
 
 bca_jr_clear_skip_flags = {
-{% for entry in regulated %}
-    remove_carrier_flag = bca_jr_skip_full_{{ entry.job }}
-    remove_carrier_flag = bca_jr_skip_empty_{{ entry.job }}
-{% endfor %}
+    {% for entry in regulated %}
+        remove_carrier_flag = bca_jr_skip_full_{{ entry.job }}
+        remove_carrier_flag = bca_jr_skip_empty_{{ entry.job }}
+    {% endfor %}
 }

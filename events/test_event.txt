@@ -4,39 +4,34 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: events/test_event.txt.j2
+
+
 namespace = bca_debug_event
 
 
-
 carrier_event = {
-	id = bca_debug_event.2
-
-	is_triggered_only = yes
-	title = "Test Event for Scripted Triggers"
-	desc = bca_debug_event.1.desc
-
+    id = bca_debug_event.2
+    is_triggered_only = yes
+    title = "Test Event for Scripted Triggers"
+    desc = bca_debug_event.1.desc
     option = {
         name = 'exit'
     }
-
-	option = {
-		name = "add pop"
-		create_pop_group = { size = 1000  species = owner_main_species }
-		carrier_event = {
-			id = bca_debug_event.2
-		}
-	}
-
-	option = {
-	    name = "test_effect"
-	    test_effect = yes
-	}
-
-	option = {
-	    name = "test_call"
+    option = {
+        name = "add pop"
+        create_pop_group = { size = 1000  species = owner_main_species }
+        carrier_event = {
+            id = bca_debug_event.2
+        }
+    }
+    option = {
+        name = "test_effect"
+        test_effect = yes
+    }
+    option = {
+        name = "test_call"
         bca_resource_planet_controller_district_only = yes
-	}
-
+    }
     option = {
         name = "test minerals zone building"
         allow = {
@@ -85,7 +80,6 @@ carrier_event = {
                     set_carrier_flag = debug_check_variable_arithmetic_num_secondary_zone_plan_of_type_minerals_eq_0
                 }
             }
-
             else_if = {
                 limit = {
                     has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
@@ -102,7 +96,6 @@ carrier_event = {
                     set_carrier_flag = debug_check_variable_arithmetic_minerals_z4_wilderness_minerals
                 }
             }
-
             if = {
                 limit = {
                     has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
@@ -170,20 +163,16 @@ carrier_event = {
             }
         }
     }
-
-	immediate = {
-
-	}
-
-
+    immediate = {
+    }
     option = {
         name = "bca_pf_advance_controller_order"
         allow = {
             has_carrier_flag = bca_pf_advance_controller_order
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_build_district_d0"
@@ -191,8 +180,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_build_district_d0
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_build_district_d1"
@@ -200,8 +189,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_build_district_d1
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_build_district_d2"
@@ -209,8 +198,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_build_district_d2
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_build_district_d3"
@@ -218,8 +207,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_build_district_d3
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_remove_district_d0"
@@ -227,8 +216,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_remove_district_d0
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_remove_district_d1"
@@ -236,8 +225,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_remove_district_d1
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_remove_district_d2"
@@ -245,8 +234,8 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_remove_district_d2
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_pf_plan_remove_district_d3"
@@ -254,18 +243,17 @@ carrier_event = {
             has_carrier_flag = bca_pf_plan_remove_district_d3
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
-
     option = {
         name = "bca_auto_district_manage_enabled"
         allow = {
             bca_auto_district_manage_enabled = yes
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_district_d0_reach_planet_max"
@@ -273,8 +261,8 @@ carrier_event = {
             bca_district_d0_reach_planet_max = yes
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_district_d1_reach_planet_max"
@@ -282,8 +270,8 @@ carrier_event = {
             bca_district_d1_reach_planet_max = yes
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_district_d2_reach_planet_max"
@@ -291,8 +279,8 @@ carrier_event = {
             bca_district_d2_reach_planet_max = yes
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
     option = {
         name = "bca_district_d3_reach_planet_max"
@@ -300,72 +288,72 @@ carrier_event = {
             bca_district_d3_reach_planet_max = yes
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
+            id = bca_debug_event.2
+        }
     }
-	option = {
-		name = "var_test"
-		set_variable = {
-			which = num_secondary_zones_of_type_minerals
-			value = value:num_secondary_zones_of_type_minerals
-		}
-		set_variable = {
-			which = num_secondary_zone_plan_of_type_minerals
-			value = value:num_secondary_zone_plan_of_type_minerals
-		}
-		set_variable = {
-			which = bca_planet_max_districts
-			value = value:bca_planet_max_districts
-		}
-		set_variable = {
-			which = num_free_district_d1
-			value = value:num_free_district_d1
-		}
-		set_variable = {
-			which = num_free_district_d2
-			value = value:num_free_district_d2
-		}
-		set_variable = {
-			which = num_free_district_d3
-			value = value:num_free_district_d3
-		}
-		set_variable = {
-			which = bca_district_max_add_d1
-			value = value:bca_district_max_add_d1
-		}
-		set_variable = {
-			which = bca_district_max_add_d2
-			value = value:bca_district_max_add_d2
-		}
-		set_variable = {
-			which = bca_district_max_add_d3
-			value = value:bca_district_max_add_d3
-		}
-		set_variable = {
-			which = bca_potential_district_max_add_d1
-			value = value:bca_potential_district_max_add_d1
-		}
-		set_variable = {
-			which = bca_potential_district_max_add_d2
-			value = value:bca_potential_district_max_add_d2
-		}
-		set_variable = {
-			which = bca_potential_district_max_add_d3
-			value = value:bca_potential_district_max_add_d3
-		}
-		set_variable = {
-			which = bca_potential_district_max_build_d1
-			value = value:bca_potential_district_max_build_d1
-		}
-		set_variable = {
-			which = bca_potential_district_max_build_d2
-			value = value:bca_potential_district_max_build_d2
-		}
-		set_variable = {
-			which = bca_potential_district_max_build_d3
-			value = value:bca_potential_district_max_build_d3
-		}
-		hidden_effect = {
+    option = {
+        name = "var_test"
+        set_variable = {
+            which = num_secondary_zones_of_type_minerals
+            value = value:num_secondary_zones_of_type_minerals
+        }
+        set_variable = {
+            which = num_secondary_zone_plan_of_type_minerals
+            value = value:num_secondary_zone_plan_of_type_minerals
+        }
+        set_variable = {
+            which = bca_planet_max_districts
+            value = value:bca_planet_max_districts
+        }
+        set_variable = {
+            which = num_free_district_d1
+            value = value:num_free_district_d1
+        }
+        set_variable = {
+            which = num_free_district_d2
+            value = value:num_free_district_d2
+        }
+        set_variable = {
+            which = num_free_district_d3
+            value = value:num_free_district_d3
+        }
+        set_variable = {
+            which = bca_district_max_add_d1
+            value = value:bca_district_max_add_d1
+        }
+        set_variable = {
+            which = bca_district_max_add_d2
+            value = value:bca_district_max_add_d2
+        }
+        set_variable = {
+            which = bca_district_max_add_d3
+            value = value:bca_district_max_add_d3
+        }
+        set_variable = {
+            which = bca_potential_district_max_add_d1
+            value = value:bca_potential_district_max_add_d1
+        }
+        set_variable = {
+            which = bca_potential_district_max_add_d2
+            value = value:bca_potential_district_max_add_d2
+        }
+        set_variable = {
+            which = bca_potential_district_max_add_d3
+            value = value:bca_potential_district_max_add_d3
+        }
+        set_variable = {
+            which = bca_potential_district_max_build_d1
+            value = value:bca_potential_district_max_build_d1
+        }
+        set_variable = {
+            which = bca_potential_district_max_build_d2
+            value = value:bca_potential_district_max_build_d2
+        }
+        set_variable = {
+            which = bca_potential_district_max_build_d3
+            value = value:bca_potential_district_max_build_d3
+        }
+        hidden_effect = {
             clear_variable = num_secondary_zones_of_type_minerals
             clear_variable = num_secondary_zone_plan_of_type_minerals
             clear_variable = bca_planet_max_districts
@@ -383,10 +371,7 @@ carrier_event = {
             clear_variable = bca_potential_district_max_build_d3
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
-	}
-
-
-
+            id = bca_debug_event.2
+        }
+    }
 }

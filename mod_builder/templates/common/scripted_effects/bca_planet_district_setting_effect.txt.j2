@@ -19,46 +19,46 @@
 
 try_set_secondary_districts_plan_zero_to_one = {
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~(i) %}
-    if = {
-        limit = {
-             check_variable = {
-                 which = {{v.var_district_num_plan(zone_slot)}}
-                 value = 0
-             }
-            check_variable_arithmetic = {
-                which = value:bca_num_free_secondary_districts_plan
-                value > 0
+        {% set zone_slot = "z"~(i) %}
+        if = {
+            limit = {
+                check_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = 0
+                }
+                check_variable_arithmetic = {
+                    which = value:bca_num_free_secondary_districts_plan
+                    value > 0
+                }
+            }
+            add_variable = {
+                which = {{v.var_district_num_plan(zone_slot)}}
+                value = 1
             }
         }
-        add_variable = {
-            which = {{v.var_district_num_plan(zone_slot)}}
-            value = 1
-        }
-    }
     {% endfor %}
 }
 
 try_set_secondary_districts_plan_one_to_zero = {
     bca_set_secondary_district_type_flag = yes
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~(i) %}
-    {% for district in secondary_districts %}
-    if = {
-        limit = {
-             has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-             NOT = { has_district = {{district}} }
-             check_variable = {
-                 which = {{v.var_district_num_plan(zone_slot)}}
-                 value = 1
-             }
-        }
-        set_variable = {
-            which = {{v.var_district_num_plan(zone_slot)}}
-            value = 0
-        }
-    }
-    {% endfor %}
+        {% set zone_slot = "z"~(i) %}
+        {% for district in secondary_districts %}
+            if = {
+                limit = {
+                    has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+                    NOT = { has_district = {{district}} }
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value = 1
+                    }
+                }
+                set_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = 0
+                }
+            }
+        {% endfor %}
     {% endfor %}
     bca_clean_flags_zone_selector_secondary_district = yes
 }
@@ -70,8 +70,8 @@ bca_set_district_plan_by_ratio = {
             value = value:bca_num_main_districts_from_ratio|RATIO|$RATIO$|
         }
         subtract_variable = {
-             which = new_num_main_districts_plan_diff
-             value = value:bca_num_primary_districts_plan
+            which = new_num_main_districts_plan_diff
+            value = value:bca_num_primary_districts_plan
         }
         bca_set_district_plan_by_diff = yes
     }
@@ -94,7 +94,7 @@ bca_set_district_plan_dec_1 = {
 }
 
 bca_set_district_plan_by_diff = {
-    {# planed district reduce #}
+{# planed district reduce #}
     while = {
         limit = {
             check_variable = {
@@ -105,31 +105,31 @@ bca_set_district_plan_by_diff = {
         }
         set_carrier_flag = bca_no_more_planed_secondary_district
         {% for i in range(3,6) %}
-        {% set zone_slot = "z"~(i) %}
-        if = {
-            limit = {
-                check_variable = {
-                    which = {{v.var_district_num_plan(zone_slot)}}
-                    value > value:num_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
+            {% set zone_slot = "z"~(i) %}
+            if = {
+                limit = {
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value > value:num_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
+                    }
+                    check_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value > 0
+                    }
                 }
-                 check_variable = {
-                     which = new_num_main_districts_plan_diff
-                     value > 0
-                 }
+                subtract_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = 1
+                }
+                subtract_variable = {
+                    which = new_num_main_districts_plan_diff
+                    value = 1
+                }
+                remove_carrier_flag = bca_no_more_planed_secondary_district
             }
-            subtract_variable = {
-                which = {{v.var_district_num_plan(zone_slot)}}
-                value = 1
-            }
-            subtract_variable = {
-                which = new_num_main_districts_plan_diff
-                value = 1
-            }
-            remove_carrier_flag = bca_no_more_planed_secondary_district
-        }
         {% endfor %}
     }
-    {# built secondary district reduce #}
+{# built secondary district reduce #}
     if = {
         limit = {
             has_carrier_flag = bca_no_more_planed_secondary_district
@@ -146,34 +146,34 @@ bca_set_district_plan_by_diff = {
             }
             set_carrier_flag = bca_no_more_planed_secondary_district
             {% for i in range(3,6) %}
-            {% set zone_slot = "z"~(i) %}
-            if = {
-                limit = {
-                    check_variable = {
-                        which = {{v.var_district_num_plan(zone_slot)}}
-                        value > 0
+                {% set zone_slot = "z"~(i) %}
+                if = {
+                    limit = {
+                        check_variable = {
+                            which = {{v.var_district_num_plan(zone_slot)}}
+                            value > 0
+                        }
+                        check_variable = {
+                            which = new_num_main_districts_plan_diff
+                            value > 0
+                        }
                     }
-                     check_variable = {
-                         which = new_num_main_districts_plan_diff
-                         value > 0
-                     }
+                    subtract_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value = 1
+                    }
+                    subtract_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value = 1
+                    }
+                    remove_carrier_flag = bca_no_more_planed_secondary_district
                 }
-                subtract_variable = {
-                    which = {{v.var_district_num_plan(zone_slot)}}
-                    value = 1
-                }
-                subtract_variable = {
-                    which = new_num_main_districts_plan_diff
-                    value = 1
-                }
-                remove_carrier_flag = bca_no_more_planed_secondary_district
-            }
             {% endfor %}
         }
     }
     remove_carrier_flag = bca_no_more_planed_secondary_district
 
-    {# secondary district increment #}
+{# secondary district increment #}
     while = {
         limit = {
             check_variable = {
@@ -184,67 +184,67 @@ bca_set_district_plan_by_diff = {
         }
         set_carrier_flag = bca_no_more_free_secondary_district
         {% for i in range(3,6) %}
-        {% set zone_slot = "z"~(i) %}
-        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-        if = {
-            limit = {
-                check_variable = {
-                    which = {{v.var_district_num_plan(zone_slot)}}
-                    value < value:bca_potential_district_max_add_{{ district_slot }}
-                }
-                check_variable = {
-                    which = new_num_main_districts_plan_diff
-                    value < 0
-                }
-                OR = {
-                    bca_has_advance_secondary_districts = yes
-                    AND = {
-                        {% set generator_zone_slot = 'z3' %}
-                        {% set mining_zone_slot = 'z4' %}
-                        {% set farming_zone_slot = 'z5' %}
-                        {% set generator_district_slot = zone_slot_district_slot_mapping[generator_zone_slot] %}
-                        {% set mining_district_slot = zone_slot_district_slot_mapping[mining_zone_slot] %}
-                        {% set farming_district_slot = zone_slot_district_slot_mapping[farming_zone_slot] %}
-                        {% if zone_slot == farming_zone_slot or zone_slot == mining_zone_slot %}
-                        OR = {
-                             has_generator_designation = no
-                             check_variable = {
-                                which = {{v.var_district_num_plan(generator_zone_slot)}}
-                                value >= value:bca_potential_district_max_add_{{ generator_district_slot }}
-                            }
+            {% set zone_slot = "z"~(i) %}
+            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+            if = {
+                limit = {
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value < value:bca_potential_district_max_add_{{ district_slot }}
+                    }
+                    check_variable = {
+                        which = new_num_main_districts_plan_diff
+                        value < 0
+                    }
+                    OR = {
+                        bca_has_advance_secondary_districts = yes
+                        AND = {
+                            {% set generator_zone_slot = 'z3' %}
+                            {% set mining_zone_slot = 'z4' %}
+                            {% set farming_zone_slot = 'z5' %}
+                            {% set generator_district_slot = zone_slot_district_slot_mapping[generator_zone_slot] %}
+                            {% set mining_district_slot = zone_slot_district_slot_mapping[mining_zone_slot] %}
+                            {% set farming_district_slot = zone_slot_district_slot_mapping[farming_zone_slot] %}
+                            {% if zone_slot == farming_zone_slot or zone_slot == mining_zone_slot %}
+                                OR = {
+                                    has_generator_designation = no
+                                    check_variable = {
+                                        which = {{v.var_district_num_plan(generator_zone_slot)}}
+                                        value >= value:bca_potential_district_max_add_{{ generator_district_slot }}
+                                    }
+                                }
+                            {% endif %}
+                            {% if zone_slot == generator_zone_slot or zone_slot == farming_zone_slot %}
+                                OR = {
+                                    has_mining_designation = no
+                                    check_variable = {
+                                        which = {{v.var_district_num_plan(mining_zone_slot)}}
+                                        value >= value:bca_potential_district_max_add_{{ mining_district_slot }}
+                                    }
+                                }
+                            {% endif %}
+                            {% if zone_slot == generator_zone_slot or zone_slot == mining_zone_slot %}
+                                OR = {
+                                    has_farming_designation = no
+                                    check_variable = {
+                                        which = {{v.var_district_num_plan(farming_zone_slot)}}
+                                        value >= value:bca_potential_district_max_add_{{ farming_district_slot }}
+                                    }
+                                }
+                            {% endif %}
                         }
-                        {% endif %}
-                        {% if zone_slot == generator_zone_slot or zone_slot == farming_zone_slot %}
-                        OR = {
-                             has_mining_designation = no
-                             check_variable = {
-                                which = {{v.var_district_num_plan(mining_zone_slot)}}
-                                value >= value:bca_potential_district_max_add_{{ mining_district_slot }}
-                            }
-                        }
-                        {% endif %}
-                        {% if zone_slot == generator_zone_slot or zone_slot == mining_zone_slot %}
-                        OR = {
-                             has_farming_designation = no
-                             check_variable = {
-                                which = {{v.var_district_num_plan(farming_zone_slot)}}
-                                value >= value:bca_potential_district_max_add_{{ farming_district_slot }}
-                            }
-                        }
-                        {% endif %}
                     }
                 }
+                add_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = 1
+                }
+                add_variable = {
+                    which = new_num_main_districts_plan_diff
+                    value = 1
+                }
+                remove_carrier_flag = bca_no_more_free_secondary_district
             }
-            add_variable = {
-                which = {{v.var_district_num_plan(zone_slot)}}
-                value = 1
-            }
-            add_variable = {
-                which = new_num_main_districts_plan_diff
-                value = 1
-            }
-            remove_carrier_flag = bca_no_more_free_secondary_district
-        }
         {% endfor %}
     }
     remove_carrier_flag = bca_no_more_free_secondary_district

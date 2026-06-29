@@ -12,7 +12,7 @@
     {"name": "rare_crystals", "variable": "bca_expect_output_rare_crystals", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]},
     {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]},
     {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]}
-] %}
+    ] %}
 
 bca_global_settings_economic_management_off_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
@@ -39,51 +39,51 @@ bca_global_settings_economic_management_on_unselected = {
 }
 
 {% for row in economic_rows %}
-{% set unlimited_flag = "bca_economic_target_" ~ row.name ~ "_unlimited" %}
-{% set forbidden_flag = "bca_economic_target_" ~ row.name ~ "_forbidden" %}
-bca_global_settings_expect_output_{{ row.name }}_cycle_mode = {
-    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
-    allow = { always = yes }
-    effect = {
-        custom_tooltip = BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP
-        hidden_effect = {
-            from = {
-                if = {
-                    limit = { has_country_flag = {{ forbidden_flag }} }
-                    remove_country_flag = {{ forbidden_flag }}
-                }
-                else_if = {
-                    limit = { has_country_flag = {{ unlimited_flag }} }
-                    remove_country_flag = {{ unlimited_flag }}
-                    set_country_flag = {{ forbidden_flag }}
-                }
-                else = {
-                    set_country_flag = {{ unlimited_flag }}
+    {% set unlimited_flag = "bca_economic_target_" ~ row.name ~ "_unlimited" %}
+    {% set forbidden_flag = "bca_economic_target_" ~ row.name ~ "_forbidden" %}
+    bca_global_settings_expect_output_{{ row.name }}_cycle_mode = {
+        potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
+        allow = { always = yes }
+        effect = {
+            custom_tooltip = BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP
+            hidden_effect = {
+                from = {
+                    if = {
+                        limit = { has_country_flag = {{ forbidden_flag }} }
+                        remove_country_flag = {{ forbidden_flag }}
+                    }
+                    else_if = {
+                        limit = { has_country_flag = {{ unlimited_flag }} }
+                        remove_country_flag = {{ unlimited_flag }}
+                        set_country_flag = {{ forbidden_flag }}
+                    }
+                    else = {
+                        set_country_flag = {{ unlimited_flag }}
+                    }
                 }
             }
         }
     }
-}
 
-{% for step in row.steps %}
-bca_global_settings_expect_output_{{ row.name }}_{{ step.id }} = {
-    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
-    allow = {
-        from = {
-            has_country_flag = bca_enable_economic_management
-            NOT = { has_country_flag = {{ unlimited_flag }} }
-            NOT = { has_country_flag = {{ forbidden_flag }} }
-        }
-    }
-    effect = {
-        custom_tooltip = {{ row.tooltip }}
-        hidden_effect = {
-            from = {
-                change_variable = { which = {{ row.variable }} value = {{ step.value }} }
+    {% for step in row.steps %}
+        bca_global_settings_expect_output_{{ row.name }}_{{ step.id }} = {
+            potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
+            allow = {
+                from = {
+                    has_country_flag = bca_enable_economic_management
+                    NOT = { has_country_flag = {{ unlimited_flag }} }
+                    NOT = { has_country_flag = {{ forbidden_flag }} }
+                }
+            }
+            effect = {
+                custom_tooltip = {{ row.tooltip }}
+                hidden_effect = {
+                    from = {
+                        change_variable = { which = {{ row.variable }} value = {{ step.value }} }
+                    }
+                }
             }
         }
-    }
-}
 
-{% endfor %}
+    {% endfor %}
 {% endfor %}

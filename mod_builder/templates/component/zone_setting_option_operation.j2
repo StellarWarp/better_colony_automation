@@ -3,13 +3,13 @@
 
 {% macro update_zone_selector_option(zone_slot) -%}
     {% if zone_slot in ['z1','z2'] %}
-    bca_primary_district_update_zone_options = {
-        ZONE_SLOT = {{ zone_slot }}
-    }
+        bca_primary_district_update_zone_options = {
+            ZONE_SLOT = {{ zone_slot }}
+        }
     {% else %}
-    bca_secondary_district_update_zone_options = {
-        ZONE_SLOT = {{ zone_slot }}
-    }
+        bca_secondary_district_update_zone_options = {
+            ZONE_SLOT = {{ zone_slot }}
+        }
     {% endif %}
 {% endmacro %}
 
@@ -29,32 +29,32 @@
 
 {% macro set_zone_type_selection(zone_slot, selector_slot) -%}
     {% for item in zones_info %}
-    {% set type = item.type %}
-    {% set zones = item.zones %}
-    if = {
-        limit = {
-            has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
-        }
-        set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
-        {% if zone_slot in ['zx'] %}
-            {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                set_carrier_flag = {{pf.flag_selected_zone_type(secondary_zone_slot, type)}}
-            {% endfor %}
-        {% endif %}
-        {% for zone in zones %}
+        {% set type = item.type %}
+        {% set zones = item.zones %}
         if = {
             limit = {
-                has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
+                has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
             }
-            set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+            set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
             {% if zone_slot in ['zx'] %}
                 {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                    set_carrier_flag = {{pf.flag_selected_zone(secondary_zone_slot, zone)}}
+                    set_carrier_flag = {{pf.flag_selected_zone_type(secondary_zone_slot, type)}}
                 {% endfor %}
             {% endif %}
+            {% for zone in zones %}
+                if = {
+                    limit = {
+                        has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
+                    }
+                    set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+                    {% if zone_slot in ['zx'] %}
+                        {% for secondary_zone_slot in ['z3','z4','z5'] %}
+                            set_carrier_flag = {{pf.flag_selected_zone(secondary_zone_slot, zone)}}
+                        {% endfor %}
+                    {% endif %}
+                }
+            {% endfor %}
         }
-        {% endfor %}
-    }
     {% endfor %}
 {% endmacro %}
 
@@ -62,14 +62,14 @@
 {% macro clear_zone_selector_flags(zone_slot) -%}
     bca_clean_flags_zone_selector = yes
     {% if zone_slot in ['z3','z4','z5','zx'] %}
-    bca_clean_flags_zone_selector_secondary_district = yes
+        bca_clean_flags_zone_selector_secondary_district = yes
     {% endif %}
 {% endmacro %}
 
 {% macro set_specific_zone_from_mapping(zone_slot, selector_slot) -%}
     {% for item in zones_info %}
-    {% set type = item.type %}
-    {% set type = item.type %}
+        {% set type = item.type %}
+        {% set type = item.type %}
 
     {% endfor %}
 {% endmacro %}

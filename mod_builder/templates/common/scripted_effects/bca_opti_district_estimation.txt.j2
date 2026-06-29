@@ -11,119 +11,84 @@
 {% set primary_district_slot = 'd0' %}
 
 {% for i in range(3) %}
-{% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
-{% set resource = ['energy','minerals','food'][i] %}
-{% set job_count = 'value:bca_jobs_for_'~resource %}
-{% set production_estimation = 'bca_potential_standard_'~resource~'_production_estimate' %}
-{% set job_modifier_job_add = 'value:bca_planet_'~resource~'_job_add' %}
-{% set job_modifier_job_mult = 'value:bca_planet_'~resource~'_job_mult' %}
-{% set max_districts = 'value:bca_potential_district_max_add_'~resource %}
-{% set res_primary_district_count = 'bca_opti_count_primary_district' %}
-{% set res_secondary_district_count = 'bca_opti_count_secondary_district' %}
-bca_opti_district_estimation_{{ resource }} = {
-
-    set_variable = {
-        which = bca_opti_district_condition_check_sum_current
-        value = {{job_modifier_job_add}}
-    }
-    multiply_variable = {
-        which = bca_opti_district_condition_check_sum_current
-        value = {{job_modifier_job_mult}}
-    }
-    multiply_variable = {
-        which = bca_opti_district_condition_check_sum_current
-        value = {{max_districts}}
-    }
-    multiply_variable = {
-        which = bca_opti_district_condition_check_sum_current
-        value = value:bca_planet_max_districts
-    }
-
-    if = {
-        limit = {
-            check_variable = {
-                which = bca_opti_district_condition_check_sum
-                value != bca_opti_district_condition_check_sum_current
-            }
-        }
+    {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
+    {% set resource = ['energy','minerals','food'][i] %}
+    {% set job_count = 'value:bca_jobs_for_'~resource %}
+    {% set production_estimation = 'bca_potential_standard_'~resource~'_production_estimate' %}
+    {% set job_modifier_job_add = 'value:bca_planet_'~resource~'_job_add' %}
+    {% set job_modifier_job_mult = 'value:bca_planet_'~resource~'_job_mult' %}
+    {% set max_districts = 'value:bca_potential_district_max_add_'~resource %}
+    {% set res_primary_district_count = 'bca_opti_count_primary_district' %}
+    {% set res_secondary_district_count = 'bca_opti_count_secondary_district' %}
+    bca_opti_district_estimation_{{ resource }} = {
 
         set_variable = {
-            which = bca_opti_district_condition_check_sum
-            value = bca_opti_district_condition_check_sum_current
+            which = bca_opti_district_condition_check_sum_current
+            value = {{job_modifier_job_add}}
+        }
+        multiply_variable = {
+            which = bca_opti_district_condition_check_sum_current
+            value = {{job_modifier_job_mult}}
+        }
+        multiply_variable = {
+            which = bca_opti_district_condition_check_sum_current
+            value = {{max_districts}}
+        }
+        multiply_variable = {
+            which = bca_opti_district_condition_check_sum_current
+            value = value:bca_planet_max_districts
         }
 
-
-        {# start with all district to be resource districts#}
         if = {
             limit = {
-                check_variable_arithmetic = {
-                    which = {{ max_districts }}
-                    value >= value:bca_planet_max_districts
+                check_variable = {
+                    which = bca_opti_district_condition_check_sum
+                    value != bca_opti_district_condition_check_sum_current
                 }
             }
-            set_variable = {
-                which = sim_resource_district_count
-                value = value:bca_planet_max_districts
-            }
-            set_variable = {
-                which = sim_district_city_count
-                value = 1
-            }
-            subtract_variable = {
-                which = sim_resource_district_count
-                value = sim_district_city_count
-            }
-        }
-        else = {
-            set_variable = {
-                which = sim_resource_district_count
-                value = {{ max_districts }}
-            }
-            set_variable = {
-                which = sim_district_city_count
-                value = value:bca_planet_max_districts
-            }
-            subtract_variable = {
-                which = sim_district_city_count
-                value = sim_resource_district_count
-            }
-        }
 
-        set_variable = {
-            which = {{ res_secondary_district_count }}
-            value = sim_resource_district_count
-        }
-        set_variable = {
-            which = {{ res_primary_district_count }}
-            value = sim_district_city_count
-        }
+            set_variable = {
+                which = bca_opti_district_condition_check_sum
+                value = bca_opti_district_condition_check_sum_current
+            }
 
-        set_variable = {
-            which = max_production
-            value = 0
-        }
 
-        set_variable = {
-            which = production
-            value = value:{{ production_estimation }}|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
-        }
-
-        while = {
-            limit = {
-                check_variable = {
-                    which = production
-                    value > max_production
+    {# start with all district to be resource districts#}
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = {{ max_districts }}
+                        value >= value:bca_planet_max_districts
+                    }
                 }
-                check_variable = {
+                set_variable = {
                     which = sim_resource_district_count
-                    value > 1
+                    value = value:bca_planet_max_districts
+                }
+                set_variable = {
+                    which = sim_district_city_count
+                    value = 1
+                }
+                subtract_variable = {
+                    which = sim_resource_district_count
+                    value = sim_district_city_count
+                }
+            }
+            else = {
+                set_variable = {
+                    which = sim_resource_district_count
+                    value = {{ max_districts }}
+                }
+                set_variable = {
+                    which = sim_district_city_count
+                    value = value:bca_planet_max_districts
+                }
+                subtract_variable = {
+                    which = sim_district_city_count
+                    value = sim_resource_district_count
                 }
             }
 
-            set_variable = {
-                which = max_production
-                value = production
-            }
             set_variable = {
                 which = {{ res_secondary_district_count }}
                 value = sim_resource_district_count
@@ -133,52 +98,87 @@ bca_opti_district_estimation_{{ resource }} = {
                 value = sim_district_city_count
             }
 
-            add_variable = {
-                which = sim_district_city_count
-                value = 1
-            }
-            subtract_variable = {
-                which = sim_resource_district_count
-                value = 1
+            set_variable = {
+                which = max_production
+                value = 0
             }
 
             set_variable = {
                 which = production
                 value = value:{{ production_estimation }}|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
             }
+
+            while = {
+                limit = {
+                    check_variable = {
+                        which = production
+                        value > max_production
+                    }
+                    check_variable = {
+                        which = sim_resource_district_count
+                        value > 1
+                    }
+                }
+
+                set_variable = {
+                    which = max_production
+                    value = production
+                }
+                set_variable = {
+                    which = {{ res_secondary_district_count }}
+                    value = sim_resource_district_count
+                }
+                set_variable = {
+                    which = {{ res_primary_district_count }}
+                    value = sim_district_city_count
+                }
+
+                add_variable = {
+                    which = sim_district_city_count
+                    value = 1
+                }
+                subtract_variable = {
+                    which = sim_resource_district_count
+                    value = 1
+                }
+
+                set_variable = {
+                    which = production
+                    value = value:{{ production_estimation }}|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
+                }
+            }
+
+    {#        set_variable = {#}
+    {#            which = debug_max_production#}
+    {#            value = max_production#}
+    {#        }#}
+    {#        set_variable = {#}
+    {#            which = debug_job_mult_estimate#}
+    {#            value = value:bca_planet_energy_job_mult_estimate|num_district_city|sim_district_city_count|#}
+    {#        }#}
+    {#        set_variable = {#}
+    {#            which = debug_job_add_estimate#}
+    {#            value = value:bca_planet_energy_job_add_estimate#}
+    {#        }#}
+
+    {#        {% for zone_slot in ['z3','z4','z5'] %}#}
+    {#        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
+    {#        {{ "if" if loop.first else "else_if" }} = {#}
+    {#            limit = {#}
+    {#                has_carrier_flag = opti_target_{{ district_slot }}#}
+    {#            }#}
+    {#            remove_carrier_flag = opti_target_{{ district_slot }}#}
+    {##}
+    {#            #}
+    {#        }#}
+    {#        {% endfor %}#}
+
+
+            clear_variable = sim_district_city_count
+            clear_variable = sim_resource_district_count
+            clear_variable = max_production
+            clear_variable = production
         }
-
-{#        set_variable = {#}
-{#            which = debug_max_production#}
-{#            value = max_production#}
-{#        }#}
-{#        set_variable = {#}
-{#            which = debug_job_mult_estimate#}
-{#            value = value:bca_planet_energy_job_mult_estimate|num_district_city|sim_district_city_count|#}
-{#        }#}
-{#        set_variable = {#}
-{#            which = debug_job_add_estimate#}
-{#            value = value:bca_planet_energy_job_add_estimate#}
-{#        }#}
-
-{#        {% for zone_slot in ['z3','z4','z5'] %}#}
-{#        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
-{#        {{ "if" if loop.first else "else_if" }} = {#}
-{#            limit = {#}
-{#                has_carrier_flag = opti_target_{{ district_slot }}#}
-{#            }#}
-{#            remove_carrier_flag = opti_target_{{ district_slot }}#}
-{##}
-{#            #}
-{#        }#}
-{#        {% endfor %}#}
-
-
-        clear_variable = sim_district_city_count
-        clear_variable = sim_resource_district_count
-        clear_variable = max_production
-        clear_variable = production
+        clear_variable = bca_opti_district_condition_check_sum_current
     }
-    clear_variable = bca_opti_district_condition_check_sum_current
-}
 {% endfor %}

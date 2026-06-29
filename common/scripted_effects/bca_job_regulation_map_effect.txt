@@ -5,6 +5,7 @@
 # ====================================================================
 # Source template: common/scripted_effects/bca_job_regulation_map_effect.txt.j2
 
+
 bca_jr_prepare_display_number = {
     optimize_memory
     set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
@@ -27,6 +28,7 @@ bca_jr_prepare_display_number = {
     divide_variable = { which = $OUT$_m value = 100 }
     clear_variable = bca_jr_fmt_tmp
 }
+
 
 bca_jr_locate_job_colonies = {
     optimize_memory
@@ -52,6 +54,7 @@ bca_jr_locate_job_colonies = {
         }
     }
 }
+
 
 bca_jr_locate_slot_job = {
     optimize_memory
@@ -829,6 +832,7 @@ bca_jr_locate_slot_job = {
     }
 }
 
+
 bca_jr_clear_slot_mapping_for_slot = {
     optimize_memory
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_agri_drone
@@ -1201,6 +1205,7 @@ bca_jr_clear_slot_mapping_for_slot = {
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_m
 }
 
+
 bca_jr_clear_slot_mapping = {
     optimize_memory
     bca_jr_clear_slot_mapping_for_slot = { SLOT_NAME = s1 }
@@ -1413,6 +1418,7 @@ bca_jr_clear_slot_mapping = {
     remove_country_flag = bca_jr_slot_mapped_wrangler
     set_variable = { which = bca_jr_display_count value = 0 }
 }
+
 
 bca_jr_find_best_for_slot = {
     optimize_memory
@@ -2963,6 +2969,7 @@ bca_jr_find_best_for_slot = {
     }
 }
 
+
 bca_jr_fill_slot_job_stats = {
     optimize_memory
     set_country_flag = bca_jr_slot_$SLOT_NAME$_job_$JOB$
@@ -3047,6 +3054,7 @@ bca_jr_fill_slot_job_stats = {
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_exotic_gases value = bca_jr_total_output_$JOB$_exotic_gases }
     }
 }
+
 
 bca_jr_fill_current_slot = {
     optimize_memory
@@ -5011,10 +5019,10 @@ bca_jr_fill_current_slot = {
     bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_exotic_gases VALUE = bca_jr_slot_$SLOT_NAME$_output_exotic_gases }
 }
 
+
 bca_jr_refresh_slot_data = {
     optimize_memory
     set_variable = { which = bca_jr_fill_idx value = 1 }
-
     bca_jr_find_best_for_slot = yes
     if = {
         limit = {
@@ -5120,7 +5128,6 @@ bca_jr_refresh_slot_data = {
         }
         bca_jr_fill_current_slot = { SLOT_NAME = s15 SLOT_NUM = 15 }
     }
-
     set_variable = { which = bca_jr_display_count value = bca_jr_fill_idx }
     subtract_variable = { which = bca_jr_display_count value = 1 }
     clear_variable = bca_jr_fill_idx

@@ -7,11 +7,11 @@ namespace = colony_automation_event
 
 # check to initialize colony automation for all planets
 event = {
-	id = colony_automation_event.25
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.25
+    hide_window = yes
+    is_triggered_only = yes
 
-	immediate = {
+    immediate = {
         every_country = {
             limit = {
                 is_ai = no
@@ -20,7 +20,7 @@ event = {
                 limit = {
                     NOT = {
                         has_carrier_flag = bca_pf_ps_initialized
-                   }
+                    }
                 }
                 carrier_event = { id = colony_automation_event.26 }
             }
@@ -58,12 +58,12 @@ carrier_event = {
             bca_secondary_zone_setting_set_by_current_zones = yes
             # init for slot that's not selected by current zones
             {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
-            if = {
-                limit = {
-                    NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+                if = {
+                    limit = {
+                        NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+                    }
+                    {{ op.auto_select_default_zone(zone_slot) }}
                 }
-                {{ op.auto_select_default_zone(zone_slot) }}
-            }
             {% endfor %}
             if = {
                 limit = {
@@ -137,7 +137,7 @@ carrier_event = {
         bca_clear_designation_flag = yes
         bca_designation_sync_with_system = yes
         {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
-        {{ op.auto_select_default_zone(zone_slot) }}
+            {{ op.auto_select_default_zone(zone_slot) }}
         {% endfor %}
         if = {
             limit = {
@@ -196,13 +196,12 @@ carrier_event = {
     immediate = {
         # init for slot that's not selected by current zones
         {% for zone_slot in ['z3','z4','z5'] %}
-        if = {
-            limit = {
-                NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+            if = {
+                limit = {
+                    NOT = { bca_has_zone_plan = { ZONE_SLOT = {{ zone_slot }} } }
+                }
+                {{ op.auto_select_default_zone(zone_slot) }}
             }
-            {{ op.auto_select_default_zone(zone_slot) }}
-        }
         {% endfor %}
     }
 }
-

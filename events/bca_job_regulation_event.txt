@@ -4,31 +4,31 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: events/bca_job_regulation_event.txt.j2
+
+
 namespace = colony_automation_event
+
 
 carrier_event = {
     id = colony_automation_event.2000
     hide_window = yes
     is_triggered_only = yes
-
     trigger = {
         exists = owner
         owner = { has_country_flag = bca_jr_enabled }
     }
-
     immediate = {
         # 清除上次 job_changes 消费后的档位标记。
         bca_jr_clear_all_flags = yes
-
         bca_jr_evaluate_all = yes
     }
 }
+
 
 country_event = {
     id = colony_automation_event.2001
     hide_window = yes
     is_triggered_only = yes
-
     immediate = {
         # 清零 country 级累加器
         clear_variable = bca_jr_total_assigned_workforce_agri_drone
@@ -7110,7 +7110,6 @@ country_event = {
         clear_variable = bca_jr_display_output_wrangler_physics_research
         clear_variable = bca_jr_total_output_wrangler_consumer_goods
         clear_variable = bca_jr_display_output_wrangler_consumer_goods
-
         # 各殖民地：只刷新统计数据，不触发月度调控或冷却变化；聚合后立即清除 colony 中间态。
         every_owned_colony = {
             set_carrier_flag = bca_jr_check_all_jobs
@@ -11723,7 +11722,6 @@ country_event = {
             remove_carrier_flag = bca_jr_check_all_jobs
             bca_jr_clear_accumulators = yes
         }
-
         # GUI 只显示取整后的产出，底层调控继续使用原始小数。
         set_variable = { which = bca_jr_display_output_agri_drone_food value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_agri_drone_food| }
         set_variable = { which = bca_jr_display_output_agri_drone_alloys value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_agri_drone_alloys| }
@@ -14203,7 +14201,6 @@ country_event = {
         set_variable = { which = bca_jr_display_output_wrangler_exotic_gases value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_wrangler_exotic_gases| }
         set_variable = { which = bca_jr_display_output_wrangler_physics_research value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_wrangler_physics_research| }
         set_variable = { which = bca_jr_display_output_wrangler_consumer_goods value = value:bca_jr_rounded_value|VALUE|bca_jr_total_output_wrangler_consumer_goods| }
-
         # 填槽位
         bca_jr_clear_slot_mapping = yes
         bca_jr_refresh_slot_data = yes

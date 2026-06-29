@@ -6,19 +6,17 @@
 # Source template: events/bca_district_controller.txt.j2
 
 
-
 namespace = colony_automation_event
 
+
 carrier_event = {
-	id = colony_automation_event.1
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
+    id = colony_automation_event.1
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
         requires_more_job = yes
-	}
-
-	immediate = {
+    }
+    immediate = {
         if = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
@@ -225,18 +223,16 @@ carrier_event = {
     }
 }
 
-carrier_event = {
-	id = colony_automation_event.2
-	hide_window = yes
-	is_triggered_only = yes
 
-	trigger = {
+carrier_event = {
+    id = colony_automation_event.2
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
         free_district_slots = 0
         NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
-	}
-
-	immediate = {
-
+    }
+    immediate = {
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -686,11 +682,9 @@ carrier_event = {
                 remove_carrier_flag = bca_pf_district_balanced
             }
         }
-
         remove_carrier_flag = bca_pf_plan_remove_district_d0
         remove_carrier_flag = bca_pf_plan_remove_district_d1
         remove_carrier_flag = bca_pf_plan_remove_district_d2
         remove_carrier_flag = bca_pf_plan_remove_district_d3
     }
-
 }

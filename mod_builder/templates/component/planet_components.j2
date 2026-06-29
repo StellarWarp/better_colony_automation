@@ -1,111 +1,108 @@
 {# 定义自动化设置条目组件 #}
 {% macro automation_entry(name, id, y_offset, text, enable_effect="", disable_effect="") -%}
-            containerWindowType = {
-                name = "{{ name }}_{{ id }}"
-                position = { x = 0 y = {{ y_offset }} }
-                size = { width = @[ sidebar_width - 20 ] height = 36 }
-                background = {
-                    name = "background"
-                    spriteType = "GFX_tiles_frame"
-                    clicksound = "confirm_click"
-                    oversound = "mouse_over"
-                }
-                instantTextBoxType = {
-                    name = "automation_settings_name"
-                    font = "font_text_16"
-                    text = "{{ text }}"
-                    position = { x = 10 y = 0 }
-                    maxWidth = 370
-                    maxHeight = 36
-                    fixedSize = yes
-                    format = left
-                    vertical_alignment = center
-                }
-                effectButtonType = {
-                    name = "enable"
-                    orientation = upper_right
-                    position = { x = -40 y = 3 }
-                    quadTextureSprite = "GFX_bca_checkbox_disabled_20_20_01"
-                    effect = "{{ enable_effect }}"
-                    size = { x = 20 y = 24 }
-                }
-                effectButtonType = {
-                    name = "disable"
-                    orientation = upper_right
-                    position = { x = -40 y = 3 }
-                    quadTextureSprite = "GFX_bca_checkbox_enabled_20_20_01"
-                    effect = "{{ disable_effect }}"
-                    size = { x = 20 y = 24 }
-                }
-            }
+    containerWindowType = {
+        name = "{{ name }}_{{ id }}"
+        position = { x = 0 y = {{ y_offset }} }
+        size = { width = @[ sidebar_width - 20 ] height = 36 }
+        background = {
+            name = "background"
+            spriteType = "GFX_tiles_frame"
+            clicksound = "confirm_click"
+            oversound = "mouse_over"
+        }
+        instantTextBoxType = {
+            name = "automation_settings_name"
+            font = "font_text_16"
+            text = "{{ text }}"
+            position = { x = 10 y = 0 }
+            maxWidth = 370
+            maxHeight = 36
+            fixedSize = yes
+            format = left
+            vertical_alignment = center
+        }
+        effectButtonType = {
+            name = "enable"
+            orientation = upper_right
+            position = { x = -40 y = 3 }
+            quadTextureSprite = "GFX_bca_checkbox_disabled_20_20_01"
+            effect = "{{ enable_effect }}"
+            size = { x = 20 y = 24 }
+        }
+        effectButtonType = {
+            name = "disable"
+            orientation = upper_right
+            position = { x = -40 y = 3 }
+            quadTextureSprite = "GFX_bca_checkbox_enabled_20_20_01"
+            effect = "{{ disable_effect }}"
+            size = { x = 20 y = 24 }
+        }
+    }
 {%- endmacro %}
 
 {% macro setting_title(name, text, width) -%}
-        instantTextBoxType = {
-            name = "{{ name }}"
-            font = "font_text_14"
-            text = {{ text }}
-            position = { x = 0 y = 5 }
-            maxWidth = {{ width }}
-            maxHeight = 25
-            fixedSize = yes
-            format = center
-            vertical_alignment = center
-            alwaysTransparent = yes
-        }
+    instantTextBoxType = {
+        name = "{{ name }}"
+        font = "font_text_14"
+        text = {{ text }}
+        position = { x = 0 y = 5 }
+        maxWidth = {{ width }}
+        maxHeight = 25
+        fixedSize = yes
+        format = center
+        vertical_alignment = center
+        alwaysTransparent = yes
+    }
 {%- endmacro %}
 
 {% macro toggle_button(name, x, y, len, tex_prefix, effect_prefix, tex_len = 30) -%}
-        effectButtonType = {
-            name = "{{ name }}_enable"
-            orientation = upper_left
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ len }} y = {{ len }} }
-            scale = {{ len / tex_len }}
-            quadTextureSprite = "{{ tex_prefix }}_disabled"
-            effect = "{{ effect_prefix }}_enable"
-        }
-        effectButtonType = {
-            name = "{{ name }}_disable"
-            orientation = upper_left
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ len }} y = {{ len }} }
-            scale = {{ len / tex_len }}
-            quadTextureSprite = "{{ tex_prefix }}_enabled"
-            effect = "{{ effect_prefix }}_disable"
-        }
+    effectButtonType = {
+        name = "{{ name }}_enable"
+        orientation = upper_left
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ len }} y = {{ len }} }
+        scale = {{ len / tex_len }}
+        quadTextureSprite = "{{ tex_prefix }}_disabled"
+        effect = "{{ effect_prefix }}_enable"
+    }
+    effectButtonType = {
+        name = "{{ name }}_disable"
+        orientation = upper_left
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ len }} y = {{ len }} }
+        scale = {{ len / tex_len }}
+        quadTextureSprite = "{{ tex_prefix }}_enabled"
+        effect = "{{ effect_prefix }}_disable"
+    }
 {%- endmacro %}
 
 {% macro toggle_button_text(name, x, y, text, tooltip, tex_prefix, effect_prefix, sx = 0, sy = 0) -%}
-        effectButtonType = {
-            name = "{{ name }}_enable"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ sx }} y = {{ sy }} }
+    effectButtonType = {
+        name = "{{ name }}_enable"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ sx }} y = {{ sy }} }
 
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            {% if tooltip %}
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        {% if tooltip %}
             tooltipText = "{{ tooltip }}"
-            {% endif %}
+        {% endif %}
 
-            quadTextureSprite = "{{ tex_prefix }}_disabled"
-            effect = "{{ effect_prefix }}_enable"
-        }
-        effectButtonType = {
-            name = "{{ name }}_disable"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ sx }} y = {{ sy }} }
+        quadTextureSprite = "{{ tex_prefix }}_disabled"
+        effect = "{{ effect_prefix }}_enable"
+    }
+    effectButtonType = {
+        name = "{{ name }}_disable"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ sx }} y = {{ sy }} }
 
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            {% if tooltip %}
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        {% if tooltip %}
             tooltipText = "{{ tooltip }}"
-            {% endif %}
+        {% endif %}
 
-            quadTextureSprite = "{{ tex_prefix }}_enabled"
-            effect = "{{ effect_prefix }}_disable"
-        }
+        quadTextureSprite = "{{ tex_prefix }}_enabled"
+        effect = "{{ effect_prefix }}_disable"
+    }
 {%- endmacro %}
-
-
-

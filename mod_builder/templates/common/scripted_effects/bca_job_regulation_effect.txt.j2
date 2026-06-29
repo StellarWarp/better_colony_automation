@@ -1,8 +1,8 @@
 {#
-  Phase 7: 岗位调控评估
-  1. 根据资源状态和 skip flag 发放 plan flag
-  2. 只统计被 plan 的岗位
-  3. 按统计结果发放 job_changes gear flag，并写回本月剩余额度
+Phase 7: 岗位调控评估
+1. 根据资源状态和 skip flag 发放 plan flag
+2. 只统计被 plan 的岗位
+3. 按统计结果发放 job_changes gear flag，并写回本月剩余额度
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
@@ -10,48 +10,48 @@
 {# ---- INC 分组 ---- #}
 {% set inc_groups = {} %}
 {% for entry in regulated %}
-{% for nc in entry.needs_categories %}
-{% set _ = inc_groups.setdefault(nc, []).append(entry) %}
-{% endfor %}
+    {% for nc in entry.needs_categories %}
+        {% set _ = inc_groups.setdefault(nc, []).append(entry) %}
+    {% endfor %}
 {% endfor %}
 
 {# ---- DEC 分组：用 primary_needs 做外层资源过滤，完整 surplus 判断仍在 bca_jr_should_dec_x 中 ---- #}
 {% set dec_groups = {} %}
 {% for entry in regulated if entry.needs_categories and entry.pop_category and entry.primary_needs %}
-{% set _ = dec_groups.setdefault(entry.primary_needs, []).append(entry) %}
+    {% set _ = dec_groups.setdefault(entry.primary_needs, []).append(entry) %}
 {% endfor %}
 
 bca_jr_clear_resource_remaining = {
     optimize_memory
-{% for need_name, need in economic_need_thresholds.items() if need_name in economic_set %}
-    clear_variable = bca_jr_income_{{ need_name }}
-    clear_variable = bca_jr_remaining_inc_{{ need_name }}
-    clear_variable = bca_jr_remaining_dec_{{ need_name }}
-{% endfor %}
+    {% for need_name, need in economic_need_thresholds.items() if need_name in economic_set %}
+        clear_variable = bca_jr_income_{{ need_name }}
+        clear_variable = bca_jr_remaining_inc_{{ need_name }}
+        clear_variable = bca_jr_remaining_dec_{{ need_name }}
+    {% endfor %}
 }
 
 bca_jr_initialize_resource_remaining = {
     optimize_memory
-{% for need_name, need in economic_need_thresholds.items() if need_name in economic_set %}
-    clear_variable = bca_jr_income_{{ need_name }}
-    clear_variable = bca_jr_remaining_inc_{{ need_name }}
-    clear_variable = bca_jr_remaining_dec_{{ need_name }}
-    export_resource_income_to_variable = { resource = {{ need.resource }} variable = bca_jr_income_{{ need_name }} }
-
-    set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = {{ need.variable }} }
-    subtract_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_jr_income_{{ need_name }} }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_{{ need_name }} value < 0 } }
+    {% for need_name, need in economic_need_thresholds.items() if need_name in economic_set %}
+        clear_variable = bca_jr_income_{{ need_name }}
         clear_variable = bca_jr_remaining_inc_{{ need_name }}
-    }
-
-    set_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_jr_income_{{ need_name }} }
-    subtract_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = {{ need.variable }} }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_{{ need_name }} value < 0 } }
         clear_variable = bca_jr_remaining_dec_{{ need_name }}
-    }
-{% endfor %}
+        export_resource_income_to_variable = { resource = {{ need.resource }} variable = bca_jr_income_{{ need_name }} }
+
+        set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = {{ need.variable }} }
+        subtract_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_{{ need_name }} value < 0 } }
+            clear_variable = bca_jr_remaining_inc_{{ need_name }}
+        }
+
+        set_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+        subtract_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = {{ need.variable }} }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_{{ need_name }} value < 0 } }
+            clear_variable = bca_jr_remaining_dec_{{ need_name }}
+        }
+    {% endfor %}
 }
 
 bca_jr_plan_inc_job = {
@@ -100,24 +100,24 @@ bca_jr_plan_dec_job = {
 bca_jr_plan_job_checks = {
     optimize_memory
     # ==== INC: 任一需要资源命中即可计划增加 ====
-{% for nc, jobs in inc_groups.items() | sort %}
-    if = {
-        limit = { bca_empire_needs_{{ nc }} = yes }
-{% for entry in jobs %}
-        bca_jr_plan_inc_job = { JOB = {{ entry.job }} NEED = {{ nc }} }
-{% endfor %}
-    }
-{% endfor %}
+    {% for nc, jobs in inc_groups.items() | sort %}
+        if = {
+            limit = { bca_empire_needs_{{ nc }} = yes }
+            {% for entry in jobs %}
+                bca_jr_plan_inc_job = { JOB = {{ entry.job }} NEED = {{ nc }} }
+            {% endfor %}
+        }
+    {% endfor %}
 
     # ==== DEC: 所有有效产出都 surplus 才计划减少，且 INC 优先 ====
-{% for nc, jobs in dec_groups.items() | sort %}
-    if = {
-        limit = { bca_empire_has_surplus_{{ nc }} = yes }
-{% for entry in jobs %}
-        bca_jr_plan_dec_job = { JOB = {{ entry.job }} NEED = {{ nc }} }
-{% endfor %}
-    }
-{% endfor %}
+    {% for nc, jobs in dec_groups.items() | sort %}
+        if = {
+            limit = { bca_empire_has_surplus_{{ nc }} = yes }
+            {% for entry in jobs %}
+                bca_jr_plan_dec_job = { JOB = {{ entry.job }} NEED = {{ nc }} }
+            {% endfor %}
+        }
+    {% endfor %}
 }
 
 bca_jr_prepare_inc_target = {
@@ -331,31 +331,31 @@ bca_jr_writeback_dec_automated_remaining_for_resource = {
 
 bca_jr_apply_planned_job_changes = {
     optimize_memory
-{% for entry in regulated if entry.pop_category %}
-    if = {
-        limit = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
-        bca_jr_prepare_inc_target = { JOB = {{ entry.job }} }
-{% for resource in entry.economic_resources if resource in economic_set %}
-        bca_jr_limit_inc_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-{% endfor %}
-        bca_jr_apply_inc_target = { JOB = {{ entry.job }} }
-{% for resource in entry.economic_resources if resource in economic_set %}
-        bca_jr_writeback_inc_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-{% endfor %}
-    }
-    if = {
-        limit = { has_carrier_flag = bca_jr_plan_dec_{{ entry.job }} }
-        bca_jr_prepare_dec_target = { JOB = {{ entry.job }} }
-{% for resource in entry.economic_resources if resource in economic_set %}
-        bca_jr_limit_dec_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-{% endfor %}
-        bca_jr_apply_dec_target = { JOB = {{ entry.job }} }
-{% for resource in entry.economic_resources if resource in economic_set %}
-        bca_jr_writeback_dec_pop_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-        bca_jr_writeback_dec_automated_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-{% endfor %}
-    }
-{% endfor %}
+    {% for entry in regulated if entry.pop_category %}
+        if = {
+            limit = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
+            bca_jr_prepare_inc_target = { JOB = {{ entry.job }} }
+            {% for resource in entry.economic_resources if resource in economic_set %}
+                bca_jr_limit_inc_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+            {% endfor %}
+            bca_jr_apply_inc_target = { JOB = {{ entry.job }} }
+            {% for resource in entry.economic_resources if resource in economic_set %}
+                bca_jr_writeback_inc_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+            {% endfor %}
+        }
+        if = {
+            limit = { has_carrier_flag = bca_jr_plan_dec_{{ entry.job }} }
+            bca_jr_prepare_dec_target = { JOB = {{ entry.job }} }
+            {% for resource in entry.economic_resources if resource in economic_set %}
+                bca_jr_limit_dec_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+            {% endfor %}
+            bca_jr_apply_dec_target = { JOB = {{ entry.job }} }
+            {% for resource in entry.economic_resources if resource in economic_set %}
+                bca_jr_writeback_dec_pop_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                bca_jr_writeback_dec_automated_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+            {% endfor %}
+        }
+    {% endfor %}
 
     clear_variable = bca_jr_target
     clear_variable = bca_jr_tmp_open_capacity

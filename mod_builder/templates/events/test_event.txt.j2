@@ -1,71 +1,71 @@
 namespace = bca_debug_event
 
 {% set test_trigger = [
-'bca_auto_district_manage_enabled',
-'bca_district_d0_reach_planet_max',
-'bca_district_d1_reach_planet_max',
-'bca_district_d2_reach_planet_max',
-'bca_district_d3_reach_planet_max',
-] %}
+    'bca_auto_district_manage_enabled',
+    'bca_district_d0_reach_planet_max',
+    'bca_district_d1_reach_planet_max',
+    'bca_district_d2_reach_planet_max',
+    'bca_district_d3_reach_planet_max',
+    ] %}
 {% set test_flags = [
-'bca_pf_advance_controller_order',
-'bca_pf_plan_build_district_d0',
-'bca_pf_plan_build_district_d1',
-'bca_pf_plan_build_district_d2',
-'bca_pf_plan_build_district_d3',
-'bca_pf_plan_remove_district_d0',
-'bca_pf_plan_remove_district_d1',
-'bca_pf_plan_remove_district_d2',
-'bca_pf_plan_remove_district_d3',
- ]
- %}
+    'bca_pf_advance_controller_order',
+    'bca_pf_plan_build_district_d0',
+    'bca_pf_plan_build_district_d1',
+    'bca_pf_plan_build_district_d2',
+    'bca_pf_plan_build_district_d3',
+    'bca_pf_plan_remove_district_d0',
+    'bca_pf_plan_remove_district_d1',
+    'bca_pf_plan_remove_district_d2',
+    'bca_pf_plan_remove_district_d3',
+    ]
+%}
 {% set display_values = [
-'num_secondary_zones_of_type_minerals',
-'num_secondary_zone_plan_of_type_minerals',
-'bca_planet_max_districts',
-'num_free_district_d1',
-'num_free_district_d2',
-'num_free_district_d3',
-'bca_district_max_add_d1',
-'bca_district_max_add_d2',
-'bca_district_max_add_d3',
-'bca_potential_district_max_add_d1',
-'bca_potential_district_max_add_d2',
-'bca_potential_district_max_add_d3',
-'bca_potential_district_max_build_d1',
-'bca_potential_district_max_build_d2',
-'bca_potential_district_max_build_d3',
-] %}
+    'num_secondary_zones_of_type_minerals',
+    'num_secondary_zone_plan_of_type_minerals',
+    'bca_planet_max_districts',
+    'num_free_district_d1',
+    'num_free_district_d2',
+    'num_free_district_d3',
+    'bca_district_max_add_d1',
+    'bca_district_max_add_d2',
+    'bca_district_max_add_d3',
+    'bca_potential_district_max_add_d1',
+    'bca_potential_district_max_add_d2',
+    'bca_potential_district_max_add_d3',
+    'bca_potential_district_max_build_d1',
+    'bca_potential_district_max_build_d2',
+    'bca_potential_district_max_build_d3',
+    ] %}
 
 
 carrier_event = {
-	id = bca_debug_event.2
+    id = bca_debug_event.2
 
-	is_triggered_only = yes
-	title = "Test Event for Scripted Triggers"
-	desc = bca_debug_event.1.desc
+    is_triggered_only = yes
+    title = "Test Event for Scripted Triggers"
+    desc = bca_debug_event.1.desc
 
     option = {
         name = 'exit'
     }
 
-	option = {
-		name = "add pop"
-		create_pop_group = { size = 1000  species = owner_main_species }
-		carrier_event = {
-			id = bca_debug_event.2
-		}
-	}
+    option = {
+        name = "add pop"
+        create_pop_group = { size = 1000  species = owner_main_species }
+        carrier_event = {
+            id = bca_debug_event.2
+        }
+    }
 
-	option = {
-	    name = "test_effect"
-	    test_effect = yes
-	}
+    option = {
+        name = "test_effect"
+        test_effect = yes
+    }
 
-	option = {
-	    name = "test_call"
+    option = {
+        name = "test_call"
         bca_resource_planet_controller_district_only = yes
-	}
+    }
 
     option = {
         name = "test minerals zone building"
@@ -201,9 +201,9 @@ carrier_event = {
         }
     }
 
-	immediate = {
+    immediate = {
 
-	}
+    }
 
 {#	option = {#}
 {#	    name = "remove_flags"#}
@@ -276,46 +276,46 @@ carrier_event = {
 {#		}#}
 {#    }#}
 
-	{% for flag in test_flags %}
-    option = {
-        name = "{{ flag }}"
-        allow = {
-            has_carrier_flag = {{ flag }}
+    {% for flag in test_flags %}
+        option = {
+            name = "{{ flag }}"
+            allow = {
+                has_carrier_flag = {{ flag }}
+            }
+            carrier_event = {
+                id = bca_debug_event.2
+            }
         }
-        carrier_event = {
-			id = bca_debug_event.2
-		}
-    }
     {% endfor %}
 
-	{% for trigger in test_trigger %}
-    option = {
-        name = "{{ trigger }}"
-        allow = {
-            {{ trigger }} = yes
+    {% for trigger in test_trigger %}
+        option = {
+            name = "{{ trigger }}"
+            allow = {
+                {{ trigger }} = yes
+            }
+            carrier_event = {
+                id = bca_debug_event.2
+            }
         }
-        carrier_event = {
-			id = bca_debug_event.2
-		}
-    }
     {% endfor %}
-	option = {
-		name = "var_test"
-	    {% for val in display_values %}
-		set_variable = {
-			which = {{val}}
-			value = value:{{val}}
-		}
-		{% endfor %}
-		hidden_effect = {
+    option = {
+        name = "var_test"
+        {% for val in display_values %}
+            set_variable = {
+                which = {{val}}
+                value = value:{{val}}
+            }
+        {% endfor %}
+        hidden_effect = {
             {% for val in display_values %}
-            clear_variable = {{ val }}
+                clear_variable = {{ val }}
             {% endfor %}
         }
         carrier_event = {
-			id = bca_debug_event.2
-		}
-	}
+            id = bca_debug_event.2
+        }
+    }
 
 {#    option = {#}
 {#        name = "try_construct_district"#}

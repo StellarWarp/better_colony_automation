@@ -3,20 +3,20 @@
 {% import 'component/planet_flag_ps.j2' as pf with context -%}
 
 bca_potential_max_districts = {
-	complex_trigger_modifier = {
-		trigger = num_districts
-		parameters = {
-			type = any
-		}
-		mode = set
-	}
-	complex_trigger_modifier = {
-		trigger = num_free_districts
-		parameters = {
-			type = any
-		}
-		mode = add
-	}
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = any
+        }
+        mode = set
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = any
+        }
+        mode = add
+    }
     modifier = {
         has_modifier = bca_pm_arcology_project_candidate
         add = trigger:planet_size
@@ -27,8 +27,8 @@ bca_num_free_secondary_districts_plan = {
     set = value:bca_potential_max_districts
     subtract = value:num_primary_district
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    subtract = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        subtract = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
 }
 
@@ -36,15 +36,15 @@ bca_num_free_secondary_districts_plan_full_secondary_districts = {
     set = value:bca_potential_max_districts
     subtract = 1
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    subtract = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        subtract = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
 }
 
 bca_num_free_primary_districts_plan = {
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    add = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        add = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
     subtract = value:num_secondary_district
 }
@@ -52,15 +52,15 @@ bca_num_free_primary_districts_plan = {
 bca_num_primary_districts_plan = {
     set = value:bca_potential_max_districts
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    subtract = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        subtract = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
 }
 
 bca_num_secondary_districts_plan = {
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    add = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        add = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
 }
 
@@ -85,8 +85,8 @@ bca_built_secondary_districts_to_ratio = {
 }
 bca_plan_secondary_districts_to_ratio = {
     {% for i in range(3,6) %}
-    {% set zone_slot = "z"~i %}
-    add = {{ v.var_district_num_plan(zone_slot) }}
+        {% set zone_slot = "z"~i %}
+        add = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
     divide = value:bca_potential_max_districts
 }
@@ -94,229 +94,229 @@ bca_plan_secondary_districts_to_ratio = {
 
 
 num_primary_district = {
-{% for district in primary_districts %}
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = {{ district }}
+    {% for district in primary_districts %}
+        complex_trigger_modifier = {
+            trigger = num_districts
+            parameters = {
+                type = {{ district }}
+            }
+            mode = add
         }
-        mode = add
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 num_secondary_district = {
-{% for district in secondary_districts %}
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = {{ district }}
+    {% for district in secondary_districts %}
+        complex_trigger_modifier = {
+            trigger = num_districts
+            parameters = {
+                type = {{ district }}
+            }
+            mode = add
         }
-        mode = add
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 {% set all_district_set = [primary_districts, secondary_districts_d1, secondary_districts_d2, secondary_districts_d3] %}
 {% for district_set_idx in range(4) %}
-num_district_d{{ district_set_idx }} = {
-    {% for district in all_district_set[district_set_idx] %}
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = {{ district }}
-        }
-        mode = add
+    num_district_d{{ district_set_idx }} = {
+        {% for district in all_district_set[district_set_idx] %}
+            complex_trigger_modifier = {
+                trigger = num_districts
+                parameters = {
+                    type = {{ district }}
+                }
+                mode = add
+            }
+        {% endfor %}
     }
-    {% endfor %}
-}
 {% endfor %}
 
 
 num_free_primary_district = {
-{% for district in primary_districts %}
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
-            type = {{ district }}
+    {% for district in primary_districts %}
+        complex_trigger_modifier = {
+            trigger = num_free_districts
+            parameters = {
+                type = {{ district }}
+            }
+            mode = set
+            potential = {
+                bca_can_build_{{ district }} = yes
+            }
         }
-        mode = set
-        potential = {
-            bca_can_build_{{ district }} = yes
-        }
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 num_free_secondary_district = {
-{% for district in secondary_districts %}
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
-            type = {{ district }}
+    {% for district in secondary_districts %}
+        complex_trigger_modifier = {
+            trigger = num_free_districts
+            parameters = {
+                type = {{ district }}
+            }
+            mode = set
+            potential = {
+                bca_can_build_{{ district }} = yes
+            }
         }
-        mode = set
-        potential = {
-            bca_can_build_{{ district }} = yes
-        }
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 {% for district_set_idx in range(4) %}
-num_free_district_d{{ district_set_idx }} = {
-    {% for district in all_district_set[district_set_idx] %}
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = { type = {{ district }} }
-        mode = set
-        potential = {
-            bca_can_build_{{ district }} = yes
-        }
+    num_free_district_d{{ district_set_idx }} = {
+        {% for district in all_district_set[district_set_idx] %}
+            complex_trigger_modifier = {
+                trigger = num_free_districts
+                parameters = { type = {{ district }} }
+                mode = set
+                potential = {
+                    bca_can_build_{{ district }} = yes
+                }
+            }
+        {% endfor %}
     }
-    {% endfor %}
-}
 {% endfor %}
 
 num_zones_primary_district = {
-{% for zone in primary_districts_for_zone %}
-	complex_trigger_modifier = {
-		trigger = num_zones
-		parameters = {
-			type = {{ zone }}
-		}
-		mode = add
-	}
-{% endfor %}
+    {% for zone in primary_districts_for_zone %}
+        complex_trigger_modifier = {
+            trigger = num_zones
+            parameters = {
+                type = {{ zone }}
+            }
+            mode = add
+        }
+    {% endfor %}
 }
 
 num_zones_secondary_district = {
-{% for zone in secondary_districts_for_zone %}
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = {{ zone }}
+    {% for zone in secondary_districts_for_zone %}
+        complex_trigger_modifier = {
+            trigger = num_zones
+            parameters = {
+                type = {{ zone }}
+            }
+            mode = add
         }
-        mode = add
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 {% for item in zones_info %}
-{% set type = item.type %}
-{% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-num_primary_zones_of_type_{{ type }} = {
-    {% for zone in item.zones %}
-    {% if zone in primary_districts_for_zone %}
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = {{ zone }}
+    {% set type = item.type %}
+    {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
+        num_primary_zones_of_type_{{ type }} = {
+            {% for zone in item.zones %}
+                {% if zone in primary_districts_for_zone %}
+                    complex_trigger_modifier = {
+                        trigger = num_zones
+                        parameters = {
+                            type = {{ zone }}
+                        }
+                        mode = add
+                    }
+                {% endif %}
+            {% endfor %}
         }
-        mode = add
-    }
+
+        num_primary_zone_plan_of_type_{{ type }} = {
+            {% for zone_slot in ['z1','z2'] %}
+                modifier = {
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+                    add = 1
+                }
+            {% endfor %}
+        {# what the fuck? #}
+        {#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
+        {#    {% for zone_slot in ['z3','z4','z5'] %}#}
+        {#    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
+        {#    modifier = {#}
+        {#        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
+        {#        check_variable = {#}
+        {#            which = {{v.var_district_num_plan(zone_slot)}}#}
+        {#            value > 0#}
+        {#        }#}
+        {#        add = 1#}
+        {#    }#}
+        {#    {% endfor %}#}
+        {#    {% endif %}#}
+        }
+
     {% endif %}
-    {% endfor %}
-}
-
-num_primary_zone_plan_of_type_{{ type }} = {
-    {% for zone_slot in ['z1','z2'] %}
-    modifier = {
-        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
-        add = 1
-    }
-    {% endfor %}
-    {# what the fuck? #}
-{#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
-{#    {% for zone_slot in ['z3','z4','z5'] %}#}
-{#    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}#}
-{#    modifier = {#}
-{#        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
-{#        check_variable = {#}
-{#            which = {{v.var_district_num_plan(zone_slot)}}#}
-{#            value > 0#}
-{#        }#}
-{#        add = 1#}
-{#    }#}
-{#    {% endfor %}#}
-{#    {% endif %}#}
-}
-
-{% endif %}
-{% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
-num_secondary_zones_of_type_{{ type }} = {
-    {% for zone in item.zones %}
-    {% if zone in secondary_districts_for_zone %}
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = {{ zone }}
+    {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
+        num_secondary_zones_of_type_{{ type }} = {
+            {% for zone in item.zones %}
+                {% if zone in secondary_districts_for_zone %}
+                    complex_trigger_modifier = {
+                        trigger = num_zones
+                        parameters = {
+                            type = {{ zone }}
+                        }
+                        mode = add
+                    }
+                {% endif %}
+            {% endfor %}
         }
-        mode = add
-    }
+
+        num_secondary_zone_plan_of_type_{{ type }} = {
+            {% for zone_slot in ['z3','z4','z5'] %}
+                {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+                modifier = {
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value > 0
+                    }
+                    add = 1
+                }
+            {% endfor %}
+        {# what the fuck? #}
+        {#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
+        {#    {% for zone_slot in ['z1','z2'] %}#}
+        {#    modifier = {#}
+        {#        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
+        {#        add = 1#}
+        {#    }#}
+        {#    {% endfor %}#}
+        {#    {% endif %}#}
+        }
+
     {% endif %}
-    {% endfor %}
-}
-
-num_secondary_zone_plan_of_type_{{ type }} = {
-    {% for zone_slot in ['z3','z4','z5'] %}
-    {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-    modifier = {
-        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
-        check_variable = {
-            which = {{v.var_district_num_plan(zone_slot)}}
-            value > 0
-        }
-        add = 1
-    }
-    {% endfor %}
-    {# what the fuck? #}
-{#    {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}#}
-{#    {% for zone_slot in ['z1','z2'] %}#}
-{#    modifier = {#}
-{#        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}#}
-{#        add = 1#}
-{#    }#}
-{#    {% endfor %}#}
-{#    {% endif %}#}
-}
-
-{% endif %}
 {% endfor %}
 
 
 {% for item in zones_info %}
-{% set type = item.type %}
-{% for zone in item.zones %}
-num_zones_of_{{ zone }} = {
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = {{ zone }}
+    {% set type = item.type %}
+    {% for zone in item.zones %}
+        num_zones_of_{{ zone }} = {
+            complex_trigger_modifier = {
+                trigger = num_zones
+                parameters = {
+                    type = {{ zone }}
+                }
+                mode = add
+            }
         }
-        mode = add
-    }
-}
 
-num_zone_plan_of_{{ zone }} = {
-    {% for zone_slot in ['z1','z2'] %}
-    modifier = {
-        has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
-        add = 1
-    }
-    {% endfor %}
-    {% for zone_slot in ['z3','z4','z5'] %}
-    modifier = {
-        has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
-        check_variable = {
-            which = {{v.var_district_num_plan(zone_slot)}}
-            value > 0
+        num_zone_plan_of_{{ zone }} = {
+            {% for zone_slot in ['z1','z2'] %}
+                modifier = {
+                    has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+                    add = 1
+                }
+            {% endfor %}
+            {% for zone_slot in ['z3','z4','z5'] %}
+                modifier = {
+                    has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value > 0
+                    }
+                    add = 1
+                }
+            {% endfor %}
         }
-        add = 1
-    }
     {% endfor %}
-}
-{% endfor %}
 {% endfor %}
 
 bca_planet_max_districts_subtract_one = {
@@ -325,83 +325,81 @@ bca_planet_max_districts_subtract_one = {
 }
 
 {% for district_set_idx in range(1,4) %}
-{% set district_slot = 'd'~district_set_idx %}
-bca_district_max_add_{{ district_slot }} = {
+    {% set district_slot = 'd'~district_set_idx %}
+    bca_district_max_add_{{ district_slot }} = {
     {# capped #}
-    {% for district in all_district_set[district_set_idx] %}
-    {% if district not in always_uncapped_districts %}
-    add = value:bca_planet_max_districts_of|type|{{ district }}|
-    {% endif %}
-    {% endfor %}
+        {% for district in all_district_set[district_set_idx] %}
+            {% if district not in always_uncapped_districts %}
+                add = value:bca_planet_max_districts_of|type|{{ district }}|
+            {% endif %}
+        {% endfor %}
     {# uncapped #}
-    {% for district in all_district_set[district_set_idx] %}
-    {% if district in always_uncapped_districts %}
-    modifier = {
-         bca_can_build_{{ district }} = yes
-         set = value:bca_planet_max_districts
+        {% for district in all_district_set[district_set_idx] %}
+            {% if district in always_uncapped_districts %}
+                modifier = {
+                    bca_can_build_{{ district }} = yes
+                    set = value:bca_planet_max_districts
+                }
+            {% endif %}
+        {% endfor %}
     }
-    {% endif %}
-    {% endfor %}
-}
 
-bca_district_max_build_{{ district_slot }} = {
-    set = value:bca_district_max_add_{{ district_slot }}
-    max = value:bca_planet_max_districts_subtract_one
-    modifier = {
-        bca_has_advance_secondary_districts = yes
-        subtract = 2
+    bca_district_max_build_{{ district_slot }} = {
+        set = value:bca_district_max_add_{{ district_slot }}
+        max = value:bca_planet_max_districts_subtract_one
+        modifier = {
+            bca_has_advance_secondary_districts = yes
+            subtract = 2
+        }
     }
-}
 {% endfor %}
 
 {% for district_set_idx in range(1,4) %}
-{% set district_slot = 'd'~district_set_idx %}
-bca_potential_district_max_add_{{ district_slot }} = {
+    {% set district_slot = 'd'~district_set_idx %}
+    bca_potential_district_max_add_{{ district_slot }} = {
     {# capped #}
-    {% for district in all_district_set[district_set_idx] %}
-    {% if district not in always_uncapped_districts %}
-    add = value:bca_planet_max_districts_of|type|{{ district }}|
-    {% endif %}
-    {% endfor %}
+        {% for district in all_district_set[district_set_idx] %}
+            {% if district not in always_uncapped_districts %}
+                add = value:bca_planet_max_districts_of|type|{{ district }}|
+            {% endif %}
+        {% endfor %}
     {# uncapped #}
-    {% for district in all_district_set[district_set_idx] %}
-    {% if district in always_uncapped_districts %}
-    modifier = {
-         bca_can_build_{{ district }} = yes
-         set = value:bca_planet_max_districts
-    }
-    {% endif %}
-    {% endfor %}
+        {% for district in all_district_set[district_set_idx] %}
+            {% if district in always_uncapped_districts %}
+                modifier = {
+                    bca_can_build_{{ district }} = yes
+                    set = value:bca_planet_max_districts
+                }
+            {% endif %}
+        {% endfor %}
 
-    {% if district_set_idx == 1 %}
-    modifier = {
-		bca_can_build_building_generator_districts_1 = yes
-		add = value:bca_potential_energy_district_max_inc
-	}
-	{% endif %}
-    {% if district_set_idx == 2 %}
-    modifier = {
-		bca_can_build_building_mining_districts_1 = yes
-		add = value:bca_potential_minerals_district_max_inc
-	}
-	{% endif %}
-    {% if district_set_idx == 3 %}
-    modifier = {
-		bca_can_build_building_farming_districts_1 = yes
-		add = value:bca_potential_food_district_max_inc
-	}
-	{% endif %}
-	max = value:bca_planet_max_districts
-}
-
-bca_potential_district_max_build_{{ district_slot }} = {
-    set = value:bca_potential_district_max_add_{{ district_slot }}
-    max = value:bca_planet_max_districts_subtract_one
-    modifier = {
-        bca_has_advance_secondary_districts = yes
-        subtract = 2
+        {% if district_set_idx == 1 %}
+            modifier = {
+                bca_can_build_building_generator_districts_1 = yes
+                add = value:bca_potential_energy_district_max_inc
+            }
+        {% endif %}
+        {% if district_set_idx == 2 %}
+            modifier = {
+                bca_can_build_building_mining_districts_1 = yes
+                add = value:bca_potential_minerals_district_max_inc
+            }
+        {% endif %}
+        {% if district_set_idx == 3 %}
+            modifier = {
+                bca_can_build_building_farming_districts_1 = yes
+                add = value:bca_potential_food_district_max_inc
+            }
+        {% endif %}
+        max = value:bca_planet_max_districts
     }
-}
+
+    bca_potential_district_max_build_{{ district_slot }} = {
+        set = value:bca_potential_district_max_add_{{ district_slot }}
+        max = value:bca_planet_max_districts_subtract_one
+        modifier = {
+            bca_has_advance_secondary_districts = yes
+            subtract = 2
+        }
+    }
 {% endfor %}
-
-

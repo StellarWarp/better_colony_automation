@@ -1,44 +1,44 @@
 {% macro render_prerequisites(node, indent=0) -%}
-{% if node["kind"] == "group" -%}
-{% if node["operator"] == "and" -%}
-{% for item in node["items"] -%}
-{#  #}{{ render_prerequisites(item, indent) }}{#  #}
-{% endfor -%}
-{% else -%}
-{{ " " * indent }}{{ node["operator"] | upper }} = {
-{% for item in node["items"] -%}
-{#  #}{{ render_prerequisites(item, indent + 4) }}{#  #}
-{% endfor -%}
-{{ " " * indent }}}
-{% endif -%}
-{% elif node["kind"] == "tech" -%}
-{{ " " * indent }}has_technology = {{ node["name"] }}
-{% elif node["kind"] == "raw" -%}
-{{ node["source"] | indent(indent, true) }}
-{% endif -%}
+    {% if node["kind"] == "group" -%}
+        {% if node["operator"] == "and" -%}
+            {% for item in node["items"] -%}
+                {{ render_prerequisites(item, indent) }}
+            {% endfor -%}
+        {% else -%}
+            {{ " " * indent }}{{ node["operator"] | upper }} = {
+                {% for item in node["items"] -%}
+                    {{ render_prerequisites(item, indent + 4) }}
+                {% endfor -%}
+                {{ " " * indent }}}
+        {% endif -%}
+    {% elif node["kind"] == "tech" -%}
+        {{ " " * indent }}has_technology = {{ node["name"] }}
+    {% elif node["kind"] == "raw" -%}
+        {{ node["source"] | indent(indent, true) }}
+    {% endif -%}
 {%- endmacro %}
 
 {% for b in bca_buildings %}
-bca_can_build_{{ b.name }} = {
-{% if b.potential %}
-    AND = {
-        {{ b.potential | indent(8) }}
+    bca_can_build_{{ b.name }} = {
+        {% if b.potential %}
+            AND = {
+                {{ b.potential | indent(8) }}
+            }
+        {% endif %}
+        {% if b.allow %}
+            AND = {
+                {{ b.allow | indent(8) }}
+            }
+        {% endif %}
+        {% if b.abort_trigger %}
+            NOR = {
+                {{ b.abort_trigger | indent(8) }}
+            }
+        {% endif %}
+        {% if b.prerequisites %}
+            owner = {
+                {{ render_prerequisites(b.prerequisites, 8) }}
+            }
+        {% endif %}
     }
-{% endif %}
-{% if b.allow %}
-    AND = {
-        {{ b.allow | indent(8) }}
-    }
-{% endif %}
-{% if b.abort_trigger %}
-    NOR = {
-        {{ b.abort_trigger | indent(8) }}
-    }
-{% endif %}
-{% if b.prerequisites %}
-    owner = {
-{#  #}{{ render_prerequisites(b.prerequisites, 8) }}{#  #}
-    }
-{% endif %}
-}
 {% endfor %}

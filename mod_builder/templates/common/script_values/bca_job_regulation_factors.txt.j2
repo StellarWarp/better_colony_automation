@@ -1,7 +1,7 @@
 {#
-  Phase 7: 岗位调控劳动力因子 script value
-  workforce_capacity_mult: 用更少 assigned workforce 填满岗位，不提高产出。
-  output_efficiency_mult: 岗位效率，提高产出，不减少岗位占用。
+Phase 7: 岗位调控劳动力因子 script value
+workforce_capacity_mult: 用更少 assigned workforce 填满岗位，不提高产出。
+output_efficiency_mult: 岗位效率，提高产出，不减少岗位占用。
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
@@ -11,16 +11,16 @@ bca_jr_automated_output_efficiency = {
 }
 
 {% for entry in regulated if entry.pop_category %}
-bca_jr_workforce_capacity_mult_{{ entry.job }} = {
-    base = 1
-    add = prev.modifier:pop_workforce_mult
-    add = prev.modifier:pop_{{ entry.job }}_workforce_mult
-}
+    bca_jr_workforce_capacity_mult_{{ entry.job }} = {
+        base = 1
+        add = prev.modifier:pop_workforce_mult
+        add = prev.modifier:pop_{{ entry.job }}_workforce_mult
+    }
 
-bca_jr_output_efficiency_mult_{{ entry.job }} = {
-    base = 1
-    add = prev.modifier:pop_bonus_workforce_mult
-    add = prev.modifier:pop_cat_{{ entry.pop_category }}_bonus_workforce_mult
-    add = prev.modifier:pop_{{ entry.job }}_bonus_workforce_mult
-}
+    bca_jr_output_efficiency_mult_{{ entry.job }} = {
+        base = 1
+        add = prev.modifier:pop_bonus_workforce_mult
+        add = prev.modifier:pop_cat_{{ entry.pop_category }}_bonus_workforce_mult
+        add = prev.modifier:pop_{{ entry.job }}_bonus_workforce_mult
+    }
 {% endfor %}

@@ -1,6 +1,6 @@
 {#
-  岗位调控辅助触发器
-  判断某岗位的某个产出是否在当前星球上激活（考虑条件 trigger）
+岗位调控辅助触发器
+判断某岗位的某个产出是否在当前星球上激活（考虑条件 trigger）
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
@@ -8,71 +8,71 @@
 bca_jr_job_matches_selected_filters = {
     OR = {
         NOR = {
-{% for resource in economic_set %}
-            has_country_flag = bca_jr_filter_{{ resource }}
-{% endfor %}
+            {% for resource in economic_set %}
+                has_country_flag = bca_jr_filter_{{ resource }}
+            {% endfor %}
         }
-{% for resource in economic_set %}
-        AND = {
-            has_country_flag = bca_jr_filter_{{ resource }}
-            is_variable_set = bca_jr_total_output_$JOB$_{{ resource }}
-            check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
-        }
-{% endfor %}
+        {% for resource in economic_set %}
+            AND = {
+                has_country_flag = bca_jr_filter_{{ resource }}
+                is_variable_set = bca_jr_total_output_$JOB$_{{ resource }}
+                check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
+            }
+        {% endfor %}
     }
 }
 
 {% for entry in regulated %}
-{% for resource in entry.economic_resources if resource in economic_set %}
-{% set all_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}
-{% set has_unconditional = all_produces | selectattr('trigger', 'equalto', none) | list | length > 0 %}
-{% set cond_produces = all_produces | selectattr('trigger') | list %}
-{% if not has_unconditional and cond_produces %}
-# {{ entry.job }} → {{ resource }} 全部产出均有条件，需满足任一 trigger
-bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
-    OR = {
-{% for prod in cond_produces %}
-        AND = {
-            {{ prod.trigger | replace('\n', '\n            ') }}
+    {% for resource in entry.economic_resources if resource in economic_set %}
+        {% set all_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}
+        {% set has_unconditional = all_produces | selectattr('trigger', 'equalto', none) | list | length > 0 %}
+        {% set cond_produces = all_produces | selectattr('trigger') | list %}
+        {% if not has_unconditional and cond_produces %}
+            # {{ entry.job }} → {{ resource }} 全部产出均有条件，需满足任一 trigger
+            bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
+                OR = {
+                    {% for prod in cond_produces %}
+                        AND = {
+                            {{ prod.trigger | replace('\n', '\n            ') }}
+                        }
+                    {% endfor %}
+                }
+            }
+        {% else %}
+            # {{ entry.job }} → {{ resource }} 有无条件产出（base）或全部无条件
+            bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
+                always = yes
+            }
+        {% endif %}
+
+    {% endfor %}
+
+    {# INC 条件: 该岗位在 needs_category 组中是否实际产出对应资源 #}
+    {% for nc in entry.needs_categories %}
+        bca_jr_should_inc_{{ entry.job }}_for_{{ nc }} = {
+            {% set nc_resources = entry.economic_resources | select('equalto', nc) | list %}
+            {% if nc_resources %}
+                OR = {
+                    {% for res in nc_resources %}
+                        bca_jr_has_output_{{ entry.job }}_{{ res }} = yes
+                    {% endfor %}
+                }
+            {% else %}
+                always = yes
+            {% endif %}
         }
-{% endfor %}
-    }
-}
-{% else %}
-# {{ entry.job }} → {{ resource }} 有无条件产出（base）或全部无条件
-bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
-    always = yes
-}
-{% endif %}
 
-{% endfor %}
-
-{# INC 条件: 该岗位在 needs_category 组中是否实际产出对应资源 #}
-{% for nc in entry.needs_categories %}
-bca_jr_should_inc_{{ entry.job }}_for_{{ nc }} = {
-{% set nc_resources = entry.economic_resources | select('equalto', nc) | list %}
-{% if nc_resources %}
-    OR = {
-{% for res in nc_resources %}
-        bca_jr_has_output_{{ entry.job }}_{{ res }} = yes
-{% endfor %}
-    }
-{% else %}
-    always = yes
-{% endif %}
-}
-
-{% endfor %}
-{# DEC 条件: 产出 X 的资源均需 surplus，不产出 X 则跳过 #}
-bca_jr_should_dec_{{ entry.job }} = {
-    NOR = {
-{% for resource in entry.economic_resources if resource in economic_set %}
-        AND = {
-            bca_jr_has_output_{{ entry.job }}_{{ resource }} = yes
-            NOT = { bca_empire_has_surplus_{{ resource }} = yes }
+    {% endfor %}
+    {# DEC 条件: 产出 X 的资源均需 surplus，不产出 X 则跳过 #}
+    bca_jr_should_dec_{{ entry.job }} = {
+        NOR = {
+            {% for resource in entry.economic_resources if resource in economic_set %}
+                AND = {
+                    bca_jr_has_output_{{ entry.job }}_{{ resource }} = yes
+                    NOT = { bca_empire_has_surplus_{{ resource }} = yes }
+                }
+            {% endfor %}
         }
-{% endfor %}
     }
-}
 
 {% endfor %}

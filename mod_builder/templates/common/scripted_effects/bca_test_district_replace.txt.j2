@@ -5,31 +5,31 @@
 {% set all_district_set = [primary_districts, secondary_districts_d1, secondary_districts_d2, secondary_districts_d3] %}
 {% for district_set_idx in range(4) %}
 
-bca_add_district_d{{ district_set_idx }} = {
+    bca_add_district_d{{ district_set_idx }} = {
     {# save performance using has_district api #}
-    {% for district in all_district_set[district_set_idx] %}
-    {{ "if" if loop.first else "else_if" }} = {
-        limit = { has_district = {{ district }} }
-        add_district = { district_type = {{ district }} }
-    }
-    {% endfor %}
+        {% for district in all_district_set[district_set_idx] %}
+            {{ "if" if loop.first else "else_if" }} = {
+                limit = { has_district = {{ district }} }
+                add_district = { district_type = {{ district }} }
+            }
+        {% endfor %}
     {# second round for district that's not built #}
-    {% for district in all_district_set[district_set_idx] %}
-    else_if = {
-        limit = { bca_can_build_{{ district }} = yes }
-        add_district = { district_type = {{ district }} }
+        {% for district in all_district_set[district_set_idx] %}
+            else_if = {
+                limit = { bca_can_build_{{ district }} = yes }
+                add_district = { district_type = {{ district }} }
+            }
+        {% endfor %}
     }
-    {% endfor %}
-}
 
-bca_remove_district_d{{ district_set_idx }} = {
-    {% for district in all_district_set[district_set_idx] %}
-    {{ "if" if loop.first else "else_if" }} = {
-        limit = { has_district = {{ district }} }
-        remove_district = {{ district }}
+    bca_remove_district_d{{ district_set_idx }} = {
+        {% for district in all_district_set[district_set_idx] %}
+            {{ "if" if loop.first else "else_if" }} = {
+                limit = { has_district = {{ district }} }
+                remove_district = {{ district }}
+            }
+        {% endfor %}
     }
-    {% endfor %}
-}
 
 {% endfor %}
 
@@ -267,63 +267,62 @@ bca_resource_district_replace_controller = {
         set_carrier_flag = {{ pf.flag_district_plan_build(primary_district_slot) }}
     }
     {% for i in range(3) %}
-    {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
-    {% set type_name = ['energy','minerals','food'][i] %}
-    else_if = {
-        limit = {
-            {{ ['has_generator_designation', 'has_mining_designation', 'has_farming_designation'][i] }} = yes
-        }
-        {# find first secondary zone slot with type #}
-        {% for zone_slot in ['z3','z4','z5'] %}
-        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-        {{ "if" if loop.first else "else_if" }} = {
+        {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
+        {% set type_name = ['energy','minerals','food'][i] %}
+        else_if = {
             limit = {
-                OR = {
-                    {% for zone_type in zone_type_set %}
-                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
-                    {% endfor %}
-                }
+                {{ ['has_generator_designation', 'has_mining_designation', 'has_farming_designation'][i] }} = yes
+            }
+    {# find first secondary zone slot with type #}
+            {% for zone_slot in ['z3','z4','z5'] %}
+                {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        OR = {
+                            {% for zone_type in zone_type_set %}
+                                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                            {% endfor %}
+                        }
 
-            }
-            if = {
-                limit = { bca_district_{{ district_slot }}_reach_planet_max = no }
-                {% for other_zone_slot in ['z3','z4','z5'] %}
-                {% if other_zone_slot != zone_slot %}
-                {% set other_district_slot = zone_slot_district_slot_mapping[other_zone_slot] %}
-                if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_district_{{ other_district_slot }}
-                            value > {{v.var_district_num_plan(other_zone_slot)}}
-                        }
-                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
                     }
-                    set_carrier_flag = {{ pf.flag_district_plan_remove(other_district_slot) }}
-                    set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
-                    set_carrier_flag = bca_pf_has_district_remove_plan
-                    set_carrier_flag = bca_pf_advance_controller_order
-                }
-                {% endif %}
-                {% endfor %}
-                if = {
-                    limit = {
-                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
-                        check_variable_arithmetic = {
-                            which = value:num_district_{{ primary_district_slot }}
-                            value > 1
+                    if = {
+                        limit = { bca_district_{{ district_slot }}_reach_planet_max = no }
+                        {% for other_zone_slot in ['z3','z4','z5'] %}
+                            {% if other_zone_slot != zone_slot %}
+                                {% set other_district_slot = zone_slot_district_slot_mapping[other_zone_slot] %}
+                                if = {
+                                    limit = {
+                                        check_variable_arithmetic = {
+                                            which = value:num_district_{{ other_district_slot }}
+                                            value > {{v.var_district_num_plan(other_zone_slot)}}
+                                        }
+                                        NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
+                                    }
+                                    set_carrier_flag = {{ pf.flag_district_plan_remove(other_district_slot) }}
+                                    set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+                                    set_carrier_flag = bca_pf_has_district_remove_plan
+                                    set_carrier_flag = bca_pf_advance_controller_order
+                                }
+                            {% endif %}
+                        {% endfor %}
+                        if = {
+                            limit = {
+                                NOT = { has_carrier_flag = bca_pf_has_district_remove_plan }
+                                check_variable_arithmetic = {
+                                    which = value:num_district_{{ primary_district_slot }}
+                                    value > 1
+                                }
+                            }
+                            set_carrier_flag = {{ pf.flag_district_plan_remove(primary_district_slot) }}
+                            set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+                            set_carrier_flag = bca_pf_has_district_remove_plan
+                            set_carrier_flag = bca_pf_advance_controller_order
                         }
                     }
-                    set_carrier_flag = {{ pf.flag_district_plan_remove(primary_district_slot) }}
-                    set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
-                    set_carrier_flag = bca_pf_has_district_remove_plan
-                    set_carrier_flag = bca_pf_advance_controller_order
                 }
-            }
+            {% endfor %}
         }
-        {% endfor %}
-    }
     {% endfor %}
 
 
 }
-

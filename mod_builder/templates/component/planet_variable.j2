@@ -1,7 +1,7 @@
 {# z3,z4,z5 #}
 {% macro var_district_num_plan(zone_slot) -%} bca_ps_plan_district_count_{{ zone_slot }} {%- endmacro %}
 
-{% macro var_district_plan_build(district) -%} bca_ps_plan_build_district_of_{{ district }} {%- endmacro %}
+    {% macro var_district_plan_build(district) -%} bca_ps_plan_build_district_of_{{ district }} {%- endmacro %}
 
-{% macro var_num_primary_zone_plan(zone_type) -%} bca_ps_plan_num_primary_zone_{{ zone_type }} {%- endmacro %}
-{% macro var_num_secondary_zone_plan(zone_type) -%} bca_ps_plan_num_secondary_zone_{{ zone_type }} {%- endmacro %}
+        {% macro var_num_primary_zone_plan(zone_type) -%} bca_ps_plan_num_primary_zone_{{ zone_type }} {%- endmacro %}
+            {% macro var_num_secondary_zone_plan(zone_type) -%} bca_ps_plan_num_secondary_zone_{{ zone_type }} {%- endmacro %}

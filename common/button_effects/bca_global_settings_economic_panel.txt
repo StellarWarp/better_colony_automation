@@ -5,11 +5,13 @@
 # ====================================================================
 # Source template: common/button_effects/bca_global_settings_economic_panel.txt.j2
 
+
 bca_global_settings_economic_management_off_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
     effect = { from = { remove_country_flag = bca_enable_economic_management } }
 }
+
 
 bca_global_settings_economic_management_off_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
@@ -17,17 +19,20 @@ bca_global_settings_economic_management_off_unselected = {
     effect = { from = { remove_country_flag = bca_enable_economic_management } }
 }
 
+
 bca_global_settings_economic_management_on_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
     effect = { from = { set_country_flag = bca_enable_economic_management } }
 }
 
+
 bca_global_settings_economic_management_on_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
     effect = { from = { set_country_flag = bca_enable_economic_management } }
 }
+
 
 bca_global_settings_expect_output_energy_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -53,6 +58,7 @@ bca_global_settings_expect_output_energy_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_energy_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -71,6 +77,7 @@ bca_global_settings_expect_output_energy_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_energy_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -91,6 +98,7 @@ bca_global_settings_expect_output_energy_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_energy_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -109,6 +117,7 @@ bca_global_settings_expect_output_energy_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_energy_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -129,6 +138,7 @@ bca_global_settings_expect_output_energy_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_energy_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -148,6 +158,7 @@ bca_global_settings_expect_output_energy_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_energy_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -166,6 +177,7 @@ bca_global_settings_expect_output_energy_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_minerals_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -191,6 +203,7 @@ bca_global_settings_expect_output_minerals_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_minerals_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -209,6 +222,7 @@ bca_global_settings_expect_output_minerals_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_minerals_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -229,6 +243,7 @@ bca_global_settings_expect_output_minerals_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_minerals_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -247,6 +262,7 @@ bca_global_settings_expect_output_minerals_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_minerals_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -267,6 +283,7 @@ bca_global_settings_expect_output_minerals_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_minerals_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -286,6 +303,7 @@ bca_global_settings_expect_output_minerals_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_minerals_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -304,6 +322,7 @@ bca_global_settings_expect_output_minerals_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_food_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -329,6 +348,7 @@ bca_global_settings_expect_output_food_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_food_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -347,6 +367,7 @@ bca_global_settings_expect_output_food_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_food_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -367,6 +388,7 @@ bca_global_settings_expect_output_food_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_food_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -385,6 +407,7 @@ bca_global_settings_expect_output_food_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_food_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -405,6 +428,7 @@ bca_global_settings_expect_output_food_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_food_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -424,6 +448,7 @@ bca_global_settings_expect_output_food_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_food_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -442,6 +467,7 @@ bca_global_settings_expect_output_food_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_alloys_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -467,6 +493,7 @@ bca_global_settings_expect_output_alloys_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_alloys_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -485,6 +512,7 @@ bca_global_settings_expect_output_alloys_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_alloys_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -505,6 +533,7 @@ bca_global_settings_expect_output_alloys_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_alloys_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -523,6 +552,7 @@ bca_global_settings_expect_output_alloys_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_alloys_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -543,6 +573,7 @@ bca_global_settings_expect_output_alloys_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_alloys_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -562,6 +593,7 @@ bca_global_settings_expect_output_alloys_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_alloys_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -580,6 +612,7 @@ bca_global_settings_expect_output_alloys_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_consumer_goods_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -605,6 +638,7 @@ bca_global_settings_expect_output_consumer_goods_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_consumer_goods_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -623,6 +657,7 @@ bca_global_settings_expect_output_consumer_goods_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_consumer_goods_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -643,6 +678,7 @@ bca_global_settings_expect_output_consumer_goods_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_consumer_goods_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -661,6 +697,7 @@ bca_global_settings_expect_output_consumer_goods_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_consumer_goods_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -681,6 +718,7 @@ bca_global_settings_expect_output_consumer_goods_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_consumer_goods_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -700,6 +738,7 @@ bca_global_settings_expect_output_consumer_goods_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_consumer_goods_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -718,6 +757,7 @@ bca_global_settings_expect_output_consumer_goods_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_trade_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -743,6 +783,7 @@ bca_global_settings_expect_output_trade_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_trade_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -761,6 +802,7 @@ bca_global_settings_expect_output_trade_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_trade_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -781,6 +823,7 @@ bca_global_settings_expect_output_trade_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_trade_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -799,6 +842,7 @@ bca_global_settings_expect_output_trade_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_trade_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -819,6 +863,7 @@ bca_global_settings_expect_output_trade_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_trade_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -838,6 +883,7 @@ bca_global_settings_expect_output_trade_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_trade_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -856,6 +902,7 @@ bca_global_settings_expect_output_trade_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_unity_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -881,6 +928,7 @@ bca_global_settings_expect_output_unity_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_unity_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -899,6 +947,7 @@ bca_global_settings_expect_output_unity_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_unity_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -919,6 +968,7 @@ bca_global_settings_expect_output_unity_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_unity_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -937,6 +987,7 @@ bca_global_settings_expect_output_unity_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_unity_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -957,6 +1008,7 @@ bca_global_settings_expect_output_unity_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_unity_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -976,6 +1028,7 @@ bca_global_settings_expect_output_unity_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_unity_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -994,6 +1047,7 @@ bca_global_settings_expect_output_unity_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_physics_research_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1019,6 +1073,7 @@ bca_global_settings_expect_output_physics_research_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_physics_research_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1037,6 +1092,7 @@ bca_global_settings_expect_output_physics_research_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_physics_research_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1057,6 +1113,7 @@ bca_global_settings_expect_output_physics_research_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_physics_research_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1075,6 +1132,7 @@ bca_global_settings_expect_output_physics_research_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_physics_research_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1095,6 +1153,7 @@ bca_global_settings_expect_output_physics_research_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_physics_research_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1114,6 +1173,7 @@ bca_global_settings_expect_output_physics_research_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_physics_research_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1132,6 +1192,7 @@ bca_global_settings_expect_output_physics_research_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_society_research_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1157,6 +1218,7 @@ bca_global_settings_expect_output_society_research_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_society_research_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1175,6 +1237,7 @@ bca_global_settings_expect_output_society_research_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_society_research_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1195,6 +1258,7 @@ bca_global_settings_expect_output_society_research_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_society_research_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1213,6 +1277,7 @@ bca_global_settings_expect_output_society_research_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_society_research_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1233,6 +1298,7 @@ bca_global_settings_expect_output_society_research_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_society_research_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1252,6 +1318,7 @@ bca_global_settings_expect_output_society_research_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_society_research_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1270,6 +1337,7 @@ bca_global_settings_expect_output_society_research_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_engineering_research_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1295,6 +1363,7 @@ bca_global_settings_expect_output_engineering_research_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_engineering_research_minus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1313,6 +1382,7 @@ bca_global_settings_expect_output_engineering_research_minus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_engineering_research_minus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1333,6 +1403,7 @@ bca_global_settings_expect_output_engineering_research_minus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_engineering_research_minus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1351,6 +1422,7 @@ bca_global_settings_expect_output_engineering_research_minus_100 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_engineering_research_plus_100 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1371,6 +1443,7 @@ bca_global_settings_expect_output_engineering_research_plus_100 = {
     }
 }
 
+
 bca_global_settings_expect_output_engineering_research_plus_500 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1390,6 +1463,7 @@ bca_global_settings_expect_output_engineering_research_plus_500 = {
     }
 }
 
+
 bca_global_settings_expect_output_engineering_research_plus_2p5k = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1408,6 +1482,7 @@ bca_global_settings_expect_output_engineering_research_plus_2p5k = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_rare_crystals_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1433,6 +1508,7 @@ bca_global_settings_expect_output_rare_crystals_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_rare_crystals_minus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1451,6 +1527,7 @@ bca_global_settings_expect_output_rare_crystals_minus_125 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_rare_crystals_minus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1471,6 +1548,7 @@ bca_global_settings_expect_output_rare_crystals_minus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_rare_crystals_minus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1489,6 +1567,7 @@ bca_global_settings_expect_output_rare_crystals_minus_5 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_rare_crystals_plus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1509,6 +1588,7 @@ bca_global_settings_expect_output_rare_crystals_plus_5 = {
     }
 }
 
+
 bca_global_settings_expect_output_rare_crystals_plus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1528,6 +1608,7 @@ bca_global_settings_expect_output_rare_crystals_plus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_rare_crystals_plus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1546,6 +1627,7 @@ bca_global_settings_expect_output_rare_crystals_plus_125 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_volatile_motes_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1571,6 +1653,7 @@ bca_global_settings_expect_output_volatile_motes_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_volatile_motes_minus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1589,6 +1672,7 @@ bca_global_settings_expect_output_volatile_motes_minus_125 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_volatile_motes_minus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1609,6 +1693,7 @@ bca_global_settings_expect_output_volatile_motes_minus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_volatile_motes_minus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1627,6 +1712,7 @@ bca_global_settings_expect_output_volatile_motes_minus_5 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_volatile_motes_plus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1647,6 +1733,7 @@ bca_global_settings_expect_output_volatile_motes_plus_5 = {
     }
 }
 
+
 bca_global_settings_expect_output_volatile_motes_plus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1666,6 +1753,7 @@ bca_global_settings_expect_output_volatile_motes_plus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_volatile_motes_plus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1684,6 +1772,7 @@ bca_global_settings_expect_output_volatile_motes_plus_125 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_exotic_gases_cycle_mode = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1709,6 +1798,7 @@ bca_global_settings_expect_output_exotic_gases_cycle_mode = {
     }
 }
 
+
 bca_global_settings_expect_output_exotic_gases_minus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1727,6 +1817,7 @@ bca_global_settings_expect_output_exotic_gases_minus_125 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_exotic_gases_minus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1747,6 +1838,7 @@ bca_global_settings_expect_output_exotic_gases_minus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_exotic_gases_minus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1765,6 +1857,7 @@ bca_global_settings_expect_output_exotic_gases_minus_5 = {
         }
     }
 }
+
 
 bca_global_settings_expect_output_exotic_gases_plus_5 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
@@ -1785,6 +1878,7 @@ bca_global_settings_expect_output_exotic_gases_plus_5 = {
     }
 }
 
+
 bca_global_settings_expect_output_exotic_gases_plus_25 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1804,6 +1898,7 @@ bca_global_settings_expect_output_exotic_gases_plus_25 = {
     }
 }
 
+
 bca_global_settings_expect_output_exotic_gases_plus_125 = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
     allow = {
@@ -1822,4 +1917,3 @@ bca_global_settings_expect_output_exotic_gases_plus_125 = {
         }
     }
 }
-

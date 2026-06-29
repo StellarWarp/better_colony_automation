@@ -1,24 +1,24 @@
 
 {% for item in zones_info %}
-bca_planet_setting_zone_rank_{{ item.type }} = {
-    base = 1000
-{#    subtract = {{item.rank}}#}
-    subtract = {{ loop.index0 }}
-    {% if item.fitness %}
-    {% for designation,value in item.fitness.items() %}
-    modifier = {
-        has_designation = {{ designation }}
-        add = {{value * 5}}
+    bca_planet_setting_zone_rank_{{ item.type }} = {
+        base = 1000
+    {#    subtract = {{item.rank}}#}
+        subtract = {{ loop.index0 }}
+        {% if item.fitness %}
+            {% for designation,value in item.fitness.items() %}
+                modifier = {
+                    has_designation = {{ designation }}
+                    add = {{value * 5}}
+                }
+            {% endfor %}
+        {% endif %}
+        {% if item.fitness_trigger %}
+            {% for trigger,value in item.fitness_trigger.items() %}
+                modifier = {
+                    {{ trigger }} = yes
+                    add = {{value * 5}}
+                }
+            {% endfor %}
+        {% endif %}
     }
-    {% endfor %}
-    {% endif %}
-    {% if item.fitness_trigger %}
-    {% for trigger,value in item.fitness_trigger.items() %}
-    modifier = {
-        {{ trigger }} = yes
-        add = {{value * 5}}
-    }
-    {% endfor %}
-    {% endif %}
-}
 {% endfor %}

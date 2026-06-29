@@ -1,34 +1,34 @@
 spriteTypes = {
     {% for item in zones_info %}
-    {% set ns = namespace(type = item.type) %}
-    {% if ns.type == 'factory' %}
-        {% set ns.type = 'artisan_industry' %}
-    {% elif ns.type == 'physics' %}
-        {% set ns.type = 'physicist' %}
-    {% elif ns.type == 'society' %}
-        {% set ns.type = 'biology' %}
-    {% elif ns.type == 'engineering' %}
-        {% set ns.type = 'engineer' %}
-    {% elif ns.type == 'food' %}
-        {% set ns.type = 'food_market' %}
-    {% elif ns.type == 'ark_research_unity_consumer_goods' %}
-        {% set ns.type = 'culture_worker' %}
-    {% elif ns.type == 'ark_research_alloys_support' %}
-        {% set ns.type = 'industrial' %}
-    {% elif ns.type == 'forever_cruise_city_passenger' %}
-        {% set ns.type = 'forever_cruise_passenger' %}
-    {% elif ns.type == 'forever_cruise_city_crew' %}
-        {% set ns.type = 'forever_cruise_crew' %}
-    {% elif ns.type == 'forever_cruise_city_mixed' %}
-        {% set ns.type = 'forever_cruise_mixed' %}
-    {% endif %}
-	spriteType = {
-		name = "GFX_text_district_specialization_{{ item.type }}_large"
-		texturefile = "gfx/interface/bca_districts/large/district_specialization_{{ ns.type }}.dds"
-	}
-    spriteType = {
-		name = "GFX_text_district_specialization_{{ item.type }}_small"
-		texturefile = "gfx/interface/bca_districts/small/district_specialization_{{ ns.type }}.dds"
-	}
+        {% set ns = namespace(type = item.type) %}
+        {% if ns.type == 'factory' %}
+            {% set ns.type = 'artisan_industry' %}
+        {% elif ns.type == 'physics' %}
+            {% set ns.type = 'physicist' %}
+        {% elif ns.type == 'society' %}
+            {% set ns.type = 'biology' %}
+        {% elif ns.type == 'engineering' %}
+            {% set ns.type = 'engineer' %}
+        {% elif ns.type == 'food' %}
+            {% set ns.type = 'food_market' %}
+        {% elif ns.type == 'ark_research_unity_consumer_goods' %}
+            {% set ns.type = 'culture_worker' %}
+        {% elif ns.type == 'ark_research_alloys_support' %}
+            {% set ns.type = 'industrial' %}
+        {% elif ns.type == 'forever_cruise_city_passenger' %}
+            {% set ns.type = 'forever_cruise_passenger' %}
+        {% elif ns.type == 'forever_cruise_city_crew' %}
+            {% set ns.type = 'forever_cruise_crew' %}
+        {% elif ns.type == 'forever_cruise_city_mixed' %}
+            {% set ns.type = 'forever_cruise_mixed' %}
+        {% endif %}
+        spriteType = {
+            name = "GFX_text_district_specialization_{{ item.type }}_large"
+            texturefile = "gfx/interface/bca_districts/large/district_specialization_{{ ns.type }}.dds"
+        }
+        spriteType = {
+            name = "GFX_text_district_specialization_{{ item.type }}_small"
+            texturefile = "gfx/interface/bca_districts/small/district_specialization_{{ ns.type }}.dds"
+        }
     {% endfor %}
 }

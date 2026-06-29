@@ -1,10 +1,10 @@
 {# Phase 8: 岗位调控面板图标 spriteType #}
 {% set icon_sprites = job_regulation_config.icon_sprites | default([]) %}
 spriteTypes = {
-{% for icon in icon_sprites %}
-    spriteType = {
-        name = "GFX_text_jr_icon_{{ icon }}"
-        texturefile = "gfx/interface/bca_jobs/{{ icon }}.dds"
-    }
-{% endfor %}
+    {% for icon in icon_sprites %}
+        spriteType = {
+            name = "GFX_text_jr_icon_{{ icon }}"
+            texturefile = "gfx/interface/bca_jobs/{{ icon }}.dds"
+        }
+    {% endfor %}
 }

@@ -1,34 +1,34 @@
 namespace = bca_global_settings_bootstrap
 
 event = {
-	id = bca_global_settings_bootstrap.1
+    id = bca_global_settings_bootstrap.1
 
-	is_triggered_only = yes
-	hide_window = yes
+    is_triggered_only = yes
+    hide_window = yes
 
-	trigger = {
-		NOT = { has_global_flag = bca_global_settings_defaults_initialized }
-	}
+    trigger = {
+        NOT = { has_global_flag = bca_global_settings_defaults_initialized }
+    }
 
-	immediate = {
-		set_global_flag = bca_global_settings_defaults_initialized
-		every_playable_country = {
-			set_variable = { which = bca_reserve_minerals_amount value = 2000 }
-			set_variable = { which = bca_reserve_alloys_amount value = 10000 }
-			set_variable = { which = bca_reserve_influence_amount value = 200 }
-			set_variable = { which = bca_reserve_job_amount value = 50 }
-{% for need_name, need in economic_need_thresholds.items() %}
-			set_variable = { which = {{ need.variable }} value = {{ need.default }} }
-{% endfor %}
+    immediate = {
+        set_global_flag = bca_global_settings_defaults_initialized
+        every_playable_country = {
+            set_variable = { which = bca_reserve_minerals_amount value = 2000 }
+            set_variable = { which = bca_reserve_alloys_amount value = 10000 }
+            set_variable = { which = bca_reserve_influence_amount value = 200 }
+            set_variable = { which = bca_reserve_job_amount value = 50 }
+            {% for need_name, need in economic_need_thresholds.items() %}
+                set_variable = { which = {{ need.variable }} value = {{ need.default }} }
+            {% endfor %}
 
-			remove_country_flag = bca_enable_economic_management
-			remove_country_flag = bca_retain_low_level_rare_resource_buildings
-			remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
-			remove_country_flag = bac_remove_pop_assemble_buildings
+            remove_country_flag = bca_enable_economic_management
+            remove_country_flag = bca_retain_low_level_rare_resource_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
 
-			set_country_flag = bca_default_disable_auto_destruction_building
-			set_country_flag = bca_default_disable_auto_destruction_district
-			set_country_flag = bca_default_disable_auto_destruction_zone
-		}
-	}
+            set_country_flag = bca_default_disable_auto_destruction_building
+            set_country_flag = bca_default_disable_auto_destruction_district
+            set_country_flag = bca_default_disable_auto_destruction_zone
+        }
+    }
 }

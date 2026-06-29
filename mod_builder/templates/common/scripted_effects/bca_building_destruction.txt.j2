@@ -6,40 +6,40 @@ bca_auto_building_destruction_entry = {
             free_building_slots = 0
         }
         {% for building_group in building_strategy_destruction_contexts %}
-        if = {
-            limit = {
-                {% if building_group.category_filter %}
-                {% for category in building_group.category_filter %}
-                {% if building_group.category_filter|length > 1 %}
-                OR = {
-                    num_buildings = {
-                        type = any
-                        category = {{ category }}
-                        value > 0
-                    }
-                }
-                {% else %}
-                num_buildings = {
-                    type = any
-                    category = {{ category }}
-                    value > 0
-                }
-                {% endif %}
-                {% endfor %}
-                {% endif %}
-                {% for trigger in building_group.trigger %}
-                {{ trigger }} = yes
-                {% endfor %}
-            }
-            {% for building in building_group.building %}
             if = {
                 limit = {
-                    has_building = {{ building }}
+                    {% if building_group.category_filter %}
+                        {% for category in building_group.category_filter %}
+                            {% if building_group.category_filter|length > 1 %}
+                                OR = {
+                                    num_buildings = {
+                                        type = any
+                                        category = {{ category }}
+                                        value > 0
+                                    }
+                                }
+                            {% else %}
+                                num_buildings = {
+                                    type = any
+                                    category = {{ category }}
+                                    value > 0
+                                }
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                    {% for trigger in building_group.trigger %}
+                        {{ trigger }} = yes
+                    {% endfor %}
                 }
-                remove_building = {{ building }}
+                {% for building in building_group.building %}
+                    if = {
+                        limit = {
+                            has_building = {{ building }}
+                        }
+                        remove_building = {{ building }}
+                    }
+                {% endfor %}
             }
-            {% endfor %}
-        }
         {% endfor %}
     }
 }

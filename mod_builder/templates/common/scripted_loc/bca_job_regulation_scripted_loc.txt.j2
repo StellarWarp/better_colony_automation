@@ -19,182 +19,182 @@
     "automated_efficiency_delta",
     "total_efficiency_delta",
     "closable_capacity_workforce",
-] %}
+    ] %}
 
 {% macro formatted_number_script(s_name, number) -%}
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_script
-    random = no
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000000 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_script
+        random = no
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000000 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000000 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 100 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -100 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 10 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -10 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_TWO
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000000 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 100 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -100 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 10 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
-    }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -10 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_TWO
-}
 {%- endmacro %}
 
 {% for s in range(slots) %}
-{% set s_name = "s%d" % (s + 1) %}
+    {% set s_name = "s%d" % (s + 1) %}
 
-# ── 槽位 {{ s_name }}: 图标 ──
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_ICON_script
-{% for icon, entries in regulated | selectattr("icon") | groupby("icon") %}
-    text = {
-        trigger = {
-{% set icon_entries = entries | list %}
-{% if icon_entries | length == 1 %}
-            has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ icon_entries[0].job }}
-{% else %}
-            OR = {
-{% for entry in icon_entries %}
-                has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
-{% endfor %}
+    # ── 槽位 {{ s_name }}: 图标 ──
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_ICON_script
+        {% for icon, entries in regulated | selectattr("icon") | groupby("icon") %}
+            text = {
+                trigger = {
+                    {% set icon_entries = entries | list %}
+                    {% if icon_entries | length == 1 %}
+                        has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ icon_entries[0].job }}
+                    {% else %}
+                        OR = {
+                            {% for entry in icon_entries %}
+                                has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
+                            {% endfor %}
+                        }
+                    {% endif %}
+                }
+                localization_key = BCA_JR_ICON_SPRITE_{{ icon }}
             }
-{% endif %}
+        {% endfor %}
+        default = BCA_JR_ICON_FALLBACK
+    }
+
+    # ── 槽位 {{ s_name }}: 岗位名 ──
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_NAME_script
+        {% for entry in regulated %}
+            text = {
+                trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
+                localization_key = job_{{ entry.job }}
+            }
+        {% endfor %}
+        default = BCA_JR_SLOT_EMPTY_FALLBACK
+    }
+
+    # ── 槽位 {{ s_name }}: 仅显示实际大于 0 的产出 ──
+    {% for resource in resources %}
+        {{ formatted_number_script(s_name, "output_" ~ resource) }}
+
+        defined_text = {
+            name = BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}_script
+            text = {
+                trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_output_{{ resource }} value > 0 } }
+                localization_key = BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}
+            }
+            default = BCA_JR_SLOT_EMPTY
         }
-        localization_key = BCA_JR_ICON_SPRITE_{{ icon }}
-    }
-{% endfor %}
-    default = BCA_JR_ICON_FALLBACK
-}
+    {% endfor %}
 
-# ── 槽位 {{ s_name }}: 岗位名 ──
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_NAME_script
-{% for entry in regulated %}
-    text = {
-        trigger = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-        localization_key = job_{{ entry.job }}
-    }
-{% endfor %}
-    default = BCA_JR_SLOT_EMPTY_FALLBACK
-}
+    # ── 槽位 {{ s_name }}: 数值格式化 ──
+    {% for number in display_numbers %}
+        {{ formatted_number_script(s_name, number) }}
+    {% endfor %}
 
-# ── 槽位 {{ s_name }}: 仅显示实际大于 0 的产出 ──
-{% for resource in resources %}
-{{ formatted_number_script(s_name, "output_" ~ resource) }}
-
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_output_{{ resource }} value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_OUTPUT_{{ resource | upper }}
-    }
-    default = BCA_JR_SLOT_EMPTY
-}
-{% endfor %}
-
-# ── 槽位 {{ s_name }}: 数值格式化 ──
-{% for number in display_numbers %}
-{{ formatted_number_script(s_name, number) }}
-{% endfor %}
-
-# ── 槽位 {{ s_name }}: 自动化比例 ──
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_RATE_script
-    text = {
-        trigger = {
-            has_country_flag = bca_jr_slot_{{ s_name }}_mapped
-            is_variable_set = bca_jr_slot_{{ s_name }}_automated_capacity_workforce
-            check_variable = { which = bca_jr_slot_{{ s_name }}_automated_capacity_workforce value > 0 }
+    # ── 槽位 {{ s_name }}: 自动化比例 ──
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_RATE_script
+        text = {
+            trigger = {
+                has_country_flag = bca_jr_slot_{{ s_name }}_mapped
+                is_variable_set = bca_jr_slot_{{ s_name }}_automated_capacity_workforce
+                check_variable = { which = bca_jr_slot_{{ s_name }}_automated_capacity_workforce value > 0 }
+            }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_RATE_VALUE
         }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_RATE_VALUE
+        default = BCA_JR_SLOT_RATE_EMPTY
     }
-    default = BCA_JR_SLOT_RATE_EMPTY
-}
 
-# ── 槽位 {{ s_name }}: workforce tooltip colored values ──
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_total_efficiency_delta value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_GREEN
+    # ── 槽位 {{ s_name }}: workforce tooltip colored values ──
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_total_efficiency_delta value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_GREEN
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_total_efficiency_delta value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_RED
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_WHITE
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_total_efficiency_delta value < 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_RED
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_WHITE
-}
 
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_GREEN
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_GREEN
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_RED
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_WHITE
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value < 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_RED
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_WHITE
-}
 
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_GREEN
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_GREEN
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_RED
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_WHITE
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_pop_efficiency_delta value < 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_RED
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_POP_DELTA_WHITE
-}
 
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_GREEN
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_GREEN
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_RED
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_HIGHLIGHT
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value < 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_RED
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_HIGHLIGHT
-}
 
-defined_text = {
-    name = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value > 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_GREEN
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_GREEN
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_RED
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_WHITE
     }
-    text = {
-        trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_automated_efficiency_delta value < 0 } }
-        localization_key = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_RED
-    }
-    default = BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_WHITE
-}
 {% endfor %}

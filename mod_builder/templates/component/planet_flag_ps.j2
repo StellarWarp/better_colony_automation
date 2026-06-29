@@ -1,27 +1,26 @@
 
 {% macro flag_zone_selector(zone_slot) -%} bca_pf_ps_ext_zone_{{ zone_slot }} {%- endmacro %}
-{% macro flag_selected_zone_type(zone_slot, type) -%} bca_pf_ps_selected_zone_type_{{ zone_slot }}_{{ type }} {%- endmacro %}
-{% macro flag_selected_zone(zone_slot, zone) -%} bca_pf_ps_selected_zone_{{ zone_slot }}_{{ zone }} {%- endmacro %}
-{% macro flag_zone_selection_matched(zone_slot) -%} bca_pf_ps_zone_selection_matched_{{ zone_slot }} {%- endmacro %}
+    {% macro flag_selected_zone_type(zone_slot, type) -%} bca_pf_ps_selected_zone_type_{{ zone_slot }}_{{ type }} {%- endmacro %}
+        {% macro flag_selected_zone(zone_slot, zone) -%} bca_pf_ps_selected_zone_{{ zone_slot }}_{{ zone }} {%- endmacro %}
+            {% macro flag_zone_selection_matched(zone_slot) -%} bca_pf_ps_zone_selection_matched_{{ zone_slot }} {%- endmacro %}
 
-{% macro flag_zone_option_type_elected(type) -%} bca_pf_ps_zone_option_elected_{{ type }} {%- endmacro %}
-{% macro flag_zone_option_type_elected_idx(selector_slot, type) -%} bca_pf_ps_zone_option_elected_{{ selector_slot }}_{{ type }} {%- endmacro %}
-{% macro flag_zone_option_zone_mapping(type, zone) -%} bca_pf_ps_option_map_{{ type }}_{{ zone }} {%- endmacro %}
-{#{% macro flag_zone_option_selector_zone_mapping(selector_slot, zone) -%} bca_pf_ps_option_map_{{ selector_slot }}_{{ zone }} {%- endmacro %}#}
+                {% macro flag_zone_option_type_elected(type) -%} bca_pf_ps_zone_option_elected_{{ type }} {%- endmacro %}
+                    {% macro flag_zone_option_type_elected_idx(selector_slot, type) -%} bca_pf_ps_zone_option_elected_{{ selector_slot }}_{{ type }} {%- endmacro %}
+                        {% macro flag_zone_option_zone_mapping(type, zone) -%} bca_pf_ps_option_map_{{ type }}_{{ zone }} {%- endmacro %}
+                            {#{% macro flag_zone_option_selector_zone_mapping(selector_slot, zone) -%} bca_pf_ps_option_map_{{ selector_slot }}_{{ zone }} {%- endmacro %}#}
 
 
-{% macro flag_district_potential(district) -%} bca_pf_ps_district_potential_{{ district }} {%- endmacro %}
-{% macro flag_zone_district(zone_slot, district) -%} bca_pf_ps_zone_district_{{ zone_slot }}_{{ district }} {%- endmacro %}
+                            {% macro flag_district_potential(district) -%} bca_pf_ps_district_potential_{{ district }} {%- endmacro %}
+                                {% macro flag_zone_district(zone_slot, district) -%} bca_pf_ps_zone_district_{{ zone_slot }}_{{ district }} {%- endmacro %}
 
-{% macro flag_plan_build_primary_zone_type(type) -%} bca_pf_plan_build_primary_zone_type_{{ type }} {%- endmacro %}
-{% macro flag_plan_build_secondary_zone_type(type) -%} bca_pf_plan_build_secondary_zone_type_{{ type }} {%- endmacro %}
+                                    {% macro flag_plan_build_primary_zone_type(type) -%} bca_pf_plan_build_primary_zone_type_{{ type }} {%- endmacro %}
+                                        {% macro flag_plan_build_secondary_zone_type(type) -%} bca_pf_plan_build_secondary_zone_type_{{ type }} {%- endmacro %}
 
-{% macro flag_bca_initialized() -%} bca_pf_ps_initialized {%- endmacro %}
+                                            {% macro flag_bca_initialized() -%} bca_pf_ps_initialized {%- endmacro %}
 
-{% macro flag_current_designation(designation) -%} bca_pf_ps_designation_{{ designation }} {%- endmacro %}
+                                                {% macro flag_current_designation(designation) -%} bca_pf_ps_designation_{{ designation }} {%- endmacro %}
 
-{% macro flag_auto_district_manage() -%} bca_pf_ps_auto_district {%- endmacro %}
+                                                    {% macro flag_auto_district_manage() -%} bca_pf_ps_auto_district {%- endmacro %}
 
-{% macro flag_district_plan_build(district_slot) -%} bca_pf_plan_build_district_{{ district_slot }} {%- endmacro %}
-{% macro flag_district_plan_remove(district_slot) -%} bca_pf_plan_remove_district_{{ district_slot }} {%- endmacro %}
-
+                                                        {% macro flag_district_plan_build(district_slot) -%} bca_pf_plan_build_district_{{ district_slot }} {%- endmacro %}
+                                                            {% macro flag_district_plan_remove(district_slot) -%} bca_pf_plan_remove_district_{{ district_slot }} {%- endmacro %}

@@ -309,42 +309,42 @@ bca_global_settings_auto_destruction_zones_disable = {
 }
 
 {% for row in bca_global_settings_reserve_rows %}
-{% for step in row.negative_options + row.positive_options + row.legacy_options %}
-{% set tooltip_key = step.tooltip if step.tooltip is defined else row.tooltip %}
-{{ row.effect_prefix }}_{{ step.name }} = {
-    potential = {
-        exists = from
-        from = {
-{% if step.value < 0 %}
-            check_variable = { which = {{ row.variable }} value > 0 }
-{% endif %}
-            check_variable = { which = bca_gui_active_tab value = 2 }
-        }
-    }
-    allow = { always = yes }
-    effect = {
-        custom_tooltip = {{ tooltip_key }}
-        hidden_effect = {
-            from = {
-{% if step.value < 0 %}
-                if = {
-                    limit = {
-                        check_variable = { which = {{ row.variable }} value <= {{ -step.value }} }
+    {% for step in row.negative_options + row.positive_options + row.legacy_options %}
+        {% set tooltip_key = step.tooltip if step.tooltip is defined else row.tooltip %}
+        {{ row.effect_prefix }}_{{ step.name }} = {
+            potential = {
+                exists = from
+                from = {
+                    {% if step.value < 0 %}
+                        check_variable = { which = {{ row.variable }} value > 0 }
+                    {% endif %}
+                    check_variable = { which = bca_gui_active_tab value = 2 }
+                }
+            }
+            allow = { always = yes }
+            effect = {
+                custom_tooltip = {{ tooltip_key }}
+                hidden_effect = {
+                    from = {
+                        {% if step.value < 0 %}
+                            if = {
+                                limit = {
+                                    check_variable = { which = {{ row.variable }} value <= {{ -step.value }} }
+                                }
+                                set_variable = { which = {{ row.variable }} value = 0 }
+                            }
+                            else = {
+                                subtract_variable = { which = {{ row.variable }} value = {{ -step.value }} }
+                            }
+                        {% else %}
+                            change_variable = { which = {{ row.variable }} value = {{ step.value }} }
+                        {% endif %}
                     }
-                    set_variable = { which = {{ row.variable }} value = 0 }
                 }
-                else = {
-                    subtract_variable = { which = {{ row.variable }} value = {{ -step.value }} }
-                }
-{% else %}
-                change_variable = { which = {{ row.variable }} value = {{ step.value }} }
-{% endif %}
             }
         }
-    }
-}
 
-{% endfor %}
+    {% endfor %}
 {% endfor %}
 
 bca_global_settings_expect_output_rare_resource_decrease = {

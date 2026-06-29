@@ -5,13 +5,13 @@
 {% macro resource_gate(outputs) -%}
     {% if outputs %}
         {% if outputs|length == 1 %}
-                    bca_empire_needs_{{ outputs[0] }} = yes
+            bca_empire_needs_{{ outputs[0] }} = yes
         {% else %}
-                    OR = {
-                        {% for output in outputs %}
-                        bca_empire_needs_{{ output }} = yes
-                        {% endfor %}
-                    }
+            OR = {
+                {% for output in outputs %}
+                    bca_empire_needs_{{ output }} = yes
+                {% endfor %}
+            }
         {% endif %}
     {% endif %}
 {%- endmacro %}
@@ -21,50 +21,50 @@ namespace = colony_automation_event
 
 # flag clear
 carrier_event = {
-	id = colony_automation_event.112
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.112
+    hide_window = yes
+    is_triggered_only = yes
 
-	immediate = {
+    immediate = {
         {% for district_slot in ['d0','d1','d2','d3'] %}
-        remove_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+            remove_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
         {% endfor %}
         remove_all_zone_plan_flag = yes
-	}
+    }
 }
 
 
 
 carrier_event = {
-	id = colony_automation_event.20
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.20
+    hide_window = yes
+    is_triggered_only = yes
 
-	trigger = {
+    trigger = {
         requires_more_job = yes
-	}
+    }
 
-	immediate = {
+    immediate = {
         {% for item in zones_info %}
             {% set type = item.type %}
             {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-            {{ "if" if loop.first else "else_if" }} = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_{{ type }}
-                        value > value:num_primary_zone_plan_of_type_{{ type }}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_primary_zones_of_type_{{ type }}
+                            value > value:num_primary_zone_plan_of_type_{{ type }}
+                        }
+                        {{ resource_gate(zone_type_resources.get(type, [])) }}
                     }
-                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
+                    set_carrier_flag = bca_has_zone_to_replace
                 }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
             {% endif %}
         {% endfor %}
 
-       {# set build command to builder #}
-       if = {
+{# set build command to builder #}
+        if = {
             limit = {
-                {# require secondary districts fully built first #}
+{# require secondary districts fully built first #}
                 NOT = {
                     AND = {
                         OR = {
@@ -74,57 +74,57 @@ carrier_event = {
                         }
                         OR = {
                             {% for zone_slot in ['z3','z4','z5'] %}
-                            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-                            check_variable = {
-                                which = {{v.var_district_num_plan(zone_slot)}}
-                                value > value:num_district_{{ district_slot }}
-                            }
+                                {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+                                check_variable = {
+                                    which = {{v.var_district_num_plan(zone_slot)}}
+                                    value > value:num_district_{{ district_slot }}
+                                }
                             {% endfor %}
                         }
                     }
                 }
             }
-        {% for item in zones_info %}
-            {% set type = item.type %}
-            {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-            {{ "if" if loop.first else "else_if" }} = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_{{ type }}
-                        value < value:num_primary_zone_plan_of_type_{{ type }}
-                    }
-                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
-                }
-                {# ensure has slot to build avoid primary zones build on secondary districts #}
-                if = {
-                    limit = {
-                        has_carrier_flag = bca_has_zone_to_replace
-                    }
-                    set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-                    set_carrier_flag = bca_plan_build_new_zone
-                }
-                else = {
-                    bca_get_num_free_zones_d0 = yes
-                    if = {
+            {% for item in zones_info %}
+                {% set type = item.type %}
+                {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
+                    {{ "if" if loop.first else "else_if" }} = {
                         limit = {
-                            check_variable = {
-                                which = bca_num_free_zones_d0
-                                value > 0
+                            check_variable_arithmetic = {
+                                which = value:num_primary_zones_of_type_{{ type }}
+                                value < value:num_primary_zone_plan_of_type_{{ type }}
                             }
+                            {{ resource_gate(zone_type_resources.get(type, [])) }}
                         }
-                        set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-                        set_carrier_flag = bca_plan_build_new_zone
+        {# ensure has slot to build avoid primary zones build on secondary districts #}
+                        if = {
+                            limit = {
+                                has_carrier_flag = bca_has_zone_to_replace
+                            }
+                            set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                            set_carrier_flag = bca_plan_build_new_zone
+                        }
+                        else = {
+                            bca_get_num_free_zones_d0 = yes
+                            if = {
+                                limit = {
+                                    check_variable = {
+                                        which = bca_num_free_zones_d0
+                                        value > 0
+                                    }
+                                }
+                                set_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                                set_carrier_flag = bca_plan_build_new_zone
+                            }
+                            clear_variable = bca_num_free_zones_d0
+                        }
                     }
-                    clear_variable = bca_num_free_zones_d0
-                }
-            }
-            {% endif %}
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
         }
-        {# some zones are shared between primary district and secondary district
-           however if the primary district zone slots are full (primary district zone build first),
-           it would be not possible to build in primary district for zones that should be build in secondary districts
-           thus no bug #}
+{# some zones are shared between primary district and secondary district
+        however if the primary district zone slots are full (primary district zone build first),
+        it would be not possible to build in primary district for zones that should be build in secondary districts
+        thus no bug #}
 {#        if = {#}
 {#            limit = {#}
 {#                NOT = { has_carrier_flag = bca_plan_build_new_zone } {# for reducing computation #}
@@ -132,19 +132,19 @@ carrier_event = {
         {% for item in zones_info %}
             {% set type = item.type %}
             {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
-            {# the order of primary_zone execute fist, event if has secondary zone order, it will not execute first #}
-            {# avoid blocking #}
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_{{ type }}
-                        value < value:num_secondary_zone_plan_of_type_{{ type }}
+        {# the order of primary_zone execute fist, event if has secondary zone order, it will not execute first #}
+        {# avoid blocking #}
+                if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_secondary_zones_of_type_{{ type }}
+                            value < value:num_secondary_zone_plan_of_type_{{ type }}
+                        }
+                        {{ resource_gate(zone_type_resources.get(type, [])) }}
                     }
-                    {#  #}{{ resource_gate(zone_type_resources.get(type, [])) }}{#  #}
+                    set_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
+                    set_carrier_flag = bca_plan_build_new_zone
                 }
-                set_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
-                set_carrier_flag = bca_plan_build_new_zone
-            }
             {% endif %}
         {% endfor %}
 {#        }#}
@@ -153,17 +153,17 @@ carrier_event = {
 }
 
 carrier_event = {
-	id = colony_automation_event.21
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.21
+    hide_window = yes
+    is_triggered_only = yes
 
-	trigger = {
+    trigger = {
         has_carrier_flag = bca_plan_build_new_zone
         NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
-	}
+    }
 
-	immediate = {
-        {# remove zones #}
+    immediate = {
+{# remove zones #}
 
         {% for item in zones_info %}
             {% set first = loop.first %}
@@ -186,55 +186,54 @@ carrier_event = {
 # trigger by on_zone_complete
 # remove zone flag if construction completed
 carrier_event = {
-	id = colony_automation_event.12
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {
-		owner = {
-			is_ai = no
-		}
-	}
-	immediate = {
+    id = colony_automation_event.12
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        owner = {
+            is_ai = no
+        }
+    }
+    immediate = {
         remove_all_zone_plan_flag = yes
-	}
+    }
 }
 
 # synchronize configured zone selections with built zones
 carrier_event = {
-	id = colony_automation_event.22
-	is_triggered_only = yes
-	hide_window = yes
+    id = colony_automation_event.22
+    is_triggered_only = yes
+    hide_window = yes
 
-	immediate = {
-		bca_sync_primary_zone_selection_if_overplanned = yes
-		bca_sync_secondary_zone_selection_if_overplanned = yes
-	}
+    immediate = {
+        bca_sync_primary_zone_selection_if_overplanned = yes
+        bca_sync_secondary_zone_selection_if_overplanned = yes
+    }
 }
 
 # enable zone auto-destruction and unlock all zone selectors
 carrier_event = {
-	id = colony_automation_event.23
-	is_triggered_only = yes
-	hide_window = yes
+    id = colony_automation_event.23
+    is_triggered_only = yes
+    hide_window = yes
 
-	immediate = {
-		remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
-		{% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
-		remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
-		{% endfor %}
-	}
+    immediate = {
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        {% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
+            remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+        {% endfor %}
+    }
 }
 
 # disable zone auto-destruction, close selectors, and lock matched slots
 carrier_event = {
-	id = colony_automation_event.24
-	is_triggered_only = yes
-	hide_window = yes
+    id = colony_automation_event.24
+    is_triggered_only = yes
+    hide_window = yes
 
-	immediate = {
-		clear_open_selector = yes
-		set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
-		carrier_event = { id = colony_automation_event.22 }
-	}
+    immediate = {
+        clear_open_selector = yes
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.22 }
+    }
 }
-

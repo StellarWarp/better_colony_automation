@@ -18,59 +18,59 @@ bca_primary_district_update_zone_options_interloop = {
     }
     # compare phase
     {% for item in zones_info %}
-    if = {
-        limit = {
-            NOR = {
-                has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+        if = {
+            limit = {
+                NOR = {
+                    has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+                }
+                check_variable = {
+                    which = rank_zone_max
+                    value < value:bca_planet_setting_zone_rank_{{ item.type }}
+                }
+                OR = {
+                    {% for zone in item.zones %}
+                        bca_primary_district_can_build_{{ zone }} = yes
+                    {% endfor %}
+                }
             }
-            check_variable = {
-                which = rank_zone_max
-                value < value:bca_planet_setting_zone_rank_{{ item.type }}
-            }
-            OR = {
-                {% for zone in item.zones %}
-                    bca_primary_district_can_build_{{ zone }} = yes
-                {% endfor %}
-            }
-        }
 
-        set_variable = {
-            which = rank_zone_max
-            value = value:bca_planet_setting_zone_rank_{{ item.type }}
-        }
-    }
-    {% endfor %}
-    # select phase
-    {% for item in zones_info %}
-    {{ "if" if loop.first else "else_if" }} = {
-        limit = {
-            NOR = {
-                has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
-            }
-            check_variable = {
+            set_variable = {
                 which = rank_zone_max
                 value = value:bca_planet_setting_zone_rank_{{ item.type }}
             }
         }
-        {% for zone in item.zones %}
+    {% endfor %}
+    # select phase
+    {% for item in zones_info %}
         {{ "if" if loop.first else "else_if" }} = {
             limit = {
-                bca_primary_district_can_build_{{ zone }} = yes
+                NOR = {
+                    has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+                }
+                check_variable = {
+                    which = rank_zone_max
+                    value = value:bca_planet_setting_zone_rank_{{ item.type }}
+                }
             }
-            {# select for type #}
-            set_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-            set_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
-            {# select for zones #}
-            set_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
-            add_variable = {
-                which = zone_selector_options_count
-                value = 1
-            }
+            {% for zone in item.zones %}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        bca_primary_district_can_build_{{ zone }} = yes
+                    }
+        {# select for type #}
+                    set_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    set_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
+        {# select for zones #}
+                    set_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
+                    add_variable = {
+                        which = zone_selector_options_count
+                        value = 1
+                    }
+                }
+            {% endfor %}
         }
-        {% endfor %}
-    }
     {% endfor %}
 }
 
@@ -87,11 +87,11 @@ bca_primary_district_update_zone_options = {
             value = 0
         }
         {% for i in range(1,16) %}
-        {% set selector_slot = "s"~i %}
-        bca_primary_district_update_zone_options_interloop =  {
-            SELECTOR_SLOT = {{ selector_slot }}
-            ZONE_SLOT = $ZONE_SLOT$
-        }
+            {% set selector_slot = "s"~i %}
+            bca_primary_district_update_zone_options_interloop =  {
+                SELECTOR_SLOT = {{ selector_slot }}
+                ZONE_SLOT = $ZONE_SLOT$
+            }
         {% endfor %}
         clear_variable = rank_zone_max
     }
@@ -102,57 +102,57 @@ bca_clean_flags_zone_selector = {
         clear_variable = zone_selector_options_count
     }
     {% for item in zones_info %}
-    remove_carrier_flag = {{ pf.flag_zone_option_type_elected(item.type) }}
-    {% for zone in item.zones %}
-    remove_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
-    {% endfor %}
+        remove_carrier_flag = {{ pf.flag_zone_option_type_elected(item.type) }}
+        {% for zone in item.zones %}
+            remove_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
+        {% endfor %}
     {% endfor %}
     {% for i in range(1,16) %}
-    {% set selector_slot = "s"~i %}
-    {% for item in zones_info %}
-    remove_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
-    {% endfor %}
+        {% set selector_slot = "s"~i %}
+        {% for item in zones_info %}
+            remove_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
+        {% endfor %}
     {% endfor %}
 }
 
 bca_set_secondary_district_type_flag = {
     {% for district in secondary_districts %}
-    remove_carrier_flag = {{ pf.flag_district_potential(district) }}
+        remove_carrier_flag = {{ pf.flag_district_potential(district) }}
     {% endfor %}
     if = {
         limit = { has_modifier = bca_pm_arcology_project_candidate }
         {% for i in range(3,6) %}
-        {% set zone_slot = "z"~(i) %}
-        set_carrier_flag = {{ pf.flag_zone_district(zone_slot, 'district_arcology_urban_'~(i - 2)) }}
+            {% set zone_slot = "z"~(i) %}
+            set_carrier_flag = {{ pf.flag_zone_district(zone_slot, 'district_arcology_urban_'~(i - 2)) }}
         {% endfor %}
         set_carrier_flag = {{ pf.flag_zone_district('zx', 'district_arcology_urban_1') }}
     }
     else = {
         {% for i in range(3,6) %}
-        {% set zone_slot = "z"~(i) %}
-        {% for district in secondary_districts %}
-        {{ "if" if loop.first else "else_if" }} = {
-            limit = {
-                bca_can_build_{{ district }} = yes
-                NOT = { has_carrier_flag = {{ pf.flag_district_potential(district) }} }
-            }
-            set_carrier_flag = {{ pf.flag_district_potential(district) }}
-            set_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-            set_carrier_flag = {{ pf.flag_zone_district('zx', district) }}
-        }
-        {% endfor %}
+            {% set zone_slot = "z"~(i) %}
+            {% for district in secondary_districts %}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        bca_can_build_{{ district }} = yes
+                        NOT = { has_carrier_flag = {{ pf.flag_district_potential(district) }} }
+                    }
+                    set_carrier_flag = {{ pf.flag_district_potential(district) }}
+                    set_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+                    set_carrier_flag = {{ pf.flag_zone_district('zx', district) }}
+                }
+            {% endfor %}
         {% endfor %}
     }
 }
 
 bca_clean_flags_zone_selector_secondary_district = {
     {% for district in secondary_districts %}
-    remove_carrier_flag = {{ pf.flag_district_potential(district) }}
+        remove_carrier_flag = {{ pf.flag_district_potential(district) }}
     {% endfor %}
     {% for zone_slot in ["z3", "z4", "z5", "zx"] %}
-    {% for district in secondary_districts %}
-    remove_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-    {% endfor %}
+        {% for district in secondary_districts %}
+            remove_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+        {% endfor %}
     {% endfor %}
 }
 
@@ -173,72 +173,72 @@ bca_secondary_district_update_zone_options_interloop = {
     }
     # compare phase
     {% for item in zones_info %}
-    if = {
-        limit = {
-            NOR = {
-                has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
-            }
-            check_variable = {
-                which = rank_zone_max
-                value < value:bca_planet_setting_zone_rank_{{ item.type }}
-            }
-            # any zone of this typeset is available on the districts and can be built
-            OR = {
-                {% for zone in item.zones %}
-                AND = {
-                    bca_can_build_{{ zone }} = yes
-                    OR = {
-                        {% for district in secondary_districts_for_zone[zone] %}
-                        has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-                        {% endfor %}
-                    }
+        if = {
+            limit = {
+                NOR = {
+                    has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
                 }
-                {% endfor %}
+                check_variable = {
+                    which = rank_zone_max
+                    value < value:bca_planet_setting_zone_rank_{{ item.type }}
+                }
+                # any zone of this typeset is available on the districts and can be built
+                OR = {
+                    {% for zone in item.zones %}
+                        AND = {
+                            bca_can_build_{{ zone }} = yes
+                            OR = {
+                                {% for district in secondary_districts_for_zone[zone] %}
+                                    has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+                                {% endfor %}
+                            }
+                        }
+                    {% endfor %}
+                }
             }
-        }
-         set_variable = {
-            which = rank_zone_max
-            value = value:bca_planet_setting_zone_rank_{{ item.type }}
-        }
-    }
-    {% endfor %}
-
-    # select phase
-    {% for item in zones_info %}
-    {{ "if" if loop.first else "else_if" }} = {
-        limit = {
-            NOR = {
-                has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
-            }
-            check_variable = {
+            set_variable = {
                 which = rank_zone_max
                 value = value:bca_planet_setting_zone_rank_{{ item.type }}
             }
         }
-        {% for zone in item.zones %}
+    {% endfor %}
+
+    # select phase
+    {% for item in zones_info %}
         {{ "if" if loop.first else "else_if" }} = {
             limit = {
-                bca_can_build_{{ zone }} = yes
-                OR = {
-                    {% for district in secondary_districts_for_zone[zone] %}
-                    has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-                    {% endfor %}
+                NOR = {
+                    has_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+                }
+                check_variable = {
+                    which = rank_zone_max
+                    value = value:bca_planet_setting_zone_rank_{{ item.type }}
                 }
             }
-            {# select for type #}
-            set_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
-            set_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
-            {# select for zones #}
-            set_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
-            add_variable = {
-                which = zone_selector_options_count
-                value = 1
-            }
+            {% for zone in item.zones %}
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        bca_can_build_{{ zone }} = yes
+                        OR = {
+                            {% for district in secondary_districts_for_zone[zone] %}
+                                has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+                            {% endfor %}
+                        }
+                    }
+        {# select for type #}
+                    set_carrier_flag = {{pf.flag_zone_option_type_elected(item.type)}}
+                    set_carrier_flag = {{pf.flag_zone_option_type_elected_idx(selector_slot, item.type)}}
+        {# select for zones #}
+                    set_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
+                    add_variable = {
+                        which = zone_selector_options_count
+                        value = 1
+                    }
+                }
+            {% endfor %}
         }
-        {% endfor %}
-    }
     {% endfor %}
 
 }
@@ -250,11 +250,11 @@ bca_secondary_district_update_zone_options = {
 
     hidden_effect = {
         {% for i in range(1,16) %}
-        {% set selector_slot = "s"~i %}
-        bca_secondary_district_update_zone_options_interloop =  {
-            SELECTOR_SLOT = {{ selector_slot }}
-            ZONE_SLOT = $ZONE_SLOT$
-        }
+            {% set selector_slot = "s"~i %}
+            bca_secondary_district_update_zone_options_interloop =  {
+                SELECTOR_SLOT = {{ selector_slot }}
+                ZONE_SLOT = $ZONE_SLOT$
+            }
         {% endfor %}
         clear_variable = rank_zone_max
     }
@@ -265,10 +265,10 @@ bca_secondary_district_update_zone_options = {
 bca_planet_setting_remove_current_selected_zone = {
     {% set zone_slot = "$ZONE_SLOT$" %}
     {% for item in zones_info %}
-    remove_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, item.type)}}
-    {% for zone in item.zones %}
-    remove_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
-    {% endfor %}
+        remove_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, item.type)}}
+        {% for zone in item.zones %}
+            remove_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
+        {% endfor %}
     {% endfor %}
 }
 
@@ -279,8 +279,8 @@ clear_open_selector = {
     bca_clean_flags_zone_selector_secondary_district = yes
 
     {% for i in range(1,6) %}
-    {% set other_zone_slot = "z"~i %}
-    remove_carrier_flag = {{pf.flag_zone_selector(other_zone_slot)}}
+        {% set other_zone_slot = "z"~i %}
+        remove_carrier_flag = {{pf.flag_zone_selector(other_zone_slot)}}
     {% endfor %}
     remove_carrier_flag = {{pf.flag_zone_selector('zx')}}
 }
@@ -289,7 +289,7 @@ clear_open_selector = {
 bca_secondary_district_auto_select_default = {
     optimize_memory
     {% for zone_slot in ['z3','z4','z5'] %}
-    {{ op.auto_select_default_zone(zone_slot) }}
+        {{ op.auto_select_default_zone(zone_slot) }}
     {% endfor %}
     if = {
         limit = {
@@ -298,7 +298,3 @@ bca_secondary_district_auto_select_default = {
         bca_set_zx_for_identical_secondary_zone_plan = yes
     }
 }
-
-
-
-

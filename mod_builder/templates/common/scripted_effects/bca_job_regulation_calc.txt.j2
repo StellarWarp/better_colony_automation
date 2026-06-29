@@ -8,23 +8,23 @@ bca_jr_clear_accumulators = {
     clear_variable = bca_jr_v_productive
     clear_variable = bca_jr_tmp_job_count
     clear_variable = bca_jr_tmp_free_job_count
-{% for entry in regulated %}
-    clear_variable = bca_jr_acc_assigned_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_capacity_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_pop_productive_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_productive_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_automated_capacity_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_automated_productive_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_pop_capacity_limit_{{ entry.job }}
-    clear_variable = bca_jr_acc_total_job_count_{{ entry.job }}
-    clear_variable = bca_jr_acc_free_job_count_{{ entry.job }}
-    clear_variable = bca_jr_acc_open_job_count_{{ entry.job }}
-    clear_variable = bca_jr_acc_closable_capacity_workforce_{{ entry.job }}
-    clear_variable = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
-{% for resource in entry.economic_resources %}
-    clear_variable = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
-{% endfor %}
-{% endfor %}
+    {% for entry in regulated %}
+        clear_variable = bca_jr_acc_assigned_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_pop_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_automated_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_automated_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_pop_capacity_limit_{{ entry.job }}
+        clear_variable = bca_jr_acc_total_job_count_{{ entry.job }}
+        clear_variable = bca_jr_acc_free_job_count_{{ entry.job }}
+        clear_variable = bca_jr_acc_open_job_count_{{ entry.job }}
+        clear_variable = bca_jr_acc_closable_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
+        {% for resource in entry.economic_resources %}
+            clear_variable = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+        {% endfor %}
+    {% endfor %}
 }
 
 {# ---- 统计被 check flag 选中的岗位 ---- #}
@@ -92,45 +92,45 @@ bca_jr_collect_current_pop_group_stats = {
 
 bca_jr_collect_checked_job_stats = {
     optimize_memory
-{% for entry in regulated if entry.pop_category %}
-    if = {
-        limit = {
-            OR = {
-                has_carrier_flag = bca_jr_check_all_jobs
-                has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-                has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-            }
-            check_modifier_value = {
-                modifier = job_{{ entry.job }}_add
-                value > 0
-            }
-        }
-        bca_jr_collect_job_count_stats = { JOB = {{ entry.job }} }
-    }
-{% endfor %}
-
-    every_owned_pop_job = {
-{% for entry in regulated if entry.pop_category %}
+    {% for entry in regulated if entry.pop_category %}
         if = {
             limit = {
-                has_job_type = {{ entry.job }}
-                prev = {
-                    OR = {
-                        has_carrier_flag = bca_jr_check_all_jobs
-                        has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-                        has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+                OR = {
+                    has_carrier_flag = bca_jr_check_all_jobs
+                    has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+                    has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+                }
+                check_modifier_value = {
+                    modifier = job_{{ entry.job }}_add
+                    value > 0
+                }
+            }
+            bca_jr_collect_job_count_stats = { JOB = {{ entry.job }} }
+        }
+    {% endfor %}
+
+    every_owned_pop_job = {
+        {% for entry in regulated if entry.pop_category %}
+            if = {
+                limit = {
+                    has_job_type = {{ entry.job }}
+                    prev = {
+                        OR = {
+                            has_carrier_flag = bca_jr_check_all_jobs
+                            has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
+                            has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+                        }
+                    }
+                }
+                every_job_pop_group = {
+                    save_event_target_as = bca_jr_current_pop_group
+                    prev = { save_event_target_as = bca_jr_current_pop_job }
+                    colony = {
+                        bca_jr_collect_current_pop_group_stats = { JOB = {{ entry.job }} }
                     }
                 }
             }
-            every_job_pop_group = {
-                save_event_target_as = bca_jr_current_pop_group
-                prev = { save_event_target_as = bca_jr_current_pop_job }
-                colony = {
-                    bca_jr_collect_current_pop_group_stats = { JOB = {{ entry.job }} }
-                }
-            }
-        }
-{% endfor %}
+        {% endfor %}
     }
     clear_variable = bca_jr_tmp_job_count
 }
@@ -226,17 +226,17 @@ bca_jr_finalize_single_job_stats = {
 
 bca_jr_finalize_job_stats = {
     optimize_memory
-{% for entry in regulated if entry.pop_category %}
-    bca_jr_finalize_single_job_stats = { JOB = {{ entry.job }} }
-{% for resource in entry.economic_resources %}
-    set_variable = {
-        which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
-        value = bca_jr_acc_productive_workforce_{{ entry.job }}
-    }
-    multiply_variable = {
-        which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
-        value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker
-    }
-{% endfor %}
-{% endfor %}
+    {% for entry in regulated if entry.pop_category %}
+        bca_jr_finalize_single_job_stats = { JOB = {{ entry.job }} }
+        {% for resource in entry.economic_resources %}
+            set_variable = {
+                which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+                value = bca_jr_acc_productive_workforce_{{ entry.job }}
+            }
+            multiply_variable = {
+                which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
+                value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker
+            }
+        {% endfor %}
+    {% endfor %}
 }

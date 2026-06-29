@@ -4,109 +4,109 @@
 
 
 {% macro zone_select_entry_toggle(zone_slot) -%}
-bca_planet_setting_zone_select_toggle_{{ zone_slot }}_icon = {
-    potential = {
-        {% if zone_slot in ['zx'] %}
-        bca_has_advance_secondary_districts = yes
-        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
-        {% elif zone_slot in ['z3','z4','z5'] %}
-        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
-        {% else %}
-        always = yes
-        {% endif %}
-    }
-    allow = {
-        custom_tooltip = {
-            fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
-            OR = {
-                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
-                NOT = { has_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }} }
+    bca_planet_setting_zone_select_toggle_{{ zone_slot }}_icon = {
+        potential = {
+            {% if zone_slot in ['zx'] %}
+                bca_has_advance_secondary_districts = yes
+                NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
+            {% elif zone_slot in ['z3','z4','z5'] %}
+                has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
+            {% else %}
+                always = yes
+            {% endif %}
+        }
+        allow = {
+            custom_tooltip = {
+                fail_text = "BCA_MATCHED_ZONE_SELECTION_NOT_ALLOW"
+                OR = {
+                    NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                    NOT = { has_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }} }
+                }
+            }
+        }
+        effect = {
+            if = {
+                limit = {
+                    has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+                }
+                remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+                {{ op.clear_zone_selector_flags(zone_slot) }}
+            }
+            else = {
+                clear_open_selector = yes
+
+                set_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+
+                {{ op.update_zone_selector_option(zone_slot) }}
             }
         }
     }
-    effect = {
-        if = {
-            limit = {
-                has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-            }
-            remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-            {{ op.clear_zone_selector_flags(zone_slot) }}
-        }
-        else = {
-            clear_open_selector = yes
-
-            set_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-
-            {{ op.update_zone_selector_option(zone_slot) }}
-        }
-    }
-}
 {%- endmacro %}
 
 
 {% macro zone_select_entry_icon(zone_slot) -%}
-bca_planet_setting_{{ zone_slot }}_icon = {
-    potential = {
-        {% if zone_slot in ['zx'] %}
-        bca_has_advance_secondary_districts = yes
-        NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
-        {% endif %}
-        {% if zone_slot in ['z3','z4','z5'] %}
-        has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
-        {% endif %}
+    bca_planet_setting_{{ zone_slot }}_icon = {
+        potential = {
+            {% if zone_slot in ['zx'] %}
+                bca_has_advance_secondary_districts = yes
+                NOT = { has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts }
+            {% endif %}
+            {% if zone_slot in ['z3','z4','z5'] %}
+                has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
+            {% endif %}
+        }
+        allow = {
+            always = yes
+        }
+        effect = {
+        }
     }
-    allow = {
-        always = yes
-    }
-    effect = {
-    }
-}
 {%- endmacro %}
 
 {% macro zone_selector_background(zone_slot,option_count) -%}
-bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }} = {
-    potential = {
-        has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-        check_variable = {
-            which = zone_selector_options_count
-            value = {{ option_count }}
+    bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }} = {
+        potential = {
+            has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+            check_variable = {
+                which = zone_selector_options_count
+                value = {{ option_count }}
+            }
+        }
+        allow = {
+            always = yes
         }
     }
-    allow = {
-        always = yes
-    }
-}
 {%- endmacro %}
 
 {% macro zone_selector_icon(zone_slot, selector_slot, selector_index) -%}
-bca_planet_setting_{{ zone_slot }}_{{ selector_slot }} = {
-    potential = {
-        has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-        check_variable = {
-            which = zone_selector_options_count
-            value >= {{ selector_index }}
+    bca_planet_setting_{{ zone_slot }}_{{ selector_slot }} = {
+        potential = {
+            has_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+            check_variable = {
+                which = zone_selector_options_count
+                value >= {{ selector_index }}
+            }
+        }
+        allow = {
+            always = yes
+        }
+        effect = {
+            {{ op.clear_zone_selection(zone_slot) }}
+            {{ op.set_zone_type_selection(zone_slot, selector_slot) }}
+            remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
+
+            {{ op.clear_zone_selector_flags(zone_slot) }}
         }
     }
-    allow = {
-        always = yes
-    }
-    effect = {
-        {{ op.clear_zone_selection(zone_slot) }}
-        {{ op.set_zone_type_selection(zone_slot, selector_slot) }}
-        remove_carrier_flag = {{pf.flag_zone_selector(zone_slot)}}
-
-        {{ op.clear_zone_selector_flags(zone_slot) }}
-    }
-}
 {%- endmacro %}
 
 {% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
-{{ zone_select_entry_toggle(zone_slot) }}
-{{ zone_select_entry_icon(zone_slot) }}
-{% for selector_index in range(1,16) %}
-    {% set selector_slot = "s"~selector_index %}
-    {{ zone_selector_icon(zone_slot, selector_slot, selector_index) }}
-{% endfor %}
+    {{ zone_select_entry_toggle(zone_slot) }}
+    {{ zone_select_entry_icon(zone_slot) }}
+    {% for selector_index in range(1,16) %}
+        {% set selector_slot = "s"~selector_index %}
+        {{ zone_selector_icon(zone_slot, selector_slot, selector_index) }}
+    {% endfor %}
 {% endfor %}
 
 {% for zone_slot in ['z1','z2','z3','z4','z5','zx'] %}
@@ -114,5 +114,3 @@ bca_planet_setting_{{ zone_slot }}_{{ selector_slot }} = {
         {{ zone_selector_background (zone_slot, option_count) }}
     {% endfor %}
 {% endfor %}
-
-

@@ -4,47 +4,45 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: events/bca_global_settings_bootstrap.txt.j2
+
+
 namespace = bca_global_settings_bootstrap
 
+
 event = {
-	id = bca_global_settings_bootstrap.1
-
-	is_triggered_only = yes
-	hide_window = yes
-
-	trigger = {
-		NOT = { has_global_flag = bca_global_settings_defaults_initialized }
-	}
-
-	immediate = {
-		set_global_flag = bca_global_settings_defaults_initialized
-		every_playable_country = {
-			set_variable = { which = bca_reserve_minerals_amount value = 2000 }
-			set_variable = { which = bca_reserve_alloys_amount value = 10000 }
-			set_variable = { which = bca_reserve_influence_amount value = 200 }
-			set_variable = { which = bca_reserve_job_amount value = 50 }
-			set_variable = { which = bca_expect_output_energy value = 200 }
-			set_variable = { which = bca_expect_output_minerals value = 100 }
-			set_variable = { which = bca_expect_output_food value = 100 }
-			set_variable = { which = bca_expect_output_alloys value = 50 }
-			set_variable = { which = bca_expect_output_consumer_goods value = 50 }
-			set_variable = { which = bca_expect_output_trade value = 50 }
-			set_variable = { which = bca_expect_output_unity value = 50 }
-			set_variable = { which = bca_expect_output_physics_research value = 50 }
-			set_variable = { which = bca_expect_output_society_research value = 50 }
-			set_variable = { which = bca_expect_output_engineering_research value = 50 }
-			set_variable = { which = bca_expect_output_rare_crystals value = 20 }
-			set_variable = { which = bca_expect_output_volatile_motes value = 20 }
-			set_variable = { which = bca_expect_output_exotic_gases value = 20 }
-
-			remove_country_flag = bca_enable_economic_management
-			remove_country_flag = bca_retain_low_level_rare_resource_buildings
-			remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
-			remove_country_flag = bac_remove_pop_assemble_buildings
-
-			set_country_flag = bca_default_disable_auto_destruction_building
-			set_country_flag = bca_default_disable_auto_destruction_district
-			set_country_flag = bca_default_disable_auto_destruction_zone
-		}
-	}
+    id = bca_global_settings_bootstrap.1
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        NOT = { has_global_flag = bca_global_settings_defaults_initialized }
+    }
+    immediate = {
+        set_global_flag = bca_global_settings_defaults_initialized
+        every_playable_country = {
+            set_variable = { which = bca_reserve_minerals_amount value = 2000 }
+            set_variable = { which = bca_reserve_alloys_amount value = 10000 }
+            set_variable = { which = bca_reserve_influence_amount value = 200 }
+            set_variable = { which = bca_reserve_job_amount value = 50 }
+            set_variable = { which = bca_expect_output_energy value = 200 }
+            set_variable = { which = bca_expect_output_minerals value = 100 }
+            set_variable = { which = bca_expect_output_food value = 100 }
+            set_variable = { which = bca_expect_output_alloys value = 50 }
+            set_variable = { which = bca_expect_output_consumer_goods value = 50 }
+            set_variable = { which = bca_expect_output_trade value = 50 }
+            set_variable = { which = bca_expect_output_unity value = 50 }
+            set_variable = { which = bca_expect_output_physics_research value = 50 }
+            set_variable = { which = bca_expect_output_society_research value = 50 }
+            set_variable = { which = bca_expect_output_engineering_research value = 50 }
+            set_variable = { which = bca_expect_output_rare_crystals value = 20 }
+            set_variable = { which = bca_expect_output_volatile_motes value = 20 }
+            set_variable = { which = bca_expect_output_exotic_gases value = 20 }
+            remove_country_flag = bca_enable_economic_management
+            remove_country_flag = bca_retain_low_level_rare_resource_buildings
+            remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
+            remove_country_flag = bac_remove_pop_assemble_buildings
+            set_country_flag = bca_default_disable_auto_destruction_building
+            set_country_flag = bca_default_disable_auto_destruction_district
+            set_country_flag = bca_default_disable_auto_destruction_zone
+        }
+    }
 }

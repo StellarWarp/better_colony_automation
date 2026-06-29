@@ -4,72 +4,72 @@
 
 
 {% for item in zones_info %}
-{% set type = item.type %}
-{% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-{% if not cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
-bca_mix_primary_zone_build_{{ type }} = {
-	category = "planet_automation_designation_construction"
+    {% set type = item.type %}
+    {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
+        {% if not cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
+            bca_mix_primary_zone_build_{{ type }} = {
+                category = "planet_automation_designation_construction"
 
-	available = {
-        bca_has_minerals_to_build = yes
-        has_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-	}
+                available = {
+                    bca_has_minerals_to_build = yes
+                    has_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                }
 
-	prio_zones = {
-		{% for zone in item.zones %}
-		{% if zone in primary_districts_for_zone %}
-		{{ zone }}
-		{% endif %}
-		{% endfor %}
-	}
-}
-{% endif %}
-{% endif %}
+                prio_zones = {
+                    {% for zone in item.zones %}
+                        {% if zone in primary_districts_for_zone %}
+                            {{ zone }}
+                        {% endif %}
+                    {% endfor %}
+                }
+            }
+        {% endif %}
+    {% endif %}
 {% endfor %}
 
 {% for item in zones_info %}
-{% set type = item.type %}
-{% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
-{% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
-bca_mix_primary_zone_build_{{ type }} = {
-	category = "planet_automation_designation_construction"
+    {% set type = item.type %}
+    {% if cond.contain_any_zones_of(item.zones, primary_districts_for_zone)|int %}
+        {% if cond.contain_any_zones_of(item.zones, overlapping_zones)|int %}
+            bca_mix_primary_zone_build_{{ type }} = {
+                category = "planet_automation_designation_construction"
 
-	available = {
-        bca_has_minerals_to_build = yes
-        has_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
-	}
+                available = {
+                    bca_has_minerals_to_build = yes
+                    has_carrier_flag = {{ pf.flag_plan_build_primary_zone_type(type) }}
+                }
 
-	prio_zones = {
-		{% for zone in item.zones %}
-		{% if zone in primary_districts_for_zone %}
-		{{ zone }}
-		{% endif %}
-		{% endfor %}
-	}
-}
-{% endif %}
-{% endif %}
+                prio_zones = {
+                    {% for zone in item.zones %}
+                        {% if zone in primary_districts_for_zone %}
+                            {{ zone }}
+                        {% endif %}
+                    {% endfor %}
+                }
+            }
+        {% endif %}
+    {% endif %}
 {% endfor %}
 
 
 {% for item in zones_info %}
-{% set type = item.type %}
-{% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
-bca_mix_secondary_zone_build_{{ type }} = {
-	category = "planet_automation_designation_construction"
+    {% set type = item.type %}
+    {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
+        bca_mix_secondary_zone_build_{{ type }} = {
+            category = "planet_automation_designation_construction"
 
-	available = {
-        bca_has_minerals_to_build = yes
-        has_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
-	}
+            available = {
+                bca_has_minerals_to_build = yes
+                has_carrier_flag = {{ pf.flag_plan_build_secondary_zone_type(type) }}
+            }
 
-	prio_zones = {
-		{% for zone in item.zones %}
-		{% if zone in secondary_districts_for_zone %}
-		{{ zone }}
-		{% endif %}
-		{% endfor %}
-	}
-}
-{% endif %}
+            prio_zones = {
+                {% for zone in item.zones %}
+                    {% if zone in secondary_districts_for_zone %}
+                        {{ zone }}
+                    {% endif %}
+                {% endfor %}
+            }
+        }
+    {% endif %}
 {% endfor %}

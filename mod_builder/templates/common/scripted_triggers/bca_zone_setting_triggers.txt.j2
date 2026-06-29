@@ -8,72 +8,72 @@ bca_has_zone_plan = {
     OR = {
         {% set zone_slot = "$ZONE_SLOT$" %}
         {% for item in zones_info %}
-        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+            has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
         {% endfor %}
     }
 }
 
 
 {# These triggers let parameterized sync effects reuse one compatibility check
-   for z3, z4, and z5 without expanding each district list three times. #}
+for z3, z4, and z5 without expanding each district list three times. #}
 {% set zone_slot = "$ZONE_SLOT$" %}
 {% for item in zones_info %}
-{% for zone in item.zones %}
-{% if zone in secondary_districts_for_zone %}
-bca_sync_secondary_{{ zone }}_is_compatible = {
-    OR = {
-        {% for district in secondary_districts_for_zone[zone] %}
-        has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
-        {% endfor %}
-    }
-}
-{% endif %}
-{% endfor %}
+    {% for zone in item.zones %}
+        {% if zone in secondary_districts_for_zone %}
+            bca_sync_secondary_{{ zone }}_is_compatible = {
+                OR = {
+                    {% for district in secondary_districts_for_zone[zone] %}
+                        has_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
+                    {% endfor %}
+                }
+            }
+        {% endif %}
+    {% endfor %}
 {% endfor %}
 
 
 bca_designation_changed = {
     OR = {
-{% for designation in all_designations %}
-        AND = {
-            has_designation = {{ designation }}
-            NOT = { has_carrier_flag = {{ pf.flag_current_designation(designation) }} }
+        {% for designation in all_designations %}
+            AND = {
+                has_designation = {{ designation }}
+                NOT = { has_carrier_flag = {{ pf.flag_current_designation(designation) }} }
+            }
+        {% endfor %}
+    }
+}
+
+{% for item in zones_info %}
+    bca_has_any_planted_zone_of_type_{{ item.type }} = {
+        OR = {
+            {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
+                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+            {% endfor %}
         }
-{% endfor %}
     }
-}
-
-{% for item in zones_info %}
-bca_has_any_planted_zone_of_type_{{ item.type }} = {
-    OR = {
-    {% for zone_slot in ['z1','z2','z3','z4','z5'] %}
-        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
-    {% endfor %}
-    }
-}
 {% endfor %}
 
 {% for item in zones_info %}
-bca_has_any_zone_of_type_{{ item.type }} = {
-    OR = {
-    {% for zone in item.zones %}
-        num_zones = { type = {{ zone }} value > 0 }
-    {% endfor %}
+    bca_has_any_zone_of_type_{{ item.type }} = {
+        OR = {
+            {% for zone in item.zones %}
+                num_zones = { type = {{ zone }} value > 0 }
+            {% endfor %}
+        }
     }
-}
 {% endfor %}
 
 
 {% set all_district_set = [primary_districts, secondary_districts_d1, secondary_districts_d2, secondary_districts_d3] %}
 
 {% for district_set_idx in [1,2,3] %}
-bca_has_district_d{{ district_set_idx }} = {
-    OR = {
-    {% for district in all_district_set[district_set_idx] %}
-        has_district = {{ district }}
-    {% endfor %}
+    bca_has_district_d{{ district_set_idx }} = {
+        OR = {
+            {% for district in all_district_set[district_set_idx] %}
+                has_district = {{ district }}
+            {% endfor %}
+        }
     }
-}
 {% endfor %}
 
 
@@ -84,13 +84,13 @@ bca_district_d0_reach_planet_max = {
     }
 }
 {% for district_set_idx in range(1,4) %}
-{% set district_slot = 'd'~district_set_idx %}
-bca_district_{{ district_slot }}_reach_planet_max = {
-    check_variable_arithmetic = {
-        which = value:num_district_{{ district_slot }}
-        value = value:bca_district_max_add_{{ district_slot }}
+    {% set district_slot = 'd'~district_set_idx %}
+    bca_district_{{ district_slot }}_reach_planet_max = {
+        check_variable_arithmetic = {
+            which = value:num_district_{{ district_slot }}
+            value = value:bca_district_max_add_{{ district_slot }}
+        }
     }
-}
 {% endfor %}
 
 

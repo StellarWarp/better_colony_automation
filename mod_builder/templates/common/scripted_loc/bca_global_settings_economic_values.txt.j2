@@ -12,40 +12,40 @@
     {"name": "rare_crystals", "variable": "bca_expect_output_rare_crystals"},
     {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes"},
     {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases"}
-] %}
+    ] %}
 
 {% for row in economic_rows %}
-defined_text = {
-    name = bca_gs_expect_output_{{ row.name }}_value_raw
-    value = {{ row.variable }}
-}
+    defined_text = {
+        name = bca_gs_expect_output_{{ row.name }}_value_raw
+        value = {{ row.variable }}
+    }
 
-defined_text = {
-    name = bca_gs_expect_output_{{ row.name }}_display
-    text = {
-        trigger = {
-            has_country_flag = bca_economic_target_{{ row.name }}_forbidden
+    defined_text = {
+        name = bca_gs_expect_output_{{ row.name }}_display
+        text = {
+            trigger = {
+                has_country_flag = bca_economic_target_{{ row.name }}_forbidden
+            }
+            localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_FORBIDDEN"
-    }
-    text = {
-        trigger = {
-            has_country_flag = bca_economic_target_{{ row.name }}_unlimited
+        text = {
+            trigger = {
+                has_country_flag = bca_economic_target_{{ row.name }}_unlimited
+            }
+            localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
+        default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_{{ row.name|upper }}"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_{{ row.name|upper }}"
-}
 
-defined_text = {
-    name = bca_gs_expect_output_{{ row.name }}_status
-    text = {
-        trigger = {
-            bca_country_needs_{{ row.name }} = yes
+    defined_text = {
+        name = bca_gs_expect_output_{{ row.name }}_status
+        text = {
+            trigger = {
+                bca_country_needs_{{ row.name }} = yes
+            }
+            localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
-}
 
 {% endfor %}

@@ -2,45 +2,45 @@
 {% import 'component/conditions.j2' as cond with context %}
 
 automate_primary_districts = {
-	category = "planet_automation_designation_construction"
+    category = "planet_automation_designation_construction"
 
-	emergency = yes
-	available = {
-		bca_has_minerals_to_build = yes
+    emergency = yes
+    available = {
+        bca_has_minerals_to_build = yes
         has_carrier_flag = {{ pf.flag_district_plan_build('d0') }}
-	}
+    }
 
     prio_districts = {
-		{% for district in primary_districts %}
-        {{ district }}
+        {% for district in primary_districts %}
+            {{ district }}
         {% endfor %}
-	}
+    }
 }
 
 {% for district_slot in ['d1','d2','d3'] %}
-automate_secondary_districts_{{ district_slot }} = {
-	category = "planet_automation_designation_construction"
+    automate_secondary_districts_{{ district_slot }} = {
+        category = "planet_automation_designation_construction"
 
-	emergency = yes
-	available = {
-		bca_has_minerals_to_build = yes
-        has_carrier_flag = bca_pf_plan_build_district_{{ district_slot }}
-	}
+        emergency = yes
+        available = {
+            bca_has_minerals_to_build = yes
+            has_carrier_flag = bca_pf_plan_build_district_{{ district_slot }}
+        }
 
-    prio_districts = {
-        {% if district_slot == 'd1' %}
-            {% for district in secondary_districts_d1 %}
-        {{ district }}
-            {% endfor %}
-        {% elif district_slot == 'd2' %}
-            {% for district in secondary_districts_d2 %}
-        {{ district }}
-            {% endfor %}
-        {% elif district_slot == 'd3' %}
-            {% for district in secondary_districts_d3 %}
-        {{ district }}
-            {% endfor %}
-        {% endif %}
-	}
-}
+        prio_districts = {
+            {% if district_slot == 'd1' %}
+                {% for district in secondary_districts_d1 %}
+                    {{ district }}
+                {% endfor %}
+            {% elif district_slot == 'd2' %}
+                {% for district in secondary_districts_d2 %}
+                    {{ district }}
+                {% endfor %}
+            {% elif district_slot == 'd3' %}
+                {% for district in secondary_districts_d3 %}
+                    {{ district }}
+                {% endfor %}
+            {% endif %}
+        }
+    }
 {% endfor %}

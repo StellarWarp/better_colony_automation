@@ -4,18 +4,19 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: events/bac_gen_colony_transform_events.txt.j2
-namespace = colony_automation_event
 
+
+namespace = colony_automation_event
 # 隐形前置处理/刷新事件
+
+
 country_event = {
     id = colony_automation_event.109
     hide_window = yes
     is_triggered_only = yes
-
     trigger = {
         is_ai = no
     }
-
     immediate = {
         # 1. 重置计数器
         set_variable = {
@@ -72,7 +73,6 @@ country_event = {
                             num_districts = { type = district_geothermal value < 1 }
                             num_districts = { type = district_melting value < 1 }
                             num_districts = { type = district_polytechnic value < 1 }
-
                             NOT = { has_carrier_flag = legendary_leader_planet }
                         }
                         AND = {
@@ -239,7 +239,6 @@ country_event = {
                 }
             }
         }
-
         # 3. 检查：如果有2个及以上目标，弹出 .110 列表界面；如果只有1个目标，直接跳转至 .102 确认界面
         if = {
             limit = {
@@ -264,6 +263,7 @@ country_event = {
     }
 }
 
+
 country_event = {
     id = colony_automation_event.110
     is_triggered_only = yes
@@ -271,163 +271,160 @@ country_event = {
     desc = colony_automation_event.110.desc
     picture = GFX_evt_metropolis
     show_sound = event_administrative_work
-
     option = {
-		name = colony_automation_event.110.opt.01
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 1
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_01
-		}
+        name = colony_automation_event.110.opt.01
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 1
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_01
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_01 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.02
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 2
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_02
-		}
+        name = colony_automation_event.110.opt.02
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 2
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_02
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_02 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.03
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 3
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_03
-		}
+        name = colony_automation_event.110.opt.03
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 3
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_03
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_03 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.04
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 4
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_04
-		}
+        name = colony_automation_event.110.opt.04
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 4
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_04
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_04 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.05
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 5
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_05
-		}
+        name = colony_automation_event.110.opt.05
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 5
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_05
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_05 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.06
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 6
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_06
-		}
+        name = colony_automation_event.110.opt.06
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 6
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_06
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_06 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.07
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 7
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_07
-		}
+        name = colony_automation_event.110.opt.07
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 7
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_07
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_07 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.08
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 8
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_08
-		}
+        name = colony_automation_event.110.opt.08
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 8
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_08
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_08 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
+    }
     option = {
-		name = colony_automation_event.110.opt.09
-		trigger = {
-			# 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
-			check_variable = {
-				which = bca_arcology_project_candidate_planet_count
-				value >= 9
-			}
-			exists = event_target:bca_arcology_project_candidate_planet_09
-		}
+        name = colony_automation_event.110.opt.09
+        trigger = {
+            # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value >= 9
+            }
+            exists = event_target:bca_arcology_project_candidate_planet_09
+        }
         hidden_effect = {
             # 直接转跳到星球作用域的星球事件，不需要额外保存 event_target 了
             event_target:bca_arcology_project_candidate_planet_09 = {
                 carrier_event = { id = colony_automation_event.102 }
             }
         }
-	}
-
-	option = {
-		name = CLOSE
-	}
+    }
+    option = {
+        name = CLOSE
+    }
 }
-

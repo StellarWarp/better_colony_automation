@@ -1,53 +1,53 @@
 {% for need_name, need in economic_need_thresholds.items() %}
-bca_country_needs_{{ need_name }} = {
-    OR = {
-        NOT = { has_country_flag = bca_enable_economic_management }
-        has_country_flag = bca_economic_target_{{ need_name }}_unlimited
-        AND = {
-            NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
-            {% if need.resource %}
-            resource_income_compare = {
-                resource = {{ need.resource }}
-                value < {{ need.variable }}
+    bca_country_needs_{{ need_name }} = {
+        OR = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            has_country_flag = bca_economic_target_{{ need_name }}_unlimited
+            AND = {
+                NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
+                {% if need.resource %}
+                    resource_income_compare = {
+                        resource = {{ need.resource }}
+                        value < {{ need.variable }}
+                    }
+                {% else %}
+                    check_variable_arithmetic = {
+                        which = value:{{ need.value }}
+                        value < {{ need.variable }}
+                    }
+                {% endif %}
             }
-            {% else %}
-            check_variable_arithmetic = {
-                which = value:{{ need.value }}
-                value < {{ need.variable }}
-            }
-            {% endif %}
         }
     }
-}
 
-bca_empire_needs_{{ need_name }} = {
-    owner = {
-        bca_country_needs_{{ need_name }} = yes
+    bca_empire_needs_{{ need_name }} = {
+        owner = {
+            bca_country_needs_{{ need_name }} = yes
+        }
     }
-}
 
-bca_country_surplus_{{ need_name }} = {
-    has_country_flag = bca_enable_economic_management
-    NOT = { has_country_flag = bca_economic_target_{{ need_name }}_unlimited }
-    NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
-    {% if need.resource %}
-    resource_income_compare = {
-        resource = {{ need.resource }}
-        value >= {{ need.variable }}
+    bca_country_surplus_{{ need_name }} = {
+        has_country_flag = bca_enable_economic_management
+        NOT = { has_country_flag = bca_economic_target_{{ need_name }}_unlimited }
+        NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
+        {% if need.resource %}
+            resource_income_compare = {
+                resource = {{ need.resource }}
+                value >= {{ need.variable }}
+            }
+        {% else %}
+            check_variable_arithmetic = {
+                which = value:{{ need.value }}
+                value >= {{ need.variable }}
+            }
+        {% endif %}
     }
-    {% else %}
-    check_variable_arithmetic = {
-        which = value:{{ need.value }}
-        value >= {{ need.variable }}
-    }
-    {% endif %}
-}
 
-bca_empire_has_surplus_{{ need_name }} = {
-    owner = {
-        bca_country_surplus_{{ need_name }} = yes
+    bca_empire_has_surplus_{{ need_name }} = {
+        owner = {
+            bca_country_surplus_{{ need_name }} = yes
+        }
     }
-}
 
 {% endfor %}
 bca_country_needs_research = {

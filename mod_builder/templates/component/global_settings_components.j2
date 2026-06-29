@@ -1,273 +1,273 @@
 {% macro section_title(name, text, x, y, width=300) -%}
-        instantTextBoxType = {
-            name = "{{ name }}"
-            font = "malgun_goth_24"
-            text = "{{ text }}"
-            position = { x = {{ x }} y = {{ y }} }
-            maxWidth = {{ width }}
-            maxHeight = 28
-            fixedSize = yes
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-        }
+    instantTextBoxType = {
+        name = "{{ name }}"
+        font = "malgun_goth_24"
+        text = "{{ text }}"
+        position = { x = {{ x }} y = {{ y }} }
+        maxWidth = {{ width }}
+        maxHeight = 28
+        fixedSize = yes
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+    }
 {%- endmacro %}
 
 {% macro sub_title(name, text, x, y, width=300) -%}
-        instantTextBoxType = {
-            name = "{{ name }}"
-            font = "cg_16b"
-            text = "{{ text }}"
-            position = { x = {{ x }} y = {{ y }} }
-            maxWidth = {{ width }}
-            maxHeight = 42
-            fixedSize = yes
-            format = left
-            vertical_alignment = top
-            alwaysTransparent = yes
-        }
+    instantTextBoxType = {
+        name = "{{ name }}"
+        font = "cg_16b"
+        text = "{{ text }}"
+        position = { x = {{ x }} y = {{ y }} }
+        maxWidth = {{ width }}
+        maxHeight = 42
+        fixedSize = yes
+        format = left
+        vertical_alignment = top
+        alwaysTransparent = yes
+    }
 {%- endmacro %}
 
 {% macro toggle_row(name, text, tooltip, effect_prefix, x, y, width=260, height=40, button_width=104, label_effect="") -%}
-{% set button_height = height - 8 %}
-{% set padding_x = 14 %}
-{% set button_x = width - button_width - padding_x %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+    {% set button_height = height - 8 %}
+    {% set padding_x = 14 %}
+    {% set button_x = width - button_width - padding_x %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y }} }
-            size = { x = {{ button_x - padding_x - 12 }} y = {{ height }} }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y }} }
+        size = { x = {{ button_x - padding_x - 12 }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_enable"
-            position = { x = {{ x + button_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ effect_prefix }}_enable"
-        }
-        effectButtonType = {
-            name = "{{ name }}_disable"
-            position = { x = {{ x + button_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_enabled"
-            effect = "{{ effect_prefix }}_disable"
-        }
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_enable"
+        position = { x = {{ x + button_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_ON"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ effect_prefix }}_enable"
+    }
+    effectButtonType = {
+        name = "{{ name }}_disable"
+        position = { x = {{ x + button_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_DEFAULT_OFF"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_enabled"
+        effect = "{{ effect_prefix }}_disable"
+    }
 {%- endmacro %}
 
 {% macro action_pair(name, text, enable_effect, disable_effect, x, y, width=320, height=40, button_width=92, button_gap=10, label_effect="") -%}
-{% set button_height = height - 8 %}
-{% set padding_x = 14 %}
-{% set disable_x = width - button_width - padding_x %}
-{% set enable_x = disable_x - button_gap - button_width %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+    {% set button_height = height - 8 %}
+    {% set padding_x = 14 %}
+    {% set disable_x = width - button_width - padding_x %}
+    {% set enable_x = disable_x - button_gap - button_width %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y }} }
-            size = { x = {{ enable_x - padding_x - 12 }} y = {{ height }} }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y }} }
+        size = { x = {{ enable_x - padding_x - 12 }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_enable"
-            position = { x = {{ x + enable_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
-            format = center
-            vertical_alignment = center
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ enable_effect }}"
-        }
-        effectButtonType = {
-            name = "{{ name }}_disable"
-            position = { x = {{ x + disable_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
-            format = center
-            vertical_alignment = center
-            quadTextureSprite = "GFX_bca_button_standard_enabled"
-            effect = "{{ disable_effect }}"
-        }
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_enable"
+        position = { x = {{ x + enable_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ enable_effect }}"
+    }
+    effectButtonType = {
+        name = "{{ name }}_disable"
+        position = { x = {{ x + disable_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_enabled"
+        effect = "{{ disable_effect }}"
+    }
 {%- endmacro %}
 
 {% macro bulk_action_row(name, text, status_text, enable_effect, disable_effect, x, y, width=320, height=54, button_width=92, button_gap=10, label_effect="") -%}
-{% set button_height = height - 16 %}
-{% set padding_x = 14 %}
-{% set disable_x = width - button_width - padding_x %}
-{% set enable_x = disable_x - button_gap - button_width %}
-{% set text_width = enable_x - padding_x - 12 %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+    {% set button_height = height - 16 %}
+    {% set padding_x = 14 %}
+    {% set disable_x = width - button_width - padding_x %}
+    {% set enable_x = disable_x - button_gap - button_width %}
+    {% set text_width = enable_x - padding_x - 12 %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y + 2 }} }
-            size = { x = {{ text_width }} y = 20 }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y + 2 }} }
+        size = { x = {{ text_width }} y = 20 }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_status"
-            font = "cg_16b"
-            buttonText = "{{ status_text }}"
-            position = { x = {{ x + padding_x }} y = {{ y + 24 }} }
-            size = { x = {{ text_width }} y = 18 }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_status"
+        font = "cg_16b"
+        buttonText = "{{ status_text }}"
+        position = { x = {{ x + padding_x }} y = {{ y + 24 }} }
+        size = { x = {{ text_width }} y = 18 }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_enable"
-            position = { x = {{ x + enable_x }} y = {{ y + 8 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
-            format = center
-            vertical_alignment = center
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ enable_effect }}"
-        }
-        effectButtonType = {
-            name = "{{ name }}_disable"
-            position = { x = {{ x + disable_x }} y = {{ y + 8 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
-            format = center
-            vertical_alignment = center
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ disable_effect }}"
-        }
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_enable"
+        position = { x = {{ x + enable_x }} y = {{ y + 8 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ enable_effect }}"
+    }
+    effectButtonType = {
+        name = "{{ name }}_disable"
+        position = { x = {{ x + disable_x }} y = {{ y + 8 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ disable_effect }}"
+    }
 {%- endmacro %}
 
 {% macro auto_demolition_row(
-    name,
-    text,
-    x,
-    y,
-    default_enable_current_effect = "",
-    default_enable_target_effect = "",
-    default_disable_current_effect = "",
-    default_disable_target_effect = "",
-    default_enable_current_tooltip = "",
-    default_enable_target_tooltip = "",
-    default_disable_current_tooltip = "",
-    default_disable_target_tooltip = "",
-    apply_enable_effect = "",
-    apply_disable_effect = "",
-    apply_enable_tooltip = "",
-    apply_disable_tooltip = "",
-    status_text = "",
-    width = 812,
-    height = 54,
-    label_width = 212,
-    default_button_width = 96,
-    action_button_width = 92,
-    button_gap = 8,
-    column_gap = 18,
-    show_default = true,
-    label_effect = "",
-    status_effect = ""
-) -%}
-{% set padding_x = 18 %}
-{% set default_button_height = 30 %}
-{% set action_button_height = 30 %}
-{% set status_x = padding_x + 2 %}
-{% set status_y = 29 %}
-{% set status_height = 16 %}
-{% set status_width = 224 %}
-{% set apply_disable_x = width - padding_x - action_button_width %}
-{% set apply_enable_x = apply_disable_x - button_gap - action_button_width %}
-{% if show_default %}
-{% set default_disable_x = apply_enable_x - column_gap - default_button_width %}
-{% set default_enable_x = default_disable_x - button_gap - default_button_width %}
-{% set label_max_width = default_enable_x - padding_x - 18 %}
-{% else %}
-{% set label_max_width = apply_enable_x - padding_x - 18 %}
-{% endif %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+            name,
+            text,
+            x,
+            y,
+            default_enable_current_effect = "",
+            default_enable_target_effect = "",
+            default_disable_current_effect = "",
+            default_disable_target_effect = "",
+            default_enable_current_tooltip = "",
+            default_enable_target_tooltip = "",
+            default_disable_current_tooltip = "",
+            default_disable_target_tooltip = "",
+            apply_enable_effect = "",
+            apply_disable_effect = "",
+            apply_enable_tooltip = "",
+            apply_disable_tooltip = "",
+            status_text = "",
+            width = 812,
+            height = 54,
+            label_width = 212,
+            default_button_width = 96,
+            action_button_width = 92,
+            button_gap = 8,
+            column_gap = 18,
+            show_default = true,
+            label_effect = "",
+            status_effect = ""
+        ) -%}
+    {% set padding_x = 18 %}
+    {% set default_button_height = 30 %}
+    {% set action_button_height = 30 %}
+    {% set status_x = padding_x + 2 %}
+    {% set status_y = 29 %}
+    {% set status_height = 16 %}
+    {% set status_width = 224 %}
+    {% set apply_disable_x = width - padding_x - action_button_width %}
+    {% set apply_enable_x = apply_disable_x - button_gap - action_button_width %}
+    {% if show_default %}
+        {% set default_disable_x = apply_enable_x - column_gap - default_button_width %}
+        {% set default_enable_x = default_disable_x - button_gap - default_button_width %}
+        {% set label_max_width = default_enable_x - padding_x - 18 %}
+    {% else %}
+        {% set label_max_width = apply_enable_x - padding_x - 18 %}
+    {% endif %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y + 4 }} }
-            size = { x = {{ label_max_width }} y = 20 }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y + 4 }} }
+        size = { x = {{ label_max_width }} y = 20 }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-{% if status_text %}
+        {% endif %}
+    }
+    {% if status_text %}
         effectButtonType = {
             name = "{{ name }}_status"
             position = { x = {{ x + status_x }} y = {{ y + status_y }} }
@@ -277,12 +277,12 @@
             format = left
             vertical_alignment = center
             alwaysTransparent = yes
-{% if status_effect %}
-            effect = "{{ status_effect }}"
-{% endif %}
+            {% if status_effect %}
+                effect = "{{ status_effect }}"
+            {% endif %}
         }
-{% endif %}
-{% if show_default %}
+    {% endif %}
+    {% if show_default %}
         effectButtonType = {
             name = "{{ name }}_default_enable_current"
             position = { x = {{ x + default_enable_x }} y = {{ y + 12 }} }
@@ -331,50 +331,50 @@
             quadTextureSprite = "GFX_bca_button_standard_disabled"
             effect = "{{ default_disable_target_effect }}"
         }
-{% endif %}
-        effectButtonType = {
-            name = "{{ name }}_apply_enable"
-            position = { x = {{ x + apply_enable_x }} y = {{ y + 12 }} }
-            size = { x = {{ action_button_width }} y = {{ action_button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ apply_enable_tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ apply_enable_effect }}"
-        }
-        effectButtonType = {
-            name = "{{ name }}_apply_disable"
-            position = { x = {{ x + apply_disable_x }} y = {{ y + 12 }} }
-            size = { x = {{ action_button_width }} y = {{ action_button_height }} }
-            font = "cg_16b"
-            buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ apply_disable_tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ apply_disable_effect }}"
-        }
+    {% endif %}
+    effectButtonType = {
+        name = "{{ name }}_apply_enable"
+        position = { x = {{ x + apply_enable_x }} y = {{ y + 12 }} }
+        size = { x = {{ action_button_width }} y = {{ action_button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_ENABLE"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ apply_enable_tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ apply_enable_effect }}"
+    }
+    effectButtonType = {
+        name = "{{ name }}_apply_disable"
+        position = { x = {{ x + apply_disable_x }} y = {{ y + 12 }} }
+        size = { x = {{ action_button_width }} y = {{ action_button_height }} }
+        font = "cg_16b"
+        buttonText = "BCA_GLOBAL_SETTINGS_APPLY_DISABLE"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ apply_disable_tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ apply_disable_effect }}"
+    }
 {%- endmacro %}
 
 {% macro choice_row(name, text, tooltip, x, y, width=320, height=40, button_width=56, button_gap=8, options=[], label_effect="") -%}
-{% set button_height = height - 8 %}
-{% set padding_x = 14 %}
-{% set option_count = options | length %}
-{% set total_button_width = option_count * button_width + (option_count - 1) * button_gap %}
-{% set button_start_x = width - total_button_width - padding_x %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+    {% set button_height = height - 8 %}
+    {% set padding_x = 14 %}
+    {% set option_count = options | length %}
+    {% set total_button_width = option_count * button_width + (option_count - 1) * button_gap %}
+    {% set button_start_x = width - total_button_width - padding_x %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-{% if text %}
+        {% endif %}
+    }
+    {% if text %}
         effectButtonType = {
             name = "{{ name }}_label"
             font = "cg_16b"
@@ -384,14 +384,14 @@
             format = left
             vertical_alignment = center
             alwaysTransparent = yes
-{% if label_effect %}
-            effect = "{{ label_effect }}"
-{% endif %}
+            {% if label_effect %}
+                effect = "{{ label_effect }}"
+            {% endif %}
         }
-{% endif %}
-{% for option in options %}
-{% set option_x = x + button_start_x + loop.index0 * (button_width + button_gap) %}
-{% set option_tooltip = option.tooltip if option.tooltip is defined else tooltip %}
+    {% endif %}
+    {% for option in options %}
+        {% set option_x = x + button_start_x + loop.index0 * (button_width + button_gap) %}
+        {% set option_tooltip = option.tooltip if option.tooltip is defined else tooltip %}
         effectButtonType = {
             name = "{{ name }}_{{ option.name }}_selected"
             position = { x = {{ option_x }} y = {{ y + 4 }} }
@@ -416,155 +416,155 @@
             quadTextureSprite = "GFX_bca_button_standard_disabled"
             effect = "{{ option.effect }}_unselected"
         }
-{% endfor %}
+    {% endfor %}
 {%- endmacro %}
 
 {% macro value_adjust_row(
-    name,
-    text,
-    value_text,
-    tooltip,
-    decrease_effect,
-    increase_effect,
-    decrease_tooltip,
-    increase_tooltip,
-    decrease_text,
-    increase_text,
-    x,
-    y,
-    width=320,
-    height=40,
-    value_width=72,
-    button_width=58,
-    button_gap=8,
-    control_gap=10,
-    label_effect=""
-) -%}
-{% set button_height = height - 8 %}
-{% set padding_x = 14 %}
-{% set increase_x = width - padding_x - button_width %}
-{% set decrease_x = increase_x - button_gap - button_width %}
-{% set value_x = decrease_x - control_gap - value_width %}
-{% set label_width = value_x - padding_x - control_gap %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+            name,
+            text,
+            value_text,
+            tooltip,
+            decrease_effect,
+            increase_effect,
+            decrease_tooltip,
+            increase_tooltip,
+            decrease_text,
+            increase_text,
+            x,
+            y,
+            width=320,
+            height=40,
+            value_width=72,
+            button_width=58,
+            button_gap=8,
+            control_gap=10,
+            label_effect=""
+        ) -%}
+    {% set button_height = height - 8 %}
+    {% set padding_x = 14 %}
+    {% set increase_x = width - padding_x - button_width %}
+    {% set decrease_x = increase_x - button_gap - button_width %}
+    {% set value_x = decrease_x - control_gap - value_width %}
+    {% set label_width = value_x - padding_x - control_gap %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y }} }
-            size = { x = {{ label_width }} y = {{ height }} }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y }} }
+        size = { x = {{ label_width }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_value"
-            position = { x = {{ x + value_x }} y = {{ y + 4 }} }
-            size = { x = {{ value_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "{{ value_text }}"
-            format = right
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_value"
+        position = { x = {{ x + value_x }} y = {{ y + 4 }} }
+        size = { x = {{ value_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ value_text }}"
+        format = right
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_decrease"
-            position = { x = {{ x + decrease_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "{{ decrease_text }}"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ decrease_tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ decrease_effect }}"
-        }
-        effectButtonType = {
-            name = "{{ name }}_increase"
-            position = { x = {{ x + increase_x }} y = {{ y + 4 }} }
-            size = { x = {{ button_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "{{ increase_text }}"
-            format = center
-            vertical_alignment = center
-            tooltipText = "{{ increase_tooltip }}"
-            quadTextureSprite = "GFX_bca_button_standard_disabled"
-            effect = "{{ increase_effect }}"
-        }
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_decrease"
+        position = { x = {{ x + decrease_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ decrease_text }}"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ decrease_tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ decrease_effect }}"
+    }
+    effectButtonType = {
+        name = "{{ name }}_increase"
+        position = { x = {{ x + increase_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ increase_text }}"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ increase_tooltip }}"
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ increase_effect }}"
+    }
 {%- endmacro %}
 
 {% macro multi_step_value_row(
-    name,
-    text,
-    value_text,
-    tooltip,
-    value_effect,
-    negative_options,
-    positive_options,
-    x,
-    y,
-    width=320,
-    height=40,
-    value_width=72,
-    button_width=48,
-    button_gap=6,
-    control_gap=8,
-    status_text="",
-    value_tooltip="",
-    label_effect="",
-    status_effect=""
-) -%}
-{% set button_height = height - 8 %}
-{% set padding_x = 14 %}
-{% set negative_width = (negative_options | length) * button_width + ((negative_options | length) - 1) * button_gap %}
-{% set positive_width = (positive_options | length) * button_width + ((positive_options | length) - 1) * button_gap %}
-{% set control_width = negative_width + control_gap + value_width + control_gap + positive_width %}
-{% set control_start_x = width - padding_x - control_width %}
-{% set status_width = 70 if status_text else 0 %}
-{% set status_gap = control_gap if status_text else 0 %}
-{% set status_x = control_start_x - status_gap - status_width %}
-{% set value_x = control_start_x + negative_width + control_gap %}
-{% set positive_start_x = value_x + value_width + control_gap %}
-{% set label_width = (status_x if status_text else control_start_x) - padding_x - 12 %}
-        effectButtonType = {
-            name = "{{ name }}_bg"
-            position = { x = {{ x }} y = {{ y }} }
-            size = { x = {{ width }} y = {{ height }} }
-            quadTextureSprite = "GFX_interface_list_dark"
-            alwaysTransparent = yes
-{% if label_effect %}
+            name,
+            text,
+            value_text,
+            tooltip,
+            value_effect,
+            negative_options,
+            positive_options,
+            x,
+            y,
+            width=320,
+            height=40,
+            value_width=72,
+            button_width=48,
+            button_gap=6,
+            control_gap=8,
+            status_text="",
+            value_tooltip="",
+            label_effect="",
+            status_effect=""
+        ) -%}
+    {% set button_height = height - 8 %}
+    {% set padding_x = 14 %}
+    {% set negative_width = (negative_options | length) * button_width + ((negative_options | length) - 1) * button_gap %}
+    {% set positive_width = (positive_options | length) * button_width + ((positive_options | length) - 1) * button_gap %}
+    {% set control_width = negative_width + control_gap + value_width + control_gap + positive_width %}
+    {% set control_start_x = width - padding_x - control_width %}
+    {% set status_width = 70 if status_text else 0 %}
+    {% set status_gap = control_gap if status_text else 0 %}
+    {% set status_x = control_start_x - status_gap - status_width %}
+    {% set value_x = control_start_x + negative_width + control_gap %}
+    {% set positive_start_x = value_x + value_width + control_gap %}
+    {% set label_width = (status_x if status_text else control_start_x) - padding_x - 12 %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-        effectButtonType = {
-            name = "{{ name }}_label"
-            font = "cg_16b"
-            buttonText = "{{ text }}"
-            position = { x = {{ x + padding_x }} y = {{ y }} }
-            size = { x = {{ label_width }} y = {{ height }} }
-            format = left
-            vertical_alignment = center
-            alwaysTransparent = yes
-{% if label_effect %}
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + padding_x }} y = {{ y }} }
+        size = { x = {{ label_width }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
             effect = "{{ label_effect }}"
-{% endif %}
-        }
-{% if status_text %}
+        {% endif %}
+    }
+    {% if status_text %}
         effectButtonType = {
             name = "{{ name }}_status"
             position = { x = {{ x + status_x }} y = {{ y + 4 }} }
@@ -574,13 +574,13 @@
             format = center
             vertical_alignment = center
             alwaysTransparent = yes
-{% if status_effect %}
-            effect = "{{ status_effect }}"
-{% endif %}
+            {% if status_effect %}
+                effect = "{{ status_effect }}"
+            {% endif %}
         }
-{% endif %}
-{% for option in negative_options %}
-{% set option_x = x + control_start_x + loop.index0 * (button_width + button_gap) %}
+    {% endif %}
+    {% for option in negative_options %}
+        {% set option_x = x + control_start_x + loop.index0 * (button_width + button_gap) %}
         effectButtonType = {
             name = "{{ name }}_{{ option.name }}"
             position = { x = {{ option_x }} y = {{ y + 4 }} }
@@ -592,30 +592,30 @@
             quadTextureSprite = "GFX_bca_button_standard_disabled"
             effect = "{{ option.effect }}"
         }
-{% endfor %}
-        effectButtonType = {
-            name = "{{ name }}_value"
-            position = { x = {{ x + value_x }} y = {{ y + 4 }} }
-            size = { x = {{ value_width }} y = {{ button_height }} }
-            font = "cg_16b"
-            buttonText = "{{ value_text }}"
-            format = center
-            vertical_alignment = center
-{% if value_tooltip %}
+    {% endfor %}
+    effectButtonType = {
+        name = "{{ name }}_value"
+        position = { x = {{ x + value_x }} y = {{ y + 4 }} }
+        size = { x = {{ value_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ value_text }}"
+        format = center
+        vertical_alignment = center
+        {% if value_tooltip %}
             tooltipText = "{{ value_tooltip }}"
-{% endif %}
-{% if value_effect %}
+        {% endif %}
+        {% if value_effect %}
             alwaysTransparent = no
             effect = "{{ value_effect }}"
-{% else %}
+        {% else %}
             alwaysTransparent = yes
-{% if label_effect %}
-            effect = "{{ label_effect }}"
-{% endif %}
-{% endif %}
-        }
-{% for option in positive_options %}
-{% set option_x = x + positive_start_x + loop.index0 * (button_width + button_gap) %}
+            {% if label_effect %}
+                effect = "{{ label_effect }}"
+            {% endif %}
+        {% endif %}
+    }
+    {% for option in positive_options %}
+        {% set option_x = x + positive_start_x + loop.index0 * (button_width + button_gap) %}
         effectButtonType = {
             name = "{{ name }}_{{ option.name }}"
             position = { x = {{ option_x }} y = {{ y + 4 }} }
@@ -627,6 +627,5 @@
             quadTextureSprite = "GFX_bca_button_standard_disabled"
             effect = "{{ option.effect }}"
         }
-{% endfor %}
+    {% endfor %}
 {%- endmacro %}
-

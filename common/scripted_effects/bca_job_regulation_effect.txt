@@ -6,7 +6,6 @@
 # Source template: common/scripted_effects/bca_job_regulation_effect.txt.j2
 
 
-
 bca_jr_clear_resource_remaining = {
     optimize_memory
     clear_variable = bca_jr_income_energy
@@ -50,20 +49,19 @@ bca_jr_clear_resource_remaining = {
     clear_variable = bca_jr_remaining_dec_exotic_gases
 }
 
+
 bca_jr_initialize_resource_remaining = {
     optimize_memory
     clear_variable = bca_jr_income_energy
     clear_variable = bca_jr_remaining_inc_energy
     clear_variable = bca_jr_remaining_dec_energy
     export_resource_income_to_variable = { resource = energy variable = bca_jr_income_energy }
-
     set_variable = { which = bca_jr_remaining_inc_energy value = bca_expect_output_energy }
     subtract_variable = { which = bca_jr_remaining_inc_energy value = bca_jr_income_energy }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_energy value < 0 } }
         clear_variable = bca_jr_remaining_inc_energy
     }
-
     set_variable = { which = bca_jr_remaining_dec_energy value = bca_jr_income_energy }
     subtract_variable = { which = bca_jr_remaining_dec_energy value = bca_expect_output_energy }
     if = {
@@ -74,14 +72,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_minerals
     clear_variable = bca_jr_remaining_dec_minerals
     export_resource_income_to_variable = { resource = minerals variable = bca_jr_income_minerals }
-
     set_variable = { which = bca_jr_remaining_inc_minerals value = bca_expect_output_minerals }
     subtract_variable = { which = bca_jr_remaining_inc_minerals value = bca_jr_income_minerals }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_minerals value < 0 } }
         clear_variable = bca_jr_remaining_inc_minerals
     }
-
     set_variable = { which = bca_jr_remaining_dec_minerals value = bca_jr_income_minerals }
     subtract_variable = { which = bca_jr_remaining_dec_minerals value = bca_expect_output_minerals }
     if = {
@@ -92,14 +88,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_food
     clear_variable = bca_jr_remaining_dec_food
     export_resource_income_to_variable = { resource = food variable = bca_jr_income_food }
-
     set_variable = { which = bca_jr_remaining_inc_food value = bca_expect_output_food }
     subtract_variable = { which = bca_jr_remaining_inc_food value = bca_jr_income_food }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_food value < 0 } }
         clear_variable = bca_jr_remaining_inc_food
     }
-
     set_variable = { which = bca_jr_remaining_dec_food value = bca_jr_income_food }
     subtract_variable = { which = bca_jr_remaining_dec_food value = bca_expect_output_food }
     if = {
@@ -110,14 +104,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_alloys
     clear_variable = bca_jr_remaining_dec_alloys
     export_resource_income_to_variable = { resource = alloys variable = bca_jr_income_alloys }
-
     set_variable = { which = bca_jr_remaining_inc_alloys value = bca_expect_output_alloys }
     subtract_variable = { which = bca_jr_remaining_inc_alloys value = bca_jr_income_alloys }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_alloys value < 0 } }
         clear_variable = bca_jr_remaining_inc_alloys
     }
-
     set_variable = { which = bca_jr_remaining_dec_alloys value = bca_jr_income_alloys }
     subtract_variable = { which = bca_jr_remaining_dec_alloys value = bca_expect_output_alloys }
     if = {
@@ -128,14 +120,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_consumer_goods
     clear_variable = bca_jr_remaining_dec_consumer_goods
     export_resource_income_to_variable = { resource = consumer_goods variable = bca_jr_income_consumer_goods }
-
     set_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_expect_output_consumer_goods }
     subtract_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_jr_income_consumer_goods }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_consumer_goods value < 0 } }
         clear_variable = bca_jr_remaining_inc_consumer_goods
     }
-
     set_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_jr_income_consumer_goods }
     subtract_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_expect_output_consumer_goods }
     if = {
@@ -146,14 +136,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_trade
     clear_variable = bca_jr_remaining_dec_trade
     export_resource_income_to_variable = { resource = trade variable = bca_jr_income_trade }
-
     set_variable = { which = bca_jr_remaining_inc_trade value = bca_expect_output_trade }
     subtract_variable = { which = bca_jr_remaining_inc_trade value = bca_jr_income_trade }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_trade value < 0 } }
         clear_variable = bca_jr_remaining_inc_trade
     }
-
     set_variable = { which = bca_jr_remaining_dec_trade value = bca_jr_income_trade }
     subtract_variable = { which = bca_jr_remaining_dec_trade value = bca_expect_output_trade }
     if = {
@@ -164,14 +152,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_unity
     clear_variable = bca_jr_remaining_dec_unity
     export_resource_income_to_variable = { resource = unity variable = bca_jr_income_unity }
-
     set_variable = { which = bca_jr_remaining_inc_unity value = bca_expect_output_unity }
     subtract_variable = { which = bca_jr_remaining_inc_unity value = bca_jr_income_unity }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_unity value < 0 } }
         clear_variable = bca_jr_remaining_inc_unity
     }
-
     set_variable = { which = bca_jr_remaining_dec_unity value = bca_jr_income_unity }
     subtract_variable = { which = bca_jr_remaining_dec_unity value = bca_expect_output_unity }
     if = {
@@ -182,14 +168,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_physics_research
     clear_variable = bca_jr_remaining_dec_physics_research
     export_resource_income_to_variable = { resource = physics_research variable = bca_jr_income_physics_research }
-
     set_variable = { which = bca_jr_remaining_inc_physics_research value = bca_expect_output_physics_research }
     subtract_variable = { which = bca_jr_remaining_inc_physics_research value = bca_jr_income_physics_research }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_physics_research value < 0 } }
         clear_variable = bca_jr_remaining_inc_physics_research
     }
-
     set_variable = { which = bca_jr_remaining_dec_physics_research value = bca_jr_income_physics_research }
     subtract_variable = { which = bca_jr_remaining_dec_physics_research value = bca_expect_output_physics_research }
     if = {
@@ -200,14 +184,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_society_research
     clear_variable = bca_jr_remaining_dec_society_research
     export_resource_income_to_variable = { resource = society_research variable = bca_jr_income_society_research }
-
     set_variable = { which = bca_jr_remaining_inc_society_research value = bca_expect_output_society_research }
     subtract_variable = { which = bca_jr_remaining_inc_society_research value = bca_jr_income_society_research }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_society_research value < 0 } }
         clear_variable = bca_jr_remaining_inc_society_research
     }
-
     set_variable = { which = bca_jr_remaining_dec_society_research value = bca_jr_income_society_research }
     subtract_variable = { which = bca_jr_remaining_dec_society_research value = bca_expect_output_society_research }
     if = {
@@ -218,14 +200,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_engineering_research
     clear_variable = bca_jr_remaining_dec_engineering_research
     export_resource_income_to_variable = { resource = engineering_research variable = bca_jr_income_engineering_research }
-
     set_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_expect_output_engineering_research }
     subtract_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_jr_income_engineering_research }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_engineering_research value < 0 } }
         clear_variable = bca_jr_remaining_inc_engineering_research
     }
-
     set_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_jr_income_engineering_research }
     subtract_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_expect_output_engineering_research }
     if = {
@@ -236,14 +216,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_rare_crystals
     clear_variable = bca_jr_remaining_dec_rare_crystals
     export_resource_income_to_variable = { resource = rare_crystals variable = bca_jr_income_rare_crystals }
-
     set_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_expect_output_rare_crystals }
     subtract_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_jr_income_rare_crystals }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_rare_crystals value < 0 } }
         clear_variable = bca_jr_remaining_inc_rare_crystals
     }
-
     set_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_jr_income_rare_crystals }
     subtract_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_expect_output_rare_crystals }
     if = {
@@ -254,14 +232,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_volatile_motes
     clear_variable = bca_jr_remaining_dec_volatile_motes
     export_resource_income_to_variable = { resource = volatile_motes variable = bca_jr_income_volatile_motes }
-
     set_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_expect_output_volatile_motes }
     subtract_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_jr_income_volatile_motes }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_volatile_motes value < 0 } }
         clear_variable = bca_jr_remaining_inc_volatile_motes
     }
-
     set_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_jr_income_volatile_motes }
     subtract_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_expect_output_volatile_motes }
     if = {
@@ -272,14 +248,12 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_remaining_inc_exotic_gases
     clear_variable = bca_jr_remaining_dec_exotic_gases
     export_resource_income_to_variable = { resource = exotic_gases variable = bca_jr_income_exotic_gases }
-
     set_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_expect_output_exotic_gases }
     subtract_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_jr_income_exotic_gases }
     if = {
         limit = { check_variable = { which = bca_jr_remaining_inc_exotic_gases value < 0 } }
         clear_variable = bca_jr_remaining_inc_exotic_gases
     }
-
     set_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_jr_income_exotic_gases }
     subtract_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_expect_output_exotic_gases }
     if = {
@@ -287,6 +261,7 @@ bca_jr_initialize_resource_remaining = {
         clear_variable = bca_jr_remaining_dec_exotic_gases
     }
 }
+
 
 bca_jr_plan_inc_job = {
     optimize_memory
@@ -310,6 +285,7 @@ bca_jr_plan_inc_job = {
     }
 }
 
+
 bca_jr_plan_dec_job = {
     optimize_memory
     if = {
@@ -330,6 +306,7 @@ bca_jr_plan_dec_job = {
         set_carrier_flag = bca_jr_plan_dec_$JOB$
     }
 }
+
 
 bca_jr_plan_job_checks = {
     optimize_memory
@@ -2851,7 +2828,6 @@ bca_jr_plan_job_checks = {
         bca_jr_plan_inc_job = { JOB = turtle_miner_gestalt NEED = volatile_motes }
         bca_jr_plan_inc_job = { JOB = wrangler NEED = volatile_motes }
     }
-
     # ==== DEC: 所有有效产出都 surplus 才计划减少，且 INC 优先 ====
     if = {
         limit = { bca_empire_has_surplus_alloys = yes }
@@ -3087,6 +3063,7 @@ bca_jr_plan_job_checks = {
     }
 }
 
+
 bca_jr_prepare_inc_target = {
     optimize_memory
     if = {
@@ -3099,6 +3076,7 @@ bca_jr_prepare_inc_target = {
         subtract_variable = { which = bca_jr_target value = bca_jr_acc_closable_capacity_workforce_$JOB$ }
     }
 }
+
 
 bca_jr_limit_inc_target_for_resource = {
     optimize_memory
@@ -3126,6 +3104,7 @@ bca_jr_limit_inc_target_for_resource = {
     }
 }
 
+
 bca_jr_apply_inc_target = {
     optimize_memory
     if = {
@@ -3142,6 +3121,7 @@ bca_jr_apply_inc_target = {
         bca_jr_apply_inc_gears = { JOB = $JOB$ TARGET = bca_jr_target }
     }
 }
+
 
 bca_jr_writeback_inc_remaining_for_resource = {
     optimize_memory
@@ -3169,10 +3149,12 @@ bca_jr_writeback_inc_remaining_for_resource = {
     }
 }
 
+
 bca_jr_prepare_dec_target = {
     optimize_memory
     set_variable = { which = bca_jr_target value = bca_jr_acc_closable_capacity_workforce_$JOB$ }
 }
+
 
 bca_jr_limit_dec_target_for_resource = {
     optimize_memory
@@ -3214,6 +3196,7 @@ bca_jr_limit_dec_target_for_resource = {
     }
 }
 
+
 bca_jr_apply_dec_target = {
     optimize_memory
     if = {
@@ -3233,20 +3216,17 @@ bca_jr_apply_dec_target = {
         }
         remove_carrier_flag = bca_jr_skip_full_$JOB$
         bca_jr_apply_dec_gears = { JOB = $JOB$ TARGET = bca_jr_target }
-
         set_variable = { which = bca_jr_tmp_remaining_capacity_delta value = bca_jr_actual_job_change }
         subtract_variable = { which = bca_jr_tmp_remaining_capacity_delta value = bca_jr_acc_free_job_count_$JOB$ }
         if = {
             limit = { check_variable = { which = bca_jr_tmp_remaining_capacity_delta value < 0 } }
             clear_variable = bca_jr_tmp_remaining_capacity_delta
         }
-
         set_variable = { which = bca_jr_tmp_assigned_delta value = bca_jr_tmp_remaining_capacity_delta }
         if = {
             limit = { check_variable_arithmetic = { which = bca_jr_tmp_assigned_delta value > bca_jr_acc_capacity_workforce_$JOB$ } }
             set_variable = { which = bca_jr_tmp_assigned_delta value = bca_jr_acc_capacity_workforce_$JOB$ }
         }
-
         set_variable = { which = bca_jr_tmp_automated_delta value = bca_jr_tmp_remaining_capacity_delta }
         subtract_variable = { which = bca_jr_tmp_automated_delta value = bca_jr_acc_capacity_workforce_$JOB$ }
         if = {
@@ -3255,6 +3235,7 @@ bca_jr_apply_dec_target = {
         }
     }
 }
+
 
 bca_jr_writeback_dec_pop_remaining_for_resource = {
     optimize_memory
@@ -3276,6 +3257,7 @@ bca_jr_writeback_dec_pop_remaining_for_resource = {
     }
 }
 
+
 bca_jr_writeback_dec_automated_remaining_for_resource = {
     optimize_memory
     if = {
@@ -3295,6 +3277,7 @@ bca_jr_writeback_dec_automated_remaining_for_resource = {
         }
     }
 }
+
 
 bca_jr_apply_planned_job_changes = {
     optimize_memory
@@ -17618,7 +17601,6 @@ bca_jr_apply_planned_job_changes = {
         bca_jr_writeback_dec_pop_remaining_for_resource = { JOB = wrangler RESOURCE = consumer_goods }
         bca_jr_writeback_dec_automated_remaining_for_resource = { JOB = wrangler RESOURCE = consumer_goods }
     }
-
     clear_variable = bca_jr_target
     clear_variable = bca_jr_tmp_open_capacity
     clear_variable = bca_jr_tmp_candidate
@@ -17629,6 +17611,7 @@ bca_jr_apply_planned_job_changes = {
     clear_variable = bca_jr_tmp_pop_output
     clear_variable = bca_jr_actual_job_change
 }
+
 
 bca_jr_evaluate_all = {
     optimize_memory

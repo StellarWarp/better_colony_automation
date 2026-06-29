@@ -3,28 +3,28 @@
 {% import 'component/planet_variable.j2' as v with context %}
 
 {% macro try_build_district_by_order(order) -%}
-                    {% for i in order %}
-                    if = {
-                        limit = {
-                            NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-                        }
-                        bca_try_build_district_{{ i }} = yes
-                    }
-                    {% endfor %}
+    {% for i in order %}
+        if = {
+            limit = {
+                NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
+            }
+            bca_try_build_district_{{ i }} = yes
+        }
+    {% endfor %}
 {%- endmacro %}
 
 namespace = colony_automation_event
 
 carrier_event = {
-	id = colony_automation_event.1
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.1
+    hide_window = yes
+    is_triggered_only = yes
 
-	trigger = {
+    trigger = {
         requires_more_job = yes
-	}
+    }
 
-	immediate = {
+    immediate = {
         if = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
@@ -41,29 +41,29 @@ carrier_event = {
             }
             random_list = {
                 1 = {
-                    {#  #}{{ try_build_district_by_order([1,2,3,0]) }}{#  #}
+                    {{ try_build_district_by_order([1,2,3,0]) }}
                 }
                 1 = {
-                    {#  #}{{ try_build_district_by_order([2,1,3,0]) }}{#  #}
+                    {{ try_build_district_by_order([2,1,3,0]) }}
                 }
                 1 = {
-                    {#  #}{{ try_build_district_by_order([3,2,1,0]) }}{#  #}
+                    {{ try_build_district_by_order([3,2,1,0]) }}
                 }
             }
         }
         else = {
             random_list = {
                 1 = {
-                    {#  #}{{ try_build_district_by_order([0,1,2,3]) }}{#  #}
+                    {{ try_build_district_by_order([0,1,2,3]) }}
                 }
                 1 = {
-                    {#  #}{{ try_build_district_by_order([1,2,3,0]) }}{#  #}
+                    {{ try_build_district_by_order([1,2,3,0]) }}
                 }
                 1 = {
-                    {#  #}{{ try_build_district_by_order([2,3,0,1]) }}{#  #}
+                    {{ try_build_district_by_order([2,3,0,1]) }}
                 }
                 1 = {
-                    {#  #}{{ try_build_district_by_order([3,0,1,2]) }}{#  #}
+                    {{ try_build_district_by_order([3,0,1,2]) }}
                 }
             }
         }
@@ -71,18 +71,18 @@ carrier_event = {
 }
 
 carrier_event = {
-	id = colony_automation_event.2
-	hide_window = yes
-	is_triggered_only = yes
+    id = colony_automation_event.2
+    hide_window = yes
+    is_triggered_only = yes
 
-	trigger = {
+    trigger = {
         free_district_slots = 0
         NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
-	}
+    }
 
-	immediate = {
+    immediate = {
 
-        {# destroy order #}
+{# destroy order #}
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -93,73 +93,73 @@ carrier_event = {
             set_carrier_flag = {{ pf.flag_district_plan_remove('d0') }}
         }
         {% for i in range(3) %}
-        {% set district_slot = ['d1','d2','d3'][i] %}
-        {% set zone_slot = ['z3','z4','z5'][i] %}
-        else_if = {
-            limit = {
-                check_variable = {
-                    which = {{v.var_district_num_plan(zone_slot)}}
-                    value < value:num_district_{{ district_slot }}
+            {% set district_slot = ['d1','d2','d3'][i] %}
+            {% set zone_slot = ['z3','z4','z5'][i] %}
+            else_if = {
+                limit = {
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value < value:num_district_{{ district_slot }}
+                    }
                 }
+                set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
             }
-            set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
-        }
         {% endfor %}
-        {# arcology_project #}
+{# arcology_project #}
         if = {
             limit = {
                 has_modifier = bca_pm_arcology_project_candidate
             }
             {% for district_slot in ['d1','d2','d3'] %}
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_district_{{ district_slot }}
-                        value > 0
+                if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:num_district_{{ district_slot }}
+                            value > 0
+                        }
                     }
+                    set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
                 }
-                set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
-            }
             {% endfor %}
         }
-        {# remove districts #}
+{# remove districts #}
         #primary district would not be removed if it is the only one left, to avoid accidentally remove all districts and cause bugs in zone plan building
         if = {
             limit = {
                 has_carrier_flag = {{ pf.flag_district_plan_remove('d0') }}
             }
             {% for district in primary_districts %}
-            {{ "if" if loop.first else "else_if" }} = {
-                limit = {
-                    num_districts = { type = {{ district }} value > 1 }
+                {{ "if" if loop.first else "else_if" }} = {
+                    limit = {
+                        num_districts = { type = {{ district }} value > 1 }
+                    }
+                    remove_district = {{ district }}
+                    remove_carrier_flag = bca_pf_has_district_remove_plan
+                    remove_carrier_flag = bca_pf_district_balanced
                 }
-                remove_district = {{ district }}
-                remove_carrier_flag = bca_pf_has_district_remove_plan
-                remove_carrier_flag = bca_pf_district_balanced
-            }
             {% endfor %}
         }
         {% for district_slot in ['d1', 'd2', 'd3'] %}
-        {% set district_set = secondary_districts_d1 if district_slot == 'd1' else (secondary_districts_d2 if district_slot == 'd2' else secondary_districts_d3) %}
-        else_if = {
-            limit = {
-                has_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
-            }
-            {% for district in district_set %}
-            {{ "if" if loop.first else "else_if" }} = {
+            {% set district_set = secondary_districts_d1 if district_slot == 'd1' else (secondary_districts_d2 if district_slot == 'd2' else secondary_districts_d3) %}
+            else_if = {
                 limit = {
-                    has_district = {{ district }}
+                    has_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
                 }
-                remove_district = {{ district }}
-                remove_carrier_flag = bca_pf_has_district_remove_plan
-                remove_carrier_flag = bca_pf_district_balanced
+                {% for district in district_set %}
+                    {{ "if" if loop.first else "else_if" }} = {
+                        limit = {
+                            has_district = {{ district }}
+                        }
+                        remove_district = {{ district }}
+                        remove_carrier_flag = bca_pf_has_district_remove_plan
+                        remove_carrier_flag = bca_pf_district_balanced
+                    }
+                {% endfor %}
             }
-            {% endfor %}
-        }
         {% endfor %}
 
         {% for district_slot in ['d0','d1','d2','d3'] %}
-        remove_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
+            remove_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
         {% endfor %}
     }
 

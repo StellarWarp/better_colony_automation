@@ -1,9 +1,13 @@
 import os
 import re
-import shutil
 import yaml
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
+
+try:
+    from .formatters import format_pdx_code
+except ImportError:
+    from formatters import format_pdx_code
 
 # --- 配置区 ---
 SOURCE_DIR = os.path.dirname(__file__)  # mod_builder 目录
@@ -41,6 +45,7 @@ MODIFIER_DOC_PATH = (
     / "modifiers.log"
 )
 MODIFIER_LINE_RE = re.compile(r"^-\s*([A-Za-z0-9_:.\-]+),\s*Category:")
+IDENTIFIER_RE = re.compile(r"\b[A-Za-z_][A-Za-z0-9_:.|$@]*\b")
 
 
 def load_known_modifiers(path=MODIFIER_DOC_PATH):
@@ -76,21 +81,84 @@ def load_configs():
 
 def prepend_generated_warning(content, template_path):
     """为生成文件添加统一的头部警告。"""
-    warning_lines = GENERATED_WARNING_LINES + [f"# Source template: {template_path}", ""]
+    warning_lines = GENERATED_WARNING_LINES + [f"# Source template: {template_path}", "\n\n"]
     warning_block = "\n".join(warning_lines)
     return f"{warning_block}{content}"
+
+
+def strip_comments_and_strings(content):
+    """Remove quoted strings and comments before identifier counting."""
+    cleaned_lines = []
+    for line in content.splitlines():
+        chars = []
+        in_quote = False
+        escaped = False
+        for char in line:
+            if escaped:
+                escaped = False
+                if in_quote:
+                    chars.append(" ")
+                else:
+                    chars.append(char)
+                continue
+            if char == "\\":
+                escaped = True
+                chars.append(" " if in_quote else char)
+                continue
+            if char == '"':
+                in_quote = not in_quote
+                chars.append(" ")
+                continue
+            if char == "#" and not in_quote:
+                break
+            chars.append(" " if in_quote else char)
+        cleaned_lines.append("".join(chars))
+    return "\n".join(cleaned_lines)
+
+
+def collect_generated_stats(rel_output_path, content):
+    """Collect simple size/identifier stats for generated PDX files."""
+    non_empty_lines = sum(1 for line in content.splitlines() if line.strip())
+    identifier_count = len(IDENTIFIER_RE.findall(strip_comments_and_strings(content)))
+    return {
+        "path": rel_output_path.replace(os.path.sep, "/"),
+        "non_empty_lines": non_empty_lines,
+        "identifier_count": identifier_count,
+    }
+
+
+def print_identifier_stats(stats):
+    total_identifiers = sum(item["identifier_count"] for item in stats)
+    if total_identifiers <= 0:
+        print("生成统计: common/events 无可统计标识符")
+        return
+
+    print("生成统计: common/events 标识符 Top 5")
+    for item in sorted(stats, key=lambda x: x["identifier_count"], reverse=True)[:5]:
+        ratio = item["identifier_count"] / total_identifiers * 100
+        print(f"  {item['path']}: {item['non_empty_lines']} 非空行, {ratio:.2f}%")
+
+
+def should_format_generated_output(template_path):
+    """Only format PDX-like generated files; localisation YAML keeps its own layout."""
+    return template_path.endswith((".txt.j2", ".gui.j2", ".gfx.j2"))
 
 
 def render_to_file(template_path, output_path, config_data, encoding='utf-8'):
     template = env.get_template(template_path)
     content = template.render(**config_data)
-    content = prepend_generated_warning(content, template_path)
+    if should_format_generated_output(template_path):
+        content = format_pdx_code(content)
+    output_content = prepend_generated_warning(content, template_path)
 
     with open(output_path, 'w', encoding=encoding) as f:
-        f.write(content)
+        f.write(output_content)
+
+    return content
 
 def build():
     print("开始生成 Mod 文件...")
+    generated_stats = []
 
     # 1. 加载所有配置数据
     config_data = load_configs()
@@ -104,7 +172,6 @@ def build():
             output_name = filename.replace('.j2', '')
             output_path = os.path.join(OUTPUT_GUI_DIR, output_name)
 
-            print(f"渲染 GUI: {filename} -> {output_name}")
             render_to_file(tpl_path, output_path, config_data)
     # 3.1. 渲染所有 .txt.j2 文件
     for root, _, files in os.walk(TPL_COMMON_DIR):
@@ -119,8 +186,10 @@ def build():
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
                 os.makedirs(output_dir, exist_ok=True)
                 output_path = os.path.join(output_dir, output_name)
-                print(f"渲染 Common: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
-                render_to_file(tpl_path, output_path, config_data)
+                content = render_to_file(tpl_path, output_path, config_data)
+                generated_stats.append(
+                    collect_generated_stats(os.path.relpath(output_path, ROOT_DIR), content)
+                )
     for root, _, files in os.walk(TPL_EVENTS_DIR):
         for filename in files:
             if filename.endswith('.txt.j2'):
@@ -131,8 +200,10 @@ def build():
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
                 os.makedirs(output_dir, exist_ok=True)
                 output_path = os.path.join(output_dir, output_name)
-                print(f"渲染 Events: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
-                render_to_file(tpl_path, output_path, config_data)
+                content = render_to_file(tpl_path, output_path, config_data)
+                generated_stats.append(
+                    collect_generated_stats(os.path.relpath(output_path, ROOT_DIR), content)
+                )
     LANG_DIRS = ['english', 'simp_chinese', 'japanese', 'russian']
     LANG_PREFIXES = {
         'english': 'l_english',
@@ -166,14 +237,13 @@ def build():
                         output_path = os.path.join(output_dir, lang_output_name)
                         with open(output_path, 'w', encoding='utf-8-sig') as f:
                             f.write(prepend_generated_warning(lang_content, tpl_path))
-                    print(f"渲染 Localisation(all): {rel_path} -> localisation/<lang>/{base_name}_{{lang}}.yml")
                 else:
                     output_dir = os.path.join(ROOT_DIR, rel_dir)
                     os.makedirs(output_dir, exist_ok=True)
                     output_path = os.path.join(output_dir, output_name)
-                    print(f"渲染 Localisation: {rel_path} -> {os.path.relpath(output_path, ROOT_DIR)}")
                     render_to_file(tpl_path, output_path, config_data, encoding='utf-8-sig')
 
+    print_identifier_stats(generated_stats)
     print("生成完成！")
 
 if __name__ == "__main__":

@@ -1,10 +1,10 @@
 
 {% macro contain_any_zones_of(zones, zone_set) %}
-{% set ns = namespace(has_any_zone = False) %}
-{% for zone in zones %}
-    {% if zone in zone_set %}
-        {% set ns.has_any_zone = True %}
-    {% endif %}
-{% endfor %}
-{% if ns.has_any_zone %}1{% else %}0{% endif %}
-{% endmacro %}
+    {% set ns = namespace(has_any_zone = False) %}
+    {% for zone in zones %}
+        {% if zone in zone_set %}
+            {% set ns.has_any_zone = True %}
+        {% endif %}
+    {% endfor %}
+    {% if ns.has_any_zone %}1{% else %}0{% endif %}
+    {% endmacro %}

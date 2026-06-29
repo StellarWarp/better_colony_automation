@@ -12,25 +12,25 @@
 
 guiTypes = {
     # 3 width
-	containerWindowType = {
-		name = "bca_planet_district_entry_gui"
-		size = { width = 861 height = 178 }
+    containerWindowType = {
+        name = "bca_planet_district_entry_gui"
+        size = { width = 861 height = 178 }
 {#		background = {#}
 {#			name = "districts_window_background"#}
 {#			spriteType = "GFX_dark_area"#}
 {#			alwaysTransparent = yes#}
 {#		}#}
-		containerWindowType = {
-			name = "function1"
-			size = { width = {{ main_panel_len }} height = 178 }
-			background = {
-				name = "districts_window_background"
-				spriteType = "GFX_interface_list_dark"
-				alwaysTransparent = yes
-			}
+        containerWindowType = {
+            name = "function1"
+            size = { width = {{ main_panel_len }} height = 178 }
+            background = {
+                name = "districts_window_background"
+                spriteType = "GFX_interface_list_dark"
+                alwaysTransparent = yes
+            }
             {{ p.setting_title(name = 'f1title',
-                               text = 'PRIMARY_DISTRICT_SETTINGS',
-                               width = district_len * 2 ) }}
+                    text = 'PRIMARY_DISTRICT_SETTINGS',
+                    width = district_len * 2 ) }}
 
             {% set panel_x = 15 %}
             {% set button_len = 120 %}
@@ -46,85 +46,85 @@ guiTypes = {
             {% set suboption_x2 = suboption_x + suboption_width + suboption_gap %}
             {% set suboption_x3 = suboption_x + (suboption_width + suboption_gap)*2 %}
             {{
-            p.toggle_button(
-                name = "auto_demolish",
-                x = panel_x, y = panel_y1, len = button_height,
-                tex_prefix = "GFX_bca_button_demolish",
-                effect_prefix = "bca_planet_setting_auto_destruction"
-            )
+                p.toggle_button(
+                    name = "auto_demolish",
+                    x = panel_x, y = panel_y1, len = button_height,
+                    tex_prefix = "GFX_bca_button_demolish",
+                    effect_prefix = "bca_planet_setting_auto_destruction"
+                )
             }}
 
             {{
-            p.toggle_button_text(
-                name = "auto_demolish_text",
-                x = panel_x + button_height, y = panel_y1,
-                sx = button_len, sy = button_height,
-                text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION",
-                tooltip = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC",
-                tex_prefix = "GFX_bca_button_standard",
-                effect_prefix = "bca_planet_setting_auto_destruction"
-            )
+                p.toggle_button_text(
+                    name = "auto_demolish_text",
+                    x = panel_x + button_height, y = panel_y1,
+                    sx = button_len, sy = button_height,
+                    text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION",
+                    tooltip = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_DESC",
+                    tex_prefix = "GFX_bca_button_standard",
+                    effect_prefix = "bca_planet_setting_auto_destruction"
+                )
             }}
 
             {{
-            p.toggle_button_text(
-                name = "auto_demolish_building",
-                x = suboption_x1, y = suboption_y,
-                sx = suboption_width, sy = suboption_height,
-                text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_BUILDING",
-                tex_prefix = "GFX_bca_button_standard",
-                effect_prefix = "bca_planet_setting_auto_destruction_buildings"
-            )
+                p.toggle_button_text(
+                    name = "auto_demolish_building",
+                    x = suboption_x1, y = suboption_y,
+                    sx = suboption_width, sy = suboption_height,
+                    text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_BUILDING",
+                    tex_prefix = "GFX_bca_button_standard",
+                    effect_prefix = "bca_planet_setting_auto_destruction_buildings"
+                )
             }}
             {{
-            p.toggle_button_text(
-                name = "auto_demolish_district",
-                x = suboption_x2, y = suboption_y,
-                sx = suboption_width, sy = suboption_height,
-                text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_DISTRICT",
-                tex_prefix = "GFX_bca_button_standard",
-                effect_prefix = "bca_planet_setting_auto_destruction_districts"
-            )
+                p.toggle_button_text(
+                    name = "auto_demolish_district",
+                    x = suboption_x2, y = suboption_y,
+                    sx = suboption_width, sy = suboption_height,
+                    text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_DISTRICT",
+                    tex_prefix = "GFX_bca_button_standard",
+                    effect_prefix = "bca_planet_setting_auto_destruction_districts"
+                )
             }}
             {{
-            p.toggle_button_text(
-                name = "auto_demolish_zone",
-                x = suboption_x3, y = suboption_y,
-                sx = suboption_width, sy = suboption_height,
-                text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE",
-                tex_prefix = "GFX_bca_button_standard",
-                effect_prefix = "bca_planet_setting_auto_destruction_zones"
-            )
+                p.toggle_button_text(
+                    name = "auto_demolish_zone",
+                    x = suboption_x3, y = suboption_y,
+                    sx = suboption_width, sy = suboption_height,
+                    text = "BCA_PLANET_SETTING_AUTO_DESTRUCTION_ZONE",
+                    tex_prefix = "GFX_bca_button_standard",
+                    effect_prefix = "bca_planet_setting_auto_destruction_zones"
+                )
             }}
 
             {{
-            p.toggle_button(
-                name = "auto_prebuild",
-                x = panel_x, y = panel_y2, len = button_height,
-                tex_prefix = "GFX_bca_button_preconstruction",
-                effect_prefix = "bca_planet_setting_preconstruction"
-            )
+                p.toggle_button(
+                    name = "auto_prebuild",
+                    x = panel_x, y = panel_y2, len = button_height,
+                    tex_prefix = "GFX_bca_button_preconstruction",
+                    effect_prefix = "bca_planet_setting_preconstruction"
+                )
             }}
             {{
-            p.toggle_button_text(
-                name = "auto_prebuild_text",
-                x = panel_x + button_height, y = panel_y2,
-                sx = button_len, sy = button_height,
-                text = "BCA_PLANET_SETTING_PRECONSTRUCTION",
-                tooltip = "BCA_PLANET_SETTING_PRECONSTRUCTION_DESC",
-                tex_prefix = "GFX_bca_button_standard",
-                effect_prefix = "bca_planet_setting_preconstruction"
-            )
+                p.toggle_button_text(
+                    name = "auto_prebuild_text",
+                    x = panel_x + button_height, y = panel_y2,
+                    sx = button_len, sy = button_height,
+                    text = "BCA_PLANET_SETTING_PRECONSTRUCTION",
+                    tooltip = "BCA_PLANET_SETTING_PRECONSTRUCTION_DESC",
+                    tex_prefix = "GFX_bca_button_standard",
+                    effect_prefix = "bca_planet_setting_preconstruction"
+                )
             }}
 
 
-		}
+        }
 
         effectButtonType = {
             name = "function3"
             quadTextureSprite = "GFX_interface_list_dark"
-			size = { x = {{ district_len }} y = 178 }
-			position = { x = -{{ district_len }} y = 0 }
+            size = { x = {{ district_len }} y = 178 }
+            position = { x = -{{ district_len }} y = 0 }
             effect = "bca_planet_setting_secondary_zone_show_up"
             alwaysTransparent = yes
             orientation = upper_right
@@ -157,8 +157,8 @@ guiTypes = {
         effectButtonType = {
             name = 'on_designation_change_mask12'
             quadTextureSprite = "GFX_dark_area"
-			size = { x = {{ main_panel_len }} y = 178 }
-			position = { x = 0 y = 0 }
+            size = { x = {{ main_panel_len }} y = 178 }
+            position = { x = 0 y = 0 }
             effect = "bca_planet_setting_show_up_on_designation_changed"
             alwaysTransparent = no
         }
@@ -166,8 +166,8 @@ guiTypes = {
         effectButtonType = {
             name = 'on_designation_change_mask3'
             quadTextureSprite = "GFX_dark_area"
-			size = { x = {{ district_len }} y = 178 }
-			position = { x = -{{ district_len }} y = 0 }
+            size = { x = {{ district_len }} y = 178 }
+            position = { x = -{{ district_len }} y = 0 }
             effect = "bca_planet_setting_show_up_on_designation_changed"
             alwaysTransparent = no
             orientation = upper_right
@@ -228,7 +228,7 @@ guiTypes = {
             tooltipText = "BCA_BUG_REPORT_DESC"
         }
 
-	}
+    }
 
 
 {#    # 1 width#}

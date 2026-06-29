@@ -1,70 +1,70 @@
 {% for z in bca_zones %}
-bca_can_build_{{ z.name }} = {
-{% if z.potential %}
-    AND = {
-        {{ z.potential | indent(8) }}
+    bca_can_build_{{ z.name }} = {
+        {% if z.potential %}
+            AND = {
+                {{ z.potential | indent(8) }}
+            }
+        {% endif %}
+        {% if z.unlock %}
+            AND = {
+                {{ z.unlock | indent(8) }}
+            }
+        {% endif %}
+        {% if z.show_in_tech %}
+            owner = {
+                has_technology = {{ z.show_in_tech }}
+            }
+        {% endif %}
     }
-{% endif %}
-{% if z.unlock %}
-    AND = {
-        {{ z.unlock | indent(8) }}
-    }
-{% endif %}
-{% if z.show_in_tech %}
-    owner = {
-        has_technology = {{ z.show_in_tech }}
-    }
-{% endif %}
-}
 {% endfor %}
 
 {% for d in bca_districts %}
-bca_is_uncapped_{{ d.name }} = {
-{% if d.is_uncapped %}
-    {{ d.is_uncapped | indent(4) }}
-{% else %}
-    always = yes
-{% endif %}
-}
+    bca_is_uncapped_{{ d.name }} = {
+        {% if d.is_uncapped %}
+            {{ d.is_uncapped | indent(4) }}
+        {% else %}
+            always = yes
+        {% endif %}
+    }
 
-bca_can_build_{{ d.name }} = {
-{% if d.potential %}
-    AND = {
-        {{ d.potential | indent(8) }}
+    bca_can_build_{{ d.name }} = {
+        {% if d.potential %}
+            AND = {
+                {{ d.potential | indent(8) }}
+            }
+        {% endif %}
+        {% if d.allow %}
+            AND = {
+                {{ d.allow | indent(8) }}
+            }
+        {% endif %}
     }
-{% endif %}
-{% if d.allow %}
-    AND = {
-        {{ d.allow | indent(8) }}
-    }
-{% endif %}
-}
 {% endfor %}
 
 {% for zt in bca_zone_types %}
-bca_primary_district_can_build_{{ zt.name }} = {
-{% if zt.multi_zone_districts %}
-    bca_can_build_{{ zt.name }} = yes
-    OR = {
-{% for dist in zt.multi_zone_districts %}
-        has_district = {{ dist }}
-{% endfor %}
+    bca_primary_district_can_build_{{ zt.name }} = {
+        {% if zt.multi_zone_districts %}
+            bca_can_build_{{ zt.name }} = yes
+            OR = {
+                {% for dist in zt.multi_zone_districts %}
+                    has_district = {{ dist }}
+                {% endfor %}
+            }
+        {% else %}
+            always = no
+        {% endif %}
     }
-{% else %}
-    always = no
-{% endif %}
-}
 
-bca_secondary_district_can_build_{{ zt.name }} = {
-{% if zt.single_zone_districts %}
-    bca_can_build_{{ zt.name }} = yes
-    OR = {
-{% for dist in zt.single_zone_districts %}
-        bca_can_build_{{ dist }} = yes
-{% endfor %}
+    bca_secondary_district_can_build_{{ zt.name }} = {
+        {% if zt.single_zone_districts %}
+            bca_can_build_{{ zt.name }} = yes
+            OR = {
+                {% for dist in zt.single_zone_districts %}
+                    bca_can_build_{{ dist }} = yes
+                {% endfor %}
+            }
+        {% else %}
+            always = no
+        {% endif %}
     }
-{% else %}
-    always = no
-{% endif %}
-}
 {% endfor %}

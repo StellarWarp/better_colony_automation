@@ -13,180 +13,180 @@
 {% macro main_zone_setting_unit(name, px, py, len, zone_slot, is_selector) -%}
 
     {% if not is_selector %}
-    {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
+        {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
 
-{#    effectButtonType = {#}
-{#        name = "{{ name }}_zone_name_frame"#}
-{#        quadTextureSprite = "GFX_dark_green_area"#}
-{#        position = { x = {{ px + len }} y = {{ py }} }#}
-{#        size = { x = {{ len * 2 }} y = {{ len }} }#}
-{#        alwaysTransparent = yes#}
-{#    }#}
+        {#    effectButtonType = {#}
+        {#        name = "{{ name }}_zone_name_frame"#}
+        {#        quadTextureSprite = "GFX_dark_green_area"#}
+        {#        position = { x = {{ px + len }} y = {{ py }} }#}
+        {#        size = { x = {{ len * 2 }} y = {{ len }} }#}
+        {#        alwaysTransparent = yes#}
+        {#    }#}
 
-    effectButtonType = {
-        name = "{{ name }}_zone_name_text"
-        quadTextureSprite = "GFX_dark_green_area"
+        effectButtonType = {
+            name = "{{ name }}_zone_name_text"
+            quadTextureSprite = "GFX_dark_green_area"
 
-        position = { x = {{ px + len }} y = {{ py }} }
-        size = { x = {{ len * 2.5 }} y = {{ len }} }
-        font = "cg_16b"
-        buttonText = "BCA_ZONE_SELECTION_{{ zone_slot }}"
+            position = { x = {{ px + len }} y = {{ py }} }
+            size = { x = {{ len * 2.5 }} y = {{ len }} }
+            font = "cg_16b"
+            buttonText = "BCA_ZONE_SELECTION_{{ zone_slot }}"
 
-        tooltipText = "BCA_ZONE_SELECTION_TOOLTIP"
-        delayedTooltipText = "BCA_ZONE_SELECTION_DESC"
-{#        alwaysTransparent = yes#}
-    }
+            tooltipText = "BCA_ZONE_SELECTION_TOOLTIP"
+            delayedTooltipText = "BCA_ZONE_SELECTION_DESC"
+        {#        alwaysTransparent = yes#}
+        }
 
     {% else %}
 
 
-    {% for option_count in range(1, 16) %}
-    effectButtonType = {
-        name = "{{ name }}_zone_select_frame_{{ option_count }}"
-        quadTextureSprite = "GFX_dark_green_frame_area"
-        position = { x = {{ px + len }} y = {{ py }} }
-        size = { x = {{ zone_setting_selector_length(len, option_count) }} y = {{ len }} }
-        effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
-        alwaysTransparent = yes
-    }
-    {% endfor %}
-    {% for i in range(1,6) %}
-    {% set selector_slot = "s"~i %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px + len * i,
-            py = py,
-            len = len,
-            text = "bca_zone_icon_selector_" ~ selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for option_count in range(1, 16) %}
+            effectButtonType = {
+                name = "{{ name }}_zone_select_frame_{{ option_count }}"
+                quadTextureSprite = "GFX_dark_green_frame_area"
+                position = { x = {{ px + len }} y = {{ py }} }
+                size = { x = {{ zone_setting_selector_length(len, option_count) }} y = {{ len }} }
+                effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
+                alwaysTransparent = yes
+            }
+        {% endfor %}
+        {% for i in range(1,6) %}
+            {% set selector_slot = "s"~i %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px + len * i,
+                    py = py,
+                    len = len,
+                    text = "bca_zone_icon_selector_" ~ selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
 
-    {% set half_len = len/2 %}
+        {% set half_len = len/2 %}
 
-    {% for i in range(10) %}
-    {% set selector_index = i + 5 + 1 %}
-    {% set selector_slot = "s"~selector_index %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px + len * 6 + i//2 * half_len,
-            py = py + i%2 * half_len,
-            len = half_len,
-            text = "bca_zone_icon_selector_"~selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for i in range(10) %}
+            {% set selector_index = i + 5 + 1 %}
+            {% set selector_slot = "s"~selector_index %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px + len * 6 + i//2 * half_len,
+                    py = py + i%2 * half_len,
+                    len = half_len,
+                    text = "bca_zone_icon_selector_"~selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
     {% endif %}
 {%- endmacro %}
 
 {% macro secondary_zone_setting_unit(name, px, py, len, zone_slot, is_selector) -%}
 
     {% if not is_selector %}
-    {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
+        {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
 
-    effectButtonType = {
-        name = "{{ name }}_zone_count_{{ zone_slot }}"
-        quadTextureSprite = "GFX_dark_green_frame_area"
-        position = { x = {{ px }} y = {{ py + len + 10 }} }
-        size = { x = {{ len }} y = {{ len/2 }} }
-        font = "cg_16b"
-        buttonText = "BCA_DISTRICT_PLAN_COUNT_{{ zone_slot }}"
+        effectButtonType = {
+            name = "{{ name }}_zone_count_{{ zone_slot }}"
+            quadTextureSprite = "GFX_dark_green_frame_area"
+            position = { x = {{ px }} y = {{ py + len + 10 }} }
+            size = { x = {{ len }} y = {{ len/2 }} }
+            font = "cg_16b"
+            buttonText = "BCA_DISTRICT_PLAN_COUNT_{{ zone_slot }}"
 
-        tooltipText = "BCA_SETTING_DISTRICT_COUNT_TOOLTIP"
-        delayedTooltipText = "BCA_SETTING_DISTRICT_COUNT_DESC"
-        effect = "bca_planet_setting_secondary_zone_count_icon_{{ zone_slot }}"
-    }
+            tooltipText = "BCA_SETTING_DISTRICT_COUNT_TOOLTIP"
+            delayedTooltipText = "BCA_SETTING_DISTRICT_COUNT_DESC"
+            effect = "bca_planet_setting_secondary_zone_count_icon_{{ zone_slot }}"
+        }
 
-    effectButtonType = {
-        name = "zone_count_dec_{{ zone_slot }}"
-        quadTextureSprite = "GFX_job_prio_decrease"
-        position = { x = {{ px }} y = {{ py + len + 40 }} }
-        size = { x = {{ len/2 }} y = {{ len/2 }} }
-        scale = {{ (len/2) / 20 }}
-        effect = "bca_planet_setting_secondary_zone_count_dec_{{ zone_slot }}"
-    }
-    effectButtonType = {
-        name = "zone_count_inc_{{ zone_slot }}"
-        quadTextureSprite = "GFX_job_prio_increase"
-        position = { x = {{ px + len/2 }} y = {{ py + len + 40 }} }
-        size = { x = {{ len/2 }} y = {{ len/2 }} }
-        scale = {{ (len/2) / 20 }}
-        effect = "bca_planet_setting_secondary_zone_count_inc_{{ zone_slot }}"
-    }
+        effectButtonType = {
+            name = "zone_count_dec_{{ zone_slot }}"
+            quadTextureSprite = "GFX_job_prio_decrease"
+            position = { x = {{ px }} y = {{ py + len + 40 }} }
+            size = { x = {{ len/2 }} y = {{ len/2 }} }
+            scale = {{ (len/2) / 20 }}
+            effect = "bca_planet_setting_secondary_zone_count_dec_{{ zone_slot }}"
+        }
+        effectButtonType = {
+            name = "zone_count_inc_{{ zone_slot }}"
+            quadTextureSprite = "GFX_job_prio_increase"
+            position = { x = {{ px + len/2 }} y = {{ py + len + 40 }} }
+            size = { x = {{ len/2 }} y = {{ len/2 }} }
+            scale = {{ (len/2) / 20 }}
+            effect = "bca_planet_setting_secondary_zone_count_inc_{{ zone_slot }}"
+        }
 
     {% else %}
 
-    {% for option_count in range(1, 16) %}
-    {% set selector_len = zone_setting_selector_length(len, option_count) | int %}
-    effectButtonType = {
-        name = "{{ name }}_zone_select_frame_{{ option_count }}"
-        quadTextureSprite = "GFX_dark_green_frame_area"
-        position = { x = {{ px - selector_len }} y = {{ py }} }
-        size = { x = {{ selector_len }} y = {{ len }} }
-        effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
-        alwaysTransparent = yes
-    }
-    {% endfor %}
+        {% for option_count in range(1, 16) %}
+            {% set selector_len = zone_setting_selector_length(len, option_count) | int %}
+            effectButtonType = {
+                name = "{{ name }}_zone_select_frame_{{ option_count }}"
+                quadTextureSprite = "GFX_dark_green_frame_area"
+                position = { x = {{ px - selector_len }} y = {{ py }} }
+                size = { x = {{ selector_len }} y = {{ len }} }
+                effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
+                alwaysTransparent = yes
+            }
+        {% endfor %}
 
-    {% for i in range(1,6) %}
-    {% set selector_slot = "s"~i %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px - len * i,
-            py = py,
-            len = len,
-            text = "bca_zone_icon_selector_" ~ selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for i in range(1,6) %}
+            {% set selector_slot = "s"~i %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px - len * i,
+                    py = py,
+                    len = len,
+                    text = "bca_zone_icon_selector_" ~ selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
 
-    {% set half_len = len/2 %}
+        {% set half_len = len/2 %}
 
-    {% for i in range(10) %}
-    {% set selector_slot = "s"~(i + 5 + 1) %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px - len * 5 - half_len - i//2 * half_len,
-            py = py + i%2 * half_len,
-            len = half_len,
-            text = "bca_zone_icon_selector_"~selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for i in range(10) %}
+            {% set selector_slot = "s"~(i + 5 + 1) %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px - len * 5 - half_len - i//2 * half_len,
+                    py = py + i%2 * half_len,
+                    len = half_len,
+                    text = "bca_zone_icon_selector_"~selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
 
-{#    {% for i in range(5) %}#}
-{#        {{#}
-{#        d.dynamic_zone_icon_overlay(#}
-{#            name = "zone_selector" ~ (i + 1) ~ "_" ~ name,#}
-{#            px = px - len * (i + 1),#}
-{#            py = py,#}
-{#            len = len,#}
-{#            effect_suffix = zone_slot ~ "_s" ~ (i + 1)#}
-{#        )#}
-{#        }}#}
-{#    {% endfor %}#}
-{##}
-{#    {% set half_len = len/2 %}#}
-{##}
-{#    {% for i in range(10) %}#}
-{#        {{#}
-{#        d.dynamic_zone_icon_overlay(#}
-{#            name = "zone_selector" ~ (i + 5 + 1) ~ "_" ~ name,#}
-{#            px = px - len * 5 - half_len - i//2 * half_len,#}
-{#            py = py + i%2 * half_len,#}
-{#            len = half_len,#}
-{#            effect_suffix = zone_slot ~ "_s" ~ (i + 5 + 1)#}
-{#        )#}
-{#        }}#}
-{#    {% endfor %}#}
+        {#    {% for i in range(5) %}#}
+        {#        {{#}
+        {#        d.dynamic_zone_icon_overlay(#}
+        {#            name = "zone_selector" ~ (i + 1) ~ "_" ~ name,#}
+        {#            px = px - len * (i + 1),#}
+        {#            py = py,#}
+        {#            len = len,#}
+        {#            effect_suffix = zone_slot ~ "_s" ~ (i + 1)#}
+        {#        )#}
+        {#        }}#}
+        {#    {% endfor %}#}
+        {##}
+        {#    {% set half_len = len/2 %}#}
+        {##}
+        {#    {% for i in range(10) %}#}
+        {#        {{#}
+        {#        d.dynamic_zone_icon_overlay(#}
+        {#            name = "zone_selector" ~ (i + 5 + 1) ~ "_" ~ name,#}
+        {#            px = px - len * 5 - half_len - i//2 * half_len,#}
+        {#            py = py + i%2 * half_len,#}
+        {#            len = half_len,#}
+        {#            effect_suffix = zone_slot ~ "_s" ~ (i + 5 + 1)#}
+        {#        )#}
+        {#        }}#}
+        {#    {% endfor %}#}
     {% endif %}
 {%- endmacro %}
 
@@ -195,238 +195,238 @@
 
     {% if not is_selector %}
 
-    {% set setting_slot_area_len = 3.5*len %}
-    {% set setting_slot1_x = px %}
-    {% set setting_slot2_x = px + setting_slot_area_len/2 - len/2 %}
-    {% set setting_slot3_x = px + setting_slot_area_len - len %}
+        {% set setting_slot_area_len = 3.5*len %}
+        {% set setting_slot1_x = px %}
+        {% set setting_slot2_x = px + setting_slot_area_len/2 - len/2 %}
+        {% set setting_slot3_x = px + setting_slot_area_len - len %}
 
 
-    effectButtonType = {
-        name = "setting_storage_planet_icon"
-        quadTextureSprite = "GFX_bca_storage_icon"
-        position = { x = {{ setting_slot1_x }} y = {{ py }} }
-        size = { x = {{ len }} y = {{ len }} }
-        scale = {{ len / 45 }}
-        alwaysTransparent = no
-        effect = "bca_planet_setting_storage_world_icon"
-    }
-    {{
-    p.toggle_button(
-        name = "setting_storage_planet",
-        x = setting_slot1_x, y = py, len = len,
-        tex_prefix = "GFX_bca_button_standard",
-        effect_prefix = "bca_planet_setting_storage_world"
-    )
-    }}
-    effectButtonType = {
-        name = "setting_storage_arcology_icon"
-        quadTextureSprite = "GFX_bca_arcology_icon"
-        position = { x = {{ setting_slot2_x }} y = {{ py }} }
-        size = { x = {{ len }} y = {{ len }} }
-        scale = {{ len / 45 }}
-        alwaysTransparent = yes
-        effect = "bca_planet_setting_world_transform_candidate_arcology_project"
-    }
+        effectButtonType = {
+            name = "setting_storage_planet_icon"
+            quadTextureSprite = "GFX_bca_storage_icon"
+            position = { x = {{ setting_slot1_x }} y = {{ py }} }
+            size = { x = {{ len }} y = {{ len }} }
+            scale = {{ len / 45 }}
+            alwaysTransparent = no
+            effect = "bca_planet_setting_storage_world_icon"
+        }
+        {{
+            p.toggle_button(
+                name = "setting_storage_planet",
+                x = setting_slot1_x, y = py, len = len,
+                tex_prefix = "GFX_bca_button_standard",
+                effect_prefix = "bca_planet_setting_storage_world"
+            )
+        }}
+        effectButtonType = {
+            name = "setting_storage_arcology_icon"
+            quadTextureSprite = "GFX_bca_arcology_icon"
+            position = { x = {{ setting_slot2_x }} y = {{ py }} }
+            size = { x = {{ len }} y = {{ len }} }
+            scale = {{ len / 45 }}
+            alwaysTransparent = yes
+            effect = "bca_planet_setting_world_transform_candidate_arcology_project"
+        }
 
-    effectButtonType = {
-        name = "setting_world_transform_candidate_arcology_project"
-        position = { x = {{ setting_slot2_x }} y = {{ py }} }
-        size = { x = {{ len }} y = {{ len }} }
-        scale = {{ len / 77 }}
-        quadTextureSprite = "GFX_tiling_button_standard"
-        effect = "bca_planet_setting_world_transform_candidate_arcology_project"
-        tooltipText = "BCA_PLANET_SETTING_arcology_project_candidate"
-        delayedTooltipText = "BCA_PLANET_SETTING_arcology_project_candidate_DESC"
-    }
+        effectButtonType = {
+            name = "setting_world_transform_candidate_arcology_project"
+            position = { x = {{ setting_slot2_x }} y = {{ py }} }
+            size = { x = {{ len }} y = {{ len }} }
+            scale = {{ len / 77 }}
+            quadTextureSprite = "GFX_tiling_button_standard"
+            effect = "bca_planet_setting_world_transform_candidate_arcology_project"
+            tooltipText = "BCA_PLANET_SETTING_arcology_project_candidate"
+            delayedTooltipText = "BCA_PLANET_SETTING_arcology_project_candidate_DESC"
+        }
 
-    effectButtonType = {
-        name = "setting_world_transform_candidate_cancel"
-        position = { x = {{ px + setting_slot_area_len - len/2 }} y = {{ py - 5 - len/2 }} }
-        size = { x = {{ len/2 }} y = {{ len/2 }} }
-        scale = {{ (len/2) / 38 }}
-        quadTextureSprite = "GFX_close_square"
-        effect = "bca_planet_setting_world_transform_candidate_cancel"
-        tooltipText = "BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC"
-    }
-
-
-    {{
-        p.toggle_button(
-            name = "setting_detailed_district",
-            x = setting_slot3_x, y = py, len = len,
-            tex_prefix = "GFX_bca_more_zone_setting",
-            effect_prefix = "bca_planet_setting_detailed_secondary_districts_regular",
-            tex_len = 29
-        )
-    }}
+        effectButtonType = {
+            name = "setting_world_transform_candidate_cancel"
+            position = { x = {{ px + setting_slot_area_len - len/2 }} y = {{ py - 5 - len/2 }} }
+            size = { x = {{ len/2 }} y = {{ len/2 }} }
+            scale = {{ (len/2) / 38 }}
+            quadTextureSprite = "GFX_close_square"
+            effect = "bca_planet_setting_world_transform_candidate_cancel"
+            tooltipText = "BCA_PLANET_SETTING_WORLD_TRANSFORM_CANDIDATE_CANCEL_DESC"
+        }
 
 
-    effectButtonType = {
-        name = "{{ name }}_zone_name_text"
-        quadTextureSprite = "GFX_button_light"
-
-        position = { x = {{ px + len }} y = {{ py }} }
-        size = { x = {{ len * 2.5 }} y = {{ len }} }
-        font = "cg_16b"
-        buttonText = "BCA_ZONE_SELECTION_{{ zone_slot }}"
-
-        tooltipText = "BCA_ZONE_SELECTION_TOOLTIP"
-        delayedTooltipText = "BCA_ZONE_SELECTION_DESC"
-        effect = "bca_planet_setting_detailed_secondary_districts_advanced_enable"
-    }
+        {{
+            p.toggle_button(
+                name = "setting_detailed_district",
+                x = setting_slot3_x, y = py, len = len,
+                tex_prefix = "GFX_bca_more_zone_setting",
+                effect_prefix = "bca_planet_setting_detailed_secondary_districts_regular",
+                tex_len = 29
+            )
+        }}
 
 
+        effectButtonType = {
+            name = "{{ name }}_zone_name_text"
+            quadTextureSprite = "GFX_button_light"
 
-    effectButtonType = {
-        name = "cancel_detailed_secondary_districts_advanced"
-        quadTextureSprite = "GFX_button_light"
+            position = { x = {{ px + len }} y = {{ py }} }
+            size = { x = {{ len * 2.5 }} y = {{ len }} }
+            font = "cg_16b"
+            buttonText = "BCA_ZONE_SELECTION_{{ zone_slot }}"
 
-        position = { x = {{ px }} y = {{ py }} }
-        size = { x = {{ len * 3.5 }} y = {{ len }} }
-        font = "cg_16b"
-        buttonText = "BCA_ZONE_USE_UNIFORM_SECONDARY_DISTRICT"
-
-        tooltipText = "BCA_ZONE_USE_UNIFORM_SECONDARY_DISTRICT_DESC"
-        effect = "bca_planet_setting_detailed_secondary_districts_advanced_disable"
-    }
+            tooltipText = "BCA_ZONE_SELECTION_TOOLTIP"
+            delayedTooltipText = "BCA_ZONE_SELECTION_DESC"
+            effect = "bca_planet_setting_detailed_secondary_districts_advanced_enable"
+        }
 
 
 
-    {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
+        effectButtonType = {
+            name = "cancel_detailed_secondary_districts_advanced"
+            quadTextureSprite = "GFX_button_light"
+
+            position = { x = {{ px }} y = {{ py }} }
+            size = { x = {{ len * 3.5 }} y = {{ len }} }
+            font = "cg_16b"
+            buttonText = "BCA_ZONE_USE_UNIFORM_SECONDARY_DISTRICT"
+
+            tooltipText = "BCA_ZONE_USE_UNIFORM_SECONDARY_DISTRICT_DESC"
+            effect = "bca_planet_setting_detailed_secondary_districts_advanced_disable"
+        }
+
+
+
+        {{ d.dynamic_district_icon(name, px, py, len, zone_slot) }}
 
 
     {% else %}
 
 
-    {% for option_count in range(1, 16) %}
-    effectButtonType = {
-        name = "{{ name }}_zone_select_frame_{{ option_count }}"
-        quadTextureSprite = "GFX_dark_green_frame_area"
-        position = { x = {{ px + len }} y = {{ py }} }
-        size = { x = {{ zone_setting_selector_length(len, option_count) }} y = {{ len }} }
-        effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
-        alwaysTransparent = yes
-    }
-    {% endfor %}
+        {% for option_count in range(1, 16) %}
+            effectButtonType = {
+                name = "{{ name }}_zone_select_frame_{{ option_count }}"
+                quadTextureSprite = "GFX_dark_green_frame_area"
+                position = { x = {{ px + len }} y = {{ py }} }
+                size = { x = {{ zone_setting_selector_length(len, option_count) }} y = {{ len }} }
+                effect = "bca_planet_setting_selector_frame_{{ zone_slot }}_{{ option_count }}"
+                alwaysTransparent = yes
+            }
+        {% endfor %}
 
-    {% for i in range(1,6) %}
-    {% set selector_slot = "s"~i %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px + len * i,
-            py = py,
-            len = len,
-            text = "bca_zone_icon_selector_" ~ selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for i in range(1,6) %}
+            {% set selector_slot = "s"~i %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px + len * i,
+                    py = py,
+                    len = len,
+                    text = "bca_zone_icon_selector_" ~ selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
 
-    {% set half_len = len/2 %}
+        {% set half_len = len/2 %}
 
-    {% for i in range(10) %}
-    {% set selector_index = i + 5 + 1 %}
-    {% set selector_slot = "s"~selector_index %}
-        {{
-        d.zone_icon(
-            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-            px = px + len * 6 + i//2 * half_len,
-            py = py + i%2 * half_len,
-            len = half_len,
-            text = "bca_zone_icon_selector_"~selector_slot,
-            effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
-        )
-        }}
-    {% endfor %}
+        {% for i in range(10) %}
+            {% set selector_index = i + 5 + 1 %}
+            {% set selector_slot = "s"~selector_index %}
+            {{
+                d.zone_icon(
+                    name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+                    px = px + len * 6 + i//2 * half_len,
+                    py = py + i%2 * half_len,
+                    len = half_len,
+                    text = "bca_zone_icon_selector_"~selector_slot,
+                    effect = "bca_planet_setting_" ~ zone_slot ~"_"~ selector_slot
+                )
+            }}
+        {% endfor %}
 
-{#    {% for i in range(5) %}#}
-{#        {{#}
-{#        d.dynamic_zone_icon_overlay(#}
-{#            name = "zone_selector" ~ (i + 1) ~ "_" ~ name,#}
-{#            px = px + len * (i + 1),#}
-{#            py = py,#}
-{#            len = len,#}
-{#            effect_suffix = zone_slot ~ "_s" ~ (i + 1)#}
-{#        )#}
-{#        }}#}
-{#    {% endfor %}#}
-{##}
-{#    {% set half_len = len/2 %}#}
-{##}
-{#    {% for i in range(10) %}#}
-{#        {{#}
-{#        d.dynamic_zone_icon_overlay(#}
-{#            name = "zone_selector" ~ (i + 5 + 1) ~ "_" ~ name,#}
-{#            px = px + len * 6 + i//2 * half_len,#}
-{#            py = py + i%2 * half_len,#}
-{#            len = half_len,#}
-{#            effect_suffix = zone_slot ~ "_s" ~ (i + 5 + 1)#}
-{#        )#}
-{#        }}#}
-{#    {% endfor %}#}
+        {#    {% for i in range(5) %}#}
+        {#        {{#}
+        {#        d.dynamic_zone_icon_overlay(#}
+        {#            name = "zone_selector" ~ (i + 1) ~ "_" ~ name,#}
+        {#            px = px + len * (i + 1),#}
+        {#            py = py,#}
+        {#            len = len,#}
+        {#            effect_suffix = zone_slot ~ "_s" ~ (i + 1)#}
+        {#        )#}
+        {#        }}#}
+        {#    {% endfor %}#}
+        {##}
+        {#    {% set half_len = len/2 %}#}
+        {##}
+        {#    {% for i in range(10) %}#}
+        {#        {{#}
+        {#        d.dynamic_zone_icon_overlay(#}
+        {#            name = "zone_selector" ~ (i + 5 + 1) ~ "_" ~ name,#}
+        {#            px = px + len * 6 + i//2 * half_len,#}
+        {#            py = py + i%2 * half_len,#}
+        {#            len = half_len,#}
+        {#            effect_suffix = zone_slot ~ "_s" ~ (i + 5 + 1)#}
+        {#        )#}
+        {#        }}#}
+        {#    {% endfor %}#}
     {% endif %}
 {%- endmacro %}
 
 {% macro slider_bar(name, x, y, len, height, effect_prefix, count = 20) -%}
-{% set margin = 3 %}
-{% set bar_len = len - margin * 0.5 %}
-{% set button_len = bar_len//count %}
-{% set button_height = height - margin * 2 %}
-{% set button_begin_x = (len - button_len * count)/2 %}
-{% set button_begin_y = margin %}
-containerWindowType = {
-    name = "{{ name }}_slider"
-    position = { x = {{ x }} y = {{ y }} }
-    size = { width = {{ len }} height = {{ height }} }
-    background = {
-        name = "districts_window_background"
-        spriteType = "GFX_interface_list_dark"
-        alwaysTransparent = yes
-    }
+    {% set margin = 3 %}
+    {% set bar_len = len - margin * 0.5 %}
+    {% set button_len = bar_len//count %}
+    {% set button_height = height - margin * 2 %}
+    {% set button_begin_x = (len - button_len * count)/2 %}
+    {% set button_begin_y = margin %}
+    containerWindowType = {
+        name = "{{ name }}_slider"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { width = {{ len }} height = {{ height }} }
+        background = {
+            name = "districts_window_background"
+            spriteType = "GFX_interface_list_dark"
+            alwaysTransparent = yes
+        }
 
-    {% for i in range(count) %}
-        effectButtonType = {
-            name = "{{ name }}_bar_{{ i }}_1"
-            position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
-            size = { x = {{ button_len }} y = {{ button_height }} }
-            quadTextureSprite = "GFX_primary_district_bar_built"
-            effect = "bca_planet_setting_slider_primary_district_built_{{ i + 1 }}"
-        }
-    {% endfor %}
-    {% for i in range(count) %}
-        effectButtonType = {
-            name = "{{ name }}_bar_{{ i }}_3"
-            position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
-            size = { x = {{ button_len }} y = {{ button_height }} }
-            quadTextureSprite = "GFX_secondary_district_bar_built"
-            effect = "bca_planet_setting_slider_secondary_district_built_{{ i + 1 }}"
-        }
-    {% endfor %}
-    {% for i in range(count) %}
-        effectButtonType = {
-            name = "{{ name }}_bar_{{ i }}_2"
-            position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
-            size = { x = {{ button_len }} y = {{ button_height }} }
-            quadTextureSprite = "GFX_primary_district_bar_plan"
-            effect = "bca_planet_setting_slider_primary_district_plan_{{ i + 1 }}"
-        }
-    {% endfor %}
-    {% for i in range(count) %}
-        effectButtonType = {
-            name = "{{ name }}_bar_{{ i }}4"
-            position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
-            size = { x = {{ button_len }} y = {{ button_height }} }
-            quadTextureSprite = "GFX_secondary_district_bar_plan"
-            effect = "bca_planet_setting_slider_secondary_district_plan_{{ i + 1 }}"
-        }
-    {% endfor %}
-}
+        {% for i in range(count) %}
+            effectButtonType = {
+                name = "{{ name }}_bar_{{ i }}_1"
+                position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
+                size = { x = {{ button_len }} y = {{ button_height }} }
+                quadTextureSprite = "GFX_primary_district_bar_built"
+                effect = "bca_planet_setting_slider_primary_district_built_{{ i + 1 }}"
+            }
+        {% endfor %}
+        {% for i in range(count) %}
+            effectButtonType = {
+                name = "{{ name }}_bar_{{ i }}_3"
+                position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
+                size = { x = {{ button_len }} y = {{ button_height }} }
+                quadTextureSprite = "GFX_secondary_district_bar_built"
+                effect = "bca_planet_setting_slider_secondary_district_built_{{ i + 1 }}"
+            }
+        {% endfor %}
+        {% for i in range(count) %}
+            effectButtonType = {
+                name = "{{ name }}_bar_{{ i }}_2"
+                position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
+                size = { x = {{ button_len }} y = {{ button_height }} }
+                quadTextureSprite = "GFX_primary_district_bar_plan"
+                effect = "bca_planet_setting_slider_primary_district_plan_{{ i + 1 }}"
+            }
+        {% endfor %}
+        {% for i in range(count) %}
+            effectButtonType = {
+                name = "{{ name }}_bar_{{ i }}4"
+                position = { x = {{ button_begin_x + i * button_len }} y = {{ button_begin_y }} }
+                size = { x = {{ button_len }} y = {{ button_height }} }
+                quadTextureSprite = "GFX_secondary_district_bar_plan"
+                effect = "bca_planet_setting_slider_secondary_district_plan_{{ i + 1 }}"
+            }
+        {% endfor %}
+    }
 {%- endmacro %}
 
 {% macro main_zone_secondary_district_setting(district_len, px, py, len, is_selector) -%}
 
-        {{
+    {{
         main_secondary_zone_setting_unit(
             name = 'z345',
             px = px,
@@ -434,26 +434,26 @@ containerWindowType = {
             len = len,
             is_selector = is_selector
         )
-        }}
-        {% if is_selector %}
+    }}
+    {% if is_selector %}
 
-        {% endif %}
-        {% if not is_selector %}
+    {% endif %}
+    {% if not is_selector %}
         {% set x1 = px %}
         {% set y1 = py + len + 15 %}
         {% set full_len = len * 3.5 %}
 
         {% set button_len_1 = len * 0.65 %}
         {{
-        p.toggle_button_text(
-            name = "auto_district_management",
-            x = x1, y = y1,
-            sx = button_len_1, sy = len/2,
-            text = "BCA_PLANET_SETTING_AUTO_DISTRICT_MANAGEMENT",
-            tooltip = "BCA_PLANET_SETTING_AUTO_DISTRICT_MANAGEMENT_DESC",
-            tex_prefix = "GFX_bca_button_standard",
-            effect_prefix = "bca_planet_setting_auto_district_management"
-        )
+            p.toggle_button_text(
+                name = "auto_district_management",
+                x = x1, y = y1,
+                sx = button_len_1, sy = len/2,
+                text = "BCA_PLANET_SETTING_AUTO_DISTRICT_MANAGEMENT",
+                tooltip = "BCA_PLANET_SETTING_AUTO_DISTRICT_MANAGEMENT_DESC",
+                tex_prefix = "GFX_bca_button_standard",
+                effect_prefix = "bca_planet_setting_auto_district_management"
+            )
         }}
         effectButtonType = {
             name = "main_district_ratio"
@@ -484,16 +484,16 @@ containerWindowType = {
             effect = "bca_planet_setting_primary_district_count_inc"
         }
         {{
-        slider_bar(
-            name = "main_zone_slider",
-            x = x1,
-            y = y1 + len/2,
-            len = len * 3.5,
-            height = len / 2,
-            effect_prefix = "bca_planet_setting_main_zone_slider"
-        )
+            slider_bar(
+                name = "main_zone_slider",
+                x = x1,
+                y = y1 + len/2,
+                len = len * 3.5,
+                height = len / 2,
+                effect_prefix = "bca_planet_setting_main_zone_slider"
+            )
         }}
-        {% endif %}
+    {% endif %}
 {%- endmacro %}
 {% macro main_zone_setting(district_len, is_selector) -%}
     {% set len = 50 %}
@@ -501,35 +501,35 @@ containerWindowType = {
     {% set y_pos = 40 %}
 
     {{
-    main_zone_setting_unit(
-        name = 'z1',
-        px = x_pos,
-        py = y_pos,
-        len = len,
-        zone_slot = "z1",
-        is_selector = is_selector
-    )
+        main_zone_setting_unit(
+            name = 'z1',
+            px = x_pos,
+            py = y_pos,
+            len = len,
+            zone_slot = "z1",
+            is_selector = is_selector
+        )
     }}
 
     {{
-    main_zone_setting_unit(
-        name = 'z2',
-        px = x_pos,
-        py = y_pos + len + 15,
-        len = len,
-        zone_slot = "z2",
-        is_selector = is_selector
-    )
+        main_zone_setting_unit(
+            name = 'z2',
+            px = x_pos,
+            py = y_pos + len + 15,
+            len = len,
+            zone_slot = "z2",
+            is_selector = is_selector
+        )
     }}
 
     {{
-    main_zone_secondary_district_setting(
-        district_len = district_len,
-        px = x_pos + len * 3.5 + 15,
-        py = y_pos,
-        len = len,
-        is_selector = is_selector
-    )
+        main_zone_secondary_district_setting(
+            district_len = district_len,
+            px = x_pos + len * 3.5 + 15,
+            py = y_pos,
+            len = len,
+            is_selector = is_selector
+        )
     }}
 
 
@@ -544,37 +544,35 @@ containerWindowType = {
 
 
     {{
-    secondary_zone_setting_unit(
-        name = 'z3',
-        px = x_pos - selector_spacing - len,
-        py = y_pos,
-        len = len,
-        zone_slot = "z3",
-        is_selector = is_selector
-    )
+        secondary_zone_setting_unit(
+            name = 'z3',
+            px = x_pos - selector_spacing - len,
+            py = y_pos,
+            len = len,
+            zone_slot = "z3",
+            is_selector = is_selector
+        )
     }}
 
     {{
-    secondary_zone_setting_unit(
-        name = 'z4',
-        px = x_pos,
-        py = y_pos,
-        len = len,
-        zone_slot = "z4",
-        is_selector = is_selector
-    )
+        secondary_zone_setting_unit(
+            name = 'z4',
+            px = x_pos,
+            py = y_pos,
+            len = len,
+            zone_slot = "z4",
+            is_selector = is_selector
+        )
     }}
 
     {{
-    secondary_zone_setting_unit(
-        name = 'z5',
-        px = x_pos +  len + selector_spacing,
-        py = y_pos,
-        len = len,
-        zone_slot = "z5",
-        is_selector = is_selector
-    )
+        secondary_zone_setting_unit(
+            name = 'z5',
+            px = x_pos +  len + selector_spacing,
+            py = y_pos,
+            len = len,
+            zone_slot = "z5",
+            is_selector = is_selector
+        )
     }}
 {%- endmacro %}
-
-

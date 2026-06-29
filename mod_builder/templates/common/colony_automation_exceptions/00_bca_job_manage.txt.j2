@@ -1,43 +1,43 @@
 {#
-  Phase 5a: job_changes 自动化块模板
-  为每个调控岗位生成 automation block（含档位 job_changes）
+Phase 5a: job_changes 自动化块模板
+为每个调控岗位生成 automation block（含档位 job_changes）
 #}
 {% set steps = job_regulation_config.gear_steps %}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
 {% for entry in regulated %}
-automate_job_{{ entry.job }} = {
-    should_ai_use_job_micro = no
+    automate_job_{{ entry.job }} = {
+        should_ai_use_job_micro = no
 
-    available = {
-        exists = owner
-        bca_has_minerals_to_build = yes
-        owner = { has_country_flag = bca_jr_enabled }
-        owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
-    }
-
-    emergency = yes
-    category = "planet_automation_job_management"
-
-    job_changes = {
-{% for step in steps %}
-        {{ entry.job }}_inc_g{{ step }} = {
-            available = {
-                has_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
-            }
-            job = {{ entry.job }}
-            amount = {{ step }}
+        available = {
+            exists = owner
+            bca_has_minerals_to_build = yes
+            owner = { has_country_flag = bca_jr_enabled }
+            owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
         }
 
-        {{ entry.job }}_dec_g{{ step }} = {
-            available = {
-                has_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}
-            }
-            job = {{ entry.job }}
-            amount = -{{ step }}
+        emergency = yes
+        category = "planet_automation_job_management"
+
+        job_changes = {
+            {% for step in steps %}
+                {{ entry.job }}_inc_g{{ step }} = {
+                    available = {
+                        has_carrier_flag = bca_jr_inc_{{ entry.job }}_g{{ step }}
+                    }
+                    job = {{ entry.job }}
+                    amount = {{ step }}
+                }
+
+                {{ entry.job }}_dec_g{{ step }} = {
+                    available = {
+                        has_carrier_flag = bca_jr_dec_{{ entry.job }}_g{{ step }}
+                    }
+                    job = {{ entry.job }}
+                    amount = -{{ step }}
+                }
+            {% endfor %}
         }
-{% endfor %}
     }
-}
 
 {% endfor %}

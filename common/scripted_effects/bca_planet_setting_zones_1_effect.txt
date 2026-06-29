@@ -4,6 +4,8 @@
 # Edit the corresponding source template or upstream config instead.
 # ====================================================================
 # Source template: common/scripted_effects/bca_planet_setting_zones_1_effect.txt.j2
+
+
 bca_clear_designation_flag = {
     remove_carrier_flag = bca_pf_ps_designation_col_city
     remove_carrier_flag = bca_pf_ps_designation_col_mining
@@ -106,6 +108,7 @@ bca_clear_designation_flag = {
     remove_carrier_flag = bca_pf_ps_designation_col_capital_nomad_trade
     remove_carrier_flag = bca_pf_ps_designation_col_nomad_trophy_machine
 }
+
 
 bca_designation_sync_with_system = {
     bca_clear_designation_flag = yes
@@ -511,6 +514,7 @@ bca_designation_sync_with_system = {
     }
 }
 
+
 bca_designation_sync_with_prev = {
     if = {
         limit = {  has_carrier_flag = bca_pf_ps_designation_col_city }
@@ -914,12 +918,14 @@ bca_designation_sync_with_prev = {
     }
 }
 
+
 bca_helper_temp_num_zones_subtract_one = {
     subtract_variable = {
         which = temp_num_zones
         value = 1
     }
 }
+
 
 bca_secondary_zone_setting_set_by_current_zones_helper = {
     if = {
@@ -939,7 +945,6 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
             parameters = { type = $DISTRICT$ }
             variable = bca_ps_plan_district_count_z3
         }
-
         subtract_variable = {
             which = temp_num_zones
             value = 1
@@ -962,7 +967,6 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
             parameters = { type = $DISTRICT$ }
             variable = bca_ps_plan_district_count_z4
         }
-
         subtract_variable = {
             which = temp_num_zones
             value = 1
@@ -985,7 +989,6 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
             parameters = { type = $DISTRICT$ }
             variable = bca_ps_plan_district_count_z5
         }
-
         subtract_variable = {
             which = temp_num_zones
             value = 1
@@ -993,22 +996,20 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
     }
 }
 
+
 bca_secondary_zone_setting_set_by_current_zones = {
-optimize_memory
-hidden_effect = {
-    bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z3
-    }
-
-    bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z4
-    }
-
-    bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z5
-    }
-
-    bca_set_secondary_district_type_flag = yes
+    optimize_memory
+    hidden_effect = {
+        bca_planet_setting_remove_current_selected_zone = {
+            ZONE_SLOT = z3
+        }
+        bca_planet_setting_remove_current_selected_zone = {
+            ZONE_SLOT = z4
+        }
+        bca_planet_setting_remove_current_selected_zone = {
+            ZONE_SLOT = z5
+        }
+        bca_set_secondary_district_type_flag = yes
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -4203,39 +4204,39 @@ hidden_effect = {
                 }
             }
         }
-    if = {
-        limit = {
-            NOT = { has_carrier_flag = tp_zone_processed_z3 }
+        if = {
+            limit = {
+                NOT = { has_carrier_flag = tp_zone_processed_z3 }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 0
+            }
         }
-        set_variable = {
-            which = bca_ps_plan_district_count_z3
-            value = 0
+        remove_carrier_flag = tp_zone_processed_z3
+        if = {
+            limit = {
+                NOT = { has_carrier_flag = tp_zone_processed_z4 }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 0
+            }
         }
+        remove_carrier_flag = tp_zone_processed_z4
+        if = {
+            limit = {
+                NOT = { has_carrier_flag = tp_zone_processed_z5 }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 0
+            }
+        }
+        remove_carrier_flag = tp_zone_processed_z5
+        clear_variable = temp_num_zones
+        bca_clean_flags_zone_selector_secondary_district = yes
     }
-    remove_carrier_flag = tp_zone_processed_z3
-    if = {
-        limit = {
-            NOT = { has_carrier_flag = tp_zone_processed_z4 }
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z4
-            value = 0
-        }
-    }
-    remove_carrier_flag = tp_zone_processed_z4
-    if = {
-        limit = {
-            NOT = { has_carrier_flag = tp_zone_processed_z5 }
-        }
-        set_variable = {
-            which = bca_ps_plan_district_count_z5
-            value = 0
-        }
-    }
-    remove_carrier_flag = tp_zone_processed_z5
-    clear_variable = temp_num_zones
-    bca_clean_flags_zone_selector_secondary_district = yes
-}
 }
 
 
@@ -4272,16 +4273,16 @@ bca_primary_zone_setting_set_by_current_zones_helper = {
         bca_helper_temp_num_zones_subtract_one = yes
     }
 }
+
+
 bca_primary_zone_setting_set_by_current_zones = {
-hidden_effect = {
-    bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z1
-    }
-
-    bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z2
-    }
-
+    hidden_effect = {
+        bca_planet_setting_remove_current_selected_zone = {
+            ZONE_SLOT = z1
+        }
+        bca_planet_setting_remove_current_selected_zone = {
+            ZONE_SLOT = z2
+        }
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -4962,11 +4963,10 @@ hidden_effect = {
                 }
             }
         }
-    remove_carrier_flag = tp_zone_processed_z1
-    remove_carrier_flag = tp_zone_processed_z2
-    clear_variable = temp_num_zones
-
-}
+        remove_carrier_flag = tp_zone_processed_z1
+        remove_carrier_flag = tp_zone_processed_z2
+        clear_variable = temp_num_zones
+    }
 }
 
 
@@ -5029,6 +5029,7 @@ bca_sync_primary_zone_selection_match = {
         }
     }
 }
+
 
 bca_sync_secondary_zone_selection_match = {
     optimize_memory
@@ -5128,6 +5129,7 @@ bca_sync_secondary_zone_selection_match = {
         }
     }
 }
+
 
 bca_sync_primary_zone_selection_fill_slot = {
     optimize_memory
@@ -5672,6 +5674,7 @@ bca_sync_primary_zone_selection_fill_slot = {
         }
     }
 }
+
 
 bca_sync_secondary_zone_selection_fill_slot = {
     optimize_memory
@@ -7729,6 +7732,7 @@ bca_sync_secondary_zone_selection_fill_slot = {
     }
 }
 
+
 bca_sync_primary_zone_selection_if_overplanned = {
     optimize_memory
     hidden_effect = {
@@ -7771,7 +7775,6 @@ bca_sync_primary_zone_selection_if_overplanned = {
         bca_sync_primary_zone_selection_match = { ZONE = zone_ark_forever_cruise_city_crew }
         bca_sync_primary_zone_selection_match = { ZONE = zone_ark_forever_cruise_city_mixed }
         bca_sync_primary_zone_selection_match = { ZONE = zone_ark_sacred_path_pilgrims }
-
         if = {
             limit = {
                 NOT = { bca_has_zone_plan = { ZONE_SLOT = z1 } }
@@ -7781,9 +7784,8 @@ bca_sync_primary_zone_selection_if_overplanned = {
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z1 }
             bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z1
-    }
-
+                ZONE_SLOT = z1
+            }
             bca_sync_primary_zone_selection_fill_slot = {
                 ZONE_SLOT = z1
             }
@@ -7798,15 +7800,13 @@ bca_sync_primary_zone_selection_if_overplanned = {
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z2 }
             bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z2
-    }
-
+                ZONE_SLOT = z2
+            }
             bca_sync_primary_zone_selection_fill_slot = {
                 ZONE_SLOT = z2
             }
         }
         remove_carrier_flag = tp_zone_sync_rewrite_z2
-
         clear_variable = temp_num_zones
         clear_variable = bca_num_free_zones_d0
         clear_variable = tp_zone_sync_primary_unmatched_zone_urban
@@ -7848,6 +7848,7 @@ bca_sync_primary_zone_selection_if_overplanned = {
     }
 }
 
+
 bca_sync_secondary_zone_selection_if_overplanned = {
     optimize_memory
     hidden_effect = {
@@ -7865,7 +7866,6 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         }
         add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d2 }
         add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d3 }
-
         bca_sync_secondary_zone_selection_match = { ZONE = zone_subterranean_urban }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_agrarian_anglers }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_arcology }
@@ -7980,7 +7980,6 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_forever_cruise_passenger }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_shipwright }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_ark_forever_cruise_crew }
-
         if = {
             limit = {
                 NOT = { bca_has_zone_plan = { ZONE_SLOT = z3 } }
@@ -7990,9 +7989,8 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z3 }
             bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z3
-    }
-
+                ZONE_SLOT = z3
+            }
             set_carrier_flag = tp_secondary_zone_selection_synced
             bca_sync_secondary_zone_selection_fill_slot = {
                 ZONE_SLOT = z3
@@ -8008,9 +8006,8 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z4 }
             bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z4
-    }
-
+                ZONE_SLOT = z4
+            }
             set_carrier_flag = tp_secondary_zone_selection_synced
             bca_sync_secondary_zone_selection_fill_slot = {
                 ZONE_SLOT = z4
@@ -8026,16 +8023,14 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z5 }
             bca_planet_setting_remove_current_selected_zone = {
-        ZONE_SLOT = z5
-    }
-
+                ZONE_SLOT = z5
+            }
             set_carrier_flag = tp_secondary_zone_selection_synced
             bca_sync_secondary_zone_selection_fill_slot = {
                 ZONE_SLOT = z5
             }
         }
         remove_carrier_flag = tp_zone_sync_rewrite_z5
-
         if = {
             limit = {
                 OR = {
@@ -8046,7 +8041,6 @@ bca_sync_secondary_zone_selection_if_overplanned = {
             }
             set_carrier_flag = bca_pf_ps_zone_selection_matched_zx
         }
-
         if = {
             limit = { has_carrier_flag = tp_secondary_zone_selection_synced }
             bca_set_zx_for_identical_secondary_zone_plan = yes
@@ -8181,1004 +8175,1003 @@ bca_set_zx_for_identical_secondary_zone_plan = {
     bca_planet_setting_remove_current_selected_zone = {
         ZONE_SLOT = zx
     }
+    if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_urban
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_urban
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_urban
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_urban
         if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_urban
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_urban
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_urban
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_subterranean_urban
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_urban
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_subterranean_urban
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_subterranean_urban
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_agrarian_anglers
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_agrarian_anglers
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_subterranean_urban
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_trade
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_trade
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_trade
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_agrarian_anglers
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_trade
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_waystation_trade
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_waystation_trade
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_agrarian_anglers
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_trade
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_trade
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_trade
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_trade
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_industrial
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_industrial
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_industrial
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_industrial
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_foundry
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_foundry
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_foundry
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_foundry
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_eco
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_eco
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_factory
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_factory
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_factory
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_factory
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_research
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_research
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_research
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_trade_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_research
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_research
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_research
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_trade_hive
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_physics
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_physics
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_physics
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_waystation_trade
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_physics
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_physics
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_physics
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_reactor_physics
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_reactor_physics
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_waystation_trade
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_industrial
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_industrial
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_industrial
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_industrial
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_society
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_society
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_society
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_society
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_farm_society
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_farm_society
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_engineering
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_engineering
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_engineering
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_engineering
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_engineering
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_engineering
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_engineering
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_engineering
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_bureaucrat
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_bureaucrat
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_bureaucrat
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_bureaucrat
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_unity
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_unity
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_research_unity
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_research_unity
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_unity
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_unity
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_unity
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_industrial_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_unity
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_industrial_hive
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_foundry
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_foundry
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_foundry
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_foundry
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_priest
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_priest
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_priest
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_priest
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_spiritual_retreat
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_spiritual_retreat
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_nexus
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_fortress
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_fortress
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_fortress
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_fortress
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_arcology
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_arcology
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_zoo
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_zoo
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_zoo
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_zoo
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_zoo
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_zoo
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_culture_worker
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_culture_worker
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_culture_worker
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_foundry_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_culture_worker
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_grand_museum
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_grand_museum
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_foundry_hive
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_trophy_hunter
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_trophy_hunter
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_trophy_hunter
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_eco
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_trophy_hunter
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_hunting_ground
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_hunting_ground
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_eco
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_factory
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_factory
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_factory
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_factory
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_healthcare
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_healthcare
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_healthcare
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_healthcare
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_restoration_enclave
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_restoration_enclave
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_duelist
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_duelist
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_duelist
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_duelist
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_proving_grounds
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_proving_grounds
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_energy
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_factory_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_betharian
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_factory_hive
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_research
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_research
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_research
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_research
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_minerals
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_harvest
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_harvest
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_research
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_food
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_ring_world
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_ring_world
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_food
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_food
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_research
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_rare_crystals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_rare_crystals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_rare_crystals
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_rare_crystals
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_rare_crystals
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_rare_crystals
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_volatile_motes
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_volatile_motes
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_volatile_motes
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_volatile_motes
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_volatile_motes
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_volatile_motes
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_exotic_gases
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_exotic_gases
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_exotic_gases
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_exotic_gases
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_exotic_gases
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_exotic_gases
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases_nexus
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases_nexus
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases_hive
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_shield_overloader
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_shield_overloader
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_angler
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_angler
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_angler
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_angler
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_anglers
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_anglers
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_hive
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_physics
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_physics
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_physics
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_physics
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_agrarian
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_agrarian
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_agrarian
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_agrarian
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_agrarian_urban
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_agrarian_urban
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_physics
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_hydroponics
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_hydroponics
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_hydroponics
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_physics
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_spawning
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_spawning
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_spawning
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_spawning
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_spawning_hive
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_spawning_hive
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_minerals
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_wilderness
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_wilderness
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_energy
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_wilderness
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_wilderness
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_physics_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_food
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_wilderness
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_wilderness
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_physics_hive
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_ark_reactor
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_ark_reactor
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_ark_reactor
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_reactor_physics
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_ark_reactor
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_engine_bypass
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_engine_bypass
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_reactor_physics
         }
-        else_if = {
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_society
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_society
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_society
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_society
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_missile
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_missile
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_missile
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_missile
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_missile_silos
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_missile_silos
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_gun
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_gun
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_gun
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_arcology
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_gun
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_ammunition_lines
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_ammunition_lines
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_arcology
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_laser
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_laser
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_laser
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_ring_world
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_laser
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_laser_capacitors
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_laser_capacitors
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_ring_world
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_fighter
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_fighter
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_fighter
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_nexus
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_fighter
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_flight_decks
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_flight_decks
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_nexus
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_passenger
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_passenger
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_passenger
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_society_hive
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_passenger
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_passenger
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_passenger
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_society_hive
         }
-        else_if = {
+        if = {
             limit = {
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_crew
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_crew
-                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_crew
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_farm_society
             }
-            set_carrier_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_crew
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_shipwright
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_shipwright
-            }
-            if = {
-                limit = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_crew
-                }
-                set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_crew
-            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_farm_society
         }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_engineering
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_engineering
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_engineering
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_engineering
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_arcology
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_arcology
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_engineering_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_engineering_hive
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_military_engineering
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_military_engineering
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_engineering
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_engineering
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_bureaucrat
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_bureaucrat
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_bureaucrat
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_bureaucrat
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_research_unity
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_research_unity
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_research_unity
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_research_unity
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_unity
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_unity
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_unity
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_unity
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_arcology
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_arcology
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_arcology
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_arcology
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_bio_trophy_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_bio_trophy_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_priest
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_priest
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_priest
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_priest
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_spiritual_retreat
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_spiritual_retreat
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_arcology
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_arcology
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_unity_spiritualist_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_unity_spiritualist_nexus
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_fortress
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_fortress
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_fortress
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_fortress
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_arcology
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_arcology
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_fortress_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_fortress_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_zoo
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_zoo
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_zoo
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_zoo
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_zoo
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_zoo
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_culture_worker
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_culture_worker
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_culture_worker
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_culture_worker
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_grand_museum
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_grand_museum
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_trophy_hunter
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_trophy_hunter
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_trophy_hunter
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_trophy_hunter
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_hunting_ground
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_hunting_ground
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_healthcare
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_healthcare
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_healthcare
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_healthcare
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_restoration_enclave
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_restoration_enclave
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_duelist
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_duelist
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_duelist
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_duelist
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_resort_proving_grounds
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_resort_proving_grounds
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_energy
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_betharian
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_betharian_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_betharian_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_minerals
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_hive
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_harvest
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_harvest
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_food
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_ring_world
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_ring_world
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_hive
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_food
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_food
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_rare_crystals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_rare_crystals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_rare_crystals
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_rare_crystals
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_rare_crystals
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_rare_crystals
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_rare_crystals_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_rare_crystals_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_volatile_motes
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_volatile_motes
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_volatile_motes
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_volatile_motes
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_volatile_motes
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_volatile_motes
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_volatile_motes_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_volatile_motes_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_exotic_gases
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_exotic_gases
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_exotic_gases
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_exotic_gases
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_exotic_gases
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_exotic_gases
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases_nexus
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases_nexus
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_exotic_gases_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_exotic_gases_hive
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_shield_overloader
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_shield_overloader
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_angler
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_angler
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_angler
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_angler
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_anglers
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_anglers
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_agrarian
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_agrarian
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_agrarian
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_agrarian
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_agrarian_urban
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_agrarian_urban
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_hydroponics
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_habitat_hydroponics
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_habitat_hydroponics
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_spawning
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_spawning
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_spawning
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_spawning
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_spawning_hive
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_spawning_hive
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_minerals
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_minerals_wilderness
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_minerals_wilderness
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_energy
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_wilderness
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_energy_wilderness
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_wilderness_food
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_food_wilderness
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_food_wilderness
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_ark_reactor
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_ark_reactor
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_ark_reactor
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_ark_reactor
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_engine_bypass
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_engine_bypass
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_missile
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_missile
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_missile
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_missile
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_missile_silos
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_missile_silos
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_gun
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_gun
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_gun
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_gun
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_ammunition_lines
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_ammunition_lines
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_laser
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_laser
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_laser
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_laser
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_laser_capacitors
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_laser_capacitors
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_fighter
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_fighter
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_fighter
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_fighter
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_flight_decks
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_flight_decks
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_passenger
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_passenger
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_passenger
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_passenger
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_passenger
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_passenger
+        }
+    }
+    else_if = {
+        limit = {
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_forever_cruise_crew
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_forever_cruise_crew
+            has_carrier_flag = bca_pf_ps_selected_zone_type_z5_forever_cruise_crew
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_zx_forever_cruise_crew
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_shipwright
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_shipwright
+        }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_forever_cruise_crew
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_forever_cruise_crew
+        }
+    }
     else = {
         set_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
 }
-

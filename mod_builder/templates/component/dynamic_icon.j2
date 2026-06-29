@@ -1,38 +1,38 @@
 {% macro district_icon_back(name, px, py, len, icon, display_effect) -%}
-			effectButtonType = {
-				name = "{{ name }}_district_icon_frame"
-				quadTextureSprite = "GFX_tiles_frame_extra_light"
-				position = { x = {{ px }} y = {{ py }} }
-				size = { x = {{ len }} y = {{ len }} }
-                effect = "{{ display_effect }}"
-                alwaysTransparent = yes
-			}
-			effectButtonType = {
-				name = "{{ name }}_district_icon"
-				spriteType = "{{ icon }}"
-				position = { x = {{ px + 1 }} y = {{ py + 1 }} }
-                scale = {{ (len - 2 ) / 77.0 }}
-                effect = "{{ display_effect }}"
-			}
-            effectButtonType = {
-                name = "{{ name }}_district_icon_mask"
-                position = { x = {{ px }} y = {{ py }} }
-                size = { x = {{ len }} y = {{ len }} }
-                quadTextureSprite = "GFX_dark_area"
-                alwaysTransparent = yes
-                effect = "{{ display_effect }}"
-            }
+    effectButtonType = {
+        name = "{{ name }}_district_icon_frame"
+        quadTextureSprite = "GFX_tiles_frame_extra_light"
+        position = { x = {{ px }} y = {{ py }} }
+        size = { x = {{ len }} y = {{ len }} }
+        effect = "{{ display_effect }}"
+        alwaysTransparent = yes
+    }
+    effectButtonType = {
+        name = "{{ name }}_district_icon"
+        spriteType = "{{ icon }}"
+        position = { x = {{ px + 1 }} y = {{ py + 1 }} }
+        scale = {{ (len - 2 ) / 77.0 }}
+        effect = "{{ display_effect }}"
+    }
+    effectButtonType = {
+        name = "{{ name }}_district_icon_mask"
+        position = { x = {{ px }} y = {{ py }} }
+        size = { x = {{ len }} y = {{ len }} }
+        quadTextureSprite = "GFX_dark_area"
+        alwaysTransparent = yes
+        effect = "{{ display_effect }}"
+    }
 {%- endmacro %}
 {% macro district_icon_overlay(name, px, py, len, icon, display_effect) -%}
-            {% set center_x = px + len / 2 %}
-            {% set center_y = py + len / 2 %}
-			effectButtonType = {
-				name = "{{ name }}_district_overlay_icon"
-				spriteType = "{{ icon }}"
-				position = { x = {{ px }} y = {{ py }} }
-				alwaysTransparent = yes
-                effect = "{{ display_effect }}"
-			}
+    {% set center_x = px + len / 2 %}
+    {% set center_y = py + len / 2 %}
+    effectButtonType = {
+        name = "{{ name }}_district_overlay_icon"
+        spriteType = "{{ icon }}"
+        position = { x = {{ px }} y = {{ py }} }
+        alwaysTransparent = yes
+        effect = "{{ display_effect }}"
+    }
 {%- endmacro %}
 {% macro district_icon(name, px, py, len, icon_back, icon_front, display_effect) -%}
 
@@ -42,26 +42,26 @@
 {%- endmacro %}
 
 {% macro dynamic_resource_icon_overlay(name, px, py, len, effect_suffix) -%}
-{{ district_icon_overlay(name, px, py, len,
- "GFX_district_research",
- "bca_planet_setting_zone_icon_research_" ~ effect_suffix
- ) }}
-{{ district_icon_overlay(name, px, py, len,
- "GFX_district_physics",
- "bca_planet_setting_zone_icon_physics_" ~ effect_suffix
- ) }}
-{{ district_icon_overlay(name, px, py, len,
-"GFX_district_society",
-"bca_planet_setting_zone_icon_society_" ~ effect_suffix
-) }}
-{{ district_icon_overlay(name, px, py, len,
-"GFX_district_engineering",
-"bca_planet_setting_zone_icon_engineering_" ~ effect_suffix
-) }}
-{{ district_icon_overlay(name, px, py, len,
-"GFX_resource_energy_large",
-"bca_planet_setting_zone_icon_engineering_" ~ effect_suffix
-) }}
+    {{ district_icon_overlay(name, px, py, len,
+            "GFX_district_research",
+            "bca_planet_setting_zone_icon_research_" ~ effect_suffix
+    ) }}
+    {{ district_icon_overlay(name, px, py, len,
+            "GFX_district_physics",
+            "bca_planet_setting_zone_icon_physics_" ~ effect_suffix
+    ) }}
+    {{ district_icon_overlay(name, px, py, len,
+            "GFX_district_society",
+            "bca_planet_setting_zone_icon_society_" ~ effect_suffix
+    ) }}
+    {{ district_icon_overlay(name, px, py, len,
+            "GFX_district_engineering",
+            "bca_planet_setting_zone_icon_engineering_" ~ effect_suffix
+    ) }}
+    {{ district_icon_overlay(name, px, py, len,
+            "GFX_resource_energy_large",
+            "bca_planet_setting_zone_icon_engineering_" ~ effect_suffix
+    ) }}
 {%- endmacro %}
 
 
@@ -72,7 +72,7 @@
         size = { x = {{ len }} y = {{ len }} }
         quadTextureSprite = "GFX_tiled_window_transparent"
         {% if transparent %}
-        alwaysTransparent = yes
+            alwaysTransparent = yes
         {% endif %}
         buttonText = "{{ text }}"
         font = "cg_16b"
@@ -81,19 +81,19 @@
 {%- endmacro %}
 
 {% macro dynamic_district_icon(name, px, py, len, zone_slot) -%}
-{% set icon_back = "GFX_district_unknown" %}
-{{ district_icon_back(name, px, py, len, icon_back, "bca_planet_setting_zone_select_toggle_" ~ zone_slot ~ "_icon") }}
-{{
-zone_icon(
-        name = "zone_selector" ~ selector_slot ~ "_" ~ name,
-        px = px,
-        py = py,
-        len = len,
-        text = "bca_zone_icon_selection_"~zone_slot,
-        effect = "bca_planet_setting_"~zone_slot~"_icon",
-        transparent = True
-    )
-}}
+    {% set icon_back = "GFX_district_unknown" %}
+    {{ district_icon_back(name, px, py, len, icon_back, "bca_planet_setting_zone_select_toggle_" ~ zone_slot ~ "_icon") }}
+    {{
+        zone_icon(
+            name = "zone_selector" ~ selector_slot ~ "_" ~ name,
+            px = px,
+            py = py,
+            len = len,
+            text = "bca_zone_icon_selection_"~zone_slot,
+            effect = "bca_planet_setting_"~zone_slot~"_icon",
+            transparent = True
+        )
+    }}
 {%- endmacro %}
 
 {#{% macro dynamic_district_icon_secondary_root_setting(name, px, py, len, effect_suffix) -%}#}
@@ -101,4 +101,3 @@ zone_icon(
 {#{{ district_icon_back(name, px, py, len, icon_back, "bca_planet_setting_zone_select_toggle_" ~ effect_suffix) }}#}
 {#{{ dynamic_zone_icon_overlay(name, px, py, len, effect_suffix, transparent="yes") }}#}
 {#{%- endmacro %}#}
-

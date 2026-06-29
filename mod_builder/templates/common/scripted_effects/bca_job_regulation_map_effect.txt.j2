@@ -20,7 +20,7 @@
     "automated_efficiency_delta",
     "total_efficiency_delta",
     "closable_capacity_workforce",
-] %}
+    ] %}
 
 {# 生成三位有效数显示用变量：普通值、K、M 三套都预计算，scripted_loc 决定使用哪套。 #}
 bca_jr_prepare_display_number = {
@@ -73,20 +73,20 @@ bca_jr_locate_job_colonies = {
 
 bca_jr_locate_slot_job = {
     optimize_memory
-{% for entry in regulated %}
-    if = {
-        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }} }
-        bca_jr_locate_job_colonies = { JOB = {{ entry.job }} }
-    }
-{% endfor %}
+    {% for entry in regulated %}
+        if = {
+            limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }} }
+            bca_jr_locate_job_colonies = { JOB = {{ entry.job }} }
+        }
+    {% endfor %}
 }
 
 {# 清除所有槽位映射 flag #}
 bca_jr_clear_slot_mapping_for_slot = {
     optimize_memory
-{% for entry in regulated %}
-    remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }}
-{% endfor %}
+    {% for entry in regulated %}
+        remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }}
+    {% endfor %}
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
     clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
@@ -104,32 +104,32 @@ bca_jr_clear_slot_mapping_for_slot = {
     clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta
     clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta
     clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce
-{% for number in display_numbers %}
-    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_m
-{% endfor %}
-{% for resource in resources %}
-    set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = 0 }
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_m
-{% endfor %}
+    {% for number in display_numbers %}
+        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_int
+        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_one
+        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_two
+        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_k
+        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_m
+    {% endfor %}
+    {% for resource in resources %}
+        set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = 0 }
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_int
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_one
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_two
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_k
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_m
+    {% endfor %}
 }
 
 bca_jr_clear_slot_mapping = {
     optimize_memory
-{% for s in range(slots) %}
-{% set s_name = "s%d" % (s + 1) %}
-    bca_jr_clear_slot_mapping_for_slot = { SLOT_NAME = {{ s_name }} }
-{% endfor %}
-{% for entry in regulated %}
-    remove_country_flag = bca_jr_slot_mapped_{{ entry.job }}
-{% endfor %}
+    {% for s in range(slots) %}
+        {% set s_name = "s%d" % (s + 1) %}
+        bca_jr_clear_slot_mapping_for_slot = { SLOT_NAME = {{ s_name }} }
+    {% endfor %}
+    {% for entry in regulated %}
+        remove_country_flag = bca_jr_slot_mapped_{{ entry.job }}
+    {% endfor %}
     set_variable = { which = bca_jr_display_count value = 0 }
 }
 
@@ -137,16 +137,16 @@ bca_jr_clear_slot_mapping = {
 bca_jr_find_best_for_slot = {
     optimize_memory
     set_variable = { which = bca_jr_best_score value = 0 }
-{% for entry in regulated %}
-    if = {
-        limit = {
-            NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
-            bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
-            check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value > bca_jr_best_score }
+    {% for entry in regulated %}
+        if = {
+            limit = {
+                NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
+                bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
+                check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value > bca_jr_best_score }
+            }
+            set_variable = { which = bca_jr_best_score value = value:bca_jr_sort_score_{{ entry.job }} }
         }
-        set_variable = { which = bca_jr_best_score value = value:bca_jr_sort_score_{{ entry.job }} }
-    }
-{% endfor %}
+    {% endfor %}
 }
 
 {# 填入当前槽位：匹配 best_score 的第一个未映射岗位 #}
@@ -181,34 +181,34 @@ bca_jr_fill_slot_job_stats = {
     subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta value = bca_jr_total_automated_capacity_workforce_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = bca_jr_total_productive_workforce_$JOB$ }
     subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
-{% for resource in resources %}
-    if = {
-        limit = { is_variable_set = bca_jr_total_output_$JOB$_{{ resource }} }
-        set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = bca_jr_total_output_$JOB$_{{ resource }} }
-    }
-{% endfor %}
+    {% for resource in resources %}
+        if = {
+            limit = { is_variable_set = bca_jr_total_output_$JOB$_{{ resource }} }
+            set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = bca_jr_total_output_$JOB$_{{ resource }} }
+        }
+    {% endfor %}
 }
 
 bca_jr_fill_current_slot = {
     optimize_memory
-{% for entry in regulated %}
-    if = {
-        limit = {
-            NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
-            bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
-            check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value = bca_jr_best_score }
-            check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
+    {% for entry in regulated %}
+        if = {
+            limit = {
+                NOT = { has_country_flag = bca_jr_slot_mapped_{{ entry.job }} }
+                bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
+                check_variable_arithmetic = { which = value:bca_jr_sort_score_{{ entry.job }} value = bca_jr_best_score }
+                check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
+            }
+            bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = {{ entry.job }} }
+            add_variable = { which = bca_jr_fill_idx value = 1 }
         }
-        bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = {{ entry.job }} }
-        add_variable = { which = bca_jr_fill_idx value = 1 }
-    }
-{% endfor %}
-{% for number in display_numbers %}
-    bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
-{% endfor %}
-{% for resource in resources %}
-    bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
-{% endfor %}
+    {% endfor %}
+    {% for number in display_numbers %}
+        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
+    {% endfor %}
+    {% for resource in resources %}
+        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
+    {% endfor %}
 }
 
 {# 排序填槽主逻辑 #}
@@ -216,16 +216,16 @@ bca_jr_refresh_slot_data = {
     optimize_memory
     set_variable = { which = bca_jr_fill_idx value = 1 }
 
-{% for s in range(slots) %}
-{% set s_name = "s%d" % (s + 1) %}
-    bca_jr_find_best_for_slot = yes
-    if = {
-        limit = {
-            check_variable = { which = bca_jr_best_score value > 0 }
+    {% for s in range(slots) %}
+        {% set s_name = "s%d" % (s + 1) %}
+        bca_jr_find_best_for_slot = yes
+        if = {
+            limit = {
+                check_variable = { which = bca_jr_best_score value > 0 }
+            }
+            bca_jr_fill_current_slot = { SLOT_NAME = {{ s_name }} SLOT_NUM = {{ s + 1 }} }
         }
-        bca_jr_fill_current_slot = { SLOT_NAME = {{ s_name }} SLOT_NUM = {{ s + 1 }} }
-    }
-{% endfor %}
+    {% endfor %}
 
     set_variable = { which = bca_jr_display_count value = bca_jr_fill_idx }
     subtract_variable = { which = bca_jr_display_count value = 1 }

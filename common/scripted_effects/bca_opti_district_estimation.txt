@@ -6,9 +6,7 @@
 # Source template: common/scripted_effects/bca_opti_district_estimation.txt.j2
 
 
-
 bca_opti_district_estimation_energy = {
-
     set_variable = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_energy_job_add
@@ -25,7 +23,6 @@ bca_opti_district_estimation_energy = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_max_districts
     }
-
     if = {
         limit = {
             check_variable = {
@@ -33,13 +30,10 @@ bca_opti_district_estimation_energy = {
                 value != bca_opti_district_condition_check_sum_current
             }
         }
-
         set_variable = {
             which = bca_opti_district_condition_check_sum
             value = bca_opti_district_condition_check_sum_current
         }
-
-
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -74,7 +68,6 @@ bca_opti_district_estimation_energy = {
                 value = sim_resource_district_count
             }
         }
-
         set_variable = {
             which = bca_opti_count_secondary_district
             value = sim_resource_district_count
@@ -83,17 +76,14 @@ bca_opti_district_estimation_energy = {
             which = bca_opti_count_primary_district
             value = sim_district_city_count
         }
-
         set_variable = {
             which = max_production
             value = 0
         }
-
         set_variable = {
             which = production
             value = value:bca_potential_standard_energy_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
         }
-
         while = {
             limit = {
                 check_variable = {
@@ -105,7 +95,6 @@ bca_opti_district_estimation_energy = {
                     value > 1
                 }
             }
-
             set_variable = {
                 which = max_production
                 value = production
@@ -118,7 +107,6 @@ bca_opti_district_estimation_energy = {
                 which = bca_opti_count_primary_district
                 value = sim_district_city_count
             }
-
             add_variable = {
                 which = sim_district_city_count
                 value = 1
@@ -127,16 +115,11 @@ bca_opti_district_estimation_energy = {
                 which = sim_resource_district_count
                 value = 1
             }
-
             set_variable = {
                 which = production
                 value = value:bca_potential_standard_energy_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
             }
         }
-
-
-
-
         clear_variable = sim_district_city_count
         clear_variable = sim_resource_district_count
         clear_variable = max_production
@@ -144,8 +127,9 @@ bca_opti_district_estimation_energy = {
     }
     clear_variable = bca_opti_district_condition_check_sum_current
 }
-bca_opti_district_estimation_minerals = {
 
+
+bca_opti_district_estimation_minerals = {
     set_variable = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_minerals_job_add
@@ -162,7 +146,6 @@ bca_opti_district_estimation_minerals = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_max_districts
     }
-
     if = {
         limit = {
             check_variable = {
@@ -170,13 +153,10 @@ bca_opti_district_estimation_minerals = {
                 value != bca_opti_district_condition_check_sum_current
             }
         }
-
         set_variable = {
             which = bca_opti_district_condition_check_sum
             value = bca_opti_district_condition_check_sum_current
         }
-
-
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -211,7 +191,6 @@ bca_opti_district_estimation_minerals = {
                 value = sim_resource_district_count
             }
         }
-
         set_variable = {
             which = bca_opti_count_secondary_district
             value = sim_resource_district_count
@@ -220,17 +199,14 @@ bca_opti_district_estimation_minerals = {
             which = bca_opti_count_primary_district
             value = sim_district_city_count
         }
-
         set_variable = {
             which = max_production
             value = 0
         }
-
         set_variable = {
             which = production
             value = value:bca_potential_standard_minerals_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
         }
-
         while = {
             limit = {
                 check_variable = {
@@ -242,7 +218,6 @@ bca_opti_district_estimation_minerals = {
                     value > 1
                 }
             }
-
             set_variable = {
                 which = max_production
                 value = production
@@ -255,7 +230,6 @@ bca_opti_district_estimation_minerals = {
                 which = bca_opti_count_primary_district
                 value = sim_district_city_count
             }
-
             add_variable = {
                 which = sim_district_city_count
                 value = 1
@@ -264,16 +238,11 @@ bca_opti_district_estimation_minerals = {
                 which = sim_resource_district_count
                 value = 1
             }
-
             set_variable = {
                 which = production
                 value = value:bca_potential_standard_minerals_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
             }
         }
-
-
-
-
         clear_variable = sim_district_city_count
         clear_variable = sim_resource_district_count
         clear_variable = max_production
@@ -281,8 +250,9 @@ bca_opti_district_estimation_minerals = {
     }
     clear_variable = bca_opti_district_condition_check_sum_current
 }
-bca_opti_district_estimation_food = {
 
+
+bca_opti_district_estimation_food = {
     set_variable = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_food_job_add
@@ -299,7 +269,6 @@ bca_opti_district_estimation_food = {
         which = bca_opti_district_condition_check_sum_current
         value = value:bca_planet_max_districts
     }
-
     if = {
         limit = {
             check_variable = {
@@ -307,13 +276,10 @@ bca_opti_district_estimation_food = {
                 value != bca_opti_district_condition_check_sum_current
             }
         }
-
         set_variable = {
             which = bca_opti_district_condition_check_sum
             value = bca_opti_district_condition_check_sum_current
         }
-
-
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -348,7 +314,6 @@ bca_opti_district_estimation_food = {
                 value = sim_resource_district_count
             }
         }
-
         set_variable = {
             which = bca_opti_count_secondary_district
             value = sim_resource_district_count
@@ -357,17 +322,14 @@ bca_opti_district_estimation_food = {
             which = bca_opti_count_primary_district
             value = sim_district_city_count
         }
-
         set_variable = {
             which = max_production
             value = 0
         }
-
         set_variable = {
             which = production
             value = value:bca_potential_standard_food_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
         }
-
         while = {
             limit = {
                 check_variable = {
@@ -379,7 +341,6 @@ bca_opti_district_estimation_food = {
                     value > 1
                 }
             }
-
             set_variable = {
                 which = max_production
                 value = production
@@ -392,7 +353,6 @@ bca_opti_district_estimation_food = {
                 which = bca_opti_count_primary_district
                 value = sim_district_city_count
             }
-
             add_variable = {
                 which = sim_district_city_count
                 value = 1
@@ -401,16 +361,11 @@ bca_opti_district_estimation_food = {
                 which = sim_resource_district_count
                 value = 1
             }
-
             set_variable = {
                 which = production
                 value = value:bca_potential_standard_food_production_estimate|NUM_R_DST|sim_resource_district_count|NUM_C_DST|sim_district_city_count|
             }
         }
-
-
-
-
         clear_variable = sim_district_city_count
         clear_variable = sim_resource_district_count
         clear_variable = max_production

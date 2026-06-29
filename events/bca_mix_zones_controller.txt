@@ -6,344 +6,339 @@
 # Source template: events/bca_mix_zones_controller.txt.j2
 
 
-
 namespace = colony_automation_event
-
 # flag clear
-carrier_event = {
-	id = colony_automation_event.112
-	hide_window = yes
-	is_triggered_only = yes
 
-	immediate = {
+
+carrier_event = {
+    id = colony_automation_event.112
+    hide_window = yes
+    is_triggered_only = yes
+    immediate = {
         remove_carrier_flag = bca_pf_plan_build_district_d0
         remove_carrier_flag = bca_pf_plan_build_district_d1
         remove_carrier_flag = bca_pf_plan_build_district_d2
         remove_carrier_flag = bca_pf_plan_build_district_d3
         remove_all_zone_plan_flag = yes
-	}
+    }
 }
 
 
-
 carrier_event = {
-	id = colony_automation_event.20
-	hide_window = yes
-	is_triggered_only = yes
-
-	trigger = {
+    id = colony_automation_event.20
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
         requires_more_job = yes
-	}
-
-	immediate = {
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_urban
-                        value > value:num_primary_zone_plan_of_type_urban
-                    }
+    }
+    immediate = {
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_urban
+                    value > value:num_primary_zone_plan_of_type_urban
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_trade
-                        value > value:num_primary_zone_plan_of_type_trade
-                    }
-                    bca_empire_needs_trade = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_trade
+                    value > value:num_primary_zone_plan_of_type_trade
                 }
-                set_carrier_flag = bca_has_zone_to_replace
+                bca_empire_needs_trade = yes
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_industrial
-                        value > value:num_primary_zone_plan_of_type_industrial
-                    }
-                    OR = {
-                        bca_empire_needs_alloys = yes
-                        bca_empire_needs_consumer_goods = yes
-                    }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_industrial
+                    value > value:num_primary_zone_plan_of_type_industrial
                 }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_foundry
-                        value > value:num_primary_zone_plan_of_type_foundry
-                    }
+                OR = {
                     bca_empire_needs_alloys = yes
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_factory
-                        value > value:num_primary_zone_plan_of_type_factory
-                    }
                     bca_empire_needs_consumer_goods = yes
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_research
-                        value > value:num_primary_zone_plan_of_type_research
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_foundry
+                    value > value:num_primary_zone_plan_of_type_foundry
                 }
-                set_carrier_flag = bca_has_zone_to_replace
+                bca_empire_needs_alloys = yes
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_physics
-                        value > value:num_primary_zone_plan_of_type_physics
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_factory
+                    value > value:num_primary_zone_plan_of_type_factory
                 }
-                set_carrier_flag = bca_has_zone_to_replace
+                bca_empire_needs_consumer_goods = yes
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_society
-                        value > value:num_primary_zone_plan_of_type_society
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_research
+                    value > value:num_primary_zone_plan_of_type_research
                 }
-                set_carrier_flag = bca_has_zone_to_replace
+                bca_empire_needs_research = yes
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_engineering
-                        value > value:num_primary_zone_plan_of_type_engineering
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_physics
+                    value > value:num_primary_zone_plan_of_type_physics
                 }
-                set_carrier_flag = bca_has_zone_to_replace
+                bca_empire_needs_research = yes
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_bureaucrat
-                        value > value:num_primary_zone_plan_of_type_bureaucrat
-                    }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_society
+                    value > value:num_primary_zone_plan_of_type_society
+                }
+                bca_empire_needs_research = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_engineering
+                    value > value:num_primary_zone_plan_of_type_engineering
+                }
+                bca_empire_needs_research = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_bureaucrat
+                    value > value:num_primary_zone_plan_of_type_bureaucrat
+                }
+                bca_empire_needs_unity = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_unity
+                    value > value:num_primary_zone_plan_of_type_unity
+                }
+                bca_empire_needs_unity = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_priest
+                    value > value:num_primary_zone_plan_of_type_priest
+                }
+                bca_empire_needs_unity = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_fortress
+                    value > value:num_primary_zone_plan_of_type_fortress
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_resort
+                    value > value:num_primary_zone_plan_of_type_resort
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_entertainer
+                    value > value:num_primary_zone_plan_of_type_entertainer
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_knight_commander
+                    value > value:num_primary_zone_plan_of_type_knight_commander
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_spawning
+                    value > value:num_primary_zone_plan_of_type_spawning
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_machine_replication
+                    value > value:num_primary_zone_plan_of_type_machine_replication
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_urban
+                    value > value:num_primary_zone_plan_of_type_wilderness_urban
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_foundry
+                    value > value:num_primary_zone_plan_of_type_wilderness_foundry
+                }
+                bca_empire_needs_alloys = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_research
+                    value > value:num_primary_zone_plan_of_type_wilderness_research
+                }
+                bca_empire_needs_research = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_unity
+                    value > value:num_primary_zone_plan_of_type_wilderness_unity
+                }
+                bca_empire_needs_unity = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_spawning
+                    value > value:num_primary_zone_plan_of_type_wilderness_spawning
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_trade
+                    value > value:num_primary_zone_plan_of_type_wilderness_trade
+                }
+                bca_empire_needs_trade = yes
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_wilderness_fortress
+                    value > value:num_primary_zone_plan_of_type_wilderness_fortress
+                }
+            }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_research_unity_consumer_goods
+                    value > value:num_primary_zone_plan_of_type_ark_research_unity_consumer_goods
+                }
+                OR = {
+                    bca_empire_needs_research = yes
                     bca_empire_needs_unity = yes
+                    bca_empire_needs_consumer_goods = yes
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_unity
-                        value > value:num_primary_zone_plan_of_type_unity
-                    }
-                    bca_empire_needs_unity = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_research_alloys_support
+                    value > value:num_primary_zone_plan_of_type_ark_research_alloys_support
                 }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_priest
-                        value > value:num_primary_zone_plan_of_type_priest
-                    }
-                    bca_empire_needs_unity = yes
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_fortress
-                        value > value:num_primary_zone_plan_of_type_fortress
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_resort
-                        value > value:num_primary_zone_plan_of_type_resort
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_entertainer
-                        value > value:num_primary_zone_plan_of_type_entertainer
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_knight_commander
-                        value > value:num_primary_zone_plan_of_type_knight_commander
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_spawning
-                        value > value:num_primary_zone_plan_of_type_spawning
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_machine_replication
-                        value > value:num_primary_zone_plan_of_type_machine_replication
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_urban
-                        value > value:num_primary_zone_plan_of_type_wilderness_urban
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_foundry
-                        value > value:num_primary_zone_plan_of_type_wilderness_foundry
-                    }
+                OR = {
+                    bca_empire_needs_research = yes
                     bca_empire_needs_alloys = yes
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_research
-                        value > value:num_primary_zone_plan_of_type_wilderness_research
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_passenger
+                    value > value:num_primary_zone_plan_of_type_forever_cruise_city_passenger
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_unity
-                        value > value:num_primary_zone_plan_of_type_wilderness_unity
-                    }
-                    bca_empire_needs_unity = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_crew
+                    value > value:num_primary_zone_plan_of_type_forever_cruise_city_crew
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_spawning
-                        value > value:num_primary_zone_plan_of_type_wilderness_spawning
-                    }
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_forever_cruise_city_mixed
+                    value > value:num_primary_zone_plan_of_type_forever_cruise_city_mixed
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_trade
-                        value > value:num_primary_zone_plan_of_type_wilderness_trade
-                    }
-                    bca_empire_needs_trade = yes
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_primary_zones_of_type_ark_pilgrimage
+                    value > value:num_primary_zone_plan_of_type_ark_pilgrimage
                 }
-                set_carrier_flag = bca_has_zone_to_replace
             }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_wilderness_fortress
-                        value > value:num_primary_zone_plan_of_type_wilderness_fortress
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_ark_research_unity_consumer_goods
-                        value > value:num_primary_zone_plan_of_type_ark_research_unity_consumer_goods
-                    }
-                    OR = {
-                        bca_empire_needs_research = yes
-                        bca_empire_needs_unity = yes
-                        bca_empire_needs_consumer_goods = yes
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_ark_research_alloys_support
-                        value > value:num_primary_zone_plan_of_type_ark_research_alloys_support
-                    }
-                    OR = {
-                        bca_empire_needs_research = yes
-                        bca_empire_needs_alloys = yes
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_forever_cruise_city_passenger
-                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_passenger
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_forever_cruise_city_crew
-                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_crew
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_forever_cruise_city_mixed
-                        value > value:num_primary_zone_plan_of_type_forever_cruise_city_mixed
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-            else_if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_primary_zones_of_type_ark_pilgrimage
-                        value > value:num_primary_zone_plan_of_type_ark_pilgrimage
-                    }
-                }
-                set_carrier_flag = bca_has_zone_to_replace
-            }
-
-       if = {
+            set_carrier_flag = bca_has_zone_to_replace
+        }
+        if = {
             limit = {
                 NOT = {
                     AND = {
@@ -1296,1762 +1291,1761 @@ carrier_event = {
                 }
             }
         }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_urban
-                        value < value:num_secondary_zone_plan_of_type_urban
-                    }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_urban
+                    value < value:num_secondary_zone_plan_of_type_urban
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_urban
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_trade
-                        value < value:num_secondary_zone_plan_of_type_trade
-                    }
-                    bca_empire_needs_trade = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_urban
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_trade
+                    value < value:num_secondary_zone_plan_of_type_trade
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_trade
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_trade = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_industrial
-                        value < value:num_secondary_zone_plan_of_type_industrial
-                    }
-                    OR = {
-                        bca_empire_needs_alloys = yes
-                        bca_empire_needs_consumer_goods = yes
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_trade
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_industrial
+                    value < value:num_secondary_zone_plan_of_type_industrial
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_industrial
-                set_carrier_flag = bca_plan_build_new_zone
-            }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_foundry
-                        value < value:num_secondary_zone_plan_of_type_foundry
-                    }
+                OR = {
                     bca_empire_needs_alloys = yes
-                }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_foundry
-                set_carrier_flag = bca_plan_build_new_zone
-            }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_factory
-                        value < value:num_secondary_zone_plan_of_type_factory
-                    }
                     bca_empire_needs_consumer_goods = yes
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_factory
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_research
-                        value < value:num_secondary_zone_plan_of_type_research
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_industrial
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_foundry
+                    value < value:num_secondary_zone_plan_of_type_foundry
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_research
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_alloys = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_physics
-                        value < value:num_secondary_zone_plan_of_type_physics
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_foundry
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_factory
+                    value < value:num_secondary_zone_plan_of_type_factory
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_physics
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_consumer_goods = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_society
-                        value < value:num_secondary_zone_plan_of_type_society
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_factory
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_research
+                    value < value:num_secondary_zone_plan_of_type_research
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_society
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_research = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_engineering
-                        value < value:num_secondary_zone_plan_of_type_engineering
-                    }
-                    bca_empire_needs_research = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_research
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_physics
+                    value < value:num_secondary_zone_plan_of_type_physics
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_engineering
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_research = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_bureaucrat
-                        value < value:num_secondary_zone_plan_of_type_bureaucrat
-                    }
-                    bca_empire_needs_unity = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_physics
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_society
+                    value < value:num_secondary_zone_plan_of_type_society
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_bureaucrat
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_research = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_unity
-                        value < value:num_secondary_zone_plan_of_type_unity
-                    }
-                    bca_empire_needs_unity = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_society
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_engineering
+                    value < value:num_secondary_zone_plan_of_type_engineering
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_unity
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_research = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_priest
-                        value < value:num_secondary_zone_plan_of_type_priest
-                    }
-                    bca_empire_needs_unity = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_engineering
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_bureaucrat
+                    value < value:num_secondary_zone_plan_of_type_bureaucrat
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_priest
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_unity = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_fortress
-                        value < value:num_secondary_zone_plan_of_type_fortress
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_bureaucrat
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_unity
+                    value < value:num_secondary_zone_plan_of_type_unity
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_fortress
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_unity = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_zoo
-                        value < value:num_secondary_zone_plan_of_type_zoo
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_unity
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_priest
+                    value < value:num_secondary_zone_plan_of_type_priest
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_zoo
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_unity = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_culture_worker
-                        value < value:num_secondary_zone_plan_of_type_culture_worker
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_priest
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_fortress
+                    value < value:num_secondary_zone_plan_of_type_fortress
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_culture_worker
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_trophy_hunter
-                        value < value:num_secondary_zone_plan_of_type_trophy_hunter
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_fortress
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_zoo
+                    value < value:num_secondary_zone_plan_of_type_zoo
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_trophy_hunter
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_healthcare
-                        value < value:num_secondary_zone_plan_of_type_healthcare
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_zoo
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_culture_worker
+                    value < value:num_secondary_zone_plan_of_type_culture_worker
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_healthcare
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_duelist
-                        value < value:num_secondary_zone_plan_of_type_duelist
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_culture_worker
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_trophy_hunter
+                    value < value:num_secondary_zone_plan_of_type_trophy_hunter
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_duelist
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_energy
-                        value < value:num_secondary_zone_plan_of_type_energy
-                    }
-                    bca_empire_needs_energy = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_trophy_hunter
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_healthcare
+                    value < value:num_secondary_zone_plan_of_type_healthcare
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_energy
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_betharian
-                        value < value:num_secondary_zone_plan_of_type_betharian
-                    }
-                    bca_empire_needs_energy = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_healthcare
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_duelist
+                    value < value:num_secondary_zone_plan_of_type_duelist
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_betharian
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_minerals
-                        value < value:num_secondary_zone_plan_of_type_minerals
-                    }
-                    bca_empire_needs_minerals = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_duelist
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_energy
+                    value < value:num_secondary_zone_plan_of_type_energy
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_minerals
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_energy = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_food
-                        value < value:num_secondary_zone_plan_of_type_food
-                    }
-                    bca_empire_needs_food = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_energy
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_betharian
+                    value < value:num_secondary_zone_plan_of_type_betharian
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_food
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_energy = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_rare_crystals
-                        value < value:num_secondary_zone_plan_of_type_rare_crystals
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_betharian
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_minerals
+                    value < value:num_secondary_zone_plan_of_type_minerals
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_rare_crystals
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_minerals = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_volatile_motes
-                        value < value:num_secondary_zone_plan_of_type_volatile_motes
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_minerals
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_food
+                    value < value:num_secondary_zone_plan_of_type_food
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_volatile_motes
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_food = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_exotic_gases
-                        value < value:num_secondary_zone_plan_of_type_exotic_gases
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_food
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_rare_crystals
+                    value < value:num_secondary_zone_plan_of_type_rare_crystals
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_exotic_gases
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_angler
-                        value < value:num_secondary_zone_plan_of_type_angler
-                    }
-                    bca_empire_needs_food = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_rare_crystals
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_volatile_motes
+                    value < value:num_secondary_zone_plan_of_type_volatile_motes
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_angler
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_agrarian
-                        value < value:num_secondary_zone_plan_of_type_agrarian
-                    }
-                    bca_empire_needs_food = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_volatile_motes
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_exotic_gases
+                    value < value:num_secondary_zone_plan_of_type_exotic_gases
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_agrarian
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_hydroponics
-                        value < value:num_secondary_zone_plan_of_type_hydroponics
-                    }
-                    bca_empire_needs_food = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_exotic_gases
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_angler
+                    value < value:num_secondary_zone_plan_of_type_angler
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_hydroponics
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_food = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_spawning
-                        value < value:num_secondary_zone_plan_of_type_spawning
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_angler
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_agrarian
+                    value < value:num_secondary_zone_plan_of_type_agrarian
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_spawning
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_food = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_wilderness_minerals
-                        value < value:num_secondary_zone_plan_of_type_wilderness_minerals
-                    }
-                    bca_empire_needs_minerals = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_agrarian
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_hydroponics
+                    value < value:num_secondary_zone_plan_of_type_hydroponics
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_food = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_wilderness_energy
-                        value < value:num_secondary_zone_plan_of_type_wilderness_energy
-                    }
-                    bca_empire_needs_energy = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_hydroponics
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_spawning
+                    value < value:num_secondary_zone_plan_of_type_spawning
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_energy
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_wilderness_food
-                        value < value:num_secondary_zone_plan_of_type_wilderness_food
-                    }
-                    bca_empire_needs_food = yes
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_spawning
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_wilderness_minerals
+                    value < value:num_secondary_zone_plan_of_type_wilderness_minerals
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_food
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_minerals = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_ark_reactor
-                        value < value:num_secondary_zone_plan_of_type_ark_reactor
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_minerals
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_wilderness_energy
+                    value < value:num_secondary_zone_plan_of_type_wilderness_energy
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_ark_reactor
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_energy = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_missile
-                        value < value:num_secondary_zone_plan_of_type_missile
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_energy
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_wilderness_food
+                    value < value:num_secondary_zone_plan_of_type_wilderness_food
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_missile
-                set_carrier_flag = bca_plan_build_new_zone
+                bca_empire_needs_food = yes
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_gun
-                        value < value:num_secondary_zone_plan_of_type_gun
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_wilderness_food
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_ark_reactor
+                    value < value:num_secondary_zone_plan_of_type_ark_reactor
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_gun
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_laser
-                        value < value:num_secondary_zone_plan_of_type_laser
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_ark_reactor
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_missile
+                    value < value:num_secondary_zone_plan_of_type_missile
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_laser
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_fighter
-                        value < value:num_secondary_zone_plan_of_type_fighter
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_missile
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_gun
+                    value < value:num_secondary_zone_plan_of_type_gun
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_fighter
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_forever_cruise_passenger
-                        value < value:num_secondary_zone_plan_of_type_forever_cruise_passenger
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_gun
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_laser
+                    value < value:num_secondary_zone_plan_of_type_laser
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_passenger
-                set_carrier_flag = bca_plan_build_new_zone
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_secondary_zones_of_type_forever_cruise_crew
-                        value < value:num_secondary_zone_plan_of_type_forever_cruise_crew
-                    }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_laser
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_fighter
+                    value < value:num_secondary_zone_plan_of_type_fighter
                 }
-                set_carrier_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_crew
-                set_carrier_flag = bca_plan_build_new_zone
             }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_fighter
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_forever_cruise_passenger
+                    value < value:num_secondary_zone_plan_of_type_forever_cruise_passenger
+                }
+            }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_passenger
+            set_carrier_flag = bca_plan_build_new_zone
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_secondary_zones_of_type_forever_cruise_crew
+                    value < value:num_secondary_zone_plan_of_type_forever_cruise_crew
+                }
+            }
+            set_carrier_flag = bca_pf_plan_build_secondary_zone_type_forever_cruise_crew
+            set_carrier_flag = bca_plan_build_new_zone
+        }
         remove_carrier_flag = bca_has_zone_to_replace
     }
 }
 
-carrier_event = {
-	id = colony_automation_event.21
-	hide_window = yes
-	is_triggered_only = yes
 
-	trigger = {
+carrier_event = {
+    id = colony_automation_event.21
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
         has_carrier_flag = bca_plan_build_new_zone
         NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
-	}
-
-	immediate = {
-
-                if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_urban
-                            value > value:num_zone_plan_of_zone_urban
-                        }
-                    }
-                    remove_zone = { zone = zone_urban }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_subterranean_urban
-                            value > value:num_zone_plan_of_zone_subterranean_urban
-                        }
-                    }
-                    remove_zone = { zone = zone_subterranean_urban }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_agrarian_anglers
-                            value > value:num_zone_plan_of_zone_agrarian_anglers
-                        }
-                    }
-                    remove_zone = { zone = zone_agrarian_anglers }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade
-                            value > value:num_zone_plan_of_zone_trade
-                        }
-                    }
-                    remove_zone = { zone = zone_trade }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade_arcology
-                            value > value:num_zone_plan_of_zone_trade_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_trade_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade_ring_world
-                            value > value:num_zone_plan_of_zone_trade_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_trade_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade_nexus
-                            value > value:num_zone_plan_of_zone_trade_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_trade_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade_hive
-                            value > value:num_zone_plan_of_zone_trade_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_trade_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_waystation_trade
-                            value > value:num_zone_plan_of_zone_ark_waystation_trade
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_waystation_trade }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_industrial
-                            value > value:num_zone_plan_of_zone_industrial
-                        }
-                    }
-                    remove_zone = { zone = zone_industrial }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_industrial_arcology
-                            value > value:num_zone_plan_of_zone_industrial_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_industrial_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_industrial_ring_world
-                            value > value:num_zone_plan_of_zone_industrial_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_industrial_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_industrial_nexus
-                            value > value:num_zone_plan_of_zone_industrial_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_industrial_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_industrial_hive
-                            value > value:num_zone_plan_of_zone_industrial_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_industrial_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry
-                            value > value:num_zone_plan_of_zone_foundry
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry_arcology
-                            value > value:num_zone_plan_of_zone_foundry_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry_ring_world
-                            value > value:num_zone_plan_of_zone_foundry_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry_nexus
-                            value > value:num_zone_plan_of_zone_foundry_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry_hive
-                            value > value:num_zone_plan_of_zone_foundry_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_military_eco
-                            value > value:num_zone_plan_of_zone_ark_military_eco
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_military_eco }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_factory
-                            value > value:num_zone_plan_of_zone_factory
-                        }
-                    }
-                    remove_zone = { zone = zone_factory }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_factory_arcology
-                            value > value:num_zone_plan_of_zone_factory_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_factory_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_factory_ring_world
-                            value > value:num_zone_plan_of_zone_factory_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_factory_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_factory_nexus
-                            value > value:num_zone_plan_of_zone_factory_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_factory_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_factory_hive
-                            value > value:num_zone_plan_of_zone_factory_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_factory_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research
-                            value > value:num_zone_plan_of_zone_research
-                        }
-                    }
-                    remove_zone = { zone = zone_research }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_research
-                            value > value:num_zone_plan_of_zone_habitat_research
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_research }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_central_spire
-                            value > value:num_zone_plan_of_zone_central_spire
-                        }
-                    }
-                    remove_zone = { zone = zone_central_spire }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_arcology
-                            value > value:num_zone_plan_of_zone_research_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_research_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_ring_world
-                            value > value:num_zone_plan_of_zone_research_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_research_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_nexus
-                            value > value:num_zone_plan_of_zone_research_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_research_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_hive
-                            value > value:num_zone_plan_of_zone_research_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_research_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_physics
-                            value > value:num_zone_plan_of_zone_research_physics
-                        }
-                    }
-                    remove_zone = { zone = zone_research_physics }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_minerals_physics
-                            value > value:num_zone_plan_of_zone_minerals_physics
-                        }
-                    }
-                    remove_zone = { zone = zone_minerals_physics }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_physics_arcology
-                            value > value:num_zone_plan_of_zone_research_physics_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_research_physics_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_physics_ring_world
-                            value > value:num_zone_plan_of_zone_research_physics_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_research_physics_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_physics_nexus
-                            value > value:num_zone_plan_of_zone_research_physics_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_research_physics_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_physics_hive
-                            value > value:num_zone_plan_of_zone_research_physics_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_research_physics_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_reactor_physics
-                            value > value:num_zone_plan_of_zone_ark_reactor_physics
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_reactor_physics }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_society
-                            value > value:num_zone_plan_of_zone_research_society
-                        }
-                    }
-                    remove_zone = { zone = zone_research_society }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_society_arcology
-                            value > value:num_zone_plan_of_zone_research_society_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_research_society_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_society_ring_world
-                            value > value:num_zone_plan_of_zone_research_society_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_research_society_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_society_nexus
-                            value > value:num_zone_plan_of_zone_research_society_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_research_society_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_society_hive
-                            value > value:num_zone_plan_of_zone_research_society_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_research_society_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_farm_society
-                            value > value:num_zone_plan_of_zone_ark_farm_society
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_farm_society }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_engineering
-                            value > value:num_zone_plan_of_zone_research_engineering
-                        }
-                    }
-                    remove_zone = { zone = zone_research_engineering }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_engineering_arcology
-                            value > value:num_zone_plan_of_zone_research_engineering_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_research_engineering_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_engineering_ring_world
-                            value > value:num_zone_plan_of_zone_research_engineering_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_research_engineering_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_engineering_nexus
-                            value > value:num_zone_plan_of_zone_research_engineering_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_research_engineering_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_engineering_hive
-                            value > value:num_zone_plan_of_zone_research_engineering_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_research_engineering_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_military_engineering
-                            value > value:num_zone_plan_of_zone_ark_military_engineering
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_military_engineering }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_engineering
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_engineering
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_engineering }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_unity
-                            value > value:num_zone_plan_of_zone_research_unity
-                        }
-                    }
-                    remove_zone = { zone = zone_research_unity }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_research_unity
-                            value > value:num_zone_plan_of_zone_habitat_research_unity
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_research_unity }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity
-                            value > value:num_zone_plan_of_zone_unity
-                        }
-                    }
-                    remove_zone = { zone = zone_unity }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_bio_trophy
-                            value > value:num_zone_plan_of_zone_unity_bio_trophy
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_bio_trophy }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_arcology
-                            value > value:num_zone_plan_of_zone_unity_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_bio_trophy_arcology
-                            value > value:num_zone_plan_of_zone_unity_bio_trophy_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_bio_trophy_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_ring_world
-                            value > value:num_zone_plan_of_zone_unity_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_bio_trophy_ring_world
-                            value > value:num_zone_plan_of_zone_unity_bio_trophy_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_bio_trophy_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_nexus
-                            value > value:num_zone_plan_of_zone_unity_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_bio_trophy_nexus
-                            value > value:num_zone_plan_of_zone_unity_bio_trophy_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_bio_trophy_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_hive
-                            value > value:num_zone_plan_of_zone_unity_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_spiritualist
-                            value > value:num_zone_plan_of_zone_unity_spiritualist
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_spiritualist }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_spiritual_retreat
-                            value > value:num_zone_plan_of_zone_resort_spiritual_retreat
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_spiritual_retreat }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_spiritualist_arcology
-                            value > value:num_zone_plan_of_zone_unity_spiritualist_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_spiritualist_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_spiritualist_ring_world
-                            value > value:num_zone_plan_of_zone_unity_spiritualist_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_spiritualist_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_spiritualist_nexus
-                            value > value:num_zone_plan_of_zone_unity_spiritualist_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_spiritualist_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress
-                            value > value:num_zone_plan_of_zone_fortress
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress_arcology
-                            value > value:num_zone_plan_of_zone_fortress_arcology
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress_arcology }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress_ring_world
-                            value > value:num_zone_plan_of_zone_fortress_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress_nexus
-                            value > value:num_zone_plan_of_zone_fortress_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress_hive
-                            value > value:num_zone_plan_of_zone_fortress_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort
-                            value > value:num_zone_plan_of_zone_resort
-                        }
-                    }
-                    remove_zone = { zone = zone_resort }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_entertainment
-                            value > value:num_zone_plan_of_zone_resort_entertainment
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_entertainment }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_zoo
-                            value > value:num_zone_plan_of_zone_resort_zoo
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_zoo }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_grand_museum
-                            value > value:num_zone_plan_of_zone_resort_grand_museum
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_grand_museum }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_hunting_ground
-                            value > value:num_zone_plan_of_zone_resort_hunting_ground
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_hunting_ground }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_restoration_enclave
-                            value > value:num_zone_plan_of_zone_resort_restoration_enclave
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_restoration_enclave }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_resort_proving_grounds
-                            value > value:num_zone_plan_of_zone_resort_proving_grounds
-                        }
-                    }
-                    remove_zone = { zone = zone_resort_proving_grounds }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_knights
-                            value > value:num_zone_plan_of_zone_habitat_knights
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_knights }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_energy
-                            value > value:num_zone_plan_of_zone_energy
-                        }
-                    }
-                    remove_zone = { zone = zone_energy }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_energy_ring_world
-                            value > value:num_zone_plan_of_zone_energy_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_energy_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_energy_nexus
-                            value > value:num_zone_plan_of_zone_energy_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_energy_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_energy_hive
-                            value > value:num_zone_plan_of_zone_energy_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_energy_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_betharian
-                            value > value:num_zone_plan_of_zone_betharian
-                        }
-                    }
-                    remove_zone = { zone = zone_betharian }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_betharian_nexus
-                            value > value:num_zone_plan_of_zone_betharian_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_betharian_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_betharian_hive
-                            value > value:num_zone_plan_of_zone_betharian_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_betharian_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_minerals
-                            value > value:num_zone_plan_of_zone_minerals
-                        }
-                    }
-                    remove_zone = { zone = zone_minerals }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_minerals_nexus
-                            value > value:num_zone_plan_of_zone_minerals_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_minerals_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_minerals_hive
-                            value > value:num_zone_plan_of_zone_minerals_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_minerals_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_harvest
-                            value > value:num_zone_plan_of_zone_ark_harvest
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_harvest }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_food
-                            value > value:num_zone_plan_of_zone_food
-                        }
-                    }
-                    remove_zone = { zone = zone_food }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_food_ring_world
-                            value > value:num_zone_plan_of_zone_food_ring_world
-                        }
-                    }
-                    remove_zone = { zone = zone_food_ring_world }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_food_hive
-                            value > value:num_zone_plan_of_zone_food_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_food_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_food
-                            value > value:num_zone_plan_of_zone_ark_food
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_food }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_rare_crystals
-                            value > value:num_zone_plan_of_zone_rare_crystals
-                        }
-                    }
-                    remove_zone = { zone = zone_rare_crystals }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_rare_crystals
-                            value > value:num_zone_plan_of_zone_habitat_rare_crystals
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_rare_crystals }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_rare_crystals_nexus
-                            value > value:num_zone_plan_of_zone_rare_crystals_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_rare_crystals_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_rare_crystals_hive
-                            value > value:num_zone_plan_of_zone_rare_crystals_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_rare_crystals_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_volatile_motes
-                            value > value:num_zone_plan_of_zone_volatile_motes
-                        }
-                    }
-                    remove_zone = { zone = zone_volatile_motes }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_volatile_motes
-                            value > value:num_zone_plan_of_zone_habitat_volatile_motes
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_volatile_motes }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_volatile_motes_nexus
-                            value > value:num_zone_plan_of_zone_volatile_motes_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_volatile_motes_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_volatile_motes_hive
-                            value > value:num_zone_plan_of_zone_volatile_motes_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_volatile_motes_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_exotic_gases
-                            value > value:num_zone_plan_of_zone_exotic_gases
-                        }
-                    }
-                    remove_zone = { zone = zone_exotic_gases }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_exotic_gases
-                            value > value:num_zone_plan_of_zone_habitat_exotic_gases
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_exotic_gases }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_exotic_gases_nexus
-                            value > value:num_zone_plan_of_zone_exotic_gases_nexus
-                        }
-                    }
-                    remove_zone = { zone = zone_exotic_gases_nexus }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_exotic_gases_hive
-                            value > value:num_zone_plan_of_zone_exotic_gases_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_exotic_gases_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_shield_overloader
-                            value > value:num_zone_plan_of_zone_ark_shield_overloader
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_shield_overloader }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_anglers
-                            value > value:num_zone_plan_of_zone_anglers
-                        }
-                    }
-                    remove_zone = { zone = zone_anglers }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_agrarian_urban
-                            value > value:num_zone_plan_of_zone_agrarian_urban
-                        }
-                    }
-                    remove_zone = { zone = zone_agrarian_urban }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_habitat_hydroponics
-                            value > value:num_zone_plan_of_zone_habitat_hydroponics
-                        }
-                    }
-                    remove_zone = { zone = zone_habitat_hydroponics }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_spawning
-                            value > value:num_zone_plan_of_zone_spawning
-                        }
-                    }
-                    remove_zone = { zone = zone_spawning }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_spawning_hive
-                            value > value:num_zone_plan_of_zone_spawning_hive
-                        }
-                    }
-                    remove_zone = { zone = zone_spawning_hive }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_machine_replication
-                            value > value:num_zone_plan_of_zone_machine_replication
-                        }
-                    }
-                    remove_zone = { zone = zone_machine_replication }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_urban_wilderness
-                            value > value:num_zone_plan_of_zone_urban_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_urban_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_foundry_wilderness
-                            value > value:num_zone_plan_of_zone_foundry_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_foundry_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_wilderness
-                            value > value:num_zone_plan_of_zone_research_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_research_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_unity_wilderness
-                            value > value:num_zone_plan_of_zone_unity_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_unity_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_research_unity_wilderness
-                            value > value:num_zone_plan_of_zone_research_unity_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_research_unity_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_trade_wilderness
-                            value > value:num_zone_plan_of_zone_trade_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_trade_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_fortress_wilderness
-                            value > value:num_zone_plan_of_zone_fortress_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_fortress_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_minerals_wilderness
-                            value > value:num_zone_plan_of_zone_minerals_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_minerals_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_energy_wilderness
-                            value > value:num_zone_plan_of_zone_energy_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_energy_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_food_wilderness
-                            value > value:num_zone_plan_of_zone_food_wilderness
-                        }
-                    }
-                    remove_zone = { zone = zone_food_wilderness }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_research_unity
-                            value > value:num_zone_plan_of_zone_ark_research_unity
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_research_unity }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_research_unity_gestalt
-                            value > value:num_zone_plan_of_zone_ark_research_unity_gestalt
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_research_unity_gestalt }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_industrial
-                            value > value:num_zone_plan_of_zone_ark_industrial
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_industrial }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_foundry
-                            value > value:num_zone_plan_of_zone_ark_foundry
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_foundry }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_engine_bypass
-                            value > value:num_zone_plan_of_zone_ark_engine_bypass
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_engine_bypass }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_missile_silos
-                            value > value:num_zone_plan_of_zone_ark_missile_silos
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_missile_silos }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_ammunition_lines
-                            value > value:num_zone_plan_of_zone_ark_ammunition_lines
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_ammunition_lines }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_laser_capacitors
-                            value > value:num_zone_plan_of_zone_ark_laser_capacitors
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_laser_capacitors }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_flight_decks
-                            value > value:num_zone_plan_of_zone_ark_flight_decks
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_flight_decks }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_passenger
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_passenger
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_passenger }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_shipwright
-                            value > value:num_zone_plan_of_zone_ark_shipwright
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_shipwright }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_crew
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_crew
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_crew }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_city_passenger
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_passenger
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_city_passenger }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_city_crew
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_crew
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_city_crew }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_forever_cruise_city_mixed
-                            value > value:num_zone_plan_of_zone_ark_forever_cruise_city_mixed
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_forever_cruise_city_mixed }
-                }
-                else_if = {
-                    limit = {
-                        check_variable_arithmetic = {
-                            which = value:num_zones_of_zone_ark_sacred_path_pilgrims
-                            value > value:num_zone_plan_of_zone_ark_sacred_path_pilgrims
-                        }
-                    }
-                    remove_zone = { zone = zone_ark_sacred_path_pilgrims }
-                }
+    }
+    immediate = {
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_urban
+                    value > value:num_zone_plan_of_zone_urban
+                }
+            }
+            remove_zone = { zone = zone_urban }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_subterranean_urban
+                    value > value:num_zone_plan_of_zone_subterranean_urban
+                }
+            }
+            remove_zone = { zone = zone_subterranean_urban }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_agrarian_anglers
+                    value > value:num_zone_plan_of_zone_agrarian_anglers
+                }
+            }
+            remove_zone = { zone = zone_agrarian_anglers }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade
+                    value > value:num_zone_plan_of_zone_trade
+                }
+            }
+            remove_zone = { zone = zone_trade }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade_arcology
+                    value > value:num_zone_plan_of_zone_trade_arcology
+                }
+            }
+            remove_zone = { zone = zone_trade_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade_ring_world
+                    value > value:num_zone_plan_of_zone_trade_ring_world
+                }
+            }
+            remove_zone = { zone = zone_trade_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade_nexus
+                    value > value:num_zone_plan_of_zone_trade_nexus
+                }
+            }
+            remove_zone = { zone = zone_trade_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade_hive
+                    value > value:num_zone_plan_of_zone_trade_hive
+                }
+            }
+            remove_zone = { zone = zone_trade_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_waystation_trade
+                    value > value:num_zone_plan_of_zone_ark_waystation_trade
+                }
+            }
+            remove_zone = { zone = zone_ark_waystation_trade }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_industrial
+                    value > value:num_zone_plan_of_zone_industrial
+                }
+            }
+            remove_zone = { zone = zone_industrial }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_industrial_arcology
+                    value > value:num_zone_plan_of_zone_industrial_arcology
+                }
+            }
+            remove_zone = { zone = zone_industrial_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_industrial_ring_world
+                    value > value:num_zone_plan_of_zone_industrial_ring_world
+                }
+            }
+            remove_zone = { zone = zone_industrial_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_industrial_nexus
+                    value > value:num_zone_plan_of_zone_industrial_nexus
+                }
+            }
+            remove_zone = { zone = zone_industrial_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_industrial_hive
+                    value > value:num_zone_plan_of_zone_industrial_hive
+                }
+            }
+            remove_zone = { zone = zone_industrial_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry
+                    value > value:num_zone_plan_of_zone_foundry
+                }
+            }
+            remove_zone = { zone = zone_foundry }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry_arcology
+                    value > value:num_zone_plan_of_zone_foundry_arcology
+                }
+            }
+            remove_zone = { zone = zone_foundry_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry_ring_world
+                    value > value:num_zone_plan_of_zone_foundry_ring_world
+                }
+            }
+            remove_zone = { zone = zone_foundry_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry_nexus
+                    value > value:num_zone_plan_of_zone_foundry_nexus
+                }
+            }
+            remove_zone = { zone = zone_foundry_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry_hive
+                    value > value:num_zone_plan_of_zone_foundry_hive
+                }
+            }
+            remove_zone = { zone = zone_foundry_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_military_eco
+                    value > value:num_zone_plan_of_zone_ark_military_eco
+                }
+            }
+            remove_zone = { zone = zone_ark_military_eco }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_factory
+                    value > value:num_zone_plan_of_zone_factory
+                }
+            }
+            remove_zone = { zone = zone_factory }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_factory_arcology
+                    value > value:num_zone_plan_of_zone_factory_arcology
+                }
+            }
+            remove_zone = { zone = zone_factory_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_factory_ring_world
+                    value > value:num_zone_plan_of_zone_factory_ring_world
+                }
+            }
+            remove_zone = { zone = zone_factory_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_factory_nexus
+                    value > value:num_zone_plan_of_zone_factory_nexus
+                }
+            }
+            remove_zone = { zone = zone_factory_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_factory_hive
+                    value > value:num_zone_plan_of_zone_factory_hive
+                }
+            }
+            remove_zone = { zone = zone_factory_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research
+                    value > value:num_zone_plan_of_zone_research
+                }
+            }
+            remove_zone = { zone = zone_research }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_research
+                    value > value:num_zone_plan_of_zone_habitat_research
+                }
+            }
+            remove_zone = { zone = zone_habitat_research }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_central_spire
+                    value > value:num_zone_plan_of_zone_central_spire
+                }
+            }
+            remove_zone = { zone = zone_central_spire }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_arcology
+                    value > value:num_zone_plan_of_zone_research_arcology
+                }
+            }
+            remove_zone = { zone = zone_research_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_ring_world
+                    value > value:num_zone_plan_of_zone_research_ring_world
+                }
+            }
+            remove_zone = { zone = zone_research_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_nexus
+                    value > value:num_zone_plan_of_zone_research_nexus
+                }
+            }
+            remove_zone = { zone = zone_research_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_hive
+                    value > value:num_zone_plan_of_zone_research_hive
+                }
+            }
+            remove_zone = { zone = zone_research_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_physics
+                    value > value:num_zone_plan_of_zone_research_physics
+                }
+            }
+            remove_zone = { zone = zone_research_physics }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_minerals_physics
+                    value > value:num_zone_plan_of_zone_minerals_physics
+                }
+            }
+            remove_zone = { zone = zone_minerals_physics }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_physics_arcology
+                    value > value:num_zone_plan_of_zone_research_physics_arcology
+                }
+            }
+            remove_zone = { zone = zone_research_physics_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_physics_ring_world
+                    value > value:num_zone_plan_of_zone_research_physics_ring_world
+                }
+            }
+            remove_zone = { zone = zone_research_physics_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_physics_nexus
+                    value > value:num_zone_plan_of_zone_research_physics_nexus
+                }
+            }
+            remove_zone = { zone = zone_research_physics_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_physics_hive
+                    value > value:num_zone_plan_of_zone_research_physics_hive
+                }
+            }
+            remove_zone = { zone = zone_research_physics_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_reactor_physics
+                    value > value:num_zone_plan_of_zone_ark_reactor_physics
+                }
+            }
+            remove_zone = { zone = zone_ark_reactor_physics }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_society
+                    value > value:num_zone_plan_of_zone_research_society
+                }
+            }
+            remove_zone = { zone = zone_research_society }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_society_arcology
+                    value > value:num_zone_plan_of_zone_research_society_arcology
+                }
+            }
+            remove_zone = { zone = zone_research_society_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_society_ring_world
+                    value > value:num_zone_plan_of_zone_research_society_ring_world
+                }
+            }
+            remove_zone = { zone = zone_research_society_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_society_nexus
+                    value > value:num_zone_plan_of_zone_research_society_nexus
+                }
+            }
+            remove_zone = { zone = zone_research_society_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_society_hive
+                    value > value:num_zone_plan_of_zone_research_society_hive
+                }
+            }
+            remove_zone = { zone = zone_research_society_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_farm_society
+                    value > value:num_zone_plan_of_zone_ark_farm_society
+                }
+            }
+            remove_zone = { zone = zone_ark_farm_society }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_engineering
+                    value > value:num_zone_plan_of_zone_research_engineering
+                }
+            }
+            remove_zone = { zone = zone_research_engineering }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_engineering_arcology
+                    value > value:num_zone_plan_of_zone_research_engineering_arcology
+                }
+            }
+            remove_zone = { zone = zone_research_engineering_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_engineering_ring_world
+                    value > value:num_zone_plan_of_zone_research_engineering_ring_world
+                }
+            }
+            remove_zone = { zone = zone_research_engineering_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_engineering_nexus
+                    value > value:num_zone_plan_of_zone_research_engineering_nexus
+                }
+            }
+            remove_zone = { zone = zone_research_engineering_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_engineering_hive
+                    value > value:num_zone_plan_of_zone_research_engineering_hive
+                }
+            }
+            remove_zone = { zone = zone_research_engineering_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_military_engineering
+                    value > value:num_zone_plan_of_zone_ark_military_engineering
+                }
+            }
+            remove_zone = { zone = zone_ark_military_engineering }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_engineering
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_engineering
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_engineering }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_unity
+                    value > value:num_zone_plan_of_zone_research_unity
+                }
+            }
+            remove_zone = { zone = zone_research_unity }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_research_unity
+                    value > value:num_zone_plan_of_zone_habitat_research_unity
+                }
+            }
+            remove_zone = { zone = zone_habitat_research_unity }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity
+                    value > value:num_zone_plan_of_zone_unity
+                }
+            }
+            remove_zone = { zone = zone_unity }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_bio_trophy
+                    value > value:num_zone_plan_of_zone_unity_bio_trophy
+                }
+            }
+            remove_zone = { zone = zone_unity_bio_trophy }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_arcology
+                    value > value:num_zone_plan_of_zone_unity_arcology
+                }
+            }
+            remove_zone = { zone = zone_unity_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_bio_trophy_arcology
+                    value > value:num_zone_plan_of_zone_unity_bio_trophy_arcology
+                }
+            }
+            remove_zone = { zone = zone_unity_bio_trophy_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_ring_world
+                    value > value:num_zone_plan_of_zone_unity_ring_world
+                }
+            }
+            remove_zone = { zone = zone_unity_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_bio_trophy_ring_world
+                    value > value:num_zone_plan_of_zone_unity_bio_trophy_ring_world
+                }
+            }
+            remove_zone = { zone = zone_unity_bio_trophy_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_nexus
+                    value > value:num_zone_plan_of_zone_unity_nexus
+                }
+            }
+            remove_zone = { zone = zone_unity_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_bio_trophy_nexus
+                    value > value:num_zone_plan_of_zone_unity_bio_trophy_nexus
+                }
+            }
+            remove_zone = { zone = zone_unity_bio_trophy_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_hive
+                    value > value:num_zone_plan_of_zone_unity_hive
+                }
+            }
+            remove_zone = { zone = zone_unity_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_spiritualist
+                    value > value:num_zone_plan_of_zone_unity_spiritualist
+                }
+            }
+            remove_zone = { zone = zone_unity_spiritualist }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_spiritual_retreat
+                    value > value:num_zone_plan_of_zone_resort_spiritual_retreat
+                }
+            }
+            remove_zone = { zone = zone_resort_spiritual_retreat }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_spiritualist_arcology
+                    value > value:num_zone_plan_of_zone_unity_spiritualist_arcology
+                }
+            }
+            remove_zone = { zone = zone_unity_spiritualist_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_spiritualist_ring_world
+                    value > value:num_zone_plan_of_zone_unity_spiritualist_ring_world
+                }
+            }
+            remove_zone = { zone = zone_unity_spiritualist_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_spiritualist_nexus
+                    value > value:num_zone_plan_of_zone_unity_spiritualist_nexus
+                }
+            }
+            remove_zone = { zone = zone_unity_spiritualist_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress
+                    value > value:num_zone_plan_of_zone_fortress
+                }
+            }
+            remove_zone = { zone = zone_fortress }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress_arcology
+                    value > value:num_zone_plan_of_zone_fortress_arcology
+                }
+            }
+            remove_zone = { zone = zone_fortress_arcology }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress_ring_world
+                    value > value:num_zone_plan_of_zone_fortress_ring_world
+                }
+            }
+            remove_zone = { zone = zone_fortress_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress_nexus
+                    value > value:num_zone_plan_of_zone_fortress_nexus
+                }
+            }
+            remove_zone = { zone = zone_fortress_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress_hive
+                    value > value:num_zone_plan_of_zone_fortress_hive
+                }
+            }
+            remove_zone = { zone = zone_fortress_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort
+                    value > value:num_zone_plan_of_zone_resort
+                }
+            }
+            remove_zone = { zone = zone_resort }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_entertainment
+                    value > value:num_zone_plan_of_zone_resort_entertainment
+                }
+            }
+            remove_zone = { zone = zone_resort_entertainment }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_zoo
+                    value > value:num_zone_plan_of_zone_resort_zoo
+                }
+            }
+            remove_zone = { zone = zone_resort_zoo }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_grand_museum
+                    value > value:num_zone_plan_of_zone_resort_grand_museum
+                }
+            }
+            remove_zone = { zone = zone_resort_grand_museum }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_hunting_ground
+                    value > value:num_zone_plan_of_zone_resort_hunting_ground
+                }
+            }
+            remove_zone = { zone = zone_resort_hunting_ground }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_restoration_enclave
+                    value > value:num_zone_plan_of_zone_resort_restoration_enclave
+                }
+            }
+            remove_zone = { zone = zone_resort_restoration_enclave }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_resort_proving_grounds
+                    value > value:num_zone_plan_of_zone_resort_proving_grounds
+                }
+            }
+            remove_zone = { zone = zone_resort_proving_grounds }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_knights
+                    value > value:num_zone_plan_of_zone_habitat_knights
+                }
+            }
+            remove_zone = { zone = zone_habitat_knights }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_energy
+                    value > value:num_zone_plan_of_zone_energy
+                }
+            }
+            remove_zone = { zone = zone_energy }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_energy_ring_world
+                    value > value:num_zone_plan_of_zone_energy_ring_world
+                }
+            }
+            remove_zone = { zone = zone_energy_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_energy_nexus
+                    value > value:num_zone_plan_of_zone_energy_nexus
+                }
+            }
+            remove_zone = { zone = zone_energy_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_energy_hive
+                    value > value:num_zone_plan_of_zone_energy_hive
+                }
+            }
+            remove_zone = { zone = zone_energy_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_betharian
+                    value > value:num_zone_plan_of_zone_betharian
+                }
+            }
+            remove_zone = { zone = zone_betharian }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_betharian_nexus
+                    value > value:num_zone_plan_of_zone_betharian_nexus
+                }
+            }
+            remove_zone = { zone = zone_betharian_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_betharian_hive
+                    value > value:num_zone_plan_of_zone_betharian_hive
+                }
+            }
+            remove_zone = { zone = zone_betharian_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_minerals
+                    value > value:num_zone_plan_of_zone_minerals
+                }
+            }
+            remove_zone = { zone = zone_minerals }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_minerals_nexus
+                    value > value:num_zone_plan_of_zone_minerals_nexus
+                }
+            }
+            remove_zone = { zone = zone_minerals_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_minerals_hive
+                    value > value:num_zone_plan_of_zone_minerals_hive
+                }
+            }
+            remove_zone = { zone = zone_minerals_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_harvest
+                    value > value:num_zone_plan_of_zone_ark_harvest
+                }
+            }
+            remove_zone = { zone = zone_ark_harvest }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_food
+                    value > value:num_zone_plan_of_zone_food
+                }
+            }
+            remove_zone = { zone = zone_food }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_food_ring_world
+                    value > value:num_zone_plan_of_zone_food_ring_world
+                }
+            }
+            remove_zone = { zone = zone_food_ring_world }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_food_hive
+                    value > value:num_zone_plan_of_zone_food_hive
+                }
+            }
+            remove_zone = { zone = zone_food_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_food
+                    value > value:num_zone_plan_of_zone_ark_food
+                }
+            }
+            remove_zone = { zone = zone_ark_food }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_rare_crystals
+                    value > value:num_zone_plan_of_zone_rare_crystals
+                }
+            }
+            remove_zone = { zone = zone_rare_crystals }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_rare_crystals
+                    value > value:num_zone_plan_of_zone_habitat_rare_crystals
+                }
+            }
+            remove_zone = { zone = zone_habitat_rare_crystals }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_rare_crystals_nexus
+                    value > value:num_zone_plan_of_zone_rare_crystals_nexus
+                }
+            }
+            remove_zone = { zone = zone_rare_crystals_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_rare_crystals_hive
+                    value > value:num_zone_plan_of_zone_rare_crystals_hive
+                }
+            }
+            remove_zone = { zone = zone_rare_crystals_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_volatile_motes
+                    value > value:num_zone_plan_of_zone_volatile_motes
+                }
+            }
+            remove_zone = { zone = zone_volatile_motes }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_volatile_motes
+                    value > value:num_zone_plan_of_zone_habitat_volatile_motes
+                }
+            }
+            remove_zone = { zone = zone_habitat_volatile_motes }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_volatile_motes_nexus
+                    value > value:num_zone_plan_of_zone_volatile_motes_nexus
+                }
+            }
+            remove_zone = { zone = zone_volatile_motes_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_volatile_motes_hive
+                    value > value:num_zone_plan_of_zone_volatile_motes_hive
+                }
+            }
+            remove_zone = { zone = zone_volatile_motes_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_exotic_gases
+                    value > value:num_zone_plan_of_zone_exotic_gases
+                }
+            }
+            remove_zone = { zone = zone_exotic_gases }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_exotic_gases
+                    value > value:num_zone_plan_of_zone_habitat_exotic_gases
+                }
+            }
+            remove_zone = { zone = zone_habitat_exotic_gases }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_exotic_gases_nexus
+                    value > value:num_zone_plan_of_zone_exotic_gases_nexus
+                }
+            }
+            remove_zone = { zone = zone_exotic_gases_nexus }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_exotic_gases_hive
+                    value > value:num_zone_plan_of_zone_exotic_gases_hive
+                }
+            }
+            remove_zone = { zone = zone_exotic_gases_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_shield_overloader
+                    value > value:num_zone_plan_of_zone_ark_shield_overloader
+                }
+            }
+            remove_zone = { zone = zone_ark_shield_overloader }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_anglers
+                    value > value:num_zone_plan_of_zone_anglers
+                }
+            }
+            remove_zone = { zone = zone_anglers }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_agrarian_urban
+                    value > value:num_zone_plan_of_zone_agrarian_urban
+                }
+            }
+            remove_zone = { zone = zone_agrarian_urban }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_habitat_hydroponics
+                    value > value:num_zone_plan_of_zone_habitat_hydroponics
+                }
+            }
+            remove_zone = { zone = zone_habitat_hydroponics }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_spawning
+                    value > value:num_zone_plan_of_zone_spawning
+                }
+            }
+            remove_zone = { zone = zone_spawning }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_spawning_hive
+                    value > value:num_zone_plan_of_zone_spawning_hive
+                }
+            }
+            remove_zone = { zone = zone_spawning_hive }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_machine_replication
+                    value > value:num_zone_plan_of_zone_machine_replication
+                }
+            }
+            remove_zone = { zone = zone_machine_replication }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_urban_wilderness
+                    value > value:num_zone_plan_of_zone_urban_wilderness
+                }
+            }
+            remove_zone = { zone = zone_urban_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_foundry_wilderness
+                    value > value:num_zone_plan_of_zone_foundry_wilderness
+                }
+            }
+            remove_zone = { zone = zone_foundry_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_wilderness
+                    value > value:num_zone_plan_of_zone_research_wilderness
+                }
+            }
+            remove_zone = { zone = zone_research_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_unity_wilderness
+                    value > value:num_zone_plan_of_zone_unity_wilderness
+                }
+            }
+            remove_zone = { zone = zone_unity_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_research_unity_wilderness
+                    value > value:num_zone_plan_of_zone_research_unity_wilderness
+                }
+            }
+            remove_zone = { zone = zone_research_unity_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_trade_wilderness
+                    value > value:num_zone_plan_of_zone_trade_wilderness
+                }
+            }
+            remove_zone = { zone = zone_trade_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_fortress_wilderness
+                    value > value:num_zone_plan_of_zone_fortress_wilderness
+                }
+            }
+            remove_zone = { zone = zone_fortress_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_minerals_wilderness
+                    value > value:num_zone_plan_of_zone_minerals_wilderness
+                }
+            }
+            remove_zone = { zone = zone_minerals_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_energy_wilderness
+                    value > value:num_zone_plan_of_zone_energy_wilderness
+                }
+            }
+            remove_zone = { zone = zone_energy_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_food_wilderness
+                    value > value:num_zone_plan_of_zone_food_wilderness
+                }
+            }
+            remove_zone = { zone = zone_food_wilderness }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_research_unity
+                    value > value:num_zone_plan_of_zone_ark_research_unity
+                }
+            }
+            remove_zone = { zone = zone_ark_research_unity }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_research_unity_gestalt
+                    value > value:num_zone_plan_of_zone_ark_research_unity_gestalt
+                }
+            }
+            remove_zone = { zone = zone_ark_research_unity_gestalt }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_industrial
+                    value > value:num_zone_plan_of_zone_ark_industrial
+                }
+            }
+            remove_zone = { zone = zone_ark_industrial }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_foundry
+                    value > value:num_zone_plan_of_zone_ark_foundry
+                }
+            }
+            remove_zone = { zone = zone_ark_foundry }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_engine_bypass
+                    value > value:num_zone_plan_of_zone_ark_engine_bypass
+                }
+            }
+            remove_zone = { zone = zone_ark_engine_bypass }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_missile_silos
+                    value > value:num_zone_plan_of_zone_ark_missile_silos
+                }
+            }
+            remove_zone = { zone = zone_ark_missile_silos }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_ammunition_lines
+                    value > value:num_zone_plan_of_zone_ark_ammunition_lines
+                }
+            }
+            remove_zone = { zone = zone_ark_ammunition_lines }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_laser_capacitors
+                    value > value:num_zone_plan_of_zone_ark_laser_capacitors
+                }
+            }
+            remove_zone = { zone = zone_ark_laser_capacitors }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_flight_decks
+                    value > value:num_zone_plan_of_zone_ark_flight_decks
+                }
+            }
+            remove_zone = { zone = zone_ark_flight_decks }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_passenger
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_passenger
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_passenger }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_shipwright
+                    value > value:num_zone_plan_of_zone_ark_shipwright
+                }
+            }
+            remove_zone = { zone = zone_ark_shipwright }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_crew
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_crew
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_crew }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_city_passenger
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_city_passenger
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_city_passenger }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_city_crew
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_city_crew
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_city_crew }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_forever_cruise_city_mixed
+                    value > value:num_zone_plan_of_zone_ark_forever_cruise_city_mixed
+                }
+            }
+            remove_zone = { zone = zone_ark_forever_cruise_city_mixed }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_sacred_path_pilgrims
+                    value > value:num_zone_plan_of_zone_ark_sacred_path_pilgrims
+                }
+            }
+            remove_zone = { zone = zone_ark_sacred_path_pilgrims }
+        }
     }
 }
-
 # trigger by on_zone_complete
 # remove zone flag if construction completed
+
+
 carrier_event = {
-	id = colony_automation_event.12
-	is_triggered_only = yes
-	hide_window = yes
-	trigger = {
-		owner = {
-			is_ai = no
-		}
-	}
-	immediate = {
+    id = colony_automation_event.12
+    is_triggered_only = yes
+    hide_window = yes
+    trigger = {
+        owner = {
+            is_ai = no
+        }
+    }
+    immediate = {
         remove_all_zone_plan_flag = yes
-	}
+    }
 }
-
 # synchronize configured zone selections with built zones
+
+
 carrier_event = {
-	id = colony_automation_event.22
-	is_triggered_only = yes
-	hide_window = yes
-
-	immediate = {
-		bca_sync_primary_zone_selection_if_overplanned = yes
-		bca_sync_secondary_zone_selection_if_overplanned = yes
-	}
+    id = colony_automation_event.22
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        bca_sync_primary_zone_selection_if_overplanned = yes
+        bca_sync_secondary_zone_selection_if_overplanned = yes
+    }
 }
-
 # enable zone auto-destruction and unlock all zone selectors
-carrier_event = {
-	id = colony_automation_event.23
-	is_triggered_only = yes
-	hide_window = yes
 
-	immediate = {
-		remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z1
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z2
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z3
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z4
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_z5
-		remove_carrier_flag = bca_pf_ps_zone_selection_matched_zx
-	}
+
+carrier_event = {
+    id = colony_automation_event.23
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        remove_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z1
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z2
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z3
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z4
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_z5
+        remove_carrier_flag = bca_pf_ps_zone_selection_matched_zx
+    }
 }
-
 # disable zone auto-destruction, close selectors, and lock matched slots
-carrier_event = {
-	id = colony_automation_event.24
-	is_triggered_only = yes
-	hide_window = yes
 
-	immediate = {
-		clear_open_selector = yes
-		set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
-		carrier_event = { id = colony_automation_event.22 }
-	}
+
+carrier_event = {
+    id = colony_automation_event.24
+    is_triggered_only = yes
+    hide_window = yes
+    immediate = {
+        clear_open_selector = yes
+        set_carrier_flag = bca_pf_disable_planet_auto_destruction_zone
+        carrier_event = { id = colony_automation_event.22 }
+    }
 }
