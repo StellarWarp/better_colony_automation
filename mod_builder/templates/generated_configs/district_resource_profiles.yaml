@@ -1,22 +1,92 @@
 district_resource_profiles:
   district_cosmogenesis_world_science:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_cosmogenesis_world_logic:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_mindlink:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - unity
     direct_output_conditions:
       unity:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}"
+        - "exists = owner\nis_capital = yes\nowner = {\n    has_menace_perk = menp_behemoth_mind_meld\n\
+          }"
+      - all:
+        - "exists = owner\nowner = {\n    is_gestalt = yes\n}"
+        - "exists = owner\nis_capital = yes\nowner = {\n    has_menace_perk = menp_behemoth_mind_meld\n\
+          }"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -673,11 +743,81 @@ district_resource_profiles:
       - zone_research_wilderness
       - zone_research_unity_wilderness
   district_city:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "OR = {\n    NOT = {\n        exists = owner\n    }\n    AND = {\n     \
+          \   exists = owner\n        owner = {\n            OR = {\n            \
+          \    is_regular_empire = yes\n                AND = {\n                \
+          \    is_country_type = primitive\n                    is_hive_empire = no\n\
+          \                }\n                is_country_type = mechanocalibrator\n\
+          \            }\n        }\n    }\n}\nNOT = {\n    has_deposit = d_crashed_slaver_ship\n\
+          }\nOR = {\n    uses_district_set = district_resort\n    uses_district_set\
+          \ = standard\n    uses_district_set = hive_world\n    uses_district_set\
+          \ = machine_world\n    uses_district_set = shattered_ring_world\n    uses_district_set\
+          \ = volcanic_world\n}\nis_special_colony_type = no\nNAND = {\n    is_capital\
+          \ = yes\n    owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n\
+          \    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -1329,6 +1469,7 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_crashed_slaver_ship:
+    zones: []
     direct_outputs:
     - alloys
     - research
@@ -1343,21 +1484,53 @@ district_resource_profiles:
       - null
       unity:
       - null
+    controlled_direct_outputs:
+    - alloys
+    - research
+    - trade
+    - unity
+    controlled_direct_output_conditions:
+      alloys:
+      - null
+      research:
+      - null
+      trade:
+      - null
+      unity:
+      - null
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort:
+    zones:
+    - zone_trade
+    - zone_trade
+    - zone_resort
+    - zone_resort
+    - zone_resort_entertainment
+    - zone_resort_entertainment
     direct_outputs:
     - unity
     - trade
     - engineering_research
     direct_output_conditions:
       unity:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = resort_colony"
       trade:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = resort_colony"
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = resort_colony"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_trade:
       - trade
@@ -1392,8 +1565,17 @@ district_resource_profiles:
       society_research:
       - zone_resort_entertainment
   district_resort_1:
+    zones:
+    - zone_resort_zoo
+    - zone_resort_grand_museum
+    - zone_resort_hunting_ground
+    - zone_resort_spiritual_retreat
+    - zone_resort_restoration_enclave
+    - zone_resort_proving_grounds
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_resort_zoo:
       - society_research
@@ -1557,8 +1739,17 @@ district_resource_profiles:
       food:
       - zone_resort_hunting_ground
   district_resort_2:
+    zones:
+    - zone_resort_zoo
+    - zone_resort_grand_museum
+    - zone_resort_hunting_ground
+    - zone_resort_spiritual_retreat
+    - zone_resort_restoration_enclave
+    - zone_resort_proving_grounds
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_resort_zoo:
       - society_research
@@ -1722,8 +1913,17 @@ district_resource_profiles:
       food:
       - zone_resort_hunting_ground
   district_resort_3:
+    zones:
+    - zone_resort_zoo
+    - zone_resort_grand_museum
+    - zone_resort_hunting_ground
+    - zone_resort_spiritual_retreat
+    - zone_resort_restoration_enclave
+    - zone_resort_proving_grounds
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_resort_zoo:
       - society_research
@@ -1887,16 +2087,99 @@ district_resource_profiles:
       food:
       - zone_resort_hunting_ground
   district_prison:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - unity
     - engineering_research
     direct_output_conditions:
       unity:
-      - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
-        }"
-      - enforcer_is_educator_trigger = yes
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n    NOT = {\n \
+          \       has_valid_civic = civic_dystopian_society\n    }\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = penal_colony"
+        - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+          }"
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n    NOT = {\n \
+          \       has_valid_civic = civic_dystopian_society\n    }\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = penal_colony"
+        - enforcer_is_educator_trigger = yes
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n    has_valid_civic\
+          \ = civic_dystopian_society\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = penal_colony"
+        - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+          }"
+      - all:
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n    has_valid_civic\
+          \ = civic_dystopian_society\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = penal_colony"
+        - enforcer_is_educator_trigger = yes
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = penal_colony"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -2538,16 +2821,86 @@ district_resource_profiles:
       - zone_research_wilderness
       - zone_research_unity_wilderness
   district_slave:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - unity
     - engineering_research
     direct_output_conditions:
       unity:
-      - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
-        }"
-      - enforcer_is_educator_trigger = yes
+      - all:
+        - "exists = owner\nowner = {\n    is_gestalt = no\n    is_fallen_empire_spiritualist\
+          \ = no\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = slave_colony"
+        - "exists = owner\n            owner = {\n    has_country_flag = maverick_citizens_flag\n\
+          }"
+      - all:
+        - "exists = owner\nowner = {\n    is_gestalt = no\n    is_fallen_empire_spiritualist\
+          \ = no\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = slave_colony"
+        - enforcer_is_educator_trigger = yes
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nhas_modifier\
+          \ = slave_colony"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -3189,11 +3542,75 @@ district_resource_profiles:
       - zone_research_wilderness
       - zone_research_unity_wilderness
   district_hive:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_hive_empire = yes\n    is_wilderness_empire\
+          \ = no\n}\nOR = {\n    uses_district_set = standard\n    uses_district_set\
+          \ = volcanic_world\n    uses_district_set = hive_world\n    uses_district_set\
+          \ = machine_world\n    uses_district_set = shattered_ring_world\n}\nNAND\
+          \ = {\n    is_capital = yes\n    owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n\
+          \    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -3845,8 +4262,29 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_hive_1:
+    zones:
+    - zone_industrial_hive
+    - zone_foundry_hive
+    - zone_factory_hive
+    - zone_research_hive
+    - zone_research_physics_hive
+    - zone_research_society_hive
+    - zone_research_engineering_hive
+    - zone_unity_hive
+    - zone_fortress_hive
+    - zone_trade_hive
+    - zone_food_hive
+    - zone_exotic_gases_hive
+    - zone_minerals_hive
+    - zone_betharian_hive
+    - zone_rare_crystals_hive
+    - zone_energy_hive
+    - zone_volatile_motes_hive
+    - zone_spawning_hive
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_hive:
       - alloys
@@ -4205,8 +4643,29 @@ district_resource_profiles:
       - zone_energy_hive
       - zone_volatile_motes_hive
   district_hive_2:
+    zones:
+    - zone_industrial_hive
+    - zone_foundry_hive
+    - zone_factory_hive
+    - zone_research_hive
+    - zone_research_physics_hive
+    - zone_research_society_hive
+    - zone_research_engineering_hive
+    - zone_unity_hive
+    - zone_fortress_hive
+    - zone_trade_hive
+    - zone_food_hive
+    - zone_exotic_gases_hive
+    - zone_minerals_hive
+    - zone_betharian_hive
+    - zone_rare_crystals_hive
+    - zone_energy_hive
+    - zone_volatile_motes_hive
+    - zone_spawning_hive
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_hive:
       - alloys
@@ -4565,8 +5024,29 @@ district_resource_profiles:
       - zone_energy_hive
       - zone_volatile_motes_hive
   district_hive_3:
+    zones:
+    - zone_industrial_hive
+    - zone_foundry_hive
+    - zone_factory_hive
+    - zone_research_hive
+    - zone_research_physics_hive
+    - zone_research_society_hive
+    - zone_research_engineering_hive
+    - zone_unity_hive
+    - zone_fortress_hive
+    - zone_trade_hive
+    - zone_food_hive
+    - zone_exotic_gases_hive
+    - zone_minerals_hive
+    - zone_betharian_hive
+    - zone_rare_crystals_hive
+    - zone_energy_hive
+    - zone_volatile_motes_hive
+    - zone_spawning_hive
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_hive:
       - alloys
@@ -4925,11 +5405,75 @@ district_resource_profiles:
       - zone_energy_hive
       - zone_volatile_motes_hive
   district_nexus:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_machine_empire = yes\n}\nOR = {\n   \
+          \ uses_district_set = standard\n    uses_district_set = volcanic_world\n\
+          \    uses_district_set = hive_world\n    uses_district_set = machine_world\n\
+          \    uses_district_set = shattered_ring_world\n}\nNAND = {\n    is_capital\
+          \ = yes\n    owner = {\n        has_menace_perk = menp_behemoth_mind_meld\n\
+          \    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -5581,8 +6125,29 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_nexus_1:
+    zones:
+    - zone_industrial_nexus
+    - zone_foundry_nexus
+    - zone_factory_nexus
+    - zone_research_nexus
+    - zone_research_physics_nexus
+    - zone_research_society_nexus
+    - zone_research_engineering_nexus
+    - zone_unity_nexus
+    - zone_unity_spiritualist_nexus
+    - zone_unity_bio_trophy_nexus
+    - zone_fortress_nexus
+    - zone_trade_nexus
+    - zone_minerals_nexus
+    - zone_betharian_nexus
+    - zone_rare_crystals_nexus
+    - zone_energy_nexus
+    - zone_volatile_motes_nexus
+    - zone_exotic_gases_nexus
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_nexus:
       - alloys
@@ -6011,8 +6576,29 @@ district_resource_profiles:
       - zone_energy_nexus
       - zone_volatile_motes_nexus
   district_nexus_2:
+    zones:
+    - zone_industrial_nexus
+    - zone_foundry_nexus
+    - zone_factory_nexus
+    - zone_research_nexus
+    - zone_research_physics_nexus
+    - zone_research_society_nexus
+    - zone_research_engineering_nexus
+    - zone_unity_nexus
+    - zone_unity_spiritualist_nexus
+    - zone_unity_bio_trophy_nexus
+    - zone_fortress_nexus
+    - zone_trade_nexus
+    - zone_minerals_nexus
+    - zone_betharian_nexus
+    - zone_rare_crystals_nexus
+    - zone_energy_nexus
+    - zone_volatile_motes_nexus
+    - zone_exotic_gases_nexus
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_nexus:
       - alloys
@@ -6441,8 +7027,29 @@ district_resource_profiles:
       - zone_energy_nexus
       - zone_volatile_motes_nexus
   district_nexus_3:
+    zones:
+    - zone_industrial_nexus
+    - zone_foundry_nexus
+    - zone_factory_nexus
+    - zone_research_nexus
+    - zone_research_physics_nexus
+    - zone_research_society_nexus
+    - zone_research_engineering_nexus
+    - zone_unity_nexus
+    - zone_unity_spiritualist_nexus
+    - zone_unity_bio_trophy_nexus
+    - zone_fortress_nexus
+    - zone_trade_nexus
+    - zone_minerals_nexus
+    - zone_betharian_nexus
+    - zone_rare_crystals_nexus
+    - zone_energy_nexus
+    - zone_volatile_motes_nexus
+    - zone_exotic_gases_nexus
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_nexus:
       - alloys
@@ -6871,11 +7478,71 @@ district_resource_profiles:
       - zone_energy_nexus
       - zone_volatile_motes_nexus
   district_arcology_housing:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "uses_district_set = city_world\nNAND = {\n    is_capital = yes\n    owner\
+          \ = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -7527,11 +8194,28 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_arcology_urban_1:
+    zones:
+    - zone_industrial_arcology
+    - zone_foundry_arcology
+    - zone_factory_arcology
+    - zone_research_arcology
+    - zone_research_physics_arcology
+    - zone_research_society_arcology
+    - zone_research_engineering_arcology
+    - zone_unity_arcology
+    - zone_unity_spiritualist_arcology
+    - zone_unity_bio_trophy_arcology
+    - zone_fortress_arcology
+    - zone_trade_arcology
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - uses_district_set = city_world
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_arcology:
       - alloys
@@ -7840,11 +8524,28 @@ district_resource_profiles:
       - zone_unity_spiritualist_arcology
       - zone_unity_bio_trophy_arcology
   district_arcology_urban_2:
+    zones:
+    - zone_industrial_arcology
+    - zone_foundry_arcology
+    - zone_factory_arcology
+    - zone_research_arcology
+    - zone_research_physics_arcology
+    - zone_research_society_arcology
+    - zone_research_engineering_arcology
+    - zone_unity_arcology
+    - zone_unity_spiritualist_arcology
+    - zone_unity_bio_trophy_arcology
+    - zone_fortress_arcology
+    - zone_trade_arcology
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - uses_district_set = city_world
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_arcology:
       - alloys
@@ -8153,11 +8854,28 @@ district_resource_profiles:
       - zone_unity_spiritualist_arcology
       - zone_unity_bio_trophy_arcology
   district_arcology_urban_3:
+    zones:
+    - zone_industrial_arcology
+    - zone_foundry_arcology
+    - zone_factory_arcology
+    - zone_research_arcology
+    - zone_research_physics_arcology
+    - zone_research_society_arcology
+    - zone_research_engineering_arcology
+    - zone_unity_arcology
+    - zone_unity_spiritualist_arcology
+    - zone_unity_bio_trophy_arcology
+    - zone_fortress_arcology
+    - zone_trade_arcology
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - uses_district_set = city_world
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_arcology:
       - alloys
@@ -8466,9 +9184,18 @@ district_resource_profiles:
       - zone_unity_spiritualist_arcology
       - zone_unity_bio_trophy_arcology
   district_generator:
+    zones:
+    - zone_energy
+    - zone_volatile_motes
+    - zone_energy_wilderness
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -8496,9 +9223,21 @@ district_resource_profiles:
         - "owner = {\n    is_nomadic = yes\n}"
     output_zones: {}
   district_mining:
+    zones:
+    - zone_minerals
+    - zone_betharian
+    - zone_rare_crystals
+    - zone_minerals_physics
+    - zone_subterranean_urban
+    - zone_minerals_wilderness
     direct_outputs:
     - minerals
     direct_output_conditions:
+      minerals:
+      - null
+    controlled_direct_outputs:
+    - minerals
+    controlled_direct_output_conditions:
       minerals:
       - null
     zone_outputs:
@@ -8684,9 +9423,21 @@ district_resource_profiles:
       trade:
       - zone_subterranean_urban
   district_farming:
+    zones:
+    - zone_food
+    - zone_anglers
+    - zone_exotic_gases
+    - zone_agrarian_urban
+    - zone_agrarian_anglers
+    - zone_food_wilderness
     direct_outputs:
     - food
     direct_output_conditions:
+      food:
+      - null
+    controlled_direct_outputs:
+    - food
+    controlled_direct_output_conditions:
       food:
       - null
     zone_outputs:
@@ -8818,9 +9569,18 @@ district_resource_profiles:
       - zone_anglers
       - zone_agrarian_anglers
   district_geothermal:
+    zones:
+    - zone_energy
+    - zone_volatile_motes
+    - zone_energy_wilderness
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -8848,9 +9608,21 @@ district_resource_profiles:
         - "owner = {\n    is_nomadic = yes\n}"
     output_zones: {}
   district_melting:
+    zones:
+    - zone_minerals
+    - zone_betharian
+    - zone_rare_crystals
+    - zone_minerals_physics
+    - zone_subterranean_urban
+    - zone_minerals_wilderness
     direct_outputs:
     - minerals
     direct_output_conditions:
+      minerals:
+      - null
+    controlled_direct_outputs:
+    - minerals
+    controlled_direct_output_conditions:
       minerals:
       - null
     zone_outputs:
@@ -9036,8 +9808,19 @@ district_resource_profiles:
       trade:
       - zone_subterranean_urban
   district_polytechnic:
+    zones:
+    - zone_research_unity
+    - zone_research
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_research_unity:
       - physics_research
@@ -9366,11 +10149,39 @@ district_resource_profiles:
       - zone_unity_spiritualist
       - zone_unity_bio_trophy
   district_hab_housing:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_habitat_knights
+    - zone_habitat_knights
+    - zone_habitat_research_unity
+    - zone_habitat_research_unity
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "uses_district_set = habitat\nNAND = {\n    is_capital = yes\n    owner\
+          \ = {\n        has_menace_perk = menp_behemoth_mind_meld\n    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -9672,9 +10483,19 @@ district_resource_profiles:
       minerals:
       - zone_habitat_research_unity
   district_hab_energy:
+    zones:
+    - zone_energy
+    - zone_habitat_hydroponics
+    - zone_habitat_volatile_motes
+    - zone_habitat_exotic_gases
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -9734,9 +10555,17 @@ district_resource_profiles:
       - zone_habitat_hydroponics
       - zone_habitat_exotic_gases
   district_hab_mining:
+    zones:
+    - zone_minerals
+    - zone_habitat_rare_crystals
     direct_outputs:
     - minerals
     direct_output_conditions:
+      minerals:
+      - null
+    controlled_direct_outputs:
+    - minerals
+    controlled_direct_output_conditions:
       minerals:
       - null
     zone_outputs:
@@ -9793,9 +10622,20 @@ district_resource_profiles:
       - zone_minerals
       - zone_habitat_rare_crystals
   district_hab_science:
+    zones:
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_engineering
+    - zone_habitat_research
+    - zone_habitat_research_unity
     direct_outputs:
     - research
     direct_output_conditions:
+      research:
+      - null
+    controlled_direct_outputs:
+    - research
+    controlled_direct_output_conditions:
       research:
       - null
     zone_outputs:
@@ -9982,9 +10822,69 @@ district_resource_profiles:
       trade:
       - zone_habitat_research_unity
   district_rw_city:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - trade
     direct_output_conditions:
+      trade:
+      - null
+    controlled_direct_outputs:
+    - trade
+    controlled_direct_output_conditions:
       trade:
       - null
     zone_outputs:
@@ -10640,15 +11540,85 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_rw_hive:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - unity
     - engineering_research
     direct_output_conditions:
       unity:
-      - null
-      - "owner = {\n    is_memorialist_empire = yes\n}"
+      - all:
+        - exists = owner
+        - "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nuses_district_set\
+          \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+          \ = menp_behemoth_mind_meld\n    }\n}"
+      - all:
+        - exists = owner
+        - "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nuses_district_set\
+          \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+          \ = menp_behemoth_mind_meld\n    }\n}"
+        - "owner = {\n    is_memorialist_empire = yes\n}"
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "exists = owner\nowner = {\n    is_hive_empire = yes\n}\nuses_district_set\
+          \ = ring_world\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+          \ = menp_behemoth_mind_meld\n    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -11290,9 +12260,69 @@ district_resource_profiles:
       - zone_research_wilderness
       - zone_research_unity_wilderness
   district_rw_nexus:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -11961,11 +12991,32 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_rw_urban_1:
+    zones:
+    - zone_industrial_ring_world
+    - zone_foundry_ring_world
+    - zone_factory_ring_world
+    - zone_research_ring_world
+    - zone_research_physics_ring_world
+    - zone_research_society_ring_world
+    - zone_research_engineering_ring_world
+    - zone_unity_ring_world
+    - zone_unity_spiritualist_ring_world
+    - zone_unity_bio_trophy_ring_world
+    - zone_fortress_ring_world
+    - zone_trade_ring_world
+    - zone_food_ring_world
+    - zone_energy_ring_world
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - 'exists = owner
+
+          uses_district_set = ring_world'
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_ring_world:
       - alloys
@@ -12302,11 +13353,32 @@ district_resource_profiles:
       energy:
       - zone_energy_ring_world
   district_rw_urban_2:
+    zones:
+    - zone_industrial_ring_world
+    - zone_foundry_ring_world
+    - zone_factory_ring_world
+    - zone_research_ring_world
+    - zone_research_physics_ring_world
+    - zone_research_society_ring_world
+    - zone_research_engineering_ring_world
+    - zone_unity_ring_world
+    - zone_unity_spiritualist_ring_world
+    - zone_unity_bio_trophy_ring_world
+    - zone_fortress_ring_world
+    - zone_trade_ring_world
+    - zone_food_ring_world
+    - zone_energy_ring_world
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - 'exists = owner
+
+          uses_district_set = ring_world'
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_ring_world:
       - alloys
@@ -12643,11 +13715,32 @@ district_resource_profiles:
       energy:
       - zone_energy_ring_world
   district_rw_urban_3:
+    zones:
+    - zone_industrial_ring_world
+    - zone_foundry_ring_world
+    - zone_factory_ring_world
+    - zone_research_ring_world
+    - zone_research_physics_ring_world
+    - zone_research_society_ring_world
+    - zone_research_engineering_ring_world
+    - zone_unity_ring_world
+    - zone_unity_spiritualist_ring_world
+    - zone_unity_bio_trophy_ring_world
+    - zone_fortress_ring_world
+    - zone_trade_ring_world
+    - zone_food_ring_world
+    - zone_energy_ring_world
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - 'exists = owner
+
+          uses_district_set = ring_world'
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial_ring_world:
       - alloys
@@ -12984,8 +14077,65 @@ district_resource_profiles:
       energy:
       - zone_energy_ring_world
   district_craglands:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -13652,9 +14802,18 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_crew
       - zone_ark_forever_cruise_city_mixed
   district_photosynthesis_fields:
+    zones:
+    - zone_energy
+    - zone_volatile_motes
+    - zone_energy_wilderness
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -13682,9 +14841,21 @@ district_resource_profiles:
         - "owner = {\n    is_nomadic = yes\n}"
     output_zones: {}
   district_hollow_mountains:
+    zones:
+    - zone_minerals
+    - zone_betharian
+    - zone_rare_crystals
+    - zone_minerals_physics
+    - zone_subterranean_urban
+    - zone_minerals_wilderness
     direct_outputs:
     - minerals
     direct_output_conditions:
+      minerals:
+      - null
+    controlled_direct_outputs:
+    - minerals
+    controlled_direct_output_conditions:
       minerals:
       - null
     zone_outputs:
@@ -13870,9 +15041,21 @@ district_resource_profiles:
       trade:
       - zone_subterranean_urban
   district_orchard_forests:
+    zones:
+    - zone_food
+    - zone_anglers
+    - zone_exotic_gases
+    - zone_agrarian_urban
+    - zone_agrarian_anglers
+    - zone_food_wilderness
     direct_outputs:
     - food
     direct_output_conditions:
+      food:
+      - null
+    controlled_direct_outputs:
+    - food
+    controlled_direct_output_conditions:
       food:
       - null
     zone_outputs:
@@ -14004,551 +15187,892 @@ district_resource_profiles:
       - zone_anglers
       - zone_agrarian_anglers
   district_mining_rare_crystals:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_mining_betharian:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_mining_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_mining_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_generator_volatile_motes:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_generator_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_farming_exotic_gases:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_farming_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_orders_demesne:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hab_mining_rare_crystals:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hab_energy_volatile_motes:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hab_energy_exotic_gases:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_mixed_industry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_arms_industry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_civilian_industry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_research:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_research_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_research_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_research_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_administrative:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_spiritualist:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_organic_housing:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_fortress:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_arcology_trade:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_industrial:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_foundry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_factory:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_research:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_research_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_research_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_research_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_administrative:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_spiritualist:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_organic_housing:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_fortress:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_trade:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_food:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ring_world_energy:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_industrial:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_foundry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_factory:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_research:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_research_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_research_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_research_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_administrative:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_spiritualist:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_organic_housing:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_fortress:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_trade:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_mining:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_betharian:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_rare_crystals:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_energy:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_volatile_motes:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_nexus_exotic_gases:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_industrial:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_foundry:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_factory:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_research:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_research_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_research_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_research_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_administrative:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_fortress:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_trade:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_food:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_exotic_gases:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_mining:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_betharian_hive:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_rare_crystals_hive:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_energy:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_volatile_motes:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_hive_spawning:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_zoo:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_museum:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_hunting_ground:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_spiritual_retreat:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_restoration_enclave:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_resort_proving_grounds:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_generator_physics:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_engine_bypass:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_shield_overloader:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_food:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_basic_society:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_harvest:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_waystation_trade:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_military_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_military_industrial:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_forever_cruise_engineering:
+    zones: []
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs: {}
     zone_output_conditions: {}
     output_zones: {}
   district_ark_city:
+    zones:
+    - zone_urban
+    - zone_urban
+    - zone_industrial
+    - zone_industrial
+    - zone_foundry
+    - zone_foundry
+    - zone_factory
+    - zone_factory
+    - zone_research_unity
+    - zone_research_unity
+    - zone_research
+    - zone_research
+    - zone_research_physics
+    - zone_research_physics
+    - zone_research_society
+    - zone_research_society
+    - zone_research_engineering
+    - zone_research_engineering
+    - zone_unity
+    - zone_unity
+    - zone_unity_spiritualist
+    - zone_unity_spiritualist
+    - zone_unity_bio_trophy
+    - zone_unity_bio_trophy
+    - zone_fortress
+    - zone_fortress
+    - zone_trade
+    - zone_trade
+    - zone_spawning
+    - zone_spawning
+    - zone_machine_replication
+    - zone_machine_replication
+    - zone_central_spire
+    - zone_central_spire
+    - zone_urban_wilderness
+    - zone_urban_wilderness
+    - zone_foundry_wilderness
+    - zone_foundry_wilderness
+    - zone_research_wilderness
+    - zone_research_wilderness
+    - zone_unity_wilderness
+    - zone_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_research_unity_wilderness
+    - zone_trade_wilderness
+    - zone_trade_wilderness
+    - zone_fortress_wilderness
+    - zone_fortress_wilderness
+    - zone_ark_research_unity
+    - zone_ark_research_unity
+    - zone_ark_industrial
+    - zone_ark_industrial
+    - zone_ark_research_unity_gestalt
+    - zone_ark_research_unity_gestalt
+    - zone_ark_foundry
+    - zone_ark_foundry
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_passenger
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_crew
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_forever_cruise_city_mixed
+    - zone_ark_sacred_path_pilgrims
+    - zone_ark_sacred_path_pilgrims
     direct_outputs:
     - engineering_research
     direct_output_conditions:
       engineering_research:
-      - null
+      - all:
+        - "exists = owner\nowner = {\n    is_tankbound_empire = yes\n}"
+        - "OR = {\n    NOT = {\n        exists = owner\n    }\n    uses_district_set\
+          \ = nomad\n}\nNAND = {\n    is_capital = yes\n    owner = {\n        has_menace_perk\
+          \ = menp_behemoth_mind_meld\n    }\n}"
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_industrial:
       - alloys
@@ -15458,9 +16982,19 @@ district_resource_profiles:
       - zone_ark_forever_cruise_city_mixed
       - zone_ark_sacred_path_pilgrims
   district_ark_generator:
+    zones:
+    - zone_energy
+    - zone_ark_engine_bypass
+    - zone_ark_shield_overloader
+    - zone_ark_reactor_physics
     direct_outputs:
     - energy
     direct_output_conditions:
+      energy:
+      - null
+    controlled_direct_outputs:
+    - energy
+    controlled_direct_output_conditions:
       energy:
       - null
     zone_outputs:
@@ -15525,8 +17059,15 @@ district_resource_profiles:
       engineering_research:
       - zone_ark_reactor_physics
   district_ark_basic:
+    zones:
+    - zone_ark_food
+    - zone_ark_farm_society
+    - zone_ark_harvest
+    - zone_ark_waystation_trade
     direct_outputs: []
     direct_output_conditions: {}
+    controlled_direct_outputs: []
+    controlled_direct_output_conditions: {}
     zone_outputs:
       zone_ark_food:
       - food
@@ -15585,10 +17126,26 @@ district_resource_profiles:
       minerals:
       - zone_ark_harvest
   district_ark_military:
+    zones:
+    - zone_ark_missile_silos
+    - zone_ark_ammunition_lines
+    - zone_ark_laser_capacitors
+    - zone_ark_flight_decks
+    - zone_ark_military_eco
+    - zone_ark_shipwright
+    - zone_ark_military_engineering
     direct_outputs:
     - unity
     - research
     direct_output_conditions:
+      unity:
+      - null
+      research:
+      - null
+    controlled_direct_outputs:
+    - unity
+    - research
+    controlled_direct_output_conditions:
       unity:
       - null
       research:
@@ -15676,11 +17233,26 @@ district_resource_profiles:
       physics_research:
       - zone_ark_military_engineering
   district_ark_forever_cruise:
+    zones:
+    - zone_ark_forever_cruise_passenger
+    - zone_ark_forever_cruise_crew
+    - zone_ark_forever_cruise_engineering
     direct_outputs:
     - consumer_goods
     - unity
     - trade
     direct_output_conditions:
+      consumer_goods:
+      - null
+      unity:
+      - null
+      trade:
+      - null
+    controlled_direct_outputs:
+    - consumer_goods
+    - unity
+    - trade
+    controlled_direct_output_conditions:
       consumer_goods:
       - null
       unity:

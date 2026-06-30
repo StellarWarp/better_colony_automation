@@ -272,6 +272,197 @@ country_event = {
     picture = GFX_evt_metropolis
     show_sound = event_administrative_work
     option = {
+        name = colony_automation_event.110.locate_all
+        trigger = {
+            check_variable = {
+                which = bca_arcology_project_candidate_planet_count
+                value > 0
+            }
+        }
+        hidden_effect = {
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 1
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_01
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_01.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_01.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 2
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_02
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_02.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_02.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 3
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_03
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_03.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_03.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 4
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_04
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_04.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_04.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 5
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_05
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_05.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_05.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 6
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_06
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_06.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_06.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 7
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_07
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_07.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_07.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 8
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_08
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_08.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_08.carrier
+                    }
+                }
+            }
+            if = {
+                limit = {
+                    check_variable = {
+                        which = bca_arcology_project_candidate_planet_count
+                        value >= 9
+                    }
+                    exists = event_target:bca_arcology_project_candidate_planet_09
+                }
+                create_message = {
+                    type = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC
+                    target = event_target:bca_arcology_project_candidate_planet_09.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = event_target:bca_arcology_project_candidate_planet_09.carrier
+                    }
+                }
+            }
+        }
+    }
+    option = {
         name = colony_automation_event.110.opt.01
         trigger = {
             # 使用当前刷新的计数器进行范围截断，避免上一轮的幽灵 event_target 被显示出来

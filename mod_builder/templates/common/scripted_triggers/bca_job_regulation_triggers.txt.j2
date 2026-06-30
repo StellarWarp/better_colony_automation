@@ -23,25 +23,32 @@ bca_jr_job_matches_selected_filters = {
 }
 
 {% for entry in regulated %}
-    {% for resource in entry.economic_resources if resource in economic_set %}
-        {% set all_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}
-        {% set has_unconditional = all_produces | selectattr('trigger', 'equalto', none) | list | length > 0 %}
-        {% set cond_produces = all_produces | selectattr('trigger') | list %}
-        {% if not has_unconditional and cond_produces %}
-            # {{ entry.job }} → {{ resource }} 全部产出均有条件，需满足任一 trigger
-            bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
-                OR = {
-                    {% for prod in cond_produces %}
-                        AND = {
-                            {{ prod.trigger | replace('\n', '\n            ') }}
-                        }
-                    {% endfor %}
+    {% for resource in economic_set %}
+        {% if resource in entry.economic_resources %}
+            {% set all_produces = entry.produces | selectattr('resource', 'equalto', resource) | list %}
+            {% set has_unconditional = all_produces | selectattr('trigger', 'equalto', none) | list | length > 0 %}
+            {% set cond_produces = all_produces | selectattr('trigger') | list %}
+            {% if not has_unconditional and cond_produces %}
+                # {{ entry.job }} → {{ resource }} 全部产出均有条件，需满足任一 trigger
+                bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
+                    OR = {
+                        {% for prod in cond_produces %}
+                            AND = {
+                                {{ prod.trigger | replace('\n', '\n            ') }}
+                            }
+                        {% endfor %}
+                    }
                 }
-            }
+            {% else %}
+                # {{ entry.job }} → {{ resource }} 有无条件产出（base）或全部无条件
+                bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
+                    always = yes
+                }
+            {% endif %}
         {% else %}
-            # {{ entry.job }} → {{ resource }} 有无条件产出（base）或全部无条件
+            # {{ entry.job }} → {{ resource }} 无已知产出
             bca_jr_has_output_{{ entry.job }}_{{ resource }} = {
-                always = yes
+                always = no
             }
         {% endif %}
 

@@ -6,6 +6,7 @@ Phase 7: 岗位调控评估
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
+{% set max_gear_step = job_regulation_config.gear_steps | max %}
 
 {# ---- INC 分组 ---- #}
 {% set inc_groups = {} %}
@@ -58,16 +59,20 @@ bca_jr_plan_inc_job = {
     optimize_memory
     if = {
         limit = {
-            bca_jr_should_inc_$JOB$_for_$NEED$ = yes
             check_modifier_value = {
                 modifier = job_$JOB$_add
                 value > 0
             }
+            bca_jr_should_inc_$JOB$_for_$NEED$ = yes
             owner = {
                 is_variable_set = bca_jr_remaining_inc_$NEED$
                 check_variable = { which = bca_jr_remaining_inc_$NEED$ value > 0 }
             }
-            owner = { NOT = { has_country_flag = bca_jr_disable_$JOB$ } }
+            owner = {
+                NOT = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+                NOT = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+                NOT = { has_country_flag = bca_jr_mode_full_$JOB$ }
+            }
             NOT = { has_carrier_flag = bca_jr_skip_full_$JOB$ }
             NOT = { has_carrier_flag = bca_jr_plan_inc_$JOB$ }
         }
@@ -80,17 +85,21 @@ bca_jr_plan_dec_job = {
     optimize_memory
     if = {
         limit = {
-            NOT = { has_carrier_flag = bca_jr_plan_inc_$JOB$ }
-            bca_jr_should_dec_$JOB$ = yes
             check_modifier_value = {
                 modifier = job_$JOB$_add
                 value > 0
             }
+            NOT = { has_carrier_flag = bca_jr_plan_inc_$JOB$ }
+            bca_jr_should_dec_$JOB$ = yes
             owner = {
                 is_variable_set = bca_jr_remaining_dec_$NEED$
                 check_variable = { which = bca_jr_remaining_dec_$NEED$ value > 0 }
             }
-            owner = { NOT = { has_country_flag = bca_jr_disable_$JOB$ } }
+            owner = {
+                NOT = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+                NOT = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+                NOT = { has_country_flag = bca_jr_mode_full_$JOB$ }
+            }
             NOT = { has_carrier_flag = bca_jr_skip_empty_$JOB$ }
         }
         set_carrier_flag = bca_jr_plan_dec_$JOB$
@@ -329,31 +338,78 @@ bca_jr_writeback_dec_automated_remaining_for_resource = {
     }
 }
 
+bca_jr_force_empty_job = {
+    optimize_memory
+    if = {
+        limit = {
+            check_modifier_value = {
+                modifier = job_$JOB$_add
+                value > 0
+            }
+            NOT = { has_carrier_flag = bca_jr_skip_empty_$JOB$ }
+        }
+        remove_carrier_flag = bca_jr_skip_full_$JOB$
+        set_carrier_flag = bca_jr_dec_$JOB$_g{{ max_gear_step }}
+    }
+}
+
+bca_jr_force_full_job = {
+    optimize_memory
+    if = {
+        limit = {
+            check_modifier_value = {
+                modifier = job_$JOB$_add
+                value > 0
+            }
+            NOT = { has_carrier_flag = bca_jr_skip_full_$JOB$ }
+        }
+        remove_carrier_flag = bca_jr_skip_empty_$JOB$
+        set_carrier_flag = bca_jr_inc_$JOB$_g{{ max_gear_step }}
+    }
+}
+
 bca_jr_apply_planned_job_changes = {
     optimize_memory
     {% for entry in regulated if entry.pop_category %}
         if = {
-            limit = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
-            bca_jr_prepare_inc_target = { JOB = {{ entry.job }} }
-            {% for resource in entry.economic_resources if resource in economic_set %}
-                bca_jr_limit_inc_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-            {% endfor %}
-            bca_jr_apply_inc_target = { JOB = {{ entry.job }} }
-            {% for resource in entry.economic_resources if resource in economic_set %}
-                bca_jr_writeback_inc_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-            {% endfor %}
+            limit = { owner = { has_country_flag = bca_jr_mode_empty_{{ entry.job }} } }
+            bca_jr_force_empty_job = { JOB = {{ entry.job }} }
         }
-        if = {
-            limit = { has_carrier_flag = bca_jr_plan_dec_{{ entry.job }} }
-            bca_jr_prepare_dec_target = { JOB = {{ entry.job }} }
-            {% for resource in entry.economic_resources if resource in economic_set %}
-                bca_jr_limit_dec_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-            {% endfor %}
-            bca_jr_apply_dec_target = { JOB = {{ entry.job }} }
-            {% for resource in entry.economic_resources if resource in economic_set %}
-                bca_jr_writeback_dec_pop_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-                bca_jr_writeback_dec_automated_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
-            {% endfor %}
+        else_if = {
+            limit = { owner = { has_country_flag = bca_jr_mode_full_{{ entry.job }} } }
+            bca_jr_force_full_job = { JOB = {{ entry.job }} }
+        }
+        else_if = {
+            limit = {
+                owner = {
+                    has_country_flag = bca_jr_mode_manual_{{ entry.job }}
+                }
+            }
+        }
+        else = {
+            if = {
+                limit = { has_carrier_flag = bca_jr_plan_inc_{{ entry.job }} }
+                bca_jr_prepare_inc_target = { JOB = {{ entry.job }} }
+                {% for resource in entry.economic_resources if resource in economic_set %}
+                    bca_jr_limit_inc_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                {% endfor %}
+                bca_jr_apply_inc_target = { JOB = {{ entry.job }} }
+                {% for resource in entry.economic_resources if resource in economic_set %}
+                    bca_jr_writeback_inc_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                {% endfor %}
+            }
+            if = {
+                limit = { has_carrier_flag = bca_jr_plan_dec_{{ entry.job }} }
+                bca_jr_prepare_dec_target = { JOB = {{ entry.job }} }
+                {% for resource in entry.economic_resources if resource in economic_set %}
+                    bca_jr_limit_dec_target_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                {% endfor %}
+                bca_jr_apply_dec_target = { JOB = {{ entry.job }} }
+                {% for resource in entry.economic_resources if resource in economic_set %}
+                    bca_jr_writeback_dec_pop_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                    bca_jr_writeback_dec_automated_remaining_for_resource = { JOB = {{ entry.job }} RESOURCE = {{ resource }} }
+                {% endfor %}
+            }
         }
     {% endfor %}
 

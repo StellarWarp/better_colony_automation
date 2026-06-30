@@ -1000,13 +1000,13 @@ bca_secondary_zone_setting_set_by_current_zones_helper = {
 bca_secondary_zone_setting_set_by_current_zones = {
     optimize_memory
     hidden_effect = {
-        bca_planet_setting_remove_current_selected_zone = {
+        bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z3
         }
-        bca_planet_setting_remove_current_selected_zone = {
+        bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z4
         }
-        bca_planet_setting_remove_current_selected_zone = {
+        bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z5
         }
         bca_set_secondary_district_type_flag = yes
@@ -4277,10 +4277,10 @@ bca_primary_zone_setting_set_by_current_zones_helper = {
 
 bca_primary_zone_setting_set_by_current_zones = {
     hidden_effect = {
-        bca_planet_setting_remove_current_selected_zone = {
+        bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z1
         }
-        bca_planet_setting_remove_current_selected_zone = {
+        bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z2
         }
         if = {
@@ -7783,7 +7783,7 @@ bca_sync_primary_zone_selection_if_overplanned = {
         }
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z1 }
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = z1
             }
             bca_sync_primary_zone_selection_fill_slot = {
@@ -7799,7 +7799,7 @@ bca_sync_primary_zone_selection_if_overplanned = {
         }
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z2 }
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = z2
             }
             bca_sync_primary_zone_selection_fill_slot = {
@@ -7988,7 +7988,7 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         }
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z3 }
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = z3
             }
             set_carrier_flag = tp_secondary_zone_selection_synced
@@ -8005,7 +8005,7 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         }
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z4 }
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = z4
             }
             set_carrier_flag = tp_secondary_zone_selection_synced
@@ -8022,7 +8022,7 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         }
         if = {
             limit = { has_carrier_flag = tp_zone_sync_rewrite_z5 }
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = z5
             }
             set_carrier_flag = tp_secondary_zone_selection_synced

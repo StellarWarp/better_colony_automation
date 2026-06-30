@@ -114,6 +114,27 @@ The automation categories that consume these flags are under:
 
 - [`../../common/colony_automation_exceptions/`](../../common/colony_automation_exceptions/)
 
+### Economic District Build Gate
+
+District build flags are additionally gated by global economic needs in:
+
+- [`../../common/scripted_effects/bca_district_build_effects.txt`](../../common/scripted_effects/bca_district_build_effects.txt)
+
+The generated gate keeps two output sources separate:
+
+- **Zone output** comes from the selected concrete zone plan for the slot. It is
+  derived from zone jobs and is checked together with the matching
+  `bca_empire_needs_<resource>` trigger.
+- **District direct output** is a conservative whitelist from
+  [`../../mod_builder/configs/district_direct_outputs.yaml`](../../mod_builder/configs/district_direct_outputs.yaml).
+  It represents a district's own main economic purpose, not every conditional
+  job that can appear on that district.
+
+Automatically parsed district direct outputs are kept in generated inspection
+data, but they do not drive district construction. This avoids building broad
+city-like districts for low-return conditional side jobs such as rare special
+science jobs.
+
 ## Zone Build/Replace/Remove Flow
 
 Main event file:

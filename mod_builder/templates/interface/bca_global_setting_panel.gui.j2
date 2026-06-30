@@ -153,12 +153,11 @@ containerWindowType = {
     }
 
 {# ---- Tab 按钮栏 ---- #}
-    {% set tab_button_width = (full_width - 2 * 2) // 3 %}
     {{
-        gsc.choice_row(
-            name = "tab_select", text = "", tooltip = "",
+        gsc.tab_row(
+            name = "tab_select",
             x = content_x, y = tab_bar_y, width = full_width, height = 40,
-            button_width = tab_button_width, button_gap = 2,
+            button_gap = 2,
             options = [
             {"name": "economy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION", "effect": "bca_gui_select_tab_economy"},
             {"name": "jobs", "text": "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION", "effect": "bca_gui_select_tab_jobs"},
@@ -211,21 +210,7 @@ containerWindowType = {
     effectButtonType = { name = "jr_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_1" }
     effectButtonType = { name = "jr_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_HINT" alwaysTransparent = yes effect = "bca_tab_visible_1" }
 
-    {{
-        gsc.choice_row(
-            name = "jr_global_toggle",
-            text = "BCA_JR_GLOBAL_ENABLE",
-            tooltip = "",
-            x = content_x, y = jr_global_y, width = full_width, height = 32,
-            button_width = 72, button_gap = 10,
-            options = [
-            {"name": "off", "text": "BCA_GLOBAL_SETTINGS_DISABLED", "effect": "bca_jr_global_off"},
-            {"name": "on", "text": "BCA_GLOBAL_SETTINGS_ENABLED", "effect": "bca_jr_global_on"}
-            ],
-            label_effect = "bca_tab_visible_1"
-        )
-    }}
-    {{ jr.refresh_button(content_right - 240, jr_global_y + 4, 72, 24) }}
+    {{ jr.global_control_row(content_x, jr_global_y, full_width, 32) }}
 
     {{ jr.category_group_bar(categories, jr_category_groups, content_x, jr_group_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_group_button_height) }}
 

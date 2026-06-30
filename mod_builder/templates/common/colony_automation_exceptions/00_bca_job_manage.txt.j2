@@ -13,7 +13,7 @@ Phase 5a: job_changes 自动化块模板
             exists = owner
             bca_has_minerals_to_build = yes
             owner = { has_country_flag = bca_jr_enabled }
-            owner = { NOT = { has_country_flag = bca_jr_disable_{{ entry.job }} } }
+            owner = { NOT = { has_country_flag = bca_jr_mode_manual_{{ entry.job }} } }
         }
 
         emergency = yes

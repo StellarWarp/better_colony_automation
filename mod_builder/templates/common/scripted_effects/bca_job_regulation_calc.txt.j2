@@ -1,5 +1,6 @@
 {# Phase 7: 岗位统计。统计本身是纯操作，控制器通过临时 check flag 决定要统计哪些岗位。 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
+{% set resources = job_regulation_config.resources %}
 
 {# ---- 清零所有累加器 ---- #}
 bca_jr_clear_accumulators = {
@@ -21,7 +22,7 @@ bca_jr_clear_accumulators = {
         clear_variable = bca_jr_acc_open_job_count_{{ entry.job }}
         clear_variable = bca_jr_acc_closable_capacity_workforce_{{ entry.job }}
         clear_variable = bca_jr_acc_avg_output_efficiency_{{ entry.job }}
-        {% for resource in entry.economic_resources %}
+        {% for resource in resources %}
             clear_variable = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
         {% endfor %}
     {% endfor %}
@@ -38,6 +39,42 @@ bca_jr_collect_job_count_stats = {
         trigger = free_jobs_of_type
         parameters = { job = $JOB$ }
         variable = bca_jr_acc_free_job_count_$JOB$
+    }
+    if = {
+        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+        owner = {
+            add_variable = { which = bca_jr_total_job_count_$JOB$ value = prev.bca_jr_acc_total_job_count_$JOB$ }
+            add_variable = { which = bca_jr_total_free_job_count_$JOB$ value = prev.bca_jr_acc_free_job_count_$JOB$ }
+        }
+    }
+}
+
+bca_jr_finalize_single_job_resource = {
+    optimize_memory
+    if = {
+        limit = {
+            bca_jr_has_output_$JOB$_$RESOURCE$ = yes
+        }
+        set_variable = {
+            which = bca_jr_acc_output_$JOB$_$RESOURCE$
+            value = bca_jr_acc_productive_workforce_$JOB$
+        }
+        multiply_variable = {
+            which = bca_jr_acc_output_$JOB$_$RESOURCE$
+            value = value:bca_job_$JOB$_$RESOURCE$_per_worker
+        }
+        if = {
+            limit = {
+                owner = { has_country_flag = bca_jr_collect_country_totals }
+                check_variable = { which = bca_jr_acc_output_$JOB$_$RESOURCE$ value > 0 }
+            }
+            owner = {
+                add_variable = {
+                    which = bca_jr_total_output_$JOB$_$RESOURCE$
+                    value = prev.bca_jr_acc_output_$JOB$_$RESOURCE$
+                }
+            }
+        }
     }
 }
 
@@ -84,6 +121,27 @@ bca_jr_collect_current_pop_group_stats = {
             which = bca_jr_acc_productive_workforce_$JOB$
             value = bca_jr_v_productive
         }
+        if = {
+            limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+            owner = {
+                add_variable = {
+                    which = bca_jr_total_assigned_workforce_$JOB$
+                    value = prev.bca_jr_v_size
+                }
+                add_variable = {
+                    which = bca_jr_total_capacity_workforce_$JOB$
+                    value = prev.bca_jr_v_capacity
+                }
+                add_variable = {
+                    which = bca_jr_total_pop_productive_workforce_$JOB$
+                    value = prev.bca_jr_v_productive
+                }
+                add_variable = {
+                    which = bca_jr_total_productive_workforce_$JOB$
+                    value = prev.bca_jr_v_productive
+                }
+            }
+        }
     }
     clear_variable = bca_jr_v_size
     clear_variable = bca_jr_v_capacity
@@ -95,14 +153,14 @@ bca_jr_collect_checked_job_stats = {
     {% for entry in regulated if entry.pop_category %}
         if = {
             limit = {
+                check_modifier_value = {
+                    modifier = job_{{ entry.job }}_add
+                    value > 0
+                }
                 OR = {
                     has_carrier_flag = bca_jr_check_all_jobs
                     has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
                     has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-                }
-                check_modifier_value = {
-                    modifier = job_{{ entry.job }}_add
-                    value > 0
                 }
             }
             bca_jr_collect_job_count_stats = { JOB = {{ entry.job }} }
@@ -113,14 +171,18 @@ bca_jr_collect_checked_job_stats = {
         {% for entry in regulated if entry.pop_category %}
             if = {
                 limit = {
-                    has_job_type = {{ entry.job }}
                     prev = {
+                        check_modifier_value = {
+                            modifier = job_{{ entry.job }}_add
+                            value > 0
+                        }
                         OR = {
                             has_carrier_flag = bca_jr_check_all_jobs
                             has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
                             has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
                         }
                     }
+                    has_job_type = {{ entry.job }}
                 }
                 every_job_pop_group = {
                     save_event_target_as = bca_jr_current_pop_group
@@ -167,6 +229,23 @@ bca_jr_finalize_single_job_stats = {
         which = bca_jr_acc_productive_workforce_$JOB$
         value = bca_jr_acc_automated_productive_workforce_$JOB$
     }
+    if = {
+        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+        owner = {
+            add_variable = {
+                which = bca_jr_total_automated_capacity_workforce_$JOB$
+                value = prev.bca_jr_acc_automated_capacity_workforce_$JOB$
+            }
+            add_variable = {
+                which = bca_jr_total_automated_productive_workforce_$JOB$
+                value = prev.bca_jr_acc_automated_productive_workforce_$JOB$
+            }
+            add_variable = {
+                which = bca_jr_total_productive_workforce_$JOB$
+                value = prev.bca_jr_acc_automated_productive_workforce_$JOB$
+            }
+        }
+    }
     set_variable = {
         which = bca_jr_acc_pop_capacity_limit_$JOB$
         value = bca_jr_acc_total_job_count_$JOB$
@@ -207,6 +286,23 @@ bca_jr_finalize_single_job_stats = {
         }
     }
     if = {
+        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+        owner = {
+            add_variable = {
+                which = bca_jr_total_pop_capacity_limit_$JOB$
+                value = prev.bca_jr_acc_pop_capacity_limit_$JOB$
+            }
+            add_variable = {
+                which = bca_jr_total_open_job_count_$JOB$
+                value = prev.bca_jr_acc_open_job_count_$JOB$
+            }
+            add_variable = {
+                which = bca_jr_total_closable_capacity_workforce_$JOB$
+                value = prev.bca_jr_acc_closable_capacity_workforce_$JOB$
+            }
+        }
+    }
+    if = {
         limit = {
             check_variable_arithmetic = { which = bca_jr_acc_capacity_workforce_$JOB$ value > 0 }
         }
@@ -222,21 +318,20 @@ bca_jr_finalize_single_job_stats = {
     else = {
         set_variable = { which = bca_jr_acc_avg_output_efficiency_$JOB$ value = 1 }
     }
+    {% for resource in resources %}
+        bca_jr_finalize_single_job_resource = { JOB = $JOB$ RESOURCE = {{ resource }} }
+    {% endfor %}
 }
 
 bca_jr_finalize_job_stats = {
     optimize_memory
     {% for entry in regulated if entry.pop_category %}
-        bca_jr_finalize_single_job_stats = { JOB = {{ entry.job }} }
-        {% for resource in entry.economic_resources %}
-            set_variable = {
-                which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
-                value = bca_jr_acc_productive_workforce_{{ entry.job }}
+        if = {
+            limit = {
+                is_variable_set = bca_jr_acc_total_job_count_{{ entry.job }}
+                check_variable = { which = bca_jr_acc_total_job_count_{{ entry.job }} value > 0 }
             }
-            multiply_variable = {
-                which = bca_jr_acc_output_{{ entry.job }}_{{ resource }}
-                value = value:bca_job_{{ entry.job }}_{{ resource }}_per_worker
-            }
-        {% endfor %}
+            bca_jr_finalize_single_job_stats = { JOB = {{ entry.job }} }
+        }
     {% endfor %}
 }

@@ -419,6 +419,53 @@
     {% endfor %}
 {%- endmacro %}
 
+{% macro tab_row(name, x, y, width, height, options, button_gap=2, inner_padding=14) -%}
+    {% set option_count = options | length %}
+    {% set total_gap = (option_count - 1) * button_gap %}
+    {% set button_area_x = x + inner_padding %}
+    {% set button_area_width = width - inner_padding * 2 %}
+    {% set base_button_width = (button_area_width - total_gap) // option_count %}
+    {% set button_height = height - 8 %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+    }
+    {% set ns = namespace(cursor = button_area_x) %}
+    {% for option in options %}
+        {% if loop.last %}
+            {% set button_width = x + width - inner_padding - ns.cursor %}
+        {% else %}
+            {% set button_width = base_button_width %}
+        {% endif %}
+        effectButtonType = {
+            name = "{{ name }}_{{ option.name }}_selected"
+            position = { x = {{ ns.cursor }} y = {{ y + 4 }} }
+            size = { x = {{ button_width }} y = {{ button_height }} }
+            font = "cg_16b"
+            buttonText = "{{ option.text }}"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_enabled"
+            effect = "{{ option.effect }}_selected"
+        }
+        effectButtonType = {
+            name = "{{ name }}_{{ option.name }}_unselected"
+            position = { x = {{ ns.cursor }} y = {{ y + 4 }} }
+            size = { x = {{ button_width }} y = {{ button_height }} }
+            font = "cg_16b"
+            buttonText = "{{ option.text }}"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "{{ option.effect }}_unselected"
+        }
+        {% set ns.cursor = ns.cursor + button_width + button_gap %}
+    {% endfor %}
+{%- endmacro %}
+
 {% macro value_adjust_row(
             name,
             text,

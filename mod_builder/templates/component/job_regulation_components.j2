@@ -6,8 +6,12 @@
     effectButtonType = { name = "jr_cat_btn_{{ cat }}_unselected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_{{ cat_key }}" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_{{ cat }}_unselected" }
 {%- endmacro %}
 
+{% macro category_clear_button(x, y, w, h) -%}
+    effectButtonType = { name = "jr_cat_btn_all" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_ALL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_all" }
+{%- endmacro %}
+
 {% macro category_bar(categories, x, y, btn_w, btn_gap, btn_h) -%}
-    {{ category_button("all", x, y, btn_w, btn_h) }}
+    {{ category_clear_button(x, y, btn_w, btn_h) }}
     {% for cat in categories %}
         {{ category_button(cat, x + loop.index * (btn_w + btn_gap), y, btn_w, btn_h) }}
     {% endfor %}
@@ -34,13 +38,50 @@
     effectButtonType = { name = "jr_refresh_button" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_REFRESH" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_refresh_panel" }
 {%- endmacro %}
 
+{% macro global_control_row(x, y, w, h) -%}
+    {% set pad = 14 %}
+    {% set btn_h = h - 8 %}
+    {% set btn_y = y + 4 %}
+    {% set global_btn_w = 72 %}
+    {% set refresh_w = 72 %}
+    {% set output_w = 104 %}
+    {% set gap = 10 %}
+    {% set left_label_w = 190 %}
+    {% set off_x = x + pad + left_label_w + gap %}
+    {% set on_x = off_x + global_btn_w + gap %}
+    {% set output_x = x + w - pad - output_w %}
+    {% set refresh_x = output_x - gap - refresh_w %}
+    {% set left_bg_w = on_x + global_btn_w + pad - x %}
+    {% set right_bg_x = refresh_x - pad %}
+    {% set right_bg_w = x + w - right_bg_x %}
+    effectButtonType = { name = "jr_global_controls_left_bg" position = { x = {{ x }} y = {{ y }} } size = { x = {{ left_bg_w }} y = {{ h }} } quadTextureSprite = "GFX_interface_list_dark" alwaysTransparent = yes effect = "bca_tab_visible_1" }
+    effectButtonType = { name = "jr_global_controls_right_bg" position = { x = {{ right_bg_x }} y = {{ y }} } size = { x = {{ right_bg_w }} y = {{ h }} } quadTextureSprite = "GFX_interface_list_dark" alwaysTransparent = yes effect = "bca_tab_visible_1" }
+    effectButtonType = { name = "jr_global_controls_label" position = { x = {{ x + pad }} y = {{ y }} } size = { x = {{ left_label_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_GLOBAL_ENABLE" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
+    effectButtonType = { name = "jr_global_toggle_off_selected" position = { x = {{ off_x }} y = {{ btn_y }} } size = { x = {{ global_btn_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_DISABLED" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_global_off_selected" }
+    effectButtonType = { name = "jr_global_toggle_off_unselected" position = { x = {{ off_x }} y = {{ btn_y }} } size = { x = {{ global_btn_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_DISABLED" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_global_off_unselected" }
+    effectButtonType = { name = "jr_global_toggle_on_selected" position = { x = {{ on_x }} y = {{ btn_y }} } size = { x = {{ global_btn_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_ENABLED" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_global_on_selected" }
+    effectButtonType = { name = "jr_global_toggle_on_unselected" position = { x = {{ on_x }} y = {{ btn_y }} } size = { x = {{ global_btn_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_ENABLED" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_global_on_unselected" }
+    effectButtonType = { name = "jr_refresh_button" position = { x = {{ refresh_x }} y = {{ btn_y }} } size = { x = {{ refresh_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_JR_REFRESH" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_refresh_panel" }
+    effectButtonType = { name = "jr_show_all_outputs_selected" position = { x = {{ output_x }} y = {{ btn_y }} } size = { x = {{ output_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_JR_SHOW_ALL_OUTPUTS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_show_all_outputs_selected" }
+    effectButtonType = { name = "jr_show_all_outputs_unselected" position = { x = {{ output_x }} y = {{ btn_y }} } size = { x = {{ output_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_JR_SHOW_ALL_OUTPUTS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_show_all_outputs_unselected" }
+{%- endmacro %}
+
+{% macro header_label(name, text, x, y, w, h) -%}
+    effectButtonType = { name = "{{ name }}" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "{{ text }}" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
+{%- endmacro %}
+
+{% macro sort_header(name, text, x, y, w, h, effect) -%}
+    effectButtonType = { name = "{{ name }}_selected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "{{ text }}" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "{{ effect }}_selected" }
+    effectButtonType = { name = "{{ name }}_unselected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "{{ text }}" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "{{ effect }}_unselected" }
+{%- endmacro %}
+
 {% macro table_header(x, y, job_x, job_w, wf_x, wf_w, change_x, change_w, rate_x, rate_w, output_x, output_w, action_x, action_w, h=24) -%}
-    effectButtonType = { name = "jr_hdr_job"    position = { x = {{ x }}  y = {{ y }} } size = { x = {{ wf_x - 4 }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_JOB"      format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_tab_visible_1" }
-    effectButtonType = { name = "jr_hdr_wf"     position = { x = {{ x + wf_x }} y = {{ y }} } size = { x = {{ wf_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_WORKFORCE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_workforce" }
-    effectButtonType = { name = "jr_hdr_change" position = { x = {{ x + change_x }} y = {{ y }} } size = { x = {{ change_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_CHANGE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_tab_visible_1" }
-    effectButtonType = { name = "jr_hdr_rate"   position = { x = {{ x + rate_x }} y = {{ y }} } size = { x = {{ rate_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_RATE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_tab_visible_1" }
-    effectButtonType = { name = "jr_hdr_output" position = { x = {{ x + output_x }} y = {{ y }} } size = { x = {{ output_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_OUTPUT"    format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_output" }
-    effectButtonType = { name = "jr_hdr_status" position = { x = {{ x + action_x }} y = {{ y }} } size = { x = {{ action_w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_HEADER_STATUS"    format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_status" }
+    {{ header_label("jr_hdr_job", "BCA_JR_HEADER_JOB", x, y, wf_x - 4, h) }}
+    {{ sort_header("jr_hdr_wf", "BCA_JR_HEADER_WORKFORCE", x + wf_x, y, wf_w, h, "bca_jr_sort_workforce") }}
+    {{ header_label("jr_hdr_change", "BCA_JR_HEADER_CHANGE", x + change_x, y, change_w, h) }}
+    {{ header_label("jr_hdr_rate", "BCA_JR_HEADER_RATE", x + rate_x, y, rate_w, h) }}
+    {{ sort_header("jr_hdr_output", "BCA_JR_HEADER_OUTPUT", x + output_x, y, output_w, h, "bca_jr_sort_output") }}
+    {{ sort_header("jr_hdr_status", "BCA_JR_HEADER_STATUS", x + action_x, y, action_w, h, "bca_jr_sort_status") }}
 {%- endmacro %}
 
 {% macro slot_row(s_name, x, y, row_w, row_h, locate_x, locate_w, icon_x, icon_w, job_x, job_w, wf_x, wf_w, change_x, change_w, rate_x, rate_w, output_x, output_w, action_x, action_w, mode_x, mode_w) -%}
@@ -52,9 +93,10 @@
     effectButtonType = { name = "jr_slot_change_{{ s_name }}" position = { x = {{ x + change_x }} y = {{ y + 6 }} } size = { x = {{ change_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_CHANGE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_{{ s_name }}" }
     effectButtonType = { name = "jr_slot_rate_{{ s_name }}" position = { x = {{ x + rate_x }} y = {{ y + 6 }} } size = { x = {{ rate_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_{{ s_name }}" }
     effectButtonType = { name = "jr_slot_output_{{ s_name }}" position = { x = {{ x + output_x }} y = {{ y + 6 }} } size = { x = {{ output_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_{{ s_name }}_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_{{ s_name }}" }
-    effectButtonType = { name = "jr_slot_toggle_{{ s_name }}_enabled" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_toggle_{{ s_name }}_enabled" }
-    effectButtonType = { name = "jr_slot_toggle_{{ s_name }}_disabled" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_toggle_{{ s_name }}_disabled" }
-    effectButtonType = { name = "jr_slot_mode_{{ s_name }}" position = { x = {{ x + mode_x }} y = {{ y + 6 }} } size = { x = {{ mode_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_NONE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_none_{{ s_name }}" }
+    effectButtonType = { name = "jr_slot_mode_{{ s_name }}_auto" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_{{ s_name }}_auto" }
+    effectButtonType = { name = "jr_slot_mode_{{ s_name }}_manual" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_{{ s_name }}_manual" }
+    effectButtonType = { name = "jr_slot_mode_{{ s_name }}_empty" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_{{ s_name }}_empty" }
+    effectButtonType = { name = "jr_slot_mode_{{ s_name }}_full" position = { x = {{ x + action_x }} y = {{ y + 6 }} } size = { x = {{ action_w }} y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_{{ s_name }}_full" }
 {%- endmacro %}
 
 {% macro slot_list(slots, x, start_y, row_h, row_w, locate_x, locate_w, icon_x, icon_w, job_x, job_w, wf_x, wf_w, change_x, change_w, rate_x, rate_w, output_x, output_w, action_x, action_w, mode_x, mode_w) -%}

@@ -60,11 +60,11 @@ bca_jr_locate_job_colonies = {
                 type = MESSAGE_BCA_JOB_LOCATE
                 days = 1
                 localization = MESSAGE_BCA_JOB_LOCATE_DESC
-                target = prev
+                target = prev.carrier
                 variable = {
                     type = name
                     localization = PLANET
-                    scope = prev
+                    scope = prev.carrier
                 }
             }
         }
@@ -78,6 +78,26 @@ bca_jr_locate_slot_job = {
             limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }} }
             bca_jr_locate_job_colonies = { JOB = {{ entry.job }} }
         }
+    {% endfor %}
+}
+
+bca_jr_clear_country_job_totals = {
+    optimize_memory
+    {% for entry in regulated %}
+        clear_variable = bca_jr_total_assigned_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_pop_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_automated_capacity_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_automated_productive_workforce_{{ entry.job }}
+        clear_variable = bca_jr_total_pop_capacity_limit_{{ entry.job }}
+        clear_variable = bca_jr_total_job_count_{{ entry.job }}
+        clear_variable = bca_jr_total_free_job_count_{{ entry.job }}
+        clear_variable = bca_jr_total_open_job_count_{{ entry.job }}
+        clear_variable = bca_jr_total_closable_capacity_workforce_{{ entry.job }}
+        {% for resource in resources %}
+            clear_variable = bca_jr_total_output_{{ entry.job }}_{{ resource }}
+        {% endfor %}
     {% endfor %}
 }
 
@@ -112,7 +132,7 @@ bca_jr_clear_slot_mapping_for_slot = {
         clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_m
     {% endfor %}
     {% for resource in resources %}
-        set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = 0 }
+        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}
         clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_int
         clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_one
         clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_two
@@ -183,7 +203,10 @@ bca_jr_fill_slot_job_stats = {
     subtract_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
     {% for resource in resources %}
         if = {
-            limit = { is_variable_set = bca_jr_total_output_$JOB$_{{ resource }} }
+            limit = {
+                is_variable_set = bca_jr_total_output_$JOB$_{{ resource }}
+                check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
+            }
             set_variable = { which = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} value = bca_jr_total_output_$JOB$_{{ resource }} }
         }
     {% endfor %}
@@ -207,7 +230,10 @@ bca_jr_fill_current_slot = {
         bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
     {% endfor %}
     {% for resource in resources %}
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
+        if = {
+            limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
+            bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
+        }
     {% endfor %}
 }
 

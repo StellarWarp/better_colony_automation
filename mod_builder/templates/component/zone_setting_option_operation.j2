@@ -14,12 +14,12 @@
 {% endmacro %}
 
 {% macro clear_zone_selection(zone_slot) -%}
-    bca_planet_setting_remove_current_selected_zone = {
+    bca_planet_setting_clear_zone_selection = {
         ZONE_SLOT = {{ zone_slot }}
     }
     {% if zone_slot in ['zx'] %}
         {% for secondary_zone_slot in ['z3','z4','z5'] %}
-            bca_planet_setting_remove_current_selected_zone = {
+            bca_planet_setting_clear_zone_selection = {
                 ZONE_SLOT = {{ secondary_zone_slot }}
             }
         {% endfor %}
@@ -28,41 +28,26 @@
 
 
 {% macro set_zone_type_selection(zone_slot, selector_slot) -%}
-    {% for item in zones_info %}
-        {% set type = item.type %}
-        {% set zones = item.zones %}
-        if = {
-            limit = {
-                has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
+    bca_planet_setting_set_zone_type_selection = {
+        ZONE_SLOT = {{ zone_slot }}
+        SELECTOR_SLOT = {{ selector_slot }}
+    }
+    {% if zone_slot in ['zx'] %}
+        {% for secondary_zone_slot in ['z3','z4','z5'] %}
+            bca_planet_setting_set_zone_type_selection = {
+                ZONE_SLOT = {{ secondary_zone_slot }}
+                SELECTOR_SLOT = {{ selector_slot }}
             }
-            set_carrier_flag = {{pf.flag_selected_zone_type(zone_slot, type)}}
-            {% if zone_slot in ['zx'] %}
-                {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                    set_carrier_flag = {{pf.flag_selected_zone_type(secondary_zone_slot, type)}}
-                {% endfor %}
-            {% endif %}
-            {% for zone in zones %}
-                if = {
-                    limit = {
-                        has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
-                    }
-                    set_carrier_flag = {{pf.flag_selected_zone(zone_slot, zone)}}
-                    {% if zone_slot in ['zx'] %}
-                        {% for secondary_zone_slot in ['z3','z4','z5'] %}
-                            set_carrier_flag = {{pf.flag_selected_zone(secondary_zone_slot, zone)}}
-                        {% endfor %}
-                    {% endif %}
-                }
-            {% endfor %}
-        }
-    {% endfor %}
+        {% endfor %}
+    {% endif %}
 {% endmacro %}
 
 
 {% macro clear_zone_selector_flags(zone_slot) -%}
-    bca_clean_flags_zone_selector = yes
     {% if zone_slot in ['z3','z4','z5','zx'] %}
-        bca_clean_flags_zone_selector_secondary_district = yes
+        bca_planet_setting_clear_secondary_zone_selector_flags = yes
+    {% else %}
+        bca_planet_setting_clear_zone_selector_flags = yes
     {% endif %}
 {% endmacro %}
 

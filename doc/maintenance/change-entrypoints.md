@@ -100,6 +100,17 @@ do not by themselves define automation demand contexts.
 - Runtime file: [`../../common/colony_automation_exceptions/500_bca_districts.txt`](../../common/colony_automation_exceptions/500_bca_districts.txt)
 - Template: [`../../mod_builder/templates/common/colony_automation_exceptions/500_bca_districts.txt.j2`](../../mod_builder/templates/common/colony_automation_exceptions/500_bca_districts.txt.j2)
 
+### Economic district build gate
+
+- Runtime file: [`../../common/scripted_effects/bca_district_build_effects.txt`](../../common/scripted_effects/bca_district_build_effects.txt)
+- Template: [`../../mod_builder/templates/common/scripted_effects/bca_district_build_effects.txt.j2`](../../mod_builder/templates/common/scripted_effects/bca_district_build_effects.txt.j2)
+- Parser: [`../../mod_builder/parse/economic_outputs.py`](../../mod_builder/parse/economic_outputs.py)
+- Whitelist config: [`../../mod_builder/configs/district_direct_outputs.yaml`](../../mod_builder/configs/district_direct_outputs.yaml)
+- Generated configs:
+  [`../../mod_builder/templates/generated_configs/economic_district_slot_groups.yaml`](../../mod_builder/templates/generated_configs/economic_district_slot_groups.yaml),
+  [`../../mod_builder/templates/generated_configs/economic_district_slot_direct_groups.yaml`](../../mod_builder/templates/generated_configs/economic_district_slot_direct_groups.yaml),
+  [`../../mod_builder/templates/generated_configs/economic_district_slot_conditions.yaml`](../../mod_builder/templates/generated_configs/economic_district_slot_conditions.yaml)
+
 ### GUI
 
 - Planet panel runtime GUI: [`../../interface/bca_district_gui.gui`](../../interface/bca_district_gui.gui)

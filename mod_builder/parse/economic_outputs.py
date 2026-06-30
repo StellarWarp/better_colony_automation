@@ -36,6 +36,8 @@ class EconomicProfiles:
     district_resource_profiles: dict[str, dict[str, object]]
     economic_district_slot_zone_outputs: dict[str, dict[str, list[str]]]
     economic_district_slot_zone_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]]
+    economic_district_slot_direct_outputs: dict[str, dict[str, list[str]]]
+    economic_district_slot_direct_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]]
 
 # ---- helpers ----
 
@@ -44,7 +46,35 @@ def _ordered_unique(values: list[str]) -> list[str]:
 
 
 def _ordered_unique_optional(values: list[str | None]) -> list[str | None]:
-    return list(OrderedDict.fromkeys(values))
+    unique = OrderedDict()
+    for value in values:
+        key = _condition_key(value)
+        unique.setdefault(key, value)
+    return list(unique.values())
+
+
+def _condition_key(value):
+    if isinstance(value, dict):
+        return tuple((key, _condition_key(item)) for key, item in sorted(value.items()))
+    if isinstance(value, list):
+        return tuple(_condition_key(item) for item in value)
+    return value
+
+
+def _combine_conditions(*conditions):
+    parts = []
+    for condition in conditions:
+        if condition is None:
+            continue
+        if isinstance(condition, dict) and "all" in condition:
+            parts.extend(condition["all"])
+        else:
+            parts.append(condition)
+    if not parts:
+        return None
+    if len(parts) == 1:
+        return parts[0]
+    return {"all": parts}
 
 
 def _invert_zone_outputs(
@@ -72,12 +102,10 @@ def _build_slot_zone_outputs(
 
     for district in districts:
         profile = district_resource_profiles.get(district, {})
-        direct_outputs = profile.get("direct_outputs", [])
         zone_map = profile.get("zone_outputs", {})
 
         for zone, outputs in zone_map.items():
             zone_outputs.setdefault(zone, [])
-            zone_outputs[zone].extend(direct_outputs)
             zone_outputs[zone].extend(outputs)
 
     return {
@@ -96,6 +124,54 @@ def _merge_resource_conditions(
         target[resource].extend(conditions)
 
 
+def _build_slot_direct_outputs(
+    districts: list[str],
+    district_resource_profiles: dict[str, dict[str, object]],
+) -> dict[str, list[str]]:
+    direct_outputs: dict[str, list[str]] = {}
+
+    for district in districts:
+        profile = district_resource_profiles.get(district, {})
+        outputs = profile.get("controlled_direct_outputs", [])
+        if not outputs:
+            continue
+        direct_outputs[district] = _ordered_unique(outputs)
+
+    return {
+        district: _ordered_unique(outputs)
+        for district, outputs in sorted(direct_outputs.items())
+        if outputs
+    }
+
+
+def _build_slot_direct_output_conditions(
+    districts: list[str],
+    district_resource_profiles: dict[str, dict[str, object]],
+) -> dict[str, dict[str, list[str | None]]]:
+    direct_conditions: dict[str, dict[str, list[str | None]]] = {}
+
+    for district in districts:
+        profile = district_resource_profiles.get(district, {})
+        outputs = profile.get("controlled_direct_outputs", [])
+        conditions = profile.get("controlled_direct_output_conditions", {})
+        if not outputs:
+            continue
+        direct_conditions[district] = {
+            resource: _ordered_unique_optional(conditions.get(resource, [None]))
+            for resource in outputs
+        }
+
+    return {
+        district: {
+            resource: condition_list
+            for resource, condition_list in sorted(resource_conditions.items())
+            if condition_list
+        }
+        for district, resource_conditions in sorted(direct_conditions.items())
+        if resource_conditions
+    }
+
+
 def _build_slot_zone_output_conditions(
     districts: list[str],
     district_resource_profiles: dict[str, dict[str, object]],
@@ -104,12 +180,10 @@ def _build_slot_zone_output_conditions(
 
     for district in districts:
         profile = district_resource_profiles.get(district, {})
-        direct_conditions = profile.get("direct_output_conditions", {})
         zone_map = profile.get("zone_output_conditions", {})
 
         for zone, resource_conditions in zone_map.items():
             zone_conditions.setdefault(zone, {})
-            _merge_resource_conditions(zone_conditions[zone], direct_conditions)
             _merge_resource_conditions(zone_conditions[zone], resource_conditions)
 
     return {
@@ -133,6 +207,38 @@ def _extract_job_keys(node, valid_jobs: set[str]) -> list[str]:
         if job_key in valid_jobs:
             jobs.append(job_key)
     return _ordered_unique(jobs)
+
+
+def _extract_job_entries(node, valid_jobs: set[str]) -> list[dict[str, object]]:
+    entries: list[dict[str, object]] = []
+    for prop in iter_property_nodes(node):
+        key = str(prop.key)
+        if not key.startswith("job_") or not key.endswith("_add"):
+            continue
+        job_key = key[len("job_") : -len("_add")]
+        if job_key not in valid_jobs:
+            continue
+        entries.append({
+            "job": job_key,
+            "condition": _job_add_wrapper_condition(prop),
+        })
+    return entries
+
+
+def _job_add_wrapper_condition(job_prop: PropertyNode):
+    conditions: list[str] = []
+    current = job_prop.parent
+
+    while current is not None:
+        if isinstance(current, BlockNode):
+            potential = current.get_property("potential")
+            if potential is not None:
+                condition = node_to_string(potential.value)
+                if condition:
+                    conditions.append(condition)
+        current = getattr(current, "parent", None)
+
+    return _combine_conditions(*conditions)
 
 
 def _job_resource_outputs_from_produces(context: ParseContext) -> dict[str, list[str]]:
@@ -187,13 +293,30 @@ def _extract_resource_conditions_from_jobs(
     node,
     valid_jobs: set[str],
     job_resource_conditions: dict[str, dict[str, list[str | None]]],
+    include_wrapper_conditions: bool = False,
 ) -> dict[str, list[str | None]]:
     resource_conditions: dict[str, list[str | None]] = {}
-    for job_key in _extract_job_keys(node, valid_jobs):
-        _merge_resource_conditions(
-            resource_conditions,
-            job_resource_conditions.get(job_key, {}),
-        )
+    if not include_wrapper_conditions:
+        for job_key in _extract_job_keys(node, valid_jobs):
+            _merge_resource_conditions(
+                resource_conditions,
+                job_resource_conditions.get(job_key, {}),
+            )
+        return {
+            resource: _ordered_unique_optional(conditions)
+            for resource, conditions in resource_conditions.items()
+            if conditions
+        }
+
+    for entry in _extract_job_entries(node, valid_jobs):
+        job_key = entry["job"]
+        wrapper_condition = entry["condition"]
+        for resource, conditions in job_resource_conditions.get(job_key, {}).items():
+            resource_conditions.setdefault(resource, [])
+            resource_conditions[resource].extend(
+                _combine_conditions(wrapper_condition, condition)
+                for condition in conditions
+            )
     return {
         resource: _ordered_unique_optional(conditions)
         for resource, conditions in resource_conditions.items()
@@ -237,10 +360,14 @@ def build_economic_profiles(
         direct_outputs = _ordered_unique(
             district_direct_outputs_config.get(district_name, parsed_direct_outputs)
         )
+        controlled_direct_outputs = _ordered_unique(
+            district_direct_outputs_config.get(district_name, [])
+        )
         parsed_direct_conditions = _extract_resource_conditions_from_jobs(
             district.body,
             valid_jobs,
             job_resource_conditions,
+            include_wrapper_conditions=True,
         )
         direct_output_conditions = (
             {resource: [None] for resource in direct_outputs}
@@ -248,17 +375,24 @@ def build_economic_profiles(
             else parsed_direct_conditions
         )
 
+        district_zones = graph.district_to_zones.get(district_name, [])
         zone_outputs: dict[str, list[str]] = {}
         zone_output_conditions: dict[str, dict[str, list[str | None]]] = {}
-        for zone_name in graph.district_to_zones.get(district_name, []):
+        for zone_name in district_zones:
             outputs = zone_resource_outputs.get(zone_name, [])
             if outputs:
                 zone_outputs[zone_name] = outputs
                 zone_output_conditions[zone_name] = zone_resource_conditions.get(zone_name, {})
 
         district_resource_profiles[district_name] = {
+            "zones": district_zones,
             "direct_outputs": direct_outputs,
             "direct_output_conditions": direct_output_conditions,
+            "controlled_direct_outputs": controlled_direct_outputs,
+            "controlled_direct_output_conditions": {
+                resource: [None]
+                for resource in controlled_direct_outputs
+            },
             "zone_outputs": zone_outputs,
             "zone_output_conditions": zone_output_conditions,
             "output_zones": _invert_zone_outputs(zone_outputs, direct_outputs),
@@ -274,12 +408,22 @@ def build_economic_profiles(
     }
     economic_district_slot_zone_outputs: dict[str, dict[str, list[str]]] = {}
     economic_district_slot_zone_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]] = {}
+    economic_district_slot_direct_outputs: dict[str, dict[str, list[str]]] = {}
+    economic_district_slot_direct_output_conditions: dict[str, dict[str, dict[str, list[str | None]]]] = {}
     for slot, districts in slot_districts.items():
         economic_district_slot_zone_outputs[slot] = _build_slot_zone_outputs(
             districts,
             district_resource_profiles,
         )
         economic_district_slot_zone_output_conditions[slot] = _build_slot_zone_output_conditions(
+            districts,
+            district_resource_profiles,
+        )
+        economic_district_slot_direct_outputs[slot] = _build_slot_direct_outputs(
+            districts,
+            district_resource_profiles,
+        )
+        economic_district_slot_direct_output_conditions[slot] = _build_slot_direct_output_conditions(
             districts,
             district_resource_profiles,
         )
@@ -292,6 +436,8 @@ def build_economic_profiles(
         district_resource_profiles=district_resource_profiles,
         economic_district_slot_zone_outputs=economic_district_slot_zone_outputs,
         economic_district_slot_zone_output_conditions=economic_district_slot_zone_output_conditions,
+        economic_district_slot_direct_outputs=economic_district_slot_direct_outputs,
+        economic_district_slot_direct_output_conditions=economic_district_slot_direct_output_conditions,
     )
 
 
@@ -329,8 +475,15 @@ def render_economic_generated_configs(
         {
             "economic_district_slot_zone_output_conditions": (
                 profiles.economic_district_slot_zone_output_conditions
-            )
+            ),
+            "economic_district_slot_direct_output_conditions": (
+                profiles.economic_district_slot_direct_output_conditions
+            ),
         },
+    )
+    context.write_generated_yaml(
+        "economic_district_slot_direct_groups.yaml",
+        {"economic_district_slot_direct_outputs": profiles.economic_district_slot_direct_outputs},
     )
     return profiles
 

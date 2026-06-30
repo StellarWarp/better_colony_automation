@@ -5,6 +5,9 @@ l_english:
  {% for i in range(1, 10) %}
  colony_automation_event.110.opt.{{ "%02d"|format(i) }}:0 "[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.GetName] £planet£§H[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.bca_planet_size_scripted_loc]§!"
  {% endfor %}
+ colony_automation_event.110.locate_all:0 "Show all candidate colonies"
+ MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE:0 "Arcology candidate"
+ MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC:0 "$PLANET$ is an Arcology Project candidate."
 
  colony_automation_event.102.name:0 "Arcology Project Ready"
  colony_automation_event.102.desc:0 "[Root.GetName] £planet£§H[Root.bca_planet_size_scripted_loc]§! meets the requirements for the Arcology Project. Should we begin the project now?"

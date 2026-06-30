@@ -111,6 +111,31 @@ The parser side is being consolidated around a shared framework:
 - `framework.py` owns shared AST loading, helpers, and derived relation graphs
 - generator modules such as `zone_outputs.py` emit specific YAML artifacts from that shared graph
 
+### Economic output extraction
+
+[`../../mod_builder/parse/economic_outputs.py`](../../mod_builder/parse/economic_outputs.py)
+extracts job, zone, and district economic output metadata.
+
+Important generated artifacts:
+
+- `job_resource_outputs.yaml` and `job_resource_conditions.yaml`: parsed job
+  outputs and job-level resource conditions.
+- `zone_resource_outputs.yaml` and `zone_resource_conditions.yaml`: zone
+  outputs derived from jobs provided by zones.
+- `district_resource_profiles.yaml`: inspection profile for each district,
+  including parsed direct outputs and wrapper conditions around `job_<job>_add`
+  entries.
+- `economic_district_slot_groups.yaml`: slot-to-zone output groups consumed by
+  district build gating.
+- `economic_district_slot_direct_groups.yaml`: slot-to-district direct output
+  groups from the explicit whitelist.
+- `economic_district_slot_conditions.yaml`: conditions for the two group files.
+
+`district_direct_outputs.yaml` is a whitelist, not a complete parser override.
+Only listed districts may use direct district output as an automatic build
+reason. Parsed direct outputs that are not whitelisted remain diagnostic data in
+`district_resource_profiles.yaml`.
+
 ## Building Strategy Compilation
 
 `build_generated_configs.py` is the preferred generated-config entrypoint.

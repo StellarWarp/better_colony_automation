@@ -98,6 +98,7 @@ bca_primary_district_update_zone_options = {
 }
 
 bca_clean_flags_zone_selector = {
+    optimize_memory
     hidden_effect = {
         clear_variable = zone_selector_options_count
     }
@@ -146,6 +147,7 @@ bca_set_secondary_district_type_flag = {
 }
 
 bca_clean_flags_zone_selector_secondary_district = {
+    optimize_memory
     {% for district in secondary_districts %}
         remove_carrier_flag = {{ pf.flag_district_potential(district) }}
     {% endfor %}
@@ -154,6 +156,48 @@ bca_clean_flags_zone_selector_secondary_district = {
             remove_carrier_flag = {{ pf.flag_zone_district(zone_slot, district) }}
         {% endfor %}
     {% endfor %}
+}
+
+bca_planet_setting_clear_zone_selection = {
+    optimize_memory
+    bca_planet_setting_remove_current_selected_zone = {
+        ZONE_SLOT = $ZONE_SLOT$
+    }
+}
+
+bca_planet_setting_set_zone_type_selection = {
+    optimize_memory
+    {% set zone_slot = "$ZONE_SLOT$" %}
+    {% set selector_slot = "$SELECTOR_SLOT$" %}
+    {% for item in zones_info %}
+        {% set type = item.type %}
+        {% set zones = item.zones %}
+        if = {
+            limit = {
+                has_carrier_flag = {{ pf.flag_zone_option_type_elected_idx(selector_slot, type) }}
+            }
+            set_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, type) }}
+            {% for zone in zones %}
+                if = {
+                    limit = {
+                        has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(type, zone) }}
+                    }
+                    set_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+                }
+            {% endfor %}
+        }
+    {% endfor %}
+}
+
+bca_planet_setting_clear_zone_selector_flags = {
+    optimize_memory
+    bca_clean_flags_zone_selector = yes
+}
+
+bca_planet_setting_clear_secondary_zone_selector_flags = {
+    optimize_memory
+    bca_clean_flags_zone_selector = yes
+    bca_clean_flags_zone_selector_secondary_district = yes
 }
 
 

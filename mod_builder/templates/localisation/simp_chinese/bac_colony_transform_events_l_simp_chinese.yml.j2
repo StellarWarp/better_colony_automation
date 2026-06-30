@@ -5,6 +5,9 @@ l_simp_chinese:
  {% for i in range(1, 10) %}
  colony_automation_event.110.opt.{{ "%02d"|format(i) }}:0 "[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.GetClassName] [bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.GetName] £planet£§Y[bca_arcology_project_candidate_planet_{{ "%02d"|format(i) }}.bca_planet_size_scripted_loc]§!"
  {% endfor %}
+ colony_automation_event.110.locate_all:0 "显示所有候选殖民地"
+ MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE:0 "理想城候选定位"
+ MESSAGE_BCA_ARCOLOGY_CANDIDATE_LOCATE_DESC:0 "$PLANET$ 是理想城计划候选。"
 
  colony_automation_event.102.name:0 "理想城计划准备就绪"
  colony_automation_event.102.desc:0 "[Root.GetName] £planet£§Y[Root.bca_planet_size_scripted_loc]§! 已经具备建设理想城的条件。我们是否现在开始理想城计划？"
