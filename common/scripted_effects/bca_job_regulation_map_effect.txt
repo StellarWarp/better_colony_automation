@@ -833,6 +833,1028 @@ bca_jr_locate_slot_job = {
 }
 
 
+bca_jr_set_slot_job_mode_flags = {
+    optimize_memory
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    if = {
+        limit = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_full_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    }
+    else = {
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    }
+}
+
+
+bca_jr_cycle_job_mode = {
+    optimize_memory
+    if = {
+        limit = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        set_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_full_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        set_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else = {
+        set_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+}
+
+
+bca_jr_cycle_slot_job_mode = {
+    optimize_memory
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_agri_drone }
+        bca_jr_cycle_job_mode = { JOB = agri_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = agri_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_alien_hunter }
+        bca_jr_cycle_job_mode = { JOB = alien_hunter }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = alien_hunter }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_archivist }
+        bca_jr_cycle_job_mode = { JOB = archivist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = archivist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_ark_harvester }
+        bca_jr_cycle_job_mode = { JOB = ark_harvester }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = ark_harvester }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_ark_harvester_gestalt }
+        bca_jr_cycle_job_mode = { JOB = ark_harvester_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = ark_harvester_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_ark_waystation_trader }
+        bca_jr_cycle_job_mode = { JOB = ark_waystation_trader }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = ark_waystation_trader }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_ark_waystation_trader_gestalt }
+        bca_jr_cycle_job_mode = { JOB = ark_waystation_trader_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = ark_waystation_trader_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_artificer_prison_worker }
+        bca_jr_cycle_job_mode = { JOB = artificer_prison_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = artificer_prison_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_artisan }
+        bca_jr_cycle_job_mode = { JOB = artisan }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = artisan }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_artisan_drone }
+        bca_jr_cycle_job_mode = { JOB = artisan_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = artisan_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_artisan_prison_worker }
+        bca_jr_cycle_job_mode = { JOB = artisan_prison_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = artisan_prison_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_astral_drone }
+        bca_jr_cycle_job_mode = { JOB = astral_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = astral_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_astral_researcher }
+        bca_jr_cycle_job_mode = { JOB = astral_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = astral_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_astral_unit }
+        bca_jr_cycle_job_mode = { JOB = astral_unit }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = astral_unit }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_astrogarbage_collector }
+        bca_jr_cycle_job_mode = { JOB = astrogarbage_collector }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = astrogarbage_collector }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_astrogarbage_collector_gestalt }
+        bca_jr_cycle_job_mode = { JOB = astrogarbage_collector_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = astrogarbage_collector_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_augmentor }
+        bca_jr_cycle_job_mode = { JOB = augmentor }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = augmentor }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_augmentor_drone }
+        bca_jr_cycle_job_mode = { JOB = augmentor_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = augmentor_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_bath_attendant }
+        bca_jr_cycle_job_mode = { JOB = bath_attendant }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = bath_attendant }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_bio_trophy }
+        bca_jr_cycle_job_mode = { JOB = bio_trophy }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = bio_trophy }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_biologist }
+        bca_jr_cycle_job_mode = { JOB = biologist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = biologist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_broken_shackles_scavenger }
+        bca_jr_cycle_job_mode = { JOB = broken_shackles_scavenger }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = broken_shackles_scavenger }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_bureaucrat }
+        bca_jr_cycle_job_mode = { JOB = bureaucrat }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = bureaucrat }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_calculator_biologist }
+        bca_jr_cycle_job_mode = { JOB = calculator_biologist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = calculator_biologist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_calculator_engineer }
+        bca_jr_cycle_job_mode = { JOB = calculator_engineer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = calculator_engineer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_calculator_physicist }
+        bca_jr_cycle_job_mode = { JOB = calculator_physicist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = calculator_physicist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_catalytic_technician_prison_worker }
+        bca_jr_cycle_job_mode = { JOB = catalytic_technician_prison_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = catalytic_technician_prison_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cave_cleaner_gestalt }
+        bca_jr_cycle_job_mode = { JOB = cave_cleaner_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cave_cleaner_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_chemist }
+        bca_jr_cycle_job_mode = { JOB = chemist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = chemist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_chemist_drone }
+        bca_jr_cycle_job_mode = { JOB = chemist_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = chemist_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_civilian }
+        bca_jr_cycle_job_mode = { JOB = civilian }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = civilian }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_clip_maximizer }
+        bca_jr_cycle_job_mode = { JOB = clip_maximizer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = clip_maximizer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_colonist }
+        bca_jr_cycle_job_mode = { JOB = colonist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = colonist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_coordinator }
+        bca_jr_cycle_job_mode = { JOB = coordinator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = coordinator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cruise_crew_overseer }
+        bca_jr_cycle_job_mode = { JOB = cruise_crew_overseer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cruise_crew_overseer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cruise_crew_overseer_drone }
+        bca_jr_cycle_job_mode = { JOB = cruise_crew_overseer_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cruise_crew_overseer_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cruise_passenger }
+        bca_jr_cycle_job_mode = { JOB = cruise_passenger }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cruise_passenger }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cruise_passenger_unemployment }
+        bca_jr_cycle_job_mode = { JOB = cruise_passenger_unemployment }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cruise_passenger_unemployment }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cyberdome_duelist }
+        bca_jr_cycle_job_mode = { JOB = cyberdome_duelist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cyberdome_duelist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_cyberdome_spectator }
+        bca_jr_cycle_job_mode = { JOB = cyberdome_spectator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = cyberdome_spectator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_dimensional_portal_researcher }
+        bca_jr_cycle_job_mode = { JOB = dimensional_portal_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = dimensional_portal_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_dimensional_portal_researcher_gestalt }
+        bca_jr_cycle_job_mode = { JOB = dimensional_portal_researcher_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = dimensional_portal_researcher_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_drone_energy_thrall }
+        bca_jr_cycle_job_mode = { JOB = drone_energy_thrall }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = drone_energy_thrall }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_drone_space_junk_collector }
+        bca_jr_cycle_job_mode = { JOB = drone_space_junk_collector }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = drone_space_junk_collector }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_drone_wrangler }
+        bca_jr_cycle_job_mode = { JOB = drone_wrangler }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = drone_wrangler }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_dystopian_enforcer }
+        bca_jr_cycle_job_mode = { JOB = dystopian_enforcer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = dystopian_enforcer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_dystopian_telepath }
+        bca_jr_cycle_job_mode = { JOB = dystopian_telepath }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = dystopian_telepath }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_energy_thrall }
+        bca_jr_cycle_job_mode = { JOB = energy_thrall }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = energy_thrall }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_enforcer }
+        bca_jr_cycle_job_mode = { JOB = enforcer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = enforcer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_engineer }
+        bca_jr_cycle_job_mode = { JOB = engineer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = engineer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_entertainer }
+        bca_jr_cycle_job_mode = { JOB = entertainer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = entertainer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_evaluator }
+        bca_jr_cycle_job_mode = { JOB = evaluator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = evaluator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_event_purge }
+        bca_jr_cycle_job_mode = { JOB = event_purge }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = event_purge }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fabricator }
+        bca_jr_cycle_job_mode = { JOB = fabricator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fabricator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_farmer }
+        bca_jr_cycle_job_mode = { JOB = farmer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = farmer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_acolyte_artisan }
+        bca_jr_cycle_job_mode = { JOB = fe_acolyte_artisan }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_acolyte_artisan }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_acolyte_farm }
+        bca_jr_cycle_job_mode = { JOB = fe_acolyte_farm }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_acolyte_farm }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_acolyte_generator }
+        bca_jr_cycle_job_mode = { JOB = fe_acolyte_generator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_acolyte_generator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_acolyte_mine }
+        bca_jr_cycle_job_mode = { JOB = fe_acolyte_mine }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_acolyte_mine }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_archivist }
+        bca_jr_cycle_job_mode = { JOB = fe_archivist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_archivist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_augur }
+        bca_jr_cycle_job_mode = { JOB = fe_augur }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_augur }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_hedonist }
+        bca_jr_cycle_job_mode = { JOB = fe_hedonist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_hedonist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_fe_xeno_ward }
+        bca_jr_cycle_job_mode = { JOB = fe_xeno_ward }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = fe_xeno_ward }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_foundry }
+        bca_jr_cycle_job_mode = { JOB = foundry }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = foundry }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_foundry_prison_worker }
+        bca_jr_cycle_job_mode = { JOB = foundry_prison_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = foundry_prison_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_gas_plant_engineer }
+        bca_jr_cycle_job_mode = { JOB = gas_plant_engineer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = gas_plant_engineer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_gas_plant_engineer_gestalt }
+        bca_jr_cycle_job_mode = { JOB = gas_plant_engineer_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = gas_plant_engineer_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_gas_refiner }
+        bca_jr_cycle_job_mode = { JOB = gas_refiner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = gas_refiner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_gas_refiner_drone }
+        bca_jr_cycle_job_mode = { JOB = gas_refiner_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = gas_refiner_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_gestation_drone }
+        bca_jr_cycle_job_mode = { JOB = gestation_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = gestation_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_haruspex }
+        bca_jr_cycle_job_mode = { JOB = haruspex }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = haruspex }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_healthcare }
+        bca_jr_cycle_job_mode = { JOB = healthcare }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = healthcare }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hive_basic_agri_drone }
+        bca_jr_cycle_job_mode = { JOB = hive_basic_agri_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hive_basic_agri_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hive_basic_agri_drone_lithoid }
+        bca_jr_cycle_job_mode = { JOB = hive_basic_agri_drone_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hive_basic_agri_drone_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hive_sustenance_drone }
+        bca_jr_cycle_job_mode = { JOB = hive_sustenance_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hive_sustenance_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hive_sustenance_drone_lithoid }
+        bca_jr_cycle_job_mode = { JOB = hive_sustenance_drone_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hive_sustenance_drone_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hunted_pre_sapient }
+        bca_jr_cycle_job_mode = { JOB = hunted_pre_sapient }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hunted_pre_sapient }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hunted_pre_sapient_lithoid }
+        bca_jr_cycle_job_mode = { JOB = hunted_pre_sapient_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hunted_pre_sapient_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hunter_gatherer }
+        bca_jr_cycle_job_mode = { JOB = hunter_gatherer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hunter_gatherer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_hunter_gatherer_lithoid }
+        bca_jr_cycle_job_mode = { JOB = hunter_gatherer_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = hunter_gatherer_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_identity_designer }
+        bca_jr_cycle_job_mode = { JOB = identity_designer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = identity_designer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight }
+        bca_jr_cycle_job_mode = { JOB = knight }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = knight }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight_commander }
+        bca_jr_cycle_job_mode = { JOB = knight_commander }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = knight_commander }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_lithoid }
+        bca_jr_cycle_job_mode = { JOB = livestock_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = livestock_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_logistics_drone }
+        bca_jr_cycle_job_mode = { JOB = logistics_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = logistics_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_bureaucrat }
+        bca_jr_cycle_job_mode = { JOB = low_tech_bureaucrat }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_bureaucrat }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_farmer }
+        bca_jr_cycle_job_mode = { JOB = low_tech_farmer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_farmer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_laborer }
+        bca_jr_cycle_job_mode = { JOB = low_tech_laborer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_laborer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_manager }
+        bca_jr_cycle_job_mode = { JOB = low_tech_manager }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_manager }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_miner }
+        bca_jr_cycle_job_mode = { JOB = low_tech_miner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_miner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_priest }
+        bca_jr_cycle_job_mode = { JOB = low_tech_priest }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_priest }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_researcher }
+        bca_jr_cycle_job_mode = { JOB = low_tech_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_technician }
+        bca_jr_cycle_job_mode = { JOB = low_tech_technician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = low_tech_technician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_machine_nurse }
+        bca_jr_cycle_job_mode = { JOB = machine_nurse }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = machine_nurse }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_maintenance_drone }
+        bca_jr_cycle_job_mode = { JOB = maintenance_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = maintenance_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_manufactorium_complex_drone }
+        bca_jr_cycle_job_mode = { JOB = manufactorium_complex_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = manufactorium_complex_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_manufactorium_scraper_drone }
+        bca_jr_cycle_job_mode = { JOB = manufactorium_scraper_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = manufactorium_scraper_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_manufactorium_specialist }
+        bca_jr_cycle_job_mode = { JOB = manufactorium_specialist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = manufactorium_specialist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_miner }
+        bca_jr_cycle_job_mode = { JOB = miner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = miner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_mineral_diver_drone }
+        bca_jr_cycle_job_mode = { JOB = mineral_diver_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = mineral_diver_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_mining_drone }
+        bca_jr_cycle_job_mode = { JOB = mining_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = mining_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_mortal_initiate }
+        bca_jr_cycle_job_mode = { JOB = mortal_initiate }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = mortal_initiate }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_munitions_decommissioner }
+        bca_jr_cycle_job_mode = { JOB = munitions_decommissioner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = munitions_decommissioner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_munitions_decommissioning_drone }
+        bca_jr_cycle_job_mode = { JOB = munitions_decommissioning_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = munitions_decommissioning_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_munitions_decommissioning_unit }
+        bca_jr_cycle_job_mode = { JOB = munitions_decommissioning_unit }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = munitions_decommissioning_unit }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_munitions_decommissioning_unit_lithoid }
+        bca_jr_cycle_job_mode = { JOB = munitions_decommissioning_unit_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = munitions_decommissioning_unit_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_nanotech_research_unit }
+        bca_jr_cycle_job_mode = { JOB = nanotech_research_unit }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = nanotech_research_unit }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_nanotech_researcher }
+        bca_jr_cycle_job_mode = { JOB = nanotech_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = nanotech_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_necro_apprentice }
+        bca_jr_cycle_job_mode = { JOB = necro_apprentice }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = necro_apprentice }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_neural_chip }
+        bca_jr_cycle_job_mode = { JOB = neural_chip }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = neural_chip }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_odd_factory_drone }
+        bca_jr_cycle_job_mode = { JOB = odd_factory_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = odd_factory_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_odd_factory_worker }
+        bca_jr_cycle_job_mode = { JOB = odd_factory_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = odd_factory_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_organic_battery }
+        bca_jr_cycle_job_mode = { JOB = organic_battery }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = organic_battery }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_organic_exhibit }
+        bca_jr_cycle_job_mode = { JOB = organic_exhibit }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = organic_exhibit }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_academic }
+        bca_jr_cycle_job_mode = { JOB = overlord_academic }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_academic }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_academic_drone }
+        bca_jr_cycle_job_mode = { JOB = overlord_academic_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_academic_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_bio_trophy }
+        bca_jr_cycle_job_mode = { JOB = overlord_bio_trophy }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_bio_trophy }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_bio_trophy_drone }
+        bca_jr_cycle_job_mode = { JOB = overlord_bio_trophy_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_bio_trophy_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_healthcare }
+        bca_jr_cycle_job_mode = { JOB = overlord_healthcare }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_healthcare }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_manager }
+        bca_jr_cycle_job_mode = { JOB = overlord_manager }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_manager }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_mortal_initiate }
+        bca_jr_cycle_job_mode = { JOB = overlord_mortal_initiate }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_mortal_initiate }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_overlord_mortal_initiate_drone }
+        bca_jr_cycle_job_mode = { JOB = overlord_mortal_initiate_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = overlord_mortal_initiate_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_patrol_drone }
+        bca_jr_cycle_job_mode = { JOB = patrol_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = patrol_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_peasant }
+        bca_jr_cycle_job_mode = { JOB = peasant }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = peasant }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_peasant_lithoid }
+        bca_jr_cycle_job_mode = { JOB = peasant_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = peasant_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_physician_drone }
+        bca_jr_cycle_job_mode = { JOB = physician_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = physician_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_physicist }
+        bca_jr_cycle_job_mode = { JOB = physicist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = physicist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_politician }
+        bca_jr_cycle_job_mode = { JOB = politician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = politician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_administrator }
+        bca_jr_cycle_job_mode = { JOB = primitive_administrator }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_administrator }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_bureaucrat }
+        bca_jr_cycle_job_mode = { JOB = primitive_bureaucrat }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_bureaucrat }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_farmer }
+        bca_jr_cycle_job_mode = { JOB = primitive_farmer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_farmer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_brain_drone }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_brain_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_brain_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_cerebellum_drone }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_cerebellum_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_cerebellum_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_factory_drone }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_factory_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_factory_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_farmer }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_farmer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_farmer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_miner }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_miner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_miner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_synapse_drone }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_synapse_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_synapse_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_synapse_drone_2 }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_synapse_drone_2 }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_synapse_drone_2 }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_hive_technician }
+        bca_jr_cycle_job_mode = { JOB = primitive_hive_technician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_hive_technician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_laborer }
+        bca_jr_cycle_job_mode = { JOB = primitive_laborer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_laborer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_miner }
+        bca_jr_cycle_job_mode = { JOB = primitive_miner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_miner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_noble }
+        bca_jr_cycle_job_mode = { JOB = primitive_noble }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_noble }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_priest }
+        bca_jr_cycle_job_mode = { JOB = primitive_priest }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_priest }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_priest_2 }
+        bca_jr_cycle_job_mode = { JOB = primitive_priest_2 }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_priest_2 }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_researcher }
+        bca_jr_cycle_job_mode = { JOB = primitive_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_researcher_2 }
+        bca_jr_cycle_job_mode = { JOB = primitive_researcher_2 }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_researcher_2 }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_primitive_technician }
+        bca_jr_cycle_job_mode = { JOB = primitive_technician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = primitive_technician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_production_overseer }
+        bca_jr_cycle_job_mode = { JOB = production_overseer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = production_overseer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_puddle_technician }
+        bca_jr_cycle_job_mode = { JOB = puddle_technician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = puddle_technician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_puddle_technician_drone }
+        bca_jr_cycle_job_mode = { JOB = puddle_technician_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = puddle_technician_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_labor_camps }
+        bca_jr_cycle_job_mode = { JOB = purge_labor_camps }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_labor_camps }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_lithoid }
+        bca_jr_cycle_job_mode = { JOB = purge_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_matrix }
+        bca_jr_cycle_job_mode = { JOB = purge_matrix }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_matrix }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_processing }
+        bca_jr_cycle_job_mode = { JOB = purge_processing }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_processing }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_processing_infernal }
+        bca_jr_cycle_job_mode = { JOB = purge_processing_infernal }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_processing_infernal }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_processing_lithoid }
+        bca_jr_cycle_job_mode = { JOB = purge_processing_lithoid }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_processing_lithoid }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_processing_robot }
+        bca_jr_cycle_job_mode = { JOB = purge_processing_robot }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_processing_robot }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_robot }
+        bca_jr_cycle_job_mode = { JOB = purge_robot }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_robot }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_purge_sacrifice }
+        bca_jr_cycle_job_mode = { JOB = purge_sacrifice }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = purge_sacrifice }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_ratling_scavenger }
+        bca_jr_cycle_job_mode = { JOB = ratling_scavenger }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = ratling_scavenger }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_resort_worker }
+        bca_jr_cycle_job_mode = { JOB = resort_worker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = resort_worker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_robot_caretaker }
+        bca_jr_cycle_job_mode = { JOB = robot_caretaker }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = robot_caretaker }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_shroud_trader }
+        bca_jr_cycle_job_mode = { JOB = shroud_trader }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = shroud_trader }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_slave_overseer }
+        bca_jr_cycle_job_mode = { JOB = slave_overseer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = slave_overseer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_solarpunk_anarchist }
+        bca_jr_cycle_job_mode = { JOB = solarpunk_anarchist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = solarpunk_anarchist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_soldier }
+        bca_jr_cycle_job_mode = { JOB = soldier }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = soldier }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_space_junk_collector }
+        bca_jr_cycle_job_mode = { JOB = space_junk_collector }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = space_junk_collector }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_space_time_anomaly_researcher }
+        bca_jr_cycle_job_mode = { JOB = space_time_anomaly_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = space_time_anomaly_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_space_time_anomaly_researcher_gestalt }
+        bca_jr_cycle_job_mode = { JOB = space_time_anomaly_researcher_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = space_time_anomaly_researcher_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_spawning_drone }
+        bca_jr_cycle_job_mode = { JOB = spawning_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = spawning_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_spe_colonist }
+        bca_jr_cycle_job_mode = { JOB = spe_colonist }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = spe_colonist }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stasis_warden }
+        bca_jr_cycle_job_mode = { JOB = stasis_warden }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stasis_warden }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stasis_warden_drone }
+        bca_jr_cycle_job_mode = { JOB = stasis_warden_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stasis_warden_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stratovent_refiner }
+        bca_jr_cycle_job_mode = { JOB = stratovent_refiner }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stratovent_refiner }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stratovent_refiner_minerals }
+        bca_jr_cycle_job_mode = { JOB = stratovent_refiner_minerals }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stratovent_refiner_minerals }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stratovent_refiner_upg }
+        bca_jr_cycle_job_mode = { JOB = stratovent_refiner_upg }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stratovent_refiner_upg }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_stratovent_researcher }
+        bca_jr_cycle_job_mode = { JOB = stratovent_researcher }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = stratovent_researcher }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_technician }
+        bca_jr_cycle_job_mode = { JOB = technician }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = technician }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_technician_drone }
+        bca_jr_cycle_job_mode = { JOB = technician_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = technician_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_technophant }
+        bca_jr_cycle_job_mode = { JOB = technophant }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = technophant }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_telepath }
+        bca_jr_cycle_job_mode = { JOB = telepath }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = telepath }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_telepath_drone }
+        bca_jr_cycle_job_mode = { JOB = telepath_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = telepath_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_test_subject }
+        bca_jr_cycle_job_mode = { JOB = test_subject }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = test_subject }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_test_subject_drone }
+        bca_jr_cycle_job_mode = { JOB = test_subject_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = test_subject_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_trader }
+        bca_jr_cycle_job_mode = { JOB = trader }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = trader }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_transference_drone }
+        bca_jr_cycle_job_mode = { JOB = transference_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = transference_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_transference_volunteer }
+        bca_jr_cycle_job_mode = { JOB = transference_volunteer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = transference_volunteer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_translucer }
+        bca_jr_cycle_job_mode = { JOB = translucer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = translucer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_translucer_drone }
+        bca_jr_cycle_job_mode = { JOB = translucer_drone }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = translucer_drone }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_treasure_gatherer }
+        bca_jr_cycle_job_mode = { JOB = treasure_gatherer }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = treasure_gatherer }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_treasure_gatherer_gestalt }
+        bca_jr_cycle_job_mode = { JOB = treasure_gatherer_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = treasure_gatherer_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_turtle_miner_gestalt }
+        bca_jr_cycle_job_mode = { JOB = turtle_miner_gestalt }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = turtle_miner_gestalt }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_wrangler }
+        bca_jr_cycle_job_mode = { JOB = wrangler }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = wrangler }
+    }
+}
+
+
 bca_jr_clear_country_job_totals = {
     optimize_memory
     clear_variable = bca_jr_total_assigned_workforce_agri_drone
@@ -5666,6 +6688,10 @@ bca_jr_clear_slot_mapping_for_slot = {
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_turtle_miner_gestalt
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_wrangler
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
     clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce
@@ -6054,6 +7080,31 @@ bca_jr_clear_slot_mapping = {
     remove_country_flag = bca_jr_slot_mapped_turtle_miner_gestalt
     remove_country_flag = bca_jr_slot_mapped_wrangler
     set_variable = { which = bca_jr_display_count value = 0 }
+}
+
+
+bca_jr_normalize_job_filters = {
+    optimize_memory
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_filter_all }
+            NOT = { has_country_flag = bca_jr_filter_other }
+            NOT = { has_country_flag = bca_jr_filter_energy }
+            NOT = { has_country_flag = bca_jr_filter_minerals }
+            NOT = { has_country_flag = bca_jr_filter_food }
+            NOT = { has_country_flag = bca_jr_filter_alloys }
+            NOT = { has_country_flag = bca_jr_filter_consumer_goods }
+            NOT = { has_country_flag = bca_jr_filter_trade }
+            NOT = { has_country_flag = bca_jr_filter_unity }
+            NOT = { has_country_flag = bca_jr_filter_physics_research }
+            NOT = { has_country_flag = bca_jr_filter_society_research }
+            NOT = { has_country_flag = bca_jr_filter_engineering_research }
+            NOT = { has_country_flag = bca_jr_filter_rare_crystals }
+            NOT = { has_country_flag = bca_jr_filter_volatile_motes }
+            NOT = { has_country_flag = bca_jr_filter_exotic_gases }
+        }
+        set_country_flag = bca_jr_filter_all
+    }
 }
 
 
@@ -7612,6 +8663,7 @@ bca_jr_fill_slot_job_stats = {
     set_country_flag = bca_jr_slot_$SLOT_NAME$_job_$JOB$
     set_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
     set_country_flag = bca_jr_slot_mapped_$JOB$
+    bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = $JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_assigned_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_capacity_workforce value = bca_jr_total_capacity_workforce_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce value = bca_jr_total_pop_productive_workforce_$JOB$ }

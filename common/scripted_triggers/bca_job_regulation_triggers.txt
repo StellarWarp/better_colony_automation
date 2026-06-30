@@ -8,21 +8,7 @@
 
 bca_jr_job_matches_selected_filters = {
     OR = {
-        NOR = {
-            has_country_flag = bca_jr_filter_energy
-            has_country_flag = bca_jr_filter_minerals
-            has_country_flag = bca_jr_filter_food
-            has_country_flag = bca_jr_filter_alloys
-            has_country_flag = bca_jr_filter_consumer_goods
-            has_country_flag = bca_jr_filter_trade
-            has_country_flag = bca_jr_filter_unity
-            has_country_flag = bca_jr_filter_physics_research
-            has_country_flag = bca_jr_filter_society_research
-            has_country_flag = bca_jr_filter_engineering_research
-            has_country_flag = bca_jr_filter_rare_crystals
-            has_country_flag = bca_jr_filter_volatile_motes
-            has_country_flag = bca_jr_filter_exotic_gases
-        }
+        has_country_flag = bca_jr_filter_all
         AND = {
             has_country_flag = bca_jr_filter_energy
             is_variable_set = bca_jr_total_output_$JOB$_energy
@@ -87,6 +73,63 @@ bca_jr_job_matches_selected_filters = {
             has_country_flag = bca_jr_filter_exotic_gases
             is_variable_set = bca_jr_total_output_$JOB$_exotic_gases
             check_variable = { which = bca_jr_total_output_$JOB$_exotic_gases value > 0 }
+        }
+        AND = {
+            has_country_flag = bca_jr_filter_other
+            NOR = {
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_energy
+                    check_variable = { which = bca_jr_total_output_$JOB$_energy value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_minerals
+                    check_variable = { which = bca_jr_total_output_$JOB$_minerals value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_food
+                    check_variable = { which = bca_jr_total_output_$JOB$_food value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_alloys
+                    check_variable = { which = bca_jr_total_output_$JOB$_alloys value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_consumer_goods
+                    check_variable = { which = bca_jr_total_output_$JOB$_consumer_goods value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_trade
+                    check_variable = { which = bca_jr_total_output_$JOB$_trade value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_unity
+                    check_variable = { which = bca_jr_total_output_$JOB$_unity value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_physics_research
+                    check_variable = { which = bca_jr_total_output_$JOB$_physics_research value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_society_research
+                    check_variable = { which = bca_jr_total_output_$JOB$_society_research value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_engineering_research
+                    check_variable = { which = bca_jr_total_output_$JOB$_engineering_research value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_rare_crystals
+                    check_variable = { which = bca_jr_total_output_$JOB$_rare_crystals value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_volatile_motes
+                    check_variable = { which = bca_jr_total_output_$JOB$_volatile_motes value > 0 }
+                }
+                AND = {
+                    is_variable_set = bca_jr_total_output_$JOB$_exotic_gases
+                    check_variable = { which = bca_jr_total_output_$JOB$_exotic_gases value > 0 }
+                }
+            }
         }
     }
 }

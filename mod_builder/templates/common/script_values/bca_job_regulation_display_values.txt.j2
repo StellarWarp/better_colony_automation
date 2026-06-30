@@ -52,10 +52,9 @@ bca_jr_num_pops_assigned_to_job = {
         {% endfor %}
         modifier = {
             has_country_flag = bca_jr_sort_output
-            NOR = {
-                {% for resource in resources %}
-                    has_country_flag = bca_jr_filter_{{ resource }}
-                {% endfor %}
+            OR = {
+                has_country_flag = bca_jr_filter_all
+                has_country_flag = bca_jr_filter_other
             }
             add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
         }

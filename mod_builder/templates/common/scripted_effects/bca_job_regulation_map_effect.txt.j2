@@ -81,6 +81,67 @@ bca_jr_locate_slot_job = {
     {% endfor %}
 }
 
+bca_jr_set_slot_job_mode_flags = {
+    optimize_memory
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    if = {
+        limit = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_full_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    }
+    else = {
+        set_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    }
+}
+
+bca_jr_cycle_job_mode = {
+    optimize_memory
+    if = {
+        limit = { has_country_flag = bca_jr_mode_empty_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        set_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_full_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else_if = {
+        limit = { has_country_flag = bca_jr_mode_manual_$JOB$ }
+        remove_country_flag = bca_jr_mode_manual_$JOB$
+        set_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+    else = {
+        set_country_flag = bca_jr_mode_manual_$JOB$
+        remove_country_flag = bca_jr_mode_empty_$JOB$
+        remove_country_flag = bca_jr_mode_full_$JOB$
+    }
+}
+
+bca_jr_cycle_slot_job_mode = {
+    optimize_memory
+    {% for entry in regulated %}
+        if = {
+            limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }} }
+            bca_jr_cycle_job_mode = { JOB = {{ entry.job }} }
+            bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = {{ entry.job }} }
+        }
+    {% endfor %}
+}
+
 bca_jr_clear_country_job_totals = {
     optimize_memory
     {% for entry in regulated %}
@@ -108,6 +169,10 @@ bca_jr_clear_slot_mapping_for_slot = {
         remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_{{ entry.job }}
     {% endfor %}
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_auto
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
     clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce
@@ -153,6 +218,20 @@ bca_jr_clear_slot_mapping = {
     set_variable = { which = bca_jr_display_count value = 0 }
 }
 
+bca_jr_normalize_job_filters = {
+    optimize_memory
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_filter_all }
+            NOT = { has_country_flag = bca_jr_filter_other }
+            {% for resource in resources %}
+                NOT = { has_country_flag = bca_jr_filter_{{ resource }} }
+            {% endfor %}
+        }
+        set_country_flag = bca_jr_filter_all
+    }
+}
+
 {# 找最佳候选：遍历所有未映射岗位，取排序分数最大值 #}
 bca_jr_find_best_for_slot = {
     optimize_memory
@@ -175,6 +254,7 @@ bca_jr_fill_slot_job_stats = {
     set_country_flag = bca_jr_slot_$SLOT_NAME$_job_$JOB$
     set_country_flag = bca_jr_slot_$SLOT_NAME$_mapped
     set_country_flag = bca_jr_slot_mapped_$JOB$
+    bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = $JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_assigned_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_capacity_workforce value = bca_jr_total_capacity_workforce_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce value = bca_jr_total_pop_productive_workforce_$JOB$ }

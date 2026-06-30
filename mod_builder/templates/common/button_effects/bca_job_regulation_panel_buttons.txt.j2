@@ -23,6 +23,8 @@
         effect = {
             hidden_effect = {
                 from = {
+                    remove_country_flag = bca_jr_filter_all
+                    remove_country_flag = bca_jr_filter_other
                     remove_country_flag = bca_jr_filter_{{ cat }}
                     country_event = { id = colony_automation_event.2001 }
                 }
@@ -41,6 +43,8 @@
         effect = {
             hidden_effect = {
                 from = {
+                    remove_country_flag = bca_jr_filter_all
+                    remove_country_flag = bca_jr_filter_other
                     set_country_flag = bca_jr_filter_{{ cat }}
                     country_event = { id = colony_automation_event.2001 }
                 }
@@ -156,12 +160,60 @@ bca_jr_show_all_outputs_unselected = {
     }
 {% endfor %}
 
-bca_jr_select_category_all = {
-    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } } }
+bca_jr_select_category_all_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } has_country_flag = bca_jr_filter_all } }
     allow = { always = yes }
     effect = {
         hidden_effect = {
             from = {
+                country_event = { id = colony_automation_event.2001 }
+            }
+        }
+    }
+}
+
+bca_jr_select_category_all_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } NOT = { has_country_flag = bca_jr_filter_all } } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                set_country_flag = bca_jr_filter_all
+                remove_country_flag = bca_jr_filter_other
+                {% for cat in categories %}
+                    remove_country_flag = bca_jr_filter_{{ cat }}
+                {% endfor %}
+                country_event = { id = colony_automation_event.2001 }
+            }
+        }
+    }
+}
+
+bca_jr_select_category_other_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } has_country_flag = bca_jr_filter_other } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                set_country_flag = bca_jr_filter_all
+                remove_country_flag = bca_jr_filter_other
+                {% for cat in categories %}
+                    remove_country_flag = bca_jr_filter_{{ cat }}
+                {% endfor %}
+                country_event = { id = colony_automation_event.2001 }
+            }
+        }
+    }
+}
+
+bca_jr_select_category_other_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } NOT = { has_country_flag = bca_jr_filter_other } } }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                remove_country_flag = bca_jr_filter_all
+                set_country_flag = bca_jr_filter_other
                 {% for cat in categories %}
                     remove_country_flag = bca_jr_filter_{{ cat }}
                 {% endfor %}
@@ -220,6 +272,8 @@ bca_jr_select_category_all = {
             effect = {
                 hidden_effect = {
                     from = {
+                        remove_country_flag = bca_jr_filter_all
+                        remove_country_flag = bca_jr_filter_other
                         {% for cat in categories %}
                             {% if cat in group_resources %}
                                 set_country_flag = bca_jr_filter_{{ cat }}
@@ -306,33 +360,13 @@ bca_jr_select_category_all = {
             from = {
                 has_country_flag = bca_jr_slot_{{ s_name }}_mapped
                 check_variable = { which = bca_gui_active_tab value = 1 }
-                NOR = {
-                    {% for entry in regulated %}
-                        AND = {
-                            has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
-                            OR = {
-                                has_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                                has_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                                has_country_flag = bca_jr_mode_full_{{ entry.job }}
-                            }
-                        }
-                    {% endfor %}
-                }
+                has_country_flag = bca_jr_slot_{{ s_name }}_mode_auto
             }
         }
         allow = { always = yes }
         effect = {
             hidden_effect = {
-                from = {
-                    {% for entry in regulated %}
-                        if = {
-                            limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-                            set_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_full_{{ entry.job }}
-                        }
-                    {% endfor %}
-                }
+                from = { bca_jr_cycle_slot_job_mode = { SLOT_NAME = {{ s_name }} } }
             }
         }
     }
@@ -342,33 +376,13 @@ bca_jr_select_category_all = {
             from = {
                 has_country_flag = bca_jr_slot_{{ s_name }}_mapped
                 check_variable = { which = bca_gui_active_tab value = 1 }
-                OR = {
-                    {% for entry in regulated %}
-                        AND = {
-                            has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }}
-                            NOT = { has_country_flag = bca_jr_mode_empty_{{ entry.job }} }
-                            NOT = { has_country_flag = bca_jr_mode_full_{{ entry.job }} }
-                            OR = {
-                                has_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                            }
-                        }
-                    {% endfor %}
-                }
+                has_country_flag = bca_jr_slot_{{ s_name }}_mode_manual
             }
         }
         allow = { always = yes }
         effect = {
             hidden_effect = {
-                from = {
-                    {% for entry in regulated %}
-                        if = {
-                            limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-                            remove_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                            set_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_full_{{ entry.job }}
-                        }
-                    {% endfor %}
-                }
+                from = { bca_jr_cycle_slot_job_mode = { SLOT_NAME = {{ s_name }} } }
             }
         }
     }
@@ -378,26 +392,13 @@ bca_jr_select_category_all = {
             from = {
                 has_country_flag = bca_jr_slot_{{ s_name }}_mapped
                 check_variable = { which = bca_gui_active_tab value = 1 }
-                OR = {
-                    {% for entry in regulated %}
-                        AND = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} has_country_flag = bca_jr_mode_empty_{{ entry.job }} }
-                    {% endfor %}
-                }
+                has_country_flag = bca_jr_slot_{{ s_name }}_mode_empty
             }
         }
         allow = { always = yes }
         effect = {
             hidden_effect = {
-                from = {
-                    {% for entry in regulated %}
-                        if = {
-                            limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-                            remove_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                            set_country_flag = bca_jr_mode_full_{{ entry.job }}
-                        }
-                    {% endfor %}
-                }
+                from = { bca_jr_cycle_slot_job_mode = { SLOT_NAME = {{ s_name }} } }
             }
         }
     }
@@ -407,26 +408,13 @@ bca_jr_select_category_all = {
             from = {
                 has_country_flag = bca_jr_slot_{{ s_name }}_mapped
                 check_variable = { which = bca_gui_active_tab value = 1 }
-                OR = {
-                    {% for entry in regulated %}
-                        AND = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} has_country_flag = bca_jr_mode_full_{{ entry.job }} }
-                    {% endfor %}
-                }
+                has_country_flag = bca_jr_slot_{{ s_name }}_mode_full
             }
         }
         allow = { always = yes }
         effect = {
             hidden_effect = {
-                from = {
-                    {% for entry in regulated %}
-                        if = {
-                            limit = { has_country_flag = bca_jr_slot_{{ s_name }}_job_{{ entry.job }} }
-                            remove_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                            remove_country_flag = bca_jr_mode_full_{{ entry.job }}
-                        }
-                    {% endfor %}
-                }
+                from = { bca_jr_cycle_slot_job_mode = { SLOT_NAME = {{ s_name }} } }
             }
         }
     }

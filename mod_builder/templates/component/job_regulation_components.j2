@@ -7,17 +7,24 @@
 {%- endmacro %}
 
 {% macro category_clear_button(x, y, w, h) -%}
-    effectButtonType = { name = "jr_cat_btn_all" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_ALL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_all" }
+    effectButtonType = { name = "jr_cat_btn_all_selected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_ALL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_select_category_all_selected" }
+    effectButtonType = { name = "jr_cat_btn_all_unselected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_ALL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_all_unselected" }
+{%- endmacro %}
+
+{% macro category_other_button(x, y, w, h) -%}
+    effectButtonType = { name = "jr_cat_btn_other_selected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_OTHER" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_select_category_other_selected" }
+    effectButtonType = { name = "jr_cat_btn_other_unselected" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "BCA_JR_CAT_OTHER" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_other_unselected" }
 {%- endmacro %}
 
 {% macro category_bar(categories, x, y, btn_w, btn_gap, btn_h) -%}
-    {{ category_clear_button(x, y, btn_w, btn_h) }}
+    {{ category_other_button(x, y, btn_w, btn_h) }}
     {% for cat in categories %}
         {{ category_button(cat, x + loop.index * (btn_w + btn_gap), y, btn_w, btn_h) }}
     {% endfor %}
 {%- endmacro %}
 
 {% macro category_group_bar(categories, groups, x, y, btn_w, btn_gap, btn_h) -%}
+    {{ category_clear_button(x, y, btn_w, btn_h) }}
     {% for group in groups %}
         {% set positions = [] %}
         {% for cat in group.resources %}

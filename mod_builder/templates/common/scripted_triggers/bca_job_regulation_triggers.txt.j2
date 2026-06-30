@@ -7,11 +7,7 @@
 
 bca_jr_job_matches_selected_filters = {
     OR = {
-        NOR = {
-            {% for resource in economic_set %}
-                has_country_flag = bca_jr_filter_{{ resource }}
-            {% endfor %}
-        }
+        has_country_flag = bca_jr_filter_all
         {% for resource in economic_set %}
             AND = {
                 has_country_flag = bca_jr_filter_{{ resource }}
@@ -19,6 +15,17 @@ bca_jr_job_matches_selected_filters = {
                 check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
             }
         {% endfor %}
+        AND = {
+            has_country_flag = bca_jr_filter_other
+            NOR = {
+                {% for resource in economic_set %}
+                    AND = {
+                        is_variable_set = bca_jr_total_output_$JOB$_{{ resource }}
+                        check_variable = { which = bca_jr_total_output_$JOB$_{{ resource }} value > 0 }
+                    }
+                {% endfor %}
+            }
+        }
     }
 }
 
