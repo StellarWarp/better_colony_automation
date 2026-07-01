@@ -20,6 +20,8 @@ event = {
             {% for need_name, need in economic_need_thresholds.items() %}
                 set_variable = { which = {{ need.variable }} value = {{ need.default }} }
             {% endfor %}
+            set_variable = { which = bca_economic_target_tolerance value = 5 }
+            bca_global_settings_recompute_economic_target_bounds = yes
 
             remove_country_flag = bca_enable_economic_management
             remove_country_flag = bca_retain_low_level_rare_resource_buildings

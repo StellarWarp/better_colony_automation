@@ -6,9 +6,21 @@
             AND = {
                 NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
                 {% if need.resource %}
-                    resource_income_compare = {
-                        resource = {{ need.resource }}
-                        value < {{ need.variable }}
+                    OR = {
+                        AND = {
+                            is_variable_set = bca_economic_target_lower_{{ need_name }}
+                            resource_income_compare = {
+                                resource = {{ need.resource }}
+                                value < bca_economic_target_lower_{{ need_name }}
+                            }
+                        }
+                        AND = {
+                            NOT = { is_variable_set = bca_economic_target_lower_{{ need_name }} }
+                            resource_income_compare = {
+                                resource = {{ need.resource }}
+                                value < {{ need.variable }}
+                            }
+                        }
                     }
                 {% else %}
                     check_variable_arithmetic = {
@@ -31,9 +43,21 @@
         NOT = { has_country_flag = bca_economic_target_{{ need_name }}_unlimited }
         NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
         {% if need.resource %}
-            resource_income_compare = {
-                resource = {{ need.resource }}
-                value >= {{ need.variable }}
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_upper_{{ need_name }}
+                    resource_income_compare = {
+                        resource = {{ need.resource }}
+                        value > bca_economic_target_upper_{{ need_name }}
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_upper_{{ need_name }} }
+                    resource_income_compare = {
+                        resource = {{ need.resource }}
+                        value >= {{ need.variable }}
+                    }
+                }
             }
         {% else %}
             check_variable_arithmetic = {

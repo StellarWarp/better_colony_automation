@@ -2,6 +2,7 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set slots = job_regulation_config.display_slots | default(15) %}
 {% set categories = job_regulation_config.categories %}
+{% set resources = job_regulation_config.resources %}
 {% set category_groups = [
     {"name": "basic", "resources": ["energy", "minerals", "food"]},
     {"name": "industry", "resources": ["alloys", "consumer_goods", "trade"]},
@@ -313,6 +314,20 @@ bca_jr_select_category_other_unselected = {
         allow = { always = yes }
         effect = {
             custom_tooltip = BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP
+            hidden_effect = { }
+        }
+    }
+    bca_jr_slot_change_tooltip_{{ s_name }} = {
+        potential = {
+            exists = from
+            from = {
+                check_variable = { which = bca_gui_active_tab value = 1 }
+                check_variable_arithmetic = { which = bca_jr_display_count value >= {{ s + 1 }} }
+            }
+        }
+        allow = { always = yes }
+        effect = {
+            custom_tooltip = BCA_JR_SLOT_{{ s_name }}_CHANGE_TOOLTIP
             hidden_effect = { }
         }
     }

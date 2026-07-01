@@ -5,6 +5,11 @@ output_efficiency_mult: 岗位效率，提高产出，不减少岗位占用。
 #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 
+bca_jr_min_value = {
+    set = $LEFT$
+    max = $RIGHT$
+}
+
 bca_jr_automated_output_efficiency = {
     base = 1
     add = modifier:bonus_automated_workforce_mult

@@ -30,6 +30,7 @@ bca_jr_num_pops_assigned_to_job = {
                     has_country_flag = bca_jr_sort_status
                 }
             }
+            is_variable_set = bca_jr_total_assigned_workforce_{{ entry.job }}
             add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
         }
         modifier = {
@@ -40,6 +41,7 @@ bca_jr_num_pops_assigned_to_job = {
         }
         modifier = {
             has_country_flag = bca_jr_sort_status
+            is_variable_set = bca_jr_total_assigned_workforce_{{ entry.job }}
             add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
         }
         {% for resource in resources %}
@@ -56,6 +58,7 @@ bca_jr_num_pops_assigned_to_job = {
                 has_country_flag = bca_jr_filter_all
                 has_country_flag = bca_jr_filter_other
             }
+            is_variable_set = bca_jr_total_assigned_workforce_{{ entry.job }}
             add = this.bca_jr_total_assigned_workforce_{{ entry.job }}
         }
     }

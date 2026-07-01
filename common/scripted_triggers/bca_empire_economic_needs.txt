@@ -12,9 +12,21 @@ bca_country_needs_energy = {
         has_country_flag = bca_economic_target_energy_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_energy_forbidden }
-            resource_income_compare = {
-                resource = energy
-                value < bca_expect_output_energy
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_energy
+                    resource_income_compare = {
+                        resource = energy
+                        value < bca_economic_target_lower_energy
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_energy }
+                    resource_income_compare = {
+                        resource = energy
+                        value < bca_expect_output_energy
+                    }
+                }
             }
         }
     }
@@ -32,9 +44,21 @@ bca_country_surplus_energy = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_energy_unlimited }
     NOT = { has_country_flag = bca_economic_target_energy_forbidden }
-    resource_income_compare = {
-        resource = energy
-        value >= bca_expect_output_energy
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_energy
+            resource_income_compare = {
+                resource = energy
+                value > bca_economic_target_upper_energy
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_energy }
+            resource_income_compare = {
+                resource = energy
+                value >= bca_expect_output_energy
+            }
+        }
     }
 }
 
@@ -52,9 +76,21 @@ bca_country_needs_minerals = {
         has_country_flag = bca_economic_target_minerals_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_minerals_forbidden }
-            resource_income_compare = {
-                resource = minerals
-                value < bca_expect_output_minerals
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_minerals
+                    resource_income_compare = {
+                        resource = minerals
+                        value < bca_economic_target_lower_minerals
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_minerals }
+                    resource_income_compare = {
+                        resource = minerals
+                        value < bca_expect_output_minerals
+                    }
+                }
             }
         }
     }
@@ -72,9 +108,21 @@ bca_country_surplus_minerals = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_minerals_unlimited }
     NOT = { has_country_flag = bca_economic_target_minerals_forbidden }
-    resource_income_compare = {
-        resource = minerals
-        value >= bca_expect_output_minerals
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_minerals
+            resource_income_compare = {
+                resource = minerals
+                value > bca_economic_target_upper_minerals
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_minerals }
+            resource_income_compare = {
+                resource = minerals
+                value >= bca_expect_output_minerals
+            }
+        }
     }
 }
 
@@ -92,9 +140,21 @@ bca_country_needs_food = {
         has_country_flag = bca_economic_target_food_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_food_forbidden }
-            resource_income_compare = {
-                resource = food
-                value < bca_expect_output_food
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_food
+                    resource_income_compare = {
+                        resource = food
+                        value < bca_economic_target_lower_food
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_food }
+                    resource_income_compare = {
+                        resource = food
+                        value < bca_expect_output_food
+                    }
+                }
             }
         }
     }
@@ -112,9 +172,21 @@ bca_country_surplus_food = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_food_unlimited }
     NOT = { has_country_flag = bca_economic_target_food_forbidden }
-    resource_income_compare = {
-        resource = food
-        value >= bca_expect_output_food
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_food
+            resource_income_compare = {
+                resource = food
+                value > bca_economic_target_upper_food
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_food }
+            resource_income_compare = {
+                resource = food
+                value >= bca_expect_output_food
+            }
+        }
     }
 }
 
@@ -132,9 +204,21 @@ bca_country_needs_alloys = {
         has_country_flag = bca_economic_target_alloys_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_alloys_forbidden }
-            resource_income_compare = {
-                resource = alloys
-                value < bca_expect_output_alloys
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_alloys
+                    resource_income_compare = {
+                        resource = alloys
+                        value < bca_economic_target_lower_alloys
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_alloys }
+                    resource_income_compare = {
+                        resource = alloys
+                        value < bca_expect_output_alloys
+                    }
+                }
             }
         }
     }
@@ -152,9 +236,21 @@ bca_country_surplus_alloys = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_alloys_unlimited }
     NOT = { has_country_flag = bca_economic_target_alloys_forbidden }
-    resource_income_compare = {
-        resource = alloys
-        value >= bca_expect_output_alloys
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_alloys
+            resource_income_compare = {
+                resource = alloys
+                value > bca_economic_target_upper_alloys
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_alloys }
+            resource_income_compare = {
+                resource = alloys
+                value >= bca_expect_output_alloys
+            }
+        }
     }
 }
 
@@ -172,9 +268,21 @@ bca_country_needs_consumer_goods = {
         has_country_flag = bca_economic_target_consumer_goods_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_consumer_goods_forbidden }
-            resource_income_compare = {
-                resource = consumer_goods
-                value < bca_expect_output_consumer_goods
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_consumer_goods
+                    resource_income_compare = {
+                        resource = consumer_goods
+                        value < bca_economic_target_lower_consumer_goods
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_consumer_goods }
+                    resource_income_compare = {
+                        resource = consumer_goods
+                        value < bca_expect_output_consumer_goods
+                    }
+                }
             }
         }
     }
@@ -192,9 +300,21 @@ bca_country_surplus_consumer_goods = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_consumer_goods_unlimited }
     NOT = { has_country_flag = bca_economic_target_consumer_goods_forbidden }
-    resource_income_compare = {
-        resource = consumer_goods
-        value >= bca_expect_output_consumer_goods
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_consumer_goods
+            resource_income_compare = {
+                resource = consumer_goods
+                value > bca_economic_target_upper_consumer_goods
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_consumer_goods }
+            resource_income_compare = {
+                resource = consumer_goods
+                value >= bca_expect_output_consumer_goods
+            }
+        }
     }
 }
 
@@ -212,9 +332,21 @@ bca_country_needs_trade = {
         has_country_flag = bca_economic_target_trade_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_trade_forbidden }
-            resource_income_compare = {
-                resource = trade
-                value < bca_expect_output_trade
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_trade
+                    resource_income_compare = {
+                        resource = trade
+                        value < bca_economic_target_lower_trade
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_trade }
+                    resource_income_compare = {
+                        resource = trade
+                        value < bca_expect_output_trade
+                    }
+                }
             }
         }
     }
@@ -232,9 +364,21 @@ bca_country_surplus_trade = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_trade_unlimited }
     NOT = { has_country_flag = bca_economic_target_trade_forbidden }
-    resource_income_compare = {
-        resource = trade
-        value >= bca_expect_output_trade
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_trade
+            resource_income_compare = {
+                resource = trade
+                value > bca_economic_target_upper_trade
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_trade }
+            resource_income_compare = {
+                resource = trade
+                value >= bca_expect_output_trade
+            }
+        }
     }
 }
 
@@ -252,9 +396,21 @@ bca_country_needs_unity = {
         has_country_flag = bca_economic_target_unity_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_unity_forbidden }
-            resource_income_compare = {
-                resource = unity
-                value < bca_expect_output_unity
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_unity
+                    resource_income_compare = {
+                        resource = unity
+                        value < bca_economic_target_lower_unity
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_unity }
+                    resource_income_compare = {
+                        resource = unity
+                        value < bca_expect_output_unity
+                    }
+                }
             }
         }
     }
@@ -272,9 +428,21 @@ bca_country_surplus_unity = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_unity_unlimited }
     NOT = { has_country_flag = bca_economic_target_unity_forbidden }
-    resource_income_compare = {
-        resource = unity
-        value >= bca_expect_output_unity
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_unity
+            resource_income_compare = {
+                resource = unity
+                value > bca_economic_target_upper_unity
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_unity }
+            resource_income_compare = {
+                resource = unity
+                value >= bca_expect_output_unity
+            }
+        }
     }
 }
 
@@ -292,9 +460,21 @@ bca_country_needs_physics_research = {
         has_country_flag = bca_economic_target_physics_research_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_physics_research_forbidden }
-            resource_income_compare = {
-                resource = physics_research
-                value < bca_expect_output_physics_research
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_physics_research
+                    resource_income_compare = {
+                        resource = physics_research
+                        value < bca_economic_target_lower_physics_research
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_physics_research }
+                    resource_income_compare = {
+                        resource = physics_research
+                        value < bca_expect_output_physics_research
+                    }
+                }
             }
         }
     }
@@ -312,9 +492,21 @@ bca_country_surplus_physics_research = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_physics_research_unlimited }
     NOT = { has_country_flag = bca_economic_target_physics_research_forbidden }
-    resource_income_compare = {
-        resource = physics_research
-        value >= bca_expect_output_physics_research
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_physics_research
+            resource_income_compare = {
+                resource = physics_research
+                value > bca_economic_target_upper_physics_research
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_physics_research }
+            resource_income_compare = {
+                resource = physics_research
+                value >= bca_expect_output_physics_research
+            }
+        }
     }
 }
 
@@ -332,9 +524,21 @@ bca_country_needs_society_research = {
         has_country_flag = bca_economic_target_society_research_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_society_research_forbidden }
-            resource_income_compare = {
-                resource = society_research
-                value < bca_expect_output_society_research
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_society_research
+                    resource_income_compare = {
+                        resource = society_research
+                        value < bca_economic_target_lower_society_research
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_society_research }
+                    resource_income_compare = {
+                        resource = society_research
+                        value < bca_expect_output_society_research
+                    }
+                }
             }
         }
     }
@@ -352,9 +556,21 @@ bca_country_surplus_society_research = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_society_research_unlimited }
     NOT = { has_country_flag = bca_economic_target_society_research_forbidden }
-    resource_income_compare = {
-        resource = society_research
-        value >= bca_expect_output_society_research
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_society_research
+            resource_income_compare = {
+                resource = society_research
+                value > bca_economic_target_upper_society_research
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_society_research }
+            resource_income_compare = {
+                resource = society_research
+                value >= bca_expect_output_society_research
+            }
+        }
     }
 }
 
@@ -372,9 +588,21 @@ bca_country_needs_engineering_research = {
         has_country_flag = bca_economic_target_engineering_research_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_engineering_research_forbidden }
-            resource_income_compare = {
-                resource = engineering_research
-                value < bca_expect_output_engineering_research
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_engineering_research
+                    resource_income_compare = {
+                        resource = engineering_research
+                        value < bca_economic_target_lower_engineering_research
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_engineering_research }
+                    resource_income_compare = {
+                        resource = engineering_research
+                        value < bca_expect_output_engineering_research
+                    }
+                }
             }
         }
     }
@@ -392,9 +620,21 @@ bca_country_surplus_engineering_research = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_engineering_research_unlimited }
     NOT = { has_country_flag = bca_economic_target_engineering_research_forbidden }
-    resource_income_compare = {
-        resource = engineering_research
-        value >= bca_expect_output_engineering_research
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_engineering_research
+            resource_income_compare = {
+                resource = engineering_research
+                value > bca_economic_target_upper_engineering_research
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_engineering_research }
+            resource_income_compare = {
+                resource = engineering_research
+                value >= bca_expect_output_engineering_research
+            }
+        }
     }
 }
 
@@ -412,9 +652,21 @@ bca_country_needs_rare_crystals = {
         has_country_flag = bca_economic_target_rare_crystals_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_rare_crystals_forbidden }
-            resource_income_compare = {
-                resource = rare_crystals
-                value < bca_expect_output_rare_crystals
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_rare_crystals
+                    resource_income_compare = {
+                        resource = rare_crystals
+                        value < bca_economic_target_lower_rare_crystals
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_rare_crystals }
+                    resource_income_compare = {
+                        resource = rare_crystals
+                        value < bca_expect_output_rare_crystals
+                    }
+                }
             }
         }
     }
@@ -432,9 +684,21 @@ bca_country_surplus_rare_crystals = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_rare_crystals_unlimited }
     NOT = { has_country_flag = bca_economic_target_rare_crystals_forbidden }
-    resource_income_compare = {
-        resource = rare_crystals
-        value >= bca_expect_output_rare_crystals
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_rare_crystals
+            resource_income_compare = {
+                resource = rare_crystals
+                value > bca_economic_target_upper_rare_crystals
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_rare_crystals }
+            resource_income_compare = {
+                resource = rare_crystals
+                value >= bca_expect_output_rare_crystals
+            }
+        }
     }
 }
 
@@ -452,9 +716,21 @@ bca_country_needs_volatile_motes = {
         has_country_flag = bca_economic_target_volatile_motes_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_volatile_motes_forbidden }
-            resource_income_compare = {
-                resource = volatile_motes
-                value < bca_expect_output_volatile_motes
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_volatile_motes
+                    resource_income_compare = {
+                        resource = volatile_motes
+                        value < bca_economic_target_lower_volatile_motes
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_volatile_motes }
+                    resource_income_compare = {
+                        resource = volatile_motes
+                        value < bca_expect_output_volatile_motes
+                    }
+                }
             }
         }
     }
@@ -472,9 +748,21 @@ bca_country_surplus_volatile_motes = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_volatile_motes_unlimited }
     NOT = { has_country_flag = bca_economic_target_volatile_motes_forbidden }
-    resource_income_compare = {
-        resource = volatile_motes
-        value >= bca_expect_output_volatile_motes
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_volatile_motes
+            resource_income_compare = {
+                resource = volatile_motes
+                value > bca_economic_target_upper_volatile_motes
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_volatile_motes }
+            resource_income_compare = {
+                resource = volatile_motes
+                value >= bca_expect_output_volatile_motes
+            }
+        }
     }
 }
 
@@ -492,9 +780,21 @@ bca_country_needs_exotic_gases = {
         has_country_flag = bca_economic_target_exotic_gases_unlimited
         AND = {
             NOT = { has_country_flag = bca_economic_target_exotic_gases_forbidden }
-            resource_income_compare = {
-                resource = exotic_gases
-                value < bca_expect_output_exotic_gases
+            OR = {
+                AND = {
+                    is_variable_set = bca_economic_target_lower_exotic_gases
+                    resource_income_compare = {
+                        resource = exotic_gases
+                        value < bca_economic_target_lower_exotic_gases
+                    }
+                }
+                AND = {
+                    NOT = { is_variable_set = bca_economic_target_lower_exotic_gases }
+                    resource_income_compare = {
+                        resource = exotic_gases
+                        value < bca_expect_output_exotic_gases
+                    }
+                }
             }
         }
     }
@@ -512,9 +812,21 @@ bca_country_surplus_exotic_gases = {
     has_country_flag = bca_enable_economic_management
     NOT = { has_country_flag = bca_economic_target_exotic_gases_unlimited }
     NOT = { has_country_flag = bca_economic_target_exotic_gases_forbidden }
-    resource_income_compare = {
-        resource = exotic_gases
-        value >= bca_expect_output_exotic_gases
+    OR = {
+        AND = {
+            is_variable_set = bca_economic_target_upper_exotic_gases
+            resource_income_compare = {
+                resource = exotic_gases
+                value > bca_economic_target_upper_exotic_gases
+            }
+        }
+        AND = {
+            NOT = { is_variable_set = bca_economic_target_upper_exotic_gases }
+            resource_income_compare = {
+                resource = exotic_gases
+                value >= bca_expect_output_exotic_gases
+            }
+        }
     }
 }
 

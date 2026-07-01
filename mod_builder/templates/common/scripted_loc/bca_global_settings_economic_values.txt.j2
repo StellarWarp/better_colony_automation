@@ -14,6 +14,16 @@
     {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases"}
     ] %}
 
+defined_text = {
+    name = bca_gs_economic_tolerance_display
+    random = no
+    text = {
+        trigger = { is_variable_set = bca_economic_target_tolerance }
+        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_VALUE_FORMAT"
+    }
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_VALUE_DEFAULT"
+}
+
 {% for row in economic_rows %}
     defined_text = {
         name = bca_gs_expect_output_{{ row.name }}_value_raw

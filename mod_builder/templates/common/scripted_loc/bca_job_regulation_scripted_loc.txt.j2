@@ -19,6 +19,7 @@
     "automated_efficiency_delta",
     "total_efficiency_delta",
     "closable_capacity_workforce",
+    "job_change",
     ] %}
 
 {% macro formatted_number_script(s_name, number) -%}
@@ -127,6 +128,83 @@
     # ── 槽位 {{ s_name }}: 数值格式化 ──
     {% for number in display_numbers %}
         {{ formatted_number_script(s_name, number) }}
+    {% endfor %}
+
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_CHANGE_script
+        random = no
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_job_change value > 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_CHANGE_POSITIVE
+        }
+        text = {
+            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_job_change value < 0 } }
+            localization_key = BCA_JR_SLOT_{{ s_name }}_CHANGE_NEGATIVE
+        }
+        default = BCA_JR_SLOT_{{ s_name }}_CHANGE_ZERO
+    }
+
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_CHANGE_TENDENCY_script
+        random = no
+        text = {
+            trigger = {
+                OR = {
+                    {% for resource in resources %}
+                        AND = {
+                            is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                            bca_country_needs_{{ resource }} = yes
+                        }
+                    {% endfor %}
+                }
+            }
+            localization_key = BCA_JR_CHANGE_TENDENCY_INCREASE
+        }
+        text = {
+            trigger = {
+                OR = {
+                    {% for resource in resources %}
+                        is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    {% endfor %}
+                }
+                {% for resource in resources %}
+                    OR = {
+                        NOT = { is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }} }
+                        bca_country_surplus_{{ resource }} = yes
+                    }
+                {% endfor %}
+            }
+            localization_key = BCA_JR_CHANGE_TENDENCY_DECREASE
+        }
+        default = BCA_JR_CHANGE_TENDENCY_STABLE
+    }
+
+    {% for resource in resources %}
+        defined_text = {
+            name = BCA_JR_SLOT_{{ s_name }}_CHANGE_RESOURCE_{{ resource | upper }}_script
+            random = no
+            text = {
+                trigger = {
+                    is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    bca_country_needs_{{ resource }} = yes
+                }
+                localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_NEEDED
+            }
+            text = {
+                trigger = {
+                    is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    bca_country_surplus_{{ resource }} = yes
+                }
+                localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SURPLUS
+            }
+            text = {
+                trigger = {
+                    is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                }
+                localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SATISFIED
+            }
+            default = BCA_JR_SLOT_EMPTY
+        }
     {% endfor %}
 
     # ── 槽位 {{ s_name }}: 自动化比例 ──

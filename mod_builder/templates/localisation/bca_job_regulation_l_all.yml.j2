@@ -25,6 +25,7 @@ Phase 8: 岗位调控面板批量本地化（all: 自动分发）。
     "automated_efficiency_delta",
     "total_efficiency_delta",
     "closable_capacity_workforce",
+    "job_change",
 ] %}
 {% macro formatted_number_keys(s_name, number) %}
  BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_int]"
@@ -38,13 +39,25 @@ all:
 {% for icon in job_regulation_config.icon_sprites | default([]) %}
  BCA_JR_ICON_SPRITE_{{ icon }}: "£jr_icon_{{ icon }}£"
 {% endfor %}
+ BCA_JR_CHANGE_TENDENCY_INCREASE: "§R应增加岗位§!"
+ BCA_JR_CHANGE_TENDENCY_DECREASE: "§G可减少岗位§!"
+ BCA_JR_CHANGE_TENDENCY_STABLE: "§L无需调整§!"
+{% for resource in resources %}
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_NEEDED: "§R●§! £{{ resource }}£\n"
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SURPLUS: "§G●§! £{{ resource }}£\n"
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SATISFIED: "§L●§! £{{ resource }}£\n"
+{% endfor %}
 
 {% for s in range(slots) %}
 {% set s_name = "s%d" % (s + 1) %}
  BCA_JR_SLOT_{{ s_name }}_ICON: "[From.BCA_JR_SLOT_{{ s_name }}_ICON_script]"
  BCA_JR_SLOT_{{ s_name }}_NAME: "[From.BCA_JR_SLOT_{{ s_name }}_NAME_script]"
  BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] / [From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script]"
- BCA_JR_SLOT_{{ s_name }}_CHANGE: "-"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE: "[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_script]"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_POSITIVE: "§G+[From.bca_jr_slot_{{ s_name }}_job_change_int]§!"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_NEGATIVE: "§R[From.bca_jr_slot_{{ s_name }}_job_change_int]§!"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_ZERO: "[From.bca_jr_slot_{{ s_name }}_job_change_int]"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_TOOLTIP: "§Y当前调控状态§!\n[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_TENDENCY_script]\n\n§Y相关资源§!\n{% for resource in resources %}[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_RESOURCE_{{ resource | upper }}_script]{% endfor %}"
  BCA_JR_SLOT_{{ s_name }}_RATE: "[From.BCA_JR_SLOT_{{ s_name }}_RATE_script]"
  BCA_JR_SLOT_{{ s_name }}_RATE_VALUE: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATION_RATE_script]%"
  BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP: "§Y岗位劳动力§!\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script] - 总岗位数量\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] - 已分配人口劳动力\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] - 已开放岗位容量（含自动化）\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_FREE_JOB_COUNT_script] - 空闲开放岗位\n\n§Y产出劳动力§!\n[From.BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script] - 总产出劳动力\n    [From.BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script] - 人口产出劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_FMT_CAPACITY_WORKFORCE_script] - 人口劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script] - 人口岗位效率\n    [From.BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script] - 自动化产出劳动力\n        §L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_CAPACITY_WORKFORCE_script]§! - 自动化劳动力\n        [From.BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script] - 自动化效率"

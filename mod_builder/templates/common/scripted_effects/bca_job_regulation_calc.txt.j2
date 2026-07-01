@@ -161,6 +161,12 @@ bca_jr_collect_checked_job_stats = {
                     has_carrier_flag = bca_jr_check_all_jobs
                     has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
                     has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+                    owner = {
+                        OR = {
+                            has_country_flag = bca_jr_mode_empty_{{ entry.job }}
+                            has_country_flag = bca_jr_mode_full_{{ entry.job }}
+                        }
+                    }
                 }
             }
             bca_jr_collect_job_count_stats = { JOB = {{ entry.job }} }
@@ -180,6 +186,12 @@ bca_jr_collect_checked_job_stats = {
                             has_carrier_flag = bca_jr_check_all_jobs
                             has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
                             has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
+                            owner = {
+                                OR = {
+                                    has_country_flag = bca_jr_mode_empty_{{ entry.job }}
+                                    has_country_flag = bca_jr_mode_full_{{ entry.job }}
+                                }
+                            }
                         }
                     }
                     has_job_type = {{ entry.job }}
@@ -260,24 +272,37 @@ bca_jr_finalize_single_job_stats = {
         }
         clear_variable = bca_jr_acc_pop_capacity_limit_$JOB$
     }
-    set_variable = {
-        which = bca_jr_acc_open_job_count_$JOB$
-        value = bca_jr_acc_capacity_workforce_$JOB$
+    if = {
+        limit = { is_variable_set = bca_jr_acc_capacity_workforce_$JOB$ }
+        set_variable = {
+            which = bca_jr_acc_open_job_count_$JOB$
+            value = bca_jr_acc_capacity_workforce_$JOB$
+        }
     }
-    add_variable = {
-        which = bca_jr_acc_open_job_count_$JOB$
-        value = bca_jr_acc_free_job_count_$JOB$
+    if = {
+        limit = { is_variable_set = bca_jr_acc_free_job_count_$JOB$ }
+        add_variable = {
+            which = bca_jr_acc_open_job_count_$JOB$
+            value = bca_jr_acc_free_job_count_$JOB$
+        }
     }
-    set_variable = {
-        which = bca_jr_acc_closable_capacity_workforce_$JOB$
-        value = bca_jr_acc_open_job_count_$JOB$
+    if = {
+        limit = { is_variable_set = bca_jr_acc_open_job_count_$JOB$ }
+        set_variable = {
+            which = bca_jr_acc_closable_capacity_workforce_$JOB$
+            value = bca_jr_acc_open_job_count_$JOB$
+        }
     }
-    add_variable = {
-        which = bca_jr_acc_closable_capacity_workforce_$JOB$
-        value = bca_jr_acc_automated_capacity_workforce_$JOB$
+    if = {
+        limit = { is_variable_set = bca_jr_acc_automated_capacity_workforce_$JOB$ }
+        add_variable = {
+            which = bca_jr_acc_closable_capacity_workforce_$JOB$
+            value = bca_jr_acc_automated_capacity_workforce_$JOB$
+        }
     }
     if = {
         limit = {
+            is_variable_set = bca_jr_acc_closable_capacity_workforce_$JOB$
             check_variable_arithmetic = { which = bca_jr_acc_closable_capacity_workforce_$JOB$ value > bca_jr_acc_total_job_count_$JOB$ }
         }
         set_variable = {
@@ -287,24 +312,39 @@ bca_jr_finalize_single_job_stats = {
     }
     if = {
         limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
-        owner = {
-            add_variable = {
-                which = bca_jr_total_pop_capacity_limit_$JOB$
-                value = prev.bca_jr_acc_pop_capacity_limit_$JOB$
+        if = {
+            limit = { is_variable_set = bca_jr_acc_pop_capacity_limit_$JOB$ }
+            owner = {
+                add_variable = {
+                    which = bca_jr_total_pop_capacity_limit_$JOB$
+                    value = prev.bca_jr_acc_pop_capacity_limit_$JOB$
+                }
             }
-            add_variable = {
-                which = bca_jr_total_open_job_count_$JOB$
-                value = prev.bca_jr_acc_open_job_count_$JOB$
+        }
+        if = {
+            limit = { is_variable_set = bca_jr_acc_open_job_count_$JOB$ }
+            owner = {
+                add_variable = {
+                    which = bca_jr_total_open_job_count_$JOB$
+                    value = prev.bca_jr_acc_open_job_count_$JOB$
+                }
             }
-            add_variable = {
-                which = bca_jr_total_closable_capacity_workforce_$JOB$
-                value = prev.bca_jr_acc_closable_capacity_workforce_$JOB$
+        }
+        if = {
+            limit = { is_variable_set = bca_jr_acc_closable_capacity_workforce_$JOB$ }
+            owner = {
+                add_variable = {
+                    which = bca_jr_total_closable_capacity_workforce_$JOB$
+                    value = prev.bca_jr_acc_closable_capacity_workforce_$JOB$
+                }
             }
         }
     }
     if = {
         limit = {
+            is_variable_set = bca_jr_acc_capacity_workforce_$JOB$
             check_variable_arithmetic = { which = bca_jr_acc_capacity_workforce_$JOB$ value > 0 }
+            is_variable_set = bca_jr_acc_pop_productive_workforce_$JOB$
         }
         set_variable = {
             which = bca_jr_acc_avg_output_efficiency_$JOB$

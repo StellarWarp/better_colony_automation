@@ -1,53 +1,73 @@
 {#
 Phase 5d: 通用档位分解 effect（参数化，所有岗位复用）
-从大到小遍历 gear_steps，达标则设 carrier_flag 并减去
+若岗位物理边界限制调整量，则开启全部挡位并按物理边界记录 actual。
+否则按大档倒序贪心，最后无条件申请最小档，确保小目标也会推进。
 #}
 {% set steps = job_regulation_config.gear_steps %}
+{% set min_step = steps | min %}
+{% set all_steps = namespace(total=0) %}
+{% for step in steps %}
+    {% set all_steps.total = all_steps.total + step %}
+{% endfor %}
 
 # 增加方向
 bca_jr_apply_inc_gears = {
     optimize_memory
-    {% for step in steps %}
-        if = {
-            limit = {
-                check_variable_arithmetic = {
-                    which = $TARGET$
-                    value >= {{ step }}
-                }
-            }
+    if = {
+        limit = { check_variable_arithmetic = { which = $LIMIT$ value <= $TARGET$ } }
+        {% for step in steps %}
             set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
-            add_variable = {
-                which = bca_jr_actual_job_change
-                value = {{ step }}
-            }
-            subtract_variable = {
-                which = $TARGET$
-                value = {{ step }}
-            }
+        {% endfor %}
+        set_variable = {
+            which = bca_jr_actual_job_change
+            value = value:bca_jr_min_value|LEFT|{{ all_steps.total }}|RIGHT|$LIMIT$|
         }
-    {% endfor %}
+    }
+    else = {
+        {% for step in steps if step != min_step %}
+            if = {
+                limit = { check_variable_arithmetic = { which = $TARGET$ value >= {{ step }} } }
+                set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
+                add_variable = { which = bca_jr_actual_job_change value = {{ step }} }
+                subtract_variable = { which = $TARGET$ value = {{ step }} }
+            }
+        {% endfor %}
+        set_carrier_flag = bca_jr_inc_$JOB$_g{{ min_step }}
+        add_variable = { which = bca_jr_actual_job_change value = {{ min_step }} }
+        set_variable = {
+            which = bca_jr_actual_job_change
+            value = value:bca_jr_min_value|LEFT|bca_jr_actual_job_change|RIGHT|$LIMIT$|
+        }
+    }
 }
 
 # 减少方向
 bca_jr_apply_dec_gears = {
     optimize_memory
-    {% for step in steps %}
-        if = {
-            limit = {
-                check_variable_arithmetic = {
-                    which = $TARGET$
-                    value >= {{ step }}
-                }
-            }
+    if = {
+        limit = { check_variable_arithmetic = { which = $LIMIT$ value <= $TARGET$ } }
+        {% for step in steps %}
             set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
-            add_variable = {
-                which = bca_jr_actual_job_change
-                value = {{ step }}
-            }
-            subtract_variable = {
-                which = $TARGET$
-                value = {{ step }}
-            }
+        {% endfor %}
+        set_variable = {
+            which = bca_jr_actual_job_change
+            value = value:bca_jr_min_value|LEFT|{{ all_steps.total }}|RIGHT|$LIMIT$|
         }
-    {% endfor %}
+    }
+    else = {
+        {% for step in steps if step != min_step %}
+            if = {
+                limit = { check_variable_arithmetic = { which = $TARGET$ value >= {{ step }} } }
+                set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
+                add_variable = { which = bca_jr_actual_job_change value = {{ step }} }
+                subtract_variable = { which = $TARGET$ value = {{ step }} }
+            }
+        {% endfor %}
+        set_carrier_flag = bca_jr_dec_$JOB$_g{{ min_step }}
+        add_variable = { which = bca_jr_actual_job_change value = {{ min_step }} }
+        set_variable = {
+            which = bca_jr_actual_job_change
+            value = value:bca_jr_min_value|LEFT|bca_jr_actual_job_change|RIGHT|$LIMIT$|
+        }
+    }
 }

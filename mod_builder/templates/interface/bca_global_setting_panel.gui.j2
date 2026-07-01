@@ -118,6 +118,16 @@
     {"name": "plus_25", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_25"},
     {"name": "plus_125", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_125"}
     ] %}
+{% set tolerance_negative_options = [
+    {"name": "minus_10", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_10"},
+    {"name": "minus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"},
+    {"name": "minus_1", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_1"}
+    ] %}
+{% set tolerance_positive_options = [
+    {"name": "plus_1", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_1"},
+    {"name": "plus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"},
+    {"name": "plus_10", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_10"}
+    ] %}
 
 {% set economic_rows = [
     {"name": "energy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_energy", "mode_effect": "bca_global_settings_expect_output_energy_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
@@ -181,8 +191,28 @@ containerWindowType = {
             label_effect = "bca_tab_visible_0"
         )
     }}
+    {% set tolerance_negative_buttons = [] %}
+    {% for option in tolerance_negative_options %}
+        {% set _ = tolerance_negative_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% endfor %}
+    {% set tolerance_positive_buttons = [] %}
+    {% for option in tolerance_positive_options %}
+        {% set _ = tolerance_positive_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% endfor %}
+    {{
+        gsc.multi_step_value_row(
+            name = "economic_tolerance", text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE",
+            value_text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_VALUE",
+            status_text = "", tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_TOOLTIP",
+            value_effect = "", value_tooltip = "",
+            negative_options = tolerance_negative_buttons, positive_options = tolerance_positive_buttons,
+            x = content_x, y = tab_content_y + 38, width = full_width, height = economy_row_height,
+            value_width = 76, button_width = 46, button_gap = 6, control_gap = 8,
+            label_effect = "bca_tab_visible_0"
+        )
+    }}
     {% for row in economic_rows %}
-        {% set row_y = tab_content_y + 38 + loop.index0 * (economy_row_height + economy_row_gap) %}
+        {% set row_y = tab_content_y + 76 + loop.index0 * (economy_row_height + economy_row_gap) %}
         {% set negative_options = [] %}
         {% for option in row.negative_options %}
             {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}

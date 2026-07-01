@@ -13,6 +13,14 @@
     {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]},
     {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "steps": [{"id": "minus_125", "value": -125}, {"id": "minus_25", "value": -25}, {"id": "minus_5", "value": -5}, {"id": "plus_5", "value": 5}, {"id": "plus_25", "value": 25}, {"id": "plus_125", "value": 125}]}
     ] %}
+{% set tolerance_steps = [
+    {"id": "minus_10", "value": -10},
+    {"id": "minus_5", "value": -5},
+    {"id": "minus_1", "value": -1},
+    {"id": "plus_1", "value": 1},
+    {"id": "plus_5", "value": 5},
+    {"id": "plus_10", "value": 10},
+    ] %}
 
 bca_global_settings_economic_management_off_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
@@ -29,13 +37,23 @@ bca_global_settings_economic_management_off_unselected = {
 bca_global_settings_economic_management_on_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
-    effect = { from = { set_country_flag = bca_enable_economic_management } }
+    effect = {
+        from = {
+            set_country_flag = bca_enable_economic_management
+            bca_global_settings_recompute_economic_target_bounds = yes
+        }
+    }
 }
 
 bca_global_settings_economic_management_on_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
-    effect = { from = { set_country_flag = bca_enable_economic_management } }
+    effect = {
+        from = {
+            set_country_flag = bca_enable_economic_management
+            bca_global_settings_recompute_economic_target_bounds = yes
+        }
+    }
 }
 
 {% for row in economic_rows %}
@@ -80,10 +98,40 @@ bca_global_settings_economic_management_on_unselected = {
                 hidden_effect = {
                     from = {
                         change_variable = { which = {{ row.variable }} value = {{ step.value }} }
+                        bca_global_settings_recompute_economic_target_bounds = yes
                     }
                 }
             }
         }
 
     {% endfor %}
+{% endfor %}
+
+{% for step in tolerance_steps %}
+    bca_global_settings_economic_tolerance_{{ step.id }} = {
+        potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 } } }
+        allow = {
+            from = {
+                has_country_flag = bca_enable_economic_management
+            }
+        }
+        effect = {
+            custom_tooltip = BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_TOOLTIP
+            hidden_effect = {
+                from = {
+                    if = {
+                        limit = { NOT = { is_variable_set = bca_economic_target_tolerance } }
+                        set_variable = { which = bca_economic_target_tolerance value = 5 }
+                    }
+                    change_variable = { which = bca_economic_target_tolerance value = {{ step.value }} }
+                    if = {
+                        limit = { check_variable = { which = bca_economic_target_tolerance value < 0 } }
+                        set_variable = { which = bca_economic_target_tolerance value = 0 }
+                    }
+                    bca_global_settings_recompute_economic_target_bounds = yes
+                }
+            }
+        }
+    }
+
 {% endfor %}
