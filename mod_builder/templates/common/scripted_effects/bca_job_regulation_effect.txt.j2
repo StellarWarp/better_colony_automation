@@ -1,3 +1,4 @@
+# submod job_regulation
 {#
 Phase 7: 岗位调控评估
 1. 根据资源状态和 skip flag 发放 plan flag
@@ -61,6 +62,33 @@ bca_jr_initialize_resource_remaining = {
             clear_variable = bca_jr_remaining_dec_{{ need_name }}
         }
     {% endfor %}
+}
+
+bca_jr_monthly_begin = {
+    add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
+    if = {
+        limit = { check_variable = { which = bca_jr_skip_refresh_counter value >= 6 } }
+        every_owned_colony = {
+            bca_jr_clear_skip_flags = yes
+        }
+        clear_variable = bca_jr_skip_refresh_counter
+    }
+    bca_jr_initialize_resource_remaining = yes
+    bca_jr_clear_monthly_job_changes = yes
+}
+
+bca_jr_monthly_colony = {
+    carrier_event = { id = colony_automation_event.2000 }
+}
+
+bca_jr_monthly_end = {
+    bca_jr_clear_resource_remaining = yes
+}
+
+bca_jr_close_panel = {
+    bca_jr_clear_slot_mapping = yes
+    bca_jr_clear_country_job_totals = yes
+    remove_country_flag = bca_jr_collect_country_totals
 }
 
 bca_jr_plan_inc_job = {

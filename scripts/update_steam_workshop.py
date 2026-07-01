@@ -5,14 +5,8 @@ import sys
 import textwrap
 from pathlib import Path
 
-from playwright.sync_api import TimeoutError as PlaywrightTimeoutError
-from playwright.sync_api import sync_playwright
-
-
 ROOT_DIR = Path(__file__).resolve().parents[1]
-DESCRIPTOR_PATH = ROOT_DIR / "descriptor.mod"
-WORKSHOP_EN_PATH = ROOT_DIR / "workshop_en.txt"
-WORKSHOP_CN_PATH = ROOT_DIR / "workshop_cn.txt"
+SUBMODS_DIR = ROOT_DIR / "submods"
 STATE_DIR = ROOT_DIR / ".codex" / "steam_workshop"
 STATE_FILE = STATE_DIR / "storage_state.json"
 EDGE_PATH = Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe")
@@ -23,6 +17,18 @@ EDIT_URL_TEMPLATE = (
 
 LANGUAGE_ENGLISH = "0"
 LANGUAGE_SIMPLIFIED_CHINESE = "6"
+
+
+def load_playwright():
+    try:
+        from playwright.sync_api import TimeoutError as playwright_timeout_error
+        from playwright.sync_api import sync_playwright
+    except ModuleNotFoundError as exc:
+        raise RuntimeError(
+            "当前 Python 环境未安装 Playwright。预览不需要 Playwright；"
+            "浏览器更新请使用已安装 playwright 的环境。"
+        ) from exc
+    return sync_playwright, playwright_timeout_error
 
 
 def parse_descriptor(path: Path) -> dict[str, str]:
@@ -38,27 +44,63 @@ def parse_descriptor(path: Path) -> dict[str, str]:
     return data
 
 
-def load_publish_payload() -> dict[str, object]:
-    descriptor = parse_descriptor(DESCRIPTOR_PATH)
+def available_packages() -> list[str]:
+    packages = ["main"]
+    if SUBMODS_DIR.is_dir():
+        packages.extend(
+            path.name
+            for path in sorted(SUBMODS_DIR.iterdir())
+            if path.is_dir() and (path / "descriptor.mod").is_file()
+        )
+    return packages
+
+
+def package_directory(package: str) -> Path:
+    if package == "main":
+        return ROOT_DIR
+    if package not in available_packages():
+        raise ValueError(f"未知 Workshop 包: {package}")
+    directory = (SUBMODS_DIR / package).resolve()
+    if SUBMODS_DIR.resolve() not in directory.parents:
+        raise ValueError(f"非法 Workshop 包目录: {directory}")
+    return directory
+
+
+def load_publish_payload(package: str = "main") -> dict[str, object]:
+    directory = package_directory(package)
+    descriptor_path = directory / "descriptor.mod"
+    workshop_en_path = directory / "workshop_en.txt"
+    workshop_cn_path = directory / "workshop_cn.txt"
+    required_files = [descriptor_path, workshop_en_path, workshop_cn_path]
+    missing_files = [path for path in required_files if not path.is_file()]
+    if missing_files:
+        raise FileNotFoundError(
+            "Workshop 发布资料缺失: "
+            + ", ".join(str(path) for path in missing_files)
+        )
+
+    descriptor = parse_descriptor(descriptor_path)
     required_keys = ["remote_file_id"]
     missing = [key for key in required_keys if not descriptor.get(key)]
     if missing:
-        raise ValueError(f"descriptor.mod 缺少必要字段: {', '.join(missing)}")
+        raise ValueError(f"{descriptor_path} 缺少必要字段: {', '.join(missing)}")
 
     return {
+        "package": package,
+        "directory": directory,
         "workshop_id": descriptor["remote_file_id"],
         "descriptions": [
             {
                 "label": "English",
                 "language": LANGUAGE_ENGLISH,
-                "path": WORKSHOP_EN_PATH,
-                "description": WORKSHOP_EN_PATH.read_text(encoding="utf-8"),
+                "path": workshop_en_path,
+                "description": workshop_en_path.read_text(encoding="utf-8"),
             },
             {
                 "label": "Simplified Chinese",
                 "language": LANGUAGE_SIMPLIFIED_CHINESE,
-                "path": WORKSHOP_CN_PATH,
-                "description": WORKSHOP_CN_PATH.read_text(encoding="utf-8"),
+                "path": workshop_cn_path,
+                "description": workshop_cn_path.read_text(encoding="utf-8"),
             },
         ],
     }
@@ -76,8 +118,10 @@ def ensure_edge_exists() -> None:
         )
 
 
-def print_preview(payload: dict[str, str]) -> None:
+def print_preview(payload: dict[str, object]) -> None:
     print("=== Steam Workshop 更新预览 ===")
+    print(f"Package: {payload['package']}")
+    print(f"资料目录: {payload['directory']}")
     print(f"Workshop ID: {payload['workshop_id']}")
     for item in payload["descriptions"]:
         description = item["description"]
@@ -107,6 +151,7 @@ def new_context(browser):
 def save_storage_state_interactive(workshop_id: str) -> None:
     ensure_storage_dir()
     ensure_edge_exists()
+    sync_playwright, _ = load_playwright()
 
     with sync_playwright() as playwright:
         browser = launch_browser(playwright, headless=False)
@@ -176,6 +221,7 @@ def submit_form(page) -> None:
 
 
 def update_language_page(page, *, workshop_id: str, language_item: dict[str, str], do_submit: bool) -> None:
+    _, playwright_timeout_error = load_playwright()
     page.goto(
         EDIT_URL_TEMPLATE.format(
             workshop_id=workshop_id,
@@ -188,7 +234,7 @@ def update_language_page(page, *, workshop_id: str, language_item: dict[str, str
 
     try:
         wait_for_editor(page)
-    except PlaywrightTimeoutError as exc:
+    except playwright_timeout_error as exc:
         raise RuntimeError(
             f"未能在预期时间内定位到 {language_item['label']} 页面上的描述编辑框。\n"
             "可能是 Steam 页面结构变化，或当前账号没有该创意工坊条目的编辑权限。"
@@ -205,8 +251,9 @@ def update_language_page(page, *, workshop_id: str, language_item: dict[str, str
         print(f"已填充 {language_item['label']} 描述，但未提交。")
 
 
-def run_update(*, do_submit: bool, headless: bool) -> None:
-    payload = load_publish_payload()
+def run_update(*, package: str, do_submit: bool, headless: bool) -> None:
+    payload = load_publish_payload(package)
+    sync_playwright, _ = load_playwright()
 
     with sync_playwright() as playwright:
         browser, context = launch_context(playwright, headless=headless)
@@ -233,6 +280,12 @@ def run_update(*, do_submit: bool, headless: bool) -> None:
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="用 Edge + Playwright 依次更新 Steam Workshop 的英文和中文描述。"
+    )
+    parser.add_argument(
+        "--package",
+        choices=available_packages(),
+        default="main",
+        help="选择要更新的 Workshop 包（默认: main）。",
     )
     parser.add_argument(
         "--preview",
@@ -267,7 +320,7 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        payload = load_publish_payload()
+        payload = load_publish_payload(args.package)
 
         if args.preview:
             print_preview(payload)
@@ -277,7 +330,11 @@ def main() -> int:
             save_storage_state_interactive(payload["workshop_id"])
             return 0
 
-        run_update(do_submit=not args.dry_run, headless=args.headless)
+        run_update(
+            package=args.package,
+            do_submit=not args.dry_run,
+            headless=args.headless,
+        )
         return 0
     except Exception as exc:  # pragma: no cover - CLI error path
         print(str(exc), file=sys.stderr)

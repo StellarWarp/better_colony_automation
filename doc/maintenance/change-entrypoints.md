@@ -70,6 +70,18 @@ It is an entrypoint index, not a complete source-of-truth map. Prefer warning he
 - Building strategy compiler: [`../../mod_builder/parse/building_strategy_compile.py`](../../mod_builder/parse/building_strategy_compile.py)
 - Parser/toolchain: [`../../mod_builder/synthetipy/`](../../mod_builder/synthetipy/)
 
+### Local Mod publication
+
+- Publisher: [`../../scripts/publish_mod.py`](../../scripts/publish_mod.py)
+- Target/package config: [`../../scripts/publish_mod.yaml`](../../scripts/publish_mod.yaml)
+- Job-regulation descriptor and Workshop assets:
+  [`../../submods/job_regulation/`](../../submods/job_regulation/)
+- Template metadata implementation:
+  [`../../mod_builder/generate.py`](../../mod_builder/generate.py)
+
+Use template first-line metadata to change package ownership. Generated output
+markers must not be edited directly.
+
 ### Building construction strategies
 
 - Normal source config: [`../../mod_builder/configs/buildings/`](../../mod_builder/configs/buildings/)
@@ -151,7 +163,8 @@ targeted game version.
 - Localisation: [`../../localisation/`](../../localisation/)
 - Mod descriptor: [`../../descriptor.mod`](../../descriptor.mod)
 - Public changelog: [`../../README.md`](../../README.md)
-- Workshop descriptions: [`../../workshop_en.txt`](../../workshop_en.txt), [`../../workshop_cn.txt`](../../workshop_cn.txt)
+- Main Workshop descriptions: [`../../workshop_en.txt`](../../workshop_en.txt), [`../../workshop_cn.txt`](../../workshop_cn.txt)
+- Submod Workshop assets: [`../../submods/`](../../submods/)
 
 ## Mixed Cases
 

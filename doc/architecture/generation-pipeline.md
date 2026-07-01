@@ -18,6 +18,24 @@ The full pipeline is:
 4. Render runtime files into `common/`, `events/`, `interface/`, and `localisation/`.
 5. Prepend generated-file warning headers to rendered outputs.
 
+Templates may also declare publish ownership on their first line. The
+generator converts this source metadata into a first-line marker on the
+generated runtime file:
+
+```text
+# submod job_regulation
+```
+
+An optional publish filename supports generated variants that must override a
+main-mod file:
+
+```text
+# submod job_regulation file_name bca_global_setting_panel.gui
+```
+
+Do not add or edit these markers on generated runtime files. The template is
+the source of truth.
+
 Entrypoints:
 
 - [`../../mod_builder/generate.py`](../../mod_builder/generate.py)
@@ -197,6 +215,33 @@ Purpose:
 - point maintainers back to the source template
 
 If the header disappears or becomes inaccurate, fix the renderer instead of patching generated files one by one.
+
+## Submod And Variant Metadata
+
+Single-target submod templates use:
+
+```text
+# submod <name>
+```
+
+Templates rendered once for the main mod and again for one or more submods use:
+
+```text
+# compile_variants main <submod> [...]
+```
+
+`generate.py` supplies `build_variant` and `enabled_submods` to Jinja. The main
+variant keeps the normal output filename. Additional variants receive a local
+suffix so every generated file remains available to IDE validation. For
+example:
+
+```text
+interface/bca_global_setting_panel.gui
+interface/bca_global_setting_panel_job_regulation.gui
+```
+
+The submod variant receives a generated `file_name` marker so publication
+renames it back to `bca_global_setting_panel.gui`.
 
 ## Safe Workflow
 

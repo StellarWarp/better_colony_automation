@@ -186,6 +186,32 @@ For auto-demolition changes, test both paths:
 - global-settings defaults on a newly initialized or reset planet
 - global-settings bulk application on already initialized planets
 
+## Local Publication
+
+Runtime generation and publication are separate operations:
+
+```powershell
+conda run -n better_colony_automation python mod_builder/generate.py
+conda run -n better_colony_automation python scripts/publish_mod.py --dry-run
+conda run -n better_colony_automation python scripts/publish_mod.py
+```
+
+Targets and per-package root files are configured in
+[`../../scripts/publish_mod.yaml`](../../scripts/publish_mod.yaml).
+
+Every publish deletes each selected package target directory before copying the
+current package. Use `--package` to limit which target directories are replaced.
+
+Useful package-specific checks:
+
+```powershell
+conda run -n better_colony_automation python scripts/publish_mod.py --dry-run --package main
+conda run -n better_colony_automation python scripts/publish_mod.py --dry-run --package job_regulation
+```
+
+Publication ownership comes from the first line of source templates, not from
+manual edits to generated runtime files.
+
 ## Release Workflow
 
 When preparing a public release, update these in one pass:
@@ -194,13 +220,13 @@ When preparing a public release, update these in one pass:
 2. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in relevant files under [`../../localisation/`](../../localisation/).
 3. Bump the version string in [`../../descriptor.mod`](../../descriptor.mod).
 4. Update the public-facing changelog in [`../../README.md`](../../README.md).
-5. Update and review the bilingual Workshop descriptions in [`../../workshop_en.txt`](../../workshop_en.txt) and [`../../workshop_cn.txt`](../../workshop_cn.txt), especially the supported game version, Quick Guide entrypoints, compatibility notes, and recent feature summary.
+5. Update and review the bilingual Workshop descriptions in the selected package directory. The main package uses the repository root; submods use `submods/<package>/`.
 
 Release note rule:
 
 - keep the intro popup short and player-facing
 - keep `README.md` slightly more descriptive
-- keep `workshop_en.txt` and `workshop_cn.txt` focused on current features rather than detailed version history
+- keep each package's `workshop_en.txt` and `workshop_cn.txt` focused on current features rather than detailed version history
 - if a release changes global settings behavior, mention both the new default behavior and the primary entry point
 
 ## Documentation Maintenance Rule

@@ -1,6 +1,7 @@
 import os
 import re
 import yaml
+from dataclasses import dataclass
 from pathlib import Path
 from jinja2 import Environment, FileSystemLoader
 
@@ -46,6 +47,97 @@ MODIFIER_DOC_PATH = (
 )
 MODIFIER_LINE_RE = re.compile(r"^-\s*([A-Za-z0-9_:.\-]+),\s*Category:")
 IDENTIFIER_RE = re.compile(r"\b[A-Za-z_][A-Za-z0-9_:.|$@]*\b")
+SUBMOD_METADATA_RE = re.compile(
+    r"^#\s*submod\s+(?P<name>[A-Za-z0-9_.-]+)"
+    r"(?:\s+file_name\s+(?P<file_name>[^\s]+))?\s*$"
+)
+COMPILE_VARIANTS_RE = re.compile(
+    r"^#\s*compile_variants(?:\s+(?P<variants>[A-Za-z0-9_.\-\s]+))?\s*$"
+)
+
+
+@dataclass(frozen=True)
+class TemplateMetadata:
+    submod: str | None = None
+    published_file_name: str | None = None
+    compile_variants: tuple[str, ...] = ()
+
+
+@dataclass(frozen=True)
+class RenderVariant:
+    name: str
+    output_name: str
+    submod: str | None = None
+    published_file_name: str | None = None
+
+
+def read_template_metadata(template_path):
+    """Read optional build metadata from the first template line."""
+    full_path = Path(TEMPLATE_DIR) / template_path
+    with full_path.open("r", encoding="utf-8-sig") as template_file:
+        first_line = template_file.readline().rstrip("\r\n")
+
+    submod_match = SUBMOD_METADATA_RE.fullmatch(first_line)
+    if submod_match:
+        return TemplateMetadata(
+            submod=submod_match.group("name"),
+            published_file_name=submod_match.group("file_name"),
+        )
+
+    variants_match = COMPILE_VARIANTS_RE.fullmatch(first_line)
+    if variants_match:
+        variants = tuple((variants_match.group("variants") or "").split())
+        if not variants or variants[0] != "main":
+            raise ValueError(
+                f"{template_path}: compile_variants must start with the main variant"
+            )
+        if len(set(variants)) != len(variants):
+            raise ValueError(f"{template_path}: compile_variants contains duplicates")
+        return TemplateMetadata(compile_variants=variants)
+
+    return TemplateMetadata()
+
+
+def strip_rendered_template_metadata(content):
+    """Remove source-only build metadata after Jinja rendering."""
+    lines = content.splitlines(keepends=True)
+    if not lines:
+        return content
+    first_line = lines[0].rstrip("\r\n")
+    if SUBMOD_METADATA_RE.fullmatch(first_line) or COMPILE_VARIANTS_RE.fullmatch(first_line):
+        return "".join(lines[1:])
+    return content
+
+
+def variant_output_name(output_name, variant):
+    """Keep the main filename stable and suffix additional IDE-visible variants."""
+    if variant == "main":
+        return output_name
+    output_path = Path(output_name)
+    return f"{output_path.stem}_{variant}{output_path.suffix}"
+
+
+def get_render_variants(template_path, output_name):
+    metadata = read_template_metadata(template_path)
+    if metadata.compile_variants:
+        return [
+            RenderVariant(
+                name=variant,
+                output_name=variant_output_name(output_name, variant),
+                submod=None if variant == "main" else variant,
+                published_file_name=None if variant == "main" else output_name,
+            )
+            for variant in metadata.compile_variants
+        ]
+
+    return [
+        RenderVariant(
+            name=metadata.submod or "development",
+            output_name=output_name,
+            submod=metadata.submod,
+            published_file_name=metadata.published_file_name,
+        )
+    ]
 
 
 def load_known_modifiers(path=MODIFIER_DOC_PATH):
@@ -79,10 +171,22 @@ def load_configs():
     return full_config
 
 
-def prepend_generated_warning(content, template_path):
+def prepend_generated_warning(
+    content,
+    template_path,
+    *,
+    submod=None,
+    published_file_name=None,
+):
     """为生成文件添加统一的头部警告。"""
+    publish_lines = []
+    if submod:
+        publish_line = f"# submod {submod}"
+        if published_file_name:
+            publish_line += f" file_name {published_file_name}"
+        publish_lines.append(publish_line)
     warning_lines = GENERATED_WARNING_LINES + [f"# Source template: {template_path}", "\n\n"]
-    warning_block = "\n".join(warning_lines)
+    warning_block = "\n".join(publish_lines + warning_lines)
     return f"{warning_block}{content}"
 
 
@@ -144,12 +248,33 @@ def should_format_generated_output(template_path):
     return template_path.endswith((".txt.j2", ".gui.j2", ".gfx.j2"))
 
 
-def render_to_file(template_path, output_path, config_data, encoding='utf-8'):
+def render_to_file(
+    template_path,
+    output_path,
+    config_data,
+    encoding='utf-8',
+    *,
+    render_variant=None,
+):
     template = env.get_template(template_path)
-    content = template.render(**config_data)
+    variant = render_variant or RenderVariant(
+        name="development",
+        output_name=Path(output_path).name,
+    )
+    variant_config = dict(config_data)
+    variant_config["build_variant"] = variant.name
+    variant_config["enabled_submods"] = (
+        {variant.name} if variant.submod else set()
+    )
+    content = strip_rendered_template_metadata(template.render(**variant_config))
     if should_format_generated_output(template_path):
         content = format_pdx_code(content)
-    output_content = prepend_generated_warning(content, template_path)
+    output_content = prepend_generated_warning(
+        content,
+        template_path,
+        submod=variant.submod,
+        published_file_name=variant.published_file_name,
+    )
 
     with open(output_path, 'w', encoding=encoding) as f:
         f.write(output_content)
@@ -170,9 +295,14 @@ def build():
         if filename.endswith('.j2'):
             tpl_path = f'interface/{filename}' # 相对路径供 Jinja 加载
             output_name = filename.replace('.j2', '')
-            output_path = os.path.join(OUTPUT_GUI_DIR, output_name)
-
-            render_to_file(tpl_path, output_path, config_data)
+            for variant in get_render_variants(tpl_path, output_name):
+                output_path = os.path.join(OUTPUT_GUI_DIR, variant.output_name)
+                render_to_file(
+                    tpl_path,
+                    output_path,
+                    config_data,
+                    render_variant=variant,
+                )
     # 3.1. 渲染所有 .txt.j2 文件
     for root, _, files in os.walk(TPL_COMMON_DIR):
         for filename in files:
@@ -185,11 +315,20 @@ def build():
                 # 将输出放到 Mod 根目录下对应的相对位置（保留 common/ 子目录结构）
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
                 os.makedirs(output_dir, exist_ok=True)
-                output_path = os.path.join(output_dir, output_name)
-                content = render_to_file(tpl_path, output_path, config_data)
-                generated_stats.append(
-                    collect_generated_stats(os.path.relpath(output_path, ROOT_DIR), content)
-                )
+                for variant in get_render_variants(tpl_path, output_name):
+                    output_path = os.path.join(output_dir, variant.output_name)
+                    content = render_to_file(
+                        tpl_path,
+                        output_path,
+                        config_data,
+                        render_variant=variant,
+                    )
+                    generated_stats.append(
+                        collect_generated_stats(
+                            os.path.relpath(output_path, ROOT_DIR),
+                            content,
+                        )
+                    )
     for root, _, files in os.walk(TPL_EVENTS_DIR):
         for filename in files:
             if filename.endswith('.txt.j2'):
@@ -199,11 +338,20 @@ def build():
                 output_name = filename.replace('.j2', '')
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
                 os.makedirs(output_dir, exist_ok=True)
-                output_path = os.path.join(output_dir, output_name)
-                content = render_to_file(tpl_path, output_path, config_data)
-                generated_stats.append(
-                    collect_generated_stats(os.path.relpath(output_path, ROOT_DIR), content)
-                )
+                for variant in get_render_variants(tpl_path, output_name):
+                    output_path = os.path.join(output_dir, variant.output_name)
+                    content = render_to_file(
+                        tpl_path,
+                        output_path,
+                        config_data,
+                        render_variant=variant,
+                    )
+                    generated_stats.append(
+                        collect_generated_stats(
+                            os.path.relpath(output_path, ROOT_DIR),
+                            content,
+                        )
+                    )
     LANG_DIRS = ['english', 'simp_chinese', 'japanese', 'russian']
     LANG_PREFIXES = {
         'english': 'l_english',
@@ -227,21 +375,52 @@ def build():
                 if is_all_template:
                     # all: → 渲染一次，替换语言头 + 文件名 _all → _<lang>，输出到各语言目录
                     template = env.get_template(tpl_path)
-                    content = template.render(**config_data)
                     base_name = output_name.replace('_all', '')
-                    for lang_key, lang_prefix in LANG_PREFIXES.items():
-                        lang_content = content.replace('all:', f'{lang_prefix}:')
-                        lang_output_name = base_name.replace('.yml', f'_{lang_key}.yml')
-                        output_dir = os.path.join(ROOT_DIR, 'localisation', lang_key)
-                        os.makedirs(output_dir, exist_ok=True)
-                        output_path = os.path.join(output_dir, lang_output_name)
-                        with open(output_path, 'w', encoding='utf-8-sig') as f:
-                            f.write(prepend_generated_warning(lang_content, tpl_path))
+                    for variant in get_render_variants(tpl_path, base_name):
+                        variant_config = dict(config_data)
+                        variant_config["build_variant"] = variant.name
+                        variant_config["enabled_submods"] = (
+                            {variant.name} if variant.submod else set()
+                        )
+                        content = strip_rendered_template_metadata(
+                            template.render(**variant_config)
+                        )
+                        for lang_key, lang_prefix in LANG_PREFIXES.items():
+                            lang_content = content.replace('all:', f'{lang_prefix}:')
+                            lang_output_name = variant.output_name.replace(
+                                '.yml',
+                                f'_{lang_key}.yml',
+                            )
+                            published_file_name = variant.published_file_name
+                            if published_file_name:
+                                published_file_name = published_file_name.replace(
+                                    '.yml',
+                                    f'_{lang_key}.yml',
+                                )
+                            output_dir = os.path.join(ROOT_DIR, 'localisation', lang_key)
+                            os.makedirs(output_dir, exist_ok=True)
+                            output_path = os.path.join(output_dir, lang_output_name)
+                            with open(output_path, 'w', encoding='utf-8-sig') as f:
+                                f.write(
+                                    prepend_generated_warning(
+                                        lang_content,
+                                        tpl_path,
+                                        submod=variant.submod,
+                                        published_file_name=published_file_name,
+                                    )
+                                )
                 else:
                     output_dir = os.path.join(ROOT_DIR, rel_dir)
                     os.makedirs(output_dir, exist_ok=True)
-                    output_path = os.path.join(output_dir, output_name)
-                    render_to_file(tpl_path, output_path, config_data, encoding='utf-8-sig')
+                    for variant in get_render_variants(tpl_path, output_name):
+                        output_path = os.path.join(output_dir, variant.output_name)
+                        render_to_file(
+                            tpl_path,
+                            output_path,
+                            config_data,
+                            encoding='utf-8-sig',
+                            render_variant=variant,
+                        )
 
     print_identifier_stats(generated_stats)
     print("生成完成！")

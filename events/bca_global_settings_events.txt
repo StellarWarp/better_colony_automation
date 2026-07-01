@@ -18,9 +18,15 @@ country_event = {
     }
 
     after = {
-        bca_jr_clear_slot_mapping = yes
-        bca_jr_clear_country_job_totals = yes
-        remove_country_flag = bca_jr_collect_country_totals
+        if = {
+            limit = {
+                check_variable = {
+                    which = @bca_submod_job_regulation
+                    value > 0
+                }
+            }
+            bca_jr_close_panel = yes
+        }
     }
 
     option = {

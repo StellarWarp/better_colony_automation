@@ -1,3 +1,4 @@
+# submod job_regulation
 {# Phase 8: 岗位调控面板按钮效果（from 防御版） #}
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set slots = job_regulation_config.display_slots | default(15) %}
@@ -434,51 +435,6 @@ bca_jr_select_category_other_unselected = {
         }
     }
 {% endfor %}
-
-{# ---- Tab 选择（choice_row 自动加 _selected/_unselected 后缀）---- #}
-{% set tab_names = ['economy','jobs','automation'] %}
-{% for tab in tab_names %}
-    bca_gui_select_tab_{{ tab }}_selected = {
-        potential = {
-            exists = from
-            from = { check_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} } }
-        }
-        allow = { always = yes }
-    }
-    bca_gui_select_tab_{{ tab }}_unselected = {
-        potential = {
-            exists = from
-            from = { NOR = { check_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} } } }
-        }
-        allow = { always = yes }
-        effect = {
-            hidden_effect = {
-                from = {
-                    set_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} }
-                    {% if tab == 'jobs' %}
-                        country_event = { id = colony_automation_event.2001 }
-                    {% else %}
-                        bca_jr_clear_slot_mapping = yes
-                    {% endif %}
-                }
-            }
-        }
-    }
-{% endfor %}
-
-{# ---- 各 Tab 元素可见性 ---- #}
-bca_tab_visible_0 = {
-    potential = { exists = from from = { check_variable_arithmetic = { which = bca_gui_active_tab value <= 0 } } }
-    allow = { always = yes }
-}
-bca_tab_visible_1 = {
-    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } } }
-    allow = { always = yes }
-}
-bca_tab_visible_2 = {
-    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } } }
-    allow = { always = yes }
-}
 
 {# ---- Jobs tab 元素可见性（兼容旧引用）---- #}
 bca_jr_tab_visible_1 = {

@@ -1,19 +1,25 @@
 # Steam Workshop 更新脚本
 
-这个目录下的 `update_steam_workshop.py` 用于把仓库里的发布文案同步到 Steam Workshop 编辑页。
+这个目录下的 `update_steam_workshop.py` 用于把主 Mod 或子 Mod 的发布文案同步到 Steam Workshop 编辑页。
 
 当前同步内容：
 
-- `workshop_en.txt` -> `language=0` 的英文描述
-- `workshop_cn.txt` -> `language=6` 的中文描述
-- `descriptor.mod` 里的 `remote_file_id` -> 目标 Workshop 条目 ID
+- `<包目录>/workshop_en.txt` -> `language=0` 的英文描述
+- `<包目录>/workshop_cn.txt` -> `language=6` 的中文描述
+- `<包目录>/descriptor.mod` 里的 `remote_file_id` -> 目标 Workshop 条目 ID
+
+包目录规则：
+
+- `main` -> 仓库根目录
+- 其他包 -> `submods/<包名>/`
 
 当前流程：
 
-1. 访问 `https://steamcommunity.com/sharedfiles/itemedittext/?id=3673829479&language=0`
-2. 覆写英文描述并保存
-3. 访问 `https://steamcommunity.com/sharedfiles/itemedittext/?id=3673829479&language=6`
-4. 覆写中文描述并保存
+1. 从所选包的 `descriptor.mod` 读取 Workshop ID
+2. 访问对应条目的英文编辑页
+3. 覆写英文描述并保存
+4. 访问对应条目的中文编辑页
+5. 覆写中文描述并保存
 
 ## 运行前提
 
@@ -30,11 +36,19 @@
 & 'C:\Users\Estelle\AppData\Local\miniconda3\python.exe' scripts\update_steam_workshop.py --preview
 ```
 
+预览岗位调控子 Mod：
+
+```powershell
+& 'C:\Users\Estelle\AppData\Local\miniconda3\python.exe' scripts\update_steam_workshop.py --package job_regulation --preview
+```
+
 2. 首次使用时，保存一次 Steam 登录态：
 
 ```powershell
 & 'C:\Users\Estelle\AppData\Local\miniconda3\python.exe' scripts\update_steam_workshop.py --login
 ```
+
+登录态由所有包共用。也可以通过 `--package job_regulation --login` 直接打开子 Mod 的编辑页。
 
 执行后会打开一个新的 Edge 自动化窗口。请在这个窗口里完成 Steam 登录，并回到 Workshop 编辑页；确认无误后，回到终端按回车，脚本才会保存登录态并关闭窗口。
 
@@ -49,6 +63,18 @@
 ```powershell
 & 'C:\Users\Estelle\AppData\Local\miniconda3\python.exe' scripts\update_steam_workshop.py
 ```
+
+以上两个命令都可追加 `--package job_regulation` 来操作子 Mod。
+
+## 缩略图
+
+缩略图由各包目录中的 `thumbnail_0.png` 生成：
+
+```powershell
+conda run -n better_colony_automation python scripts\build_workshop_thumbnails.py
+```
+
+输出为 512x512 的 `thumbnail.png`。该文件会随 Mod 发布脚本复制到游戏 Mod 目录，但 Steam Workshop 网页预览图目前仍需手动上传。
 
 ## 登录态文件
 

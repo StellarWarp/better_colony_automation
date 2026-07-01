@@ -37,6 +37,18 @@ The country event `colony_automation_event.1000` runs on
 It iterates `every_owned_colony` and dispatches per-colony work through
 `carrier_event`, rather than calling planet events directly.
 
+Job regulation is an optional submod. The main monthly event checks
+`@bca_submod_job_regulation` and calls three narrow extension hooks when the
+submod is present:
+
+- `bca_jr_monthly_begin`
+- `bca_jr_monthly_colony`
+- `bca_jr_monthly_end`
+
+The hooks preserve the original pre-loop, per-colony, and post-loop execution
+order without loading the large job-regulation implementation into the main
+mod package.
+
 For each eligible owned colony:
 
 1. Initialize if missing `bca_pf_ps_initialized`.

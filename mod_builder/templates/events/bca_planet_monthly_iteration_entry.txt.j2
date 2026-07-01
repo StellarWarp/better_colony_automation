@@ -11,17 +11,15 @@ country_event = {
     }
 
     immediate = {
-        add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
         if = {
-            limit = { check_variable = { which = bca_jr_skip_refresh_counter value >= 6 } }
-            every_owned_colony = {
-                bca_jr_clear_skip_flags = yes
+            limit = {
+                check_variable = {
+                    which = @bca_submod_job_regulation
+                    value > 0
+                }
             }
-            clear_variable = bca_jr_skip_refresh_counter
+            bca_jr_monthly_begin = yes
         }
-
-        bca_jr_initialize_resource_remaining = yes
-        bca_jr_clear_monthly_job_changes = yes
 
         every_owned_colony = {
             limit = {
@@ -41,9 +39,25 @@ country_event = {
             carrier_event = { id = colony_automation_event.20 } # 特化建造
             carrier_event = { id = colony_automation_event.21 } # 特化拆除
             bca_auto_building_destruction_entry = yes # 建筑自动拆除
-            carrier_event = { id = colony_automation_event.2000 } # 岗位调控评估
+            if = {
+                limit = {
+                    check_variable = {
+                        which = @bca_submod_job_regulation
+                        value > 0
+                    }
+                }
+                bca_jr_monthly_colony = yes
+            }
         }
 
-        bca_jr_clear_resource_remaining = yes
+        if = {
+            limit = {
+                check_variable = {
+                    which = @bca_submod_job_regulation
+                    value > 0
+                }
+            }
+            bca_jr_monthly_end = yes
+        }
     }
 }

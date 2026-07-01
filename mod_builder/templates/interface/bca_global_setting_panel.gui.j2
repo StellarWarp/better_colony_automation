@@ -1,3 +1,4 @@
+# compile_variants main job_regulation
 {% import 'component/event_gui_shell.j2' as shell %}
 {% import 'component/global_settings_components.j2' as gsc %}
 {% import 'component/job_regulation_components.j2' as jr %}
@@ -238,6 +239,7 @@ containerWindowType = {
 {# Tab 1: Jobs                                               #}
 {# ═══════════════════════════════════════════════════════ #}
     effectButtonType = { name = "jr_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_1" }
+{% if build_variant == "job_regulation" %}
     effectButtonType = { name = "jr_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_HINT" alwaysTransparent = yes effect = "bca_tab_visible_1" }
 
     {{ jr.global_control_row(content_x, jr_global_y, full_width, 32) }}
@@ -249,6 +251,20 @@ containerWindowType = {
     {{ jr.table_header(jr_table_x, jr_header_y, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_table_width - jr_action_x) }}
 
     {{ jr.slot_list(jr_slots, jr_table_x, jr_list_start_y + 4, jr_slot_h, jr_table_width, jr_locate_x, jr_locate_w, jr_icon_x, jr_icon_w, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_action_w, jr_mode_x, jr_mode_w) }}
+{% else %}
+    effectButtonType = {
+        name = "jr_submod_intro"
+        position = { x = {{ content_x }} y = {{ tab_content_y }} }
+        size = { x = {{ full_width }} y = 180 }
+        font = "cg_16b"
+        buttonText = "BCA_JOB_REGULATION_SUBMOD_INTRO"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        effect = "bca_tab_visible_1"
+    }
+{% endif %}
 
 {# ═══════════════════════════════════════════════════════ #}
 {# Tab 2: Automation                                         #}
