@@ -25,9 +25,9 @@ bca_gui_select_tab_economy_unselected = {
                 set_variable = { which = bca_gui_active_tab value = 0 }
                 if = {
                     limit = {
-                        check_variable = {
+                        check_variable_arithmetic = {
                             which = @bca_submod_job_regulation
-                            value > 0
+                            value != 0
                         }
                     }
                     bca_jr_close_panel = yes
@@ -59,9 +59,9 @@ bca_gui_select_tab_jobs_unselected = {
                 set_variable = { which = bca_gui_active_tab value = 1 }
                 if = {
                     limit = {
-                        check_variable = {
+                        check_variable_arithmetic = {
                             which = @bca_submod_job_regulation
-                            value > 0
+                            value != 0
                         }
                     }
                     country_event = { id = colony_automation_event.2001 }
@@ -93,9 +93,9 @@ bca_gui_select_tab_automation_unselected = {
                 set_variable = { which = bca_gui_active_tab value = 2 }
                 if = {
                     limit = {
-                        check_variable = {
+                        check_variable_arithmetic = {
                             which = @bca_submod_job_regulation
-                            value > 0
+                            value != 0
                         }
                     }
                     bca_jr_close_panel = yes

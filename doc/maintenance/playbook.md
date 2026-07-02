@@ -34,10 +34,19 @@ Development reality:
    [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document
    `logs/script_documentation`.
 
-When inspecting `.txt` runtime DSL files, read the first few lines before
-reasoning from the body. Generated files should identify their source template
-near the top; use that source as the edit site and treat the generated file as
-verification material.
+When inspecting `.txt` runtime DSL files, first check whether a same-named
+`.txt.j2` file exists under `mod_builder/templates/`. If it exists, the `.txt`
+file is generated output; do not read or edit the runtime `.txt` body, and use
+the template as the edit site.
+
+If no matching template is found and a `.txt` file must be inspected, read only
+the first five lines first. Generated files should identify their source
+template near the top; use that source as the edit site.
+
+After template changes, a successful generation run is sufficient generated
+output validation for normal maintenance. Do not spend time reviewing large
+generated `.txt` bodies unless generation fails or a targeted investigation
+requires it.
 
 Useful starting questions:
 

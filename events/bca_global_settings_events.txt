@@ -22,9 +22,9 @@ country_event = {
         bca_support_close = yes
         if = {
             limit = {
-                check_variable = {
+                check_variable_arithmetic = {
                     which = @bca_submod_job_regulation
-                    value > 0
+                    value != 0
                 }
             }
             bca_jr_close_panel = yes

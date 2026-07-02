@@ -267,9 +267,14 @@ renames it back to `bca_global_setting_panel.gui`.
 ## Safe Workflow
 
 1. Locate the runtime file involved in the bug or feature.
-2. Check whether it has a generated warning header.
-3. If generated, find the template named by the header.
-4. Check whether template data comes from handwritten config or parser output.
-5. Edit the highest-leverage source.
-6. Regenerate outputs with the file watcher or generator.
-7. Spot-check generated output and in-game behavior.
+2. Before reading a runtime `.txt`, check whether a same-named `.txt.j2`
+   template exists under `mod_builder/templates/`. If it exists, use the
+   template and do not read the generated `.txt` body.
+3. If no matching template is found and a `.txt` file must be inspected, read
+   only the first five lines first to check for generated ownership metadata.
+4. If generated, find the template named by the header.
+5. Check whether template data comes from handwritten config or parser output.
+6. Edit the highest-leverage source.
+7. Regenerate outputs with the file watcher or generator.
+8. Treat successful generation as sufficient generated-output validation for
+   normal maintenance, then validate behavior in game when needed.

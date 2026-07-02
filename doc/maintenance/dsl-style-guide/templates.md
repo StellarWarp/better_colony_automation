@@ -40,6 +40,11 @@ indentation or quoted strings may carry different meaning.
 
 When editing runtime files:
 
+- first check whether a same-named `.txt.j2` template exists under
+  `mod_builder/templates/`; if it does, the runtime `.txt` is generated output
+  and should not be read or edited directly
+- if no matching template is found and a runtime `.txt` must be inspected, read
+  only the first five lines first to check for ownership metadata
 - generated warning header answers "can I edit this file directly?"
 - if the answer is no, go to the template, handwritten config, or
   parser/extraction tool
@@ -50,7 +55,10 @@ When editing runtime files:
 When changing templates:
 
 - let the file watcher or generator update runtime outputs
-- spot-check both the template and generated file
+- treat a successful generator run as sufficient generated-output validation
+  for normal maintenance
+- do not review large generated `.txt` bodies unless generation fails or a
+  targeted investigation requires it
 - test in game after re-entering, because Stellaris logic does not hot reload
 
 ## Generated-Config Exceptions

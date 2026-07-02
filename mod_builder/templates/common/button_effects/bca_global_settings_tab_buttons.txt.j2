@@ -20,9 +20,9 @@
                     set_variable = { which = bca_gui_active_tab value = {{ loop.index0 }} }
                     if = {
                         limit = {
-                            check_variable = {
+                            check_variable_arithmetic = {
                                 which = @bca_submod_job_regulation
-                                value > 0
+                                value != 0
                             }
                         }
                         {% if tab == 'jobs' %}

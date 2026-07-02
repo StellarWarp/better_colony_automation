@@ -16,9 +16,17 @@ It is an entrypoint index, not a complete source-of-truth map. Prefer warning he
 
 ## Rule Of Thumb
 
+- Before reading a runtime `.txt`, check whether a same-named `.txt.j2`
+  template exists under `mod_builder/templates/`. If it exists, start from the
+  template and do not read the generated `.txt` body.
+- If no matching template is found and a runtime `.txt` must be inspected, read
+  only the first five lines first to check for generated ownership metadata.
 - If a runtime file has a generated warning header, follow it back to the template.
 - If a template reads from `templates/generated_configs/`, trace the data to `configs/`, `parse/`, or `synthetipy/`.
 - If there is no generated warning header and no matching template, treat the runtime file as handwritten until proven otherwise.
+- After template edits, a successful generation run is enough generated-output
+  validation for normal maintenance; avoid reviewing large generated `.txt`
+  bodies unless investigating a specific generated-output failure.
 - If a change touches GUI, also check button effects, events, scripted loc, and localisation.
 - If a change touches public-facing text, update all required localisation files.
 

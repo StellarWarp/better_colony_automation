@@ -13,9 +13,9 @@ country_event = {
     immediate = {
         if = {
             limit = {
-                check_variable = {
+                check_variable_arithmetic = {
                     which = @bca_submod_job_regulation
-                    value > 0
+                    value != 0
                 }
             }
             bca_jr_monthly_begin = yes
@@ -41,9 +41,9 @@ country_event = {
             bca_auto_building_destruction_entry = yes # 建筑自动拆除
             if = {
                 limit = {
-                    check_variable = {
+                    check_variable_arithmetic = {
                         which = @bca_submod_job_regulation
-                        value > 0
+                        value != 0
                     }
                 }
                 bca_jr_monthly_colony = yes
@@ -52,9 +52,9 @@ country_event = {
 
         if = {
             limit = {
-                check_variable = {
+                check_variable_arithmetic = {
                     which = @bca_submod_job_regulation
-                    value > 0
+                    value != 0
                 }
             }
             bca_jr_monthly_end = yes
