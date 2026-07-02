@@ -25,7 +25,7 @@ Project conventions:
 Known engine limits:
 
 - `tooltipText` on GUI controls should be treated as static localisation. It
-  has not been reliable for dynamic scripted loc such as `[from.some_loc]`.
+  has not been reliable for dynamic scripted loc such as `[From.some_loc]`.
 - Use button-effect `custom_tooltip` for player-facing dynamic tooltip text.
 - A button effect should use only one `custom_tooltip` for the visible tooltip.
   Multiple or conditionally emitted `custom_tooltip` blocks in the same effect
@@ -48,7 +48,7 @@ effect = {
 ```
 
 ```yaml
-BCA_SUPPORT_DISPLAY_TOOLTIP: "[from.bca_support_display_tooltip]"
+BCA_SUPPORT_DISPLAY_TOOLTIP: "[From.bca_support_display_tooltip]"
 ```
 
 ## Tooltips And Hidden Effects

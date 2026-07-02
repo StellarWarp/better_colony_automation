@@ -3,24 +3,21 @@
 {% import 'component/planet_flag_ps.j2' as pf with context -%}
 
 bca_potential_max_districts = {
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
-            type = any
-        }
-        mode = set
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
-        parameters = {
-            type = any
-        }
-        mode = add
-    }
-    modifier = {
-        has_modifier = bca_pm_arcology_project_candidate
-        add = trigger:planet_size
-    }
+#     complex_trigger_modifier = {
+#         trigger = num_districts
+#         parameters = {
+#             type = any
+#         }
+#         mode = set
+#     }
+#     complex_trigger_modifier = {
+#         trigger = num_free_districts
+#         parameters = {
+#             type = any
+#         }
+#         mode = add
+#     }
+    set = value:bca_planet_max_districts
 }
 
 bca_num_free_secondary_districts_plan = {
@@ -94,15 +91,7 @@ bca_plan_secondary_districts_to_ratio = {
 
 
 num_primary_district = {
-    {% for district in primary_districts %}
-        complex_trigger_modifier = {
-            trigger = num_districts
-            parameters = {
-                type = {{ district }}
-            }
-            mode = add
-        }
-    {% endfor %}
+    set = value:num_district_d0
 }
 
 num_secondary_district = {
@@ -129,6 +118,13 @@ num_secondary_district = {
                 mode = add
             }
         {% endfor %}
+        {% if district_set_idx == 0 %}
+            modifier = {
+                has_modifier = bca_pm_arcology_project_candidate
+                divide = 2
+            }
+            round = yes
+        {% endif %}
     }
 {% endfor %}
 

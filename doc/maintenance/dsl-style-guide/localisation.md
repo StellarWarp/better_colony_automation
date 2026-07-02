@@ -40,7 +40,7 @@ Scripted loc should be hidden behind stable localisation keys.
 Rules:
 
 - GUI-facing keys may call scripted loc, for example
-  `"[from.bca_support_display_image]"`.
+  `"[From.bca_support_display_image]"`.
 - For dynamic tooltip text, use one effect-side `custom_tooltip` key that calls
   scripted loc. Do not rely on GUI `tooltipText` to evaluate scripted loc.
 - Provide an explicit empty fallback key when a dynamic scripted-loc tooltip
