@@ -12,7 +12,8 @@ guiTypes = {
         orientation = center
         origo = center
         moveable = yes
-        size = { width = 860 height = 850 }
+        size = { width = 884 height = 846 }
+        clipping = no
         background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
         iconType = { name = "hex_bg" spriteType = "GFX_hex_bg" position = { x = -10 y = -14 } alwaysTransparent = yes }
         iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long" position = { x = 6 y = 22 } alwaysTransparent = yes }
@@ -26,22 +27,22 @@ guiTypes = {
         }
         buttonType = {
             name = "focus_button"
-            position = { x = -1180 y = -1112 }
+            position = { x = -10000 y = -10000 }
             spriteType = "GFX_fleetview_focus"
         }
         buttonType = {
             name = "tts_button"
-            position = { x = -1125 y = -1125 }
+            position = { x = -10000 y = -9950 }
             spriteType = "GFX_empire_flag_128"
         }
         instantTextBoxType = {
             name = "heading"
             font = "malgun_goth_24"
-            position = { x = -1120 y = -115 }
+            position = { x = -10000 y = -10000 }
         }
         buttonType = {
             name = "alien_message_background"
-            position = { x = -1110 y = -11430 }
+            position = { x = -10000 y = -10000 }
             spriteType = "GFX_tiles_dark_area_cut_8"
         }
         buttonType = {
@@ -50,7 +51,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "portrait_background"
-            position = { x = -1117 y = -1145 }
+            position = { x = -10000 y = -10000 }
             size = { width = 0 height = 0 }
             iconType = {
                 name = "event_picture"
@@ -63,7 +64,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "portrait"
-            position = { x = -1117 y = -1145 }
+            position = { x = -10000 y = -10000 }
             size = { width = 0 height = 0 }
             iconType = {
                 name = "portrait"
@@ -100,16 +101,16 @@ guiTypes = {
         }
         overlappingElementsBoxType = {
             name = "empire_ethics_icons"
-            position = { x = -1145 y = -11138 }
+            position = { x = -10000 y = -10000 }
         }
         buttonType = {
             name = "empire_flag"
             spriteType = "GFX_empire_flag_128"
-            position = { x = -1125 y = -11235 }
+            position = { x = -10000 y = -10000 }
         }
         containerWindowType = {
             name = "leader_details"
-            position = { x = -1125 y = -1175 }
+            position = { x = -10000 y = -10000 }
             containerWindowType = {
                 name = "empire_traits_box"
             }
@@ -131,7 +132,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "opinion_window"
-            position = { x = -1127 y = -11110 }
+            position = { x = -10000 y = -10000 }
             size = { width = 94 height = 30 }
             iconType = {
                 name = "their_opinion_icon"
@@ -149,14 +150,14 @@ guiTypes = {
             instantTextBoxType = {
                 name = "action_title"
                 font = "malgun_goth_24"
-                position = { x = -1120 y = -115 }
+                position = { x = -10000 y = -10000 }
                 maxWidth = 500
                 alwaysTransparent = yes
             }
             instantTextBoxType = {
                 name = "action_desc"
                 font = "malgun_goth_24"
-                position = { x = -1120 y = -115 }
+                position = { x = -10000 y = -10000 }
                 maxWidth = 500
                 maxHeight = 180
                 format = center
@@ -164,13 +165,13 @@ guiTypes = {
             }
             listBoxType = {
                 name = "option_list"
-                position = { x = -11500 y = -1130 }
+                position = { x = -10000 y = -10000 }
             }
         }
         instantTextBoxType = {
             name = "alien_message"
             font = "cg_16b"
-            position = { x = -1120 y = -115 }
+            position = { x = -10000 y = -10000 }
             maxWidth = 465
             maxHeight = 220
             format = left
@@ -188,7 +189,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "settings_scroll_container"
-            position = { x = 0 y = 60 }
+            position = { x = 12 y = 60 }
             size = { width = 860 height = 774 }
             verticalScrollbar = "right_vertical_slider"
             background = {
@@ -1841,7 +1842,7 @@ guiTypes = {
             effectButtonType = {
                 name = "jr_submod_intro"
                 position = { x = 24 y = 132 }
-                size = { x = 812 y = 180 }
+                size = { x = 812 y = 300 }
                 font = "cg_16b"
                 buttonText = "BCA_JOB_REGULATION_SUBMOD_INTRO"
                 format = center
@@ -2810,6 +2811,83 @@ guiTypes = {
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
                 effect = "bca_global_settings_reserve_job_plus_100"
             }
+        }
+        effectButtonType = {
+            name = "support_panel_background"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "gfx_message_bg"
+            effect = "bca_support_overlay_visible"
+        }
+        effectButtonType = {
+            name = "support_platform"
+            position = {
+                x = -160
+                y = 682
+            }
+            size = { x = 144 y = 69 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_PLATFORM_BUTTON"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_platform_select"
+        }
+        effectButtonType = {
+            name = "support_unity"
+            position = {
+                x = -160
+                y = 757
+            }
+            size = { x = 144 y = 69 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_UNITY_BUTTON"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_unity_select"
+        }
+        effectButtonType = {
+            name = "support_display"
+            position = {
+                x = -160
+                y = 682
+            }
+            size = { x = 144 y = 144 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_DISPLAY_IMAGE"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "gfx_message_bg"
+            effect = "bca_support_display_advance"
+        }
+        effectButtonType = {
+            name = "support_frame_1"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "gfx_planet_frame_tile"
+            effect = "bca_support_overlay_visible"
+            alwaysTransparent = yes
+        }
+        effectButtonType = {
+            name = "support_frame_2"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "GFX_light_frame_area"
+            effect = "bca_support_overlay_visible"
+            alwaysTransparent = yes
+        }
+        effectButtonType = {
+            name = "support_toggle"
+            position = { x = 12 y = 814 }
+            size = { x = 20 y = 20 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_ENTRY_ICON"
+            tooltipText = "BCA_SUPPORT_ENTRY_TOOLTIP"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_toggle"
         }
     }
 }

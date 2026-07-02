@@ -1,5 +1,6 @@
 import os
 import re
+import sys
 import yaml
 from dataclasses import dataclass
 from pathlib import Path
@@ -7,8 +8,10 @@ from jinja2 import Environment, FileSystemLoader
 
 try:
     from .formatters import format_pdx_code
+    from .normalize_localisation_encoding import normalize_localisation_encoding
 except ImportError:
     from formatters import format_pdx_code
+    from normalize_localisation_encoding import normalize_localisation_encoding
 
 # --- 配置区 ---
 SOURCE_DIR = os.path.dirname(__file__)  # mod_builder 目录
@@ -422,7 +425,19 @@ def build():
                             render_variant=variant,
                         )
 
+    normalize_localisation_encoding(Path(ROOT_DIR) / "localisation")
     print_identifier_stats(generated_stats)
+    scripts_dir = Path(ROOT_DIR) / "scripts"
+    if str(scripts_dir) not in sys.path:
+        sys.path.insert(0, str(scripts_dir))
+    from publish_mod import publish
+
+    publish(
+        scripts_dir / "publish_mod.yaml",
+        dry_run=False,
+        verbose=False,
+    )
+    print("发布完成！")
     print("生成完成！")
 
 if __name__ == "__main__":

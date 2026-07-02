@@ -1,0 +1,12 @@
+# submod job_regulation
+{% set slots = job_regulation_config.display_slots | default(15) %}
+{% set resources = job_regulation_config.resources %}
+l_english:
+ BCA_JR_CHANGE_TENDENCY_INCREASE: "§RMore jobs needed§!"
+ BCA_JR_CHANGE_TENDENCY_DECREASE: "§GJobs can be reduced§!"
+ BCA_JR_CHANGE_TENDENCY_STABLE: "§LNo adjustment needed§!"
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_TOOLTIP: "§YCurrent Regulation Status§!\n[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_TENDENCY_script]\n\n§YRelated Resources§!\n{% for resource in resources %}[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_RESOURCE_{{ resource | upper }}_script]{% endfor %}"
+ BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP: "§YJob Workforce§!\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script] - Total jobs\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] - Assigned pop workforce\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] - Open job capacity, including automation\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_FREE_JOB_COUNT_script] - Free open jobs\n\n§YProductive Workforce§!\n[From.BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script] - Total productive workforce\n    [From.BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script] - Pop productive workforce\n        [From.BCA_JR_SLOT_{{ s_name }}_FMT_CAPACITY_WORKFORCE_script] - Pop workforce\n        [From.BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script] - Pop job efficiency\n    [From.BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script] - Automated productive workforce\n        §L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_CAPACITY_WORKFORCE_script]§! - Automated workforce\n        [From.BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script] - Automation efficiency"
+{% endfor %}

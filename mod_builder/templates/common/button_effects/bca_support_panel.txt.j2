@@ -1,0 +1,115 @@
+bca_support_toggle = {
+    potential = { exists = from }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                if = {
+                    limit = { has_country_flag = bca_support_open }
+                    bca_support_close = yes
+                }
+                else = {
+                    set_country_flag = bca_support_open
+                    set_variable = { which = bca_support_stage value = 0 }
+                }
+            }
+        }
+    }
+}
+
+bca_support_overlay_visible = {
+    potential = {
+        exists = from
+        from = { has_country_flag = bca_support_open }
+    }
+    allow = { always = yes }
+}
+
+bca_support_platform_select = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = bca_support_open
+            check_variable = { which = bca_support_stage value = 0 }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        hidden_effect = {
+            from = {
+                set_variable = { which = bca_support_stage value = 1 }
+            }
+        }
+    }
+}
+
+bca_support_unity_select = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = bca_support_open
+            check_variable = { which = bca_support_stage value = 0 }
+        }
+    }
+    allow = {
+        from = {
+            resource_stockpile_compare = {
+                resource = unity
+                value >= 100
+            }
+        }
+    }
+    effect = {
+        from = {
+            add_resource = { unity = -100 }
+            hidden_effect = {
+                set_variable = { which = bca_support_stage value = 3 }
+            }
+        }
+    }
+}
+
+bca_support_display_advance = {
+    potential = {
+        exists = from
+        from = {
+            has_country_flag = bca_support_open
+            OR = {
+                check_variable = { which = bca_support_stage value = 1 }
+                check_variable = { which = bca_support_stage value = 2 }
+                check_variable = { which = bca_support_stage value = 3 }
+                check_variable = { which = bca_support_stage value = 4 }
+                check_variable = { which = bca_support_stage value = 5 }
+            }
+        }
+    }
+    allow = { always = yes }
+    effect = {
+        custom_tooltip = BCA_SUPPORT_DISPLAY_TOOLTIP
+        hidden_effect = {
+            from = {
+                if = {
+                    limit = {
+                        check_variable = { which = bca_support_stage value = 1 }
+                    }
+                    set_variable = { which = bca_support_stage value = 2 }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = { which = bca_support_stage value = 3 }
+                    }
+                    set_variable = { which = bca_support_stage value = 4 }
+                }
+                else_if = {
+                    limit = {
+                        check_variable = { which = bca_support_stage value = 4 }
+                    }
+                    set_variable = { which = bca_support_stage value = 5 }
+                }
+                else = {
+                    bca_support_close = yes
+                }
+            }
+        }
+    }
+}

@@ -18,6 +18,15 @@ PUBLISH_METADATA_RE = re.compile(
     r"(?:\s+file_name\s+(?P<file_name>[^\s]+))?\s*$"
 )
 METADATA_EXTENSIONS = {".txt", ".gui", ".gfx", ".yml"}
+DEFAULT_CLEAN_PATHS = (
+    "common",
+    "events",
+    "gfx",
+    "interface",
+    "descriptor.mod",
+    "license",
+    "thumbnail.png",
+)
 
 
 @dataclass(frozen=True)
@@ -78,6 +87,10 @@ def package_configs(config: dict, *, base: Path) -> dict[str, dict]:
         if not package.get("target"):
             raise ValueError(f"package {name} has no target")
         package["target_path"] = expand_path(package["target"], base=base)
+        package["clean_paths"] = normalize_clean_paths(
+            package.get("clean_paths", config.get("clean_paths", DEFAULT_CLEAN_PATHS)),
+            package_name=name,
+        )
     targets = [package["target_path"] for package in packages.values()]
     if len(set(targets)) != len(targets):
         raise ValueError("publish targets must be unique")
@@ -88,6 +101,16 @@ def package_configs(config: dict, *, base: Path) -> dict[str, dict]:
         if target in {filesystem_root, Path.home().resolve()}:
             raise ValueError(f"publish target is too broad to replace: {target}")
     return packages
+
+
+def normalize_clean_paths(raw_paths: list[str] | tuple[str, ...], *, package_name: str) -> list[Path]:
+    clean_paths = []
+    for raw_path in raw_paths:
+        clean_path = Path(raw_path)
+        if clean_path.is_absolute() or ".." in clean_path.parts:
+            raise ValueError(f"invalid clean path for {package_name}: {clean_path}")
+        clean_paths.append(clean_path)
+    return clean_paths
 
 
 def add_item(
@@ -169,15 +192,40 @@ def collect_publish_items(config: dict, packages: dict[str, dict]) -> list[Publi
     return items
 
 
-def clear_target(target: Path, *, dry_run: bool) -> int:
+def count_files(path: Path) -> int:
+    if path.is_file():
+        return 1
+    if path.is_dir():
+        return sum(1 for child in path.rglob("*") if child.is_file())
+    return 0
+
+
+def clear_target(
+    target: Path,
+    *,
+    clean_paths: list[Path],
+    dry_run: bool,
+    verbose: bool = True,
+) -> int:
     if not target.exists():
         return 0
     if not target.is_dir():
         raise ValueError(f"publish target is not a directory: {target}")
-    deleted_files = sum(1 for path in target.rglob("*") if path.is_file())
-    print(f"DELETE {target}")
-    if not dry_run:
-        shutil.rmtree(target)
+    deleted_files = 0
+    for clean_path in clean_paths:
+        path = (target / clean_path).resolve()
+        if target != path and target not in path.parents:
+            raise ValueError(f"refusing clean path outside target: {path}")
+        if not path.exists():
+            continue
+        deleted_files += count_files(path)
+        if verbose:
+            print(f"DELETE {path}")
+        if not dry_run:
+            if path.is_dir():
+                shutil.rmtree(path)
+            else:
+                path.unlink()
     return deleted_files
 
 
@@ -186,6 +234,7 @@ def publish(
     *,
     dry_run: bool,
     selected_packages: set[str] | None = None,
+    verbose: bool = True,
 ) -> dict[str, dict[str, int]]:
     config = load_config(config_path)
     packages = package_configs(config, base=config_path.parent)
@@ -207,11 +256,17 @@ def publish(
     for package_name, package in packages.items():
         target = package["target_path"]
         package_items = [item for item in items if item.package == package_name]
-        deleted = clear_target(target, dry_run=dry_run)
+        deleted = clear_target(
+            target,
+            clean_paths=package["clean_paths"],
+            dry_run=dry_run,
+            verbose=verbose,
+        )
 
         copied = 0
         for item in package_items:
-            print(f"COPY   {item.source} -> {item.destination}")
+            if verbose:
+                print(f"COPY   {item.source} -> {item.destination}")
             if not dry_run:
                 item.destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(item.source, item.destination)
@@ -221,10 +276,11 @@ def publish(
             "copied": copied,
             "deleted": deleted,
         }
-        print(
-            f"{package_name}: {copied} copied, {deleted} old files deleted "
-            f"-> {target}"
-        )
+        if verbose:
+            print(
+                f"{package_name}: {copied} copied, {deleted} old files deleted "
+                f"-> {target}"
+            )
 
     return result
 
@@ -250,6 +306,11 @@ def build_parser() -> argparse.ArgumentParser:
         action="store_true",
         help="Print target deletion and copy operations without changing targets.",
     )
+    parser.add_argument(
+        "--quiet",
+        action="store_true",
+        help="Suppress per-file publish output.",
+    )
     return parser
 
 
@@ -260,6 +321,7 @@ def main() -> int:
             args.config.resolve(),
             dry_run=args.dry_run,
             selected_packages=set(args.packages) if args.packages else None,
+            verbose=not args.quiet,
         )
         return 0
     except Exception as exc:

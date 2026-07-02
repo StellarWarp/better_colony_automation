@@ -1,0 +1,12 @@
+# submod job_regulation
+{% set slots = job_regulation_config.display_slots | default(15) %}
+{% set resources = job_regulation_config.resources %}
+l_russian:
+ BCA_JR_CHANGE_TENDENCY_INCREASE: "§RНужно больше должностей§!"
+ BCA_JR_CHANGE_TENDENCY_DECREASE: "§GДолжности можно сократить§!"
+ BCA_JR_CHANGE_TENDENCY_STABLE: "§LКорректировка не нужна§!"
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_TOOLTIP: "§YТекущее состояние регулирования§!\n[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_TENDENCY_script]\n\n§YСвязанные ресурсы§!\n{% for resource in resources %}[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_RESOURCE_{{ resource | upper }}_script]{% endfor %}"
+ BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP: "§YРабочая сила должности§!\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script] - Всего должностей\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] - Назначенная рабочая сила населения\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] - Открытая вместимость должностей, включая автоматизацию\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_FREE_JOB_COUNT_script] - Свободные открытые должности\n\n§YПроизводительная рабочая сила§!\n[From.BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script] - Всего производительной рабочей силы\n    [From.BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script] - Производительная рабочая сила населения\n        [From.BCA_JR_SLOT_{{ s_name }}_FMT_CAPACITY_WORKFORCE_script] - Рабочая сила населения\n        [From.BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script] - Эффективность должностей населения\n    [From.BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script] - Производительная автоматизированная рабочая сила\n        §L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_CAPACITY_WORKFORCE_script]§! - Автоматизированная рабочая сила\n        [From.BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script] - Эффективность автоматизации"
+{% endfor %}

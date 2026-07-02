@@ -1,0 +1,12 @@
+# submod job_regulation
+{% set slots = job_regulation_config.display_slots | default(15) %}
+{% set resources = job_regulation_config.resources %}
+l_japanese:
+ BCA_JR_CHANGE_TENDENCY_INCREASE: "§R職業を増やす必要あり§!"
+ BCA_JR_CHANGE_TENDENCY_DECREASE: "§G職業を減らせます§!"
+ BCA_JR_CHANGE_TENDENCY_STABLE: "§L調整不要§!"
+{% for s in range(slots) %}
+{% set s_name = "s%d" % (s + 1) %}
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_TOOLTIP: "§Y現在の調整状態§!\n[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_TENDENCY_script]\n\n§Y関連資源§!\n{% for resource in resources %}[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_RESOURCE_{{ resource | upper }}_script]{% endfor %}"
+ BCA_JR_SLOT_{{ s_name }}_WF_TOOLTIP: "§Y職業労働力§!\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script] - 総職業数\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] - 割り当て済み人口労働力\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_OPEN_TOTAL_CAPACITY_script] - 開放中の職業容量（自動化を含む）\n[From.BCA_JR_SLOT_{{ s_name }}_FMT_FREE_JOB_COUNT_script] - 空き開放職業\n\n§Y生産労働力§!\n[From.BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_COLORED_script] - 総生産労働力\n    [From.BCA_JR_SLOT_{{ s_name }}_POP_PRODUCTIVE_COLORED_script] - 人口生産労働力\n        [From.BCA_JR_SLOT_{{ s_name }}_FMT_CAPACITY_WORKFORCE_script] - 人口労働力\n        [From.BCA_JR_SLOT_{{ s_name }}_POP_DELTA_COLORED_script] - 人口職業効率\n    [From.BCA_JR_SLOT_{{ s_name }}_AUTO_PRODUCTIVE_COLORED_script] - 自動化生産労働力\n        §L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATED_CAPACITY_WORKFORCE_script]§! - 自動化労働力\n        [From.BCA_JR_SLOT_{{ s_name }}_AUTO_DELTA_COLORED_script] - 自動化効率"
+{% endfor %}

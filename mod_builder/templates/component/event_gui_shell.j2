@@ -1,22 +1,22 @@
 {% macro event_window_shell(window_name, header_text, width=760, height=430, show_native_event_text=true) -%}
-    {% set hidden_x = -1120 %}
-    {% set hidden_y = -115 %}
-    {% set hidden_focus_x = -1180 %}
-    {% set hidden_focus_y = -1112 %}
-    {% set hidden_portrait_x = -1117 %}
-    {% set hidden_portrait_y = -1145 %}
-    {% set hidden_background_x = -1110 %}
-    {% set hidden_background_y = -11430 %}
-    {% set hidden_ethics_x = -1145 %}
-    {% set hidden_ethics_y = -11138 %}
-    {% set hidden_flag_x = -1125 %}
-    {% set hidden_flag_y = -11235 %}
-    {% set hidden_leader_x = -1125 %}
-    {% set hidden_leader_y = -1175 %}
-    {% set hidden_opinion_x = -1127 %}
-    {% set hidden_opinion_y = -11110 %}
-    {% set hidden_option_x = -11500 %}
-    {% set hidden_option_y = -1130 %}
+    {% set hidden_x = -10000 %}
+    {% set hidden_y = -10000 %}
+    {% set hidden_focus_x = -10000 %}
+    {% set hidden_focus_y = -10000 %}
+    {% set hidden_portrait_x = -10000 %}
+    {% set hidden_portrait_y = -10000 %}
+    {% set hidden_background_x = -10000 %}
+    {% set hidden_background_y = -10000 %}
+    {% set hidden_ethics_x = -10000 %}
+    {% set hidden_ethics_y = -10000 %}
+    {% set hidden_flag_x = -10000 %}
+    {% set hidden_flag_y = -10000 %}
+    {% set hidden_leader_x = -10000 %}
+    {% set hidden_leader_y = -10000 %}
+    {% set hidden_opinion_x = -10000 %}
+    {% set hidden_opinion_y = -10000 %}
+    {% set hidden_option_x = -10000 %}
+    {% set hidden_option_y = -10000 %}
     {% if show_native_event_text %}
         {% set action_title_x = 20 %}
         {% set action_title_y = 5 %}
@@ -39,6 +39,7 @@
             origo = center
             moveable = yes
             size = { width = {{ width }} height = {{ height }} }
+            clipping = no
 
             background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
 

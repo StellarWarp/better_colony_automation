@@ -13,7 +13,8 @@ guiTypes = {
         orientation = center
         origo = center
         moveable = yes
-        size = { width = 860 height = 850 }
+        size = { width = 884 height = 846 }
+        clipping = no
         background = { name = "background" quadTextureSprite = "GFX_tile_outliner_bg" }
         iconType = { name = "hex_bg" spriteType = "GFX_hex_bg" position = { x = -10 y = -14 } alwaysTransparent = yes }
         iconType = { name = "empire_header_line" quadTextureSprite = "GFX_line_long" position = { x = 6 y = 22 } alwaysTransparent = yes }
@@ -27,22 +28,22 @@ guiTypes = {
         }
         buttonType = {
             name = "focus_button"
-            position = { x = -1180 y = -1112 }
+            position = { x = -10000 y = -10000 }
             spriteType = "GFX_fleetview_focus"
         }
         buttonType = {
             name = "tts_button"
-            position = { x = -1125 y = -1125 }
+            position = { x = -10000 y = -9950 }
             spriteType = "GFX_empire_flag_128"
         }
         instantTextBoxType = {
             name = "heading"
             font = "malgun_goth_24"
-            position = { x = -1120 y = -115 }
+            position = { x = -10000 y = -10000 }
         }
         buttonType = {
             name = "alien_message_background"
-            position = { x = -1110 y = -11430 }
+            position = { x = -10000 y = -10000 }
             spriteType = "GFX_tiles_dark_area_cut_8"
         }
         buttonType = {
@@ -51,7 +52,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "portrait_background"
-            position = { x = -1117 y = -1145 }
+            position = { x = -10000 y = -10000 }
             size = { width = 0 height = 0 }
             iconType = {
                 name = "event_picture"
@@ -64,7 +65,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "portrait"
-            position = { x = -1117 y = -1145 }
+            position = { x = -10000 y = -10000 }
             size = { width = 0 height = 0 }
             iconType = {
                 name = "portrait"
@@ -101,16 +102,16 @@ guiTypes = {
         }
         overlappingElementsBoxType = {
             name = "empire_ethics_icons"
-            position = { x = -1145 y = -11138 }
+            position = { x = -10000 y = -10000 }
         }
         buttonType = {
             name = "empire_flag"
             spriteType = "GFX_empire_flag_128"
-            position = { x = -1125 y = -11235 }
+            position = { x = -10000 y = -10000 }
         }
         containerWindowType = {
             name = "leader_details"
-            position = { x = -1125 y = -1175 }
+            position = { x = -10000 y = -10000 }
             containerWindowType = {
                 name = "empire_traits_box"
             }
@@ -132,7 +133,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "opinion_window"
-            position = { x = -1127 y = -11110 }
+            position = { x = -10000 y = -10000 }
             size = { width = 94 height = 30 }
             iconType = {
                 name = "their_opinion_icon"
@@ -150,14 +151,14 @@ guiTypes = {
             instantTextBoxType = {
                 name = "action_title"
                 font = "malgun_goth_24"
-                position = { x = -1120 y = -115 }
+                position = { x = -10000 y = -10000 }
                 maxWidth = 500
                 alwaysTransparent = yes
             }
             instantTextBoxType = {
                 name = "action_desc"
                 font = "malgun_goth_24"
-                position = { x = -1120 y = -115 }
+                position = { x = -10000 y = -10000 }
                 maxWidth = 500
                 maxHeight = 180
                 format = center
@@ -165,13 +166,13 @@ guiTypes = {
             }
             listBoxType = {
                 name = "option_list"
-                position = { x = -11500 y = -1130 }
+                position = { x = -10000 y = -10000 }
             }
         }
         instantTextBoxType = {
             name = "alien_message"
             font = "cg_16b"
-            position = { x = -1120 y = -115 }
+            position = { x = -10000 y = -10000 }
             maxWidth = 465
             maxHeight = 220
             format = left
@@ -189,7 +190,7 @@ guiTypes = {
         }
         containerWindowType = {
             name = "settings_scroll_container"
-            position = { x = 0 y = 60 }
+            position = { x = 12 y = 60 }
             size = { width = 860 height = 774 }
             verticalScrollbar = "right_vertical_slider"
             background = {
@@ -1888,195 +1889,195 @@ guiTypes = {
             effectButtonType = { name = "jr_cat_btn_volatile_motes_unselected" position = { x = 720 y = 212 } size = { x = 56 y = 36 } font = "cg_16b" buttonText = "BCA_JR_CAT_VOLATILE_MOTES" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_volatile_motes_unselected" }
             effectButtonType = { name = "jr_cat_btn_exotic_gases_selected" position = { x = 778 y = 212 } size = { x = 56 y = 36 } font = "cg_16b" buttonText = "BCA_JR_CAT_EXOTIC_GASES" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_select_category_exotic_gases_selected" }
             effectButtonType = { name = "jr_cat_btn_exotic_gases_unselected" position = { x = 778 y = 212 } size = { x = 56 y = 36 } font = "cg_16b" buttonText = "BCA_JR_CAT_EXOTIC_GASES" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_select_category_exotic_gases_unselected" }
-            effectButtonType = { name = "jr_hdr_job" position = { x = 24 y = 258 } size = { x = 186 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_JOB" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
-            effectButtonType = { name = "jr_hdr_wf_selected" position = { x = 214 y = 258 } size = { x = 110 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_WORKFORCE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_workforce_selected" }
-            effectButtonType = { name = "jr_hdr_wf_unselected" position = { x = 214 y = 258 } size = { x = 110 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_WORKFORCE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_workforce_unselected" }
-            effectButtonType = { name = "jr_hdr_change" position = { x = 328 y = 258 } size = { x = 50 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_CHANGE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
-            effectButtonType = { name = "jr_hdr_rate" position = { x = 382 y = 258 } size = { x = 54 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
-            effectButtonType = { name = "jr_hdr_output_selected" position = { x = 440 y = 258 } size = { x = 274 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_OUTPUT" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_output_selected" }
-            effectButtonType = { name = "jr_hdr_output_unselected" position = { x = 440 y = 258 } size = { x = 274 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_OUTPUT" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_output_unselected" }
-            effectButtonType = { name = "jr_hdr_status_selected" position = { x = 718 y = 258 } size = { x = 118 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_STATUS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_status_selected" }
-            effectButtonType = { name = "jr_hdr_status_unselected" position = { x = 718 y = 258 } size = { x = 118 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_STATUS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_status_unselected" }
+            effectButtonType = { name = "jr_hdr_job" position = { x = 24 y = 258 } size = { x = 216 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_JOB" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
+            effectButtonType = { name = "jr_hdr_wf_selected" position = { x = 244 y = 258 } size = { x = 110 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_WORKFORCE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_workforce_selected" }
+            effectButtonType = { name = "jr_hdr_wf_unselected" position = { x = 244 y = 258 } size = { x = 110 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_WORKFORCE" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_workforce_unselected" }
+            effectButtonType = { name = "jr_hdr_change" position = { x = 358 y = 258 } size = { x = 50 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_tab_visible_1" tooltipText = "BCA_JR_HEADER_CHANGE_TOOLTIP" }
+            effectButtonType = { name = "jr_hdr_rate" position = { x = 412 y = 258 } size = { x = 54 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_RATE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_tab_visible_1" tooltipText = "BCA_JR_HEADER_RATE_TOOLTIP" }
+            effectButtonType = { name = "jr_hdr_output_selected" position = { x = 470 y = 258 } size = { x = 286 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_OUTPUT" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_output_selected" }
+            effectButtonType = { name = "jr_hdr_output_unselected" position = { x = 470 y = 258 } size = { x = 286 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_OUTPUT" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_output_unselected" }
+            effectButtonType = { name = "jr_hdr_status_selected" position = { x = 760 y = 258 } size = { x = 76 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_STATUS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_sort_status_selected" }
+            effectButtonType = { name = "jr_hdr_status_unselected" position = { x = 760 y = 258 } size = { x = 76 y = 24 } font = "cg_16b" buttonText = "BCA_JR_HEADER_STATUS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_sort_status_unselected" }
             effectButtonType = { name = "jr_slot_bg_s1" position = { x = 24 y = 290 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s1" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s1" position = { x = 28 y = 298 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s1" }
             effectButtonType = { name = "jr_slot_icon_s1" position = { x = 56 y = 297 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
-            effectButtonType = { name = "jr_slot_name_s1" position = { x = 90 y = 296 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
-            effectButtonType = { name = "jr_slot_wf_s1" position = { x = 214 y = 296 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s1" }
-            effectButtonType = { name = "jr_slot_change_s1" position = { x = 328 y = 296 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s1" }
-            effectButtonType = { name = "jr_slot_rate_s1" position = { x = 382 y = 296 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
-            effectButtonType = { name = "jr_slot_output_s1" position = { x = 440 y = 296 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
-            effectButtonType = { name = "jr_slot_mode_s1_auto" position = { x = 718 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s1_auto" }
-            effectButtonType = { name = "jr_slot_mode_s1_manual" position = { x = 718 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_manual" }
-            effectButtonType = { name = "jr_slot_mode_s1_empty" position = { x = 718 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_empty" }
-            effectButtonType = { name = "jr_slot_mode_s1_full" position = { x = 718 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_full" }
+            effectButtonType = { name = "jr_slot_name_s1" position = { x = 90 y = 296 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
+            effectButtonType = { name = "jr_slot_wf_s1" position = { x = 244 y = 296 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s1" }
+            effectButtonType = { name = "jr_slot_change_s1" position = { x = 358 y = 296 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s1" }
+            effectButtonType = { name = "jr_slot_rate_s1" position = { x = 412 y = 296 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
+            effectButtonType = { name = "jr_slot_output_s1" position = { x = 470 y = 296 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s1_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s1" }
+            effectButtonType = { name = "jr_slot_mode_s1_auto" position = { x = 760 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s1_auto" }
+            effectButtonType = { name = "jr_slot_mode_s1_manual" position = { x = 760 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_manual" }
+            effectButtonType = { name = "jr_slot_mode_s1_empty" position = { x = 760 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_empty" }
+            effectButtonType = { name = "jr_slot_mode_s1_full" position = { x = 760 y = 296 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s1_full" }
             effectButtonType = { name = "jr_slot_bg_s2" position = { x = 24 y = 334 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s2" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s2" position = { x = 28 y = 342 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s2" }
             effectButtonType = { name = "jr_slot_icon_s2" position = { x = 56 y = 341 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
-            effectButtonType = { name = "jr_slot_name_s2" position = { x = 90 y = 340 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
-            effectButtonType = { name = "jr_slot_wf_s2" position = { x = 214 y = 340 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s2" }
-            effectButtonType = { name = "jr_slot_change_s2" position = { x = 328 y = 340 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s2" }
-            effectButtonType = { name = "jr_slot_rate_s2" position = { x = 382 y = 340 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
-            effectButtonType = { name = "jr_slot_output_s2" position = { x = 440 y = 340 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
-            effectButtonType = { name = "jr_slot_mode_s2_auto" position = { x = 718 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s2_auto" }
-            effectButtonType = { name = "jr_slot_mode_s2_manual" position = { x = 718 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_manual" }
-            effectButtonType = { name = "jr_slot_mode_s2_empty" position = { x = 718 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_empty" }
-            effectButtonType = { name = "jr_slot_mode_s2_full" position = { x = 718 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_full" }
+            effectButtonType = { name = "jr_slot_name_s2" position = { x = 90 y = 340 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
+            effectButtonType = { name = "jr_slot_wf_s2" position = { x = 244 y = 340 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s2" }
+            effectButtonType = { name = "jr_slot_change_s2" position = { x = 358 y = 340 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s2" }
+            effectButtonType = { name = "jr_slot_rate_s2" position = { x = 412 y = 340 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
+            effectButtonType = { name = "jr_slot_output_s2" position = { x = 470 y = 340 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s2_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s2" }
+            effectButtonType = { name = "jr_slot_mode_s2_auto" position = { x = 760 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s2_auto" }
+            effectButtonType = { name = "jr_slot_mode_s2_manual" position = { x = 760 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_manual" }
+            effectButtonType = { name = "jr_slot_mode_s2_empty" position = { x = 760 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_empty" }
+            effectButtonType = { name = "jr_slot_mode_s2_full" position = { x = 760 y = 340 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s2_full" }
             effectButtonType = { name = "jr_slot_bg_s3" position = { x = 24 y = 378 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s3" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s3" position = { x = 28 y = 386 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s3" }
             effectButtonType = { name = "jr_slot_icon_s3" position = { x = 56 y = 385 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
-            effectButtonType = { name = "jr_slot_name_s3" position = { x = 90 y = 384 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
-            effectButtonType = { name = "jr_slot_wf_s3" position = { x = 214 y = 384 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s3" }
-            effectButtonType = { name = "jr_slot_change_s3" position = { x = 328 y = 384 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s3" }
-            effectButtonType = { name = "jr_slot_rate_s3" position = { x = 382 y = 384 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
-            effectButtonType = { name = "jr_slot_output_s3" position = { x = 440 y = 384 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
-            effectButtonType = { name = "jr_slot_mode_s3_auto" position = { x = 718 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s3_auto" }
-            effectButtonType = { name = "jr_slot_mode_s3_manual" position = { x = 718 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_manual" }
-            effectButtonType = { name = "jr_slot_mode_s3_empty" position = { x = 718 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_empty" }
-            effectButtonType = { name = "jr_slot_mode_s3_full" position = { x = 718 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_full" }
+            effectButtonType = { name = "jr_slot_name_s3" position = { x = 90 y = 384 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
+            effectButtonType = { name = "jr_slot_wf_s3" position = { x = 244 y = 384 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s3" }
+            effectButtonType = { name = "jr_slot_change_s3" position = { x = 358 y = 384 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s3" }
+            effectButtonType = { name = "jr_slot_rate_s3" position = { x = 412 y = 384 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
+            effectButtonType = { name = "jr_slot_output_s3" position = { x = 470 y = 384 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s3_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s3" }
+            effectButtonType = { name = "jr_slot_mode_s3_auto" position = { x = 760 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s3_auto" }
+            effectButtonType = { name = "jr_slot_mode_s3_manual" position = { x = 760 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_manual" }
+            effectButtonType = { name = "jr_slot_mode_s3_empty" position = { x = 760 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_empty" }
+            effectButtonType = { name = "jr_slot_mode_s3_full" position = { x = 760 y = 384 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s3_full" }
             effectButtonType = { name = "jr_slot_bg_s4" position = { x = 24 y = 422 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s4" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s4" position = { x = 28 y = 430 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s4" }
             effectButtonType = { name = "jr_slot_icon_s4" position = { x = 56 y = 429 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
-            effectButtonType = { name = "jr_slot_name_s4" position = { x = 90 y = 428 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
-            effectButtonType = { name = "jr_slot_wf_s4" position = { x = 214 y = 428 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s4" }
-            effectButtonType = { name = "jr_slot_change_s4" position = { x = 328 y = 428 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s4" }
-            effectButtonType = { name = "jr_slot_rate_s4" position = { x = 382 y = 428 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
-            effectButtonType = { name = "jr_slot_output_s4" position = { x = 440 y = 428 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
-            effectButtonType = { name = "jr_slot_mode_s4_auto" position = { x = 718 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s4_auto" }
-            effectButtonType = { name = "jr_slot_mode_s4_manual" position = { x = 718 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_manual" }
-            effectButtonType = { name = "jr_slot_mode_s4_empty" position = { x = 718 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_empty" }
-            effectButtonType = { name = "jr_slot_mode_s4_full" position = { x = 718 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_full" }
+            effectButtonType = { name = "jr_slot_name_s4" position = { x = 90 y = 428 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
+            effectButtonType = { name = "jr_slot_wf_s4" position = { x = 244 y = 428 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s4" }
+            effectButtonType = { name = "jr_slot_change_s4" position = { x = 358 y = 428 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s4" }
+            effectButtonType = { name = "jr_slot_rate_s4" position = { x = 412 y = 428 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
+            effectButtonType = { name = "jr_slot_output_s4" position = { x = 470 y = 428 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s4_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s4" }
+            effectButtonType = { name = "jr_slot_mode_s4_auto" position = { x = 760 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s4_auto" }
+            effectButtonType = { name = "jr_slot_mode_s4_manual" position = { x = 760 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_manual" }
+            effectButtonType = { name = "jr_slot_mode_s4_empty" position = { x = 760 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_empty" }
+            effectButtonType = { name = "jr_slot_mode_s4_full" position = { x = 760 y = 428 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s4_full" }
             effectButtonType = { name = "jr_slot_bg_s5" position = { x = 24 y = 466 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s5" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s5" position = { x = 28 y = 474 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s5" }
             effectButtonType = { name = "jr_slot_icon_s5" position = { x = 56 y = 473 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
-            effectButtonType = { name = "jr_slot_name_s5" position = { x = 90 y = 472 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
-            effectButtonType = { name = "jr_slot_wf_s5" position = { x = 214 y = 472 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s5" }
-            effectButtonType = { name = "jr_slot_change_s5" position = { x = 328 y = 472 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s5" }
-            effectButtonType = { name = "jr_slot_rate_s5" position = { x = 382 y = 472 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
-            effectButtonType = { name = "jr_slot_output_s5" position = { x = 440 y = 472 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
-            effectButtonType = { name = "jr_slot_mode_s5_auto" position = { x = 718 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s5_auto" }
-            effectButtonType = { name = "jr_slot_mode_s5_manual" position = { x = 718 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_manual" }
-            effectButtonType = { name = "jr_slot_mode_s5_empty" position = { x = 718 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_empty" }
-            effectButtonType = { name = "jr_slot_mode_s5_full" position = { x = 718 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_full" }
+            effectButtonType = { name = "jr_slot_name_s5" position = { x = 90 y = 472 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
+            effectButtonType = { name = "jr_slot_wf_s5" position = { x = 244 y = 472 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s5" }
+            effectButtonType = { name = "jr_slot_change_s5" position = { x = 358 y = 472 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s5" }
+            effectButtonType = { name = "jr_slot_rate_s5" position = { x = 412 y = 472 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
+            effectButtonType = { name = "jr_slot_output_s5" position = { x = 470 y = 472 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s5_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s5" }
+            effectButtonType = { name = "jr_slot_mode_s5_auto" position = { x = 760 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s5_auto" }
+            effectButtonType = { name = "jr_slot_mode_s5_manual" position = { x = 760 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_manual" }
+            effectButtonType = { name = "jr_slot_mode_s5_empty" position = { x = 760 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_empty" }
+            effectButtonType = { name = "jr_slot_mode_s5_full" position = { x = 760 y = 472 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s5_full" }
             effectButtonType = { name = "jr_slot_bg_s6" position = { x = 24 y = 510 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s6" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s6" position = { x = 28 y = 518 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s6" }
             effectButtonType = { name = "jr_slot_icon_s6" position = { x = 56 y = 517 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
-            effectButtonType = { name = "jr_slot_name_s6" position = { x = 90 y = 516 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
-            effectButtonType = { name = "jr_slot_wf_s6" position = { x = 214 y = 516 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s6" }
-            effectButtonType = { name = "jr_slot_change_s6" position = { x = 328 y = 516 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s6" }
-            effectButtonType = { name = "jr_slot_rate_s6" position = { x = 382 y = 516 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
-            effectButtonType = { name = "jr_slot_output_s6" position = { x = 440 y = 516 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
-            effectButtonType = { name = "jr_slot_mode_s6_auto" position = { x = 718 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s6_auto" }
-            effectButtonType = { name = "jr_slot_mode_s6_manual" position = { x = 718 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_manual" }
-            effectButtonType = { name = "jr_slot_mode_s6_empty" position = { x = 718 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_empty" }
-            effectButtonType = { name = "jr_slot_mode_s6_full" position = { x = 718 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_full" }
+            effectButtonType = { name = "jr_slot_name_s6" position = { x = 90 y = 516 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
+            effectButtonType = { name = "jr_slot_wf_s6" position = { x = 244 y = 516 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s6" }
+            effectButtonType = { name = "jr_slot_change_s6" position = { x = 358 y = 516 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s6" }
+            effectButtonType = { name = "jr_slot_rate_s6" position = { x = 412 y = 516 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
+            effectButtonType = { name = "jr_slot_output_s6" position = { x = 470 y = 516 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s6_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s6" }
+            effectButtonType = { name = "jr_slot_mode_s6_auto" position = { x = 760 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s6_auto" }
+            effectButtonType = { name = "jr_slot_mode_s6_manual" position = { x = 760 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_manual" }
+            effectButtonType = { name = "jr_slot_mode_s6_empty" position = { x = 760 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_empty" }
+            effectButtonType = { name = "jr_slot_mode_s6_full" position = { x = 760 y = 516 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s6_full" }
             effectButtonType = { name = "jr_slot_bg_s7" position = { x = 24 y = 554 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s7" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s7" position = { x = 28 y = 562 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s7" }
             effectButtonType = { name = "jr_slot_icon_s7" position = { x = 56 y = 561 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
-            effectButtonType = { name = "jr_slot_name_s7" position = { x = 90 y = 560 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
-            effectButtonType = { name = "jr_slot_wf_s7" position = { x = 214 y = 560 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s7" }
-            effectButtonType = { name = "jr_slot_change_s7" position = { x = 328 y = 560 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s7" }
-            effectButtonType = { name = "jr_slot_rate_s7" position = { x = 382 y = 560 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
-            effectButtonType = { name = "jr_slot_output_s7" position = { x = 440 y = 560 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
-            effectButtonType = { name = "jr_slot_mode_s7_auto" position = { x = 718 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s7_auto" }
-            effectButtonType = { name = "jr_slot_mode_s7_manual" position = { x = 718 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_manual" }
-            effectButtonType = { name = "jr_slot_mode_s7_empty" position = { x = 718 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_empty" }
-            effectButtonType = { name = "jr_slot_mode_s7_full" position = { x = 718 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_full" }
+            effectButtonType = { name = "jr_slot_name_s7" position = { x = 90 y = 560 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
+            effectButtonType = { name = "jr_slot_wf_s7" position = { x = 244 y = 560 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s7" }
+            effectButtonType = { name = "jr_slot_change_s7" position = { x = 358 y = 560 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s7" }
+            effectButtonType = { name = "jr_slot_rate_s7" position = { x = 412 y = 560 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
+            effectButtonType = { name = "jr_slot_output_s7" position = { x = 470 y = 560 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s7_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s7" }
+            effectButtonType = { name = "jr_slot_mode_s7_auto" position = { x = 760 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s7_auto" }
+            effectButtonType = { name = "jr_slot_mode_s7_manual" position = { x = 760 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_manual" }
+            effectButtonType = { name = "jr_slot_mode_s7_empty" position = { x = 760 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_empty" }
+            effectButtonType = { name = "jr_slot_mode_s7_full" position = { x = 760 y = 560 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s7_full" }
             effectButtonType = { name = "jr_slot_bg_s8" position = { x = 24 y = 598 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s8" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s8" position = { x = 28 y = 606 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s8" }
             effectButtonType = { name = "jr_slot_icon_s8" position = { x = 56 y = 605 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
-            effectButtonType = { name = "jr_slot_name_s8" position = { x = 90 y = 604 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
-            effectButtonType = { name = "jr_slot_wf_s8" position = { x = 214 y = 604 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s8" }
-            effectButtonType = { name = "jr_slot_change_s8" position = { x = 328 y = 604 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s8" }
-            effectButtonType = { name = "jr_slot_rate_s8" position = { x = 382 y = 604 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
-            effectButtonType = { name = "jr_slot_output_s8" position = { x = 440 y = 604 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
-            effectButtonType = { name = "jr_slot_mode_s8_auto" position = { x = 718 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s8_auto" }
-            effectButtonType = { name = "jr_slot_mode_s8_manual" position = { x = 718 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_manual" }
-            effectButtonType = { name = "jr_slot_mode_s8_empty" position = { x = 718 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_empty" }
-            effectButtonType = { name = "jr_slot_mode_s8_full" position = { x = 718 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_full" }
+            effectButtonType = { name = "jr_slot_name_s8" position = { x = 90 y = 604 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
+            effectButtonType = { name = "jr_slot_wf_s8" position = { x = 244 y = 604 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s8" }
+            effectButtonType = { name = "jr_slot_change_s8" position = { x = 358 y = 604 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s8" }
+            effectButtonType = { name = "jr_slot_rate_s8" position = { x = 412 y = 604 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
+            effectButtonType = { name = "jr_slot_output_s8" position = { x = 470 y = 604 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s8_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s8" }
+            effectButtonType = { name = "jr_slot_mode_s8_auto" position = { x = 760 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s8_auto" }
+            effectButtonType = { name = "jr_slot_mode_s8_manual" position = { x = 760 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_manual" }
+            effectButtonType = { name = "jr_slot_mode_s8_empty" position = { x = 760 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_empty" }
+            effectButtonType = { name = "jr_slot_mode_s8_full" position = { x = 760 y = 604 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s8_full" }
             effectButtonType = { name = "jr_slot_bg_s9" position = { x = 24 y = 642 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s9" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s9" position = { x = 28 y = 650 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s9" }
             effectButtonType = { name = "jr_slot_icon_s9" position = { x = 56 y = 649 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
-            effectButtonType = { name = "jr_slot_name_s9" position = { x = 90 y = 648 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
-            effectButtonType = { name = "jr_slot_wf_s9" position = { x = 214 y = 648 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s9" }
-            effectButtonType = { name = "jr_slot_change_s9" position = { x = 328 y = 648 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s9" }
-            effectButtonType = { name = "jr_slot_rate_s9" position = { x = 382 y = 648 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
-            effectButtonType = { name = "jr_slot_output_s9" position = { x = 440 y = 648 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
-            effectButtonType = { name = "jr_slot_mode_s9_auto" position = { x = 718 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s9_auto" }
-            effectButtonType = { name = "jr_slot_mode_s9_manual" position = { x = 718 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_manual" }
-            effectButtonType = { name = "jr_slot_mode_s9_empty" position = { x = 718 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_empty" }
-            effectButtonType = { name = "jr_slot_mode_s9_full" position = { x = 718 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_full" }
+            effectButtonType = { name = "jr_slot_name_s9" position = { x = 90 y = 648 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
+            effectButtonType = { name = "jr_slot_wf_s9" position = { x = 244 y = 648 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s9" }
+            effectButtonType = { name = "jr_slot_change_s9" position = { x = 358 y = 648 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s9" }
+            effectButtonType = { name = "jr_slot_rate_s9" position = { x = 412 y = 648 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
+            effectButtonType = { name = "jr_slot_output_s9" position = { x = 470 y = 648 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s9_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s9" }
+            effectButtonType = { name = "jr_slot_mode_s9_auto" position = { x = 760 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s9_auto" }
+            effectButtonType = { name = "jr_slot_mode_s9_manual" position = { x = 760 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_manual" }
+            effectButtonType = { name = "jr_slot_mode_s9_empty" position = { x = 760 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_empty" }
+            effectButtonType = { name = "jr_slot_mode_s9_full" position = { x = 760 y = 648 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s9_full" }
             effectButtonType = { name = "jr_slot_bg_s10" position = { x = 24 y = 686 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s10" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s10" position = { x = 28 y = 694 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s10" }
             effectButtonType = { name = "jr_slot_icon_s10" position = { x = 56 y = 693 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
-            effectButtonType = { name = "jr_slot_name_s10" position = { x = 90 y = 692 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
-            effectButtonType = { name = "jr_slot_wf_s10" position = { x = 214 y = 692 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s10" }
-            effectButtonType = { name = "jr_slot_change_s10" position = { x = 328 y = 692 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s10" }
-            effectButtonType = { name = "jr_slot_rate_s10" position = { x = 382 y = 692 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
-            effectButtonType = { name = "jr_slot_output_s10" position = { x = 440 y = 692 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
-            effectButtonType = { name = "jr_slot_mode_s10_auto" position = { x = 718 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s10_auto" }
-            effectButtonType = { name = "jr_slot_mode_s10_manual" position = { x = 718 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_manual" }
-            effectButtonType = { name = "jr_slot_mode_s10_empty" position = { x = 718 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_empty" }
-            effectButtonType = { name = "jr_slot_mode_s10_full" position = { x = 718 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_full" }
+            effectButtonType = { name = "jr_slot_name_s10" position = { x = 90 y = 692 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
+            effectButtonType = { name = "jr_slot_wf_s10" position = { x = 244 y = 692 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s10" }
+            effectButtonType = { name = "jr_slot_change_s10" position = { x = 358 y = 692 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s10" }
+            effectButtonType = { name = "jr_slot_rate_s10" position = { x = 412 y = 692 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
+            effectButtonType = { name = "jr_slot_output_s10" position = { x = 470 y = 692 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s10_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s10" }
+            effectButtonType = { name = "jr_slot_mode_s10_auto" position = { x = 760 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s10_auto" }
+            effectButtonType = { name = "jr_slot_mode_s10_manual" position = { x = 760 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_manual" }
+            effectButtonType = { name = "jr_slot_mode_s10_empty" position = { x = 760 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_empty" }
+            effectButtonType = { name = "jr_slot_mode_s10_full" position = { x = 760 y = 692 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s10_full" }
             effectButtonType = { name = "jr_slot_bg_s11" position = { x = 24 y = 730 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s11" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s11" position = { x = 28 y = 738 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s11" }
             effectButtonType = { name = "jr_slot_icon_s11" position = { x = 56 y = 737 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
-            effectButtonType = { name = "jr_slot_name_s11" position = { x = 90 y = 736 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
-            effectButtonType = { name = "jr_slot_wf_s11" position = { x = 214 y = 736 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s11" }
-            effectButtonType = { name = "jr_slot_change_s11" position = { x = 328 y = 736 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s11" }
-            effectButtonType = { name = "jr_slot_rate_s11" position = { x = 382 y = 736 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
-            effectButtonType = { name = "jr_slot_output_s11" position = { x = 440 y = 736 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
-            effectButtonType = { name = "jr_slot_mode_s11_auto" position = { x = 718 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s11_auto" }
-            effectButtonType = { name = "jr_slot_mode_s11_manual" position = { x = 718 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_manual" }
-            effectButtonType = { name = "jr_slot_mode_s11_empty" position = { x = 718 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_empty" }
-            effectButtonType = { name = "jr_slot_mode_s11_full" position = { x = 718 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_full" }
+            effectButtonType = { name = "jr_slot_name_s11" position = { x = 90 y = 736 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
+            effectButtonType = { name = "jr_slot_wf_s11" position = { x = 244 y = 736 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s11" }
+            effectButtonType = { name = "jr_slot_change_s11" position = { x = 358 y = 736 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s11" }
+            effectButtonType = { name = "jr_slot_rate_s11" position = { x = 412 y = 736 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
+            effectButtonType = { name = "jr_slot_output_s11" position = { x = 470 y = 736 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s11_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s11" }
+            effectButtonType = { name = "jr_slot_mode_s11_auto" position = { x = 760 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s11_auto" }
+            effectButtonType = { name = "jr_slot_mode_s11_manual" position = { x = 760 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_manual" }
+            effectButtonType = { name = "jr_slot_mode_s11_empty" position = { x = 760 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_empty" }
+            effectButtonType = { name = "jr_slot_mode_s11_full" position = { x = 760 y = 736 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s11_full" }
             effectButtonType = { name = "jr_slot_bg_s12" position = { x = 24 y = 774 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s12" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s12" position = { x = 28 y = 782 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s12" }
             effectButtonType = { name = "jr_slot_icon_s12" position = { x = 56 y = 781 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
-            effectButtonType = { name = "jr_slot_name_s12" position = { x = 90 y = 780 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
-            effectButtonType = { name = "jr_slot_wf_s12" position = { x = 214 y = 780 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s12" }
-            effectButtonType = { name = "jr_slot_change_s12" position = { x = 328 y = 780 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s12" }
-            effectButtonType = { name = "jr_slot_rate_s12" position = { x = 382 y = 780 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
-            effectButtonType = { name = "jr_slot_output_s12" position = { x = 440 y = 780 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
-            effectButtonType = { name = "jr_slot_mode_s12_auto" position = { x = 718 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s12_auto" }
-            effectButtonType = { name = "jr_slot_mode_s12_manual" position = { x = 718 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_manual" }
-            effectButtonType = { name = "jr_slot_mode_s12_empty" position = { x = 718 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_empty" }
-            effectButtonType = { name = "jr_slot_mode_s12_full" position = { x = 718 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_full" }
+            effectButtonType = { name = "jr_slot_name_s12" position = { x = 90 y = 780 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
+            effectButtonType = { name = "jr_slot_wf_s12" position = { x = 244 y = 780 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s12" }
+            effectButtonType = { name = "jr_slot_change_s12" position = { x = 358 y = 780 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s12" }
+            effectButtonType = { name = "jr_slot_rate_s12" position = { x = 412 y = 780 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
+            effectButtonType = { name = "jr_slot_output_s12" position = { x = 470 y = 780 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s12_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s12" }
+            effectButtonType = { name = "jr_slot_mode_s12_auto" position = { x = 760 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s12_auto" }
+            effectButtonType = { name = "jr_slot_mode_s12_manual" position = { x = 760 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_manual" }
+            effectButtonType = { name = "jr_slot_mode_s12_empty" position = { x = 760 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_empty" }
+            effectButtonType = { name = "jr_slot_mode_s12_full" position = { x = 760 y = 780 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s12_full" }
             effectButtonType = { name = "jr_slot_bg_s13" position = { x = 24 y = 818 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s13" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s13" position = { x = 28 y = 826 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s13" }
             effectButtonType = { name = "jr_slot_icon_s13" position = { x = 56 y = 825 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
-            effectButtonType = { name = "jr_slot_name_s13" position = { x = 90 y = 824 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
-            effectButtonType = { name = "jr_slot_wf_s13" position = { x = 214 y = 824 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s13" }
-            effectButtonType = { name = "jr_slot_change_s13" position = { x = 328 y = 824 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s13" }
-            effectButtonType = { name = "jr_slot_rate_s13" position = { x = 382 y = 824 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
-            effectButtonType = { name = "jr_slot_output_s13" position = { x = 440 y = 824 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
-            effectButtonType = { name = "jr_slot_mode_s13_auto" position = { x = 718 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s13_auto" }
-            effectButtonType = { name = "jr_slot_mode_s13_manual" position = { x = 718 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_manual" }
-            effectButtonType = { name = "jr_slot_mode_s13_empty" position = { x = 718 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_empty" }
-            effectButtonType = { name = "jr_slot_mode_s13_full" position = { x = 718 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_full" }
+            effectButtonType = { name = "jr_slot_name_s13" position = { x = 90 y = 824 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
+            effectButtonType = { name = "jr_slot_wf_s13" position = { x = 244 y = 824 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s13" }
+            effectButtonType = { name = "jr_slot_change_s13" position = { x = 358 y = 824 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s13" }
+            effectButtonType = { name = "jr_slot_rate_s13" position = { x = 412 y = 824 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
+            effectButtonType = { name = "jr_slot_output_s13" position = { x = 470 y = 824 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s13_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s13" }
+            effectButtonType = { name = "jr_slot_mode_s13_auto" position = { x = 760 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s13_auto" }
+            effectButtonType = { name = "jr_slot_mode_s13_manual" position = { x = 760 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_manual" }
+            effectButtonType = { name = "jr_slot_mode_s13_empty" position = { x = 760 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_empty" }
+            effectButtonType = { name = "jr_slot_mode_s13_full" position = { x = 760 y = 824 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s13_full" }
             effectButtonType = { name = "jr_slot_bg_s14" position = { x = 24 y = 862 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s14" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s14" position = { x = 28 y = 870 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s14" }
             effectButtonType = { name = "jr_slot_icon_s14" position = { x = 56 y = 869 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
-            effectButtonType = { name = "jr_slot_name_s14" position = { x = 90 y = 868 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
-            effectButtonType = { name = "jr_slot_wf_s14" position = { x = 214 y = 868 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s14" }
-            effectButtonType = { name = "jr_slot_change_s14" position = { x = 328 y = 868 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s14" }
-            effectButtonType = { name = "jr_slot_rate_s14" position = { x = 382 y = 868 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
-            effectButtonType = { name = "jr_slot_output_s14" position = { x = 440 y = 868 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
-            effectButtonType = { name = "jr_slot_mode_s14_auto" position = { x = 718 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s14_auto" }
-            effectButtonType = { name = "jr_slot_mode_s14_manual" position = { x = 718 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_manual" }
-            effectButtonType = { name = "jr_slot_mode_s14_empty" position = { x = 718 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_empty" }
-            effectButtonType = { name = "jr_slot_mode_s14_full" position = { x = 718 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_full" }
+            effectButtonType = { name = "jr_slot_name_s14" position = { x = 90 y = 868 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
+            effectButtonType = { name = "jr_slot_wf_s14" position = { x = 244 y = 868 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s14" }
+            effectButtonType = { name = "jr_slot_change_s14" position = { x = 358 y = 868 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s14" }
+            effectButtonType = { name = "jr_slot_rate_s14" position = { x = 412 y = 868 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
+            effectButtonType = { name = "jr_slot_output_s14" position = { x = 470 y = 868 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s14_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s14" }
+            effectButtonType = { name = "jr_slot_mode_s14_auto" position = { x = 760 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s14_auto" }
+            effectButtonType = { name = "jr_slot_mode_s14_manual" position = { x = 760 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_manual" }
+            effectButtonType = { name = "jr_slot_mode_s14_empty" position = { x = 760 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_empty" }
+            effectButtonType = { name = "jr_slot_mode_s14_full" position = { x = 760 y = 868 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s14_full" }
             effectButtonType = { name = "jr_slot_bg_s15" position = { x = 24 y = 906 } size = { x = 812 y = 42 } quadTextureSprite = "GFX_interface_list_dark" effect = "bca_jr_slot_visible_s15" alwaysTransparent = yes }
             effectButtonType = { name = "jr_slot_locate_s15" position = { x = 28 y = 914 } size = { x = 24 y = 28 } font = "cg_16b" buttonText = "BCA_JR_LOCATE_BUTTON" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_locate_s15" }
             effectButtonType = { name = "jr_slot_icon_s15" position = { x = 56 y = 913 } size = { x = 30 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_ICON" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
-            effectButtonType = { name = "jr_slot_name_s15" position = { x = 90 y = 912 } size = { x = 120 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
-            effectButtonType = { name = "jr_slot_wf_s15" position = { x = 214 y = 912 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s15" }
-            effectButtonType = { name = "jr_slot_change_s15" position = { x = 328 y = 912 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s15" }
-            effectButtonType = { name = "jr_slot_rate_s15" position = { x = 382 y = 912 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
-            effectButtonType = { name = "jr_slot_output_s15" position = { x = 440 y = 912 } size = { x = 274 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
-            effectButtonType = { name = "jr_slot_mode_s15_auto" position = { x = 718 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s15_auto" }
-            effectButtonType = { name = "jr_slot_mode_s15_manual" position = { x = 718 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_manual" }
-            effectButtonType = { name = "jr_slot_mode_s15_empty" position = { x = 718 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_empty" }
-            effectButtonType = { name = "jr_slot_mode_s15_full" position = { x = 718 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_full" }
+            effectButtonType = { name = "jr_slot_name_s15" position = { x = 90 y = 912 } size = { x = 150 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_NAME" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
+            effectButtonType = { name = "jr_slot_wf_s15" position = { x = 244 y = 912 } size = { x = 110 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_WF" format = right vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_wf_tooltip_s15" }
+            effectButtonType = { name = "jr_slot_change_s15" position = { x = 358 y = 912 } size = { x = 50 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_CHANGE" format = center vertical_alignment = center alwaysTransparent = no effect = "bca_jr_slot_change_tooltip_s15" }
+            effectButtonType = { name = "jr_slot_rate_s15" position = { x = 412 y = 912 } size = { x = 54 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_RATE" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
+            effectButtonType = { name = "jr_slot_output_s15" position = { x = 470 y = 912 } size = { x = 286 y = 30 } font = "cg_16b" buttonText = "BCA_JR_SLOT_s15_OUTPUT" format = left vertical_alignment = center alwaysTransparent = yes effect = "bca_jr_slot_visible_s15" }
+            effectButtonType = { name = "jr_slot_mode_s15_auto" position = { x = 760 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_AUTO" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_enabled" effect = "bca_jr_slot_mode_s15_auto" }
+            effectButtonType = { name = "jr_slot_mode_s15_manual" position = { x = 760 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_MANUAL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_manual" }
+            effectButtonType = { name = "jr_slot_mode_s15_empty" position = { x = 760 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_EMPTY" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_empty" }
+            effectButtonType = { name = "jr_slot_mode_s15_full" position = { x = 760 y = 912 } size = { x = 72 y = 30 } font = "cg_16b" buttonText = "BCA_JR_MODE_FULL" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_slot_mode_s15_full" }
             effectButtonType = { name = "auto_section_title" position = { x = 24 y = 56 } size = { x = 812 y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_2" }
             effectButtonType = { name = "auto_section_hint" position = { x = 24 y = 90 } size = { x = 812 y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT" format = center vertical_alignment = top alwaysTransparent = yes effect = "bca_tab_visible_2" }
             effectButtonType = {
@@ -3037,6 +3038,83 @@ guiTypes = {
                 quadTextureSprite = "GFX_bca_button_standard_disabled"
                 effect = "bca_global_settings_reserve_job_plus_100"
             }
+        }
+        effectButtonType = {
+            name = "support_panel_background"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "gfx_message_bg"
+            effect = "bca_support_overlay_visible"
+        }
+        effectButtonType = {
+            name = "support_platform"
+            position = {
+                x = -160
+                y = 682
+            }
+            size = { x = 144 y = 69 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_PLATFORM_BUTTON"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_platform_select"
+        }
+        effectButtonType = {
+            name = "support_unity"
+            position = {
+                x = -160
+                y = 757
+            }
+            size = { x = 144 y = 69 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_UNITY_BUTTON"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_unity_select"
+        }
+        effectButtonType = {
+            name = "support_display"
+            position = {
+                x = -160
+                y = 682
+            }
+            size = { x = 144 y = 144 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_DISPLAY_IMAGE"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "gfx_message_bg"
+            effect = "bca_support_display_advance"
+        }
+        effectButtonType = {
+            name = "support_frame_1"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "gfx_planet_frame_tile"
+            effect = "bca_support_overlay_visible"
+            alwaysTransparent = yes
+        }
+        effectButtonType = {
+            name = "support_frame_2"
+            position = { x = -168 y = 674 }
+            size = { x = 160 y = 160 }
+            quadTextureSprite = "GFX_light_frame_area"
+            effect = "bca_support_overlay_visible"
+            alwaysTransparent = yes
+        }
+        effectButtonType = {
+            name = "support_toggle"
+            position = { x = 12 y = 814 }
+            size = { x = 20 y = 20 }
+            font = "cg_16b"
+            buttonText = "BCA_SUPPORT_ENTRY_ICON"
+            tooltipText = "BCA_SUPPORT_ENTRY_TOOLTIP"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_bca_button_standard_disabled"
+            effect = "bca_support_toggle"
         }
     }
 }

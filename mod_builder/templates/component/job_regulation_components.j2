@@ -73,8 +73,8 @@
     effectButtonType = { name = "jr_show_all_outputs_unselected" position = { x = {{ output_x }} y = {{ btn_y }} } size = { x = {{ output_w }} y = {{ btn_h }} } font = "cg_16b" buttonText = "BCA_JR_SHOW_ALL_OUTPUTS" format = center vertical_alignment = center quadTextureSprite = "GFX_bca_button_standard_disabled" effect = "bca_jr_show_all_outputs_unselected" }
 {%- endmacro %}
 
-{% macro header_label(name, text, x, y, w, h) -%}
-    effectButtonType = { name = "{{ name }}" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "{{ text }}" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_1" }
+{% macro header_label(name, text, x, y, w, h, tooltip="") -%}
+    effectButtonType = { name = "{{ name }}" position = { x = {{ x }} y = {{ y }} } size = { x = {{ w }} y = {{ h }} } font = "cg_16b" buttonText = "{{ text }}" format = center vertical_alignment = center alwaysTransparent = {% if tooltip %}no{% else %}yes{% endif %} effect = "bca_tab_visible_1"{% if tooltip %} tooltipText = "{{ tooltip }}"{% endif %} }
 {%- endmacro %}
 
 {% macro sort_header(name, text, x, y, w, h, effect) -%}
@@ -85,8 +85,8 @@
 {% macro table_header(x, y, job_x, job_w, wf_x, wf_w, change_x, change_w, rate_x, rate_w, output_x, output_w, action_x, action_w, h=24) -%}
     {{ header_label("jr_hdr_job", "BCA_JR_HEADER_JOB", x, y, wf_x - 4, h) }}
     {{ sort_header("jr_hdr_wf", "BCA_JR_HEADER_WORKFORCE", x + wf_x, y, wf_w, h, "bca_jr_sort_workforce") }}
-    {{ header_label("jr_hdr_change", "BCA_JR_HEADER_CHANGE", x + change_x, y, change_w, h) }}
-    {{ header_label("jr_hdr_rate", "BCA_JR_HEADER_RATE", x + rate_x, y, rate_w, h) }}
+    {{ header_label("jr_hdr_change", "BCA_JR_HEADER_CHANGE", x + change_x, y, change_w, h, "BCA_JR_HEADER_CHANGE_TOOLTIP") }}
+    {{ header_label("jr_hdr_rate", "BCA_JR_HEADER_RATE", x + rate_x, y, rate_w, h, "BCA_JR_HEADER_RATE_TOOLTIP") }}
     {{ sort_header("jr_hdr_output", "BCA_JR_HEADER_OUTPUT", x + output_x, y, output_w, h, "bca_jr_sort_output") }}
     {{ sort_header("jr_hdr_status", "BCA_JR_HEADER_STATUS", x + action_x, y, action_w, h, "bca_jr_sort_status") }}
 {%- endmacro %}
