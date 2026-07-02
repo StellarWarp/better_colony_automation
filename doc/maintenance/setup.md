@@ -5,6 +5,28 @@ See also:
 - [Maintenance Playbook](playbook.md)
 - [DSL Style Guide](dsl-style-guide.md)
 
+## Python Runtime Environment
+
+The project build scripts should run inside the repository's Python environment.
+Before assuming the environment name or creating a new one, inspect the local
+Conda environments:
+
+```powershell
+conda env list
+```
+
+Look for a project-specific environment first. The current development
+environment is commonly named:
+
+```text
+better_colony_automation
+```
+
+Use the environment's Python interpreter for build commands. If the active
+shell does not expose `conda`, call the environment's `python.exe` directly
+from the Conda installation. Do not commit machine-specific interpreter paths
+to project files or documentation examples beyond illustrating the pattern.
+
 ## CWTools Stellaris Configuration
 
 This project expects the Stellaris CWTools rule files to be available at:

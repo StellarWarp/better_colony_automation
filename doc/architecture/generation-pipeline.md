@@ -83,13 +83,16 @@ Location:
 
 - [`../../mod_builder/templates/generated_configs/`](../../mod_builder/templates/generated_configs/)
 
-This directory is generated and not editable by hand.
+This directory is primarily generated and not editable by hand unless a file is
+explicitly documented as a handwritten exception. See
+[Template And Generation Rules](../maintenance/dsl-style-guide/templates.md).
 
 Its contents come from:
 
 - copy steps from handwritten `configs/`
 - parser/extraction output from Stellaris definitions
 - normalized building strategy projections
+- explicitly documented handwritten renderer/build config exceptions
 
 Important building-related generated inputs include:
 
@@ -182,12 +185,16 @@ demolition projections. See
 5. Render `.txt.j2` templates under `templates/events/` into `events/`.
 6. Render `.yml.j2` localisation templates into `localisation/`.
 7. Prepend a generated-file warning header to rendered output.
+8. Normalize `localisation/` files to UTF-8 with BOM.
+9. Publish configured packages through `scripts/publish_mod.py` with quiet
+   output.
 
 This means:
 
 - output paths are determined by template locations
 - runtime directories contain both generated and handwritten files
 - warning headers are the first-line ownership signal during editing
+- running `generate.py` can modify configured local Stellaris mod targets
 
 ## Component Macros
 
@@ -215,6 +222,20 @@ Purpose:
 - point maintainers back to the source template
 
 If the header disappears or becomes inaccurate, fix the renderer instead of patching generated files one by one.
+
+## Generated Config Layer
+
+`mod_builder/templates/generated_configs/` is primarily a renderer input layer
+fed by `mod_builder/configs/`, `mod_builder/parse/`, and
+`mod_builder/synthetipy/`. Most files there should not be edited directly.
+
+Current documented exception:
+
+- `support_layout.yaml` is handwritten UI/support-asset build config shared by
+  GUI rendering and DDS generation.
+
+Avoid adding more handwritten files to this directory. Prefer `mod_builder/configs/`
+for future hand-maintained build config.
 
 ## Submod And Variant Metadata
 

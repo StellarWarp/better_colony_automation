@@ -4,6 +4,9 @@ See also:
 
 - [Development Setup](setup.md)
 - [DSL Style Guide](dsl-style-guide.md)
+- [GUI And Tooltip Rules](dsl-style-guide/gui.md)
+- [Localisation Rules](dsl-style-guide/localisation.md)
+- [Template And Generation Rules](dsl-style-guide/templates.md)
 - [Change Entrypoints](change-entrypoints.md)
 - [Generation Pipeline](../architecture/generation-pipeline.md)
 - [Runtime Flow](../architecture/runtime-flow.md)
@@ -27,7 +30,14 @@ Development reality:
 3. Check whether the file is generated. Generated warning headers are the first edit-site signal.
 4. If generated, go back to the template, handwritten config, or parser/extraction tool.
 5. Check whether the same behavior also has handwritten siblings.
-6. If DSL syntax, scope, or API usage is uncertain, check [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document `logs/script_documentation`.
+6. If DSL syntax, scope, GUI behavior, or API usage is uncertain, check
+   [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document
+   `logs/script_documentation`.
+
+When inspecting `.txt` runtime DSL files, read the first few lines before
+reasoning from the body. Generated files should identify their source template
+near the top; use that source as the edit site and treat the generated file as
+verification material.
 
 Useful starting questions:
 
@@ -111,6 +121,9 @@ Rules:
 
 - shell macro owns required hidden/displaced event-window fields
 - content macro owns visible business controls
+- dynamic GUI tooltips should use one button-effect `custom_tooltip` that calls
+  scripted loc through localisation; GUI `tooltipText` is not reliable for
+  scripted loc
 - auto-demolition now has one public entry point: the global settings panel
 - GUI display text must use `BCA_GLOBAL_SETTINGS_*` localisation keys
 - custom GUI must not reuse legacy `policy_*` public-entry text
@@ -139,7 +152,8 @@ Mitigation:
 
 - edit `mod_builder/configs/` for handwritten config changes
 - edit `mod_builder/parse/` or `mod_builder/synthetipy/` for extracted config logic
-- never hand-edit `mod_builder/templates/generated_configs/`
+- never hand-edit `mod_builder/templates/generated_configs/` unless the file is
+  explicitly documented as a handwritten exception
 
 ### Breaking custom event GUI shell invariants
 
@@ -186,21 +200,43 @@ For auto-demolition changes, test both paths:
 - global-settings defaults on a newly initialized or reset planet
 - global-settings bulk application on already initialized planets
 
-## Local Publication
+## Local Generation And Publication
 
-Runtime generation and publication are separate operations:
+Before running build commands, check the available Conda environments and use
+the project environment described in [Development Setup](setup.md).
+
+`mod_builder/generate.py` renders runtime files, normalizes localisation
+encoding, and then publishes using `scripts/publish_mod.py` with quiet output.
+Do not run it casually if the configured Stellaris mod target directories
+should not be touched.
 
 ```powershell
 conda run -n better_colony_automation python mod_builder/generate.py
+```
+
+To inspect publication behavior without copying files, run the publisher
+directly with `--dry-run`:
+
+```powershell
 conda run -n better_colony_automation python scripts/publish_mod.py --dry-run
-conda run -n better_colony_automation python scripts/publish_mod.py
 ```
 
 Targets and per-package root files are configured in
 [`../../scripts/publish_mod.yaml`](../../scripts/publish_mod.yaml).
 
-Every publish deletes each selected package target directory before copying the
-current package. Use `--package` to limit which target directories are replaced.
+With no package argument, `publish_mod.py` publishes every configured package.
+Use `--package` to limit which package is copied.
+
+Publication cleans only configured generated/runtime paths in each target
+directory before copying the current package. The default clean set is:
+
+- `common`
+- `events`
+- `gfx`
+- `interface`
+- `descriptor.mod`
+- `license`
+- `thumbnail.png`
 
 Useful package-specific checks:
 
@@ -236,6 +272,9 @@ When changing behavior, update whichever docs become stale:
 - runtime order changes -> [`../architecture/runtime-flow.md`](../architecture/runtime-flow.md)
 - state semantics changes -> [`../architecture/state-model.md`](../architecture/state-model.md)
 - generator inputs/outputs change -> [`../architecture/generation-pipeline.md`](../architecture/generation-pipeline.md)
-- DSL or Jinja conventions change -> [`dsl-style-guide.md`](dsl-style-guide.md)
+- DSL conventions change -> [`dsl-style-guide/dsl-core.md`](dsl-style-guide/dsl-core.md)
+- GUI or tooltip conventions change -> [`dsl-style-guide/gui.md`](dsl-style-guide/gui.md)
+- localisation conventions change -> [`dsl-style-guide/localisation.md`](dsl-style-guide/localisation.md)
+- Jinja or generated-output conventions change -> [`dsl-style-guide/templates.md`](dsl-style-guide/templates.md)
 - development prerequisites or external tool setup change -> [`setup.md`](setup.md)
 - common change entrypoints change -> [`change-entrypoints.md`](change-entrypoints.md)

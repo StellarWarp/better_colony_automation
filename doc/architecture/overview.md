@@ -42,7 +42,10 @@ Why it exists:
 - Many facts needed by automation logic are not conveniently available through runtime script APIs.
 - The project therefore parses upstream Stellaris definitions before rendering runtime scripts.
 
-`mod_builder/templates/generated_configs/` is a generated input layer. Do not edit it by hand.
+`mod_builder/templates/generated_configs/` is primarily a generated input
+layer. Do not edit files there by hand unless a file is explicitly documented
+as a handwritten exception in
+[Template And Generation Rules](../maintenance/dsl-style-guide/templates.md).
 
 ## 2. Template Generation Layer
 

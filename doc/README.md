@@ -31,6 +31,9 @@ Read these when you are about to change behavior, templates, GUI, localisation, 
 4. [Change Entrypoints](maintenance/change-entrypoints.md)
 5. [Handwritten Hotspots](maintenance/handwritten-hotspots.md)
 
+The style guide is split into topic pages for DSL core rules, GUI behavior,
+localisation, and template generation. Start from the index when unsure.
+
 ## Project Ownership Model
 
 The project mixes handwritten runtime code, generated runtime code, templates, generated config inputs, and parser output.
@@ -39,7 +42,9 @@ Important rules:
 
 - `mod_builder/configs/` contains handwritten config source.
 - `mod_builder/templates/` contains Jinja templates and template components.
-- `mod_builder/templates/generated_configs/` is fully program-generated and must not be edited by hand.
+- `mod_builder/templates/generated_configs/` is primarily program-generated and
+  must not be edited by hand unless a specific file is documented as a
+  handwritten exception.
 - `mod_builder/parse/` and `mod_builder/synthetipy/` form a parser/extraction frontend for Stellaris script definitions.
 - Generated runtime files should contain a warning header pointing back to the source template.
 
@@ -50,6 +55,8 @@ Do not assume that a long file under `common/`, `events/`, `interface/`, or `loc
 - Clone the CWTools Stellaris configuration repository and link its `config/`
   directory to `.config/stellaris` as described in
   [Development Setup](maintenance/setup.md).
+- Check the local Conda environment list before running build scripts; prefer
+  the project-specific environment if present.
 - Stellaris mod logic does not support hot reload; after logic edits, re-enter the game to test.
 - Event-window tests are the fastest practical feedback loop for scripted logic.
 - Use a dedicated test event such as [`../events/test_event.txt`](../events/test_event.txt) for manual in-game testing.
@@ -62,5 +69,7 @@ Before changing behavior:
 
 1. Identify which layer owns the change.
 2. If a runtime file has a generated warning header, go back to the template or generator input.
-3. If DSL syntax or API usage is uncertain, check [DSL Style Guide](maintenance/dsl-style-guide.md) and the Stellaris user document `logs/script_documentation`.
+3. If DSL syntax, GUI behavior, tooltip behavior, or API usage is uncertain,
+   check [DSL Style Guide](maintenance/dsl-style-guide.md) and the Stellaris
+   user document `logs/script_documentation`.
 4. If the change affects release metadata, follow the release workflow in [Maintenance Playbook](maintenance/playbook.md).
