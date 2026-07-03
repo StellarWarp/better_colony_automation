@@ -500,7 +500,12 @@ def build():
                             template.render(**variant_config)
                         )
                         for lang_key, lang_prefix in LANG_PREFIXES.items():
-                            lang_content = content.replace('all:', f'{lang_prefix}:')
+                            lang_content = re.sub(
+                                r"(?m)^all:\s*$",
+                                f"{lang_prefix}:",
+                                content,
+                                count=1,
+                            )
                             lang_output_name = variant.output_name.replace(
                                 '.yml',
                                 f'_{lang_key}.yml',

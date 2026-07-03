@@ -7,14 +7,22 @@
 bca_global_settings_economic_management_off_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
-    effect = { from = { remove_country_flag = bca_enable_economic_management } }
+    effect = {
+        hidden_effect = {
+            from = { remove_country_flag = bca_enable_economic_management }
+        }
+    }
 }
 
 
 bca_global_settings_economic_management_off_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
-    effect = { from = { remove_country_flag = bca_enable_economic_management } }
+    effect = {
+        hidden_effect = {
+            from = { remove_country_flag = bca_enable_economic_management }
+        }
+    }
 }
 
 
@@ -22,9 +30,11 @@ bca_global_settings_economic_management_on_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  has_country_flag = bca_enable_economic_management } }
     allow = { always = yes }
     effect = {
-        from = {
-            set_country_flag = bca_enable_economic_management
-            bca_global_settings_recompute_economic_target_bounds = yes
+        hidden_effect = {
+            from = {
+                set_country_flag = bca_enable_economic_management
+                bca_global_settings_recompute_economic_target_bounds = yes
+            }
         }
     }
 }
@@ -34,9 +44,11 @@ bca_global_settings_economic_management_on_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 0 }  NOT = { has_country_flag = bca_enable_economic_management } } }
     allow = { always = yes }
     effect = {
-        from = {
-            set_country_flag = bca_enable_economic_management
-            bca_global_settings_recompute_economic_target_bounds = yes
+        hidden_effect = {
+            from = {
+                set_country_flag = bca_enable_economic_management
+                bca_global_settings_recompute_economic_target_bounds = yes
+            }
         }
     }
 }

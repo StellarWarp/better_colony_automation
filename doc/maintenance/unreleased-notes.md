@@ -24,6 +24,8 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 - District planning UI: fixed dynamic district and zone text lookups by using
   the colony scope in localisation, so primary/secondary district counts and
   zone icons no longer display stale or zero values from the wrong scope.
+- District planning UI: enabled multiline zone-name display so longer localized
+  zone names can wrap instead of being clipped in the district settings panel.
 - District planning UI: updated the job regulation header icons and tooltips so
   automation rate uses the automated workforce icon, monthly job change uses the
   job icon, and transparent buttons still expose their tooltips.
@@ -32,3 +34,6 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 - Arcology candidate planning: aligned primary district counting with the
   arcology-candidate display scale while keeping existing build gates and
   secondary-district clearing behavior intact.
+- Localisation: improved English, Japanese, and Russian coverage so translated
+  UI text is consistent with the Simplified Chinese baseline, including fixes
+  for missing, duplicate, and incorrectly generated text keys.

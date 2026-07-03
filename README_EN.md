@@ -67,6 +67,13 @@
 
 ## Changelog
 
+哇噗 **26-07-04 - v2.0.0**
+- Added the optional **Macroeconomy: Job Statistics & Regulation** submod, with empire-wide job, workforce, and job-output statistics, resource-category filters, monthly job changes, automation rate, job-output display, and colony lookup for selected jobs.
+- Job regulation can automatically open or close relevant jobs according to BCA economic output targets and regulation tolerance, directing pops toward the sectors your economy currently needs. Each job can also be configured independently.
+- Reworked economic management and pre-construction logic: pre-construction can now build planned districts, zones, and buildings even when the empire does not currently need that output. Economic targets, job reserve, and pre-construction now have clearer roles.
+- Improved settings panel and district-planning behavior: disabling district auto-demolition now syncs and clamps plans to the current layout; fixed detailed secondary district buttons, dynamic district/zone text, long-name wrapping, job-regulation header icons and tooltips, and the global settings event timeout issue.
+- Improved English, Japanese, and Russian localisation coverage, including missing, duplicate, and incorrectly generated text keys.
+
 哇噗 **26-06-23 - v1.8.0**
 - Added configurable output target thresholds. Automation will expand each output type only while empire monthly revenue is below its configured target; these thresholds are construction gates only and do not change the colony's current plan or panel settings. The vanilla "Avoid Deficit" automation option has been removed and replaced by clearer output target controls.
 - Improved settings synchronization when zone auto-demolition is disabled: the panel now aligns with already built zones.

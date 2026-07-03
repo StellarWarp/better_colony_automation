@@ -1,14 +1,15 @@
 ﻿l_simp_chinese:
  MESSAGE_BCA_STARTUP: "Better Colony Automation 通知"
- MESSAGE_BCA_STARTUP_desc: "§YBetter Colony Automation§! by 哇噗\n\n本模组对自动托管功能进行了修复与改良。你可以通过['concept_colony']上的['concept_planet_automation']设置，以及国家级的自动建造全局设置面板来配置模组的具体行为。\n\n§H主要功能：§!\n- §Y智能规划：§! 根据星球特化方向自动规划和建造区块。最大化目标产出\n- §Y自动拆除：§! 必要时自动拆除不需要的 £building£ ['concept_buildings']、£district£ ['concept_district'] 与 £zone£ ['concept_district_specialization']\n- §Y更多§!：访问创意工坊以查看详情。\n\n§H注意§! ：§Y自动拆除§!是独立于['concept_planet_automation']的功能，默认值可通过自动建造全局设置面板配置\n\n当前模组作者对普政以外的国家游玩较少，欢迎反馈问题与意见！"
+ MESSAGE_BCA_STARTUP_desc: "§YBetter Colony Automation§! by 哇噗\n\nBCA 会按你的殖民地规划自动处理建筑、区划、区划特化的建设与拆除，并根据资源储备、岗位空缺、提前建设和经济产出目标控制建设节奏。\n\n§H快速开始：§!\n- 在行星界面开启 ['concept_planet_automation']，并保留你希望 BCA 接管的自动化选项\n- 在殖民地区划设置面板检查区划特化和区划数量；默认规划会跟随殖民地专精\n- 在§H自动建造全局设置§!中配置资源储备、岗位阈值、提前建设、经济调控和自动拆除默认值\n\n§H全局设置入口：§!\n- 殖民地区划设置面板左上角的按钮\n- 法令/法典中的§H自动建造全局设置§!入口\n\n§H注意§!：建筑、区划和区划特化的自动拆除可以分别关闭；默认值和批量应用请在全局设置中调整。"
 
  
  MESSAGE_BCA_UPDATE: "Better Colony Automation 更新推送"
  MESSAGE_BCA_UPDATE_desc: "$MESSAGE_BCA_UPDATE_desc_verson$\n$MESSAGE_BCA_UPDATE_desc_important$\n$MESSAGE_BCA_STARTUP_desc_log$"
- MESSAGE_BCA_UPDATE_desc_verson: "§YBetter Colony Automation§! 更新到 v1.8.0 ！"
+ MESSAGE_BCA_UPDATE_desc_verson: "§YBetter Colony Automation§! 更新到 v2.0.0 ！"
  MESSAGE_BCA_UPDATE_desc_important: "§R注意§!: 此 MOD 需要 §1UI Overhaul Dynamic§! 作为前置MOD。\n反馈与交流：§YQQ 153870310§!"
- MESSAGE_BCA_STARTUP_desc_log: "$MESSAGE_BCA_STARTUP_desc_log_v180$\n$MESSAGE_BCA_STARTUP_desc_log_v170$\n$MESSAGE_BCA_STARTUP_desc_log_v161$\n$MESSAGE_BCA_STARTUP_desc_log_v160$\n$MESSAGE_BCA_STARTUP_desc_log_v150$\n\n['concept_bca_prev_update_log']"
+ MESSAGE_BCA_STARTUP_desc_log: "$MESSAGE_BCA_STARTUP_desc_log_v200$\n\n['concept_bca_1xx_update_log']"
 
+ MESSAGE_BCA_STARTUP_desc_log_v200: "\n§Y2026-7-4 - v2.0.0§!：\n\t- §G岗位统计与调控§!：新增可选子 Mod §1宏观经济：岗位统计与调控§!，提供帝国级岗位、劳动力和岗位产出统计，并支持按资源类型筛选岗位、查看月度岗位变化、自动率和岗位产出\n\t\t- 可快速定位拥有指定岗位的殖民地\n\t\t- 可根据 BCA 的经济产出目标和调控容差，自动开放或关闭相关岗位，引导人口流向当前经济更需要的生产部门\n\t\t- 每个岗位可以独立配置是否参与自动调控；只想查看统计时，也可以关闭殖民地自动化和全局岗位调控\n\t- §G经济调控与提前建设§!：重整自动建设的经济需求判断，提前建设现在可以按殖民地规划预建区划、特化和建筑，即使帝国当前暂不需要对应产出\n\t\t- 新增更细分的建设需求触发器，使提前建设不会改变岗位调控自身的需求判断\n\t\t- 经济目标、岗位预留和提前建设的职责更加明确，便于分别控制“是否需要产出”和“是否提前补足规划”\n\t- §H设置面板与体验修复§!：改进区划规划、岗位调控和多语言界面的显示与交互\n\t\t- 关闭区划自动拆除时，区划规划会同步并锁定到当前布局，避免残留计划继续暗示拆除\n\t\t- 修复详细次要区划按钮、动态区划/特化文本、长特化名称换行、岗位调控表头图标与提示等显示问题\n\t\t- 修复全局设置事件可能被游戏长时间事件超时机制关闭的问题\n\t\t- 改进英文、日文和俄文本地化覆盖，修复缺失、重复和错误生成的文本键"
  MESSAGE_BCA_STARTUP_desc_log_v180: "\n§Y2026-6-23 - v1.8.0§!：\n\t- §G产出目标阈值§!：全局设置面板新增各类产出的目标阈值，自动化只会在帝国月度收入低于对应目标时继续扩张相关产出；该阈值只影响是否建设，不会改变星球规划。原版“避免赤字”自动化选项已移除，并由更明确的产出目标阈值接管相关控制\n\t- §H修复与体验改进§!：关闭区划特化自动拆除后，设置面板会按当前已建设特化同步；修复部分错误建设策略与游牧方舟区划特化贴图缺失等问题"
  MESSAGE_BCA_STARTUP_desc_log_v170: "\n§Y2026-6-20 - v1.7.0§!：\n\t- §G支持 Stellaris 4.4§!：适配 Stellaris 4.4 变更的脚本 API，修复自动化此前无法运行的问题\n\t- §G游牧方舟自动化§!：支持新增的方舟特化、区划、区划特化、强化建筑与乘客宿舍住房自动化\n\t- §H建筑自动化维护§!：重构内部建筑自动化配置，使建筑建设与拆除规则更加一致"
  MESSAGE_BCA_STARTUP_desc_log_v161: "\n§Y2026-6-15 - v1.6.1§!：\n\t- §G多人全局设置修复§!：修复多人联机中调整国家级全局设置会同步影响房间内其他玩家的问题\n\t- §G多人行星入口修复§!：修复多人联机中行星界面的全局设置入口，使其只对当前玩家国家的殖民地显示并正确打开对应国家面板"
@@ -16,6 +17,8 @@
 
  MESSAGE_BCA_STARTUP_desc_log_v150: "\n§Y2026-4-6 - v1.5§!：\n\t- §G岗位计算相关改进§!：在前按照可用岗位数量计算是否需要建设，导致在非主体种族的岗位也被计入，现在已修改为按阶层计数\n\t- §G修复与完善自动区划设置§!：现在支持了所有类型的资源区划的自动设置，包括贝塞里安发电与农业居住站。修复之前启用自动区划设置时导致的建筑和区划建设停止问题\n\t- §G凝聚力相关的建筑改进§!：凝聚力建筑的建设更加完全\n\t- §G修复与改进稀有资源建筑逻辑§!：稀有资源建筑现在会正常按照预设值进行建设，§V并且会在建筑槽已满时将一些建筑替换为稀有资源建筑§!\n\t- §H改进人口组装逻辑§!：§P现在提供更详细的政策来控制人口组装建筑的建造与拆除§!\n\t- §H建筑建设调整§!：移除资源建筑的堕落帝国建筑建设\n\t- §H修复特化建设§!：修复次要区划特化修建到主区划的问题"
  MESSAGE_BCA_STARTUP_desc_log_v140: "\n§Y2026-4-1 - v1.4§!：\n\t- §G改进理想城的建设§!：当有多个理想城满足建设条件时，会聚合到一个事件面板方便查看\n\t- §G改进度假球的建设逻辑§!：现在度假球只会建设住宅建筑作为其功能建筑\n\t- §G发电与采矿居住站的自动区划管理§!：现在已支持为发电与采矿居住站区划管理，开启情况下会将所有区划经可能转换为一产区划\n\t- §H修复建筑错误建设问题§!：在前混合特化的建筑根据面板设置进行建设，导致一些不进行建设的特化上的建筑也发生建设，现在将以已建设的特化为准\n\t- §H修复建筑错误拆除§!：行政混合特化（凝聚力+科研）下科研建筑被拆除问题已修复"
+ concept_bca_1xx_update_log: "1.x 版本更新日志"
+ concept_bca_1xx_update_log_desc: "$MESSAGE_BCA_STARTUP_desc_log_v180$\n$MESSAGE_BCA_STARTUP_desc_log_v170$\n$MESSAGE_BCA_STARTUP_desc_log_v161$\n$MESSAGE_BCA_STARTUP_desc_log_v160$\n$MESSAGE_BCA_STARTUP_desc_log_v150$\n\n['concept_bca_prev_update_log']"
  concept_bca_prev_update_log: "之前的更新日志"
  concept_bca_prev_update_log_desc: "$MESSAGE_BCA_STARTUP_desc_log_v130$\n$MESSAGE_BCA_STARTUP_desc_log_v120$\n$MESSAGE_BCA_STARTUP_desc_log_v110$\n$MESSAGE_BCA_STARTUP_desc_log_v102$\n$MESSAGE_BCA_STARTUP_desc_log_v101$\n$MESSAGE_BCA_STARTUP_desc_log_v100$\n\n['concept_bca_old_update_log']"
  MESSAGE_BCA_STARTUP_desc_log_v130: "\n§Y2026-2-28 - v1.3§! \n\t- §G对性能进行了优化§!\n\t- 重写了自动建筑拆除，现在不再依赖于修改原版建筑来进行拆除，§G不再和修改原版建筑的MOD冲突§!\n\t- 支持了为高级建筑的建设拆除只提供岗位的建筑（如研究实验室）以腾出空间\n\t- 修复了某些情况下特化建设停止的问题"
