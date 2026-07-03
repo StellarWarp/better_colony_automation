@@ -4,6 +4,7 @@
 {% set slots = job_regulation_config.display_slots | default(15) %}
 {% set resources = job_regulation_config.resources %}
 {% set display_numbers = [
+    "active_workforce",
     "assigned_workforce",
     "capacity_workforce",
     "pop_productive_workforce",
@@ -25,41 +26,38 @@
 
 {% macro formatted_number_script(s_name, number) -%}
     defined_text = {
-        name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_script
+        name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_VALUE_script
+        value = value:bca_jr_display_number|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+    }
+
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_UNIT_script
         random = no
         text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000000 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_jr_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+                    value >= 1000000
+                }
+            }
+            localization_key = BCA_JR_DISPLAY_UNIT_M
         }
         text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000000 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_jr_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+                    value >= 1000
+                }
+            }
+            localization_key = BCA_JR_DISPLAY_UNIT_K
         }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 1000 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
-        }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -1000 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K
-        }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 100 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
-        }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -100 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT
-        }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value >= 10 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
-        }
-        text = {
-            trigger = { check_variable = { which = bca_jr_slot_{{ s_name }}_{{ number }} value <= -10 } }
-            localization_key = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE
-        }
-        default = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_TWO
+        default = BCA_JR_DISPLAY_UNIT_EMPTY
+    }
+
+    defined_text = {
+        name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_script
+        random = no
+        default = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}
     }
 {%- endmacro %}
 

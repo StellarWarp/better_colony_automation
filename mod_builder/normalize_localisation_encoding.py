@@ -18,6 +18,8 @@ def normalize_localisation_encoding(
     for path in sorted(localisation_dir.rglob("*")):
         if not path.is_file():
             continue
+        if path.suffix != ".yml":
+            continue
 
         content = path.read_bytes()
         has_bom = content.startswith(codecs.BOM_UTF8)

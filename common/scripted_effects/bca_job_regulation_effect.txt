@@ -3609,6 +3609,7 @@ bca_jr_force_empty_job = {
             NOT = { has_carrier_flag = bca_jr_skip_empty_$JOB$ }
         }
         remove_carrier_flag = bca_jr_skip_full_$JOB$
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_dec_$JOB$_g3200
         if = {
             limit = { is_variable_set = bca_jr_acc_closable_capacity_workforce_$JOB$ }
@@ -3636,6 +3637,7 @@ bca_jr_force_full_job = {
             NOT = { has_carrier_flag = bca_jr_skip_full_$JOB$ }
         }
         remove_carrier_flag = bca_jr_skip_empty_$JOB$
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_inc_$JOB$_g3200
         set_variable = { which = bca_jr_actual_job_change value = bca_jr_acc_total_job_count_$JOB$ }
         if = {
@@ -3662,13 +3664,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_agri_drone } }
         bca_jr_force_full_job = { JOB = agri_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_agri_drone
-            }
-        }
     }
     else = {
         if = {
@@ -3755,13 +3750,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_alien_hunter } }
         bca_jr_force_full_job = { JOB = alien_hunter }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_alien_hunter
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_alien_hunter }
@@ -3846,13 +3834,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_archivist } }
         bca_jr_force_full_job = { JOB = archivist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_archivist
-            }
-        }
     }
     else = {
         if = {
@@ -3939,13 +3920,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_ark_harvester } }
         bca_jr_force_full_job = { JOB = ark_harvester }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_ark_harvester
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_ark_harvester }
@@ -4030,13 +4004,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_ark_harvester_gestalt } }
         bca_jr_force_full_job = { JOB = ark_harvester_gestalt }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_ark_harvester_gestalt
-            }
-        }
     }
     else = {
         if = {
@@ -4123,13 +4090,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_ark_waystation_trader } }
         bca_jr_force_full_job = { JOB = ark_waystation_trader }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_ark_waystation_trader
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_ark_waystation_trader }
@@ -4214,13 +4174,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_ark_waystation_trader_gestalt } }
         bca_jr_force_full_job = { JOB = ark_waystation_trader_gestalt }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_ark_waystation_trader_gestalt
-            }
-        }
     }
     else = {
         if = {
@@ -4307,13 +4260,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_artificer_prison_worker } }
         bca_jr_force_full_job = { JOB = artificer_prison_worker }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_artificer_prison_worker
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_artificer_prison_worker }
@@ -4398,13 +4344,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_artisan } }
         bca_jr_force_full_job = { JOB = artisan }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_artisan
-            }
-        }
     }
     else = {
         if = {
@@ -4491,13 +4430,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_artisan_drone } }
         bca_jr_force_full_job = { JOB = artisan_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_artisan_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_artisan_drone }
@@ -4582,13 +4514,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_artisan_prison_worker } }
         bca_jr_force_full_job = { JOB = artisan_prison_worker }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_artisan_prison_worker
-            }
-        }
     }
     else = {
         if = {
@@ -4675,13 +4600,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_astral_drone } }
         bca_jr_force_full_job = { JOB = astral_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_astral_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_astral_drone }
@@ -4766,13 +4684,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_astral_researcher } }
         bca_jr_force_full_job = { JOB = astral_researcher }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_astral_researcher
-            }
-        }
     }
     else = {
         if = {
@@ -4859,13 +4770,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_astral_unit } }
         bca_jr_force_full_job = { JOB = astral_unit }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_astral_unit
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_astral_unit }
@@ -4950,13 +4854,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_astrogarbage_collector } }
         bca_jr_force_full_job = { JOB = astrogarbage_collector }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_astrogarbage_collector
-            }
-        }
     }
     else = {
         if = {
@@ -5043,13 +4940,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_astrogarbage_collector_gestalt } }
         bca_jr_force_full_job = { JOB = astrogarbage_collector_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_astrogarbage_collector_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_astrogarbage_collector_gestalt }
@@ -5134,13 +5024,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_augmentor } }
         bca_jr_force_full_job = { JOB = augmentor }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_augmentor
-            }
-        }
     }
     else = {
         if = {
@@ -5227,13 +5110,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_augmentor_drone } }
         bca_jr_force_full_job = { JOB = augmentor_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_augmentor_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_augmentor_drone }
@@ -5318,13 +5194,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_bath_attendant } }
         bca_jr_force_full_job = { JOB = bath_attendant }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_bath_attendant
-            }
-        }
     }
     else = {
         if = {
@@ -5411,13 +5280,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_bio_trophy } }
         bca_jr_force_full_job = { JOB = bio_trophy }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_bio_trophy
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_bio_trophy }
@@ -5502,13 +5364,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_biologist } }
         bca_jr_force_full_job = { JOB = biologist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_biologist
-            }
-        }
     }
     else = {
         if = {
@@ -5595,13 +5450,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_broken_shackles_scavenger } }
         bca_jr_force_full_job = { JOB = broken_shackles_scavenger }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_broken_shackles_scavenger
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_broken_shackles_scavenger }
@@ -5686,13 +5534,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_bureaucrat } }
         bca_jr_force_full_job = { JOB = bureaucrat }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_bureaucrat
-            }
-        }
     }
     else = {
         if = {
@@ -5779,13 +5620,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_calculator_biologist } }
         bca_jr_force_full_job = { JOB = calculator_biologist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_calculator_biologist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_calculator_biologist }
@@ -5870,13 +5704,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_calculator_engineer } }
         bca_jr_force_full_job = { JOB = calculator_engineer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_calculator_engineer
-            }
-        }
     }
     else = {
         if = {
@@ -5963,13 +5790,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_calculator_physicist } }
         bca_jr_force_full_job = { JOB = calculator_physicist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_calculator_physicist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_calculator_physicist }
@@ -6054,13 +5874,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_catalytic_technician_prison_worker } }
         bca_jr_force_full_job = { JOB = catalytic_technician_prison_worker }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_catalytic_technician_prison_worker
-            }
-        }
     }
     else = {
         if = {
@@ -6147,13 +5960,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cave_cleaner_gestalt } }
         bca_jr_force_full_job = { JOB = cave_cleaner_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cave_cleaner_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_cave_cleaner_gestalt }
@@ -6238,13 +6044,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_chemist } }
         bca_jr_force_full_job = { JOB = chemist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_chemist
-            }
-        }
     }
     else = {
         if = {
@@ -6331,13 +6130,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_chemist_drone } }
         bca_jr_force_full_job = { JOB = chemist_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_chemist_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_chemist_drone }
@@ -6422,13 +6214,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_civilian } }
         bca_jr_force_full_job = { JOB = civilian }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_civilian
-            }
-        }
     }
     else = {
         if = {
@@ -6515,13 +6300,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_clerk } }
         bca_jr_force_full_job = { JOB = clerk }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_clerk
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_clerk }
@@ -6606,13 +6384,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_clip_maximizer } }
         bca_jr_force_full_job = { JOB = clip_maximizer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_clip_maximizer
-            }
-        }
     }
     else = {
         if = {
@@ -6699,13 +6470,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_colonist } }
         bca_jr_force_full_job = { JOB = colonist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_colonist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_colonist }
@@ -6790,13 +6554,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_coordinator } }
         bca_jr_force_full_job = { JOB = coordinator }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_coordinator
-            }
-        }
     }
     else = {
         if = {
@@ -6883,13 +6640,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cruise_crew_overseer } }
         bca_jr_force_full_job = { JOB = cruise_crew_overseer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cruise_crew_overseer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_cruise_crew_overseer }
@@ -6974,13 +6724,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cruise_crew_overseer_drone } }
         bca_jr_force_full_job = { JOB = cruise_crew_overseer_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cruise_crew_overseer_drone
-            }
-        }
     }
     else = {
         if = {
@@ -7067,13 +6810,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cruise_passenger } }
         bca_jr_force_full_job = { JOB = cruise_passenger }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cruise_passenger
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_cruise_passenger }
@@ -7158,13 +6894,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cruise_passenger_unemployment } }
         bca_jr_force_full_job = { JOB = cruise_passenger_unemployment }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cruise_passenger_unemployment
-            }
-        }
     }
     else = {
         if = {
@@ -7251,13 +6980,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cyberdome_duelist } }
         bca_jr_force_full_job = { JOB = cyberdome_duelist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cyberdome_duelist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_cyberdome_duelist }
@@ -7342,13 +7064,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_cyberdome_spectator } }
         bca_jr_force_full_job = { JOB = cyberdome_spectator }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_cyberdome_spectator
-            }
-        }
     }
     else = {
         if = {
@@ -7435,13 +7150,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_dimensional_portal_researcher } }
         bca_jr_force_full_job = { JOB = dimensional_portal_researcher }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_dimensional_portal_researcher
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_dimensional_portal_researcher }
@@ -7526,13 +7234,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_dimensional_portal_researcher_gestalt } }
         bca_jr_force_full_job = { JOB = dimensional_portal_researcher_gestalt }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_dimensional_portal_researcher_gestalt
-            }
-        }
     }
     else = {
         if = {
@@ -7619,13 +7320,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_drone_energy_thrall } }
         bca_jr_force_full_job = { JOB = drone_energy_thrall }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_drone_energy_thrall
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_drone_energy_thrall }
@@ -7710,13 +7404,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_drone_space_junk_collector } }
         bca_jr_force_full_job = { JOB = drone_space_junk_collector }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_drone_space_junk_collector
-            }
-        }
     }
     else = {
         if = {
@@ -7803,13 +7490,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_drone_wrangler } }
         bca_jr_force_full_job = { JOB = drone_wrangler }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_drone_wrangler
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_drone_wrangler }
@@ -7894,13 +7574,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_dystopian_enforcer } }
         bca_jr_force_full_job = { JOB = dystopian_enforcer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_dystopian_enforcer
-            }
-        }
     }
     else = {
         if = {
@@ -7987,13 +7660,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_dystopian_telepath } }
         bca_jr_force_full_job = { JOB = dystopian_telepath }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_dystopian_telepath
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_dystopian_telepath }
@@ -8078,13 +7744,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_energy_thrall } }
         bca_jr_force_full_job = { JOB = energy_thrall }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_energy_thrall
-            }
-        }
     }
     else = {
         if = {
@@ -8171,13 +7830,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_enforcer } }
         bca_jr_force_full_job = { JOB = enforcer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_enforcer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_enforcer }
@@ -8262,13 +7914,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_engineer } }
         bca_jr_force_full_job = { JOB = engineer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_engineer
-            }
-        }
     }
     else = {
         if = {
@@ -8355,13 +8000,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_entertainer } }
         bca_jr_force_full_job = { JOB = entertainer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_entertainer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_entertainer }
@@ -8446,13 +8084,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_evaluator } }
         bca_jr_force_full_job = { JOB = evaluator }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_evaluator
-            }
-        }
     }
     else = {
         if = {
@@ -8539,13 +8170,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_event_purge } }
         bca_jr_force_full_job = { JOB = event_purge }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_event_purge
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_event_purge }
@@ -8630,13 +8254,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fabricator } }
         bca_jr_force_full_job = { JOB = fabricator }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fabricator
-            }
-        }
     }
     else = {
         if = {
@@ -8723,13 +8340,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_farmer } }
         bca_jr_force_full_job = { JOB = farmer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_farmer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_farmer }
@@ -8814,13 +8424,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_acolyte_artisan } }
         bca_jr_force_full_job = { JOB = fe_acolyte_artisan }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_acolyte_artisan
-            }
-        }
     }
     else = {
         if = {
@@ -8907,13 +8510,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_acolyte_farm } }
         bca_jr_force_full_job = { JOB = fe_acolyte_farm }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_acolyte_farm
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_fe_acolyte_farm }
@@ -8998,13 +8594,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_acolyte_generator } }
         bca_jr_force_full_job = { JOB = fe_acolyte_generator }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_acolyte_generator
-            }
-        }
     }
     else = {
         if = {
@@ -9091,13 +8680,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_acolyte_mine } }
         bca_jr_force_full_job = { JOB = fe_acolyte_mine }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_acolyte_mine
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_fe_acolyte_mine }
@@ -9182,13 +8764,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_archivist } }
         bca_jr_force_full_job = { JOB = fe_archivist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_archivist
-            }
-        }
     }
     else = {
         if = {
@@ -9275,13 +8850,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_augur } }
         bca_jr_force_full_job = { JOB = fe_augur }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_augur
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_fe_augur }
@@ -9366,13 +8934,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_hedonist } }
         bca_jr_force_full_job = { JOB = fe_hedonist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_hedonist
-            }
-        }
     }
     else = {
         if = {
@@ -9459,13 +9020,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_fe_xeno_ward } }
         bca_jr_force_full_job = { JOB = fe_xeno_ward }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_fe_xeno_ward
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_fe_xeno_ward }
@@ -9550,13 +9104,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_foundry } }
         bca_jr_force_full_job = { JOB = foundry }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_foundry
-            }
-        }
     }
     else = {
         if = {
@@ -9643,13 +9190,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_foundry_prison_worker } }
         bca_jr_force_full_job = { JOB = foundry_prison_worker }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_foundry_prison_worker
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_foundry_prison_worker }
@@ -9734,13 +9274,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_gas_plant_engineer } }
         bca_jr_force_full_job = { JOB = gas_plant_engineer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_gas_plant_engineer
-            }
-        }
     }
     else = {
         if = {
@@ -9827,13 +9360,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_gas_plant_engineer_gestalt } }
         bca_jr_force_full_job = { JOB = gas_plant_engineer_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_gas_plant_engineer_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_gas_plant_engineer_gestalt }
@@ -9918,13 +9444,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_gas_refiner } }
         bca_jr_force_full_job = { JOB = gas_refiner }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_gas_refiner
-            }
-        }
     }
     else = {
         if = {
@@ -10011,13 +9530,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_gas_refiner_drone } }
         bca_jr_force_full_job = { JOB = gas_refiner_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_gas_refiner_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_gas_refiner_drone }
@@ -10102,13 +9614,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_gestation_drone } }
         bca_jr_force_full_job = { JOB = gestation_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_gestation_drone
-            }
-        }
     }
     else = {
         if = {
@@ -10195,13 +9700,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_haruspex } }
         bca_jr_force_full_job = { JOB = haruspex }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_haruspex
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_haruspex }
@@ -10286,13 +9784,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_healthcare } }
         bca_jr_force_full_job = { JOB = healthcare }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_healthcare
-            }
-        }
     }
     else = {
         if = {
@@ -10379,13 +9870,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hive_basic_agri_drone } }
         bca_jr_force_full_job = { JOB = hive_basic_agri_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hive_basic_agri_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_hive_basic_agri_drone }
@@ -10470,13 +9954,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hive_basic_agri_drone_lithoid } }
         bca_jr_force_full_job = { JOB = hive_basic_agri_drone_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hive_basic_agri_drone_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -10563,13 +10040,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hive_sustenance_drone } }
         bca_jr_force_full_job = { JOB = hive_sustenance_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hive_sustenance_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_hive_sustenance_drone }
@@ -10654,13 +10124,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hive_sustenance_drone_lithoid } }
         bca_jr_force_full_job = { JOB = hive_sustenance_drone_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hive_sustenance_drone_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -10747,13 +10210,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hunted_pre_sapient } }
         bca_jr_force_full_job = { JOB = hunted_pre_sapient }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hunted_pre_sapient
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_hunted_pre_sapient }
@@ -10838,13 +10294,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hunted_pre_sapient_lithoid } }
         bca_jr_force_full_job = { JOB = hunted_pre_sapient_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hunted_pre_sapient_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -10931,13 +10380,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hunter_gatherer } }
         bca_jr_force_full_job = { JOB = hunter_gatherer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hunter_gatherer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_hunter_gatherer }
@@ -11022,13 +10464,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_hunter_gatherer_lithoid } }
         bca_jr_force_full_job = { JOB = hunter_gatherer_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_hunter_gatherer_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -11115,13 +10550,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_identity_designer } }
         bca_jr_force_full_job = { JOB = identity_designer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_identity_designer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_identity_designer }
@@ -11206,13 +10634,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_knight } }
         bca_jr_force_full_job = { JOB = knight }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_knight
-            }
-        }
     }
     else = {
         if = {
@@ -11299,13 +10720,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_knight_commander } }
         bca_jr_force_full_job = { JOB = knight_commander }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_knight_commander
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_knight_commander }
@@ -11390,13 +10804,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_livestock } }
         bca_jr_force_full_job = { JOB = livestock }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_livestock
-            }
-        }
     }
     else = {
         if = {
@@ -11483,13 +10890,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_livestock_infernal } }
         bca_jr_force_full_job = { JOB = livestock_infernal }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_livestock_infernal
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_livestock_infernal }
@@ -11574,13 +10974,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_livestock_lithoid } }
         bca_jr_force_full_job = { JOB = livestock_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_livestock_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -11667,13 +11060,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_logistics_drone } }
         bca_jr_force_full_job = { JOB = logistics_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_logistics_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_logistics_drone }
@@ -11758,13 +11144,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_bureaucrat } }
         bca_jr_force_full_job = { JOB = low_tech_bureaucrat }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_bureaucrat
-            }
-        }
     }
     else = {
         if = {
@@ -11851,13 +11230,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_farmer } }
         bca_jr_force_full_job = { JOB = low_tech_farmer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_farmer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_low_tech_farmer }
@@ -11942,13 +11314,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_laborer } }
         bca_jr_force_full_job = { JOB = low_tech_laborer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_laborer
-            }
-        }
     }
     else = {
         if = {
@@ -12035,13 +11400,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_manager } }
         bca_jr_force_full_job = { JOB = low_tech_manager }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_manager
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_low_tech_manager }
@@ -12126,13 +11484,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_miner } }
         bca_jr_force_full_job = { JOB = low_tech_miner }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_miner
-            }
-        }
     }
     else = {
         if = {
@@ -12219,13 +11570,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_priest } }
         bca_jr_force_full_job = { JOB = low_tech_priest }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_priest
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_low_tech_priest }
@@ -12310,13 +11654,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_researcher } }
         bca_jr_force_full_job = { JOB = low_tech_researcher }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_researcher
-            }
-        }
     }
     else = {
         if = {
@@ -12403,13 +11740,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_low_tech_technician } }
         bca_jr_force_full_job = { JOB = low_tech_technician }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_low_tech_technician
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_low_tech_technician }
@@ -12494,13 +11824,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_machine_nurse } }
         bca_jr_force_full_job = { JOB = machine_nurse }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_machine_nurse
-            }
-        }
     }
     else = {
         if = {
@@ -12587,13 +11910,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_maintenance_drone } }
         bca_jr_force_full_job = { JOB = maintenance_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_maintenance_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_maintenance_drone }
@@ -12678,13 +11994,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_manufactorium_complex_drone } }
         bca_jr_force_full_job = { JOB = manufactorium_complex_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_manufactorium_complex_drone
-            }
-        }
     }
     else = {
         if = {
@@ -12771,13 +12080,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_manufactorium_scraper_drone } }
         bca_jr_force_full_job = { JOB = manufactorium_scraper_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_manufactorium_scraper_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_manufactorium_scraper_drone }
@@ -12862,13 +12164,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_manufactorium_specialist } }
         bca_jr_force_full_job = { JOB = manufactorium_specialist }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_manufactorium_specialist
-            }
-        }
     }
     else = {
         if = {
@@ -12955,13 +12250,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_miner } }
         bca_jr_force_full_job = { JOB = miner }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_miner
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_miner }
@@ -13046,13 +12334,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_mineral_diver_drone } }
         bca_jr_force_full_job = { JOB = mineral_diver_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_mineral_diver_drone
-            }
-        }
     }
     else = {
         if = {
@@ -13139,13 +12420,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_mining_drone } }
         bca_jr_force_full_job = { JOB = mining_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_mining_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_mining_drone }
@@ -13230,13 +12504,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_mortal_initiate } }
         bca_jr_force_full_job = { JOB = mortal_initiate }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_mortal_initiate
-            }
-        }
     }
     else = {
         if = {
@@ -13323,13 +12590,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_munitions_decommissioner } }
         bca_jr_force_full_job = { JOB = munitions_decommissioner }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_munitions_decommissioner
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_munitions_decommissioner }
@@ -13414,13 +12674,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_munitions_decommissioning_drone } }
         bca_jr_force_full_job = { JOB = munitions_decommissioning_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_munitions_decommissioning_drone
-            }
-        }
     }
     else = {
         if = {
@@ -13507,13 +12760,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_munitions_decommissioning_unit } }
         bca_jr_force_full_job = { JOB = munitions_decommissioning_unit }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_munitions_decommissioning_unit
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_munitions_decommissioning_unit }
@@ -13598,13 +12844,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_munitions_decommissioning_unit_lithoid } }
         bca_jr_force_full_job = { JOB = munitions_decommissioning_unit_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_munitions_decommissioning_unit_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -13691,13 +12930,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_nanotech_research_unit } }
         bca_jr_force_full_job = { JOB = nanotech_research_unit }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_nanotech_research_unit
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_nanotech_research_unit }
@@ -13782,13 +13014,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_nanotech_researcher } }
         bca_jr_force_full_job = { JOB = nanotech_researcher }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_nanotech_researcher
-            }
-        }
     }
     else = {
         if = {
@@ -13875,13 +13100,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_necro_apprentice } }
         bca_jr_force_full_job = { JOB = necro_apprentice }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_necro_apprentice
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_necro_apprentice }
@@ -13966,13 +13184,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_neural_chip } }
         bca_jr_force_full_job = { JOB = neural_chip }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_neural_chip
-            }
-        }
     }
     else = {
         if = {
@@ -14059,13 +13270,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_odd_factory_drone } }
         bca_jr_force_full_job = { JOB = odd_factory_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_odd_factory_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_odd_factory_drone }
@@ -14150,13 +13354,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_odd_factory_worker } }
         bca_jr_force_full_job = { JOB = odd_factory_worker }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_odd_factory_worker
-            }
-        }
     }
     else = {
         if = {
@@ -14243,13 +13440,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_organic_battery } }
         bca_jr_force_full_job = { JOB = organic_battery }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_organic_battery
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_organic_battery }
@@ -14334,13 +13524,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_organic_exhibit } }
         bca_jr_force_full_job = { JOB = organic_exhibit }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_organic_exhibit
-            }
-        }
     }
     else = {
         if = {
@@ -14427,13 +13610,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_academic } }
         bca_jr_force_full_job = { JOB = overlord_academic }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_academic
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_overlord_academic }
@@ -14518,13 +13694,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_academic_drone } }
         bca_jr_force_full_job = { JOB = overlord_academic_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_academic_drone
-            }
-        }
     }
     else = {
         if = {
@@ -14611,13 +13780,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_bio_trophy } }
         bca_jr_force_full_job = { JOB = overlord_bio_trophy }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_bio_trophy
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_overlord_bio_trophy }
@@ -14702,13 +13864,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_bio_trophy_drone } }
         bca_jr_force_full_job = { JOB = overlord_bio_trophy_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_bio_trophy_drone
-            }
-        }
     }
     else = {
         if = {
@@ -14795,13 +13950,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_healthcare } }
         bca_jr_force_full_job = { JOB = overlord_healthcare }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_healthcare
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_overlord_healthcare }
@@ -14886,13 +14034,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_manager } }
         bca_jr_force_full_job = { JOB = overlord_manager }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_manager
-            }
-        }
     }
     else = {
         if = {
@@ -14979,13 +14120,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_mortal_initiate } }
         bca_jr_force_full_job = { JOB = overlord_mortal_initiate }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_mortal_initiate
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_overlord_mortal_initiate }
@@ -15070,13 +14204,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_overlord_mortal_initiate_drone } }
         bca_jr_force_full_job = { JOB = overlord_mortal_initiate_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_overlord_mortal_initiate_drone
-            }
-        }
     }
     else = {
         if = {
@@ -15163,13 +14290,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_patrol_drone } }
         bca_jr_force_full_job = { JOB = patrol_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_patrol_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_patrol_drone }
@@ -15254,13 +14374,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_peasant } }
         bca_jr_force_full_job = { JOB = peasant }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_peasant
-            }
-        }
     }
     else = {
         if = {
@@ -15347,13 +14460,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_peasant_lithoid } }
         bca_jr_force_full_job = { JOB = peasant_lithoid }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_peasant_lithoid
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_peasant_lithoid }
@@ -15438,13 +14544,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_physician_drone } }
         bca_jr_force_full_job = { JOB = physician_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_physician_drone
-            }
-        }
     }
     else = {
         if = {
@@ -15531,13 +14630,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_physicist } }
         bca_jr_force_full_job = { JOB = physicist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_physicist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_physicist }
@@ -15622,13 +14714,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_politician } }
         bca_jr_force_full_job = { JOB = politician }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_politician
-            }
-        }
     }
     else = {
         if = {
@@ -15715,13 +14800,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_administrator } }
         bca_jr_force_full_job = { JOB = primitive_administrator }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_administrator
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_administrator }
@@ -15806,13 +14884,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_bureaucrat } }
         bca_jr_force_full_job = { JOB = primitive_bureaucrat }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_bureaucrat
-            }
-        }
     }
     else = {
         if = {
@@ -15899,13 +14970,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_farmer } }
         bca_jr_force_full_job = { JOB = primitive_farmer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_farmer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_farmer }
@@ -15990,13 +15054,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_brain_drone } }
         bca_jr_force_full_job = { JOB = primitive_hive_brain_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_brain_drone
-            }
-        }
     }
     else = {
         if = {
@@ -16083,13 +15140,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_cerebellum_drone } }
         bca_jr_force_full_job = { JOB = primitive_hive_cerebellum_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_cerebellum_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_hive_cerebellum_drone }
@@ -16174,13 +15224,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_factory_drone } }
         bca_jr_force_full_job = { JOB = primitive_hive_factory_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_factory_drone
-            }
-        }
     }
     else = {
         if = {
@@ -16267,13 +15310,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_farmer } }
         bca_jr_force_full_job = { JOB = primitive_hive_farmer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_farmer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_hive_farmer }
@@ -16358,13 +15394,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_miner } }
         bca_jr_force_full_job = { JOB = primitive_hive_miner }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_miner
-            }
-        }
     }
     else = {
         if = {
@@ -16451,13 +15480,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_synapse_drone } }
         bca_jr_force_full_job = { JOB = primitive_hive_synapse_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_synapse_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_hive_synapse_drone }
@@ -16542,13 +15564,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_synapse_drone_2 } }
         bca_jr_force_full_job = { JOB = primitive_hive_synapse_drone_2 }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_synapse_drone_2
-            }
-        }
     }
     else = {
         if = {
@@ -16635,13 +15650,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_hive_technician } }
         bca_jr_force_full_job = { JOB = primitive_hive_technician }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_hive_technician
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_hive_technician }
@@ -16726,13 +15734,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_laborer } }
         bca_jr_force_full_job = { JOB = primitive_laborer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_laborer
-            }
-        }
     }
     else = {
         if = {
@@ -16819,13 +15820,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_miner } }
         bca_jr_force_full_job = { JOB = primitive_miner }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_miner
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_miner }
@@ -16910,13 +15904,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_noble } }
         bca_jr_force_full_job = { JOB = primitive_noble }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_noble
-            }
-        }
     }
     else = {
         if = {
@@ -17003,13 +15990,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_priest } }
         bca_jr_force_full_job = { JOB = primitive_priest }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_priest
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_priest }
@@ -17094,13 +16074,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_priest_2 } }
         bca_jr_force_full_job = { JOB = primitive_priest_2 }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_priest_2
-            }
-        }
     }
     else = {
         if = {
@@ -17187,13 +16160,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_researcher } }
         bca_jr_force_full_job = { JOB = primitive_researcher }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_researcher
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_researcher }
@@ -17278,13 +16244,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_researcher_2 } }
         bca_jr_force_full_job = { JOB = primitive_researcher_2 }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_researcher_2
-            }
-        }
     }
     else = {
         if = {
@@ -17371,13 +16330,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_primitive_technician } }
         bca_jr_force_full_job = { JOB = primitive_technician }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_primitive_technician
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_primitive_technician }
@@ -17462,13 +16414,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_production_overseer } }
         bca_jr_force_full_job = { JOB = production_overseer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_production_overseer
-            }
-        }
     }
     else = {
         if = {
@@ -17555,13 +16500,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_puddle_technician } }
         bca_jr_force_full_job = { JOB = puddle_technician }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_puddle_technician
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_puddle_technician }
@@ -17646,13 +16584,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_puddle_technician_drone } }
         bca_jr_force_full_job = { JOB = puddle_technician_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_puddle_technician_drone
-            }
-        }
     }
     else = {
         if = {
@@ -17739,13 +16670,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_labor_camps } }
         bca_jr_force_full_job = { JOB = purge_labor_camps }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_labor_camps
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_purge_labor_camps }
@@ -17785,13 +16709,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_lithoid } }
         bca_jr_force_full_job = { JOB = purge_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -17878,13 +16795,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_matrix } }
         bca_jr_force_full_job = { JOB = purge_matrix }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_matrix
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_purge_matrix }
@@ -17919,13 +16829,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_processing } }
         bca_jr_force_full_job = { JOB = purge_processing }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_processing
-            }
-        }
     }
     else = {
         if = {
@@ -18012,13 +16915,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_processing_infernal } }
         bca_jr_force_full_job = { JOB = purge_processing_infernal }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_processing_infernal
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_purge_processing_infernal }
@@ -18103,13 +16999,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_processing_lithoid } }
         bca_jr_force_full_job = { JOB = purge_processing_lithoid }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_processing_lithoid
-            }
-        }
     }
     else = {
         if = {
@@ -18196,13 +17085,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_processing_robot } }
         bca_jr_force_full_job = { JOB = purge_processing_robot }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_processing_robot
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_purge_processing_robot }
@@ -18287,13 +17169,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_robot } }
         bca_jr_force_full_job = { JOB = purge_robot }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_robot
-            }
-        }
     }
     else = {
         if = {
@@ -18380,13 +17255,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_purge_sacrifice } }
         bca_jr_force_full_job = { JOB = purge_sacrifice }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_purge_sacrifice
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_purge_sacrifice }
@@ -18411,13 +17279,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_ratling_scavenger } }
         bca_jr_force_full_job = { JOB = ratling_scavenger }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_ratling_scavenger
-            }
-        }
     }
     else = {
         if = {
@@ -18504,13 +17365,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_resort_worker } }
         bca_jr_force_full_job = { JOB = resort_worker }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_resort_worker
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_resort_worker }
@@ -18595,13 +17449,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_robot_caretaker } }
         bca_jr_force_full_job = { JOB = robot_caretaker }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_robot_caretaker
-            }
-        }
     }
     else = {
         if = {
@@ -18688,13 +17535,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_shroud_trader } }
         bca_jr_force_full_job = { JOB = shroud_trader }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_shroud_trader
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_shroud_trader }
@@ -18779,13 +17619,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_slave_overseer } }
         bca_jr_force_full_job = { JOB = slave_overseer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_slave_overseer
-            }
-        }
     }
     else = {
         if = {
@@ -18872,13 +17705,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_solarpunk_anarchist } }
         bca_jr_force_full_job = { JOB = solarpunk_anarchist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_solarpunk_anarchist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_solarpunk_anarchist }
@@ -18963,13 +17789,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_soldier } }
         bca_jr_force_full_job = { JOB = soldier }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_soldier
-            }
-        }
     }
     else = {
         if = {
@@ -19056,13 +17875,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_space_junk_collector } }
         bca_jr_force_full_job = { JOB = space_junk_collector }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_space_junk_collector
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_space_junk_collector }
@@ -19147,13 +17959,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_space_time_anomaly_researcher } }
         bca_jr_force_full_job = { JOB = space_time_anomaly_researcher }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_space_time_anomaly_researcher
-            }
-        }
     }
     else = {
         if = {
@@ -19240,13 +18045,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_space_time_anomaly_researcher_gestalt } }
         bca_jr_force_full_job = { JOB = space_time_anomaly_researcher_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_space_time_anomaly_researcher_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_space_time_anomaly_researcher_gestalt }
@@ -19331,13 +18129,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_spawning_drone } }
         bca_jr_force_full_job = { JOB = spawning_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_spawning_drone
-            }
-        }
     }
     else = {
         if = {
@@ -19424,13 +18215,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_spe_colonist } }
         bca_jr_force_full_job = { JOB = spe_colonist }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_spe_colonist
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_spe_colonist }
@@ -19515,13 +18299,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stasis_warden } }
         bca_jr_force_full_job = { JOB = stasis_warden }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stasis_warden
-            }
-        }
     }
     else = {
         if = {
@@ -19608,13 +18385,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stasis_warden_drone } }
         bca_jr_force_full_job = { JOB = stasis_warden_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stasis_warden_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_stasis_warden_drone }
@@ -19699,13 +18469,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stratovent_refiner } }
         bca_jr_force_full_job = { JOB = stratovent_refiner }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stratovent_refiner
-            }
-        }
     }
     else = {
         if = {
@@ -19792,13 +18555,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stratovent_refiner_minerals } }
         bca_jr_force_full_job = { JOB = stratovent_refiner_minerals }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stratovent_refiner_minerals
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_stratovent_refiner_minerals }
@@ -19883,13 +18639,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stratovent_refiner_upg } }
         bca_jr_force_full_job = { JOB = stratovent_refiner_upg }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stratovent_refiner_upg
-            }
-        }
     }
     else = {
         if = {
@@ -19976,13 +18725,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_stratovent_researcher } }
         bca_jr_force_full_job = { JOB = stratovent_researcher }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_stratovent_researcher
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_stratovent_researcher }
@@ -20067,13 +18809,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_technician } }
         bca_jr_force_full_job = { JOB = technician }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_technician
-            }
-        }
     }
     else = {
         if = {
@@ -20160,13 +18895,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_technician_drone } }
         bca_jr_force_full_job = { JOB = technician_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_technician_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_technician_drone }
@@ -20251,13 +18979,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_technophant } }
         bca_jr_force_full_job = { JOB = technophant }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_technophant
-            }
-        }
     }
     else = {
         if = {
@@ -20344,13 +19065,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_telepath } }
         bca_jr_force_full_job = { JOB = telepath }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_telepath
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_telepath }
@@ -20435,13 +19149,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_telepath_drone } }
         bca_jr_force_full_job = { JOB = telepath_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_telepath_drone
-            }
-        }
     }
     else = {
         if = {
@@ -20528,13 +19235,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_test_subject } }
         bca_jr_force_full_job = { JOB = test_subject }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_test_subject
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_test_subject }
@@ -20619,13 +19319,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_test_subject_drone } }
         bca_jr_force_full_job = { JOB = test_subject_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_test_subject_drone
-            }
-        }
     }
     else = {
         if = {
@@ -20712,13 +19405,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_trader } }
         bca_jr_force_full_job = { JOB = trader }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_trader
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_trader }
@@ -20803,13 +19489,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_transference_drone } }
         bca_jr_force_full_job = { JOB = transference_drone }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_transference_drone
-            }
-        }
     }
     else = {
         if = {
@@ -20896,13 +19575,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_transference_volunteer } }
         bca_jr_force_full_job = { JOB = transference_volunteer }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_transference_volunteer
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_transference_volunteer }
@@ -20987,13 +19659,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_translucer } }
         bca_jr_force_full_job = { JOB = translucer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_translucer
-            }
-        }
     }
     else = {
         if = {
@@ -21080,13 +19745,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_translucer_drone } }
         bca_jr_force_full_job = { JOB = translucer_drone }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_translucer_drone
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_translucer_drone }
@@ -21171,13 +19829,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_treasure_gatherer } }
         bca_jr_force_full_job = { JOB = treasure_gatherer }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_treasure_gatherer
-            }
-        }
     }
     else = {
         if = {
@@ -21264,13 +19915,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_treasure_gatherer_gestalt } }
         bca_jr_force_full_job = { JOB = treasure_gatherer_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_treasure_gatherer_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_treasure_gatherer_gestalt }
@@ -21356,13 +20000,6 @@ bca_jr_apply_planned_job_changes = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_turtle_miner_gestalt } }
         bca_jr_force_full_job = { JOB = turtle_miner_gestalt }
     }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_turtle_miner_gestalt
-            }
-        }
-    }
     else = {
         if = {
             limit = { has_carrier_flag = bca_jr_plan_inc_turtle_miner_gestalt }
@@ -21447,13 +20084,6 @@ bca_jr_apply_planned_job_changes = {
     else_if = {
         limit = { owner = { has_country_flag = bca_jr_mode_full_wrangler } }
         bca_jr_force_full_job = { JOB = wrangler }
-    }
-    else_if = {
-        limit = {
-            owner = {
-                has_country_flag = bca_jr_mode_manual_wrangler
-            }
-        }
     }
     else = {
         if = {

@@ -16,6 +16,7 @@ bca_jr_apply_inc_gears = {
     optimize_memory
     if = {
         limit = { check_variable_arithmetic = { which = $LIMIT$ value <= $TARGET$ } }
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         {% for step in steps %}
             set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
         {% endfor %}
@@ -28,11 +29,13 @@ bca_jr_apply_inc_gears = {
         {% for step in steps if step != min_step %}
             if = {
                 limit = { check_variable_arithmetic = { which = $TARGET$ value >= {{ step }} } }
+                set_carrier_flag = bca_jr_has_job_change_$JOB$
                 set_carrier_flag = bca_jr_inc_$JOB$_g{{ step }}
                 add_variable = { which = bca_jr_actual_job_change value = {{ step }} }
                 subtract_variable = { which = $TARGET$ value = {{ step }} }
             }
         {% endfor %}
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_inc_$JOB$_g{{ min_step }}
         add_variable = { which = bca_jr_actual_job_change value = {{ min_step }} }
         set_variable = {
@@ -47,6 +50,7 @@ bca_jr_apply_dec_gears = {
     optimize_memory
     if = {
         limit = { check_variable_arithmetic = { which = $LIMIT$ value <= $TARGET$ } }
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         {% for step in steps %}
             set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
         {% endfor %}
@@ -59,11 +63,13 @@ bca_jr_apply_dec_gears = {
         {% for step in steps if step != min_step %}
             if = {
                 limit = { check_variable_arithmetic = { which = $TARGET$ value >= {{ step }} } }
+                set_carrier_flag = bca_jr_has_job_change_$JOB$
                 set_carrier_flag = bca_jr_dec_$JOB$_g{{ step }}
                 add_variable = { which = bca_jr_actual_job_change value = {{ step }} }
                 subtract_variable = { which = $TARGET$ value = {{ step }} }
             }
         {% endfor %}
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_dec_$JOB$_g{{ min_step }}
         add_variable = { which = bca_jr_actual_job_change value = {{ min_step }} }
         set_variable = {

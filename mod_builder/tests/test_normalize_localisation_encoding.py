@@ -52,6 +52,17 @@ class NormalizeLocalisationEncodingTests(unittest.TestCase):
         with self.assertRaisesRegex(UnicodeError, "invalid.yml"):
             normalize_localisation_encoding(self.workspace)
 
+    def test_ignores_non_localisation_files(self):
+        path = self.workspace / "english" / ".rgignore"
+        path.parent.mkdir()
+        original = b"example.yml\n"
+        path.write_bytes(original)
+
+        converted, unchanged = normalize_localisation_encoding(self.workspace)
+
+        self.assertEqual((converted, unchanged), (0, 0))
+        self.assertEqual(path.read_bytes(), original)
+
 
 if __name__ == "__main__":
     unittest.main()

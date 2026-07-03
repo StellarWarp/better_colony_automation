@@ -427,6 +427,7 @@ bca_jr_force_empty_job = {
             NOT = { has_carrier_flag = bca_jr_skip_empty_$JOB$ }
         }
         remove_carrier_flag = bca_jr_skip_full_$JOB$
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_dec_$JOB$_g{{ max_gear_step }}
         if = {
             limit = { is_variable_set = bca_jr_acc_closable_capacity_workforce_$JOB$ }
@@ -453,6 +454,7 @@ bca_jr_force_full_job = {
             NOT = { has_carrier_flag = bca_jr_skip_full_$JOB$ }
         }
         remove_carrier_flag = bca_jr_skip_empty_$JOB$
+        set_carrier_flag = bca_jr_has_job_change_$JOB$
         set_carrier_flag = bca_jr_inc_$JOB$_g{{ max_gear_step }}
         set_variable = { which = bca_jr_actual_job_change value = bca_jr_acc_total_job_count_$JOB$ }
         if = {
@@ -479,13 +481,6 @@ bca_jr_apply_planned_job_changes = {
         else_if = {
             limit = { owner = { has_country_flag = bca_jr_mode_full_{{ entry.job }} } }
             bca_jr_force_full_job = { JOB = {{ entry.job }} }
-        }
-        else_if = {
-            limit = {
-                owner = {
-                    has_country_flag = bca_jr_mode_manual_{{ entry.job }}
-                }
-            }
         }
         else = {
             if = {

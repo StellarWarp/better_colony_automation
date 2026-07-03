@@ -256,6 +256,7 @@ def rgignore_pattern_for_output_path(rel_output_path):
 
 
 def replace_rgignore_generated_block(existing, block_text):
+    existing = existing.lstrip("\ufeff")
     block_patterns = (
         (
             RGIGNORE_GENERATED_OUTPUT_START,
@@ -299,7 +300,7 @@ def update_directory_rgignore(directory, file_names):
     rgignore_path = directory / ".rgignore"
     existing = ""
     if rgignore_path.exists():
-        existing = rgignore_path.read_text(encoding="utf-8")
+        existing = rgignore_path.read_text(encoding="utf-8-sig")
     rgignore_path.write_text(
         replace_rgignore_generated_block(existing, block_text),
         encoding="utf-8",
@@ -340,7 +341,7 @@ def update_generated_output_rgignore(generated_output_paths, rgignore_path=RGIGN
     rgignore_path = Path(rgignore_path)
     existing = ""
     if rgignore_path.exists():
-        existing = rgignore_path.read_text(encoding="utf-8")
+        existing = rgignore_path.read_text(encoding="utf-8-sig")
 
     rgignore_path.write_text(
         replace_rgignore_generated_block(existing, block_text),

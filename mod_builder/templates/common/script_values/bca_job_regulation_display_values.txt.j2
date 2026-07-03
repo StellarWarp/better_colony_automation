@@ -3,9 +3,66 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set resources = job_regulation_config.resources %}
 
-bca_jr_rounded_value = {
+bca_jr_display_abs_value = {
     set = $VALUE$
-    round = yes
+    abs = yes
+}
+
+bca_jr_display_scaled_value = {
+    set = $VALUE$
+    modifier = {
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_abs_value|VALUE|$VALUE$|
+            value >= 1000000
+        }
+        mult = 0.001
+    }
+    modifier = {
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_abs_value|VALUE|$VALUE$|
+            value >= 1000
+        }
+        mult = 0.001
+    }
+}
+
+bca_jr_display_scaled_abs_value = {
+    set = value:bca_jr_display_scaled_value|VALUE|$VALUE$|
+    abs = yes
+}
+
+bca_jr_display_rounded_scaled_value = {
+    set = value:bca_jr_display_scaled_value|VALUE|$VALUE$|
+    round_to = $ROUND_TO$
+}
+
+bca_jr_display_number = {
+    set = value:bca_jr_display_scaled_value|VALUE|$VALUE$|
+    modifier = {
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_scaled_abs_value|VALUE|$VALUE$|
+            value >= 100
+        }
+        set = value:bca_jr_display_rounded_scaled_value|VALUE|$VALUE$|ROUND_TO|1|
+    }
+    modifier = {
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_scaled_abs_value|VALUE|$VALUE$|
+            value >= 10
+        }
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_scaled_abs_value|VALUE|$VALUE$|
+            value < 100
+        }
+        set = value:bca_jr_display_rounded_scaled_value|VALUE|$VALUE$|ROUND_TO|0.1|
+    }
+    modifier = {
+        check_variable_arithmetic = {
+            which = value:bca_jr_display_scaled_abs_value|VALUE|$VALUE$|
+            value < 10
+        }
+        set = value:bca_jr_display_rounded_scaled_value|VALUE|$VALUE$|ROUND_TO|0.01|
+    }
 }
 
 bca_jr_num_pops_assigned_to_job = {
@@ -14,7 +71,7 @@ bca_jr_num_pops_assigned_to_job = {
         trigger_scope = $JOB|this$
         trigger = num_pops_assigned_to_job
         parameters = {
-            pop_group = $POP_GROUP$
+            [[POP_GROUP] pop_group = $POP_GROUP$ ]
         }
         mode = add
     }

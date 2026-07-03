@@ -10,6 +10,7 @@ Language-specific generated text belongs under localisation/<language>/.
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set resources = job_regulation_config.resources %}
 {% set display_numbers = [
+    "active_workforce",
     "assigned_workforce",
     "capacity_workforce",
     "pop_productive_workforce",
@@ -29,13 +30,13 @@ Language-specific generated text belongs under localisation/<language>/.
     "job_change",
 ] %}
 {% macro formatted_number_keys(s_name, number) %}
- BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_INT: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_int]"
- BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_ONE: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_one]"
- BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_TWO: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_two]"
- BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_K: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_k]K"
- BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_M: "[From.bca_jr_slot_{{ s_name }}_{{ number }}_m]M"
+ BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_VALUE_script][From.BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_UNIT_script]"
 {% endmacro %}
 all:
+
+ BCA_JR_DISPLAY_UNIT_K: "K"
+ BCA_JR_DISPLAY_UNIT_M: "M"
+ BCA_JR_DISPLAY_UNIT_EMPTY: ""
 
 {% for icon in job_regulation_config.icon_sprites | default([]) %}
  BCA_JR_ICON_SPRITE_{{ icon }}: "£jr_icon_{{ icon }}£"
@@ -50,11 +51,11 @@ all:
 {% set s_name = "s%d" % (s + 1) %}
  BCA_JR_SLOT_{{ s_name }}_ICON: "[From.BCA_JR_SLOT_{{ s_name }}_ICON_script]"
  BCA_JR_SLOT_{{ s_name }}_NAME: "[From.BCA_JR_SLOT_{{ s_name }}_NAME_script]"
- BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_ASSIGNED_WORKFORCE_script] / [From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script]"
+ BCA_JR_SLOT_{{ s_name }}_WF: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_ACTIVE_WORKFORCE_script] / [From.BCA_JR_SLOT_{{ s_name }}_FMT_TOTAL_JOB_COUNT_script]"
  BCA_JR_SLOT_{{ s_name }}_CHANGE: "[From.BCA_JR_SLOT_{{ s_name }}_CHANGE_script]"
- BCA_JR_SLOT_{{ s_name }}_CHANGE_POSITIVE: "§G+[From.bca_jr_slot_{{ s_name }}_job_change_int]§!"
- BCA_JR_SLOT_{{ s_name }}_CHANGE_NEGATIVE: "§R[From.bca_jr_slot_{{ s_name }}_job_change_int]§!"
- BCA_JR_SLOT_{{ s_name }}_CHANGE_ZERO: "[From.bca_jr_slot_{{ s_name }}_job_change_int]"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_POSITIVE: "§G+[From.BCA_JR_SLOT_{{ s_name }}_FMT_JOB_CHANGE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_NEGATIVE: "§R[From.BCA_JR_SLOT_{{ s_name }}_FMT_JOB_CHANGE_script]§!"
+ BCA_JR_SLOT_{{ s_name }}_CHANGE_ZERO: "[From.BCA_JR_SLOT_{{ s_name }}_FMT_JOB_CHANGE_script]"
  BCA_JR_SLOT_{{ s_name }}_RATE: "[From.BCA_JR_SLOT_{{ s_name }}_RATE_script]"
  BCA_JR_SLOT_{{ s_name }}_RATE_VALUE: "§L[From.BCA_JR_SLOT_{{ s_name }}_FMT_AUTOMATION_RATE_script]%§!"
  BCA_JR_SLOT_{{ s_name }}_TOTAL_PRODUCTIVE_GREEN: "§G[From.BCA_JR_SLOT_{{ s_name }}_FMT_PRODUCTIVE_WORKFORCE_script]§!"

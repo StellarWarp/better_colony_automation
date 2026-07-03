@@ -5,6 +5,7 @@
 {% set categories = job_regulation_config.categories %}
 {% set resources = job_regulation_config.resources %}
 {% set display_numbers = [
+    "active_workforce",
     "assigned_workforce",
     "capacity_workforce",
     "pop_productive_workforce",
@@ -24,38 +25,51 @@
     "job_change",
     ] %}
 
-{# 生成三位有效数显示用变量：普通值、K、M 三套都预计算，scripted_loc 决定使用哪套。 #}
-bca_jr_prepare_display_number = {
-    optimize_memory
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    set_variable = { which = $OUT$_int value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    multiply_variable = { which = bca_jr_fmt_tmp value = 10 }
-    set_variable = { which = $OUT$_one value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_one value = 10 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    multiply_variable = { which = bca_jr_fmt_tmp value = 100 }
-    set_variable = { which = $OUT$_two value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_two value = 100 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    divide_variable = { which = bca_jr_fmt_tmp value = 10 }
-    set_variable = { which = $OUT$_k value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_k value = 100 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    divide_variable = { which = bca_jr_fmt_tmp value = 10000 }
-    set_variable = { which = $OUT$_m value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_m value = 100 }
-    clear_variable = bca_jr_fmt_tmp
-}
-
 bca_jr_locate_job_colonies = {
     optimize_memory
     every_owned_colony = {
         limit = {
-            check_modifier_value = {
-                modifier = job_$JOB$_add
-                value > 0
+            OR = {
+                check_modifier_value = {
+                    modifier = job_$JOB$_add
+                    value > 0
+                }
+                any_owned_pop_job = {
+                    has_job_type = $JOB$
+                    colony = {
+                        check_variable_arithmetic = {
+                            which = value:bca_jr_num_pops_assigned_to_job|JOB|prev|
+                            value > 0
+                        }
+                    }
+                }
             }
+        }
+        set_variable = {
+            which = bca_jr_locate_job_add
+            value = modifier:job_$JOB$_add
+        }
+        set_variable = { which = bca_jr_locate_pops value = 0 }
+        every_owned_pop_job = {
+            limit = {
+                has_job_type = $JOB$
+            }
+            colony = {
+                set_variable = {
+                    which = bca_jr_locate_pops
+                    value = value:bca_jr_num_pops_assigned_to_job|JOB|prev|
+                }
+            }
+        }
+        divide_variable = { which = bca_jr_locate_job_add value = 1000 }
+        divide_variable = { which = bca_jr_locate_pops value = 1000 }
+        round_variable_to_closest = { 
+            which = bca_jr_locate_job_add
+            value = 0.1
+        }
+        round_variable_to_closest = { 
+            which = bca_jr_locate_pops
+            value = 0.1
         }
         owner = {
             create_message = {
@@ -68,8 +82,27 @@ bca_jr_locate_job_colonies = {
                     localization = PLANET
                     scope = prev.carrier
                 }
+                variable = {
+                    type = key
+                    value = job_$JOB$
+                    localization = JOB_NAME
+                }
+                variable = {
+                    type = variable
+                    varname = bca_jr_locate_pops
+                    localization = POPS
+                    scope = prev.carrier
+                }
+                variable = {
+                    type = variable
+                    varname = bca_jr_locate_job_add
+                    localization = JOBS
+                    scope = prev.carrier
+                }
             }
         }
+        clear_variable = bca_jr_locate_job_add
+        clear_variable = bca_jr_locate_pops
     }
 }
 
@@ -175,6 +208,7 @@ bca_jr_clear_slot_mapping_for_slot = {
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    clear_variable = bca_jr_slot_$SLOT_NAME$_active_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce
@@ -192,20 +226,8 @@ bca_jr_clear_slot_mapping_for_slot = {
     clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta
     clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_job_change
-    {% for number in display_numbers %}
-        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_int
-        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_one
-        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_two
-        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_k
-        clear_variable = bca_jr_slot_$SLOT_NAME$_{{ number }}_m
-    {% endfor %}
     {% for resource in resources %}
         clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}
-        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_int
-        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_one
-        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_two
-        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_k
-        clear_variable = bca_jr_slot_$SLOT_NAME$_output_{{ resource }}_m
     {% endfor %}
 }
 
@@ -240,7 +262,7 @@ bca_jr_prepare_cached_sort_scores = {
     {% for entry in regulated %}
         if = {
             limit = {
-                is_variable_set = bca_jr_total_job_count_{{ entry.job }}
+                bca_jr_job_has_display_stats = { JOB = {{ entry.job }} }
                 bca_jr_job_matches_selected_filters = { JOB = {{ entry.job }} }
             }
             set_variable = { which = bca_jr_cached_sort_score_{{ entry.job }} value = value:bca_jr_sort_score_{{ entry.job }} }
@@ -291,7 +313,23 @@ bca_jr_fill_slot_job_stats = {
     bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = $JOB$ }
     {% for number in display_numbers if number != "open_total_capacity" and not number.endswith("_delta") and number != "automation_rate" %}
         if = {
-            {% if number == "job_change" %}
+            {% if number == "active_workforce" %}
+                limit = {
+                    OR = {
+                        is_variable_set = bca_jr_total_assigned_workforce_$JOB$
+                        is_variable_set = bca_jr_total_automated_capacity_workforce_$JOB$
+                    }
+                }
+                set_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = 0 }
+                if = {
+                    limit = { is_variable_set = bca_jr_total_assigned_workforce_$JOB$ }
+                    add_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
+                }
+                if = {
+                    limit = { is_variable_set = bca_jr_total_automated_capacity_workforce_$JOB$ }
+                    add_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+                }
+            {% elif number == "job_change" %}
                 limit = { is_variable_set = bca_jr_monthly_job_change_$JOB$ }
                 set_variable = { which = bca_jr_slot_$SLOT_NAME$_{{ number }} value = bca_jr_monthly_job_change_$JOB$ }
             {% elif number == "total_job_count" %}
@@ -372,18 +410,8 @@ bca_jr_fill_current_slot = {
     {% endfor %}
     {% for number in display_numbers %}
         if = {
-            limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_{{ number }} }
-            bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
-        }
-        else = {
+            limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_{{ number }} } }
             set_variable = { which = bca_jr_slot_$SLOT_NAME$_{{ number }} value = 0 }
-            bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_{{ number }} VALUE = bca_jr_slot_$SLOT_NAME$_{{ number }} }
-        }
-    {% endfor %}
-    {% for resource in resources %}
-        if = {
-            limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
-            bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} VALUE = bca_jr_slot_$SLOT_NAME$_output_{{ resource }} }
         }
     {% endfor %}
 }

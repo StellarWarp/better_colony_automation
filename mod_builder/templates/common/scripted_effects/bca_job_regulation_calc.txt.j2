@@ -41,13 +41,6 @@ bca_jr_collect_job_count_stats = {
         parameters = { job = $JOB$ }
         variable = bca_jr_acc_free_job_count_$JOB$
     }
-    if = {
-        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
-        owner = {
-            add_variable = { which = bca_jr_total_job_count_$JOB$ value = prev.bca_jr_acc_total_job_count_$JOB$ }
-            add_variable = { which = bca_jr_total_free_job_count_$JOB$ value = prev.bca_jr_acc_free_job_count_$JOB$ }
-        }
-    }
 }
 
 bca_jr_finalize_single_job_resource = {
@@ -123,7 +116,13 @@ bca_jr_collect_current_pop_group_stats = {
             value = bca_jr_v_productive
         }
         if = {
-            limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+            limit = {
+                owner = { has_country_flag = bca_jr_collect_country_totals }
+                OR = {
+                    check_variable_arithmetic = { which = bca_jr_acc_total_job_count_$JOB$ value > 0 }
+                    check_variable_arithmetic = { which = bca_jr_v_productive value > 0 }
+                }
+            }
             owner = {
                 add_variable = {
                     which = bca_jr_total_assigned_workforce_$JOB$
@@ -154,21 +153,7 @@ bca_jr_collect_checked_job_stats = {
     {% for entry in regulated if entry.pop_category %}
         if = {
             limit = {
-                check_modifier_value = {
-                    modifier = job_{{ entry.job }}_add
-                    value > 0
-                }
-                OR = {
-                    has_carrier_flag = bca_jr_check_all_jobs
-                    has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-                    has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-                    owner = {
-                        OR = {
-                            has_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                            has_country_flag = bca_jr_mode_full_{{ entry.job }}
-                        }
-                    }
-                }
+                bca_jr_should_collect_job_stats = { JOB = {{ entry.job }} }
             }
             bca_jr_collect_job_count_stats = { JOB = {{ entry.job }} }
         }
@@ -179,21 +164,7 @@ bca_jr_collect_checked_job_stats = {
             if = {
                 limit = {
                     prev = {
-                        check_modifier_value = {
-                            modifier = job_{{ entry.job }}_add
-                            value > 0
-                        }
-                        OR = {
-                            has_carrier_flag = bca_jr_check_all_jobs
-                            has_carrier_flag = bca_jr_plan_inc_{{ entry.job }}
-                            has_carrier_flag = bca_jr_plan_dec_{{ entry.job }}
-                            owner = {
-                                OR = {
-                                    has_country_flag = bca_jr_mode_empty_{{ entry.job }}
-                                    has_country_flag = bca_jr_mode_full_{{ entry.job }}
-                                }
-                            }
-                        }
+                        bca_jr_should_collect_job_stats = { JOB = {{ entry.job }} }
                     }
                     has_job_type = {{ entry.job }}
                 }
@@ -243,8 +214,22 @@ bca_jr_finalize_single_job_stats = {
         value = bca_jr_acc_automated_productive_workforce_$JOB$
     }
     if = {
-        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+        limit = {
+            owner = { has_country_flag = bca_jr_collect_country_totals }
+            OR = {
+                check_variable_arithmetic = { which = bca_jr_acc_total_job_count_$JOB$ value > 0 }
+                check_variable_arithmetic = { which = bca_jr_acc_productive_workforce_$JOB$ value > 0 }
+            }
+        }
         owner = {
+            add_variable = {
+                which = bca_jr_total_job_count_$JOB$
+                value = prev.bca_jr_acc_total_job_count_$JOB$
+            }
+            add_variable = {
+                which = bca_jr_total_free_job_count_$JOB$
+                value = prev.bca_jr_acc_free_job_count_$JOB$
+            }
             add_variable = {
                 which = bca_jr_total_automated_capacity_workforce_$JOB$
                 value = prev.bca_jr_acc_automated_capacity_workforce_$JOB$
@@ -312,7 +297,13 @@ bca_jr_finalize_single_job_stats = {
         }
     }
     if = {
-        limit = { owner = { has_country_flag = bca_jr_collect_country_totals } }
+        limit = {
+            owner = { has_country_flag = bca_jr_collect_country_totals }
+            OR = {
+                check_variable_arithmetic = { which = bca_jr_acc_total_job_count_$JOB$ value > 0 }
+                check_variable_arithmetic = { which = bca_jr_acc_productive_workforce_$JOB$ value > 0 }
+            }
+        }
         if = {
             limit = { is_variable_set = bca_jr_acc_pop_capacity_limit_$JOB$ }
             owner = {
@@ -369,8 +360,10 @@ bca_jr_finalize_job_stats = {
     {% for entry in regulated if entry.pop_category %}
         if = {
             limit = {
-                is_variable_set = bca_jr_acc_total_job_count_{{ entry.job }}
-                check_variable = { which = bca_jr_acc_total_job_count_{{ entry.job }} value > 0 }
+                OR = {
+                    check_variable_arithmetic = { which = bca_jr_acc_total_job_count_{{ entry.job }} value > 0 }
+                    check_variable_arithmetic = { which = bca_jr_acc_productive_workforce_{{ entry.job }} value > 0 }
+                }
             }
             bca_jr_finalize_single_job_stats = { JOB = {{ entry.job }} }
         }

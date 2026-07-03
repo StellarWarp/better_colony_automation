@@ -17,6 +17,16 @@ country_event = {
     immediate = {
         bca_support_close = yes
         bca_refresh_global_settings_panel_counts = yes
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = @bca_submod_job_regulation
+                    value != 0
+                }
+                check_variable = { which = bca_gui_active_tab value = 1 }
+            }
+            country_event = { id = colony_automation_event.2001 }
+        }
     }
 
     after = {

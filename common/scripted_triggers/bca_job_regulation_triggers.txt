@@ -5,6 +5,41 @@
 # Source template: common/scripted_triggers/bca_job_regulation_triggers.txt.j2
 
 
+bca_jr_should_collect_job_stats = {
+    OR = {
+        AND = {
+            check_modifier_value = {
+                modifier = job_$JOB$_add
+                value > 0
+            }
+            OR = {
+                has_carrier_flag = bca_jr_check_all_jobs
+                has_carrier_flag = bca_jr_plan_inc_$JOB$
+                has_carrier_flag = bca_jr_plan_dec_$JOB$
+                owner = {
+                    OR = {
+                        has_country_flag = bca_jr_mode_empty_$JOB$
+                        has_country_flag = bca_jr_mode_full_$JOB$
+                    }
+                }
+            }
+        }
+        AND = {
+            has_carrier_flag = bca_jr_check_all_jobs
+            owner = { has_country_flag = bca_jr_collect_country_totals }
+        }
+    }
+}
+
+
+bca_jr_job_has_display_stats = {
+    OR = {
+        is_variable_set = bca_jr_total_job_count_$JOB$
+        is_variable_set = bca_jr_total_productive_workforce_$JOB$
+    }
+}
+
+
 bca_jr_job_matches_selected_filters = {
     OR = {
         has_country_flag = bca_jr_filter_all

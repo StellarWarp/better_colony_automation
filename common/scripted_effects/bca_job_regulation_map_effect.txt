@@ -5,38 +5,51 @@
 # Source template: common/scripted_effects/bca_job_regulation_map_effect.txt.j2
 
 
-bca_jr_prepare_display_number = {
-    optimize_memory
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    set_variable = { which = $OUT$_int value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    multiply_variable = { which = bca_jr_fmt_tmp value = 10 }
-    set_variable = { which = $OUT$_one value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_one value = 10 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    multiply_variable = { which = bca_jr_fmt_tmp value = 100 }
-    set_variable = { which = $OUT$_two value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_two value = 100 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    divide_variable = { which = bca_jr_fmt_tmp value = 10 }
-    set_variable = { which = $OUT$_k value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_k value = 100 }
-    set_variable = { which = bca_jr_fmt_tmp value = $VALUE$ }
-    divide_variable = { which = bca_jr_fmt_tmp value = 10000 }
-    set_variable = { which = $OUT$_m value = value:bca_jr_rounded_value|VALUE|bca_jr_fmt_tmp| }
-    divide_variable = { which = $OUT$_m value = 100 }
-    clear_variable = bca_jr_fmt_tmp
-}
-
-
 bca_jr_locate_job_colonies = {
     optimize_memory
     every_owned_colony = {
         limit = {
-            check_modifier_value = {
-                modifier = job_$JOB$_add
-                value > 0
+            OR = {
+                check_modifier_value = {
+                    modifier = job_$JOB$_add
+                    value > 0
+                }
+                any_owned_pop_job = {
+                    has_job_type = $JOB$
+                    colony = {
+                        check_variable_arithmetic = {
+                            which = value:bca_jr_num_pops_assigned_to_job|JOB|prev|
+                            value > 0
+                        }
+                    }
+                }
             }
+        }
+        set_variable = {
+            which = bca_jr_locate_job_add
+            value = modifier:job_$JOB$_add
+        }
+        set_variable = { which = bca_jr_locate_pops value = 0 }
+        every_owned_pop_job = {
+            limit = {
+                has_job_type = $JOB$
+            }
+            colony = {
+                set_variable = {
+                    which = bca_jr_locate_pops
+                    value = value:bca_jr_num_pops_assigned_to_job|JOB|prev|
+                }
+            }
+        }
+        divide_variable = { which = bca_jr_locate_job_add value = 1000 }
+        divide_variable = { which = bca_jr_locate_pops value = 1000 }
+        round_variable_to_closest = {
+            which = bca_jr_locate_job_add
+            value = 0.1
+        }
+        round_variable_to_closest = {
+            which = bca_jr_locate_pops
+            value = 0.1
         }
         owner = {
             create_message = {
@@ -49,8 +62,27 @@ bca_jr_locate_job_colonies = {
                     localization = PLANET
                     scope = prev.carrier
                 }
+                variable = {
+                    type = key
+                    value = job_$JOB$
+                    localization = JOB_NAME
+                }
+                variable = {
+                    type = variable
+                    varname = bca_jr_locate_pops
+                    localization = POPS
+                    scope = prev.carrier
+                }
+                variable = {
+                    type = variable
+                    varname = bca_jr_locate_job_add
+                    localization = JOBS
+                    scope = prev.carrier
+                }
             }
         }
+        clear_variable = bca_jr_locate_job_add
+        clear_variable = bca_jr_locate_pops
     }
 }
 
@@ -6793,6 +6825,7 @@ bca_jr_clear_slot_mapping_for_slot = {
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_manual
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_empty
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_mode_full
+    clear_variable = bca_jr_slot_$SLOT_NAME$_active_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce
@@ -6810,169 +6843,19 @@ bca_jr_clear_slot_mapping_for_slot = {
     clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta
     clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce
     clear_variable = bca_jr_slot_$SLOT_NAME$_job_change
-    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_assigned_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_capacity_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_productive_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_job_count_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_free_job_count_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_job_count_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_open_total_capacity_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automation_rate_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce_m
-    clear_variable = bca_jr_slot_$SLOT_NAME$_job_change_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_job_change_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_job_change_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_job_change_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_job_change_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_energy_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_minerals_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_food
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_food_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_food_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_food_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_food_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_food_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_alloys_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_consumer_goods_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_trade_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_unity_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_physics_research_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_society_research_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_engineering_research_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_rare_crystals_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_volatile_motes_m
     clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_int
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_one
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_two
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_k
-    clear_variable = bca_jr_slot_$SLOT_NAME$_output_exotic_gases_m
 }
 
 
@@ -7222,1372 +7105,1372 @@ bca_jr_prepare_cached_sort_scores = {
     optimize_memory
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_agri_drone
+            bca_jr_job_has_display_stats = { JOB = agri_drone }
             bca_jr_job_matches_selected_filters = { JOB = agri_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_agri_drone value = value:bca_jr_sort_score_agri_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_alien_hunter
+            bca_jr_job_has_display_stats = { JOB = alien_hunter }
             bca_jr_job_matches_selected_filters = { JOB = alien_hunter }
         }
         set_variable = { which = bca_jr_cached_sort_score_alien_hunter value = value:bca_jr_sort_score_alien_hunter }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_archivist
+            bca_jr_job_has_display_stats = { JOB = archivist }
             bca_jr_job_matches_selected_filters = { JOB = archivist }
         }
         set_variable = { which = bca_jr_cached_sort_score_archivist value = value:bca_jr_sort_score_archivist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_ark_harvester
+            bca_jr_job_has_display_stats = { JOB = ark_harvester }
             bca_jr_job_matches_selected_filters = { JOB = ark_harvester }
         }
         set_variable = { which = bca_jr_cached_sort_score_ark_harvester value = value:bca_jr_sort_score_ark_harvester }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_ark_harvester_gestalt
+            bca_jr_job_has_display_stats = { JOB = ark_harvester_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = ark_harvester_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_ark_harvester_gestalt value = value:bca_jr_sort_score_ark_harvester_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_ark_waystation_trader
+            bca_jr_job_has_display_stats = { JOB = ark_waystation_trader }
             bca_jr_job_matches_selected_filters = { JOB = ark_waystation_trader }
         }
         set_variable = { which = bca_jr_cached_sort_score_ark_waystation_trader value = value:bca_jr_sort_score_ark_waystation_trader }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_ark_waystation_trader_gestalt
+            bca_jr_job_has_display_stats = { JOB = ark_waystation_trader_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = ark_waystation_trader_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_ark_waystation_trader_gestalt value = value:bca_jr_sort_score_ark_waystation_trader_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_artificer_prison_worker
+            bca_jr_job_has_display_stats = { JOB = artificer_prison_worker }
             bca_jr_job_matches_selected_filters = { JOB = artificer_prison_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_artificer_prison_worker value = value:bca_jr_sort_score_artificer_prison_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_artisan
+            bca_jr_job_has_display_stats = { JOB = artisan }
             bca_jr_job_matches_selected_filters = { JOB = artisan }
         }
         set_variable = { which = bca_jr_cached_sort_score_artisan value = value:bca_jr_sort_score_artisan }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_artisan_drone
+            bca_jr_job_has_display_stats = { JOB = artisan_drone }
             bca_jr_job_matches_selected_filters = { JOB = artisan_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_artisan_drone value = value:bca_jr_sort_score_artisan_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_artisan_prison_worker
+            bca_jr_job_has_display_stats = { JOB = artisan_prison_worker }
             bca_jr_job_matches_selected_filters = { JOB = artisan_prison_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_artisan_prison_worker value = value:bca_jr_sort_score_artisan_prison_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_astral_drone
+            bca_jr_job_has_display_stats = { JOB = astral_drone }
             bca_jr_job_matches_selected_filters = { JOB = astral_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_astral_drone value = value:bca_jr_sort_score_astral_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_astral_researcher
+            bca_jr_job_has_display_stats = { JOB = astral_researcher }
             bca_jr_job_matches_selected_filters = { JOB = astral_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_astral_researcher value = value:bca_jr_sort_score_astral_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_astral_unit
+            bca_jr_job_has_display_stats = { JOB = astral_unit }
             bca_jr_job_matches_selected_filters = { JOB = astral_unit }
         }
         set_variable = { which = bca_jr_cached_sort_score_astral_unit value = value:bca_jr_sort_score_astral_unit }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_astrogarbage_collector
+            bca_jr_job_has_display_stats = { JOB = astrogarbage_collector }
             bca_jr_job_matches_selected_filters = { JOB = astrogarbage_collector }
         }
         set_variable = { which = bca_jr_cached_sort_score_astrogarbage_collector value = value:bca_jr_sort_score_astrogarbage_collector }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_astrogarbage_collector_gestalt
+            bca_jr_job_has_display_stats = { JOB = astrogarbage_collector_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = astrogarbage_collector_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_astrogarbage_collector_gestalt value = value:bca_jr_sort_score_astrogarbage_collector_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_augmentor
+            bca_jr_job_has_display_stats = { JOB = augmentor }
             bca_jr_job_matches_selected_filters = { JOB = augmentor }
         }
         set_variable = { which = bca_jr_cached_sort_score_augmentor value = value:bca_jr_sort_score_augmentor }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_augmentor_drone
+            bca_jr_job_has_display_stats = { JOB = augmentor_drone }
             bca_jr_job_matches_selected_filters = { JOB = augmentor_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_augmentor_drone value = value:bca_jr_sort_score_augmentor_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_bath_attendant
+            bca_jr_job_has_display_stats = { JOB = bath_attendant }
             bca_jr_job_matches_selected_filters = { JOB = bath_attendant }
         }
         set_variable = { which = bca_jr_cached_sort_score_bath_attendant value = value:bca_jr_sort_score_bath_attendant }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_bio_trophy
+            bca_jr_job_has_display_stats = { JOB = bio_trophy }
             bca_jr_job_matches_selected_filters = { JOB = bio_trophy }
         }
         set_variable = { which = bca_jr_cached_sort_score_bio_trophy value = value:bca_jr_sort_score_bio_trophy }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_biologist
+            bca_jr_job_has_display_stats = { JOB = biologist }
             bca_jr_job_matches_selected_filters = { JOB = biologist }
         }
         set_variable = { which = bca_jr_cached_sort_score_biologist value = value:bca_jr_sort_score_biologist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_broken_shackles_scavenger
+            bca_jr_job_has_display_stats = { JOB = broken_shackles_scavenger }
             bca_jr_job_matches_selected_filters = { JOB = broken_shackles_scavenger }
         }
         set_variable = { which = bca_jr_cached_sort_score_broken_shackles_scavenger value = value:bca_jr_sort_score_broken_shackles_scavenger }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_bureaucrat
+            bca_jr_job_has_display_stats = { JOB = bureaucrat }
             bca_jr_job_matches_selected_filters = { JOB = bureaucrat }
         }
         set_variable = { which = bca_jr_cached_sort_score_bureaucrat value = value:bca_jr_sort_score_bureaucrat }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_calculator_biologist
+            bca_jr_job_has_display_stats = { JOB = calculator_biologist }
             bca_jr_job_matches_selected_filters = { JOB = calculator_biologist }
         }
         set_variable = { which = bca_jr_cached_sort_score_calculator_biologist value = value:bca_jr_sort_score_calculator_biologist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_calculator_engineer
+            bca_jr_job_has_display_stats = { JOB = calculator_engineer }
             bca_jr_job_matches_selected_filters = { JOB = calculator_engineer }
         }
         set_variable = { which = bca_jr_cached_sort_score_calculator_engineer value = value:bca_jr_sort_score_calculator_engineer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_calculator_physicist
+            bca_jr_job_has_display_stats = { JOB = calculator_physicist }
             bca_jr_job_matches_selected_filters = { JOB = calculator_physicist }
         }
         set_variable = { which = bca_jr_cached_sort_score_calculator_physicist value = value:bca_jr_sort_score_calculator_physicist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_catalytic_technician_prison_worker
+            bca_jr_job_has_display_stats = { JOB = catalytic_technician_prison_worker }
             bca_jr_job_matches_selected_filters = { JOB = catalytic_technician_prison_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_catalytic_technician_prison_worker value = value:bca_jr_sort_score_catalytic_technician_prison_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cave_cleaner_gestalt
+            bca_jr_job_has_display_stats = { JOB = cave_cleaner_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = cave_cleaner_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_cave_cleaner_gestalt value = value:bca_jr_sort_score_cave_cleaner_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_chemist
+            bca_jr_job_has_display_stats = { JOB = chemist }
             bca_jr_job_matches_selected_filters = { JOB = chemist }
         }
         set_variable = { which = bca_jr_cached_sort_score_chemist value = value:bca_jr_sort_score_chemist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_chemist_drone
+            bca_jr_job_has_display_stats = { JOB = chemist_drone }
             bca_jr_job_matches_selected_filters = { JOB = chemist_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_chemist_drone value = value:bca_jr_sort_score_chemist_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_civilian
+            bca_jr_job_has_display_stats = { JOB = civilian }
             bca_jr_job_matches_selected_filters = { JOB = civilian }
         }
         set_variable = { which = bca_jr_cached_sort_score_civilian value = value:bca_jr_sort_score_civilian }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_clerk
+            bca_jr_job_has_display_stats = { JOB = clerk }
             bca_jr_job_matches_selected_filters = { JOB = clerk }
         }
         set_variable = { which = bca_jr_cached_sort_score_clerk value = value:bca_jr_sort_score_clerk }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_clip_maximizer
+            bca_jr_job_has_display_stats = { JOB = clip_maximizer }
             bca_jr_job_matches_selected_filters = { JOB = clip_maximizer }
         }
         set_variable = { which = bca_jr_cached_sort_score_clip_maximizer value = value:bca_jr_sort_score_clip_maximizer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_colonist
+            bca_jr_job_has_display_stats = { JOB = colonist }
             bca_jr_job_matches_selected_filters = { JOB = colonist }
         }
         set_variable = { which = bca_jr_cached_sort_score_colonist value = value:bca_jr_sort_score_colonist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_coordinator
+            bca_jr_job_has_display_stats = { JOB = coordinator }
             bca_jr_job_matches_selected_filters = { JOB = coordinator }
         }
         set_variable = { which = bca_jr_cached_sort_score_coordinator value = value:bca_jr_sort_score_coordinator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cruise_crew_overseer
+            bca_jr_job_has_display_stats = { JOB = cruise_crew_overseer }
             bca_jr_job_matches_selected_filters = { JOB = cruise_crew_overseer }
         }
         set_variable = { which = bca_jr_cached_sort_score_cruise_crew_overseer value = value:bca_jr_sort_score_cruise_crew_overseer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cruise_crew_overseer_drone
+            bca_jr_job_has_display_stats = { JOB = cruise_crew_overseer_drone }
             bca_jr_job_matches_selected_filters = { JOB = cruise_crew_overseer_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_cruise_crew_overseer_drone value = value:bca_jr_sort_score_cruise_crew_overseer_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cruise_passenger
+            bca_jr_job_has_display_stats = { JOB = cruise_passenger }
             bca_jr_job_matches_selected_filters = { JOB = cruise_passenger }
         }
         set_variable = { which = bca_jr_cached_sort_score_cruise_passenger value = value:bca_jr_sort_score_cruise_passenger }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cruise_passenger_unemployment
+            bca_jr_job_has_display_stats = { JOB = cruise_passenger_unemployment }
             bca_jr_job_matches_selected_filters = { JOB = cruise_passenger_unemployment }
         }
         set_variable = { which = bca_jr_cached_sort_score_cruise_passenger_unemployment value = value:bca_jr_sort_score_cruise_passenger_unemployment }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cyberdome_duelist
+            bca_jr_job_has_display_stats = { JOB = cyberdome_duelist }
             bca_jr_job_matches_selected_filters = { JOB = cyberdome_duelist }
         }
         set_variable = { which = bca_jr_cached_sort_score_cyberdome_duelist value = value:bca_jr_sort_score_cyberdome_duelist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_cyberdome_spectator
+            bca_jr_job_has_display_stats = { JOB = cyberdome_spectator }
             bca_jr_job_matches_selected_filters = { JOB = cyberdome_spectator }
         }
         set_variable = { which = bca_jr_cached_sort_score_cyberdome_spectator value = value:bca_jr_sort_score_cyberdome_spectator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_dimensional_portal_researcher
+            bca_jr_job_has_display_stats = { JOB = dimensional_portal_researcher }
             bca_jr_job_matches_selected_filters = { JOB = dimensional_portal_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_dimensional_portal_researcher value = value:bca_jr_sort_score_dimensional_portal_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_dimensional_portal_researcher_gestalt
+            bca_jr_job_has_display_stats = { JOB = dimensional_portal_researcher_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = dimensional_portal_researcher_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_dimensional_portal_researcher_gestalt value = value:bca_jr_sort_score_dimensional_portal_researcher_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_drone_energy_thrall
+            bca_jr_job_has_display_stats = { JOB = drone_energy_thrall }
             bca_jr_job_matches_selected_filters = { JOB = drone_energy_thrall }
         }
         set_variable = { which = bca_jr_cached_sort_score_drone_energy_thrall value = value:bca_jr_sort_score_drone_energy_thrall }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_drone_space_junk_collector
+            bca_jr_job_has_display_stats = { JOB = drone_space_junk_collector }
             bca_jr_job_matches_selected_filters = { JOB = drone_space_junk_collector }
         }
         set_variable = { which = bca_jr_cached_sort_score_drone_space_junk_collector value = value:bca_jr_sort_score_drone_space_junk_collector }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_drone_wrangler
+            bca_jr_job_has_display_stats = { JOB = drone_wrangler }
             bca_jr_job_matches_selected_filters = { JOB = drone_wrangler }
         }
         set_variable = { which = bca_jr_cached_sort_score_drone_wrangler value = value:bca_jr_sort_score_drone_wrangler }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_dystopian_enforcer
+            bca_jr_job_has_display_stats = { JOB = dystopian_enforcer }
             bca_jr_job_matches_selected_filters = { JOB = dystopian_enforcer }
         }
         set_variable = { which = bca_jr_cached_sort_score_dystopian_enforcer value = value:bca_jr_sort_score_dystopian_enforcer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_dystopian_telepath
+            bca_jr_job_has_display_stats = { JOB = dystopian_telepath }
             bca_jr_job_matches_selected_filters = { JOB = dystopian_telepath }
         }
         set_variable = { which = bca_jr_cached_sort_score_dystopian_telepath value = value:bca_jr_sort_score_dystopian_telepath }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_energy_thrall
+            bca_jr_job_has_display_stats = { JOB = energy_thrall }
             bca_jr_job_matches_selected_filters = { JOB = energy_thrall }
         }
         set_variable = { which = bca_jr_cached_sort_score_energy_thrall value = value:bca_jr_sort_score_energy_thrall }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_enforcer
+            bca_jr_job_has_display_stats = { JOB = enforcer }
             bca_jr_job_matches_selected_filters = { JOB = enforcer }
         }
         set_variable = { which = bca_jr_cached_sort_score_enforcer value = value:bca_jr_sort_score_enforcer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_engineer
+            bca_jr_job_has_display_stats = { JOB = engineer }
             bca_jr_job_matches_selected_filters = { JOB = engineer }
         }
         set_variable = { which = bca_jr_cached_sort_score_engineer value = value:bca_jr_sort_score_engineer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_entertainer
+            bca_jr_job_has_display_stats = { JOB = entertainer }
             bca_jr_job_matches_selected_filters = { JOB = entertainer }
         }
         set_variable = { which = bca_jr_cached_sort_score_entertainer value = value:bca_jr_sort_score_entertainer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_evaluator
+            bca_jr_job_has_display_stats = { JOB = evaluator }
             bca_jr_job_matches_selected_filters = { JOB = evaluator }
         }
         set_variable = { which = bca_jr_cached_sort_score_evaluator value = value:bca_jr_sort_score_evaluator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_event_purge
+            bca_jr_job_has_display_stats = { JOB = event_purge }
             bca_jr_job_matches_selected_filters = { JOB = event_purge }
         }
         set_variable = { which = bca_jr_cached_sort_score_event_purge value = value:bca_jr_sort_score_event_purge }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fabricator
+            bca_jr_job_has_display_stats = { JOB = fabricator }
             bca_jr_job_matches_selected_filters = { JOB = fabricator }
         }
         set_variable = { which = bca_jr_cached_sort_score_fabricator value = value:bca_jr_sort_score_fabricator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_farmer
+            bca_jr_job_has_display_stats = { JOB = farmer }
             bca_jr_job_matches_selected_filters = { JOB = farmer }
         }
         set_variable = { which = bca_jr_cached_sort_score_farmer value = value:bca_jr_sort_score_farmer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_acolyte_artisan
+            bca_jr_job_has_display_stats = { JOB = fe_acolyte_artisan }
             bca_jr_job_matches_selected_filters = { JOB = fe_acolyte_artisan }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_acolyte_artisan value = value:bca_jr_sort_score_fe_acolyte_artisan }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_acolyte_farm
+            bca_jr_job_has_display_stats = { JOB = fe_acolyte_farm }
             bca_jr_job_matches_selected_filters = { JOB = fe_acolyte_farm }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_acolyte_farm value = value:bca_jr_sort_score_fe_acolyte_farm }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_acolyte_generator
+            bca_jr_job_has_display_stats = { JOB = fe_acolyte_generator }
             bca_jr_job_matches_selected_filters = { JOB = fe_acolyte_generator }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_acolyte_generator value = value:bca_jr_sort_score_fe_acolyte_generator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_acolyte_mine
+            bca_jr_job_has_display_stats = { JOB = fe_acolyte_mine }
             bca_jr_job_matches_selected_filters = { JOB = fe_acolyte_mine }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_acolyte_mine value = value:bca_jr_sort_score_fe_acolyte_mine }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_archivist
+            bca_jr_job_has_display_stats = { JOB = fe_archivist }
             bca_jr_job_matches_selected_filters = { JOB = fe_archivist }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_archivist value = value:bca_jr_sort_score_fe_archivist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_augur
+            bca_jr_job_has_display_stats = { JOB = fe_augur }
             bca_jr_job_matches_selected_filters = { JOB = fe_augur }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_augur value = value:bca_jr_sort_score_fe_augur }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_hedonist
+            bca_jr_job_has_display_stats = { JOB = fe_hedonist }
             bca_jr_job_matches_selected_filters = { JOB = fe_hedonist }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_hedonist value = value:bca_jr_sort_score_fe_hedonist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_fe_xeno_ward
+            bca_jr_job_has_display_stats = { JOB = fe_xeno_ward }
             bca_jr_job_matches_selected_filters = { JOB = fe_xeno_ward }
         }
         set_variable = { which = bca_jr_cached_sort_score_fe_xeno_ward value = value:bca_jr_sort_score_fe_xeno_ward }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_foundry
+            bca_jr_job_has_display_stats = { JOB = foundry }
             bca_jr_job_matches_selected_filters = { JOB = foundry }
         }
         set_variable = { which = bca_jr_cached_sort_score_foundry value = value:bca_jr_sort_score_foundry }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_foundry_prison_worker
+            bca_jr_job_has_display_stats = { JOB = foundry_prison_worker }
             bca_jr_job_matches_selected_filters = { JOB = foundry_prison_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_foundry_prison_worker value = value:bca_jr_sort_score_foundry_prison_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_gas_plant_engineer
+            bca_jr_job_has_display_stats = { JOB = gas_plant_engineer }
             bca_jr_job_matches_selected_filters = { JOB = gas_plant_engineer }
         }
         set_variable = { which = bca_jr_cached_sort_score_gas_plant_engineer value = value:bca_jr_sort_score_gas_plant_engineer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_gas_plant_engineer_gestalt
+            bca_jr_job_has_display_stats = { JOB = gas_plant_engineer_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = gas_plant_engineer_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_gas_plant_engineer_gestalt value = value:bca_jr_sort_score_gas_plant_engineer_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_gas_refiner
+            bca_jr_job_has_display_stats = { JOB = gas_refiner }
             bca_jr_job_matches_selected_filters = { JOB = gas_refiner }
         }
         set_variable = { which = bca_jr_cached_sort_score_gas_refiner value = value:bca_jr_sort_score_gas_refiner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_gas_refiner_drone
+            bca_jr_job_has_display_stats = { JOB = gas_refiner_drone }
             bca_jr_job_matches_selected_filters = { JOB = gas_refiner_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_gas_refiner_drone value = value:bca_jr_sort_score_gas_refiner_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_gestation_drone
+            bca_jr_job_has_display_stats = { JOB = gestation_drone }
             bca_jr_job_matches_selected_filters = { JOB = gestation_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_gestation_drone value = value:bca_jr_sort_score_gestation_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_haruspex
+            bca_jr_job_has_display_stats = { JOB = haruspex }
             bca_jr_job_matches_selected_filters = { JOB = haruspex }
         }
         set_variable = { which = bca_jr_cached_sort_score_haruspex value = value:bca_jr_sort_score_haruspex }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_healthcare
+            bca_jr_job_has_display_stats = { JOB = healthcare }
             bca_jr_job_matches_selected_filters = { JOB = healthcare }
         }
         set_variable = { which = bca_jr_cached_sort_score_healthcare value = value:bca_jr_sort_score_healthcare }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hive_basic_agri_drone
+            bca_jr_job_has_display_stats = { JOB = hive_basic_agri_drone }
             bca_jr_job_matches_selected_filters = { JOB = hive_basic_agri_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_hive_basic_agri_drone value = value:bca_jr_sort_score_hive_basic_agri_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hive_basic_agri_drone_lithoid
+            bca_jr_job_has_display_stats = { JOB = hive_basic_agri_drone_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = hive_basic_agri_drone_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_hive_basic_agri_drone_lithoid value = value:bca_jr_sort_score_hive_basic_agri_drone_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hive_sustenance_drone
+            bca_jr_job_has_display_stats = { JOB = hive_sustenance_drone }
             bca_jr_job_matches_selected_filters = { JOB = hive_sustenance_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_hive_sustenance_drone value = value:bca_jr_sort_score_hive_sustenance_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hive_sustenance_drone_lithoid
+            bca_jr_job_has_display_stats = { JOB = hive_sustenance_drone_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = hive_sustenance_drone_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_hive_sustenance_drone_lithoid value = value:bca_jr_sort_score_hive_sustenance_drone_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hunted_pre_sapient
+            bca_jr_job_has_display_stats = { JOB = hunted_pre_sapient }
             bca_jr_job_matches_selected_filters = { JOB = hunted_pre_sapient }
         }
         set_variable = { which = bca_jr_cached_sort_score_hunted_pre_sapient value = value:bca_jr_sort_score_hunted_pre_sapient }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hunted_pre_sapient_lithoid
+            bca_jr_job_has_display_stats = { JOB = hunted_pre_sapient_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = hunted_pre_sapient_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_hunted_pre_sapient_lithoid value = value:bca_jr_sort_score_hunted_pre_sapient_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hunter_gatherer
+            bca_jr_job_has_display_stats = { JOB = hunter_gatherer }
             bca_jr_job_matches_selected_filters = { JOB = hunter_gatherer }
         }
         set_variable = { which = bca_jr_cached_sort_score_hunter_gatherer value = value:bca_jr_sort_score_hunter_gatherer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_hunter_gatherer_lithoid
+            bca_jr_job_has_display_stats = { JOB = hunter_gatherer_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = hunter_gatherer_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_hunter_gatherer_lithoid value = value:bca_jr_sort_score_hunter_gatherer_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_identity_designer
+            bca_jr_job_has_display_stats = { JOB = identity_designer }
             bca_jr_job_matches_selected_filters = { JOB = identity_designer }
         }
         set_variable = { which = bca_jr_cached_sort_score_identity_designer value = value:bca_jr_sort_score_identity_designer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_knight
+            bca_jr_job_has_display_stats = { JOB = knight }
             bca_jr_job_matches_selected_filters = { JOB = knight }
         }
         set_variable = { which = bca_jr_cached_sort_score_knight value = value:bca_jr_sort_score_knight }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_knight_commander
+            bca_jr_job_has_display_stats = { JOB = knight_commander }
             bca_jr_job_matches_selected_filters = { JOB = knight_commander }
         }
         set_variable = { which = bca_jr_cached_sort_score_knight_commander value = value:bca_jr_sort_score_knight_commander }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_livestock
+            bca_jr_job_has_display_stats = { JOB = livestock }
             bca_jr_job_matches_selected_filters = { JOB = livestock }
         }
         set_variable = { which = bca_jr_cached_sort_score_livestock value = value:bca_jr_sort_score_livestock }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_livestock_infernal
+            bca_jr_job_has_display_stats = { JOB = livestock_infernal }
             bca_jr_job_matches_selected_filters = { JOB = livestock_infernal }
         }
         set_variable = { which = bca_jr_cached_sort_score_livestock_infernal value = value:bca_jr_sort_score_livestock_infernal }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_livestock_lithoid
+            bca_jr_job_has_display_stats = { JOB = livestock_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = livestock_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_livestock_lithoid value = value:bca_jr_sort_score_livestock_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_logistics_drone
+            bca_jr_job_has_display_stats = { JOB = logistics_drone }
             bca_jr_job_matches_selected_filters = { JOB = logistics_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_logistics_drone value = value:bca_jr_sort_score_logistics_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_bureaucrat
+            bca_jr_job_has_display_stats = { JOB = low_tech_bureaucrat }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_bureaucrat }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_bureaucrat value = value:bca_jr_sort_score_low_tech_bureaucrat }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_farmer
+            bca_jr_job_has_display_stats = { JOB = low_tech_farmer }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_farmer }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_farmer value = value:bca_jr_sort_score_low_tech_farmer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_laborer
+            bca_jr_job_has_display_stats = { JOB = low_tech_laborer }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_laborer }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_laborer value = value:bca_jr_sort_score_low_tech_laborer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_manager
+            bca_jr_job_has_display_stats = { JOB = low_tech_manager }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_manager }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_manager value = value:bca_jr_sort_score_low_tech_manager }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_miner
+            bca_jr_job_has_display_stats = { JOB = low_tech_miner }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_miner }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_miner value = value:bca_jr_sort_score_low_tech_miner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_priest
+            bca_jr_job_has_display_stats = { JOB = low_tech_priest }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_priest }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_priest value = value:bca_jr_sort_score_low_tech_priest }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_researcher
+            bca_jr_job_has_display_stats = { JOB = low_tech_researcher }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_researcher value = value:bca_jr_sort_score_low_tech_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_low_tech_technician
+            bca_jr_job_has_display_stats = { JOB = low_tech_technician }
             bca_jr_job_matches_selected_filters = { JOB = low_tech_technician }
         }
         set_variable = { which = bca_jr_cached_sort_score_low_tech_technician value = value:bca_jr_sort_score_low_tech_technician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_machine_nurse
+            bca_jr_job_has_display_stats = { JOB = machine_nurse }
             bca_jr_job_matches_selected_filters = { JOB = machine_nurse }
         }
         set_variable = { which = bca_jr_cached_sort_score_machine_nurse value = value:bca_jr_sort_score_machine_nurse }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_maintenance_drone
+            bca_jr_job_has_display_stats = { JOB = maintenance_drone }
             bca_jr_job_matches_selected_filters = { JOB = maintenance_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_maintenance_drone value = value:bca_jr_sort_score_maintenance_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_manufactorium_complex_drone
+            bca_jr_job_has_display_stats = { JOB = manufactorium_complex_drone }
             bca_jr_job_matches_selected_filters = { JOB = manufactorium_complex_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_manufactorium_complex_drone value = value:bca_jr_sort_score_manufactorium_complex_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_manufactorium_scraper_drone
+            bca_jr_job_has_display_stats = { JOB = manufactorium_scraper_drone }
             bca_jr_job_matches_selected_filters = { JOB = manufactorium_scraper_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_manufactorium_scraper_drone value = value:bca_jr_sort_score_manufactorium_scraper_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_manufactorium_specialist
+            bca_jr_job_has_display_stats = { JOB = manufactorium_specialist }
             bca_jr_job_matches_selected_filters = { JOB = manufactorium_specialist }
         }
         set_variable = { which = bca_jr_cached_sort_score_manufactorium_specialist value = value:bca_jr_sort_score_manufactorium_specialist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_miner
+            bca_jr_job_has_display_stats = { JOB = miner }
             bca_jr_job_matches_selected_filters = { JOB = miner }
         }
         set_variable = { which = bca_jr_cached_sort_score_miner value = value:bca_jr_sort_score_miner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_mineral_diver_drone
+            bca_jr_job_has_display_stats = { JOB = mineral_diver_drone }
             bca_jr_job_matches_selected_filters = { JOB = mineral_diver_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_mineral_diver_drone value = value:bca_jr_sort_score_mineral_diver_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_mining_drone
+            bca_jr_job_has_display_stats = { JOB = mining_drone }
             bca_jr_job_matches_selected_filters = { JOB = mining_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_mining_drone value = value:bca_jr_sort_score_mining_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_mortal_initiate
+            bca_jr_job_has_display_stats = { JOB = mortal_initiate }
             bca_jr_job_matches_selected_filters = { JOB = mortal_initiate }
         }
         set_variable = { which = bca_jr_cached_sort_score_mortal_initiate value = value:bca_jr_sort_score_mortal_initiate }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_munitions_decommissioner
+            bca_jr_job_has_display_stats = { JOB = munitions_decommissioner }
             bca_jr_job_matches_selected_filters = { JOB = munitions_decommissioner }
         }
         set_variable = { which = bca_jr_cached_sort_score_munitions_decommissioner value = value:bca_jr_sort_score_munitions_decommissioner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_munitions_decommissioning_drone
+            bca_jr_job_has_display_stats = { JOB = munitions_decommissioning_drone }
             bca_jr_job_matches_selected_filters = { JOB = munitions_decommissioning_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_munitions_decommissioning_drone value = value:bca_jr_sort_score_munitions_decommissioning_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_munitions_decommissioning_unit
+            bca_jr_job_has_display_stats = { JOB = munitions_decommissioning_unit }
             bca_jr_job_matches_selected_filters = { JOB = munitions_decommissioning_unit }
         }
         set_variable = { which = bca_jr_cached_sort_score_munitions_decommissioning_unit value = value:bca_jr_sort_score_munitions_decommissioning_unit }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_munitions_decommissioning_unit_lithoid
+            bca_jr_job_has_display_stats = { JOB = munitions_decommissioning_unit_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = munitions_decommissioning_unit_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_munitions_decommissioning_unit_lithoid value = value:bca_jr_sort_score_munitions_decommissioning_unit_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_nanotech_research_unit
+            bca_jr_job_has_display_stats = { JOB = nanotech_research_unit }
             bca_jr_job_matches_selected_filters = { JOB = nanotech_research_unit }
         }
         set_variable = { which = bca_jr_cached_sort_score_nanotech_research_unit value = value:bca_jr_sort_score_nanotech_research_unit }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_nanotech_researcher
+            bca_jr_job_has_display_stats = { JOB = nanotech_researcher }
             bca_jr_job_matches_selected_filters = { JOB = nanotech_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_nanotech_researcher value = value:bca_jr_sort_score_nanotech_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_necro_apprentice
+            bca_jr_job_has_display_stats = { JOB = necro_apprentice }
             bca_jr_job_matches_selected_filters = { JOB = necro_apprentice }
         }
         set_variable = { which = bca_jr_cached_sort_score_necro_apprentice value = value:bca_jr_sort_score_necro_apprentice }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_neural_chip
+            bca_jr_job_has_display_stats = { JOB = neural_chip }
             bca_jr_job_matches_selected_filters = { JOB = neural_chip }
         }
         set_variable = { which = bca_jr_cached_sort_score_neural_chip value = value:bca_jr_sort_score_neural_chip }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_odd_factory_drone
+            bca_jr_job_has_display_stats = { JOB = odd_factory_drone }
             bca_jr_job_matches_selected_filters = { JOB = odd_factory_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_odd_factory_drone value = value:bca_jr_sort_score_odd_factory_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_odd_factory_worker
+            bca_jr_job_has_display_stats = { JOB = odd_factory_worker }
             bca_jr_job_matches_selected_filters = { JOB = odd_factory_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_odd_factory_worker value = value:bca_jr_sort_score_odd_factory_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_organic_battery
+            bca_jr_job_has_display_stats = { JOB = organic_battery }
             bca_jr_job_matches_selected_filters = { JOB = organic_battery }
         }
         set_variable = { which = bca_jr_cached_sort_score_organic_battery value = value:bca_jr_sort_score_organic_battery }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_organic_exhibit
+            bca_jr_job_has_display_stats = { JOB = organic_exhibit }
             bca_jr_job_matches_selected_filters = { JOB = organic_exhibit }
         }
         set_variable = { which = bca_jr_cached_sort_score_organic_exhibit value = value:bca_jr_sort_score_organic_exhibit }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_academic
+            bca_jr_job_has_display_stats = { JOB = overlord_academic }
             bca_jr_job_matches_selected_filters = { JOB = overlord_academic }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_academic value = value:bca_jr_sort_score_overlord_academic }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_academic_drone
+            bca_jr_job_has_display_stats = { JOB = overlord_academic_drone }
             bca_jr_job_matches_selected_filters = { JOB = overlord_academic_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_academic_drone value = value:bca_jr_sort_score_overlord_academic_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_bio_trophy
+            bca_jr_job_has_display_stats = { JOB = overlord_bio_trophy }
             bca_jr_job_matches_selected_filters = { JOB = overlord_bio_trophy }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_bio_trophy value = value:bca_jr_sort_score_overlord_bio_trophy }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_bio_trophy_drone
+            bca_jr_job_has_display_stats = { JOB = overlord_bio_trophy_drone }
             bca_jr_job_matches_selected_filters = { JOB = overlord_bio_trophy_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_bio_trophy_drone value = value:bca_jr_sort_score_overlord_bio_trophy_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_healthcare
+            bca_jr_job_has_display_stats = { JOB = overlord_healthcare }
             bca_jr_job_matches_selected_filters = { JOB = overlord_healthcare }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_healthcare value = value:bca_jr_sort_score_overlord_healthcare }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_manager
+            bca_jr_job_has_display_stats = { JOB = overlord_manager }
             bca_jr_job_matches_selected_filters = { JOB = overlord_manager }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_manager value = value:bca_jr_sort_score_overlord_manager }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_mortal_initiate
+            bca_jr_job_has_display_stats = { JOB = overlord_mortal_initiate }
             bca_jr_job_matches_selected_filters = { JOB = overlord_mortal_initiate }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_mortal_initiate value = value:bca_jr_sort_score_overlord_mortal_initiate }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_overlord_mortal_initiate_drone
+            bca_jr_job_has_display_stats = { JOB = overlord_mortal_initiate_drone }
             bca_jr_job_matches_selected_filters = { JOB = overlord_mortal_initiate_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_overlord_mortal_initiate_drone value = value:bca_jr_sort_score_overlord_mortal_initiate_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_patrol_drone
+            bca_jr_job_has_display_stats = { JOB = patrol_drone }
             bca_jr_job_matches_selected_filters = { JOB = patrol_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_patrol_drone value = value:bca_jr_sort_score_patrol_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_peasant
+            bca_jr_job_has_display_stats = { JOB = peasant }
             bca_jr_job_matches_selected_filters = { JOB = peasant }
         }
         set_variable = { which = bca_jr_cached_sort_score_peasant value = value:bca_jr_sort_score_peasant }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_peasant_lithoid
+            bca_jr_job_has_display_stats = { JOB = peasant_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = peasant_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_peasant_lithoid value = value:bca_jr_sort_score_peasant_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_physician_drone
+            bca_jr_job_has_display_stats = { JOB = physician_drone }
             bca_jr_job_matches_selected_filters = { JOB = physician_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_physician_drone value = value:bca_jr_sort_score_physician_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_physicist
+            bca_jr_job_has_display_stats = { JOB = physicist }
             bca_jr_job_matches_selected_filters = { JOB = physicist }
         }
         set_variable = { which = bca_jr_cached_sort_score_physicist value = value:bca_jr_sort_score_physicist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_politician
+            bca_jr_job_has_display_stats = { JOB = politician }
             bca_jr_job_matches_selected_filters = { JOB = politician }
         }
         set_variable = { which = bca_jr_cached_sort_score_politician value = value:bca_jr_sort_score_politician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_administrator
+            bca_jr_job_has_display_stats = { JOB = primitive_administrator }
             bca_jr_job_matches_selected_filters = { JOB = primitive_administrator }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_administrator value = value:bca_jr_sort_score_primitive_administrator }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_bureaucrat
+            bca_jr_job_has_display_stats = { JOB = primitive_bureaucrat }
             bca_jr_job_matches_selected_filters = { JOB = primitive_bureaucrat }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_bureaucrat value = value:bca_jr_sort_score_primitive_bureaucrat }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_farmer
+            bca_jr_job_has_display_stats = { JOB = primitive_farmer }
             bca_jr_job_matches_selected_filters = { JOB = primitive_farmer }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_farmer value = value:bca_jr_sort_score_primitive_farmer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_brain_drone
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_brain_drone }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_brain_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_brain_drone value = value:bca_jr_sort_score_primitive_hive_brain_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_cerebellum_drone
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_cerebellum_drone }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_cerebellum_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_cerebellum_drone value = value:bca_jr_sort_score_primitive_hive_cerebellum_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_factory_drone
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_factory_drone }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_factory_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_factory_drone value = value:bca_jr_sort_score_primitive_hive_factory_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_farmer
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_farmer }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_farmer }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_farmer value = value:bca_jr_sort_score_primitive_hive_farmer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_miner
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_miner }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_miner }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_miner value = value:bca_jr_sort_score_primitive_hive_miner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_synapse_drone
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_synapse_drone }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_synapse_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_synapse_drone value = value:bca_jr_sort_score_primitive_hive_synapse_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_synapse_drone_2
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_synapse_drone_2 }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_synapse_drone_2 }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_synapse_drone_2 value = value:bca_jr_sort_score_primitive_hive_synapse_drone_2 }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_hive_technician
+            bca_jr_job_has_display_stats = { JOB = primitive_hive_technician }
             bca_jr_job_matches_selected_filters = { JOB = primitive_hive_technician }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_hive_technician value = value:bca_jr_sort_score_primitive_hive_technician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_laborer
+            bca_jr_job_has_display_stats = { JOB = primitive_laborer }
             bca_jr_job_matches_selected_filters = { JOB = primitive_laborer }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_laborer value = value:bca_jr_sort_score_primitive_laborer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_miner
+            bca_jr_job_has_display_stats = { JOB = primitive_miner }
             bca_jr_job_matches_selected_filters = { JOB = primitive_miner }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_miner value = value:bca_jr_sort_score_primitive_miner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_noble
+            bca_jr_job_has_display_stats = { JOB = primitive_noble }
             bca_jr_job_matches_selected_filters = { JOB = primitive_noble }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_noble value = value:bca_jr_sort_score_primitive_noble }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_priest
+            bca_jr_job_has_display_stats = { JOB = primitive_priest }
             bca_jr_job_matches_selected_filters = { JOB = primitive_priest }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_priest value = value:bca_jr_sort_score_primitive_priest }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_priest_2
+            bca_jr_job_has_display_stats = { JOB = primitive_priest_2 }
             bca_jr_job_matches_selected_filters = { JOB = primitive_priest_2 }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_priest_2 value = value:bca_jr_sort_score_primitive_priest_2 }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_researcher
+            bca_jr_job_has_display_stats = { JOB = primitive_researcher }
             bca_jr_job_matches_selected_filters = { JOB = primitive_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_researcher value = value:bca_jr_sort_score_primitive_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_researcher_2
+            bca_jr_job_has_display_stats = { JOB = primitive_researcher_2 }
             bca_jr_job_matches_selected_filters = { JOB = primitive_researcher_2 }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_researcher_2 value = value:bca_jr_sort_score_primitive_researcher_2 }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_primitive_technician
+            bca_jr_job_has_display_stats = { JOB = primitive_technician }
             bca_jr_job_matches_selected_filters = { JOB = primitive_technician }
         }
         set_variable = { which = bca_jr_cached_sort_score_primitive_technician value = value:bca_jr_sort_score_primitive_technician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_production_overseer
+            bca_jr_job_has_display_stats = { JOB = production_overseer }
             bca_jr_job_matches_selected_filters = { JOB = production_overseer }
         }
         set_variable = { which = bca_jr_cached_sort_score_production_overseer value = value:bca_jr_sort_score_production_overseer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_puddle_technician
+            bca_jr_job_has_display_stats = { JOB = puddle_technician }
             bca_jr_job_matches_selected_filters = { JOB = puddle_technician }
         }
         set_variable = { which = bca_jr_cached_sort_score_puddle_technician value = value:bca_jr_sort_score_puddle_technician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_puddle_technician_drone
+            bca_jr_job_has_display_stats = { JOB = puddle_technician_drone }
             bca_jr_job_matches_selected_filters = { JOB = puddle_technician_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_puddle_technician_drone value = value:bca_jr_sort_score_puddle_technician_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_labor_camps
+            bca_jr_job_has_display_stats = { JOB = purge_labor_camps }
             bca_jr_job_matches_selected_filters = { JOB = purge_labor_camps }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_labor_camps value = value:bca_jr_sort_score_purge_labor_camps }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_lithoid
+            bca_jr_job_has_display_stats = { JOB = purge_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = purge_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_lithoid value = value:bca_jr_sort_score_purge_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_matrix
+            bca_jr_job_has_display_stats = { JOB = purge_matrix }
             bca_jr_job_matches_selected_filters = { JOB = purge_matrix }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_matrix value = value:bca_jr_sort_score_purge_matrix }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_processing
+            bca_jr_job_has_display_stats = { JOB = purge_processing }
             bca_jr_job_matches_selected_filters = { JOB = purge_processing }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_processing value = value:bca_jr_sort_score_purge_processing }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_processing_infernal
+            bca_jr_job_has_display_stats = { JOB = purge_processing_infernal }
             bca_jr_job_matches_selected_filters = { JOB = purge_processing_infernal }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_processing_infernal value = value:bca_jr_sort_score_purge_processing_infernal }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_processing_lithoid
+            bca_jr_job_has_display_stats = { JOB = purge_processing_lithoid }
             bca_jr_job_matches_selected_filters = { JOB = purge_processing_lithoid }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_processing_lithoid value = value:bca_jr_sort_score_purge_processing_lithoid }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_processing_robot
+            bca_jr_job_has_display_stats = { JOB = purge_processing_robot }
             bca_jr_job_matches_selected_filters = { JOB = purge_processing_robot }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_processing_robot value = value:bca_jr_sort_score_purge_processing_robot }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_robot
+            bca_jr_job_has_display_stats = { JOB = purge_robot }
             bca_jr_job_matches_selected_filters = { JOB = purge_robot }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_robot value = value:bca_jr_sort_score_purge_robot }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_purge_sacrifice
+            bca_jr_job_has_display_stats = { JOB = purge_sacrifice }
             bca_jr_job_matches_selected_filters = { JOB = purge_sacrifice }
         }
         set_variable = { which = bca_jr_cached_sort_score_purge_sacrifice value = value:bca_jr_sort_score_purge_sacrifice }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_ratling_scavenger
+            bca_jr_job_has_display_stats = { JOB = ratling_scavenger }
             bca_jr_job_matches_selected_filters = { JOB = ratling_scavenger }
         }
         set_variable = { which = bca_jr_cached_sort_score_ratling_scavenger value = value:bca_jr_sort_score_ratling_scavenger }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_resort_worker
+            bca_jr_job_has_display_stats = { JOB = resort_worker }
             bca_jr_job_matches_selected_filters = { JOB = resort_worker }
         }
         set_variable = { which = bca_jr_cached_sort_score_resort_worker value = value:bca_jr_sort_score_resort_worker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_robot_caretaker
+            bca_jr_job_has_display_stats = { JOB = robot_caretaker }
             bca_jr_job_matches_selected_filters = { JOB = robot_caretaker }
         }
         set_variable = { which = bca_jr_cached_sort_score_robot_caretaker value = value:bca_jr_sort_score_robot_caretaker }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_shroud_trader
+            bca_jr_job_has_display_stats = { JOB = shroud_trader }
             bca_jr_job_matches_selected_filters = { JOB = shroud_trader }
         }
         set_variable = { which = bca_jr_cached_sort_score_shroud_trader value = value:bca_jr_sort_score_shroud_trader }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_slave_overseer
+            bca_jr_job_has_display_stats = { JOB = slave_overseer }
             bca_jr_job_matches_selected_filters = { JOB = slave_overseer }
         }
         set_variable = { which = bca_jr_cached_sort_score_slave_overseer value = value:bca_jr_sort_score_slave_overseer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_solarpunk_anarchist
+            bca_jr_job_has_display_stats = { JOB = solarpunk_anarchist }
             bca_jr_job_matches_selected_filters = { JOB = solarpunk_anarchist }
         }
         set_variable = { which = bca_jr_cached_sort_score_solarpunk_anarchist value = value:bca_jr_sort_score_solarpunk_anarchist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_soldier
+            bca_jr_job_has_display_stats = { JOB = soldier }
             bca_jr_job_matches_selected_filters = { JOB = soldier }
         }
         set_variable = { which = bca_jr_cached_sort_score_soldier value = value:bca_jr_sort_score_soldier }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_space_junk_collector
+            bca_jr_job_has_display_stats = { JOB = space_junk_collector }
             bca_jr_job_matches_selected_filters = { JOB = space_junk_collector }
         }
         set_variable = { which = bca_jr_cached_sort_score_space_junk_collector value = value:bca_jr_sort_score_space_junk_collector }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_space_time_anomaly_researcher
+            bca_jr_job_has_display_stats = { JOB = space_time_anomaly_researcher }
             bca_jr_job_matches_selected_filters = { JOB = space_time_anomaly_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_space_time_anomaly_researcher value = value:bca_jr_sort_score_space_time_anomaly_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_space_time_anomaly_researcher_gestalt
+            bca_jr_job_has_display_stats = { JOB = space_time_anomaly_researcher_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = space_time_anomaly_researcher_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_space_time_anomaly_researcher_gestalt value = value:bca_jr_sort_score_space_time_anomaly_researcher_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_spawning_drone
+            bca_jr_job_has_display_stats = { JOB = spawning_drone }
             bca_jr_job_matches_selected_filters = { JOB = spawning_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_spawning_drone value = value:bca_jr_sort_score_spawning_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_spe_colonist
+            bca_jr_job_has_display_stats = { JOB = spe_colonist }
             bca_jr_job_matches_selected_filters = { JOB = spe_colonist }
         }
         set_variable = { which = bca_jr_cached_sort_score_spe_colonist value = value:bca_jr_sort_score_spe_colonist }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stasis_warden
+            bca_jr_job_has_display_stats = { JOB = stasis_warden }
             bca_jr_job_matches_selected_filters = { JOB = stasis_warden }
         }
         set_variable = { which = bca_jr_cached_sort_score_stasis_warden value = value:bca_jr_sort_score_stasis_warden }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stasis_warden_drone
+            bca_jr_job_has_display_stats = { JOB = stasis_warden_drone }
             bca_jr_job_matches_selected_filters = { JOB = stasis_warden_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_stasis_warden_drone value = value:bca_jr_sort_score_stasis_warden_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stratovent_refiner
+            bca_jr_job_has_display_stats = { JOB = stratovent_refiner }
             bca_jr_job_matches_selected_filters = { JOB = stratovent_refiner }
         }
         set_variable = { which = bca_jr_cached_sort_score_stratovent_refiner value = value:bca_jr_sort_score_stratovent_refiner }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stratovent_refiner_minerals
+            bca_jr_job_has_display_stats = { JOB = stratovent_refiner_minerals }
             bca_jr_job_matches_selected_filters = { JOB = stratovent_refiner_minerals }
         }
         set_variable = { which = bca_jr_cached_sort_score_stratovent_refiner_minerals value = value:bca_jr_sort_score_stratovent_refiner_minerals }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stratovent_refiner_upg
+            bca_jr_job_has_display_stats = { JOB = stratovent_refiner_upg }
             bca_jr_job_matches_selected_filters = { JOB = stratovent_refiner_upg }
         }
         set_variable = { which = bca_jr_cached_sort_score_stratovent_refiner_upg value = value:bca_jr_sort_score_stratovent_refiner_upg }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_stratovent_researcher
+            bca_jr_job_has_display_stats = { JOB = stratovent_researcher }
             bca_jr_job_matches_selected_filters = { JOB = stratovent_researcher }
         }
         set_variable = { which = bca_jr_cached_sort_score_stratovent_researcher value = value:bca_jr_sort_score_stratovent_researcher }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_technician
+            bca_jr_job_has_display_stats = { JOB = technician }
             bca_jr_job_matches_selected_filters = { JOB = technician }
         }
         set_variable = { which = bca_jr_cached_sort_score_technician value = value:bca_jr_sort_score_technician }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_technician_drone
+            bca_jr_job_has_display_stats = { JOB = technician_drone }
             bca_jr_job_matches_selected_filters = { JOB = technician_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_technician_drone value = value:bca_jr_sort_score_technician_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_technophant
+            bca_jr_job_has_display_stats = { JOB = technophant }
             bca_jr_job_matches_selected_filters = { JOB = technophant }
         }
         set_variable = { which = bca_jr_cached_sort_score_technophant value = value:bca_jr_sort_score_technophant }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_telepath
+            bca_jr_job_has_display_stats = { JOB = telepath }
             bca_jr_job_matches_selected_filters = { JOB = telepath }
         }
         set_variable = { which = bca_jr_cached_sort_score_telepath value = value:bca_jr_sort_score_telepath }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_telepath_drone
+            bca_jr_job_has_display_stats = { JOB = telepath_drone }
             bca_jr_job_matches_selected_filters = { JOB = telepath_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_telepath_drone value = value:bca_jr_sort_score_telepath_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_test_subject
+            bca_jr_job_has_display_stats = { JOB = test_subject }
             bca_jr_job_matches_selected_filters = { JOB = test_subject }
         }
         set_variable = { which = bca_jr_cached_sort_score_test_subject value = value:bca_jr_sort_score_test_subject }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_test_subject_drone
+            bca_jr_job_has_display_stats = { JOB = test_subject_drone }
             bca_jr_job_matches_selected_filters = { JOB = test_subject_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_test_subject_drone value = value:bca_jr_sort_score_test_subject_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_trader
+            bca_jr_job_has_display_stats = { JOB = trader }
             bca_jr_job_matches_selected_filters = { JOB = trader }
         }
         set_variable = { which = bca_jr_cached_sort_score_trader value = value:bca_jr_sort_score_trader }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_transference_drone
+            bca_jr_job_has_display_stats = { JOB = transference_drone }
             bca_jr_job_matches_selected_filters = { JOB = transference_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_transference_drone value = value:bca_jr_sort_score_transference_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_transference_volunteer
+            bca_jr_job_has_display_stats = { JOB = transference_volunteer }
             bca_jr_job_matches_selected_filters = { JOB = transference_volunteer }
         }
         set_variable = { which = bca_jr_cached_sort_score_transference_volunteer value = value:bca_jr_sort_score_transference_volunteer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_translucer
+            bca_jr_job_has_display_stats = { JOB = translucer }
             bca_jr_job_matches_selected_filters = { JOB = translucer }
         }
         set_variable = { which = bca_jr_cached_sort_score_translucer value = value:bca_jr_sort_score_translucer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_translucer_drone
+            bca_jr_job_has_display_stats = { JOB = translucer_drone }
             bca_jr_job_matches_selected_filters = { JOB = translucer_drone }
         }
         set_variable = { which = bca_jr_cached_sort_score_translucer_drone value = value:bca_jr_sort_score_translucer_drone }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_treasure_gatherer
+            bca_jr_job_has_display_stats = { JOB = treasure_gatherer }
             bca_jr_job_matches_selected_filters = { JOB = treasure_gatherer }
         }
         set_variable = { which = bca_jr_cached_sort_score_treasure_gatherer value = value:bca_jr_sort_score_treasure_gatherer }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_treasure_gatherer_gestalt
+            bca_jr_job_has_display_stats = { JOB = treasure_gatherer_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = treasure_gatherer_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_treasure_gatherer_gestalt value = value:bca_jr_sort_score_treasure_gatherer_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_turtle_miner_gestalt
+            bca_jr_job_has_display_stats = { JOB = turtle_miner_gestalt }
             bca_jr_job_matches_selected_filters = { JOB = turtle_miner_gestalt }
         }
         set_variable = { which = bca_jr_cached_sort_score_turtle_miner_gestalt value = value:bca_jr_sort_score_turtle_miner_gestalt }
     }
     if = {
         limit = {
-            is_variable_set = bca_jr_total_job_count_wrangler
+            bca_jr_job_has_display_stats = { JOB = wrangler }
             bca_jr_job_matches_selected_filters = { JOB = wrangler }
         }
         set_variable = { which = bca_jr_cached_sort_score_wrangler value = value:bca_jr_sort_score_wrangler }
@@ -12338,6 +12221,23 @@ bca_jr_fill_slot_job_stats = {
     set_country_flag = bca_jr_slot_mapped_$JOB$
     bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = $JOB$ }
     if = {
+        limit = {
+            OR = {
+                is_variable_set = bca_jr_total_assigned_workforce_$JOB$
+                is_variable_set = bca_jr_total_automated_capacity_workforce_$JOB$
+            }
+        }
+        set_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = 0 }
+        if = {
+            limit = { is_variable_set = bca_jr_total_assigned_workforce_$JOB$ }
+            add_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
+        }
+        if = {
+            limit = { is_variable_set = bca_jr_total_automated_capacity_workforce_$JOB$ }
+            add_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = bca_jr_total_automated_capacity_workforce_$JOB$ }
+        }
+    }
+    if = {
         limit = { is_variable_set = bca_jr_total_assigned_workforce_$JOB$ }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_assigned_workforce value = bca_jr_total_assigned_workforce_$JOB$ }
     }
@@ -14484,192 +14384,76 @@ bca_jr_fill_current_slot = {
         add_variable = { which = bca_jr_fill_idx value = 1 }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_assigned_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_assigned_workforce VALUE = bca_jr_slot_$SLOT_NAME$_assigned_workforce }
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_active_workforce } }
+        set_variable = { which = bca_jr_slot_$SLOT_NAME$_active_workforce value = 0 }
     }
-    else = {
+    if = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_assigned_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_assigned_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_assigned_workforce VALUE = bca_jr_slot_$SLOT_NAME$_assigned_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_capacity_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_capacity_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_capacity_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_capacity_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_capacity_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_pop_productive_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_productive_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_productive_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_productive_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_productive_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_productive_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_automated_capacity_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce VALUE = bca_jr_slot_$SLOT_NAME$_automated_productive_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit VALUE = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit VALUE = bca_jr_slot_$SLOT_NAME$_pop_capacity_limit }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_total_job_count }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_total_job_count VALUE = bca_jr_slot_$SLOT_NAME$_total_job_count }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_total_job_count } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_total_job_count value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_total_job_count VALUE = bca_jr_slot_$SLOT_NAME$_total_job_count }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_free_job_count }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_free_job_count VALUE = bca_jr_slot_$SLOT_NAME$_free_job_count }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_free_job_count } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_free_job_count value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_free_job_count VALUE = bca_jr_slot_$SLOT_NAME$_free_job_count }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_open_job_count }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_open_job_count VALUE = bca_jr_slot_$SLOT_NAME$_open_job_count }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_open_job_count } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_job_count value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_open_job_count VALUE = bca_jr_slot_$SLOT_NAME$_open_job_count }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_open_total_capacity VALUE = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_open_total_capacity } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_open_total_capacity VALUE = bca_jr_slot_$SLOT_NAME$_open_total_capacity }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automation_rate }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automation_rate VALUE = bca_jr_slot_$SLOT_NAME$_automation_rate }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automation_rate } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automation_rate VALUE = bca_jr_slot_$SLOT_NAME$_automation_rate }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_pop_efficiency_delta }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_automated_efficiency_delta }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta VALUE = bca_jr_slot_$SLOT_NAME$_total_efficiency_delta }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce VALUE = bca_jr_slot_$SLOT_NAME$_closable_capacity_workforce }
     }
     if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_job_change }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_job_change VALUE = bca_jr_slot_$SLOT_NAME$_job_change }
-    }
-    else = {
+        limit = { NOT = { is_variable_set = bca_jr_slot_$SLOT_NAME$_job_change } }
         set_variable = { which = bca_jr_slot_$SLOT_NAME$_job_change value = 0 }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_job_change VALUE = bca_jr_slot_$SLOT_NAME$_job_change }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_energy }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_energy VALUE = bca_jr_slot_$SLOT_NAME$_output_energy }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_minerals }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_minerals VALUE = bca_jr_slot_$SLOT_NAME$_output_minerals }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_food }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_food VALUE = bca_jr_slot_$SLOT_NAME$_output_food }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_alloys }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_alloys VALUE = bca_jr_slot_$SLOT_NAME$_output_alloys }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_consumer_goods }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_consumer_goods VALUE = bca_jr_slot_$SLOT_NAME$_output_consumer_goods }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_trade }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_trade VALUE = bca_jr_slot_$SLOT_NAME$_output_trade }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_unity }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_unity VALUE = bca_jr_slot_$SLOT_NAME$_output_unity }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_physics_research }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_physics_research VALUE = bca_jr_slot_$SLOT_NAME$_output_physics_research }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_society_research }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_society_research VALUE = bca_jr_slot_$SLOT_NAME$_output_society_research }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_engineering_research }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_engineering_research VALUE = bca_jr_slot_$SLOT_NAME$_output_engineering_research }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_rare_crystals }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_rare_crystals VALUE = bca_jr_slot_$SLOT_NAME$_output_rare_crystals }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_volatile_motes }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_volatile_motes VALUE = bca_jr_slot_$SLOT_NAME$_output_volatile_motes }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_slot_$SLOT_NAME$_output_exotic_gases }
-        bca_jr_prepare_display_number = { OUT = bca_jr_slot_$SLOT_NAME$_output_exotic_gases VALUE = bca_jr_slot_$SLOT_NAME$_output_exotic_gases }
     }
 }
 
