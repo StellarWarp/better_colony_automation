@@ -45,9 +45,10 @@ Normal `rg` searches intentionally skip generated runtime `.txt` files because
 `mod_builder/generate.py` maintains those paths in the repository `.rgignore`.
 This keeps routine searches focused on source files and handwritten runtime
 hotspots. Do not bypass `.rgignore` during normal development. Generated-output
-inspection is an exception for generation failures, suspected renderer defects,
-or narrow source-to-output mismatch investigations; return to the source
-template, config, or parser before editing.
+inspection is an exception only for suspected renderer defects or narrow
+source-to-output mismatch investigations; return to the source template, config,
+or parser before editing. If generation fails, inspect the traceback, template,
+config, or parser source rather than the stale generated output.
 
 If no matching template is found and a `.txt` file must be inspected, read only
 the first five lines first. Generated files should identify their source
@@ -55,8 +56,8 @@ template near the top; use that source as the edit site.
 
 After template changes, a successful generation run is sufficient generated
 output validation for normal maintenance. Do not spend time reviewing large
-generated `.txt` bodies unless generation fails, a renderer defect is
-suspected, or a narrow source-to-output mismatch must be proven.
+generated `.txt` bodies unless a renderer defect is suspected or a narrow
+source-to-output mismatch must be proven.
 
 Useful starting questions:
 

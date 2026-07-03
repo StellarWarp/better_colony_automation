@@ -75,7 +75,8 @@ Before changing behavior:
 2. If a runtime file has a generated warning header, go back to the template or generator input.
 3. Remember that normal `rg` searches skip generated runtime `.txt` files via
    `.rgignore`; this keeps development focused on source files. Avoid bypassing
-   it unless you are debugging generation itself or proving a renderer defect.
+   it unless you are proving a renderer defect or a narrow source-to-output
+   mismatch.
 4. If DSL syntax, GUI behavior, tooltip behavior, or API usage is uncertain,
    check [DSL Style Guide](maintenance/dsl-style-guide.md): use the Stellaris
    user document `logs/script_documentation` first, then `.config/stellaris/`

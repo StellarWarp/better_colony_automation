@@ -45,7 +45,8 @@ When editing runtime files:
   and should not be read or edited directly
 - normal `rg` searches skip generated runtime `.txt` files through the
   repository `.rgignore`; use source templates/config/parser files for routine
-  search and avoid bypassing `.rgignore` unless debugging generation itself
+  search and avoid bypassing `.rgignore` unless proving a renderer defect or a
+  narrow source-to-output mismatch
 - if no matching template is found and a runtime `.txt` must be inspected, read
   only the first five lines first to check for ownership metadata
 - generated warning header answers "can I edit this file directly?"
@@ -62,8 +63,8 @@ When changing templates:
   `.rgignore`; do not hand-maintain that block
 - treat a successful generator run as sufficient generated-output validation
   for normal maintenance
-- do not review generated `.txt` bodies unless generation fails, a renderer
-  defect is suspected, or a narrow source-to-output mismatch must be proven
+- do not review generated `.txt` bodies unless a renderer defect is suspected
+  or a narrow source-to-output mismatch must be proven
 - test in game after re-entering, because Stellaris logic does not hot reload
 
 ## Generated-Config Exceptions

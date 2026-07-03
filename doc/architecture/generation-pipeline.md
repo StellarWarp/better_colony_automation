@@ -199,7 +199,8 @@ This means:
 - warning headers are the first-line ownership signal during editing
 - generated runtime `.txt` files are hidden from normal `rg` searches on
   purpose; search templates, config, and parser code first, and avoid inspecting
-  generated output unless debugging generation itself
+  generated output unless proving a renderer defect or a narrow source-to-output
+  mismatch
 - running `generate.py` can modify configured local Stellaris mod targets
 
 ## Component Macros
@@ -283,6 +284,7 @@ renames it back to `bca_global_setting_panel.gui`.
 6. Edit the highest-leverage source.
 7. Regenerate outputs with the file watcher or generator.
 8. Treat successful generation as sufficient generated-output validation for
-   normal maintenance. Do not inspect generated output unless generation fails,
-   a renderer defect is suspected, or a narrow source-to-output mismatch must
-   be proven; validate behavior in game when needed.
+   normal maintenance. Do not inspect generated output unless a renderer defect
+   is suspected or a narrow source-to-output mismatch must be proven; validate
+   behavior in game when needed. If generation fails, inspect the traceback,
+   template, config, or parser source rather than stale output.
