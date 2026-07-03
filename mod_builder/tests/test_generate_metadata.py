@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import shutil
 import unittest
 from pathlib import Path
 
@@ -13,6 +14,11 @@ import generate
 
 
 class GenerateMetadataTests(unittest.TestCase):
+    rgignore_workspace = Path(__file__).parent / "_rgignore_test_workspace"
+
+    def tearDown(self):
+        shutil.rmtree(self.rgignore_workspace, ignore_errors=True)
+
     def test_job_regulation_templates_use_first_line_metadata(self):
         expected_templates = [
             "common/button_effects/bca_job_regulation_panel_buttons.txt.j2",
@@ -71,6 +77,42 @@ class GenerateMetadataTests(unittest.TestCase):
             content.splitlines()[0],
             "# submod job_regulation file_name renamed.txt",
         )
+
+    def test_generated_rgignore_includes_gui_and_directory_rules(self):
+        shutil.rmtree(self.rgignore_workspace, ignore_errors=True)
+        self.rgignore_workspace.mkdir()
+        root = self.rgignore_workspace
+        generated_paths = [
+            "events/example.txt",
+            "interface/example.gui",
+            "interface/example.gfx",
+            "localisation/english/example.yml",
+            "common/handwritten.md",
+        ]
+
+        generate.update_generated_output_rgignore(
+            generated_paths,
+            root / ".rgignore",
+        )
+
+        root_rgignore = (root / ".rgignore").read_text(encoding="utf-8")
+        self.assertIn("/events/example.txt", root_rgignore)
+        self.assertIn("/interface/example.gui", root_rgignore)
+        self.assertIn("/interface/example.gfx", root_rgignore)
+        self.assertIn("/localisation/english/example.yml", root_rgignore)
+        self.assertNotIn("/common/handwritten.md", root_rgignore)
+
+        interface_rgignore = (
+            root / "interface" / ".rgignore"
+        ).read_text(encoding="utf-8")
+        self.assertIn("example.gui", interface_rgignore)
+        self.assertIn("example.gfx", interface_rgignore)
+        self.assertNotIn("/interface/example.gui", interface_rgignore)
+
+        events_rgignore = (
+            root / "events" / ".rgignore"
+        ).read_text(encoding="utf-8")
+        self.assertIn("example.txt", events_rgignore)
 
 
 if __name__ == "__main__":
