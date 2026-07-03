@@ -464,26 +464,7 @@ bca_jr_initialize_resource_remaining = {
 }
 
 
-bca_jr_initialize_default_manual_manage_jobs = {
-    if = {
-        limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_enforcer_initialized } }
-        set_country_flag = bca_jr_default_manual_manage_job_enforcer_initialized
-        set_country_flag = bca_jr_mode_manual_enforcer
-        remove_country_flag = bca_jr_mode_empty_enforcer
-        remove_country_flag = bca_jr_mode_full_enforcer
-    }
-    if = {
-        limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_patrol_drone_initialized } }
-        set_country_flag = bca_jr_default_manual_manage_job_patrol_drone_initialized
-        set_country_flag = bca_jr_mode_manual_patrol_drone
-        remove_country_flag = bca_jr_mode_empty_patrol_drone
-        remove_country_flag = bca_jr_mode_full_patrol_drone
-    }
-}
-
-
 bca_jr_monthly_begin = {
-    bca_jr_initialize_default_manual_manage_jobs = yes
     add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
     if = {
         limit = { check_variable = { which = bca_jr_skip_refresh_counter value >= 6 } }
