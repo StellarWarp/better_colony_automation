@@ -77,6 +77,18 @@ class UpdateSteamWorkshopTests(unittest.TestCase):
             ["main", "job_regulation"],
         )
 
+    def test_all_selects_main_and_submod_packages(self):
+        self.assertEqual(
+            update_workshop.selected_packages("all"),
+            ["main", "job_regulation"],
+        )
+
+    def test_parser_defaults_to_all_packages(self):
+        parser = update_workshop.build_parser()
+        args = parser.parse_args([])
+
+        self.assertEqual(args.package, "all")
+
     def test_rejects_unknown_package(self):
         with self.assertRaisesRegex(ValueError, "未知 Workshop 包"):
             update_workshop.load_publish_payload("missing")

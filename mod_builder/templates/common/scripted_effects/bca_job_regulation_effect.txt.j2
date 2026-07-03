@@ -66,15 +66,15 @@ bca_jr_initialize_resource_remaining = {
 }
 
 bca_jr_initialize_default_manual_manage_jobs = {
-    if = {
-        limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_jobs_initialized } }
-        set_country_flag = bca_jr_default_manual_manage_jobs_initialized
-        {% for job in default_manual_manage_jobs %}
+    {% for job in default_manual_manage_jobs %}
+        if = {
+            limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_{{ job }}_initialized } }
+            set_country_flag = bca_jr_default_manual_manage_job_{{ job }}_initialized
             set_country_flag = bca_jr_mode_manual_{{ job }}
             remove_country_flag = bca_jr_mode_empty_{{ job }}
             remove_country_flag = bca_jr_mode_full_{{ job }}
-        {% endfor %}
-    }
+        }
+    {% endfor %}
 }
 
 bca_jr_monthly_begin = {

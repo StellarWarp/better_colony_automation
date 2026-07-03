@@ -2,42 +2,53 @@
 
 [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3601183337]Legacy Version for 4.2[/url]
 
-[b]Recommend to use with [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3171051580]Auto Resettle Pop[/url][/b]
-
 [hr][/hr]
 
-[h2]Still manually managing dozens of planets?[/h2]
+[h2]What does this mod provide?[/h2]
 
-Mid to late game in Stellaris often turns into a micromanagement nightmare:
+BCA reduces repetitive colony management by handling construction, demolition, transitions, and resource control from your plan.
 
-[b]·[/b] Manually building on every single planet
-[b]·[/b] Vanilla automation building randomly and even ruining your economy
-[b]·[/b] Planet specialization requires tedious manual demolition and rebuilding
+✔ Automatically builds buildings, districts, and zone specializations
+✔ Automatically removes buildings, districts, and zone specializations that no longer match the plan, supporting colony transitions
+✔ Controls construction pace through mineral reserves, free jobs, and economic output targets
+✔ Improves most vanilla colony automation options, including pop assembly, housing, rare resources, and crime management
+✔ Provides a colony district settings panel and a global settings panel for planning and batch adjustments
 
-As your empire grows to dozens or even hundreds of planets, this quickly becomes overwhelming.
+[h2]What do you need to plan?[/h2]
 
-[h2]What does this mod do?[/h2]
+BCA selects default zone-specialization preferences from the colony designation. Usually, choosing the designation is enough.
 
-✔ Automated construction [b]based on actual needs[/b] (not random building)
-✔ Automatically removes unsuitable buildings, districts, and specializations for smooth planet transitions
-✔ Smart resource control to prevent automation from crashing your economy
-✔ Highly configurable, but works out-of-the-box
-✔ Intuitive UI for planning and adjustments
+For finer planning, you can manually adjust:
 
-[b]You set the direction — the system handles the execution.[/b]
+[b]·[/b] Zone specializations: change primary or secondary production directions
+[b]·[/b] District counts: set how many districts of each type should be built
+[b]·[/b] Demolition policy: whether BCA may remove buildings, districts, and zone specializations that do not match the plan
+[b]·[/b] Global rules: resource reserves, free-job thresholds, pre-construction, and economic output targets
 
-[h2]Quick Guide[/h2]
+Once configured, BCA executes the plan during monthly automation.
 
-1. [b]Enable automation[/b]: Turn on Planet Automation and configure options in the planet interface
-2. [b]Planning & district setup[/b]: Use the planet UI to configure mixed planning and district construction. Buildings are constructed according to the planet designation and the zones already built on that planet.
-3. [b]Global settings[/b]: Use the Global Automation Settings panel to configure empire-wide automation behavior, including resource reserves, job thresholds, pre-construction, and economic management. Economic management limits related construction by output targets.
+[h2]Quick Start[/h2]
 
-This mod improves almost all vanilla automation options, including pop assembly, housing, rare resources, crime management, etc. You can safely leave these options on by default.
+1. [b]Enable Colony Automation[/b]: Turn on Planet Automation in the planet interface.
+2. [b]Configure automation options[/b]: Keep what BCA should manage, disable what you want to handle manually.
+3. [b]Check the colony district settings panel[/b]: Defaults follow the colony designation. For mixed planning, adjust zone specializations and district counts.
+4. [b]Set global rules[/b]: Use Global Automation Settings to configure resource reserves, free-job thresholds, pre-construction, economic management, and default auto-demolition behavior.
+5. [b]Let time advance[/b]: BCA performs construction and demolition during the monthly automation flow.
 
-[h2]Recent Feature Updates[/h2]
+If unsure, keep most defaults and set only the colony designation and zone specializations first.
 
-[b]· Output target thresholds[/b]: Configure target values for each output type in global settings; automation expands matching production only while income is below target, and this gate does not change colony plans. The vanilla Avoid Deficit automation option has been removed and replaced by output target controls.
-[b]· Fixes and UX improvements[/b]: Settings now sync to built zones when zone auto-demolition is disabled, with fixes for several construction strategies and missing Nomad Arkship zone icons.
+[h2]Extension: Job Statistics & Regulation[/h2]
+
+For deeper empire workforce management, use the optional submod:
+
+[url=https://steamcommunity.com/sharedfiles/filedetails/?id=3697668775]Macroeconomy: Job Statistics & Regulation[/url]
+
+It provides:
+
+[b]·[/b] Empire-wide job, workforce, and job-output statistics
+[b]·[/b] Job filters for basic resources, industry, research, and strategic resources
+[b]·[/b] Locate colonies containing a selected job
+[b]·[/b] Open or close jobs based on BCA economic output targets
 
 [h2]Load Order[/h2]
 
@@ -45,37 +56,69 @@ This mod improves almost all vanilla automation options, including pop assembly,
 [b]·[/b] ...
 [b]·[/b] This MOD
 
+[b]It is strongly recommended to place this mod late in your load order.[/b]
+
 [h2]Mechanics & Details[/h2]
 
-If you want to dive deeper into the logic and implementation (including construction rules and behavior), check the full documentation:
+For detailed mechanics and construction rules, see:
 
 https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
 [h2]⚠️ Compatibility[/h2]
 
-[b]It is strongly recommended to place this mod at the end of your load order[/b]
+[b]It is strongly recommended to place this mod at the end of your load order.[/b]
 
-[b]·[/b] This mod primarily modifies vanilla automation logic and should not conflict with mods that do not touch automation
-[b]✅ More building slot[/b]
-[b]✅ Larger planet and more districts capacity[/b]
-[b]⚠️⚠️ More zone slots[/b] would not build more zones and auto demolish would remove extra zones but it can be turned off
+[b]·[/b] This mod primarily modifies vanilla automation logic. It should not conflict with mods that do [b]not[/b] modify automation.
+[b]·[/b] This mod relies on UI Overhaul Dynamic's district interface space to display the colony district settings panel.
 
-[b]⚠️ MOD buildings[/b] only automate for vanilla but would not break the mod
-[b]🟥 MOD districts[/b] can't support, mod districts would break the mod
-[b]⚠️ MOD zones[/b] only automate for vanilla but would not break the mod
+[b]✅ More building slots[/b]
+[b]✅ Larger planets and higher district capacity[/b]
+[b]⚠️⚠️ More zone slots[/b] BCA will not build extra zone specializations and may remove extras if zone auto-demolition is enabled.
 
-This mod is compatible with Ultimate Automation,  but [b]must be loaded after it[/b] to override its changes. And ensure that Ultimate Automation's planet automation is off
+[b]⚠️ Mod buildings[/b] Only vanilla buildings are automated.
+[b]🟥 Mod districts[/b] Not supported. Extra district types may break automation behavior.
+[b]⚠️ Mod zones[/b] Only vanilla zone specializations are automated.
+
+Compatible with Ultimate Automation if BCA loads after it and Ultimate Automation's planet automation is disabled.
 
 [h2]FAQ[/h2]
 
-[b]Why does a planet not build anything even when I have enough resources?[/b]
+[b]Q: Will BCA automatically choose the best colony designation and zone specializations for me?[/b]
 
-Automatic construction requires all of the following:
+A: No. Colony designation, primary zones, and secondary zones are part of your plan. BCA follows that plan.
 
-1. [b]Mineral reserves are above the threshold[/b]: This threshold can be adjusted in the Global Automation Settings panel.
-2. [b]Economic targets allow the construction[/b]: If economic management is enabled, the relevant monthly output must be below its target before automation expands that output.
-3. [b]Free jobs are lower than the threshold[/b]: The job threshold can be adjusted in the Global Automation Settings panel, or relaxed by enabling pre-construction.
-4. [b]Some bonus buildings can build earlier[/b]: Certain efficiency-boosting buildings are prioritized even while free jobs still exist.
+[b]Q: Where is the global settings panel?[/b]
+
+A: Use the upper-left button in the colony district settings panel, or the Global Automation Settings edict.
+
+[b]Q: I cannot see the colony district settings panel. What should I do?[/b]
+
+A: Make sure UI Overhaul Dynamic is enabled. If another mod rewrites the district layout, the BCA panel may be pushed lower; scroll down in the district interface. A standalone colony settings panel is in progress.
+
+[b]Q: Why does a planet not build anything even when I have enough resources?[/b]
+
+A: Automatic construction requires:
+
+1. [b]Mineral reserves above threshold[/b]
+2. [b]Economic targets allow it[/b]: if enabled, monthly output must be below target.
+3. [b]Free jobs below threshold[/b], unless pre-construction relaxes this.
+4. [b]Some bonus buildings can build earlier[/b].
+
+[b]Q: What if I only want BCA to build things, not demolish them?[/b]
+
+A: Disable building, district, or zone auto-demolition. Defaults and bulk application are in global settings.
+
+[b]Q: Why did my zone specialization disappear?[/b]
+
+A: Zone auto-demolition may be enabled. BCA removes zones that do not match the panel plan. When disabled, built zones are synced back into the panel.
+
+[b]Q: Can I only use job statistics or job regulation?[/b]
+
+A: They are in the optional submod. For statistics only, disable Colony Automation and Global Job Regulation. For regulation, Colony Automation must be enabled, but other options can be disabled except Job Management.
+
+[b]Q: Are buildings, districts, and zone specializations from other mods supported?[/b]
+
+A: Mainly vanilla content. More building slots and larger planets usually work. New district types are high-risk.
 
 [h2]Localization[/h2]
 
@@ -89,14 +132,11 @@ Translation MOD:
 [b]·[/b] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3697705914][b]Spanish[/b][/url] by @Rapz
 
 [hr][/hr]
-[h2]Looking for Co-authors![/h2]
-[h2]Looking for Co-authors![/h2]
-[h2]Looking for Co-authors![/h2]
 
-[b]Lately, I haven't had much time to play games, which has caused a standstill in bug fixes and mechanism improvements for mods. I hope to find co-authors to join.[/b]
+[h2]Development and Support[/h2]
 
-Co-authors are welcome!
-
-If you'd like to become a co-author, just leave a comment.
+[b]Bug fixes and mechanic improvements have been slower lately. Co-authors are still very welcome.[/b]
 
 https://github.com/StellarWarp/better_colony_automation
+
+[h2][url=https://www.patreon.com/cw/StellarWarp]Support the Author on Patreon[/url][/h2]

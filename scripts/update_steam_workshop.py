@@ -17,6 +17,7 @@ EDIT_URL_TEMPLATE = (
 
 LANGUAGE_ENGLISH = "0"
 LANGUAGE_SIMPLIFIED_CHINESE = "6"
+ALL_PACKAGES = "all"
 
 
 def load_playwright():
@@ -26,7 +27,9 @@ def load_playwright():
     except ModuleNotFoundError as exc:
         raise RuntimeError(
             "当前 Python 环境未安装 Playwright。预览不需要 Playwright；"
-            "浏览器更新请使用已安装 playwright 的环境。"
+            "浏览器更新请先运行: "
+            "conda run -n better_colony_automation python -m pip install playwright。"
+            "不要运行 playwright install，本脚本会使用系统 Edge。"
         ) from exc
     return sync_playwright, playwright_timeout_error
 
@@ -53,6 +56,18 @@ def available_packages() -> list[str]:
             if path.is_dir() and (path / "descriptor.mod").is_file()
         )
     return packages
+
+
+def package_choices() -> list[str]:
+    return [ALL_PACKAGES, *available_packages()]
+
+
+def selected_packages(package: str) -> list[str]:
+    if package == ALL_PACKAGES:
+        return available_packages()
+    if package not in available_packages():
+        raise ValueError(f"未知 Workshop 包: {package}")
+    return [package]
 
 
 def package_directory(package: str) -> Path:
@@ -134,6 +149,13 @@ def print_preview(payload: dict[str, object]) -> None:
         print(preview)
 
 
+def print_previews(payloads: list[dict[str, object]]) -> None:
+    for index, payload in enumerate(payloads):
+        if index:
+            print()
+        print_preview(payload)
+
+
 def launch_browser(playwright, *, headless: bool):
     ensure_edge_exists()
     return playwright.chromium.launch(
@@ -174,7 +196,20 @@ def save_storage_state_interactive(workshop_id: str) -> None:
                 """
             ).strip()
         )
-        input()
+        while True:
+            input()
+            if is_editor_page(page):
+                break
+            if is_login_page(page):
+                print(
+                    "当前仍处于 Steam 登录页。请在 Edge 中完成登录并进入 Workshop 编辑页面后，"
+                    "再回到终端按回车。"
+                )
+                continue
+            print(
+                "当前页面还没有描述编辑框。请确认 Edge 中已经进入 Workshop 编辑页面后，"
+                "再回到终端按回车。"
+            )
         context.storage_state(path=str(STATE_FILE))
         context.close()
         browser.close()
@@ -193,11 +228,48 @@ def wait_for_editor(page) -> None:
     description_locator.wait_for(timeout=30_000)
 
 
-def require_login_if_needed(page) -> None:
-    if page.locator("input#steamAccountName").count() > 0:
+def is_editor_page(page) -> bool:
+    return page.locator("#description").count() > 0
+
+
+def is_login_page(page) -> bool:
+    login_selectors = [
+        "input#steamAccountName",
+        "input[name='username']",
+        "input[type='password']",
+        "text=Sign in",
+        "text=登录",
+        "text=登入",
+    ]
+    if any(page.locator(selector).count() > 0 for selector in login_selectors):
+        return True
+    lowered_url = page.url.lower()
+    return "/login" in lowered_url or "openid/login" in lowered_url
+
+
+def require_editor_or_login_hint(page, label: str) -> None:
+    if is_editor_page(page):
+        return
+    if is_login_page(page):
         raise RuntimeError(
             "当前处于 Steam 登录页，尚未保存可复用的登录态。\n"
-            "请先运行: python scripts/update_steam_workshop.py --login"
+            "请先运行: "
+            "conda run -n better_colony_automation python "
+            "scripts\\update_steam_workshop.py --login"
+        )
+    raise RuntimeError(
+        f"未能在预期时间内定位到 {label} 页面上的描述编辑框。\n"
+        "可能是 Steam 页面结构变化，或当前账号没有该创意工坊条目的编辑权限。"
+    )
+
+
+def require_login_if_needed(page) -> None:
+    if is_login_page(page):
+        raise RuntimeError(
+            "当前处于 Steam 登录页，尚未保存可复用的登录态。\n"
+            "请先运行: "
+            "conda run -n better_colony_automation python "
+            "scripts\\update_steam_workshop.py --login"
         )
 
 
@@ -235,10 +307,11 @@ def update_language_page(page, *, workshop_id: str, language_item: dict[str, str
     try:
         wait_for_editor(page)
     except playwright_timeout_error as exc:
-        raise RuntimeError(
-            f"未能在预期时间内定位到 {language_item['label']} 页面上的描述编辑框。\n"
-            "可能是 Steam 页面结构变化，或当前账号没有该创意工坊条目的编辑权限。"
-        ) from exc
+        try:
+            require_editor_or_login_hint(page, language_item["label"])
+        except RuntimeError as hint:
+            raise hint from exc
+        raise
 
     update_form(page, language_item["description"])
 
@@ -251,8 +324,7 @@ def update_language_page(page, *, workshop_id: str, language_item: dict[str, str
         print(f"已填充 {language_item['label']} 描述，但未提交。")
 
 
-def run_update(*, package: str, do_submit: bool, headless: bool) -> None:
-    payload = load_publish_payload(package)
+def run_update_payload(payload: dict[str, object], *, do_submit: bool, headless: bool) -> None:
     sync_playwright, _ = load_playwright()
 
     with sync_playwright() as playwright:
@@ -277,15 +349,22 @@ def run_update(*, package: str, do_submit: bool, headless: bool) -> None:
         browser.close()
 
 
+def run_update(*, package: str, do_submit: bool, headless: bool) -> None:
+    for package_name in selected_packages(package):
+        payload = load_publish_payload(package_name)
+        print(f"=== 更新 Workshop 包: {package_name} ===")
+        run_update_payload(payload, do_submit=do_submit, headless=headless)
+
+
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         description="用 Edge + Playwright 依次更新 Steam Workshop 的英文和中文描述。"
     )
     parser.add_argument(
         "--package",
-        choices=available_packages(),
-        default="main",
-        help="选择要更新的 Workshop 包（默认: main）。",
+        choices=package_choices(),
+        default=ALL_PACKAGES,
+        help="选择要更新的 Workshop 包（默认: all，依次更新 main 和所有子 Mod）。",
     )
     parser.add_argument(
         "--preview",
@@ -320,14 +399,15 @@ def main() -> int:
     args = parser.parse_args()
 
     try:
-        payload = load_publish_payload(args.package)
+        packages = selected_packages(args.package)
+        payloads = [load_publish_payload(package) for package in packages]
 
         if args.preview:
-            print_preview(payload)
+            print_previews(payloads)
             return 0
 
         if args.login:
-            save_storage_state_interactive(payload["workshop_id"])
+            save_storage_state_interactive(payloads[0]["workshop_id"])
             return 0
 
         run_update(

@@ -82,12 +82,17 @@ def _apply_modifier_driven_extra_outputs(
     economic_resources: list[str],
     produces: list[dict],
     category_resource_add_modifiers: dict[str, dict[str, str]],
+    resources: list[str],
     resource_set: set[str],
 ) -> None:
     existing_resources = set(economic_resources)
 
     for category in _category_chain(meta):
-        for resource, modifier in category_resource_add_modifiers.get(category, {}).items():
+        category_modifiers = category_resource_add_modifiers.get(category, {})
+        for resource in resources:
+            modifier = category_modifiers.get(resource)
+            if modifier is None:
+                continue
             if resource not in resource_set:
                 continue
             if resource in existing_resources:
@@ -141,6 +146,7 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
             economic_resources,
             produces,
             category_resource_add_modifiers,
+            resources,
             resource_set,
         )
         # 去重 needs_category

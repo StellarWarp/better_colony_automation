@@ -239,6 +239,10 @@ def build_support_assets() -> None:
         SUPPORT_SOURCE_DIR / "qrcode_www.patreon.com.png",
         SUPPORT_OUTPUT_DIR / "qrcode_patreon.dds",
     )
+    build_qr_dds(
+        SUPPORT_SOURCE_DIR / "pay.jpg",
+        SUPPORT_OUTPUT_DIR / "qrcode_alipay.dds",
+    )
 
     build_reaction_dds(
         SUPPORT_SOURCE_DIR / "1.png",
