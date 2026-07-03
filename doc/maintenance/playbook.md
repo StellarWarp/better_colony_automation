@@ -31,8 +31,10 @@ Development reality:
 4. If generated, go back to the template, handwritten config, or parser/extraction tool.
 5. Check whether the same behavior also has handwritten siblings.
 6. If DSL syntax, scope, GUI behavior, or API usage is uncertain, check
-   [DSL Style Guide](dsl-style-guide.md) and the Stellaris user document
-   `logs/script_documentation`.
+   [DSL Style Guide](dsl-style-guide.md): use the Stellaris user document
+   `logs/script_documentation` first, then `.config/stellaris/` when the
+   official document is unclear, then matching usage in project or game
+   scripts.
 
 When inspecting `.txt` runtime DSL files, first check whether a same-named
 `.txt.j2` file exists under `mod_builder/templates/`. If it exists, the `.txt`

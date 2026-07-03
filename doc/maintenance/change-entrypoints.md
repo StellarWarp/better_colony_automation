@@ -156,14 +156,16 @@ do not by themselves define automation demand contexts.
 
 ### Stellaris API reference
 
-- Primary syntax definitions: [`.config/stellaris/`](../../.config/stellaris/)
-  (effects, triggers, scopes, modifiers, enums — `.cwt` rule files)
-- Secondary reference: Stellaris user document
-  `logs/script_documentation` (see DSL Style Guide for location)
+- Source of truth: Stellaris user document `logs/script_documentation` (see DSL
+  Style Guide for location).
+- Syntax and call-shape clarification: [`.config/stellaris/`](../../.config/stellaris/)
+  (effects, triggers, scopes, modifiers, enums — `.cwt` rule files).
+- Usage examples: existing verified project code and existing game scripts.
 
-Consult `.config/stellaris/` first when a game update renames or removes
-script APIs. The `.cwt` files are the authoritative API surface for the
-targeted game version.
+Consult `logs/script_documentation` first when a game update renames or removes
+script APIs. Use `.config/stellaris/` when the official document is unclear
+about concrete invocation shape, then look for matching project or game-script
+usage if needed.
 
 ### Intro/update messages and release metadata
 

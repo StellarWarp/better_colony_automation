@@ -15,11 +15,11 @@
 {% macro resource_gate(outputs) %}
     {% if outputs %}
         {% if outputs|length == 1 %}
-            bca_empire_needs_{{ outputs[0] }} = yes
+            bca_planet_build_needs_{{ outputs[0] }} = yes
         {% else %}
             OR = {
                 {% for output in outputs %}
-                    bca_empire_needs_{{ output }} = yes
+                    bca_planet_build_needs_{{ output }} = yes
                 {% endfor %}
             }
         {% endif %}

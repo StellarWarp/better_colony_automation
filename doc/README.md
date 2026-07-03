@@ -70,6 +70,8 @@ Before changing behavior:
 1. Identify which layer owns the change.
 2. If a runtime file has a generated warning header, go back to the template or generator input.
 3. If DSL syntax, GUI behavior, tooltip behavior, or API usage is uncertain,
-   check [DSL Style Guide](maintenance/dsl-style-guide.md) and the Stellaris
-   user document `logs/script_documentation`.
+   check [DSL Style Guide](maintenance/dsl-style-guide.md): use the Stellaris
+   user document `logs/script_documentation` first, then `.config/stellaris/`
+   when the official document is unclear, then matching usage in project or
+   game scripts.
 4. If the change affects release metadata, follow the release workflow in [Maintenance Playbook](maintenance/playbook.md).

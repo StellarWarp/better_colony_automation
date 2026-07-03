@@ -10,19 +10,19 @@ See also:
 
 Use these references in this order:
 
-1. **`.config/stellaris/` rule files** are the primary source for Stellaris DSL
-   syntax, effects, triggers, scopes, modifiers, and enums. These `.cwt` files
-   define the authoritative API surface for the targeted game version. Follow
-   [Development Setup](../setup.md) to link this path to the external
-   `cwtools-stellaris-config` checkout.
-2. The **Stellaris user document** under the Stellaris user data directory at
-   `logs/script_documentation` is the secondary reference for API details and
-   version-specific behavior. On Windows, the usual user data relative path is
+1. The **Stellaris user document** under the Stellaris user data directory at
+   `logs/script_documentation` is the source of truth for Stellaris DSL/API
+   behavior, effects, triggers, scopes, modifiers, and version-specific
+   details. On Windows, the usual user data relative path is
    `Documents/Paradox Interactive/Stellaris/logs/script_documentation/`.
-3. Existing game scripts are the gold sample for Paradox DSL style and
-   engine-supported patterns.
-4. Existing verified project code is the gold sample for project conventions.
-5. Trusted mods can be used as examples for custom GUI and unusual script
+2. **`.config/stellaris/` rule files** are the next reference when
+   `script_documentation` is ambiguous or does not make the concrete call shape
+   clear. These `.cwt` files are used for local syntax validation and API
+   surface inspection. Follow [Development Setup](../setup.md) to link this
+   path to the external `cwtools-stellaris-config` checkout.
+3. Existing verified project code and existing game scripts are the next
+   references for identical or closely matching usage patterns.
+4. Trusted mods can be used as examples for custom GUI and unusual script
    patterns.
 
 Do not hardcode machine-specific absolute paths to `script_documentation` in

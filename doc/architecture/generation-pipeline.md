@@ -121,8 +121,9 @@ This exists because the official runtime DSL API is not rich enough for all
 automation decisions. Some information must be extracted before runtime.
 
 For Stellaris DSL syntax reference (effects, triggers, scopes, modifiers,
-enums), consult `.config/stellaris/` as the primary source and the Stellaris
-user document `logs/script_documentation` as the secondary reference. See the
+enums), consult the Stellaris user document `logs/script_documentation` as the
+source of truth. If the concrete call shape remains unclear, consult
+`.config/stellaris/`, then matching usage in project or game scripts. See the
 [DSL Style Guide](../maintenance/dsl-style-guide.md) for the full reference
 priority.
 

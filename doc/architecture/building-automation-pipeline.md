@@ -153,7 +153,8 @@ demolition source rather than inventing a fake construction context.
 7. Let the file watcher regenerate outputs and inspect generated YAML and
    runtime blocks.
 
-New game versions can also rename or remove script APIs. Consult
-`.config/stellaris/` as the primary syntax reference and the Stellaris user
-document `logs/script_documentation` as the secondary reference when a version
-change invalidates otherwise correct templates.
+New game versions can also rename or remove script APIs. Consult the Stellaris
+user document `logs/script_documentation` as the source of truth when a version
+change invalidates otherwise correct templates. If the document does not make
+the concrete call shape clear, check `.config/stellaris/`, then matching usage
+in project or game scripts.

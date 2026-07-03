@@ -38,6 +38,13 @@
         }
     }
 
+    bca_planet_build_needs_{{ need_name }} = {
+        OR = {
+            has_carrier_flag = bca_pf_planet_pre_construction
+            bca_empire_needs_{{ need_name }} = yes
+        }
+    }
+
     bca_country_surplus_{{ need_name }} = {
         has_country_flag = bca_enable_economic_management
         NOT = { has_country_flag = bca_economic_target_{{ need_name }}_unlimited }
@@ -85,6 +92,13 @@ bca_country_needs_research = {
 bca_empire_needs_research = {
     owner = {
         bca_country_needs_research = yes
+    }
+}
+
+bca_planet_build_needs_research = {
+    OR = {
+        has_carrier_flag = bca_pf_planet_pre_construction
+        bca_empire_needs_research = yes
     }
 }
 
