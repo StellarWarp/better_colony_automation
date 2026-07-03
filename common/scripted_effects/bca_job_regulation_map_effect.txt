@@ -182,6 +182,10 @@ bca_jr_locate_slot_job = {
         bca_jr_locate_job_colonies = { JOB = civilian }
     }
     if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_clerk }
+        bca_jr_locate_job_colonies = { JOB = clerk }
+    }
+    if = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_clip_maximizer }
         bca_jr_locate_job_colonies = { JOB = clip_maximizer }
     }
@@ -388,6 +392,14 @@ bca_jr_locate_slot_job = {
     if = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight_commander }
         bca_jr_locate_job_colonies = { JOB = knight_commander }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock }
+        bca_jr_locate_job_colonies = { JOB = livestock }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_infernal }
+        bca_jr_locate_job_colonies = { JOB = livestock_infernal }
     }
     if = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_lithoid }
@@ -1042,6 +1054,11 @@ bca_jr_cycle_slot_job_mode = {
         bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = civilian }
     }
     if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_clerk }
+        bca_jr_cycle_job_mode = { JOB = clerk }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = clerk }
+    }
+    if = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_clip_maximizer }
         bca_jr_cycle_job_mode = { JOB = clip_maximizer }
         bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = clip_maximizer }
@@ -1300,6 +1317,16 @@ bca_jr_cycle_slot_job_mode = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight_commander }
         bca_jr_cycle_job_mode = { JOB = knight_commander }
         bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = knight_commander }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock }
+        bca_jr_cycle_job_mode = { JOB = livestock }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = livestock }
+    }
+    if = {
+        limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_infernal }
+        bca_jr_cycle_job_mode = { JOB = livestock_infernal }
+        bca_jr_set_slot_job_mode_flags = { SLOT_NAME = $SLOT_NAME$ JOB = livestock_infernal }
     }
     if = {
         limit = { has_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_lithoid }
@@ -2600,6 +2627,30 @@ bca_jr_clear_country_job_totals = {
     clear_variable = bca_jr_total_output_civilian_rare_crystals
     clear_variable = bca_jr_total_output_civilian_volatile_motes
     clear_variable = bca_jr_total_output_civilian_exotic_gases
+    clear_variable = bca_jr_total_assigned_workforce_clerk
+    clear_variable = bca_jr_total_capacity_workforce_clerk
+    clear_variable = bca_jr_total_pop_productive_workforce_clerk
+    clear_variable = bca_jr_total_productive_workforce_clerk
+    clear_variable = bca_jr_total_automated_capacity_workforce_clerk
+    clear_variable = bca_jr_total_automated_productive_workforce_clerk
+    clear_variable = bca_jr_total_pop_capacity_limit_clerk
+    clear_variable = bca_jr_total_job_count_clerk
+    clear_variable = bca_jr_total_free_job_count_clerk
+    clear_variable = bca_jr_total_open_job_count_clerk
+    clear_variable = bca_jr_total_closable_capacity_workforce_clerk
+    clear_variable = bca_jr_total_output_clerk_energy
+    clear_variable = bca_jr_total_output_clerk_minerals
+    clear_variable = bca_jr_total_output_clerk_food
+    clear_variable = bca_jr_total_output_clerk_alloys
+    clear_variable = bca_jr_total_output_clerk_consumer_goods
+    clear_variable = bca_jr_total_output_clerk_trade
+    clear_variable = bca_jr_total_output_clerk_unity
+    clear_variable = bca_jr_total_output_clerk_physics_research
+    clear_variable = bca_jr_total_output_clerk_society_research
+    clear_variable = bca_jr_total_output_clerk_engineering_research
+    clear_variable = bca_jr_total_output_clerk_rare_crystals
+    clear_variable = bca_jr_total_output_clerk_volatile_motes
+    clear_variable = bca_jr_total_output_clerk_exotic_gases
     clear_variable = bca_jr_total_assigned_workforce_clip_maximizer
     clear_variable = bca_jr_total_capacity_workforce_clip_maximizer
     clear_variable = bca_jr_total_pop_productive_workforce_clip_maximizer
@@ -3848,6 +3899,54 @@ bca_jr_clear_country_job_totals = {
     clear_variable = bca_jr_total_output_knight_commander_rare_crystals
     clear_variable = bca_jr_total_output_knight_commander_volatile_motes
     clear_variable = bca_jr_total_output_knight_commander_exotic_gases
+    clear_variable = bca_jr_total_assigned_workforce_livestock
+    clear_variable = bca_jr_total_capacity_workforce_livestock
+    clear_variable = bca_jr_total_pop_productive_workforce_livestock
+    clear_variable = bca_jr_total_productive_workforce_livestock
+    clear_variable = bca_jr_total_automated_capacity_workforce_livestock
+    clear_variable = bca_jr_total_automated_productive_workforce_livestock
+    clear_variable = bca_jr_total_pop_capacity_limit_livestock
+    clear_variable = bca_jr_total_job_count_livestock
+    clear_variable = bca_jr_total_free_job_count_livestock
+    clear_variable = bca_jr_total_open_job_count_livestock
+    clear_variable = bca_jr_total_closable_capacity_workforce_livestock
+    clear_variable = bca_jr_total_output_livestock_energy
+    clear_variable = bca_jr_total_output_livestock_minerals
+    clear_variable = bca_jr_total_output_livestock_food
+    clear_variable = bca_jr_total_output_livestock_alloys
+    clear_variable = bca_jr_total_output_livestock_consumer_goods
+    clear_variable = bca_jr_total_output_livestock_trade
+    clear_variable = bca_jr_total_output_livestock_unity
+    clear_variable = bca_jr_total_output_livestock_physics_research
+    clear_variable = bca_jr_total_output_livestock_society_research
+    clear_variable = bca_jr_total_output_livestock_engineering_research
+    clear_variable = bca_jr_total_output_livestock_rare_crystals
+    clear_variable = bca_jr_total_output_livestock_volatile_motes
+    clear_variable = bca_jr_total_output_livestock_exotic_gases
+    clear_variable = bca_jr_total_assigned_workforce_livestock_infernal
+    clear_variable = bca_jr_total_capacity_workforce_livestock_infernal
+    clear_variable = bca_jr_total_pop_productive_workforce_livestock_infernal
+    clear_variable = bca_jr_total_productive_workforce_livestock_infernal
+    clear_variable = bca_jr_total_automated_capacity_workforce_livestock_infernal
+    clear_variable = bca_jr_total_automated_productive_workforce_livestock_infernal
+    clear_variable = bca_jr_total_pop_capacity_limit_livestock_infernal
+    clear_variable = bca_jr_total_job_count_livestock_infernal
+    clear_variable = bca_jr_total_free_job_count_livestock_infernal
+    clear_variable = bca_jr_total_open_job_count_livestock_infernal
+    clear_variable = bca_jr_total_closable_capacity_workforce_livestock_infernal
+    clear_variable = bca_jr_total_output_livestock_infernal_energy
+    clear_variable = bca_jr_total_output_livestock_infernal_minerals
+    clear_variable = bca_jr_total_output_livestock_infernal_food
+    clear_variable = bca_jr_total_output_livestock_infernal_alloys
+    clear_variable = bca_jr_total_output_livestock_infernal_consumer_goods
+    clear_variable = bca_jr_total_output_livestock_infernal_trade
+    clear_variable = bca_jr_total_output_livestock_infernal_unity
+    clear_variable = bca_jr_total_output_livestock_infernal_physics_research
+    clear_variable = bca_jr_total_output_livestock_infernal_society_research
+    clear_variable = bca_jr_total_output_livestock_infernal_engineering_research
+    clear_variable = bca_jr_total_output_livestock_infernal_rare_crystals
+    clear_variable = bca_jr_total_output_livestock_infernal_volatile_motes
+    clear_variable = bca_jr_total_output_livestock_infernal_exotic_gases
     clear_variable = bca_jr_total_assigned_workforce_livestock_lithoid
     clear_variable = bca_jr_total_capacity_workforce_livestock_lithoid
     clear_variable = bca_jr_total_pop_productive_workforce_livestock_lithoid
@@ -6524,6 +6623,7 @@ bca_jr_clear_slot_mapping_for_slot = {
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_chemist
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_chemist_drone
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_civilian
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_clerk
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_clip_maximizer
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_colonist
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_coordinator
@@ -6576,6 +6676,8 @@ bca_jr_clear_slot_mapping_for_slot = {
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_identity_designer
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_knight_commander
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock
+    remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_infernal
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_livestock_lithoid
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_logistics_drone
     remove_country_flag = bca_jr_slot_$SLOT_NAME$_job_low_tech_bureaucrat
@@ -6922,6 +7024,7 @@ bca_jr_clear_slot_mapping = {
     remove_country_flag = bca_jr_slot_mapped_chemist
     remove_country_flag = bca_jr_slot_mapped_chemist_drone
     remove_country_flag = bca_jr_slot_mapped_civilian
+    remove_country_flag = bca_jr_slot_mapped_clerk
     remove_country_flag = bca_jr_slot_mapped_clip_maximizer
     remove_country_flag = bca_jr_slot_mapped_colonist
     remove_country_flag = bca_jr_slot_mapped_coordinator
@@ -6974,6 +7077,8 @@ bca_jr_clear_slot_mapping = {
     remove_country_flag = bca_jr_slot_mapped_identity_designer
     remove_country_flag = bca_jr_slot_mapped_knight
     remove_country_flag = bca_jr_slot_mapped_knight_commander
+    remove_country_flag = bca_jr_slot_mapped_livestock
+    remove_country_flag = bca_jr_slot_mapped_livestock_infernal
     remove_country_flag = bca_jr_slot_mapped_livestock_lithoid
     remove_country_flag = bca_jr_slot_mapped_logistics_drone
     remove_country_flag = bca_jr_slot_mapped_low_tech_bureaucrat
@@ -7331,6 +7436,13 @@ bca_jr_prepare_cached_sort_scores = {
             bca_jr_job_matches_selected_filters = { JOB = civilian }
         }
         set_variable = { which = bca_jr_cached_sort_score_civilian value = value:bca_jr_sort_score_civilian }
+    }
+    if = {
+        limit = {
+            is_variable_set = bca_jr_total_job_count_clerk
+            bca_jr_job_matches_selected_filters = { JOB = clerk }
+        }
+        set_variable = { which = bca_jr_cached_sort_score_clerk value = value:bca_jr_sort_score_clerk }
     }
     if = {
         limit = {
@@ -7695,6 +7807,20 @@ bca_jr_prepare_cached_sort_scores = {
             bca_jr_job_matches_selected_filters = { JOB = knight_commander }
         }
         set_variable = { which = bca_jr_cached_sort_score_knight_commander value = value:bca_jr_sort_score_knight_commander }
+    }
+    if = {
+        limit = {
+            is_variable_set = bca_jr_total_job_count_livestock
+            bca_jr_job_matches_selected_filters = { JOB = livestock }
+        }
+        set_variable = { which = bca_jr_cached_sort_score_livestock value = value:bca_jr_sort_score_livestock }
+    }
+    if = {
+        limit = {
+            is_variable_set = bca_jr_total_job_count_livestock_infernal
+            bca_jr_job_matches_selected_filters = { JOB = livestock_infernal }
+        }
+        set_variable = { which = bca_jr_cached_sort_score_livestock_infernal value = value:bca_jr_sort_score_livestock_infernal }
     }
     if = {
         limit = {
@@ -8502,6 +8628,7 @@ bca_jr_clear_cached_sort_scores = {
     clear_variable = bca_jr_cached_sort_score_chemist
     clear_variable = bca_jr_cached_sort_score_chemist_drone
     clear_variable = bca_jr_cached_sort_score_civilian
+    clear_variable = bca_jr_cached_sort_score_clerk
     clear_variable = bca_jr_cached_sort_score_clip_maximizer
     clear_variable = bca_jr_cached_sort_score_colonist
     clear_variable = bca_jr_cached_sort_score_coordinator
@@ -8554,6 +8681,8 @@ bca_jr_clear_cached_sort_scores = {
     clear_variable = bca_jr_cached_sort_score_identity_designer
     clear_variable = bca_jr_cached_sort_score_knight
     clear_variable = bca_jr_cached_sort_score_knight_commander
+    clear_variable = bca_jr_cached_sort_score_livestock
+    clear_variable = bca_jr_cached_sort_score_livestock_infernal
     clear_variable = bca_jr_cached_sort_score_livestock_lithoid
     clear_variable = bca_jr_cached_sort_score_logistics_drone
     clear_variable = bca_jr_cached_sort_score_low_tech_bureaucrat
@@ -9228,6 +9357,24 @@ bca_jr_find_best_for_slot = {
             check_variable_arithmetic = { which = bca_jr_cached_sort_score_civilian value > bca_jr_best_score }
         }
         set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_civilian }
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_clerk }
+            is_variable_set = bca_jr_cached_sort_score_clerk
+            NOT = { has_country_flag = bca_jr_has_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_clerk }
+        set_country_flag = bca_jr_has_best_score
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_clerk }
+            is_variable_set = bca_jr_cached_sort_score_clerk
+            has_country_flag = bca_jr_has_best_score
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_clerk value > bca_jr_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_clerk }
     }
     if = {
         limit = {
@@ -10164,6 +10311,42 @@ bca_jr_find_best_for_slot = {
             check_variable_arithmetic = { which = bca_jr_cached_sort_score_knight_commander value > bca_jr_best_score }
         }
         set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_knight_commander }
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock }
+            is_variable_set = bca_jr_cached_sort_score_livestock
+            NOT = { has_country_flag = bca_jr_has_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_livestock }
+        set_country_flag = bca_jr_has_best_score
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock }
+            is_variable_set = bca_jr_cached_sort_score_livestock
+            has_country_flag = bca_jr_has_best_score
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_livestock value > bca_jr_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_livestock }
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock_infernal }
+            is_variable_set = bca_jr_cached_sort_score_livestock_infernal
+            NOT = { has_country_flag = bca_jr_has_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_livestock_infernal }
+        set_country_flag = bca_jr_has_best_score
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock_infernal }
+            is_variable_set = bca_jr_cached_sort_score_livestock_infernal
+            has_country_flag = bca_jr_has_best_score
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_livestock_infernal value > bca_jr_best_score }
+        }
+        set_variable = { which = bca_jr_best_score value = bca_jr_cached_sort_score_livestock_infernal }
     }
     if = {
         limit = {
@@ -12652,6 +12835,16 @@ bca_jr_fill_current_slot = {
     }
     if = {
         limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_clerk }
+            is_variable_set = bca_jr_cached_sort_score_clerk
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_clerk value = bca_jr_best_score }
+            check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
+        }
+        bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = clerk }
+        add_variable = { which = bca_jr_fill_idx value = 1 }
+    }
+    if = {
+        limit = {
             NOT = { has_country_flag = bca_jr_slot_mapped_clip_maximizer }
             is_variable_set = bca_jr_cached_sort_score_clip_maximizer
             check_variable_arithmetic = { which = bca_jr_cached_sort_score_clip_maximizer value = bca_jr_best_score }
@@ -13168,6 +13361,26 @@ bca_jr_fill_current_slot = {
             check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
         }
         bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = knight_commander }
+        add_variable = { which = bca_jr_fill_idx value = 1 }
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock }
+            is_variable_set = bca_jr_cached_sort_score_livestock
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_livestock value = bca_jr_best_score }
+            check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
+        }
+        bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = livestock }
+        add_variable = { which = bca_jr_fill_idx value = 1 }
+    }
+    if = {
+        limit = {
+            NOT = { has_country_flag = bca_jr_slot_mapped_livestock_infernal }
+            is_variable_set = bca_jr_cached_sort_score_livestock_infernal
+            check_variable_arithmetic = { which = bca_jr_cached_sort_score_livestock_infernal value = bca_jr_best_score }
+            check_variable_arithmetic = { which = bca_jr_fill_idx value = $SLOT_NUM$ }
+        }
+        bca_jr_fill_slot_job_stats = { SLOT_NAME = $SLOT_NAME$ JOB = livestock_infernal }
         add_variable = { which = bca_jr_fill_idx value = 1 }
     }
     if = {

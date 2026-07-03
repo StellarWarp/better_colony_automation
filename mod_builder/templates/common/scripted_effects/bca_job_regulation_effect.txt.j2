@@ -8,6 +8,7 @@ Phase 7: 岗位调控评估
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
 {% set max_gear_step = job_regulation_config.gear_steps | max %}
+{% set default_manual_manage_jobs = job_regulation_config.default_manual_manage_jobs | default([]) %}
 
 {# ---- INC 分组 ---- #}
 {% set inc_groups = {} %}
@@ -64,7 +65,20 @@ bca_jr_initialize_resource_remaining = {
     {% endfor %}
 }
 
+bca_jr_initialize_default_manual_manage_jobs = {
+    if = {
+        limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_jobs_initialized } }
+        set_country_flag = bca_jr_default_manual_manage_jobs_initialized
+        {% for job in default_manual_manage_jobs %}
+            set_country_flag = bca_jr_mode_manual_{{ job }}
+            remove_country_flag = bca_jr_mode_empty_{{ job }}
+            remove_country_flag = bca_jr_mode_full_{{ job }}
+        {% endfor %}
+    }
+}
+
 bca_jr_monthly_begin = {
+    bca_jr_initialize_default_manual_manage_jobs = yes
     add_variable = { which = bca_jr_skip_refresh_counter value = 1 }
     if = {
         limit = { check_variable = { which = bca_jr_skip_refresh_counter value >= 6 } }

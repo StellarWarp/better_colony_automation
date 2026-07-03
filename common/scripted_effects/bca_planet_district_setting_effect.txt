@@ -1364,6 +1364,112 @@ try_set_secondary_districts_plan_one_to_zero = {
 }
 
 
+bca_clamp_district_plan_to_current_layout = {
+    if = {
+        limit = {
+            check_variable = {
+                which = bca_ps_plan_district_count_z3
+                value < value:num_district_d1
+            }
+        }
+        set_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = value:num_district_d1
+        }
+    }
+    if = {
+        limit = {
+            check_variable = {
+                which = bca_ps_plan_district_count_z4
+                value < value:num_district_d2
+            }
+        }
+        set_variable = {
+            which = bca_ps_plan_district_count_z4
+            value = value:num_district_d2
+        }
+    }
+    if = {
+        limit = {
+            check_variable = {
+                which = bca_ps_plan_district_count_z5
+                value < value:num_district_d3
+            }
+        }
+        set_variable = {
+            which = bca_ps_plan_district_count_z5
+            value = value:num_district_d3
+        }
+    }
+    while = {
+        limit = {
+            check_variable_arithmetic = {
+                which = value:bca_num_primary_districts_plan
+                value < value:num_primary_district
+            }
+            NOT = { has_carrier_flag = bca_no_more_excess_secondary_district_plan }
+        }
+        set_carrier_flag = bca_no_more_excess_secondary_district_plan
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
+                }
+                check_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value > value:num_district_d1
+                }
+            }
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
+            remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
+                }
+                check_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value > value:num_district_d2
+                }
+            }
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
+            remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+        }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
+                }
+                check_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value > value:num_district_d3
+                }
+            }
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
+            remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+        }
+    }
+    remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+    remove_carrier_flag = bca_pf_plan_remove_district_d0
+    remove_carrier_flag = bca_pf_plan_remove_district_d1
+    remove_carrier_flag = bca_pf_plan_remove_district_d2
+    remove_carrier_flag = bca_pf_plan_remove_district_d3
+}
+
+
 bca_set_district_plan_by_ratio = {
     hidden_effect = {
         set_variable = {

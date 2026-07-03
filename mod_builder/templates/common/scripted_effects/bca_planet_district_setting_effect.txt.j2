@@ -63,6 +63,62 @@ try_set_secondary_districts_plan_one_to_zero = {
     bca_clean_flags_zone_selector_secondary_district = yes
 }
 
+bca_clamp_district_plan_to_current_layout = {
+    {% for i in range(3,6) %}
+        {% set zone_slot = "z"~i %}
+        {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+        if = {
+            limit = {
+                check_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value < value:num_district_{{ district_slot }}
+                }
+            }
+            set_variable = {
+                which = {{v.var_district_num_plan(zone_slot)}}
+                value = value:num_district_{{ district_slot }}
+            }
+        }
+    {% endfor %}
+
+    while = {
+        limit = {
+            check_variable_arithmetic = {
+                which = value:bca_num_primary_districts_plan
+                value < value:num_primary_district
+            }
+            NOT = { has_carrier_flag = bca_no_more_excess_secondary_district_plan }
+        }
+        set_carrier_flag = bca_no_more_excess_secondary_district_plan
+        {% for i in range(3,6) %}
+            {% set zone_slot = "z"~i %}
+            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:bca_num_primary_districts_plan
+                        value < value:num_primary_district
+                    }
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value > value:num_district_{{ district_slot }}
+                    }
+                }
+                subtract_variable = {
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = 1
+                }
+                remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+            }
+        {% endfor %}
+    }
+    remove_carrier_flag = bca_no_more_excess_secondary_district_plan
+    remove_carrier_flag = {{ pf.flag_district_plan_remove('d0') }}
+    {% for district_slot in ['d1','d2','d3'] %}
+        remove_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}
+    {% endfor %}
+}
+
 bca_set_district_plan_by_ratio = {
     hidden_effect = {
         set_variable = {

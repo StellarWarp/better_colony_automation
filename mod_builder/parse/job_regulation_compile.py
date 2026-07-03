@@ -112,7 +112,7 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
         "economic_need_thresholds", {}
     )
     gear_steps = regulation.get("gear_steps", [3200, 800, 200, 50])
-    blacklist = set(regulation.get("blacklist_jobs", []))
+    default_manual_manage_jobs = set(regulation.get("default_manual_manage_jobs", []))
 
     # 加载解析生成的 job_meta
     job_meta = load_yaml(generated_configs_dir / "job_meta.yaml").get("job_meta", {})
@@ -129,10 +129,9 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
     regulated_jobs: list[dict] = []
     icon_sprites: list[str] = []
     seen_icons: set[str] = set()
+    regulated_job_names: set[str] = set()
     for job_name, meta in sorted(job_meta.items()):
         if not meta.get("is_economic_producer"):
-            continue
-        if job_name in blacklist:
             continue
 
         economic_resources = [r for r in meta.get("economic_resources", []) if r in resource_set]
@@ -163,6 +162,14 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
             "produces": produces,
         }
         regulated_jobs.append(entry)
+        regulated_job_names.add(job_name)
+
+    unknown_default_manual_jobs = sorted(default_manual_manage_jobs - regulated_job_names)
+    if unknown_default_manual_jobs:
+        print(
+            "Warning: default_manual_manage_jobs contains jobs that are not "
+            f"regulated economic jobs: {', '.join(unknown_default_manual_jobs)}"
+        )
 
     config = {
         "gear_steps": gear_steps,
@@ -170,6 +177,7 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
         "resources": resources,
         "categories": resources,
         "regulated_jobs": regulated_jobs,
+        "default_manual_manage_jobs": sorted(default_manual_manage_jobs & regulated_job_names),
         "icon_sprites": icon_sprites,
     }
 

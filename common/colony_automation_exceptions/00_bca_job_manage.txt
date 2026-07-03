@@ -2206,6 +2206,77 @@ automate_job_civilian = {
 }
 
 
+automate_job_clerk = {
+    should_ai_use_job_micro = no
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_mode_manual_clerk } }
+    }
+    emergency = yes
+    category = "planet_automation_job_management"
+    job_changes = {
+        clerk_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_clerk_g3200
+            }
+            job = clerk
+            amount = 3200
+        }
+        clerk_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_clerk_g3200
+            }
+            job = clerk
+            amount = -3200
+        }
+        clerk_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_clerk_g800
+            }
+            job = clerk
+            amount = 800
+        }
+        clerk_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_clerk_g800
+            }
+            job = clerk
+            amount = -800
+        }
+        clerk_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_clerk_g200
+            }
+            job = clerk
+            amount = 200
+        }
+        clerk_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_clerk_g200
+            }
+            job = clerk
+            amount = -200
+        }
+        clerk_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_clerk_g50
+            }
+            job = clerk
+            amount = 50
+        }
+        clerk_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_clerk_g50
+            }
+            job = clerk
+            amount = -50
+        }
+    }
+}
+
+
 automate_job_clip_maximizer = {
     should_ai_use_job_micro = no
     available = {
@@ -5892,6 +5963,148 @@ automate_job_knight_commander = {
                 has_carrier_flag = bca_jr_dec_knight_commander_g50
             }
             job = knight_commander
+            amount = -50
+        }
+    }
+}
+
+
+automate_job_livestock = {
+    should_ai_use_job_micro = no
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_mode_manual_livestock } }
+    }
+    emergency = yes
+    category = "planet_automation_job_management"
+    job_changes = {
+        livestock_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_g3200
+            }
+            job = livestock
+            amount = 3200
+        }
+        livestock_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_g3200
+            }
+            job = livestock
+            amount = -3200
+        }
+        livestock_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_g800
+            }
+            job = livestock
+            amount = 800
+        }
+        livestock_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_g800
+            }
+            job = livestock
+            amount = -800
+        }
+        livestock_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_g200
+            }
+            job = livestock
+            amount = 200
+        }
+        livestock_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_g200
+            }
+            job = livestock
+            amount = -200
+        }
+        livestock_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_g50
+            }
+            job = livestock
+            amount = 50
+        }
+        livestock_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_g50
+            }
+            job = livestock
+            amount = -50
+        }
+    }
+}
+
+
+automate_job_livestock_infernal = {
+    should_ai_use_job_micro = no
+    available = {
+        exists = owner
+        bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_jr_enabled }
+        owner = { NOT = { has_country_flag = bca_jr_mode_manual_livestock_infernal } }
+    }
+    emergency = yes
+    category = "planet_automation_job_management"
+    job_changes = {
+        livestock_infernal_inc_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_infernal_g3200
+            }
+            job = livestock_infernal
+            amount = 3200
+        }
+        livestock_infernal_dec_g3200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_infernal_g3200
+            }
+            job = livestock_infernal
+            amount = -3200
+        }
+        livestock_infernal_inc_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_infernal_g800
+            }
+            job = livestock_infernal
+            amount = 800
+        }
+        livestock_infernal_dec_g800 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_infernal_g800
+            }
+            job = livestock_infernal
+            amount = -800
+        }
+        livestock_infernal_inc_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_infernal_g200
+            }
+            job = livestock_infernal
+            amount = 200
+        }
+        livestock_infernal_dec_g200 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_infernal_g200
+            }
+            job = livestock_infernal
+            amount = -200
+        }
+        livestock_infernal_inc_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_inc_livestock_infernal_g50
+            }
+            job = livestock_infernal
+            amount = 50
+        }
+        livestock_infernal_dec_g50 = {
+            available = {
+                has_carrier_flag = bca_jr_dec_livestock_infernal_g50
+            }
+            job = livestock_infernal
             amount = -50
         }
     }

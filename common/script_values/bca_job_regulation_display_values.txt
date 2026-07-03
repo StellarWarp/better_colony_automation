@@ -3558,6 +3558,120 @@ bca_jr_sort_score_civilian = {
 }
 
 
+bca_jr_sort_score_clerk = {
+    base = 0
+    modifier = {
+        OR = {
+            has_country_flag = bca_jr_sort_workforce
+            NOR = {
+                has_country_flag = bca_jr_sort_output
+                has_country_flag = bca_jr_sort_status
+            }
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_clerk
+        add = this.bca_jr_total_assigned_workforce_clerk
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        NOT = { has_country_flag = bca_jr_mode_manual_clerk }
+        NOT = { has_country_flag = bca_jr_mode_empty_clerk }
+        add = 100000000
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        is_variable_set = bca_jr_total_assigned_workforce_clerk
+        add = this.bca_jr_total_assigned_workforce_clerk
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_energy
+        is_variable_set = bca_jr_total_output_clerk_energy
+        add = this.bca_jr_total_output_clerk_energy
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_minerals
+        is_variable_set = bca_jr_total_output_clerk_minerals
+        add = this.bca_jr_total_output_clerk_minerals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_food
+        is_variable_set = bca_jr_total_output_clerk_food
+        add = this.bca_jr_total_output_clerk_food
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_alloys
+        is_variable_set = bca_jr_total_output_clerk_alloys
+        add = this.bca_jr_total_output_clerk_alloys
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_consumer_goods
+        is_variable_set = bca_jr_total_output_clerk_consumer_goods
+        add = this.bca_jr_total_output_clerk_consumer_goods
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_trade
+        is_variable_set = bca_jr_total_output_clerk_trade
+        add = this.bca_jr_total_output_clerk_trade
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_unity
+        is_variable_set = bca_jr_total_output_clerk_unity
+        add = this.bca_jr_total_output_clerk_unity
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_physics_research
+        is_variable_set = bca_jr_total_output_clerk_physics_research
+        add = this.bca_jr_total_output_clerk_physics_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_society_research
+        is_variable_set = bca_jr_total_output_clerk_society_research
+        add = this.bca_jr_total_output_clerk_society_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_engineering_research
+        is_variable_set = bca_jr_total_output_clerk_engineering_research
+        add = this.bca_jr_total_output_clerk_engineering_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_rare_crystals
+        is_variable_set = bca_jr_total_output_clerk_rare_crystals
+        add = this.bca_jr_total_output_clerk_rare_crystals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_volatile_motes
+        is_variable_set = bca_jr_total_output_clerk_volatile_motes
+        add = this.bca_jr_total_output_clerk_volatile_motes
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_exotic_gases
+        is_variable_set = bca_jr_total_output_clerk_exotic_gases
+        add = this.bca_jr_total_output_clerk_exotic_gases
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        OR = {
+            has_country_flag = bca_jr_filter_all
+            has_country_flag = bca_jr_filter_other
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_clerk
+        add = this.bca_jr_total_assigned_workforce_clerk
+    }
+}
+
+
 bca_jr_sort_score_clip_maximizer = {
     base = 0
     modifier = {
@@ -9482,6 +9596,234 @@ bca_jr_sort_score_knight_commander = {
         }
         is_variable_set = bca_jr_total_assigned_workforce_knight_commander
         add = this.bca_jr_total_assigned_workforce_knight_commander
+    }
+}
+
+
+bca_jr_sort_score_livestock = {
+    base = 0
+    modifier = {
+        OR = {
+            has_country_flag = bca_jr_sort_workforce
+            NOR = {
+                has_country_flag = bca_jr_sort_output
+                has_country_flag = bca_jr_sort_status
+            }
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_livestock
+        add = this.bca_jr_total_assigned_workforce_livestock
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        NOT = { has_country_flag = bca_jr_mode_manual_livestock }
+        NOT = { has_country_flag = bca_jr_mode_empty_livestock }
+        add = 100000000
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        is_variable_set = bca_jr_total_assigned_workforce_livestock
+        add = this.bca_jr_total_assigned_workforce_livestock
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_energy
+        is_variable_set = bca_jr_total_output_livestock_energy
+        add = this.bca_jr_total_output_livestock_energy
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_minerals
+        is_variable_set = bca_jr_total_output_livestock_minerals
+        add = this.bca_jr_total_output_livestock_minerals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_food
+        is_variable_set = bca_jr_total_output_livestock_food
+        add = this.bca_jr_total_output_livestock_food
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_alloys
+        is_variable_set = bca_jr_total_output_livestock_alloys
+        add = this.bca_jr_total_output_livestock_alloys
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_consumer_goods
+        is_variable_set = bca_jr_total_output_livestock_consumer_goods
+        add = this.bca_jr_total_output_livestock_consumer_goods
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_trade
+        is_variable_set = bca_jr_total_output_livestock_trade
+        add = this.bca_jr_total_output_livestock_trade
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_unity
+        is_variable_set = bca_jr_total_output_livestock_unity
+        add = this.bca_jr_total_output_livestock_unity
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_physics_research
+        is_variable_set = bca_jr_total_output_livestock_physics_research
+        add = this.bca_jr_total_output_livestock_physics_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_society_research
+        is_variable_set = bca_jr_total_output_livestock_society_research
+        add = this.bca_jr_total_output_livestock_society_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_engineering_research
+        is_variable_set = bca_jr_total_output_livestock_engineering_research
+        add = this.bca_jr_total_output_livestock_engineering_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_rare_crystals
+        is_variable_set = bca_jr_total_output_livestock_rare_crystals
+        add = this.bca_jr_total_output_livestock_rare_crystals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_volatile_motes
+        is_variable_set = bca_jr_total_output_livestock_volatile_motes
+        add = this.bca_jr_total_output_livestock_volatile_motes
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_exotic_gases
+        is_variable_set = bca_jr_total_output_livestock_exotic_gases
+        add = this.bca_jr_total_output_livestock_exotic_gases
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        OR = {
+            has_country_flag = bca_jr_filter_all
+            has_country_flag = bca_jr_filter_other
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_livestock
+        add = this.bca_jr_total_assigned_workforce_livestock
+    }
+}
+
+
+bca_jr_sort_score_livestock_infernal = {
+    base = 0
+    modifier = {
+        OR = {
+            has_country_flag = bca_jr_sort_workforce
+            NOR = {
+                has_country_flag = bca_jr_sort_output
+                has_country_flag = bca_jr_sort_status
+            }
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_livestock_infernal
+        add = this.bca_jr_total_assigned_workforce_livestock_infernal
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        NOT = { has_country_flag = bca_jr_mode_manual_livestock_infernal }
+        NOT = { has_country_flag = bca_jr_mode_empty_livestock_infernal }
+        add = 100000000
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_status
+        is_variable_set = bca_jr_total_assigned_workforce_livestock_infernal
+        add = this.bca_jr_total_assigned_workforce_livestock_infernal
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_energy
+        is_variable_set = bca_jr_total_output_livestock_infernal_energy
+        add = this.bca_jr_total_output_livestock_infernal_energy
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_minerals
+        is_variable_set = bca_jr_total_output_livestock_infernal_minerals
+        add = this.bca_jr_total_output_livestock_infernal_minerals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_food
+        is_variable_set = bca_jr_total_output_livestock_infernal_food
+        add = this.bca_jr_total_output_livestock_infernal_food
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_alloys
+        is_variable_set = bca_jr_total_output_livestock_infernal_alloys
+        add = this.bca_jr_total_output_livestock_infernal_alloys
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_consumer_goods
+        is_variable_set = bca_jr_total_output_livestock_infernal_consumer_goods
+        add = this.bca_jr_total_output_livestock_infernal_consumer_goods
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_trade
+        is_variable_set = bca_jr_total_output_livestock_infernal_trade
+        add = this.bca_jr_total_output_livestock_infernal_trade
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_unity
+        is_variable_set = bca_jr_total_output_livestock_infernal_unity
+        add = this.bca_jr_total_output_livestock_infernal_unity
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_physics_research
+        is_variable_set = bca_jr_total_output_livestock_infernal_physics_research
+        add = this.bca_jr_total_output_livestock_infernal_physics_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_society_research
+        is_variable_set = bca_jr_total_output_livestock_infernal_society_research
+        add = this.bca_jr_total_output_livestock_infernal_society_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_engineering_research
+        is_variable_set = bca_jr_total_output_livestock_infernal_engineering_research
+        add = this.bca_jr_total_output_livestock_infernal_engineering_research
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_rare_crystals
+        is_variable_set = bca_jr_total_output_livestock_infernal_rare_crystals
+        add = this.bca_jr_total_output_livestock_infernal_rare_crystals
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_volatile_motes
+        is_variable_set = bca_jr_total_output_livestock_infernal_volatile_motes
+        add = this.bca_jr_total_output_livestock_infernal_volatile_motes
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        has_country_flag = bca_jr_filter_exotic_gases
+        is_variable_set = bca_jr_total_output_livestock_infernal_exotic_gases
+        add = this.bca_jr_total_output_livestock_infernal_exotic_gases
+    }
+    modifier = {
+        has_country_flag = bca_jr_sort_output
+        OR = {
+            has_country_flag = bca_jr_filter_all
+            has_country_flag = bca_jr_filter_other
+        }
+        is_variable_set = bca_jr_total_assigned_workforce_livestock_infernal
+        add = this.bca_jr_total_assigned_workforce_livestock_infernal
     }
 }
 

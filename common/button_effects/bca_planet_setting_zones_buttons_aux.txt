@@ -1988,10 +1988,24 @@ bca_planet_setting_secondary_zone_count_inc_z3 = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        hidden_trigger = {
-            check_variable_arithmetic = {
-                which = value:bca_num_primary_districts_plan
-                value > 1
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+            }
+            custom_tooltip = {
+                fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
+                check_variable_arithmetic = {
+                    which = value:bca_num_free_secondary_districts_plan
+                    value > 0
+                }
+            }
+        }
+        else = {
+            hidden_trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value > 1
+                }
             }
         }
         bca_allow_manual_district_manage = yes
@@ -2069,10 +2083,24 @@ bca_planet_setting_secondary_zone_count_inc_z4 = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        hidden_trigger = {
-            check_variable_arithmetic = {
-                which = value:bca_num_primary_districts_plan
-                value > 1
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+            }
+            custom_tooltip = {
+                fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
+                check_variable_arithmetic = {
+                    which = value:bca_num_free_secondary_districts_plan
+                    value > 0
+                }
+            }
+        }
+        else = {
+            hidden_trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value > 1
+                }
             }
         }
         bca_allow_manual_district_manage = yes
@@ -2150,10 +2178,24 @@ bca_planet_setting_secondary_zone_count_inc_z5 = {
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
-        hidden_trigger = {
-            check_variable_arithmetic = {
-                which = value:bca_num_primary_districts_plan
-                value > 1
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+            }
+            custom_tooltip = {
+                fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
+                check_variable_arithmetic = {
+                    which = value:bca_num_free_secondary_districts_plan
+                    value > 0
+                }
+            }
+        }
+        else = {
+            hidden_trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value > 1
+                }
             }
         }
         bca_allow_manual_district_manage = yes
