@@ -186,8 +186,8 @@ demolition projections. See
 5. Render `.txt.j2` templates under `templates/events/` into `events/`.
 6. Render `.yml.j2` localisation templates into `localisation/`.
 7. Prepend a generated-file warning header to rendered output.
-8. Update the generated `.txt` section in `.rgignore`, so normal `rg` searches
-   skip generated runtime text files.
+8. Update the generated-output section in `.rgignore`, so normal `rg` searches
+   skip generated runtime `.txt` and `.yml` files.
 9. Normalize `localisation/` files to UTF-8 with BOM.
 10. Publish configured packages through `scripts/publish_mod.py` with quiet
    output.
@@ -197,7 +197,7 @@ This means:
 - output paths are determined by template locations
 - runtime directories contain both generated and handwritten files
 - warning headers are the first-line ownership signal during editing
-- generated runtime `.txt` files are hidden from normal `rg` searches on
+- generated runtime `.txt` and `.yml` files are hidden from normal `rg` searches on
   purpose; search templates, config, and parser code first, and avoid inspecting
   generated output unless proving a renderer defect or a narrow source-to-output
   mismatch

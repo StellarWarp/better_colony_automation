@@ -41,7 +41,7 @@ When inspecting `.txt` runtime DSL files, first check whether a same-named
 file is generated output; do not read or edit the runtime `.txt` body, and use
 the template as the edit site.
 
-Normal `rg` searches intentionally skip generated runtime `.txt` files because
+Normal `rg` searches intentionally skip generated runtime `.txt` and `.yml` files because
 `mod_builder/generate.py` maintains those paths in the repository `.rgignore`.
 This keeps routine searches focused on source files and handwritten runtime
 hotspots. Do not bypass `.rgignore` during normal development. Generated-output
@@ -56,7 +56,7 @@ template near the top; use that source as the edit site.
 
 After template changes, a successful generation run is sufficient generated
 output validation for normal maintenance. Do not spend time reviewing large
-generated `.txt` bodies unless a renderer defect is suspected or a narrow
+generated `.txt` or `.yml` bodies unless a renderer defect is suspected or a narrow
 source-to-output mismatch must be proven.
 
 Useful starting questions:
@@ -155,7 +155,7 @@ Rules:
 Risk:
 
 - future regeneration silently discards the fix
-- normal `rg` searches may not show generated `.txt` output, so a missing
+- normal `rg` searches may not show generated `.txt` or `.yml` output, so a missing
   result is not evidence that no generated runtime block exists
 
 Mitigation:

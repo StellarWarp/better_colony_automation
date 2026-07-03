@@ -47,7 +47,7 @@ Important rules:
   handwritten exception.
 - `mod_builder/parse/` and `mod_builder/synthetipy/` form a parser/extraction frontend for Stellaris script definitions.
 - Generated runtime files should contain a warning header pointing back to the source template.
-- Generated runtime `.txt` files are listed in the repository `.rgignore` by
+- Generated runtime `.txt` and `.yml` files are listed in the repository `.rgignore` by
   `mod_builder/generate.py`, so normal `rg` searches do not include them.
   This is intentional: search and inspect the template, handwritten config, or
   parser source instead.
@@ -73,7 +73,7 @@ Before changing behavior:
 
 1. Identify which layer owns the change.
 2. If a runtime file has a generated warning header, go back to the template or generator input.
-3. Remember that normal `rg` searches skip generated runtime `.txt` files via
+3. Remember that normal `rg` searches skip generated runtime `.txt` and `.yml` files via
    `.rgignore`; this keeps development focused on source files. Avoid bypassing
    it unless you are proving a renderer defect or a narrow source-to-output
    mismatch.
