@@ -30,6 +30,7 @@ Read these when you are about to change behavior, templates, GUI, localisation, 
 3. [DSL Style Guide](maintenance/dsl-style-guide.md)
 4. [Change Entrypoints](maintenance/change-entrypoints.md)
 5. [Handwritten Hotspots](maintenance/handwritten-hotspots.md)
+6. [Unreleased Notes](maintenance/unreleased-notes.md)
 
 The style guide is split into topic pages for DSL core rules, GUI behavior,
 localisation, and template generation. Start from the index when unsure.

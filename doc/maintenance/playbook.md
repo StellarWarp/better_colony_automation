@@ -276,17 +276,21 @@ manual edits to generated runtime files.
 
 When preparing a public release, update these in one pass:
 
-1. Bump the version flag in [`../../events/bca_intro_event.txt`](../../events/bca_intro_event.txt).
-2. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in relevant files under [`../../localisation/`](../../localisation/).
-3. Bump the version string in [`../../descriptor.mod`](../../descriptor.mod).
-4. Update the public-facing changelog in [`../../README.md`](../../README.md).
-5. Update and review the bilingual Workshop descriptions in the selected package directory. The main package uses the repository root; submods use `submods/<package>/`.
+1. Review [`unreleased-notes.md`](unreleased-notes.md) and decide which items
+   should become public release notes.
+2. Bump the version flag in [`../../events/bca_intro_event.txt`](../../events/bca_intro_event.txt).
+3. Update `MESSAGE_BCA_UPDATE_desc_verson` and prepend the latest `MESSAGE_BCA_STARTUP_desc_log_v*` entry in relevant files under [`../../localisation/`](../../localisation/).
+4. Bump the version string in [`../../descriptor.mod`](../../descriptor.mod).
+5. Update the public-facing changelog in [`../../README.md`](../../README.md).
+6. Update and review the bilingual Workshop descriptions in the selected package directory. The main package uses the repository root; submods use `submods/<package>/`.
 
 Release note rule:
 
 - keep the intro popup short and player-facing
 - keep `README.md` slightly more descriptive
 - keep each package's `workshop_en.txt` and `workshop_cn.txt` focused on current features rather than detailed version history
+- clear or roll forward `unreleased-notes.md` after the release notes have been
+  folded into public surfaces
 - if a release changes global settings behavior, mention both the new default behavior and the primary entry point
 
 ## Documentation Maintenance Rule
