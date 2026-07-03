@@ -47,6 +47,10 @@ Important rules:
   handwritten exception.
 - `mod_builder/parse/` and `mod_builder/synthetipy/` form a parser/extraction frontend for Stellaris script definitions.
 - Generated runtime files should contain a warning header pointing back to the source template.
+- Generated runtime `.txt` files are listed in the repository `.rgignore` by
+  `mod_builder/generate.py`, so normal `rg` searches do not include them.
+  This is intentional: search and inspect the template, handwritten config, or
+  parser source instead.
 
 Do not assume that a long file under `common/`, `events/`, `interface/`, or `localisation/` is handwritten. Many runtime files are generated outputs.
 
@@ -69,9 +73,12 @@ Before changing behavior:
 
 1. Identify which layer owns the change.
 2. If a runtime file has a generated warning header, go back to the template or generator input.
-3. If DSL syntax, GUI behavior, tooltip behavior, or API usage is uncertain,
+3. Remember that normal `rg` searches skip generated runtime `.txt` files via
+   `.rgignore`; this keeps development focused on source files. Avoid bypassing
+   it unless you are debugging generation itself or proving a renderer defect.
+4. If DSL syntax, GUI behavior, tooltip behavior, or API usage is uncertain,
    check [DSL Style Guide](maintenance/dsl-style-guide.md): use the Stellaris
    user document `logs/script_documentation` first, then `.config/stellaris/`
    when the official document is unclear, then matching usage in project or
    game scripts.
-4. If the change affects release metadata, follow the release workflow in [Maintenance Playbook](maintenance/playbook.md).
+5. If the change affects release metadata, follow the release workflow in [Maintenance Playbook](maintenance/playbook.md).

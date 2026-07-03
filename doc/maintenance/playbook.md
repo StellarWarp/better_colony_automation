@@ -41,14 +41,22 @@ When inspecting `.txt` runtime DSL files, first check whether a same-named
 file is generated output; do not read or edit the runtime `.txt` body, and use
 the template as the edit site.
 
+Normal `rg` searches intentionally skip generated runtime `.txt` files because
+`mod_builder/generate.py` maintains those paths in the repository `.rgignore`.
+This keeps routine searches focused on source files and handwritten runtime
+hotspots. Do not bypass `.rgignore` during normal development. Generated-output
+inspection is an exception for generation failures, suspected renderer defects,
+or narrow source-to-output mismatch investigations; return to the source
+template, config, or parser before editing.
+
 If no matching template is found and a `.txt` file must be inspected, read only
 the first five lines first. Generated files should identify their source
 template near the top; use that source as the edit site.
 
 After template changes, a successful generation run is sufficient generated
 output validation for normal maintenance. Do not spend time reviewing large
-generated `.txt` bodies unless generation fails or a targeted investigation
-requires it.
+generated `.txt` bodies unless generation fails, a renderer defect is
+suspected, or a narrow source-to-output mismatch must be proven.
 
 Useful starting questions:
 
@@ -146,12 +154,16 @@ Rules:
 Risk:
 
 - future regeneration silently discards the fix
+- normal `rg` searches may not show generated `.txt` output, so a missing
+  result is not evidence that no generated runtime block exists
 
 Mitigation:
 
 - read the generated warning header
 - find the matching template or generator input
 - update the source layer, then regenerate
+- treat a successful generation run as the generated-output check unless the
+  failure is specifically about renderer output shape
 
 ### Editing generated-config YAML directly
 

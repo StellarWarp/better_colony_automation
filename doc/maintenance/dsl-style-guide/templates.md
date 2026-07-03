@@ -43,6 +43,9 @@ When editing runtime files:
 - first check whether a same-named `.txt.j2` template exists under
   `mod_builder/templates/`; if it does, the runtime `.txt` is generated output
   and should not be read or edited directly
+- normal `rg` searches skip generated runtime `.txt` files through the
+  repository `.rgignore`; use source templates/config/parser files for routine
+  search and avoid bypassing `.rgignore` unless debugging generation itself
 - if no matching template is found and a runtime `.txt` must be inspected, read
   only the first five lines first to check for ownership metadata
 - generated warning header answers "can I edit this file directly?"
@@ -55,10 +58,12 @@ When editing runtime files:
 When changing templates:
 
 - let the file watcher or generator update runtime outputs
+- let `mod_builder/generate.py` maintain the generated `.txt` block in
+  `.rgignore`; do not hand-maintain that block
 - treat a successful generator run as sufficient generated-output validation
   for normal maintenance
-- do not review large generated `.txt` bodies unless generation fails or a
-  targeted investigation requires it
+- do not review generated `.txt` bodies unless generation fails, a renderer
+  defect is suspected, or a narrow source-to-output mismatch must be proven
 - test in game after re-entering, because Stellaris logic does not hot reload
 
 ## Generated-Config Exceptions

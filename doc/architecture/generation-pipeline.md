@@ -186,8 +186,10 @@ demolition projections. See
 5. Render `.txt.j2` templates under `templates/events/` into `events/`.
 6. Render `.yml.j2` localisation templates into `localisation/`.
 7. Prepend a generated-file warning header to rendered output.
-8. Normalize `localisation/` files to UTF-8 with BOM.
-9. Publish configured packages through `scripts/publish_mod.py` with quiet
+8. Update the generated `.txt` section in `.rgignore`, so normal `rg` searches
+   skip generated runtime text files.
+9. Normalize `localisation/` files to UTF-8 with BOM.
+10. Publish configured packages through `scripts/publish_mod.py` with quiet
    output.
 
 This means:
@@ -195,6 +197,9 @@ This means:
 - output paths are determined by template locations
 - runtime directories contain both generated and handwritten files
 - warning headers are the first-line ownership signal during editing
+- generated runtime `.txt` files are hidden from normal `rg` searches on
+  purpose; search templates, config, and parser code first, and avoid inspecting
+  generated output unless debugging generation itself
 - running `generate.py` can modify configured local Stellaris mod targets
 
 ## Component Macros
@@ -278,4 +283,6 @@ renames it back to `bca_global_setting_panel.gui`.
 6. Edit the highest-leverage source.
 7. Regenerate outputs with the file watcher or generator.
 8. Treat successful generation as sufficient generated-output validation for
-   normal maintenance, then validate behavior in game when needed.
+   normal maintenance. Do not inspect generated output unless generation fails,
+   a renderer defect is suspected, or a narrow source-to-output mismatch must
+   be proven; validate behavior in game when needed.
