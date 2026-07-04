@@ -67,6 +67,13 @@
 
 ## Changelog
 
+哇噗 **26-07-04 - v2.0.3**
+- Fixed colony automation sometimes always prioritizing primary districts instead of following planned district construction.
+- Fixed planned secondary zone specializations being cleared incorrectly when zone auto-demolition was disabled.
+- Fixed some district values not displaying correctly in the district planning UI.
+- Fixed agricultural buildings being incorrectly demolished in some cases.
+- Fixed resource status markers in job regulation tooltips showing as `?` in some English font setups.
+
 哇噗 **26-07-04 - v2.0.0**
 - Added the optional **Macroeconomy: Job Statistics & Regulation** submod, with empire-wide job, workforce, and job-output statistics, resource-category filters, monthly job changes, automation rate, job-output display, and colony lookup for selected jobs.
 - Job regulation can automatically open or close relevant jobs according to BCA economic output targets and regulation tolerance, directing pops toward the sectors your economy currently needs. Each job can also be configured independently.

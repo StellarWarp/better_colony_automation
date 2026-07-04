@@ -44,17 +44,19 @@ event = {
                 set_country_flag = bca_default_disable_auto_destruction_zone
             }
         }
-        every_playable_country = {
-            if = {
-                limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_enforcer_initialized } }
-                set_country_flag = bca_jr_default_manual_manage_job_enforcer_initialized
+        if = {
+            limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_initialized } }
+            set_country_flag = bca_jr_default_manual_manage_job_initialized
+            every_playable_country = {
+                set_country_flag = bca_jr_mode_manual_civilian
+                remove_country_flag = bca_jr_mode_empty_civilian
+                remove_country_flag = bca_jr_mode_full_civilian
                 set_country_flag = bca_jr_mode_manual_enforcer
                 remove_country_flag = bca_jr_mode_empty_enforcer
                 remove_country_flag = bca_jr_mode_full_enforcer
-            }
-            if = {
-                limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_patrol_drone_initialized } }
-                set_country_flag = bca_jr_default_manual_manage_job_patrol_drone_initialized
+                set_country_flag = bca_jr_mode_manual_maintenance_drone
+                remove_country_flag = bca_jr_mode_empty_maintenance_drone
+                remove_country_flag = bca_jr_mode_full_maintenance_drone
                 set_country_flag = bca_jr_mode_manual_patrol_drone
                 remove_country_flag = bca_jr_mode_empty_patrol_drone
                 remove_country_flag = bca_jr_mode_full_patrol_drone

@@ -33,16 +33,16 @@ event = {
             }
         }
 
-        every_playable_country = {
-            {% for job in default_manual_manage_jobs %}
-                if = {
-                    limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_{{ job }}_initialized } }
-                    set_country_flag = bca_jr_default_manual_manage_job_{{ job }}_initialized
+        if = {
+            limit = { NOT = { has_country_flag = bca_jr_default_manual_manage_job_initialized } }
+            set_country_flag = bca_jr_default_manual_manage_job_initialized
+            every_playable_country = {
+                {% for job in default_manual_manage_jobs %}
                     set_country_flag = bca_jr_mode_manual_{{ job }}
                     remove_country_flag = bca_jr_mode_empty_{{ job }}
                     remove_country_flag = bca_jr_mode_full_{{ job }}
-                }
-            {% endfor %}
+                {% endfor %}
+            }
         }
     }
 }

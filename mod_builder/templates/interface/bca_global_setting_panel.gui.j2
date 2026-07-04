@@ -180,213 +180,213 @@ containerWindowType = {
     }
 
 {# ---- Tab 按钮栏 ---- #}
-        {{
-            gsc.tab_row(
-                name = "tab_select",
-                x = content_x, y = tab_bar_y, width = full_width, height = 40,
-                button_gap = 2,
-                options = [
-                {"name": "economy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION", "effect": "bca_gui_select_tab_economy"},
-                {"name": "jobs", "text": "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION", "effect": "bca_gui_select_tab_jobs"},
-                {"name": "automation", "text": "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION", "effect": "bca_gui_select_tab_automation"}
-                ]
-            )
-        }}
+    {{
+        gsc.tab_row(
+            name = "tab_select",
+            x = content_x, y = tab_bar_y, width = full_width, height = 40,
+            button_gap = 2,
+            options = [
+            {"name": "economy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION", "effect": "bca_gui_select_tab_economy"},
+            {"name": "jobs", "text": "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION", "effect": "bca_gui_select_tab_jobs"},
+            {"name": "automation", "text": "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION", "effect": "bca_gui_select_tab_automation"}
+            ]
+        )
+    }}
 
 {# ═══════════════════════════════════════════════════════ #}
 {# Tab 0: Economy                                            #}
 {# ═══════════════════════════════════════════════════════ #}
-        effectButtonType = { name = "eco_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_0" }
-        effectButtonType = { name = "eco_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT" alwaysTransparent = yes effect = "bca_tab_visible_0" }
-        {{
-            gsc.choice_row(
-                name = "economic_management",
-                text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT",
-                tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP",
-                x = content_x, y = tab_content_y, width = full_width, height = 32,
-                button_width = 72, button_gap = 10, options = economic_management_choices,
-                label_effect = "bca_tab_visible_0"
-            )
-        }}
-        {% set tolerance_negative_buttons = [] %}
-        {% for option in tolerance_negative_options %}
-            {% set _ = tolerance_negative_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    effectButtonType = { name = "eco_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_0" }
+    effectButtonType = { name = "eco_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGETS_HINT" alwaysTransparent = yes effect = "bca_tab_visible_0" }
+    {{
+        gsc.choice_row(
+            name = "economic_management",
+            text = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT",
+            tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_MANAGEMENT_TOOLTIP",
+            x = content_x, y = tab_content_y, width = full_width, height = 32,
+            button_width = 72, button_gap = 10, options = economic_management_choices,
+            label_effect = "bca_tab_visible_0"
+        )
+    }}
+    {% set tolerance_negative_buttons = [] %}
+    {% for option in tolerance_negative_options %}
+        {% set _ = tolerance_negative_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% endfor %}
+    {% set tolerance_positive_buttons = [] %}
+    {% for option in tolerance_positive_options %}
+        {% set _ = tolerance_positive_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% endfor %}
+    {{
+        gsc.multi_step_value_row(
+            name = "economic_tolerance", text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE",
+            value_text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_VALUE",
+            status_text = "", tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_TOOLTIP",
+            value_effect = "", value_tooltip = "",
+            negative_options = tolerance_negative_buttons, positive_options = tolerance_positive_buttons,
+            x = content_x, y = tab_content_y + 38, width = full_width, height = economy_row_height,
+            value_width = 76, button_width = 46, button_gap = 6, control_gap = 8,
+            label_effect = "bca_tab_visible_0"
+        )
+    }}
+    {% for row in economic_rows %}
+        {% set row_y = tab_content_y + 76 + loop.index0 * (economy_row_height + economy_row_gap) %}
+        {% set negative_options = [] %}
+        {% for option in row.negative_options %}
+            {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
         {% endfor %}
-        {% set tolerance_positive_buttons = [] %}
-        {% for option in tolerance_positive_options %}
-            {% set _ = tolerance_positive_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+        {% set positive_options = [] %}
+        {% for option in row.positive_options %}
+            {% set _ = positive_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
         {% endfor %}
         {{
             gsc.multi_step_value_row(
-                name = "economic_tolerance", text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE",
-                value_text = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_VALUE",
-                status_text = "", tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TOLERANCE_TOOLTIP",
-                value_effect = "", value_tooltip = "",
-                negative_options = tolerance_negative_buttons, positive_options = tolerance_positive_buttons,
-                x = content_x, y = tab_content_y + 38, width = full_width, height = economy_row_height,
+                name = "economic_" ~ row.name, text = row.text, value_text = row.value_text,
+                status_text = row.status_text, tooltip = row.tooltip, value_effect = row.mode_effect,
+                value_tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP",
+                negative_options = negative_options, positive_options = positive_options,
+                x = content_x, y = row_y, width = full_width, height = economy_row_height,
                 value_width = 76, button_width = 46, button_gap = 6, control_gap = 8,
-                label_effect = "bca_tab_visible_0"
+                label_effect = "bca_tab_visible_0", status_effect = "bca_tab_visible_0"
             )
         }}
-        {% for row in economic_rows %}
-            {% set row_y = tab_content_y + 76 + loop.index0 * (economy_row_height + economy_row_gap) %}
-            {% set negative_options = [] %}
-            {% for option in row.negative_options %}
-                {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
-            {% endfor %}
-            {% set positive_options = [] %}
-            {% for option in row.positive_options %}
-                {% set _ = positive_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
-            {% endfor %}
-            {{
-                gsc.multi_step_value_row(
-                    name = "economic_" ~ row.name, text = row.text, value_text = row.value_text,
-                    status_text = row.status_text, tooltip = row.tooltip, value_effect = row.mode_effect,
-                    value_tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP",
-                    negative_options = negative_options, positive_options = positive_options,
-                    x = content_x, y = row_y, width = full_width, height = economy_row_height,
-                    value_width = 76, button_width = 46, button_gap = 6, control_gap = 8,
-                    label_effect = "bca_tab_visible_0", status_effect = "bca_tab_visible_0"
-                )
-            }}
-        {% endfor %}
+    {% endfor %}
 
 {# ═══════════════════════════════════════════════════════ #}
 {# Tab 1: Jobs                                               #}
 {# ═══════════════════════════════════════════════════════ #}
-        effectButtonType = { name = "jr_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_1" }
-        {% if build_variant == "job_regulation" %}
-            effectButtonType = { name = "jr_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_HINT" alwaysTransparent = yes effect = "bca_tab_visible_1" }
+    effectButtonType = { name = "jr_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_SECTION" alwaysTransparent = yes effect = "bca_tab_visible_1" }
+    {% if build_variant == "job_regulation" %}
+        effectButtonType = { name = "jr_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_JOB_REGULATION_HINT" alwaysTransparent = yes effect = "bca_tab_visible_1" }
 
-            {{ jr.global_control_row(content_x, jr_global_y, full_width, 32) }}
+        {{ jr.global_control_row(content_x, jr_global_y, full_width, 32) }}
 
-            {{ jr.category_group_bar(categories, jr_category_groups, content_x, jr_group_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_group_button_height) }}
+        {{ jr.category_group_bar(categories, jr_category_groups, content_x, jr_group_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_group_button_height) }}
 
-            {{ jr.category_bar(categories, content_x, jr_cat_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_cat_button_height) }}
+        {{ jr.category_bar(categories, content_x, jr_cat_bar_y, jr_cat_button_width, jr_cat_button_gap, jr_cat_button_height) }}
 
-            {{ jr.table_header(jr_table_x, jr_header_y, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_table_width - jr_action_x) }}
+        {{ jr.table_header(jr_table_x, jr_header_y, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_table_width - jr_action_x) }}
 
-            {{ jr.slot_list(jr_slots, jr_table_x, jr_list_start_y + 4, jr_slot_h, jr_table_width, jr_locate_x, jr_locate_w, jr_icon_x, jr_icon_w, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_action_w, jr_mode_x, jr_mode_w) }}
-        {% else %}
-            effectButtonType = {
-                name = "jr_submod_intro"
-                position = { x = {{ content_x }} y = {{ tab_content_y }} }
-                size = { x = {{ full_width }} y = 300 }
-                font = "cg_16b"
-                buttonText = "BCA_JOB_REGULATION_SUBMOD_INTRO"
-                format = center
-                vertical_alignment = center
-                quadTextureSprite = "GFX_interface_list_dark"
-                alwaysTransparent = yes
-                effect = "bca_tab_visible_1"
-            }
-        {% endif %}
+        {{ jr.slot_list(jr_slots, jr_table_x, jr_list_start_y + 4, jr_slot_h, jr_table_width, jr_locate_x, jr_locate_w, jr_icon_x, jr_icon_w, jr_job_x, jr_job_w, jr_wf_x, jr_wf_w, jr_change_x, jr_change_w, jr_rate_x, jr_rate_w, jr_output_x, jr_output_w, jr_action_x, jr_action_w, jr_mode_x, jr_mode_w) }}
+    {% else %}
+        effectButtonType = {
+            name = "jr_submod_intro"
+            position = { x = {{ content_x }} y = {{ tab_content_y }} }
+            size = { x = {{ full_width }} y = 300 }
+            font = "cg_16b"
+            buttonText = "BCA_JOB_REGULATION_SUBMOD_INTRO"
+            format = center
+            vertical_alignment = center
+            quadTextureSprite = "GFX_interface_list_dark"
+            alwaysTransparent = yes
+            effect = "bca_tab_visible_1"
+        }
+    {% endif %}
 
 {# ═══════════════════════════════════════════════════════ #}
 {# Tab 2: Automation                                         #}
 {# ═══════════════════════════════════════════════════════ #}
-        effectButtonType = { name = "auto_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_2" }
-        effectButtonType = { name = "auto_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT" format = center vertical_alignment = top alwaysTransparent = yes effect = "bca_tab_visible_2" }
-        {{
-            gsc.auto_demolition_row(name = "apply_all", text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION",
-                x = content_x, y = tab_content_y, width = full_width, height = demo_all_row_height,
-                show_default = false,
-                apply_enable_effect = "bca_global_settings_auto_destruction_all_enable",
-                apply_disable_effect = "bca_global_settings_auto_destruction_all_disable",
-                apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_ENABLE_TOOLTIP",
-                apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_DISABLE_TOOLTIP",
-                label_effect = "bca_tab_visible_2")
-        }}
-        {{
-            gsc.auto_demolition_row(name = "buildings", text = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION",
-                status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_STATUS",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap, width = full_width, height = demo_row_height,
-                default_enable_current_effect = "bca_global_settings_default_auto_destruction_buildings_enable_current",
-                default_enable_target_effect = "bca_global_settings_default_auto_destruction_buildings_enable",
-                default_disable_current_effect = "bca_global_settings_default_auto_destruction_buildings_disable_current",
-                default_disable_target_effect = "bca_global_settings_default_auto_destruction_buildings_disable",
-                apply_enable_effect = "bca_global_settings_auto_destruction_buildings_enable",
-                apply_disable_effect = "bca_global_settings_auto_destruction_buildings_disable",
-                apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP",
-                apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP",
-                default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
-                default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
-                default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
-                default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP",
-                label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2")
-        }}
-        {{
-            gsc.auto_demolition_row(name = "districts", text = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION",
-                status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_STATUS",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + demo_row_height + demo_row_gap, width = full_width, height = demo_row_height,
-                default_enable_current_effect = "bca_global_settings_default_auto_destruction_districts_enable_current",
-                default_enable_target_effect = "bca_global_settings_default_auto_destruction_districts_enable",
-                default_disable_current_effect = "bca_global_settings_default_auto_destruction_districts_disable_current",
-                default_disable_target_effect = "bca_global_settings_default_auto_destruction_districts_disable",
-                apply_enable_effect = "bca_global_settings_auto_destruction_districts_enable",
-                apply_disable_effect = "bca_global_settings_auto_destruction_districts_disable",
-                label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2",
-                apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP",
-                apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP",
-                default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
-                default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
-                default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
-                default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP")
-        }}
-        {{
-            gsc.auto_demolition_row(name = "zones", text = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION",
-                status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_STATUS",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 2, width = full_width, height = demo_row_height,
-                default_enable_current_effect = "bca_global_settings_default_auto_destruction_zones_enable_current",
-                default_enable_target_effect = "bca_global_settings_default_auto_destruction_zones_enable",
-                default_disable_current_effect = "bca_global_settings_default_auto_destruction_zones_disable_current",
-                default_disable_target_effect = "bca_global_settings_default_auto_destruction_zones_disable",
-                apply_enable_effect = "bca_global_settings_auto_destruction_zones_enable",
-                apply_disable_effect = "bca_global_settings_auto_destruction_zones_disable",
-                label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2",
-                apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP",
-                apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP",
-                default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
-                default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
-                default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
-                default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP")
-        }}
+    effectButtonType = { name = "auto_section_title" position = { x = {{ content_x }} y = {{ tab_section_y }} } size = { x = {{ full_width }} y = 28 } font = "malgun_goth_24" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_SECTION" format = center vertical_alignment = center alwaysTransparent = yes effect = "bca_tab_visible_2" }
+    effectButtonType = { name = "auto_section_hint" position = { x = {{ content_x }} y = {{ tab_hint_y }} } size = { x = {{ full_width }} y = 42 } font = "cg_16b" buttonText = "BCA_GLOBAL_SETTINGS_AUTOMATION_BEHAVIORS_HINT" format = center vertical_alignment = top alwaysTransparent = yes effect = "bca_tab_visible_2" }
+    {{
+        gsc.auto_demolition_row(name = "apply_all", text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION",
+            x = content_x, y = tab_content_y, width = full_width, height = demo_all_row_height,
+            show_default = false,
+            apply_enable_effect = "bca_global_settings_auto_destruction_all_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_all_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ALL_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            label_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.auto_demolition_row(name = "buildings", text = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_STATUS",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap, width = full_width, height = demo_row_height,
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_buildings_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_buildings_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_buildings_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_buildings_disable",
+            apply_enable_effect = "bca_global_settings_auto_destruction_buildings_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_buildings_disable",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_BUILDING_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_BUILDING_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP",
+            label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.auto_demolition_row(name = "districts", text = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_STATUS",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + demo_row_height + demo_row_gap, width = full_width, height = demo_row_height,
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_districts_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_districts_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_districts_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_districts_disable",
+            apply_enable_effect = "bca_global_settings_auto_destruction_districts_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_districts_disable",
+            label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_DISTRICT_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_DISTRICT_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP")
+    }}
+    {{
+        gsc.auto_demolition_row(name = "zones", text = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION",
+            status_text = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_STATUS",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 2, width = full_width, height = demo_row_height,
+            default_enable_current_effect = "bca_global_settings_default_auto_destruction_zones_enable_current",
+            default_enable_target_effect = "bca_global_settings_default_auto_destruction_zones_enable",
+            default_disable_current_effect = "bca_global_settings_default_auto_destruction_zones_disable_current",
+            default_disable_target_effect = "bca_global_settings_default_auto_destruction_zones_disable",
+            apply_enable_effect = "bca_global_settings_auto_destruction_zones_enable",
+            apply_disable_effect = "bca_global_settings_auto_destruction_zones_disable",
+            label_effect = "bca_tab_visible_2", status_effect = "bca_tab_visible_2",
+            apply_enable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_ENABLE_TOOLTIP",
+            apply_disable_tooltip = "BCA_GLOBAL_SETTINGS_EXISTING_PLANETS_ZONE_AUTO_DEMOLITION_DISABLE_TOOLTIP",
+            default_enable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_CURRENT_TOOLTIP",
+            default_enable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_ON_TARGET_TOOLTIP",
+            default_disable_current_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_CURRENT_TOOLTIP",
+            default_disable_target_tooltip = "BCA_GLOBAL_SETTINGS_DEFAULT_ZONE_AUTO_DEMOLITION_OFF_TARGET_TOOLTIP")
+    }}
 
-        {{
-            gsc.choice_row(name = "rare_buildings", text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_TOOLTIP",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 92, button_gap = 10, options = rare_building_choices, label_effect = "bca_tab_visible_2")
-        }}
-        {{
-            gsc.choice_row(name = "pop_assembly", text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + behavior_row_height + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 86, button_gap = 8, options = pop_assembly_choices, label_effect = "bca_tab_visible_2")
-        }}
-        {{
-            gsc.choice_row(name = "deurbanization", text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION", tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",
-                x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 2, width = full_width, height = behavior_row_height, button_width = 72, button_gap = 10, options = deurbanization_choices, label_effect = "bca_tab_visible_2")
-        }}
+    {{
+        gsc.choice_row(name = "rare_buildings", text = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_LOW_TIER_RARE_RESOURCE_BUILDINGS_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 92, button_gap = 10, options = rare_building_choices, label_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.choice_row(name = "pop_assembly", text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + behavior_row_height + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 86, button_gap = 8, options = pop_assembly_choices, label_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.choice_row(name = "deurbanization", text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION", tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 2, width = full_width, height = behavior_row_height, button_width = 72, button_gap = 10, options = deurbanization_choices, label_effect = "bca_tab_visible_2")
+    }}
 
-        {% for row in bca_global_settings_reserve_rows %}
-            {% set row_y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 3 + reserve_row_gap + loop.index0 * (reserve_row_height + reserve_row_gap) %}
-            {% set negative_options = [] %}
-            {% for option in row.negative_options %}
-                {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
-            {% endfor %}
-            {% set positive_options = [] %}
-            {% for option in row.positive_options %}
-                {% set _ = positive_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
-            {% endfor %}
-            {{
-                gsc.multi_step_value_row(
-                    name = "reserve_" ~ row.name, text = row.text, value_text = row.value_text,
-                    tooltip = row.tooltip, value_effect = "",
-                    negative_options = negative_options, positive_options = positive_options,
-                    x = content_x, y = row_y, width = full_width, height = reserve_row_height,
-                    value_width = 84, button_width = 46, button_gap = 6, control_gap = 8,
-                    label_effect = "bca_tab_visible_2"
-                )
-            }}
+    {% for row in bca_global_settings_reserve_rows %}
+        {% set row_y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 3 + reserve_row_gap + loop.index0 * (reserve_row_height + reserve_row_gap) %}
+        {% set negative_options = [] %}
+        {% for option in row.negative_options %}
+            {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
         {% endfor %}
-    }
+        {% set positive_options = [] %}
+        {% for option in row.positive_options %}
+            {% set _ = positive_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
+        {% endfor %}
+        {{
+            gsc.multi_step_value_row(
+                name = "reserve_" ~ row.name, text = row.text, value_text = row.value_text,
+                tooltip = row.tooltip, value_effect = "",
+                negative_options = negative_options, positive_options = positive_options,
+                x = content_x, y = row_y, width = full_width, height = reserve_row_height,
+                value_width = 84, button_width = 46, button_gap = 6, control_gap = 8,
+                label_effect = "bca_tab_visible_2"
+            )
+        }}
+    {% endfor %}
+}
 
 {# ---- Support overlay. The shell has clipping disabled for the external panel. ---- #}
 effectButtonType = {
