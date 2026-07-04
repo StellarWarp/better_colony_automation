@@ -467,7 +467,12 @@ bca_jr_global_off_unselected = {
 }
 bca_jr_global_on_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } has_country_flag = bca_jr_enabled } }
-    allow = { always = yes }
+    allow = {
+        custom_tooltip = {
+            fail_text = BCA_JR_REQUIRES_ECONOMIC_MANAGEMENT
+            from = { has_country_flag = bca_enable_economic_management }
+        }
+    }
     effect = {
         hidden_effect = {
             from = {
@@ -478,7 +483,12 @@ bca_jr_global_on_selected = {
 }
 bca_jr_global_on_unselected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 1 } NOT = { has_country_flag = bca_jr_enabled } } }
-    allow = { always = yes }
+    allow = {
+        custom_tooltip = {
+            fail_text = BCA_JR_REQUIRES_ECONOMIC_MANAGEMENT
+            from = { has_country_flag = bca_enable_economic_management }
+        }
+    }
     effect = {
         hidden_effect = {
             from = {

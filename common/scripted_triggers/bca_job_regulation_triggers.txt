@@ -5,6 +5,12 @@
 # Source template: common/scripted_triggers/bca_job_regulation_triggers.txt.j2
 
 
+bca_jr_is_enabled = {
+    has_country_flag = bca_jr_enabled
+    has_country_flag = bca_enable_economic_management
+}
+
+
 bca_jr_should_collect_job_stats = {
     OR = {
         AND = {

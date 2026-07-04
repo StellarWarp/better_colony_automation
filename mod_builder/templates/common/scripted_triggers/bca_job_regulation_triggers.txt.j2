@@ -6,6 +6,11 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
 
+bca_jr_is_enabled = {
+    has_country_flag = bca_jr_enabled
+    has_country_flag = bca_enable_economic_management
+}
+
 bca_jr_should_collect_job_stats = {
     OR = {
         AND = {

@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import random
 import sys
 import textwrap
 from pathlib import Path
@@ -18,6 +19,8 @@ EDIT_URL_TEMPLATE = (
 LANGUAGE_ENGLISH = "0"
 LANGUAGE_SIMPLIFIED_CHINESE = "6"
 ALL_PACKAGES = "all"
+POST_SUBMIT_WAIT_SECONDS_MIN = 20
+POST_SUBMIT_WAIT_SECONDS_MAX = 60
 
 
 def load_playwright():
@@ -292,6 +295,15 @@ def submit_form(page) -> None:
     submit_button.first.click()
 
 
+def wait_after_submit(page) -> None:
+    wait_seconds = random.uniform(
+        POST_SUBMIT_WAIT_SECONDS_MIN,
+        POST_SUBMIT_WAIT_SECONDS_MAX,
+    )
+    print(f"提交后等待 {wait_seconds:.1f} 秒，降低 Steam 限流风险。")
+    page.wait_for_timeout(int(wait_seconds * 1000))
+
+
 def update_language_page(page, *, workshop_id: str, language_item: dict[str, str], do_submit: bool) -> None:
     _, playwright_timeout_error = load_playwright()
     page.goto(
@@ -318,8 +330,8 @@ def update_language_page(page, *, workshop_id: str, language_item: dict[str, str
     if do_submit:
         submit_form(page)
         page.wait_for_load_state("networkidle", timeout=30_000)
-        page.wait_for_timeout(1500)
         print(f"已提交 {language_item['label']} 描述更新。")
+        wait_after_submit(page)
     else:
         print(f"已填充 {language_item['label']} 描述，但未提交。")
 
