@@ -13,7 +13,7 @@ carrier_event = {
     is_triggered_only = yes
     trigger = {
         requires_more_job = yes
-        NOT = { has_carrier_flag = bca_plan_build_new_zone }
+        # NOT = { has_carrier_flag = bca_plan_build_new_zone } # cuasing bug
     }
     immediate = {
         if = {
