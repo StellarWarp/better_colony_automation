@@ -29,6 +29,7 @@ carrier_event = {
         {% for district_slot in ['d0','d1','d2','d3'] %}
             remove_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
         {% endfor %}
+        remove_carrier_flag = bca_pf_has_district_build_plan
         remove_all_zone_plan_flag = yes
     }
 }

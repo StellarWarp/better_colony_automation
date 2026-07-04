@@ -3,21 +3,21 @@
 {% import 'component/planet_flag_ps.j2' as pf with context -%}
 
 bca_potential_max_districts = {
-#     complex_trigger_modifier = {
-#         trigger = num_districts
-#         parameters = {
-#             type = any
-#         }
-#         mode = set
-#     }
-#     complex_trigger_modifier = {
-#         trigger = num_free_districts
-#         parameters = {
-#             type = any
-#         }
-#         mode = add
-#     }
-    set = value:bca_planet_max_districts
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = any
+        }
+        mode = set
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = any
+        }
+        mode = add
+    }
+    # set = value:bca_planet_max_districts
 }
 
 bca_num_free_secondary_districts_plan = {

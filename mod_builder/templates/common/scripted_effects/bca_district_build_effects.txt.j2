@@ -119,6 +119,7 @@
                 {{ district_slot_economic_allowed('d0', ['z1', 'z2']) }}
             }
             set_carrier_flag = {{ pf.flag_district_plan_build('d0') }}
+            set_carrier_flag = bca_pf_has_district_build_plan
         }
     {% else %}
         {% set district_slot = ['d1','d2','d3'][index - 1] %}
@@ -132,6 +133,7 @@
                 {{ district_slot_economic_allowed(district_slot, [zone_slot]) }}
             }
             set_carrier_flag = {{ pf.flag_district_plan_build(district_slot) }}
+            set_carrier_flag = bca_pf_has_district_build_plan
         }
     {% endif %}
 {%- endmacro %}

@@ -9,31 +9,13 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 
 ## Pending Release Items
 
-- District planning UI: fixed detailed secondary district increment buttons so
-  they are blocked when district auto-demolition is disabled and no secondary
-  district quota is available.
-- District auto-demolition disable behavior: disabling district demolition now
-  clamps district plans to the current layout, clearing plan states that would
-  otherwise imply district removal.
-- Global settings panel: disabled event auto-selection so the custom settings
-  event is not closed by the game's long-running event timeout.
-- Early construction: added build-specific economic need triggers so planets
-  with early construction enabled can prebuild planned districts, zones, and
-  buildings even when the empire does not currently need that output, without
-  changing job-regulation demand checks.
-- District planning UI: fixed dynamic district and zone text lookups by using
-  the colony scope in localisation, so primary/secondary district counts and
-  zone icons no longer display stale or zero values from the wrong scope.
-- District planning UI: enabled multiline zone-name display so longer localized
-  zone names can wrap instead of being clipped in the district settings panel.
-- District planning UI: updated the job regulation header icons and tooltips so
-  automation rate uses the automated workforce icon, monthly job change uses the
-  job icon, and transparent buttons still expose their tooltips.
-- District planning UI: adjusted automation-rate value styling to use the muted
-  grey display color in job regulation rows.
-- Arcology candidate planning: aligned primary district counting with the
-  arcology-candidate display scale while keeping existing build gates and
-  secondary-district clearing behavior intact.
-- Localisation: improved English, Japanese, and Russian coverage so translated
-  UI text is consistent with the Simplified Chinese baseline, including fixes
-  for missing, duplicate, and incorrectly generated text keys.
+- Job regulation localisation: replaced Unicode bullet indicators in resource
+  change tooltips with existing dot text icons, avoiding `?` glyphs in English
+  font sets while preserving colored status markers.
+- District construction planning: restored the single-build-plan guard by
+  setting `bca_pf_has_district_build_plan` when a district build plan is chosen
+  and clearing it during the monthly plan-flag reset.
+- Zone auto-demolition disable sync: replaced per-`d1`/`d2`/`d3` secondary
+  free-zone checks with a single aggregate secondary capacity check, avoiding
+  accidental binding between mod district-slot semantics and the game's
+  unstable numeric district indexes.

@@ -42,9 +42,9 @@ all:
  BCA_JR_ICON_SPRITE_{{ icon }}: "£jr_icon_{{ icon }}£"
 {% endfor %}
 {% for resource in resources %}
- BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_NEEDED: "§R●§! £{{ resource }}£\n"
- BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SURPLUS: "§G●§! £{{ resource }}£\n"
- BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SATISFIED: "§L●§! £{{ resource }}£\n"
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_NEEDED: "£bca_jr_dot_red£ £{{ resource }}£\n"
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SURPLUS: "£bca_jr_dot_green£ £{{ resource }}£\n"
+ BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SATISFIED: "£bca_jr_dot_blue£ £{{ resource }}£\n"
 {% endfor %}
 
 {% for s in range(slots) %}

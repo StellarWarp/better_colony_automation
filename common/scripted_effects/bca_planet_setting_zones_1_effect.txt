@@ -7855,15 +7855,7 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         remove_carrier_flag = bca_pf_ps_zone_selection_matched_z5
         remove_carrier_flag = bca_pf_ps_zone_selection_matched_zx
         bca_set_secondary_district_type_flag = yes
-        bca_get_num_potential_free_zones_d1 = yes
-        bca_get_num_potential_free_zones_d2 = yes
-        bca_get_num_potential_free_zones_d3 = yes
-        set_variable = {
-            which = bca_num_free_zones_secondary
-            value = bca_num_free_zones_d1
-        }
-        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d2 }
-        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d3 }
+        bca_get_num_potential_free_zones_secondary = yes
         bca_sync_secondary_zone_selection_match = { ZONE = zone_subterranean_urban }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_agrarian_anglers }
         bca_sync_secondary_zone_selection_match = { ZONE = zone_trade_arcology }
@@ -8046,9 +8038,6 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         remove_carrier_flag = tp_secondary_zone_selection_synced
         bca_clean_flags_zone_selector_secondary_district = yes
         clear_variable = temp_num_zones
-        clear_variable = bca_num_free_zones_d1
-        clear_variable = bca_num_free_zones_d2
-        clear_variable = bca_num_free_zones_d3
         clear_variable = bca_num_free_zones_secondary
         clear_variable = tp_zone_sync_secondary_unmatched_zone_subterranean_urban
         clear_variable = tp_zone_sync_secondary_unmatched_zone_agrarian_anglers

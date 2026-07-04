@@ -124,6 +124,14 @@ def render_zone_generated_configs(
 
     context.write_generated_yaml("zones_on_district.yaml", graph.district_to_zones)
     context.write_generated_yaml("districts_for_zone.yaml", {"districts_for_zone": graph.zone_to_districts})
+    zone_sets = sorted(
+        {
+            zone_set
+            for zone_sets_for_zone in graph.zone_to_zone_sets.values()
+            for zone_set in zone_sets_for_zone
+        }
+    )
+    context.write_generated_yaml("zone_sets.yaml", {"zone_sets": zone_sets})
 
     secondary = {
         zone: [d for d in districts if graph.district_type_mapping.get(d) == "single_zone"]

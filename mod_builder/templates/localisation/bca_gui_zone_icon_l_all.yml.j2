@@ -6,9 +6,9 @@ all:
 
 {% for i in range(1,16)%}
 {% set selector_slot = "s"~i %}
- bca_zone_icon_selector_{{selector_slot}}: "[Colony.BCA_ZONE_SELECTOR_ICON_{{ selector_slot }}_script]"
+ bca_zone_icon_selector_{{selector_slot}}: "[Carrier.BCA_ZONE_SELECTOR_ICON_{{ selector_slot }}_script]"
 {% endfor %}
 
 {% for zone_slot in ['z1','z2','z3','z4','z5','zx']%}
- bca_zone_icon_selection_{{zone_slot}}: "[Colony.BCA_ZONE_SELECTION_ICON_{{ zone_slot }}_script]"
+ bca_zone_icon_selection_{{zone_slot}}: "[Carrier.BCA_ZONE_SELECTION_ICON_{{ zone_slot }}_script]"
 {% endfor %}

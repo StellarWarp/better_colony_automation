@@ -409,15 +409,7 @@ bca_sync_secondary_zone_selection_if_overplanned = {
             remove_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
         {% endfor %}
         bca_set_secondary_district_type_flag = yes
-        bca_get_num_potential_free_zones_d1 = yes
-        bca_get_num_potential_free_zones_d2 = yes
-        bca_get_num_potential_free_zones_d3 = yes
-        set_variable = {
-            which = bca_num_free_zones_secondary
-            value = bca_num_free_zones_d1
-        }
-        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d2 }
-        add_variable = { which = bca_num_free_zones_secondary value = bca_num_free_zones_d3 }
+        bca_get_num_potential_free_zones_secondary = yes
 
         {% for item in zones_info %}
             {% for zone in item.zones %}
@@ -463,9 +455,6 @@ bca_sync_secondary_zone_selection_if_overplanned = {
         remove_carrier_flag = tp_secondary_zone_selection_synced
         bca_clean_flags_zone_selector_secondary_district = yes
         clear_variable = temp_num_zones
-        clear_variable = bca_num_free_zones_d1
-        clear_variable = bca_num_free_zones_d2
-        clear_variable = bca_num_free_zones_d3
         clear_variable = bca_num_free_zones_secondary
         {% for item in zones_info %}
             {% for zone in item.zones %}

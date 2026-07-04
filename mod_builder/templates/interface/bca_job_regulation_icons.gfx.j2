@@ -2,6 +2,18 @@
 {# Phase 8: 岗位调控面板图标 spriteType #}
 {% set icon_sprites = job_regulation_config.icon_sprites | default([]) %}
 spriteTypes = {
+    spriteType = {
+        name = "GFX_text_bca_jr_dot_red"
+        texturefile = "gfx/interface/icons/dot_red.dds"
+    }
+    spriteType = {
+        name = "GFX_text_bca_jr_dot_green"
+        texturefile = "gfx/interface/icons/dot_green.dds"
+    }
+    spriteType = {
+        name = "GFX_text_bca_jr_dot_blue"
+        texturefile = "gfx/interface/icons/dot_blue.dds"
+    }
     {% for icon in icon_sprites %}
         spriteType = {
             name = "GFX_text_jr_icon_{{ icon }}"
