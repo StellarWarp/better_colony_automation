@@ -1,6 +1,8 @@
 version="0.1"
 tags={
     "Economy"
+    "Overhaul"
+	"Gameplay"
 }
 picture="thumbnail.png"
 name="[4.4]Macroeconomy: Job Statistics & Regulation"
