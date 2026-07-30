@@ -1,0 +1,17 @@
+{# Numeric labels are shared by every supported language. #}
+all:
+{% set generated_step_ids = [] %}
+{% for row in bca_global_settings_economic_rows %}
+{% for step in row.steps %}
+{% if step.id not in generated_step_ids %}
+{% set _ = generated_step_ids.append(step.id) %}
+ {{ step.text }}: "{{ step.label }}"
+{% endif %}
+{% endfor %}
+{% endfor %}
+{% for step in bca_global_settings_economic_tolerance_steps %}
+{% if step.id not in generated_step_ids %}
+{% set _ = generated_step_ids.append(step.id) %}
+ {{ step.text }}: "{{ step.label }}"
+{% endif %}
+{% endfor %}

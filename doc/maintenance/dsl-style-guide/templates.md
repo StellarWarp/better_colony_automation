@@ -82,6 +82,27 @@ DDS generation. If more handwritten build config is needed, prefer moving it to
 `mod_builder/configs/` rather than adding more exceptions under
 `templates/generated_configs/`.
 
+## Shared Economic Row Config
+
+The economic-management rows are maintained in
+`mod_builder/configs/global_settings_economic_rows.yaml`. Each row owns its
+identity, runtime variable, localization keys, effect names, and adjustment
+steps. The GUI, button effects, scripted localization, and shared numeric
+localization are generated from this file.
+
+When several rows use the same steps, define the YAML anchor on the first
+representative row and reference it from later rows. For example, `energy`
+defines `&standard_steps`, and `minerals` references it with
+`steps: *standard_steps`. This keeps the configuration order aligned with the
+reader's first encounter with the shared profile.
+
+Use an explicit `steps` list when a row needs independent increments. Each step
+must provide an `id`, localization key (`text`), display string (`label`), and
+numeric delta (`value`). The sign of `value` determines whether the generated
+button is placed in the decrease or increase group. Keep the generated copy in
+`templates/generated_configs/` out of manual edits; rerun the config builder and
+generator after changing the handwritten source.
+
 ## Submod GUI Variants
 
 GUI files are whole-file definitions, not incremental patches. A submod GUI

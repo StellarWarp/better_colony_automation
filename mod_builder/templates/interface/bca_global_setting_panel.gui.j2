@@ -115,52 +115,9 @@
     {"name": "on", "text": "BCA_GLOBAL_SETTINGS_ENABLED", "effect": "bca_global_settings_economic_management_on"}
     ] %}
 
-{% set standard_negative_options = [
-    {"name": "minus_2p5k", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_2P5K"},
-    {"name": "minus_500", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_500"},
-    {"name": "minus_100", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_100"}
-    ] %}
-{% set standard_positive_options = [
-    {"name": "plus_100", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_100"},
-    {"name": "plus_500", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_500"},
-    {"name": "plus_2p5k", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_2P5K"}
-    ] %}
-{% set rare_negative_options = [
-    {"name": "minus_125", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_125"},
-    {"name": "minus_25", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_25"},
-    {"name": "minus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"}
-    ] %}
-{% set rare_positive_options = [
-    {"name": "plus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"},
-    {"name": "plus_25", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_25"},
-    {"name": "plus_125", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_125"}
-    ] %}
-{% set tolerance_negative_options = [
-    {"name": "minus_10", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_10"},
-    {"name": "minus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_5"},
-    {"name": "minus_1", "text": "BCA_GLOBAL_SETTINGS_STEP_MINUS_1"}
-    ] %}
-{% set tolerance_positive_options = [
-    {"name": "plus_1", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_1"},
-    {"name": "plus_5", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_5"},
-    {"name": "plus_10", "text": "BCA_GLOBAL_SETTINGS_STEP_PLUS_10"}
-    ] %}
-
-{% set economic_rows = [
-    {"name": "energy", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_energy", "mode_effect": "bca_global_settings_expect_output_energy_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "minerals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_minerals", "mode_effect": "bca_global_settings_expect_output_minerals_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "food", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_food", "mode_effect": "bca_global_settings_expect_output_food_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "alloys", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_alloys", "mode_effect": "bca_global_settings_expect_output_alloys_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "consumer_goods", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_consumer_goods", "mode_effect": "bca_global_settings_expect_output_consumer_goods_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "trade", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_trade", "mode_effect": "bca_global_settings_expect_output_trade_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "unity", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_unity", "mode_effect": "bca_global_settings_expect_output_unity_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "physics_research", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_physics_research", "mode_effect": "bca_global_settings_expect_output_physics_research_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "society_research", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_society_research", "mode_effect": "bca_global_settings_expect_output_society_research_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "engineering_research", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_engineering_research", "mode_effect": "bca_global_settings_expect_output_engineering_research_cycle_mode", "negative_options": standard_negative_options, "positive_options": standard_positive_options},
-    {"name": "rare_crystals", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_rare_crystals", "mode_effect": "bca_global_settings_expect_output_rare_crystals_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
-    {"name": "volatile_motes", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_volatile_motes", "mode_effect": "bca_global_settings_expect_output_volatile_motes_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options},
-    {"name": "exotic_gases", "text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES", "value_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE", "status_text": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_STATUS", "tooltip": "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP", "effect_prefix": "bca_global_settings_expect_output_exotic_gases", "mode_effect": "bca_global_settings_expect_output_exotic_gases_cycle_mode", "negative_options": rare_negative_options, "positive_options": rare_positive_options}
-    ] %}
+{# Economic rows and steps are maintained in one config source. #}
+{% set economic_rows = bca_global_settings_economic_rows %}
+{% set tolerance_steps = bca_global_settings_economic_tolerance_steps %}
 
 {% call shell.event_window_shell(
         window_name = "bca_global_setting_panel",
@@ -209,12 +166,12 @@ containerWindowType = {
         )
     }}
     {% set tolerance_negative_buttons = [] %}
-    {% for option in tolerance_negative_options %}
-        {% set _ = tolerance_negative_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% for option in tolerance_steps if option.value < 0 %}
+        {% set _ = tolerance_negative_buttons.append({"name": option.id, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.id}) %}
     {% endfor %}
     {% set tolerance_positive_buttons = [] %}
-    {% for option in tolerance_positive_options %}
-        {% set _ = tolerance_positive_buttons.append({"name": option.name, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.name}) %}
+    {% for option in tolerance_steps if option.value > 0 %}
+        {% set _ = tolerance_positive_buttons.append({"name": option.id, "text": option.text, "effect": "bca_global_settings_economic_tolerance_" ~ option.id}) %}
     {% endfor %}
     {{
         gsc.multi_step_value_row(
@@ -231,12 +188,12 @@ containerWindowType = {
     {% for row in economic_rows %}
         {% set row_y = tab_content_y + 76 + loop.index0 * (economy_row_height + economy_row_gap) %}
         {% set negative_options = [] %}
-        {% for option in row.negative_options %}
-            {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
+        {% for option in row.steps if option.value < 0 %}
+            {% set _ = negative_options.append({"name": option.id, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.id}) %}
         {% endfor %}
         {% set positive_options = [] %}
-        {% for option in row.positive_options %}
-            {% set _ = positive_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}
+        {% for option in row.steps if option.value > 0 %}
+            {% set _ = positive_options.append({"name": option.id, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.id}) %}
         {% endfor %}
         {{
             gsc.multi_step_value_row(

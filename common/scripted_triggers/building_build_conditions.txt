@@ -428,6 +428,7 @@ bca_can_build_building_machine_assembly_plant = {
             OR = {
                 is_machine_empire = yes
                 is_individual_machine = yes
+                is_hive_empire_with_machines = yes
             }
         }
         NOT = {
@@ -459,6 +460,7 @@ bca_can_build_building_machine_assembly_complex = {
             OR = {
                 is_machine_empire = yes
                 is_individual_machine = yes
+                is_hive_empire_with_machines = yes
             }
         }
         NOT = {
@@ -851,19 +853,9 @@ bca_can_build_building_noble_estates = {
     }
     AND = {
         has_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_noble_estates
-                        is_starbase_building_building = ring_noble_estates
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_noble_estates
+            ARKSHIP = arkship_noble_estates
         }
     }
 }
@@ -884,19 +876,9 @@ bca_can_build_building_slave_processing = {
     }
     AND = {
         has_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_slave_processing_facility
-                        is_starbase_building_building = ring_slave_processing_facility
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_slave_processing_facility
+            ARKSHIP = arkship_slave_processing_facility
         }
     }
     owner = {
@@ -1079,19 +1061,9 @@ bca_can_build_building_psi_corps = {
         }
     }
     AND = {
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_psi_corps
-                        is_starbase_building_building = ring_psi_corps
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_psi_corps
+            ARKSHIP = arkship_psi_corps
         }
     }
 }
@@ -1116,19 +1088,9 @@ bca_can_build_building_embassy = {
     }
     AND = {
         has_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_embassy_complex
-                        is_starbase_building_building = ring_embassy_complex
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_embassy_complex
+            ARKSHIP = arkship_embassy_complex
         }
     }
     owner = {
@@ -1155,19 +1117,9 @@ bca_can_build_building_grand_embassy = {
     }
     AND = {
         has_major_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_embassy_complex
-                        is_starbase_building_building = ring_embassy_complex
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_embassy_complex
+            ARKSHIP = arkship_embassy_complex
         }
     }
     owner = {
@@ -2730,6 +2682,12 @@ bca_can_build_building_galactic_stock_exchange = {
             has_modifier = penal_colony
         }
     }
+    AND = {
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_galactic_stock_exchange
+            ARKSHIP = arkship_galactic_stock_exchange
+        }
+    }
     owner = {
         has_technology = tech_galactic_markets
     }
@@ -4042,19 +4000,9 @@ bca_can_build_building_planetary_shield_generator = {
     }
     AND = {
         has_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_orbital_shield_generator
-                        is_starbase_building_building = ring_orbital_shield_generator
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_orbital_shield_generator
+            ARKSHIP = arkship_shield_generator
         }
     }
     owner = {
@@ -9106,19 +9054,9 @@ bca_can_build_building_ozone_thickener = {
     }
     AND = {
         has_upgraded_capital = yes
-        if = {
-            limit = {
-                exists = orbital_defence
-            }
-            orbital_defence = {
-                exists = starbase
-                starbase = {
-                    NOR = {
-                        has_starbase_building = ring_orbital_shield_generator
-                        is_starbase_building_building = ring_orbital_shield_generator
-                    }
-                }
-            }
+        orbital_ring_and_arkship_equivalent_absent = {
+            RING = ring_orbital_shield_generator
+            ARKSHIP = arkship_shield_generator
         }
     }
     owner = {

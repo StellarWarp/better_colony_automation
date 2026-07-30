@@ -1,0 +1,138 @@
+bca_global_settings_economic_rows:
+  - name: energy
+    variable: bca_expect_output_energy
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_energy
+    mode_effect: bca_global_settings_expect_output_energy_cycle_mode
+    steps: &standard_steps
+      - { id: minus_1p25k, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_1P25K, label: "-1.25k", value: -1250 }
+      - { id: minus_250, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_250, label: "-250", value: -250 }
+      - { id: minus_50, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_50, label: "-50", value: -50 }
+      - { id: plus_50, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_50, label: "+50", value: 50 }
+      - { id: plus_250, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_250, label: "+250", value: 250 }
+      - { id: plus_1p25k, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_1P25K, label: "+1.25k", value: 1250 }
+  - name: minerals
+    variable: bca_expect_output_minerals
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_minerals
+    mode_effect: bca_global_settings_expect_output_minerals_cycle_mode
+    steps: *standard_steps
+  - name: food
+    variable: bca_expect_output_food
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_food
+    mode_effect: bca_global_settings_expect_output_food_cycle_mode
+    steps: *standard_steps
+  - name: alloys
+    variable: bca_expect_output_alloys
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_alloys
+    mode_effect: bca_global_settings_expect_output_alloys_cycle_mode
+    steps: *standard_steps
+  - name: consumer_goods
+    variable: bca_expect_output_consumer_goods
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_consumer_goods
+    mode_effect: bca_global_settings_expect_output_consumer_goods_cycle_mode
+    steps: *standard_steps
+  - name: trade
+    variable: bca_expect_output_trade
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_trade
+    mode_effect: bca_global_settings_expect_output_trade_cycle_mode
+    steps: *standard_steps
+  - name: unity
+    variable: bca_expect_output_unity
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_unity
+    mode_effect: bca_global_settings_expect_output_unity_cycle_mode
+    steps: *standard_steps
+  - name: physics_research
+    variable: bca_expect_output_physics_research
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_physics_research
+    mode_effect: bca_global_settings_expect_output_physics_research_cycle_mode
+    steps: *standard_steps
+  - name: society_research
+    variable: bca_expect_output_society_research
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_society_research
+    mode_effect: bca_global_settings_expect_output_society_research_cycle_mode
+    steps: *standard_steps
+  - name: engineering_research
+    variable: bca_expect_output_engineering_research
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_engineering_research
+    mode_effect: bca_global_settings_expect_output_engineering_research_cycle_mode
+    steps: *standard_steps
+  - name: rare_crystals
+    variable: bca_expect_output_rare_crystals
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_rare_crystals
+    mode_effect: bca_global_settings_expect_output_rare_crystals_cycle_mode
+    steps: &rare_steps
+      - { id: minus_125, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_125, label: "-125", value: -125 }
+      - { id: minus_25, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_25, label: "-25", value: -25 }
+      - { id: minus_5, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_5, label: "-5", value: -5 }
+      - { id: plus_5, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_5, label: "+5", value: 5 }
+      - { id: plus_25, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_25, label: "+25", value: 25 }
+      - { id: plus_125, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_125, label: "+125", value: 125 }
+  - name: volatile_motes
+    variable: bca_expect_output_volatile_motes
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_volatile_motes
+    mode_effect: bca_global_settings_expect_output_volatile_motes_cycle_mode
+    steps: *rare_steps
+  - name: exotic_gases
+    variable: bca_expect_output_exotic_gases
+    text: BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES
+    value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_VALUE
+    status_text: BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_STATUS
+    tooltip: BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TOOLTIP
+    effect_prefix: bca_global_settings_expect_output_exotic_gases
+    mode_effect: bca_global_settings_expect_output_exotic_gases_cycle_mode
+    steps: *rare_steps
+
+bca_global_settings_economic_tolerance_steps:
+  - { id: minus_10, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_10, label: "-10", value: -10 }
+  - { id: minus_5, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_5, label: "-5", value: -5 }
+  - { id: minus_1, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_MINUS_1, label: "-1", value: -1 }
+  - { id: plus_1, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_1, label: "+1", value: 1 }
+  - { id: plus_5, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_5, label: "+5", value: 5 }
+  - { id: plus_10, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_10, label: "+10", value: 10 }

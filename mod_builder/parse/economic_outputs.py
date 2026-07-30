@@ -94,6 +94,28 @@ def _invert_zone_outputs(
     }
 
 
+def _filter_unconditional_outputs(
+    outputs: list[str],
+    resource_conditions: dict[str, list[str | None]],
+) -> list[str]:
+    return [
+        output
+        for output in outputs
+        if output not in resource_conditions
+        or None in resource_conditions.get(output, [])
+    ]
+
+
+def _filter_unconditional_resource_conditions(
+    resource_conditions: dict[str, list[str | None]],
+) -> dict[str, list[str | None]]:
+    return {
+        resource: [None]
+        for resource, conditions in resource_conditions.items()
+        if None in conditions
+    }
+
+
 def _build_slot_zone_outputs(
     districts: list[str],
     district_resource_profiles: dict[str, dict[str, object]],
@@ -103,15 +125,20 @@ def _build_slot_zone_outputs(
     for district in districts:
         profile = district_resource_profiles.get(district, {})
         zone_map = profile.get("zone_outputs", {})
+        zone_conditions = profile.get("zone_output_conditions", {})
 
-        for zone, outputs in zone_map.items():
+        for zone in profile.get("zones", zone_map.keys()):
+            outputs = zone_map.get(zone, [])
+            unconditional_outputs = _filter_unconditional_outputs(
+                outputs,
+                zone_conditions.get(zone, {}),
+            )
             zone_outputs.setdefault(zone, [])
-            zone_outputs[zone].extend(outputs)
+            zone_outputs[zone].extend(unconditional_outputs)
 
     return {
         zone: _ordered_unique(outputs)
         for zone, outputs in sorted(zone_outputs.items())
-        if outputs
     }
 
 
@@ -183,8 +210,13 @@ def _build_slot_zone_output_conditions(
         zone_map = profile.get("zone_output_conditions", {})
 
         for zone, resource_conditions in zone_map.items():
+            unconditional_conditions = _filter_unconditional_resource_conditions(
+                resource_conditions,
+            )
+            if not unconditional_conditions:
+                continue
             zone_conditions.setdefault(zone, {})
-            _merge_resource_conditions(zone_conditions[zone], resource_conditions)
+            _merge_resource_conditions(zone_conditions[zone], unconditional_conditions)
 
     return {
         zone: {

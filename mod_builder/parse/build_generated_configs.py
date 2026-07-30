@@ -20,6 +20,7 @@ def copy_handwritten_configs(base_dir: Path, generated_configs_dir: Path) -> Non
         "other_district_config.yaml",
         "all_designations.yaml",
         "economic_need_thresholds.yaml",
+        "global_settings_economic_rows.yaml",
     ]
 
     for filename in files_to_copy:

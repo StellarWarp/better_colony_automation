@@ -1,18 +1,4 @@
-{% set economic_rows = [
-    {"name": "energy", "variable": "bca_expect_output_energy"},
-    {"name": "minerals", "variable": "bca_expect_output_minerals"},
-    {"name": "food", "variable": "bca_expect_output_food"},
-    {"name": "alloys", "variable": "bca_expect_output_alloys"},
-    {"name": "consumer_goods", "variable": "bca_expect_output_consumer_goods"},
-    {"name": "trade", "variable": "bca_expect_output_trade"},
-    {"name": "unity", "variable": "bca_expect_output_unity"},
-    {"name": "physics_research", "variable": "bca_expect_output_physics_research"},
-    {"name": "society_research", "variable": "bca_expect_output_society_research"},
-    {"name": "engineering_research", "variable": "bca_expect_output_engineering_research"},
-    {"name": "rare_crystals", "variable": "bca_expect_output_rare_crystals"},
-    {"name": "volatile_motes", "variable": "bca_expect_output_volatile_motes"},
-    {"name": "exotic_gases", "variable": "bca_expect_output_exotic_gases"}
-    ] %}
+{% set economic_rows = bca_global_settings_economic_rows %}
 
 defined_text = {
     name = bca_gs_economic_tolerance_display

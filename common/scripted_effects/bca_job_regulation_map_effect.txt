@@ -52,15 +52,43 @@ bca_jr_locate_job_colonies = {
             value = 0.1
         }
         owner = {
+            #create_message = {
+            #    type = MESSAGE_BCA_JOB_LOCATE
+            #    days = 1
+            #    localization = MESSAGE_BCA_JOB_LOCATE_DESC
+            #    target = prev.carrier
+            #    variable = {
+            #        type = name
+            #        localization = PLANET
+            #        scope = prev.carrier
+            #    }
+            #    variable = {
+            #        type = key
+            #        value = job_$JOB$
+            #        localization = JOB_NAME
+            #    }
+            #    variable = {
+            #        type = variable
+            #        varname = bca_jr_locate_pops
+            #        localization = POPS
+            #        scope = prev.carrier
+            #    }
+            #    variable = {
+            #        type = variable
+            #        varname = bca_jr_locate_job_add
+            #        localization = JOBS
+            #        scope = prev.carrier
+            #    }
+            #}
             create_message = {
                 type = MESSAGE_BCA_JOB_LOCATE
                 days = 1
                 localization = MESSAGE_BCA_JOB_LOCATE_DESC
-                target = prev.carrier
+                target = prev
                 variable = {
                     type = name
                     localization = PLANET
-                    scope = prev.carrier
+                    scope = prev
                 }
                 variable = {
                     type = key
@@ -71,13 +99,13 @@ bca_jr_locate_job_colonies = {
                     type = variable
                     varname = bca_jr_locate_pops
                     localization = POPS
-                    scope = prev.carrier
+                    scope = prev
                 }
                 variable = {
                     type = variable
                     varname = bca_jr_locate_job_add
                     localization = JOBS
-                    scope = prev.carrier
+                    scope = prev
                 }
             }
         }

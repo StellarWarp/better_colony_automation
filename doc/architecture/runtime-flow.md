@@ -136,7 +136,12 @@ The generated gate keeps two output sources separate:
 
 - **Zone output** comes from the selected concrete zone plan for the slot. It is
   derived from zone jobs and is checked together with the matching
-  `bca_empire_needs_<resource>` trigger.
+  `bca_empire_needs_<resource>` trigger. Only resources with an unconditional
+  job output branch participate in this district build gate; conditional side
+  outputs such as special job variants remain diagnostic parser data but do not
+  drive district construction. If a selected zone has no unconditional economic
+  output after this filtering, it is treated as a non-economic zone and can pass
+  the district gate without a resource-need condition.
 - **District direct output** is a conservative whitelist from
   [`../../mod_builder/configs/district_direct_outputs.yaml`](../../mod_builder/configs/district_direct_outputs.yaml).
   It represents a district's own main economic purpose, not every conditional

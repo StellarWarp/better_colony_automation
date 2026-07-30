@@ -382,8 +382,8 @@ bca_buildings:
   upgrades:
   - building_machine_assembly_complex
   potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
-    \        is_individual_machine = yes\n    }\n}\nNOT = {\n    has_modifier = resort_colony\n\
-    }"
+    \        is_individual_machine = yes\n        is_hive_empire_with_machines = yes\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
   allow: "hidden_trigger = {\n    OR = {\n        owner = {\n            is_ai = no\n\
     \        }\n        NAND = {\n            free_district_slots = 0\n          \
     \  free_building_slots <= 1\n            free_housing <= 0\n            free_jobs\
@@ -399,8 +399,8 @@ bca_buildings:
   - urban
   upgrades: []
   potential: "exists = owner\nowner = {\n    OR = {\n        is_machine_empire = yes\n\
-    \        is_individual_machine = yes\n    }\n}\nNOT = {\n    has_modifier = resort_colony\n\
-    }"
+    \        is_individual_machine = yes\n        is_hive_empire_with_machines = yes\n\
+    \    }\n}\nNOT = {\n    has_modifier = resort_colony\n}"
   allow: ''
   abort_trigger: ''
   prerequisites:
@@ -686,11 +686,8 @@ bca_buildings:
   upgrades: []
   potential: "exists = owner\nowner = {\n    has_valid_civic = civic_aristocratic_elite\n\
     }\nNOT = {\n    has_modifier = slave_colony\n}"
-  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
-    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
-    \ {\n            NOR = {\n                has_starbase_building = ring_noble_estates\n\
-    \                is_starbase_building_building = ring_noble_estates\n        \
-    \    }\n        }\n    }\n}"
+  allow: "has_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent =\
+    \ {\n    RING = ring_noble_estates\n    ARKSHIP = arkship_noble_estates\n}"
   abort_trigger: ''
   prerequisites: null
   upgrade_chain: []
@@ -703,11 +700,9 @@ bca_buildings:
   potential: "owner = {\n    is_regular_empire = yes\n    OR = {\n        has_policy_flag\
     \ = slavery_allowed\n        has_exploited_disconnected_drones = yes\n    }\n\
     }\nNOT = {\n    has_modifier = resort_colony\n}"
-  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
-    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
-    \ {\n            NOR = {\n                has_starbase_building = ring_slave_processing_facility\n\
-    \                is_starbase_building_building = ring_slave_processing_facility\n\
-    \            }\n        }\n    }\n}"
+  allow: "has_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent =\
+    \ {\n    RING = ring_slave_processing_facility\n    ARKSHIP = arkship_slave_processing_facility\n\
+    }"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -850,10 +845,8 @@ bca_buildings:
     \ resort_colony\n        has_modifier = slave_colony\n    }\n    AND = {\n   \
     \     has_modifier = resort_colony\n        has_designation = col_pleasure\n \
     \   }\n}"
-  allow: "if = {\n    limit = {\n        exists = orbital_defence\n    }\n    orbital_defence\
-    \ = {\n        exists = starbase\n        starbase = {\n            NOR = {\n\
-    \                has_starbase_building = ring_psi_corps\n                is_starbase_building_building\
-    \ = ring_psi_corps\n            }\n        }\n    }\n}"
+  allow: "orbital_ring_and_arkship_equivalent_absent = {\n    RING = ring_psi_corps\n\
+    \    ARKSHIP = arkship_psi_corps\n}"
   abort_trigger: ''
   prerequisites: null
   upgrade_chain: []
@@ -867,11 +860,8 @@ bca_buildings:
   potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nexists =\
     \ planet\nplanet = {\n    is_capital = yes\n}\nNOT = {\n    has_modifier = resort_colony\n\
     }\nNOT = {\n    has_modifier = slave_colony\n}"
-  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
-    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
-    \ {\n            NOR = {\n                has_starbase_building = ring_embassy_complex\n\
-    \                is_starbase_building_building = ring_embassy_complex\n      \
-    \      }\n        }\n    }\n}"
+  allow: "has_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent =\
+    \ {\n    RING = ring_embassy_complex\n    ARKSHIP = arkship_embassy_complex\n}"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -890,11 +880,9 @@ bca_buildings:
   potential: "exists = owner\nowner = {\n    is_regular_empire = yes\n}\nplanet =\
     \ {\n    is_capital = yes\n}\nNOT = {\n    has_modifier = resort_colony\n}\nNOT\
     \ = {\n    has_modifier = slave_colony\n}"
-  allow: "has_major_upgraded_capital = yes\nif = {\n    limit = {\n        exists\
-    \ = orbital_defence\n    }\n    orbital_defence = {\n        exists = starbase\n\
-    \        starbase = {\n            NOR = {\n                has_starbase_building\
-    \ = ring_embassy_complex\n                is_starbase_building_building = ring_embassy_complex\n\
-    \            }\n        }\n    }\n}"
+  allow: "has_major_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent\
+    \ = {\n    RING = ring_embassy_complex\n    ARKSHIP = arkship_embassy_complex\n\
+    }"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -2323,7 +2311,8 @@ bca_buildings:
   upgrades: []
   potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
     \    has_modifier = penal_colony\n}"
-  allow: ''
+  allow: "orbital_ring_and_arkship_equivalent_absent = {\n    RING = ring_galactic_stock_exchange\n\
+    \    ARKSHIP = arkship_galactic_stock_exchange\n}"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -3455,11 +3444,9 @@ bca_buildings:
   upgrades: []
   potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    is_nomadic\
     \ = no\n}"
-  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
-    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
-    \ {\n            NOR = {\n                has_starbase_building = ring_orbital_shield_generator\n\
-    \                is_starbase_building_building = ring_orbital_shield_generator\n\
-    \            }\n        }\n    }\n}"
+  allow: "has_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent =\
+    \ {\n    RING = ring_orbital_shield_generator\n    ARKSHIP = arkship_shield_generator\n\
+    }"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -7473,11 +7460,9 @@ bca_buildings:
   - fortress
   upgrades: []
   potential: "exists = owner\nowner = {\n    is_wilderness_empire = yes\n}"
-  allow: "has_upgraded_capital = yes\nif = {\n    limit = {\n        exists = orbital_defence\n\
-    \    }\n    orbital_defence = {\n        exists = starbase\n        starbase =\
-    \ {\n            NOR = {\n                has_starbase_building = ring_orbital_shield_generator\n\
-    \                is_starbase_building_building = ring_orbital_shield_generator\n\
-    \            }\n        }\n    }\n}"
+  allow: "has_upgraded_capital = yes\norbital_ring_and_arkship_equivalent_absent =\
+    \ {\n    RING = ring_orbital_shield_generator\n    ARKSHIP = arkship_shield_generator\n\
+    }"
   abort_trigger: ''
   prerequisites:
     kind: group
