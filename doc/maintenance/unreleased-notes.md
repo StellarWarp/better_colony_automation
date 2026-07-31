@@ -7,6 +7,12 @@ It is not the public changelog. Before release, fold the relevant items into
 the player-facing surfaces listed in [Maintenance Playbook](playbook.md):
 intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 
+## Unreleased
+
+- Fixed missing localisation.
+- Fixed Global Settings layout issues.
+- Fixed an automated workforce statistics bug.
+
 ## Released In v2.1.0 (2026-07-31)
 
 - Reworked economic-management rows into a shared configuration that generates

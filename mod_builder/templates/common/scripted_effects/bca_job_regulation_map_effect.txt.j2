@@ -369,14 +369,7 @@ bca_jr_fill_slot_job_stats = {
             {% endif %}
         }
     {% endfor %}
-    if = {
-        limit = { is_variable_set = bca_jr_total_open_job_count_$JOB$ }
-        set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = bca_jr_total_open_job_count_$JOB$ }
-    }
-    if = {
-        limit = { is_variable_set = bca_jr_total_automated_capacity_workforce_$JOB$ }
-        add_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = bca_jr_total_automated_capacity_workforce_$JOB$ }
-    }
+    set_variable = { which = bca_jr_slot_$SLOT_NAME$_open_total_capacity value = bca_jr_total_open_job_count_$JOB$ }
     set_variable = { which = bca_jr_slot_$SLOT_NAME$_automation_rate value = 0 }
     if = {
         limit = {

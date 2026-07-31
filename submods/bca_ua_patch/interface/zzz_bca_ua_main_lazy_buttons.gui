@@ -1,0 +1,244 @@
+# Compatibility override for Ultimate Automation 2.7.* and BCA 2.1.0.
+# This file must remain later than BCA's zz_bca_global_settings_flag_entry.gui.
+
+guiTypes = {
+
+	containerWindowType = {
+		name = "maingui_flag"
+		position = { x = 0 y = 0 }
+		size = { width = 100% height = 100% }
+
+		iconType = {
+			name = "topbar_shield_decoration"
+			spriteType = "GFX_topbar_shield_decoration"
+			position = { x = 0 y = 0 }
+			alwaysTransparent = yes
+		}
+
+		buttonType = {
+			name = "button_topbar_government"
+			quadTextureSprite = "GFX_empire_flag_64"
+			position = { x = -3 y = 0 }
+			pdx_tooltip = "topbar_button_government_instant"
+			pdx_tooltip_delayed = "topbar_button_government_delayed"
+			clicksound = interface
+			oversound = no_sound
+		}
+
+		iconType = {
+			name = "lazy_automation_shortcut_button_background"
+			spriteType = "GFX_lazy_automation_sidebar_background"
+			orientation = lower_left
+			position = { x = -3 y = -355 }
+			alwaysTransparent = yes
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_feature_button_background"
+			spriteType = "GFX_lazy_automation_sidebar_background_feature"
+			orientation = lower_left
+			position = { x = -3 y = -215 }
+			effect = lazy_automation_dynamic_background
+			alwaysTransparent = yes
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_feature_button_background_2"
+			spriteType = "GFX_lazy_automation_sidebar_background_feature_2"
+			orientation = lower_left
+			position = { x = -3 y = -215 }
+			effect = lazy_automation_dynamic_background_2
+			alwaysTransparent = yes
+		}
+
+		containerWindowType = {
+			name = "lazy_automation_feature_button_timer"
+			size = { width = 35 height = 50 }
+			orientation = lower_left
+			position = { x = -3 y = -234 }
+
+			effectbuttonType = {
+				name = "lazy_automation_feature_button_timer_background"
+				spriteType = "GFX_lazy_automation_sidebar_background_feature_timer"
+				effect = lazy_automation_dynamic_background_timer
+				alwaysTransparent = yes
+			}
+
+			effectbuttonType = {
+				name = "lazy_automation_feature_button_timer_icon"
+				spriteType = "GFX_resource_time"
+				position = { x = 18 y = 37 }
+				effect = lazy_automation_dynamic_background_timer
+				alwaysTransparent = yes
+			}
+
+			effectbuttonType = {
+				name = "lazy_automation_feature_button_timer"
+				spriteType = "GFX_lazy_automation_timer_background_text"
+				position = { x = 4 y = 56 }
+				buttonText = "ultimate_automation_timer"
+				buttonFont = cg_16b
+				effect = lazy_automation_dynamic_background_timer
+				alwaysTransparent = yes
+			}
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_shortcut_button"
+			quadTextureSprite = "GFX_button_automate"
+			orientation = lower_left
+			position = { x = -3 y = -316 }
+			effect = lazy_automation_shortcut
+			shortcut = "y"
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_outpost_button"
+			quadTextureSprite = "GFX_lazy_automation_outpost_button"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_construct_outpost
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_outpost_button_active"
+			quadTextureSprite = "GFX_lazy_automation_outpost_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_construct_outpost_active
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_megastructure_button"
+			quadTextureSprite = "GFX_lazy_automation_megastructure_button"
+			orientation = lower_left
+			position = { x = -3 y = -112 }
+			effect = lazy_automation_auto_construct_megastructures
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_megastructure_button_active"
+			quadTextureSprite = "GFX_lazy_automation_megastructure_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -112 }
+			effect = lazy_automation_auto_construct_megastructures_active
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_megastructure_button_alt"
+			quadTextureSprite = "GFX_lazy_automation_megastructure_button"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_construct_megastructures_alt
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_megastructure_button_active_alt"
+			quadTextureSprite = "GFX_lazy_automation_megastructure_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_construct_megastructures_active_alt
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_fleet_button"
+			quadTextureSprite = "GFX_lazy_automation_fleet_button"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_fleet_attack
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_fleet_button_active"
+			quadTextureSprite = "GFX_lazy_automation_fleet_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_fleet_attack_active
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_colony_button"
+			quadTextureSprite = "GFX_lazy_automation_colony_button"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_colony
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_colony_button_active"
+			quadTextureSprite = "GFX_lazy_automation_colony_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_colony_active
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_starbase_button"
+			quadTextureSprite = "GFX_lazy_automation_starbase_button"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_outfit_starbase
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		effectbuttonType = {
+			name = "lazy_automation_starbase_button_active"
+			quadTextureSprite = "GFX_lazy_automation_starbase_button_active"
+			orientation = lower_left
+			position = { x = -3 y = -163 }
+			effect = lazy_automation_auto_outfit_starbase_active
+			clicksound = interface
+			oversound = mouse_over
+		}
+
+		containerWindowType = {
+			name = "bca_global_settings_flag_entry"
+			position = { x = 52 y = -260 }
+			size = { width = 48 height = 48 }
+			orientation = lower_left
+			clipping = no
+
+			effectButtonType = {
+				name = "open_global_settings"
+				position = { x = 5 y = 5 }
+				size = { x = 38 y = 38 }
+				quadTextureSprite = "GFX_bca_setting_button"
+				tooltipText = "edict_bca_open_global_settings_panel_desc"
+				effect = "bca_main_gui_open_global_settings"
+				clicksound = interface
+				oversound = mouse_over
+			}
+
+			effectButtonType = {
+				name = "frame"
+				position = { x = 0 y = 0 }
+				size = { x = 48 y = 48 }
+				quadTextureSprite = "gfx_planet_frame_tile"
+				alwaysTransparent = yes
+			}
+		}
+	}
+}
