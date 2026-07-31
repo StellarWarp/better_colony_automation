@@ -256,210 +256,249 @@ bca_jr_initialize_resource_remaining = {
     clear_variable = bca_jr_income_energy
     clear_variable = bca_jr_remaining_inc_energy
     clear_variable = bca_jr_remaining_dec_energy
-    export_resource_income_to_variable = { resource = energy variable = bca_jr_income_energy }
-    set_variable = { which = bca_jr_remaining_inc_energy value = bca_economic_target_lower_energy }
-    subtract_variable = { which = bca_jr_remaining_inc_energy value = bca_jr_income_energy }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_energy value < 0 } }
-        clear_variable = bca_jr_remaining_inc_energy
-    }
-    set_variable = { which = bca_jr_remaining_dec_energy value = bca_jr_income_energy }
-    subtract_variable = { which = bca_jr_remaining_dec_energy value = bca_economic_target_upper_energy }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_energy value < 0 } }
-        clear_variable = bca_jr_remaining_dec_energy
+        limit = { bca_jr_resource_energy_participates = yes }
+        export_resource_income_to_variable = { resource = energy variable = bca_jr_income_energy }
+        set_variable = { which = bca_jr_remaining_inc_energy value = bca_economic_target_lower_energy }
+        subtract_variable = { which = bca_jr_remaining_inc_energy value = bca_jr_income_energy }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_energy value < 0 } }
+            clear_variable = bca_jr_remaining_inc_energy
+        }
+        set_variable = { which = bca_jr_remaining_dec_energy value = bca_jr_income_energy }
+        subtract_variable = { which = bca_jr_remaining_dec_energy value = bca_economic_target_upper_energy }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_energy value < 0 } }
+            clear_variable = bca_jr_remaining_dec_energy
+        }
     }
     clear_variable = bca_jr_income_minerals
     clear_variable = bca_jr_remaining_inc_minerals
     clear_variable = bca_jr_remaining_dec_minerals
-    export_resource_income_to_variable = { resource = minerals variable = bca_jr_income_minerals }
-    set_variable = { which = bca_jr_remaining_inc_minerals value = bca_economic_target_lower_minerals }
-    subtract_variable = { which = bca_jr_remaining_inc_minerals value = bca_jr_income_minerals }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_minerals value < 0 } }
-        clear_variable = bca_jr_remaining_inc_minerals
-    }
-    set_variable = { which = bca_jr_remaining_dec_minerals value = bca_jr_income_minerals }
-    subtract_variable = { which = bca_jr_remaining_dec_minerals value = bca_economic_target_upper_minerals }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_minerals value < 0 } }
-        clear_variable = bca_jr_remaining_dec_minerals
+        limit = { bca_jr_resource_minerals_participates = yes }
+        export_resource_income_to_variable = { resource = minerals variable = bca_jr_income_minerals }
+        set_variable = { which = bca_jr_remaining_inc_minerals value = bca_economic_target_lower_minerals }
+        subtract_variable = { which = bca_jr_remaining_inc_minerals value = bca_jr_income_minerals }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_minerals value < 0 } }
+            clear_variable = bca_jr_remaining_inc_minerals
+        }
+        set_variable = { which = bca_jr_remaining_dec_minerals value = bca_jr_income_minerals }
+        subtract_variable = { which = bca_jr_remaining_dec_minerals value = bca_economic_target_upper_minerals }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_minerals value < 0 } }
+            clear_variable = bca_jr_remaining_dec_minerals
+        }
     }
     clear_variable = bca_jr_income_food
     clear_variable = bca_jr_remaining_inc_food
     clear_variable = bca_jr_remaining_dec_food
-    export_resource_income_to_variable = { resource = food variable = bca_jr_income_food }
-    set_variable = { which = bca_jr_remaining_inc_food value = bca_economic_target_lower_food }
-    subtract_variable = { which = bca_jr_remaining_inc_food value = bca_jr_income_food }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_food value < 0 } }
-        clear_variable = bca_jr_remaining_inc_food
-    }
-    set_variable = { which = bca_jr_remaining_dec_food value = bca_jr_income_food }
-    subtract_variable = { which = bca_jr_remaining_dec_food value = bca_economic_target_upper_food }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_food value < 0 } }
-        clear_variable = bca_jr_remaining_dec_food
+        limit = { bca_jr_resource_food_participates = yes }
+        export_resource_income_to_variable = { resource = food variable = bca_jr_income_food }
+        set_variable = { which = bca_jr_remaining_inc_food value = bca_economic_target_lower_food }
+        subtract_variable = { which = bca_jr_remaining_inc_food value = bca_jr_income_food }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_food value < 0 } }
+            clear_variable = bca_jr_remaining_inc_food
+        }
+        set_variable = { which = bca_jr_remaining_dec_food value = bca_jr_income_food }
+        subtract_variable = { which = bca_jr_remaining_dec_food value = bca_economic_target_upper_food }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_food value < 0 } }
+            clear_variable = bca_jr_remaining_dec_food
+        }
     }
     clear_variable = bca_jr_income_alloys
     clear_variable = bca_jr_remaining_inc_alloys
     clear_variable = bca_jr_remaining_dec_alloys
-    export_resource_income_to_variable = { resource = alloys variable = bca_jr_income_alloys }
-    set_variable = { which = bca_jr_remaining_inc_alloys value = bca_economic_target_lower_alloys }
-    subtract_variable = { which = bca_jr_remaining_inc_alloys value = bca_jr_income_alloys }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_alloys value < 0 } }
-        clear_variable = bca_jr_remaining_inc_alloys
-    }
-    set_variable = { which = bca_jr_remaining_dec_alloys value = bca_jr_income_alloys }
-    subtract_variable = { which = bca_jr_remaining_dec_alloys value = bca_economic_target_upper_alloys }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_alloys value < 0 } }
-        clear_variable = bca_jr_remaining_dec_alloys
+        limit = { bca_jr_resource_alloys_participates = yes }
+        export_resource_income_to_variable = { resource = alloys variable = bca_jr_income_alloys }
+        set_variable = { which = bca_jr_remaining_inc_alloys value = bca_economic_target_lower_alloys }
+        subtract_variable = { which = bca_jr_remaining_inc_alloys value = bca_jr_income_alloys }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_alloys value < 0 } }
+            clear_variable = bca_jr_remaining_inc_alloys
+        }
+        set_variable = { which = bca_jr_remaining_dec_alloys value = bca_jr_income_alloys }
+        subtract_variable = { which = bca_jr_remaining_dec_alloys value = bca_economic_target_upper_alloys }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_alloys value < 0 } }
+            clear_variable = bca_jr_remaining_dec_alloys
+        }
     }
     clear_variable = bca_jr_income_consumer_goods
     clear_variable = bca_jr_remaining_inc_consumer_goods
     clear_variable = bca_jr_remaining_dec_consumer_goods
-    export_resource_income_to_variable = { resource = consumer_goods variable = bca_jr_income_consumer_goods }
-    set_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_economic_target_lower_consumer_goods }
-    subtract_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_jr_income_consumer_goods }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_consumer_goods value < 0 } }
-        clear_variable = bca_jr_remaining_inc_consumer_goods
-    }
-    set_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_jr_income_consumer_goods }
-    subtract_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_economic_target_upper_consumer_goods }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_consumer_goods value < 0 } }
-        clear_variable = bca_jr_remaining_dec_consumer_goods
+        limit = { bca_jr_resource_consumer_goods_participates = yes }
+        export_resource_income_to_variable = { resource = consumer_goods variable = bca_jr_income_consumer_goods }
+        set_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_economic_target_lower_consumer_goods }
+        subtract_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_jr_income_consumer_goods }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_consumer_goods value < 0 } }
+            clear_variable = bca_jr_remaining_inc_consumer_goods
+        }
+        set_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_jr_income_consumer_goods }
+        subtract_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_economic_target_upper_consumer_goods }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_consumer_goods value < 0 } }
+            clear_variable = bca_jr_remaining_dec_consumer_goods
+        }
     }
     clear_variable = bca_jr_income_trade
     clear_variable = bca_jr_remaining_inc_trade
     clear_variable = bca_jr_remaining_dec_trade
-    export_resource_income_to_variable = { resource = trade variable = bca_jr_income_trade }
-    set_variable = { which = bca_jr_remaining_inc_trade value = bca_economic_target_lower_trade }
-    subtract_variable = { which = bca_jr_remaining_inc_trade value = bca_jr_income_trade }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_trade value < 0 } }
-        clear_variable = bca_jr_remaining_inc_trade
-    }
-    set_variable = { which = bca_jr_remaining_dec_trade value = bca_jr_income_trade }
-    subtract_variable = { which = bca_jr_remaining_dec_trade value = bca_economic_target_upper_trade }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_trade value < 0 } }
-        clear_variable = bca_jr_remaining_dec_trade
+        limit = { bca_jr_resource_trade_participates = yes }
+        export_resource_income_to_variable = { resource = trade variable = bca_jr_income_trade }
+        set_variable = { which = bca_jr_remaining_inc_trade value = bca_economic_target_lower_trade }
+        subtract_variable = { which = bca_jr_remaining_inc_trade value = bca_jr_income_trade }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_trade value < 0 } }
+            clear_variable = bca_jr_remaining_inc_trade
+        }
+        set_variable = { which = bca_jr_remaining_dec_trade value = bca_jr_income_trade }
+        subtract_variable = { which = bca_jr_remaining_dec_trade value = bca_economic_target_upper_trade }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_trade value < 0 } }
+            clear_variable = bca_jr_remaining_dec_trade
+        }
     }
     clear_variable = bca_jr_income_unity
     clear_variable = bca_jr_remaining_inc_unity
     clear_variable = bca_jr_remaining_dec_unity
-    export_resource_income_to_variable = { resource = unity variable = bca_jr_income_unity }
-    set_variable = { which = bca_jr_remaining_inc_unity value = bca_economic_target_lower_unity }
-    subtract_variable = { which = bca_jr_remaining_inc_unity value = bca_jr_income_unity }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_unity value < 0 } }
-        clear_variable = bca_jr_remaining_inc_unity
-    }
-    set_variable = { which = bca_jr_remaining_dec_unity value = bca_jr_income_unity }
-    subtract_variable = { which = bca_jr_remaining_dec_unity value = bca_economic_target_upper_unity }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_unity value < 0 } }
-        clear_variable = bca_jr_remaining_dec_unity
+        limit = { bca_jr_resource_unity_participates = yes }
+        export_resource_income_to_variable = { resource = unity variable = bca_jr_income_unity }
+        set_variable = { which = bca_jr_remaining_inc_unity value = bca_economic_target_lower_unity }
+        subtract_variable = { which = bca_jr_remaining_inc_unity value = bca_jr_income_unity }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_unity value < 0 } }
+            clear_variable = bca_jr_remaining_inc_unity
+        }
+        set_variable = { which = bca_jr_remaining_dec_unity value = bca_jr_income_unity }
+        subtract_variable = { which = bca_jr_remaining_dec_unity value = bca_economic_target_upper_unity }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_unity value < 0 } }
+            clear_variable = bca_jr_remaining_dec_unity
+        }
     }
     clear_variable = bca_jr_income_physics_research
     clear_variable = bca_jr_remaining_inc_physics_research
     clear_variable = bca_jr_remaining_dec_physics_research
-    export_resource_income_to_variable = { resource = physics_research variable = bca_jr_income_physics_research }
-    set_variable = { which = bca_jr_remaining_inc_physics_research value = bca_economic_target_lower_physics_research }
-    subtract_variable = { which = bca_jr_remaining_inc_physics_research value = bca_jr_income_physics_research }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_physics_research value < 0 } }
-        clear_variable = bca_jr_remaining_inc_physics_research
-    }
-    set_variable = { which = bca_jr_remaining_dec_physics_research value = bca_jr_income_physics_research }
-    subtract_variable = { which = bca_jr_remaining_dec_physics_research value = bca_economic_target_upper_physics_research }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_physics_research value < 0 } }
-        clear_variable = bca_jr_remaining_dec_physics_research
+        limit = { bca_jr_resource_physics_research_participates = yes }
+        export_resource_income_to_variable = { resource = physics_research variable = bca_jr_income_physics_research }
+        set_variable = { which = bca_jr_remaining_inc_physics_research value = bca_economic_target_lower_physics_research }
+        subtract_variable = { which = bca_jr_remaining_inc_physics_research value = bca_jr_income_physics_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_physics_research value < 0 } }
+            clear_variable = bca_jr_remaining_inc_physics_research
+        }
+        set_variable = { which = bca_jr_remaining_dec_physics_research value = bca_jr_income_physics_research }
+        subtract_variable = { which = bca_jr_remaining_dec_physics_research value = bca_economic_target_upper_physics_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_physics_research value < 0 } }
+            clear_variable = bca_jr_remaining_dec_physics_research
+        }
     }
     clear_variable = bca_jr_income_society_research
     clear_variable = bca_jr_remaining_inc_society_research
     clear_variable = bca_jr_remaining_dec_society_research
-    export_resource_income_to_variable = { resource = society_research variable = bca_jr_income_society_research }
-    set_variable = { which = bca_jr_remaining_inc_society_research value = bca_economic_target_lower_society_research }
-    subtract_variable = { which = bca_jr_remaining_inc_society_research value = bca_jr_income_society_research }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_society_research value < 0 } }
-        clear_variable = bca_jr_remaining_inc_society_research
-    }
-    set_variable = { which = bca_jr_remaining_dec_society_research value = bca_jr_income_society_research }
-    subtract_variable = { which = bca_jr_remaining_dec_society_research value = bca_economic_target_upper_society_research }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_society_research value < 0 } }
-        clear_variable = bca_jr_remaining_dec_society_research
+        limit = { bca_jr_resource_society_research_participates = yes }
+        export_resource_income_to_variable = { resource = society_research variable = bca_jr_income_society_research }
+        set_variable = { which = bca_jr_remaining_inc_society_research value = bca_economic_target_lower_society_research }
+        subtract_variable = { which = bca_jr_remaining_inc_society_research value = bca_jr_income_society_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_society_research value < 0 } }
+            clear_variable = bca_jr_remaining_inc_society_research
+        }
+        set_variable = { which = bca_jr_remaining_dec_society_research value = bca_jr_income_society_research }
+        subtract_variable = { which = bca_jr_remaining_dec_society_research value = bca_economic_target_upper_society_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_society_research value < 0 } }
+            clear_variable = bca_jr_remaining_dec_society_research
+        }
     }
     clear_variable = bca_jr_income_engineering_research
     clear_variable = bca_jr_remaining_inc_engineering_research
     clear_variable = bca_jr_remaining_dec_engineering_research
-    export_resource_income_to_variable = { resource = engineering_research variable = bca_jr_income_engineering_research }
-    set_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_economic_target_lower_engineering_research }
-    subtract_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_jr_income_engineering_research }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_engineering_research value < 0 } }
-        clear_variable = bca_jr_remaining_inc_engineering_research
-    }
-    set_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_jr_income_engineering_research }
-    subtract_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_economic_target_upper_engineering_research }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_engineering_research value < 0 } }
-        clear_variable = bca_jr_remaining_dec_engineering_research
+        limit = { bca_jr_resource_engineering_research_participates = yes }
+        export_resource_income_to_variable = { resource = engineering_research variable = bca_jr_income_engineering_research }
+        set_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_economic_target_lower_engineering_research }
+        subtract_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_jr_income_engineering_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_engineering_research value < 0 } }
+            clear_variable = bca_jr_remaining_inc_engineering_research
+        }
+        set_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_jr_income_engineering_research }
+        subtract_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_economic_target_upper_engineering_research }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_engineering_research value < 0 } }
+            clear_variable = bca_jr_remaining_dec_engineering_research
+        }
     }
     clear_variable = bca_jr_income_rare_crystals
     clear_variable = bca_jr_remaining_inc_rare_crystals
     clear_variable = bca_jr_remaining_dec_rare_crystals
-    export_resource_income_to_variable = { resource = rare_crystals variable = bca_jr_income_rare_crystals }
-    set_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_economic_target_lower_rare_crystals }
-    subtract_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_jr_income_rare_crystals }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_rare_crystals value < 0 } }
-        clear_variable = bca_jr_remaining_inc_rare_crystals
-    }
-    set_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_jr_income_rare_crystals }
-    subtract_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_economic_target_upper_rare_crystals }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_rare_crystals value < 0 } }
-        clear_variable = bca_jr_remaining_dec_rare_crystals
+        limit = { bca_jr_resource_rare_crystals_participates = yes }
+        export_resource_income_to_variable = { resource = rare_crystals variable = bca_jr_income_rare_crystals }
+        set_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_economic_target_lower_rare_crystals }
+        subtract_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_jr_income_rare_crystals }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_rare_crystals value < 0 } }
+            clear_variable = bca_jr_remaining_inc_rare_crystals
+        }
+        set_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_jr_income_rare_crystals }
+        subtract_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_economic_target_upper_rare_crystals }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_rare_crystals value < 0 } }
+            clear_variable = bca_jr_remaining_dec_rare_crystals
+        }
     }
     clear_variable = bca_jr_income_volatile_motes
     clear_variable = bca_jr_remaining_inc_volatile_motes
     clear_variable = bca_jr_remaining_dec_volatile_motes
-    export_resource_income_to_variable = { resource = volatile_motes variable = bca_jr_income_volatile_motes }
-    set_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_economic_target_lower_volatile_motes }
-    subtract_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_jr_income_volatile_motes }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_volatile_motes value < 0 } }
-        clear_variable = bca_jr_remaining_inc_volatile_motes
-    }
-    set_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_jr_income_volatile_motes }
-    subtract_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_economic_target_upper_volatile_motes }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_volatile_motes value < 0 } }
-        clear_variable = bca_jr_remaining_dec_volatile_motes
+        limit = { bca_jr_resource_volatile_motes_participates = yes }
+        export_resource_income_to_variable = { resource = volatile_motes variable = bca_jr_income_volatile_motes }
+        set_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_economic_target_lower_volatile_motes }
+        subtract_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_jr_income_volatile_motes }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_volatile_motes value < 0 } }
+            clear_variable = bca_jr_remaining_inc_volatile_motes
+        }
+        set_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_jr_income_volatile_motes }
+        subtract_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_economic_target_upper_volatile_motes }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_volatile_motes value < 0 } }
+            clear_variable = bca_jr_remaining_dec_volatile_motes
+        }
     }
     clear_variable = bca_jr_income_exotic_gases
     clear_variable = bca_jr_remaining_inc_exotic_gases
     clear_variable = bca_jr_remaining_dec_exotic_gases
-    export_resource_income_to_variable = { resource = exotic_gases variable = bca_jr_income_exotic_gases }
-    set_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_economic_target_lower_exotic_gases }
-    subtract_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_jr_income_exotic_gases }
     if = {
-        limit = { check_variable = { which = bca_jr_remaining_inc_exotic_gases value < 0 } }
-        clear_variable = bca_jr_remaining_inc_exotic_gases
-    }
-    set_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_jr_income_exotic_gases }
-    subtract_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_economic_target_upper_exotic_gases }
-    if = {
-        limit = { check_variable = { which = bca_jr_remaining_dec_exotic_gases value < 0 } }
-        clear_variable = bca_jr_remaining_dec_exotic_gases
+        limit = { bca_jr_resource_exotic_gases_participates = yes }
+        export_resource_income_to_variable = { resource = exotic_gases variable = bca_jr_income_exotic_gases }
+        set_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_economic_target_lower_exotic_gases }
+        subtract_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_jr_income_exotic_gases }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_inc_exotic_gases value < 0 } }
+            clear_variable = bca_jr_remaining_inc_exotic_gases
+        }
+        set_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_jr_income_exotic_gases }
+        subtract_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_economic_target_upper_exotic_gases }
+        if = {
+            limit = { check_variable = { which = bca_jr_remaining_dec_exotic_gases value < 0 } }
+            clear_variable = bca_jr_remaining_dec_exotic_gases
+        }
     }
 }
 
@@ -532,10 +571,6 @@ bca_jr_plan_dec_job = {
             }
             NOT = { has_carrier_flag = bca_jr_plan_inc_$JOB$ }
             bca_jr_should_dec_$JOB$ = yes
-            owner = {
-                is_variable_set = bca_jr_remaining_dec_$NEED$
-                check_variable = { which = bca_jr_remaining_dec_$NEED$ value > 0 }
-            }
             owner = {
                 NOT = { has_country_flag = bca_jr_mode_manual_$JOB$ }
                 NOT = { has_country_flag = bca_jr_mode_empty_$JOB$ }
@@ -3107,241 +3142,306 @@ bca_jr_plan_job_checks = {
         bca_jr_plan_inc_job = { JOB = turtle_miner_gestalt NEED = volatile_motes }
         bca_jr_plan_inc_job = { JOB = wrangler NEED = volatile_motes }
     }
-    # ==== DEC: 所有有效产出都 surplus 才计划减少，且 INC 优先 ====
+    # ==== DEC: 所有参与产出都 surplus 才计划减少，且 INC 优先 ====
     if = {
-        limit = { bca_empire_has_surplus_alloys = yes }
-        bca_jr_plan_dec_job = { JOB = astrogarbage_collector NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = astrogarbage_collector_gestalt NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = broken_shackles_scavenger NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = catalytic_technician_prison_worker NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = drone_space_junk_collector NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = fabricator NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = foundry NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = foundry_prison_worker NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = livestock_infernal NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = manufactorium_complex_drone NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = manufactorium_specialist NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = munitions_decommissioner NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_drone NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_unit NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_unit_lithoid NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = odd_factory_drone NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = odd_factory_worker NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_factory_drone NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = primitive_laborer NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = purge_processing_infernal NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = purge_processing_robot NEED = alloys }
-        bca_jr_plan_dec_job = { JOB = space_junk_collector NEED = alloys }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_alloys = yes
+                owner = { NOT = { bca_jr_resource_alloys_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = astrogarbage_collector }
+        bca_jr_plan_dec_job = { JOB = astrogarbage_collector_gestalt }
+        bca_jr_plan_dec_job = { JOB = broken_shackles_scavenger }
+        bca_jr_plan_dec_job = { JOB = catalytic_technician_prison_worker }
+        bca_jr_plan_dec_job = { JOB = drone_space_junk_collector }
+        bca_jr_plan_dec_job = { JOB = fabricator }
+        bca_jr_plan_dec_job = { JOB = foundry }
+        bca_jr_plan_dec_job = { JOB = foundry_prison_worker }
+        bca_jr_plan_dec_job = { JOB = livestock_infernal }
+        bca_jr_plan_dec_job = { JOB = manufactorium_complex_drone }
+        bca_jr_plan_dec_job = { JOB = manufactorium_specialist }
+        bca_jr_plan_dec_job = { JOB = munitions_decommissioner }
+        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_drone }
+        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_unit }
+        bca_jr_plan_dec_job = { JOB = munitions_decommissioning_unit_lithoid }
+        bca_jr_plan_dec_job = { JOB = odd_factory_drone }
+        bca_jr_plan_dec_job = { JOB = odd_factory_worker }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_factory_drone }
+        bca_jr_plan_dec_job = { JOB = primitive_laborer }
+        bca_jr_plan_dec_job = { JOB = purge_processing_infernal }
+        bca_jr_plan_dec_job = { JOB = purge_processing_robot }
+        bca_jr_plan_dec_job = { JOB = space_junk_collector }
     }
     if = {
-        limit = { bca_empire_has_surplus_consumer_goods = yes }
-        bca_jr_plan_dec_job = { JOB = artificer_prison_worker NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = artisan NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = artisan_drone NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = artisan_prison_worker NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = clip_maximizer NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = fe_acolyte_artisan NEED = consumer_goods }
-        bca_jr_plan_dec_job = { JOB = low_tech_laborer NEED = consumer_goods }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_consumer_goods = yes
+                owner = { NOT = { bca_jr_resource_consumer_goods_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = artificer_prison_worker }
+        bca_jr_plan_dec_job = { JOB = artisan }
+        bca_jr_plan_dec_job = { JOB = artisan_drone }
+        bca_jr_plan_dec_job = { JOB = artisan_prison_worker }
+        bca_jr_plan_dec_job = { JOB = clip_maximizer }
+        bca_jr_plan_dec_job = { JOB = fe_acolyte_artisan }
+        bca_jr_plan_dec_job = { JOB = low_tech_laborer }
     }
     if = {
-        limit = { bca_empire_has_surplus_energy = yes }
-        bca_jr_plan_dec_job = { JOB = cyberdome_spectator NEED = energy }
-        bca_jr_plan_dec_job = { JOB = fe_acolyte_generator NEED = energy }
-        bca_jr_plan_dec_job = { JOB = low_tech_technician NEED = energy }
-        bca_jr_plan_dec_job = { JOB = organic_battery NEED = energy }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_technician NEED = energy }
-        bca_jr_plan_dec_job = { JOB = primitive_technician NEED = energy }
-        bca_jr_plan_dec_job = { JOB = purge_matrix NEED = energy }
-        bca_jr_plan_dec_job = { JOB = technician NEED = energy }
-        bca_jr_plan_dec_job = { JOB = technician_drone NEED = energy }
-        bca_jr_plan_dec_job = { JOB = treasure_gatherer NEED = energy }
-        bca_jr_plan_dec_job = { JOB = treasure_gatherer_gestalt NEED = energy }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_energy = yes
+                owner = { NOT = { bca_jr_resource_energy_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = cyberdome_spectator }
+        bca_jr_plan_dec_job = { JOB = fe_acolyte_generator }
+        bca_jr_plan_dec_job = { JOB = low_tech_technician }
+        bca_jr_plan_dec_job = { JOB = organic_battery }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_technician }
+        bca_jr_plan_dec_job = { JOB = primitive_technician }
+        bca_jr_plan_dec_job = { JOB = purge_matrix }
+        bca_jr_plan_dec_job = { JOB = technician }
+        bca_jr_plan_dec_job = { JOB = technician_drone }
+        bca_jr_plan_dec_job = { JOB = treasure_gatherer }
+        bca_jr_plan_dec_job = { JOB = treasure_gatherer_gestalt }
     }
     if = {
-        limit = { bca_empire_has_surplus_engineering_research = yes }
-        bca_jr_plan_dec_job = { JOB = calculator_engineer NEED = engineering_research }
-        bca_jr_plan_dec_job = { JOB = engineer NEED = engineering_research }
-        bca_jr_plan_dec_job = { JOB = identity_designer NEED = engineering_research }
-        bca_jr_plan_dec_job = { JOB = production_overseer NEED = engineering_research }
-        bca_jr_plan_dec_job = { JOB = test_subject NEED = engineering_research }
-        bca_jr_plan_dec_job = { JOB = test_subject_drone NEED = engineering_research }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_engineering_research = yes
+                owner = { NOT = { bca_jr_resource_engineering_research_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = calculator_engineer }
+        bca_jr_plan_dec_job = { JOB = engineer }
+        bca_jr_plan_dec_job = { JOB = identity_designer }
+        bca_jr_plan_dec_job = { JOB = production_overseer }
+        bca_jr_plan_dec_job = { JOB = test_subject }
+        bca_jr_plan_dec_job = { JOB = test_subject_drone }
     }
     if = {
-        limit = { bca_empire_has_surplus_exotic_gases = yes }
-        bca_jr_plan_dec_job = { JOB = gas_plant_engineer NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = gas_plant_engineer_gestalt NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = gas_refiner NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = gas_refiner_drone NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = stratovent_refiner NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = stratovent_refiner_minerals NEED = exotic_gases }
-        bca_jr_plan_dec_job = { JOB = stratovent_refiner_upg NEED = exotic_gases }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_exotic_gases = yes
+                owner = { NOT = { bca_jr_resource_exotic_gases_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = gas_plant_engineer }
+        bca_jr_plan_dec_job = { JOB = gas_plant_engineer_gestalt }
+        bca_jr_plan_dec_job = { JOB = gas_refiner }
+        bca_jr_plan_dec_job = { JOB = gas_refiner_drone }
+        bca_jr_plan_dec_job = { JOB = stratovent_refiner }
+        bca_jr_plan_dec_job = { JOB = stratovent_refiner_minerals }
+        bca_jr_plan_dec_job = { JOB = stratovent_refiner_upg }
     }
     if = {
-        limit = { bca_empire_has_surplus_food = yes }
-        bca_jr_plan_dec_job = { JOB = agri_drone NEED = food }
-        bca_jr_plan_dec_job = { JOB = alien_hunter NEED = food }
-        bca_jr_plan_dec_job = { JOB = colonist NEED = food }
-        bca_jr_plan_dec_job = { JOB = farmer NEED = food }
-        bca_jr_plan_dec_job = { JOB = fe_acolyte_farm NEED = food }
-        bca_jr_plan_dec_job = { JOB = hive_basic_agri_drone NEED = food }
-        bca_jr_plan_dec_job = { JOB = hive_sustenance_drone NEED = food }
-        bca_jr_plan_dec_job = { JOB = hunted_pre_sapient NEED = food }
-        bca_jr_plan_dec_job = { JOB = hunter_gatherer NEED = food }
-        bca_jr_plan_dec_job = { JOB = livestock NEED = food }
-        bca_jr_plan_dec_job = { JOB = low_tech_farmer NEED = food }
-        bca_jr_plan_dec_job = { JOB = peasant NEED = food }
-        bca_jr_plan_dec_job = { JOB = primitive_farmer NEED = food }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_farmer NEED = food }
-        bca_jr_plan_dec_job = { JOB = puddle_technician NEED = food }
-        bca_jr_plan_dec_job = { JOB = puddle_technician_drone NEED = food }
-        bca_jr_plan_dec_job = { JOB = purge_labor_camps NEED = food }
-        bca_jr_plan_dec_job = { JOB = purge_processing NEED = food }
-        bca_jr_plan_dec_job = { JOB = ratling_scavenger NEED = food }
-        bca_jr_plan_dec_job = { JOB = spe_colonist NEED = food }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_food = yes
+                owner = { NOT = { bca_jr_resource_food_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = agri_drone }
+        bca_jr_plan_dec_job = { JOB = alien_hunter }
+        bca_jr_plan_dec_job = { JOB = colonist }
+        bca_jr_plan_dec_job = { JOB = farmer }
+        bca_jr_plan_dec_job = { JOB = fe_acolyte_farm }
+        bca_jr_plan_dec_job = { JOB = hive_basic_agri_drone }
+        bca_jr_plan_dec_job = { JOB = hive_sustenance_drone }
+        bca_jr_plan_dec_job = { JOB = hunted_pre_sapient }
+        bca_jr_plan_dec_job = { JOB = hunter_gatherer }
+        bca_jr_plan_dec_job = { JOB = livestock }
+        bca_jr_plan_dec_job = { JOB = low_tech_farmer }
+        bca_jr_plan_dec_job = { JOB = peasant }
+        bca_jr_plan_dec_job = { JOB = primitive_farmer }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_farmer }
+        bca_jr_plan_dec_job = { JOB = puddle_technician }
+        bca_jr_plan_dec_job = { JOB = puddle_technician_drone }
+        bca_jr_plan_dec_job = { JOB = purge_labor_camps }
+        bca_jr_plan_dec_job = { JOB = purge_processing }
+        bca_jr_plan_dec_job = { JOB = ratling_scavenger }
+        bca_jr_plan_dec_job = { JOB = spe_colonist }
     }
     if = {
-        limit = { bca_empire_has_surplus_minerals = yes }
-        bca_jr_plan_dec_job = { JOB = ark_harvester NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = ark_harvester_gestalt NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = cave_cleaner_gestalt NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = fe_acolyte_mine NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = hive_basic_agri_drone_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = hive_sustenance_drone_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = hunted_pre_sapient_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = hunter_gatherer_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = livestock_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = low_tech_miner NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = manufactorium_scraper_drone NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = miner NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = mineral_diver_drone NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = mining_drone NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = peasant_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_miner NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = primitive_miner NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = purge_processing_lithoid NEED = minerals }
-        bca_jr_plan_dec_job = { JOB = turtle_miner_gestalt NEED = minerals }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_minerals = yes
+                owner = { NOT = { bca_jr_resource_minerals_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = ark_harvester }
+        bca_jr_plan_dec_job = { JOB = ark_harvester_gestalt }
+        bca_jr_plan_dec_job = { JOB = cave_cleaner_gestalt }
+        bca_jr_plan_dec_job = { JOB = fe_acolyte_mine }
+        bca_jr_plan_dec_job = { JOB = hive_basic_agri_drone_lithoid }
+        bca_jr_plan_dec_job = { JOB = hive_sustenance_drone_lithoid }
+        bca_jr_plan_dec_job = { JOB = hunted_pre_sapient_lithoid }
+        bca_jr_plan_dec_job = { JOB = hunter_gatherer_lithoid }
+        bca_jr_plan_dec_job = { JOB = livestock_lithoid }
+        bca_jr_plan_dec_job = { JOB = low_tech_miner }
+        bca_jr_plan_dec_job = { JOB = manufactorium_scraper_drone }
+        bca_jr_plan_dec_job = { JOB = miner }
+        bca_jr_plan_dec_job = { JOB = mineral_diver_drone }
+        bca_jr_plan_dec_job = { JOB = mining_drone }
+        bca_jr_plan_dec_job = { JOB = peasant_lithoid }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_miner }
+        bca_jr_plan_dec_job = { JOB = primitive_miner }
+        bca_jr_plan_dec_job = { JOB = purge_processing_lithoid }
+        bca_jr_plan_dec_job = { JOB = turtle_miner_gestalt }
     }
     if = {
-        limit = { bca_empire_has_surplus_physics_research = yes }
-        bca_jr_plan_dec_job = { JOB = archivist NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = astral_drone NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = astral_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = astral_unit NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = calculator_physicist NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = dimensional_portal_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = dimensional_portal_researcher_gestalt NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = low_tech_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = nanotech_research_unit NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = nanotech_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = overlord_academic NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = overlord_academic_drone NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = physicist NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_brain_drone NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_cerebellum_drone NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = primitive_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = primitive_researcher_2 NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = space_time_anomaly_researcher NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = space_time_anomaly_researcher_gestalt NEED = physics_research }
-        bca_jr_plan_dec_job = { JOB = stasis_warden_drone NEED = physics_research }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_physics_research = yes
+                owner = { NOT = { bca_jr_resource_physics_research_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = archivist }
+        bca_jr_plan_dec_job = { JOB = astral_drone }
+        bca_jr_plan_dec_job = { JOB = astral_researcher }
+        bca_jr_plan_dec_job = { JOB = astral_unit }
+        bca_jr_plan_dec_job = { JOB = calculator_physicist }
+        bca_jr_plan_dec_job = { JOB = dimensional_portal_researcher }
+        bca_jr_plan_dec_job = { JOB = dimensional_portal_researcher_gestalt }
+        bca_jr_plan_dec_job = { JOB = low_tech_researcher }
+        bca_jr_plan_dec_job = { JOB = nanotech_research_unit }
+        bca_jr_plan_dec_job = { JOB = nanotech_researcher }
+        bca_jr_plan_dec_job = { JOB = overlord_academic }
+        bca_jr_plan_dec_job = { JOB = overlord_academic_drone }
+        bca_jr_plan_dec_job = { JOB = physicist }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_brain_drone }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_cerebellum_drone }
+        bca_jr_plan_dec_job = { JOB = primitive_researcher }
+        bca_jr_plan_dec_job = { JOB = primitive_researcher_2 }
+        bca_jr_plan_dec_job = { JOB = space_time_anomaly_researcher }
+        bca_jr_plan_dec_job = { JOB = space_time_anomaly_researcher_gestalt }
+        bca_jr_plan_dec_job = { JOB = stasis_warden_drone }
     }
     if = {
-        limit = { bca_empire_has_surplus_rare_crystals = yes }
-        bca_jr_plan_dec_job = { JOB = translucer NEED = rare_crystals }
-        bca_jr_plan_dec_job = { JOB = translucer_drone NEED = rare_crystals }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_rare_crystals = yes
+                owner = { NOT = { bca_jr_resource_rare_crystals_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = translucer }
+        bca_jr_plan_dec_job = { JOB = translucer_drone }
     }
     if = {
-        limit = { bca_empire_has_surplus_society_research = yes }
-        bca_jr_plan_dec_job = { JOB = augmentor NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = augmentor_drone NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = biologist NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = calculator_biologist NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = drone_wrangler NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = fe_archivist NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = gestation_drone NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = healthcare NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = neural_chip NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = soldier NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = spawning_drone NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = stratovent_researcher NEED = society_research }
-        bca_jr_plan_dec_job = { JOB = wrangler NEED = society_research }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_society_research = yes
+                owner = { NOT = { bca_jr_resource_society_research_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = augmentor }
+        bca_jr_plan_dec_job = { JOB = augmentor_drone }
+        bca_jr_plan_dec_job = { JOB = biologist }
+        bca_jr_plan_dec_job = { JOB = calculator_biologist }
+        bca_jr_plan_dec_job = { JOB = drone_wrangler }
+        bca_jr_plan_dec_job = { JOB = fe_archivist }
+        bca_jr_plan_dec_job = { JOB = gestation_drone }
+        bca_jr_plan_dec_job = { JOB = healthcare }
+        bca_jr_plan_dec_job = { JOB = neural_chip }
+        bca_jr_plan_dec_job = { JOB = soldier }
+        bca_jr_plan_dec_job = { JOB = spawning_drone }
+        bca_jr_plan_dec_job = { JOB = stratovent_researcher }
+        bca_jr_plan_dec_job = { JOB = wrangler }
     }
     if = {
-        limit = { bca_empire_has_surplus_trade = yes }
-        bca_jr_plan_dec_job = { JOB = ark_waystation_trader NEED = trade }
-        bca_jr_plan_dec_job = { JOB = ark_waystation_trader_gestalt NEED = trade }
-        bca_jr_plan_dec_job = { JOB = bath_attendant NEED = trade }
-        bca_jr_plan_dec_job = { JOB = civilian NEED = trade }
-        bca_jr_plan_dec_job = { JOB = clerk NEED = trade }
-        bca_jr_plan_dec_job = { JOB = logistics_drone NEED = trade }
-        bca_jr_plan_dec_job = { JOB = maintenance_drone NEED = trade }
-        bca_jr_plan_dec_job = { JOB = overlord_healthcare NEED = trade }
-        bca_jr_plan_dec_job = { JOB = shroud_trader NEED = trade }
-        bca_jr_plan_dec_job = { JOB = trader NEED = trade }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_trade = yes
+                owner = { NOT = { bca_jr_resource_trade_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = ark_waystation_trader }
+        bca_jr_plan_dec_job = { JOB = ark_waystation_trader_gestalt }
+        bca_jr_plan_dec_job = { JOB = bath_attendant }
+        bca_jr_plan_dec_job = { JOB = civilian }
+        bca_jr_plan_dec_job = { JOB = clerk }
+        bca_jr_plan_dec_job = { JOB = logistics_drone }
+        bca_jr_plan_dec_job = { JOB = maintenance_drone }
+        bca_jr_plan_dec_job = { JOB = overlord_healthcare }
+        bca_jr_plan_dec_job = { JOB = shroud_trader }
+        bca_jr_plan_dec_job = { JOB = trader }
     }
     if = {
-        limit = { bca_empire_has_surplus_unity = yes }
-        bca_jr_plan_dec_job = { JOB = bio_trophy NEED = unity }
-        bca_jr_plan_dec_job = { JOB = bureaucrat NEED = unity }
-        bca_jr_plan_dec_job = { JOB = coordinator NEED = unity }
-        bca_jr_plan_dec_job = { JOB = cruise_crew_overseer NEED = unity }
-        bca_jr_plan_dec_job = { JOB = cruise_crew_overseer_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = cruise_passenger NEED = unity }
-        bca_jr_plan_dec_job = { JOB = cruise_passenger_unemployment NEED = unity }
-        bca_jr_plan_dec_job = { JOB = cyberdome_duelist NEED = unity }
-        bca_jr_plan_dec_job = { JOB = drone_energy_thrall NEED = unity }
-        bca_jr_plan_dec_job = { JOB = dystopian_enforcer NEED = unity }
-        bca_jr_plan_dec_job = { JOB = dystopian_telepath NEED = unity }
-        bca_jr_plan_dec_job = { JOB = energy_thrall NEED = unity }
-        bca_jr_plan_dec_job = { JOB = enforcer NEED = unity }
-        bca_jr_plan_dec_job = { JOB = entertainer NEED = unity }
-        bca_jr_plan_dec_job = { JOB = evaluator NEED = unity }
-        bca_jr_plan_dec_job = { JOB = event_purge NEED = unity }
-        bca_jr_plan_dec_job = { JOB = fe_augur NEED = unity }
-        bca_jr_plan_dec_job = { JOB = fe_hedonist NEED = unity }
-        bca_jr_plan_dec_job = { JOB = fe_xeno_ward NEED = unity }
-        bca_jr_plan_dec_job = { JOB = haruspex NEED = unity }
-        bca_jr_plan_dec_job = { JOB = knight NEED = unity }
-        bca_jr_plan_dec_job = { JOB = knight_commander NEED = unity }
-        bca_jr_plan_dec_job = { JOB = low_tech_bureaucrat NEED = unity }
-        bca_jr_plan_dec_job = { JOB = low_tech_manager NEED = unity }
-        bca_jr_plan_dec_job = { JOB = low_tech_priest NEED = unity }
-        bca_jr_plan_dec_job = { JOB = machine_nurse NEED = unity }
-        bca_jr_plan_dec_job = { JOB = mortal_initiate NEED = unity }
-        bca_jr_plan_dec_job = { JOB = necro_apprentice NEED = unity }
-        bca_jr_plan_dec_job = { JOB = organic_exhibit NEED = unity }
-        bca_jr_plan_dec_job = { JOB = overlord_bio_trophy NEED = unity }
-        bca_jr_plan_dec_job = { JOB = overlord_bio_trophy_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = overlord_manager NEED = unity }
-        bca_jr_plan_dec_job = { JOB = overlord_mortal_initiate NEED = unity }
-        bca_jr_plan_dec_job = { JOB = overlord_mortal_initiate_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = patrol_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = physician_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = politician NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_administrator NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_bureaucrat NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_synapse_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_hive_synapse_drone_2 NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_noble NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_priest NEED = unity }
-        bca_jr_plan_dec_job = { JOB = primitive_priest_2 NEED = unity }
-        bca_jr_plan_dec_job = { JOB = purge_lithoid NEED = unity }
-        bca_jr_plan_dec_job = { JOB = purge_robot NEED = unity }
-        bca_jr_plan_dec_job = { JOB = purge_sacrifice NEED = unity }
-        bca_jr_plan_dec_job = { JOB = resort_worker NEED = unity }
-        bca_jr_plan_dec_job = { JOB = robot_caretaker NEED = unity }
-        bca_jr_plan_dec_job = { JOB = slave_overseer NEED = unity }
-        bca_jr_plan_dec_job = { JOB = solarpunk_anarchist NEED = unity }
-        bca_jr_plan_dec_job = { JOB = stasis_warden NEED = unity }
-        bca_jr_plan_dec_job = { JOB = technophant NEED = unity }
-        bca_jr_plan_dec_job = { JOB = telepath NEED = unity }
-        bca_jr_plan_dec_job = { JOB = telepath_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = transference_drone NEED = unity }
-        bca_jr_plan_dec_job = { JOB = transference_volunteer NEED = unity }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_unity = yes
+                owner = { NOT = { bca_jr_resource_unity_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = bio_trophy }
+        bca_jr_plan_dec_job = { JOB = bureaucrat }
+        bca_jr_plan_dec_job = { JOB = coordinator }
+        bca_jr_plan_dec_job = { JOB = cruise_crew_overseer }
+        bca_jr_plan_dec_job = { JOB = cruise_crew_overseer_drone }
+        bca_jr_plan_dec_job = { JOB = cruise_passenger }
+        bca_jr_plan_dec_job = { JOB = cruise_passenger_unemployment }
+        bca_jr_plan_dec_job = { JOB = cyberdome_duelist }
+        bca_jr_plan_dec_job = { JOB = drone_energy_thrall }
+        bca_jr_plan_dec_job = { JOB = dystopian_enforcer }
+        bca_jr_plan_dec_job = { JOB = dystopian_telepath }
+        bca_jr_plan_dec_job = { JOB = energy_thrall }
+        bca_jr_plan_dec_job = { JOB = enforcer }
+        bca_jr_plan_dec_job = { JOB = entertainer }
+        bca_jr_plan_dec_job = { JOB = evaluator }
+        bca_jr_plan_dec_job = { JOB = event_purge }
+        bca_jr_plan_dec_job = { JOB = fe_augur }
+        bca_jr_plan_dec_job = { JOB = fe_hedonist }
+        bca_jr_plan_dec_job = { JOB = fe_xeno_ward }
+        bca_jr_plan_dec_job = { JOB = haruspex }
+        bca_jr_plan_dec_job = { JOB = knight }
+        bca_jr_plan_dec_job = { JOB = knight_commander }
+        bca_jr_plan_dec_job = { JOB = low_tech_bureaucrat }
+        bca_jr_plan_dec_job = { JOB = low_tech_manager }
+        bca_jr_plan_dec_job = { JOB = low_tech_priest }
+        bca_jr_plan_dec_job = { JOB = machine_nurse }
+        bca_jr_plan_dec_job = { JOB = mortal_initiate }
+        bca_jr_plan_dec_job = { JOB = necro_apprentice }
+        bca_jr_plan_dec_job = { JOB = organic_exhibit }
+        bca_jr_plan_dec_job = { JOB = overlord_bio_trophy }
+        bca_jr_plan_dec_job = { JOB = overlord_bio_trophy_drone }
+        bca_jr_plan_dec_job = { JOB = overlord_manager }
+        bca_jr_plan_dec_job = { JOB = overlord_mortal_initiate }
+        bca_jr_plan_dec_job = { JOB = overlord_mortal_initiate_drone }
+        bca_jr_plan_dec_job = { JOB = patrol_drone }
+        bca_jr_plan_dec_job = { JOB = physician_drone }
+        bca_jr_plan_dec_job = { JOB = politician }
+        bca_jr_plan_dec_job = { JOB = primitive_administrator }
+        bca_jr_plan_dec_job = { JOB = primitive_bureaucrat }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_synapse_drone }
+        bca_jr_plan_dec_job = { JOB = primitive_hive_synapse_drone_2 }
+        bca_jr_plan_dec_job = { JOB = primitive_noble }
+        bca_jr_plan_dec_job = { JOB = primitive_priest }
+        bca_jr_plan_dec_job = { JOB = primitive_priest_2 }
+        bca_jr_plan_dec_job = { JOB = purge_lithoid }
+        bca_jr_plan_dec_job = { JOB = purge_robot }
+        bca_jr_plan_dec_job = { JOB = purge_sacrifice }
+        bca_jr_plan_dec_job = { JOB = resort_worker }
+        bca_jr_plan_dec_job = { JOB = robot_caretaker }
+        bca_jr_plan_dec_job = { JOB = slave_overseer }
+        bca_jr_plan_dec_job = { JOB = solarpunk_anarchist }
+        bca_jr_plan_dec_job = { JOB = stasis_warden }
+        bca_jr_plan_dec_job = { JOB = technophant }
+        bca_jr_plan_dec_job = { JOB = telepath }
+        bca_jr_plan_dec_job = { JOB = telepath_drone }
+        bca_jr_plan_dec_job = { JOB = transference_drone }
+        bca_jr_plan_dec_job = { JOB = transference_volunteer }
     }
     if = {
-        limit = { bca_empire_has_surplus_volatile_motes = yes }
-        bca_jr_plan_dec_job = { JOB = chemist NEED = volatile_motes }
-        bca_jr_plan_dec_job = { JOB = chemist_drone NEED = volatile_motes }
+        limit = {
+            OR = {
+                bca_empire_has_surplus_volatile_motes = yes
+                owner = { NOT = { bca_jr_resource_volatile_motes_participates = yes } }
+            }
+        }
+        bca_jr_plan_dec_job = { JOB = chemist }
+        bca_jr_plan_dec_job = { JOB = chemist_drone }
     }
 }
 
@@ -3363,6 +3463,7 @@ bca_jr_limit_inc_target_for_resource = {
         limit = {
             check_variable_arithmetic = { which = value:bca_job_$JOB$_$RESOURCE$_per_worker value > 0 }
             owner = {
+                bca_jr_resource_$RESOURCE$_participates = yes
                 is_variable_set = bca_jr_remaining_inc_$RESOURCE$
                 check_variable = { which = bca_jr_remaining_inc_$RESOURCE$ value > 0 }
             }
@@ -3413,6 +3514,7 @@ bca_jr_writeback_inc_remaining_for_resource = {
         limit = {
             check_variable_arithmetic = { which = bca_jr_actual_job_change value > 0 }
             check_variable_arithmetic = { which = value:bca_job_$JOB$_$RESOURCE$_per_worker value > 0 }
+            owner = { bca_jr_resource_$RESOURCE$_participates = yes }
         }
         set_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_actual_job_change }
         if = {
@@ -3454,6 +3556,7 @@ bca_jr_limit_dec_target_for_resource = {
         limit = {
             check_variable_arithmetic = { which = value:bca_job_$JOB$_$RESOURCE$_per_worker value > 0 }
             owner = {
+                bca_jr_resource_$RESOURCE$_participates = yes
                 is_variable_set = bca_jr_remaining_dec_$RESOURCE$
                 check_variable = { which = bca_jr_remaining_dec_$RESOURCE$ value > 0 }
             }
@@ -3551,6 +3654,7 @@ bca_jr_writeback_dec_pop_remaining_for_resource = {
             is_variable_set = bca_jr_tmp_assigned_delta
             check_variable_arithmetic = { which = bca_jr_tmp_assigned_delta value > 0 }
             check_variable_arithmetic = { which = value:bca_job_$JOB$_$RESOURCE$_per_worker value > 0 }
+            owner = { bca_jr_resource_$RESOURCE$_participates = yes }
         }
         set_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_tmp_assigned_delta }
         multiply_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_acc_avg_output_efficiency_$JOB$ }
@@ -3573,6 +3677,7 @@ bca_jr_writeback_dec_automated_remaining_for_resource = {
             is_variable_set = bca_jr_tmp_automated_delta
             check_variable_arithmetic = { which = bca_jr_tmp_automated_delta value > 0 }
             check_variable_arithmetic = { which = value:bca_job_$JOB$_$RESOURCE$_per_worker value > 0 }
+            owner = { bca_jr_resource_$RESOURCE$_participates = yes }
         }
         set_variable = { which = bca_jr_tmp_resource_delta value = bca_jr_tmp_automated_delta }
         multiply_variable = { which = bca_jr_tmp_resource_delta value = value:bca_jr_automated_output_efficiency }

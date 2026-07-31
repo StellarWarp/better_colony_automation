@@ -1,6 +1,14 @@
+bca_global_settings_economic_stockpile_sources:
+  operational_reserves:
+    trigger: { is_nomadic: "yes" }
+    situation: situation_nomad_economy
+    variable: bca_gs_operational_reserves
+
 bca_global_settings_economic_rows:
   - name: energy
     resource: energy
+    stockpile_overrides: &operational_reserves_stockpile
+      - operational_reserves
     variable: bca_expect_output_energy
     text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY
     value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_VALUE
@@ -18,6 +26,7 @@ bca_global_settings_economic_rows:
       - { id: plus_1k, text: BCA_GLOBAL_SETTINGS_ECONOMIC_STEP_PLUS_1K, label: "+1k", value: 1000 }
   - name: minerals
     resource: minerals
+    stockpile_overrides: *operational_reserves_stockpile
     variable: bca_expect_output_minerals
     text: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS
     value_text: BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_VALUE

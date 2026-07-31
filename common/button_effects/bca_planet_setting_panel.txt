@@ -346,7 +346,13 @@ bca_planet_setting_detailed_secondary_districts_advanced_disable = {
     }
 
     allow = {
-        always = yes
+        custom_tooltip = {
+            fail_text = "BCA_UNIFORM_SECONDARY_DISTRICT_NOT_ALLOW"
+            OR = {
+                NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_zone }
+                bca_has_identical_secondary_zone_plan = yes
+            }
+        }
     }
 
     effect = {

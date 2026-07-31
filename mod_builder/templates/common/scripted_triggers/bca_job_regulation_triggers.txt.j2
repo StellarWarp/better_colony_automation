@@ -6,6 +6,12 @@
 {% set regulated = job_regulation_config.regulated_jobs %}
 {% set economic_set = job_regulation_config.resources %}
 
+{% for resource in economic_set %}
+bca_jr_resource_{{ resource }}_participates = {
+    NOT = { has_country_flag = bca_economic_target_{{ resource }}_forbidden }
+}
+
+{% endfor %}
 bca_jr_is_enabled = {
     has_country_flag = bca_jr_enabled
     has_country_flag = bca_enable_economic_management
@@ -116,16 +122,27 @@ bca_jr_job_matches_selected_filters = {
         }
 
     {% endfor %}
-    {# DEC 条件: 产出 X 的资源均需 surplus，不产出 X 则跳过 #}
+    {# DEC 条件: 至少一个参与资源 surplus，且所有参与资源均 surplus。Forbidden 资源退出决策。 #}
     bca_jr_should_dec_{{ entry.job }} = {
-        NOR = {
+        # 至少一个实际盈余产出驱动减岗；surplus 本身已排除 forbidden。
+        OR = {
             {% for resource in entry.economic_resources if resource in economic_set %}
                 AND = {
                     bca_jr_has_output_{{ entry.job }}_{{ resource }} = yes
-                    NOT = { bca_empire_has_surplus_{{ resource }} = yes }
+                    bca_empire_has_surplus_{{ resource }} = yes
                 }
             {% endfor %}
         }
+        # 实际产出参与调控时，必须处于盈余。
+        {% for resource in entry.economic_resources if resource in economic_set %}
+            if = {
+                limit = {
+                    bca_jr_has_output_{{ entry.job }}_{{ resource }} = yes
+                    owner = { bca_jr_resource_{{ resource }}_participates = yes }
+                }
+                bca_empire_has_surplus_{{ resource }} = yes
+            }
+        {% endfor %}
     }
 
 {% endfor %}

@@ -17,6 +17,7 @@ country_event = {
     immediate = {
         bca_support_close = yes
         bca_refresh_global_settings_panel_counts = yes
+        bca_refresh_global_settings_economic_stockpiles = yes
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -45,5 +46,23 @@ country_event = {
     option = {
         name = EXIT
         default_hide_option = yes
+    }
+}
+
+country_event = {
+    id = bca_global_settings_event.2
+    hide_window = yes
+    is_triggered_only = yes
+
+    trigger = {
+        is_ai = no
+        is_nomadic = yes
+        has_active_event = {
+            bca_global_settings_event.1
+        }
+    }
+
+    immediate = {
+        bca_refresh_global_settings_economic_stockpiles = yes
     }
 }

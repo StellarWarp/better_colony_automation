@@ -108,6 +108,33 @@ class GlobalSettingsEconomicRowsTests(unittest.TestCase):
             self.load_config(RESERVE_SOURCE_CONFIG),
         )
 
+    def test_nomadic_stockpile_is_shared_without_sharing_income(self):
+        config = self.load_config(SOURCE_CONFIG)
+        sources = config["bca_global_settings_economic_stockpile_sources"]
+        rows = {
+            row["name"]: row
+            for row in config["bca_global_settings_economic_rows"]
+        }
+
+        self.assertEqual(
+            sources["operational_reserves"],
+            {
+                "trigger": {"is_nomadic": "yes"},
+                "situation": "situation_nomad_economy",
+                "variable": "bca_gs_operational_reserves",
+            },
+        )
+        self.assertEqual(
+            rows["energy"]["stockpile_overrides"],
+            ["operational_reserves"],
+        )
+        self.assertEqual(
+            rows["minerals"]["stockpile_overrides"],
+            rows["energy"]["stockpile_overrides"],
+        )
+        self.assertEqual(rows["energy"]["resource"], "energy")
+        self.assertEqual(rows["minerals"]["resource"], "minerals")
+
     def test_compact_formatter_preserves_input_source_type(self):
         formatter = DISPLAY_VALUES_TEMPLATE.read_text(encoding="utf-8")
         economic_loc = ECONOMIC_LOC_TEMPLATE.read_text(encoding="utf-8")

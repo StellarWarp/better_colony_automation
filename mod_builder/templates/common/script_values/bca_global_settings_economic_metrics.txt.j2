@@ -11,6 +11,15 @@ bca_gs_economic_stockpile_{{ row.name }} = {
         }
         mode = set
     }
+{% for source_name in row.get('stockpile_overrides', []) %}
+{% set source = bca_global_settings_economic_stockpile_sources[source_name] %}
+    modifier = {
+{% for trigger, value in source.trigger.items() %}
+        {{ trigger }} = {{ value }}
+{% endfor %}
+        set = {{ source.variable }}
+    }
+{% endfor %}
 }
 
 bca_gs_economic_income_{{ row.name }} = {

@@ -152,6 +152,7 @@
                     {% for resource in resources %}
                         AND = {
                             is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                            bca_jr_resource_{{ resource }}_participates = yes
                             bca_country_needs_{{ resource }} = yes
                         }
                     {% endfor %}
@@ -163,12 +164,17 @@
             trigger = {
                 OR = {
                     {% for resource in resources %}
-                        is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                        AND = {
+                            is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                            bca_jr_resource_{{ resource }}_participates = yes
+                            bca_country_surplus_{{ resource }} = yes
+                        }
                     {% endfor %}
                 }
                 {% for resource in resources %}
                     OR = {
                         NOT = { is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }} }
+                        bca_jr_resource_{{ resource }}_participates = no
                         bca_country_surplus_{{ resource }} = yes
                     }
                 {% endfor %}
@@ -185,6 +191,7 @@
             text = {
                 trigger = {
                     is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    bca_jr_resource_{{ resource }}_participates = yes
                     bca_country_needs_{{ resource }} = yes
                 }
                 localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_NEEDED
@@ -192,6 +199,7 @@
             text = {
                 trigger = {
                     is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    bca_jr_resource_{{ resource }}_participates = yes
                     bca_country_surplus_{{ resource }} = yes
                 }
                 localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SURPLUS
@@ -199,6 +207,7 @@
             text = {
                 trigger = {
                     is_variable_set = bca_jr_slot_{{ s_name }}_output_{{ resource }}
+                    bca_jr_resource_{{ resource }}_participates = yes
                 }
                 localization_key = BCA_JR_CHANGE_RESOURCE_{{ resource | upper }}_SATISFIED
             }

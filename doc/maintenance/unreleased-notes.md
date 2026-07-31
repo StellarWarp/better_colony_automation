@@ -12,6 +12,7 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 - Fixed missing localisation.
 - Fixed Global Settings layout issues.
 - Fixed an automated workforce statistics bug.
+- Fixed secondary district planning controls when specialization demolition is disabled.
 
 ## Released In v2.1.0 (2026-07-31)
 

@@ -72,60 +72,67 @@ bca_jr_locate_job_colonies = {
             value = 0.1
         }
         owner = {
-            #create_message = {
-            #    type = MESSAGE_BCA_JOB_LOCATE
-            #    days = 1
-            #    localization = MESSAGE_BCA_JOB_LOCATE_DESC
-            #    target = prev.carrier
-            #    variable = {
-            #        type = name
-            #        localization = PLANET
-            #        scope = prev.carrier
-            #    }
-            #    variable = {
-            #        type = key
-            #        value = job_$JOB$
-            #        localization = JOB_NAME
-            #    }
-            #    variable = {
-            #        type = variable
-            #        varname = bca_jr_locate_pops
-            #        localization = POPS
-            #        scope = prev.carrier
-            #    }
-            #    variable = {
-            #        type = variable
-            #        varname = bca_jr_locate_job_add
-            #        localization = JOBS
-            #        scope = prev.carrier
-            #    }
-            #}
-            create_message = {
-                type = MESSAGE_BCA_JOB_LOCATE
-                days = 1
-                localization = MESSAGE_BCA_JOB_LOCATE_DESC
-                target = prev
-                variable = {
-                    type = name
-                    localization = PLANET
-                    scope = prev
+            if = {
+                limit = {
+                    carrier_is_type = planet
                 }
-                variable = {
-                    type = key
-                    value = job_$JOB$
-                    localization = JOB_NAME
+                create_message = {
+                    type = MESSAGE_BCA_JOB_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_JOB_LOCATE_DESC
+                    target = prev.carrier
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev.carrier
+                    }
+                    variable = {
+                        type = key
+                        value = job_$JOB$
+                        localization = JOB_NAME
+                    }
+                    variable = {
+                        type = variable
+                        varname = bca_jr_locate_pops
+                        localization = POPS
+                        scope = prev.carrier
+                    }
+                    variable = {
+                        type = variable
+                        varname = bca_jr_locate_job_add
+                        localization = JOBS
+                        scope = prev.carrier
+                    }
                 }
-                variable = {
-                    type = variable
-                    varname = bca_jr_locate_pops
-                    localization = POPS
-                    scope = prev
-                }
-                variable = {
-                    type = variable
-                    varname = bca_jr_locate_job_add
-                    localization = JOBS
-                    scope = prev
+            }
+            else = {
+                create_message = {
+                    type = MESSAGE_BCA_JOB_LOCATE
+                    days = 1
+                    localization = MESSAGE_BCA_JOB_LOCATE_DESC
+                    target = prev.fleet
+                    variable = {
+                        type = name
+                        localization = PLANET
+                        scope = prev
+                    }
+                    variable = {
+                        type = key
+                        value = job_$JOB$
+                        localization = JOB_NAME
+                    }
+                    variable = {
+                        type = variable
+                        varname = bca_jr_locate_pops
+                        localization = POPS
+                        scope = prev
+                    }
+                    variable = {
+                        type = variable
+                        varname = bca_jr_locate_job_add
+                        localization = JOBS
+                        scope = prev
+                    }
                 }
             }
         }

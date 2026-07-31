@@ -1,0 +1,26 @@
+bca_refresh_global_settings_economic_stockpiles = {
+{% for source_name, source in bca_global_settings_economic_stockpile_sources.items() %}
+    if = {
+        limit = {
+{% for trigger, value in source.trigger.items() %}
+            {{ trigger }} = {{ value }}
+{% endfor %}
+        }
+        random_situation = {
+            limit = {
+                is_situation_type = {{ source.situation }}
+            }
+            export_trigger_value_to_variable = {
+                trigger = situation_progress
+                variable = {{ source.variable }}
+            }
+            owner = {
+                set_variable = {
+                    which = {{ source.variable }}
+                    value = prev.{{ source.variable }}
+                }
+            }
+        }
+    }
+{% endfor %}
+}

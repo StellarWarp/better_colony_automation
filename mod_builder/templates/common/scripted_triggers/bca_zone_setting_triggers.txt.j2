@@ -1,4 +1,5 @@
 {% import 'component/planet_flag_ps.j2' as pf with context -%}
+{% import 'component/conditions.j2' as cond with context %}
 
 bca_in_secondary_selector = {
     has_carrier_flag = bca_pf_in_secondary_selector
@@ -9,6 +10,21 @@ bca_has_zone_plan = {
         {% set zone_slot = "$ZONE_SLOT$" %}
         {% for item in zones_info %}
             has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+        {% endfor %}
+    }
+}
+
+
+bca_has_identical_secondary_zone_plan = {
+    OR = {
+        {% for item in zones_info %}
+            {% if cond.contain_any_zones_of(item.zones, secondary_districts_for_zone)|int %}
+                AND = {
+                    {% for zone_slot in ['z3','z4','z5'] %}
+                        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, item.type) }}
+                    {% endfor %}
+                }
+            {% endif %}
         {% endfor %}
     }
 }
