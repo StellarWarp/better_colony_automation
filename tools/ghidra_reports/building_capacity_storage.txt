@@ -1,0 +1,56 @@
+storage: 14342a670
+code/data references: 2
+
+=== 1421fcc79 in FUN_1421fcc70 @ 1421fcc70 ===
+1421fcc59  488D0DF0D82201                  LEA RCX,[0x14342a550]
+1421fcc60  E87B49F7FD                      CALL 0x1401715e0
+1421fcc65  4883C420                        ADD RSP,0x20
+1421fcc69  5D                              POP RBP
+1421fcc6a  C3                              RET
+1421fcc70  4055                            PUSH RBP
+1421fcc72  4883EC20                        SUB RSP,0x20
+1421fcc76  488BEA                          MOV RBP,RDX
+1421fcc79  488D0DF0D92201                  LEA RCX,[0x14342a670]
+1421fcc80  E85B49F7FD                      CALL 0x1401715e0
+1421fcc85  4883C420                        ADD RSP,0x20
+1421fcc89  5D                              POP RBP
+1421fcc8a  C3                              RET
+1421fcc90  4055                            PUSH RBP
+1421fcc92  4883EC20                        SUB RSP,0x20
+1421fcc96  488BEA                          MOV RBP,RDX
+1421fcc99  488D0DF0DA2201                  LEA RCX,[0x14342a790]
+1421fcca0  E83B49F7FD                      CALL 0x1401715e0
+1421fcca5  4883C420                        ADD RSP,0x20
+
+--- Decompilation: FUN_1421fcc70 @ 1421fcc70 ---
+
+void FUN_1421fcc70(void)
+
+{
+  FUN_1401715e0(&DAT_14342a670);
+  return;
+}
+
+
+
+=== 14017fa58 in FUN_140173c30 @ 140173c30 ===
+14017fa32  90                              NOP
+14017fa33  4C8D05EE7C3202                  LEA R8,[0x1424a7728]
+14017fa3a  BA922A0000                      MOV EDX,0x2a92
+14017fa3f  488D0D0AAB2A03                  LEA RCX,[0x14342a550]
+14017fa46  E8F570BB01                      CALL 0x141d36b40
+14017fa4b  90                              NOP
+14017fa4c  4C8D052D7D3202                  LEA R8,[0x1424a7780]
+14017fa53  BA932A0000                      MOV EDX,0x2a93
+14017fa58  488D0D11AC2A03                  LEA RCX,[0x14342a670]
+14017fa5f  E8DC70BB01                      CALL 0x141d36b40
+14017fa64  90                              NOP
+14017fa65  4C8D05FC7C3202                  LEA R8,[0x1424a7768]
+14017fa6c  BA942A0000                      MOV EDX,0x2a94
+14017fa71  488D0D18AD2A03                  LEA RCX,[0x14342a790]
+14017fa78  E8C370BB01                      CALL 0x141d36b40
+14017fa7d  90                              NOP
+14017fa7e  4C8D052B7D3202                  LEA R8,[0x1424a77b0]
+14017fa85  BA952A0000                      MOV EDX,0x2a95
+14017fa8a  488D0D1FAE2A03                  LEA RCX,[0x14342a8b0]
+

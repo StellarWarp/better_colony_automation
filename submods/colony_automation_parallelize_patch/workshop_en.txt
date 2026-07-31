@@ -1,0 +1,43 @@
+[h1]Colony Automation: Parallel Construction Patch[/h1]
+
+This Windows native-code patch allows Stellaris colony automation to use additional planet construction slots provided by modifiers such as planet_building_capacity_add.
+
+[b]The current reviewed version is Stellaris 4.4.6.[/b]
+
+[hr][/hr]
+
+[h2]What It Changes[/h2]
+
+Vanilla construction supports parallel slots, but its automation scheduler stops whenever anything is queued. This patch lets automation continue while a native slot is free, then stops when capacity is full. Capacity-one planets retain the original behavior.
+
+[h2]Installation[/h2]
+
+[b]This patch mod does not need to be enabled in the launcher. Subscribing only downloads the installer; it does not patch the game automatically.[/b]
+
+1. Close Stellaris.
+2. Open this Workshop item's local folder.
+3. Run [b]Install Patch.bat[/b].
+4. Confirm the automatically detected [b]stellaris.exe[/b], or enter its full path.
+5. Start Stellaris and test the next monthly automation update.
+
+Run [b]Restore Original.bat[/b] while Stellaris is closed to restore the verified automatic backup.
+
+[h2]Compatibility And Update Safety[/h2]
+
+[b]Windows x64 only.[/b]
+
+The installer uses native instruction features and semantic validation rather than only fixed addresses or an executable hash. It verifies the scheduler call site, the existing building/district guard, native min(count, capacity) progression, queue layout, an executable code cave, and position-independent helper code.
+
+Compatible address movement can be accepted. Ambiguous matches or changed native semantics are rejected without modifying the game.
+
+Steam verification and official updates may restore stellaris.exe. After an update, rerun the installer only if its complete scan succeeds.
+
+[h2]Backup And Recovery[/h2]
+
+Before applying anything, the installer creates and verifies a hash-named backup beside stellaris.exe. Writes go through a verified temporary file followed by atomic replacement. Restore requires the current executable to match the exact patch reconstructed from the selected backup.
+
+[h2]Important Notice[/h2]
+
+This is an unsigned community executable that modifies stellaris.exe. Windows or antivirus software may display a warning. Review the source before running it if this is a concern.
+
+[url=https://github.com/StellarWarp/better_colony_automation]Source code, tests, and reverse-engineering notes[/url]

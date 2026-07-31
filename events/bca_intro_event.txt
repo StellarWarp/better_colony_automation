@@ -30,12 +30,12 @@ event = {
 	hide_window = yes
 
 	trigger = {
-		NOT = { has_global_flag = bca_update_v2_0_3_shown }
+		NOT = { has_global_flag = bca_update_v2_1_0_shown }
 	}
 
 
 	immediate = {
-		set_global_flag = bca_update_v2_0_3_shown
+		set_global_flag = bca_update_v2_1_0_shown
 		every_playable_country = {
 			limit = { is_ai = no }
             create_message = {
@@ -44,6 +44,29 @@ event = {
                 localization = MESSAGE_BCA_UPDATE_desc
             }
         }
+	}
+}
+
+event = {
+	id = bca_intro_event.3
+
+	is_triggered_only = yes
+	hide_window = yes
+
+	trigger = {
+		NOT = { has_global_flag = bca_parallel_construction_patch_v0_1_0_shown }
+	}
+
+	immediate = {
+		set_global_flag = bca_parallel_construction_patch_v0_1_0_shown
+		every_playable_country = {
+			limit = { is_ai = no }
+			create_message = {
+				type = MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH
+				days = -1
+				localization = MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH_desc
+			}
+		}
 	}
 }
 

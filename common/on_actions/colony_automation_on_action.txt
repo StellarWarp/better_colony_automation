@@ -25,14 +25,15 @@ on_colonized = {
 
 on_district_complete = {
 	events = {
-		colony_automation_event.11  # 完成区块建设后移除规划标记
+		colony_automation_event.11  # 完成区划建设后移除规划标记
+		colony_automation_event.14  # 禁用区划拆除时同步规划下界
 	}
 }
 
 on_zone_complete = {
 	events = {
-		colony_automation_event.12  # 完成特化建设后移除规划标记
-		colony_automation_event.22  # 对于禁用特化拆除时再完成特化建设后同步规划标记
+		colony_automation_event.12  # 完成区划特化建设后移除规划标记
+		colony_automation_event.22  # 禁用区划特化拆除时同步规划标记
 	}
 }
 

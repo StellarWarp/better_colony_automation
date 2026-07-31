@@ -1,0 +1,39 @@
+target:
+  product: Stellaris
+  version: 4.4.6
+  image_base: 0x140000000
+  md5: 8B1BCA722491CF6DDEB66C5CD1CA0ADE
+  sha256: BC451C72D9654C8901F1BB0BEE1DD78D76F415465C2FBF746E9F98ADE333173A
+
+call_patch:
+  virtual_address: 0x140EE7081
+  rva: 0x0EE7081
+  file_offset: 0x0EE6481
+  expected_bytes: "E8 7A 22 F4 FF"
+  replacement_bytes: "E8 7A D6 4C 01"
+  original_target: 0x140E29300
+  replacement_target: 0x1423B4700
+
+helper:
+  source: automation_queue_capacity_guard.asm
+  payload: automation_queue_capacity_guard.bin
+  virtual_address: 0x1423B4700
+  rva: 0x23B4700
+  file_offset: 0x23B3B00
+  available_bytes: 0x100
+  payload_bytes: 0x61
+  expected_fill: 0x00
+  sha256: 36E3B9CCC8ECB275E966CC12272F31ADEBAF89F154AE75228B2383283066CC85
+  addressing: "RIP-relative; no injected absolute image addresses"
+
+behavior:
+  input: "RCX = colony"
+  result: "AL = queue_count >= effective_parallel_capacity"
+  invalid_queue_result: 0
+  queue_count_offset: 0x2C
+  effective_parallel_capacity_offset: 0x48
+
+rollback:
+  call_bytes: "E8 7A 22 F4 FF"
+  helper_fill: 0x00
+  helper_fill_bytes: 0x100

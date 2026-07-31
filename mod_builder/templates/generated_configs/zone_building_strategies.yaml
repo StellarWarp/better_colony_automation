@@ -437,6 +437,35 @@ building_strategy_zone_contexts:
     - building_stronghold
   types:
   - fortress
+  - missile
+  - gun
+  - laser
+  - fighter
+- context: wilderness_fortress
+  building_outputs:
+    building_dread_encampment: []
+    building_military_academy: []
+    building_planetary_shield_generator: []
+    building_fe_fortress: []
+    building_stronghold: []
+    building_cradle_of_rebirth: []
+    building_planetary_carapace: []
+  strategy_buckets:
+  - strategy: efficiency
+    buildings:
+    - building_dread_encampment
+    - building_military_academy
+    - building_planetary_shield_generator
+  - strategy: job_only
+    buildings:
+    - building_fe_fortress
+    - building_stronghold
+    - building_planetary_carapace
+  - strategy: job_bookend
+    buildings:
+    - building_cradle_of_rebirth
+  types:
+  - wilderness_fortress
 - context: wilderness_energy
   building_outputs:
     building_cradle_of_rebirth: []
@@ -476,19 +505,6 @@ building_strategy_zone_contexts:
     - building_massive_growth_1
   types:
   - wilderness_food
-- context: wilderness_fortress
-  building_outputs:
-    building_cradle_of_rebirth: []
-    building_planetary_carapace: []
-  strategy_buckets:
-  - strategy: job_bookend
-    buildings:
-    - building_cradle_of_rebirth
-  - strategy: job_only
-    buildings:
-    - building_planetary_carapace
-  types:
-  - wilderness_fortress
 - context: wilderness_research
   building_outputs:
     building_cradle_of_rebirth: []

@@ -267,7 +267,14 @@ Useful package-specific checks:
 ```powershell
 conda run -n better_colony_automation python scripts/publish_mod.py --dry-run --package main
 conda run -n better_colony_automation python scripts/publish_mod.py --dry-run --package job_regulation
+conda run -n better_colony_automation python scripts/publish_mod.py --dry-run --package colony_automation_parallelize_patch
 ```
+
+Packages may declare `launcher_descriptor` in `publish_mod.yaml`. The
+publisher then derives the external launcher `.mod` file from the package's
+published `descriptor.mod` and appends the resolved target `path`. This keeps
+launcher metadata synchronized without treating the external descriptor as a
+second hand-maintained source.
 
 Publication ownership comes from the first line of source templates, not from
 manual edits to generated runtime files.

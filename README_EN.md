@@ -5,7 +5,7 @@
 ### Construction Features
 
 #### Smart Construction Logic
-- **Build on Demand**: Construction triggers only when there are insufficient jobs and no other ongoing construction. Can be bypassed by decisions to force early builds.
+- **Build on Demand**: Construction triggers only when there are insufficient jobs and a native construction slot is free. Can be bypassed by decisions to force early builds.
 - **Special Buildings**: Population growth buildings (Clinics, Clone Vats, Revitalization Centers, Gene Clinics) and beneficial auxiliary buildings will be built when jobs are available.
 - **Mineral Reserve**: Added a national **Mineral Reserve Policy**. If minerals fall below the threshold, automation pauses to prevent economic collapse.
 
@@ -66,6 +66,12 @@
 - Currently supports only vanilla buildings and districts.
 
 ## Changelog
+
+哇噗 **26-07-31 - v2.1.0**
+- Reworked economic-management rows into a shared configuration, added live resource values, and added a persistent main-interface entry for BCA Global Settings.
+- Construction planning now uses all free native construction slots, including capacity granted by `planet_building_capacity_add`; job regulation continues independently of construction queue availability.
+- Fixed Nomad Arkship secondary-district ordering, plan synchronization after construction, and designation reset behavior; added fortress-building support for Arkship combat specializations.
+- Added the optional **Colony Automation: Parallel Construction Patch** for Windows x64 Stellaris 4.4.6. Close the game and run `Install Patch.bat` from the patch mod's local folder; the patch mod does not need to be enabled in the launcher, and subscribing only downloads the installer.
 
 哇噗 **26-07-04 - v2.0.3**
 - Fixed colony automation sometimes always prioritizing primary districts instead of following planned district construction.

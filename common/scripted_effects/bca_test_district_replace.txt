@@ -346,10 +346,6 @@ bca_add_district_d2 = {
         add_district = { district_type = district_hollow_mountains }
     }
     else_if = {
-        limit = { has_district = district_ark_forever_cruise }
-        add_district = { district_type = district_ark_forever_cruise }
-    }
-    else_if = {
         limit = { has_district = district_ark_basic }
         add_district = { district_type = district_ark_basic }
     }
@@ -388,10 +384,6 @@ bca_add_district_d2 = {
     else_if = {
         limit = { bca_can_build_district_hollow_mountains = yes }
         add_district = { district_type = district_hollow_mountains }
-    }
-    else_if = {
-        limit = { bca_can_build_district_ark_forever_cruise = yes }
-        add_district = { district_type = district_ark_forever_cruise }
     }
     else_if = {
         limit = { bca_can_build_district_ark_basic = yes }
@@ -436,10 +428,6 @@ bca_remove_district_d2 = {
     else_if = {
         limit = { has_district = district_hollow_mountains }
         remove_district = district_hollow_mountains
-    }
-    else_if = {
-        limit = { has_district = district_ark_forever_cruise }
-        remove_district = district_ark_forever_cruise
     }
     else_if = {
         limit = { has_district = district_ark_basic }
@@ -490,6 +478,10 @@ bca_add_district_d3 = {
         add_district = { district_type = district_ark_military }
     }
     else_if = {
+        limit = { has_district = district_ark_forever_cruise }
+        add_district = { district_type = district_ark_forever_cruise }
+    }
+    else_if = {
         limit = { bca_can_build_district_resort_3 = yes }
         add_district = { district_type = district_resort_3 }
     }
@@ -528,6 +520,10 @@ bca_add_district_d3 = {
     else_if = {
         limit = { bca_can_build_district_ark_military = yes }
         add_district = { district_type = district_ark_military }
+    }
+    else_if = {
+        limit = { bca_can_build_district_ark_forever_cruise = yes }
+        add_district = { district_type = district_ark_forever_cruise }
     }
 }
 
@@ -572,6 +568,10 @@ bca_remove_district_d3 = {
     else_if = {
         limit = { has_district = district_ark_military }
         remove_district = district_ark_military
+    }
+    else_if = {
+        limit = { has_district = district_ark_forever_cruise }
+        remove_district = district_ark_forever_cruise
     }
 }
 # Scope = Planet

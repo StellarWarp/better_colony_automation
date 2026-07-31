@@ -1,5 +1,8 @@
 {# Numeric labels are shared by every supported language. #}
 all:
+ BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K: "K"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M: "M"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY: ""
 {% set generated_step_ids = [] %}
 {% for row in bca_global_settings_economic_rows %}
 {% for step in row.steps %}
@@ -9,9 +12,35 @@ all:
 {% endif %}
 {% endfor %}
 {% endfor %}
+{% for row in bca_global_settings_economic_rows %}
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_TARGET_VALUE: "§H[From.bca_gs_economic_target_{{ row.name }}_number][From.bca_gs_economic_target_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_SUMMARY: "[From.bca_gs_economic_stockpile_{{ row.name }}_number][From.bca_gs_economic_stockpile_{{ row.name }}_unit][From.bca_gs_economic_income_{{ row.name }}_display]"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE: "[From.bca_gs_economic_difference_{{ row.name }}_display]"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_POSITIVE: "§G+[From.bca_gs_economic_income_{{ row.name }}_number][From.bca_gs_economic_income_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_NEGATIVE: "§R[From.bca_gs_economic_income_{{ row.name }}_number][From.bca_gs_economic_income_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_ZERO: "§W0§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_INACTIVE: "--"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEEDS: "£bca_gs_dot_red£ §R+[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SURPLUS: "£bca_gs_dot_green£ §G[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_POSITIVE: "£bca_gs_dot_blue£ §B+[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_NEGATIVE: "£bca_gs_dot_blue£ §B[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_ZERO: "£bca_gs_dot_blue£ §B0§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_POSITIVE: "£bca_gs_dot_blue£ §B+[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_NEGATIVE: "£bca_gs_dot_blue£ §B[From.bca_gs_economic_difference_{{ row.name }}_number][From.bca_gs_economic_difference_{{ row.name }}_unit]§!"
+ BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_ZERO: "£bca_gs_dot_blue£ §B0§!"
+{% endfor %}
 {% for step in bca_global_settings_economic_tolerance_steps %}
 {% if step.id not in generated_step_ids %}
 {% set _ = generated_step_ids.append(step.id) %}
  {{ step.text }}: "{{ step.label }}"
 {% endif %}
+{% endfor %}
+{% set generated_reserve_step_texts = [] %}
+{% for row in bca_global_settings_reserve_rows %}
+{% for step in row.negative_options + row.positive_options %}
+{% if step.label is defined and step.text not in generated_reserve_step_texts %}
+{% set _ = generated_reserve_step_texts.append(step.text) %}
+ {{ step.text }}: "{{ step.label }}"
+{% endif %}
+{% endfor %}
 {% endfor %}

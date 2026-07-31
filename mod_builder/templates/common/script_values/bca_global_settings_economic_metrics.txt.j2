@@ -1,0 +1,31 @@
+{% for row in bca_global_settings_economic_rows %}
+bca_gs_economic_target_{{ row.name }} = {
+    set = {{ row.variable }}
+}
+
+bca_gs_economic_stockpile_{{ row.name }} = {
+    complex_trigger_modifier = {
+        trigger = resource_stockpile_compare
+        parameters = {
+            resource = {{ row.resource }}
+        }
+        mode = set
+    }
+}
+
+bca_gs_economic_income_{{ row.name }} = {
+    complex_trigger_modifier = {
+        trigger = resource_income_compare
+        parameters = {
+            resource = {{ row.resource }}
+        }
+        mode = set
+    }
+}
+
+bca_gs_economic_difference_{{ row.name }} = {
+    set = value:bca_gs_economic_target_{{ row.name }}
+    subtract = value:bca_gs_economic_income_{{ row.name }}
+}
+
+{% endfor %}

@@ -196,14 +196,15 @@ containerWindowType = {
             {% set _ = positive_options.append({"name": option.id, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.id}) %}
         {% endfor %}
         {{
-            gsc.multi_step_value_row(
-                name = "economic_" ~ row.name, text = row.text, value_text = row.value_text,
-                status_text = row.status_text, tooltip = row.tooltip, value_effect = row.mode_effect,
+            gsc.economic_value_row(
+                name = "economic_" ~ row.name, text = row.text,
+                summary_text = row.summary_text,
+                difference_text = row.difference_text, value_text = row.value_text,
+                tooltip = row.tooltip, value_effect = row.mode_effect,
                 value_tooltip = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_MODE_TOOLTIP",
                 negative_options = negative_options, positive_options = positive_options,
                 x = content_x, y = row_y, width = full_width, height = economy_row_height,
-                value_width = 76, button_width = 46, button_gap = 6, control_gap = 8,
-                label_effect = "bca_tab_visible_0", status_effect = "bca_tab_visible_0"
+                label_effect = "bca_tab_visible_0"
             )
         }}
     {% endfor %}
@@ -315,7 +316,7 @@ containerWindowType = {
     }}
     {{
         gsc.choice_row(name = "pop_assembly", text = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
-            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + behavior_row_height + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 86, button_gap = 8, options = pop_assembly_choices, label_effect = "bca_tab_visible_2")
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + behavior_row_height + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 118, button_gap = 8, options = pop_assembly_choices, label_effect = "bca_tab_visible_2")
     }}
     {{
         gsc.choice_row(name = "deurbanization", text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION", tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",

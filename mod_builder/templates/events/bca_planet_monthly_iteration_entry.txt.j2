@@ -23,7 +23,6 @@ country_event = {
 
         every_owned_colony = {
             limit = {
-                has_building_construction = no
                 is_under_colonization = no
             }
             # 初始化检查
@@ -31,14 +30,24 @@ country_event = {
                 limit = { NOT = { has_carrier_flag = bca_pf_ps_initialized } }
                 carrier_event = { id = colony_automation_event.26 }
             }
-            carrier_event = { id = colony_automation_event.28}
-            carrier_event = { id = colony_automation_event.112} # 在建设前清除标识
-            carrier_event = { id = colony_automation_event.10} # 资源特化区块自动规划
-            carrier_event = { id = colony_automation_event.20 } # 特化建造
-            carrier_event = { id = colony_automation_event.1} # 区划建造
-            carrier_event = { id = colony_automation_event.2} # 区划拆除
-            carrier_event = { id = colony_automation_event.21 } # 特化拆除
-            bca_auto_building_destruction_entry = yes # 建筑自动拆除
+            if = {
+                limit = {
+                    num_buildings = {
+                        type = any
+                        in_construction = yes
+                        owner_type = normal
+                        value < value:bca_parallel_construction_capacity
+                    }
+                }
+                carrier_event = { id = colony_automation_event.28}
+                carrier_event = { id = colony_automation_event.112} # 在建设前清除标识
+                carrier_event = { id = colony_automation_event.10} # 资源特化区块自动规划
+                carrier_event = { id = colony_automation_event.20 } # 特化建造
+                carrier_event = { id = colony_automation_event.1} # 区划建造
+                carrier_event = { id = colony_automation_event.2} # 区划拆除
+                carrier_event = { id = colony_automation_event.21 } # 特化拆除
+                bca_auto_building_destruction_entry = yes # 建筑自动拆除
+            }
             if = {
                 limit = {
                     check_variable_arithmetic = {

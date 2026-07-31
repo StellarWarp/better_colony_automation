@@ -220,7 +220,7 @@
             width = 812,
             height = 54,
             label_width = 212,
-            default_button_width = 96,
+            default_button_width = 112,
             action_button_width = 92,
             button_gap = 8,
             column_gap = 18,
@@ -674,5 +674,119 @@
             quadTextureSprite = "GFX_bca_button_standard_disabled"
             effect = "{{ option.effect }}"
         }
+    {% endfor %}
+{%- endmacro %}
+
+{% macro economic_value_row(
+            name,
+            text,
+            summary_text,
+            difference_text,
+            value_text,
+            tooltip,
+            value_effect,
+            negative_options,
+            positive_options,
+            x,
+            y,
+            width=812,
+            height=32,
+            value_tooltip="",
+            label_effect=""
+        ) -%}
+    {% set button_height = height - 8 %}
+    {% set resource_x = 14 %}
+    {% set resource_width = 128 %}
+    {% set summary_x = 164 %}
+    {% set summary_width = 104 %}
+    {% set difference_x = 276 %}
+    {% set difference_width = 114 %}
+    {% set negative_start_x = 406 %}
+    {% set button_width = 46 %}
+    {% set button_gap = 6 %}
+    {% set value_x = 564 %}
+    {% set value_width = 76 %}
+    {% set positive_start_x = 648 %}
+    effectButtonType = {
+        name = "{{ name }}_bg"
+        position = { x = {{ x }} y = {{ y }} }
+        size = { x = {{ width }} y = {{ height }} }
+        quadTextureSprite = "GFX_interface_list_dark"
+        alwaysTransparent = yes
+        {% if label_effect %}
+            effect = "{{ label_effect }}"
+        {% endif %}
+    }
+    effectButtonType = {
+        name = "{{ name }}_label"
+        font = "cg_16b"
+        buttonText = "{{ text }}"
+        position = { x = {{ x + resource_x }} y = {{ y }} }
+        size = { x = {{ resource_width }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        tooltipText = "{{ tooltip }}"
+        alwaysTransparent = yes
+        {% if label_effect %}
+            effect = "{{ label_effect }}"
+        {% endif %}
+    }
+    {% for metric in [
+        {"name": "summary", "text": summary_text, "x": summary_x, "width": summary_width},
+        {"name": "difference", "text": difference_text, "x": difference_x, "width": difference_width}
+    ] %}
+    effectButtonType = {
+        name = "{{ name }}_{{ metric.name }}"
+        font = "cg_16b"
+        buttonText = "{{ metric.text }}"
+        position = { x = {{ x + metric.x }} y = {{ y }} }
+        size = { x = {{ metric.width }} y = {{ height }} }
+        format = left
+        vertical_alignment = center
+        alwaysTransparent = yes
+        {% if label_effect %}
+            effect = "{{ label_effect }}"
+        {% endif %}
+    }
+    {% endfor %}
+    {% for option in negative_options %}
+        {% set option_x = x + negative_start_x + loop.index0 * (button_width + button_gap) %}
+    effectButtonType = {
+        name = "{{ name }}_{{ option.name }}"
+        position = { x = {{ option_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ option.text }}"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ option.effect }}"
+    }
+    {% endfor %}
+    effectButtonType = {
+        name = "{{ name }}_value"
+        position = { x = {{ x + value_x }} y = {{ y + 4 }} }
+        size = { x = {{ value_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ value_text }}"
+        format = center
+        vertical_alignment = center
+        tooltipText = "{{ value_tooltip }}"
+        alwaysTransparent = no
+        effect = "{{ value_effect }}"
+    }
+    {% for option in positive_options %}
+        {% set option_x = x + positive_start_x + loop.index0 * (button_width + button_gap) %}
+    effectButtonType = {
+        name = "{{ name }}_{{ option.name }}"
+        position = { x = {{ option_x }} y = {{ y + 4 }} }
+        size = { x = {{ button_width }} y = {{ button_height }} }
+        font = "cg_16b"
+        buttonText = "{{ option.text }}"
+        format = center
+        vertical_alignment = center
+        quadTextureSprite = "GFX_bca_button_standard_disabled"
+        effect = "{{ option.effect }}"
+    }
     {% endfor %}
 {%- endmacro %}

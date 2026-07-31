@@ -573,13 +573,6 @@ num_district_d2 = {
     complex_trigger_modifier = {
         trigger = num_districts
         parameters = {
-            type = district_ark_forever_cruise
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_districts
-        parameters = {
             type = district_ark_basic
         }
         mode = add
@@ -655,6 +648,13 @@ num_district_d3 = {
         trigger = num_districts
         parameters = {
             type = district_ark_military
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_districts
+        parameters = {
+            type = district_ark_forever_cruise
         }
         mode = add
     }
@@ -1394,14 +1394,6 @@ num_free_district_d2 = {
     }
     complex_trigger_modifier = {
         trigger = num_free_districts
-        parameters = { type = district_ark_forever_cruise }
-        mode = set
-        potential = {
-            bca_can_build_district_ark_forever_cruise = yes
-        }
-    }
-    complex_trigger_modifier = {
-        trigger = num_free_districts
         parameters = { type = district_ark_basic }
         mode = set
         potential = {
@@ -1490,6 +1482,14 @@ num_free_district_d3 = {
         mode = set
         potential = {
             bca_can_build_district_ark_military = yes
+        }
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_ark_forever_cruise }
+        mode = set
+        potential = {
+            bca_can_build_district_ark_forever_cruise = yes
         }
     }
 }
@@ -12048,10 +12048,6 @@ bca_district_max_add_d2 = {
         set = value:bca_planet_max_districts
     }
     modifier = {
-        bca_can_build_district_ark_forever_cruise = yes
-        set = value:bca_planet_max_districts
-    }
-    modifier = {
         bca_can_build_district_ark_basic = yes
         set = value:bca_planet_max_districts
     }
@@ -12095,6 +12091,10 @@ bca_district_max_add_d3 = {
     }
     modifier = {
         bca_can_build_district_ark_military = yes
+        set = value:bca_planet_max_districts
+    }
+    modifier = {
+        bca_can_build_district_ark_forever_cruise = yes
         set = value:bca_planet_max_districts
     }
 }
@@ -12183,10 +12183,6 @@ bca_potential_district_max_add_d2 = {
         set = value:bca_planet_max_districts
     }
     modifier = {
-        bca_can_build_district_ark_forever_cruise = yes
-        set = value:bca_planet_max_districts
-    }
-    modifier = {
         bca_can_build_district_ark_basic = yes
         set = value:bca_planet_max_districts
     }
@@ -12235,6 +12231,10 @@ bca_potential_district_max_add_d3 = {
     }
     modifier = {
         bca_can_build_district_ark_military = yes
+        set = value:bca_planet_max_districts
+    }
+    modifier = {
+        bca_can_build_district_ark_forever_cruise = yes
         set = value:bca_planet_max_districts
     }
     modifier = {

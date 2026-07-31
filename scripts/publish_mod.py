@@ -91,6 +91,21 @@ def package_configs(config: dict, *, base: Path) -> dict[str, dict]:
             package.get("clean_paths", config.get("clean_paths", DEFAULT_CLEAN_PATHS)),
             package_name=name,
         )
+        if package.get("launcher_descriptor"):
+            launcher_descriptor = expand_path(
+                package["launcher_descriptor"],
+                base=base,
+            )
+            if launcher_descriptor.suffix.lower() != ".mod":
+                raise ValueError(
+                    f"launcher descriptor for {name} must use the .mod extension"
+                )
+            if launcher_descriptor == ROOT_DIR or ROOT_DIR in launcher_descriptor.parents:
+                raise ValueError(
+                    f"launcher descriptor cannot be inside the repository: "
+                    f"{launcher_descriptor}"
+                )
+            package["launcher_descriptor_path"] = launcher_descriptor
     targets = [package["target_path"] for package in packages.values()]
     if len(set(targets)) != len(targets):
         raise ValueError("publish targets must be unique")
@@ -270,6 +285,35 @@ def publish(
             if not dry_run:
                 item.destination.parent.mkdir(parents=True, exist_ok=True)
                 shutil.copy2(item.source, item.destination)
+            copied += 1
+
+        launcher_descriptor = package.get("launcher_descriptor_path")
+        if launcher_descriptor is not None:
+            descriptor_items = [
+                item
+                for item in package_items
+                if item.relative_destination == Path("descriptor.mod")
+            ]
+            if len(descriptor_items) != 1:
+                raise ValueError(
+                    f"package {package_name} requires exactly one published descriptor.mod"
+                )
+            descriptor_text = descriptor_items[0].source.read_text(
+                encoding="utf-8"
+            ).rstrip()
+            launcher_text = (
+                descriptor_text
+                + "\n"
+                + f'path="{target.as_posix()}"\n'
+            )
+            if verbose:
+                print(
+                    f"WRITE  {launcher_descriptor} "
+                    f"(launcher descriptor for {package_name})"
+                )
+            if not dry_run:
+                launcher_descriptor.parent.mkdir(parents=True, exist_ok=True)
+                launcher_descriptor.write_text(launcher_text, encoding="utf-8")
             copied += 1
 
         result[package_name] = {

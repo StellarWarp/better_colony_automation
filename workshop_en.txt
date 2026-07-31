@@ -4,13 +4,12 @@
 
 [hr][/hr]
 
-[h2]Recent Update - v2.0.3[/h2]
+[h2]Recent Update - v2.1.0[/h2]
 
-[b]·[/b] Fixed colony automation sometimes always prioritizing primary districts instead of following planned district construction.
-[b]·[/b] Fixed planned secondary zone specializations being cleared incorrectly when zone auto-demolition was disabled.
-[b]·[/b] Fixed some district values not displaying correctly in the district planning UI.
-[b]·[/b] Fixed agricultural buildings being incorrectly demolished in some cases.
-[b]·[/b] Fixed resource status markers in job regulation tooltips showing as ? in some English font setups.
+[b]·[/b] Improved the Global Settings UI with live resource values and a persistent main-interface entry.
+[b]·[/b] Construction automation now uses free parallel slots; job regulation no longer waits for an empty construction queue.
+[b]·[/b] Fixed several planning and synchronization issues, including Nomad Arkship district ordering.
+[b]·[/b] Added the optional [url=https://steamcommunity.com/sharedfiles/filedetails/?id=3774886744]Parallel Construction Patch[/url] for Windows x64 Stellaris 4.4.6. Run [b]Install Patch.bat[/b] while the game is closed; it does not need launcher enablement.
 
 [hr][/hr]
 
@@ -18,21 +17,21 @@
 
 BCA reduces repetitive colony management by handling construction, demolition, transitions, and resource control from your plan.
 
-✔ Automatically builds buildings, districts, and zone specializations
-✔ Automatically removes buildings, districts, and zone specializations that no longer match the plan, supporting colony transitions
+✔ Automatically builds buildings, districts, and district specializations
+✔ Automatically removes buildings, districts, and district specializations that no longer match the plan, supporting colony transitions
 ✔ Controls construction pace through mineral reserves, free jobs, and economic output targets
 ✔ Improves most vanilla colony automation options, including pop assembly, housing, rare resources, and crime management
 ✔ Provides a colony district settings panel and a global settings panel for planning and batch adjustments
 
 [h2]What do you need to plan?[/h2]
 
-BCA selects default zone-specialization preferences from the colony designation. Usually, [b]choosing the designation[/b] is enough.
+BCA selects default district specialization preferences from the colony designation. Usually, [b]choosing the designation[/b] is enough.
 
 For finer planning, you can manually adjust:
 
-[b]·[/b] Zone specializations: change primary or secondary production directions
+[b]·[/b] District specializations: change primary or secondary production directions
 [b]·[/b] District counts: set how many districts of each type should be built
-[b]·[/b] Demolition policy: whether BCA may remove buildings, districts, and zone specializations that do not match the plan
+[b]·[/b] Demolition policy: whether BCA may remove buildings, districts, and district specializations that do not match the plan
 [b]·[/b] Global rules: resource reserves, free-job thresholds, pre-construction, and economic output targets
 
 Once configured, BCA executes the plan during monthly automation.
@@ -41,11 +40,11 @@ Once configured, BCA executes the plan during monthly automation.
 
 1. [b]Enable Colony Automation[/b]: Turn on Planet Automation in the planet interface.
 2. [b]Configure automation options[/b]: Keep what BCA should manage, disable what you want to handle manually.
-3. [b]Check the colony district settings panel[/b]: Defaults follow the colony designation. For mixed planning, adjust zone specializations and district counts.
+3. [b]Check the colony district settings panel[/b]: Defaults follow the colony designation. For mixed planning, adjust district specializations and district counts.
 4. [b]Set global rules[/b]: Use Global Automation Settings to configure resource reserves, free-job thresholds, pre-construction, economic management, and default auto-demolition behavior.
 5. [b]Let time advance[/b]: BCA performs construction and demolition during the monthly automation flow.
 
-If unsure, keep most defaults and set only the colony designation and zone specializations first.
+If unsure, keep most defaults and set only the colony designation and district specializations first.
 
 [h2]Extension: Job Statistics & Regulation[/h2]
 
@@ -84,23 +83,23 @@ https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
 [b]✅ More building slots[/b]
 [b]✅ Larger planets and higher district capacity[/b]
-[b]⚠️⚠️ More zone slots[/b] BCA will not build extra zone specializations and may remove extras if zone auto-demolition is enabled.
+[b]⚠️⚠️ More district specialization slots[/b] BCA will not build extra district specializations and may remove extras if district specialization auto-demolition is enabled.
 
 [b]⚠️ Mod buildings[/b] Only vanilla buildings are automated.
 [b]🟥 Mod districts[/b] Not supported. Extra district types may break automation behavior.
-[b]⚠️ Mod zones[/b] Only vanilla zone specializations are automated.
+[b]⚠️ Mod district specializations[/b] Only vanilla district specializations are automated.
 
 Compatible with Ultimate Automation if BCA loads after it and Ultimate Automation's planet automation is disabled.
 
 [h2]FAQ[/h2]
 
-[b]Q: Will BCA automatically choose the best colony designation and zone specializations for me?[/b]
+[b]Q: Will BCA automatically choose the best colony designation and district specializations for me?[/b]
 
-A: No. Colony designation, primary zones, and secondary zones are part of your plan. BCA follows that plan.
+A: No. The colony designation and its primary and secondary district specializations are part of your plan. BCA follows that plan.
 
 [b]Q: Where is the global settings panel?[/b]
 
-A: Use the upper-left button in the colony district settings panel, or the Global Automation Settings edict.
+A: Use the persistent lower-left button in the main interface, the upper-left button in the colony district settings panel, or the Global Automation Settings edict.
 
 [b]Q: I cannot see the colony district settings panel. What should I do?[/b]
 
@@ -117,17 +116,17 @@ A: Automatic construction requires:
 
 [b]Q: What if I only want BCA to build things, not demolish them?[/b]
 
-A: Disable building, district, or zone auto-demolition. Defaults and bulk application are in global settings.
+A: Disable building, district, or district specialization auto-demolition. Defaults and bulk application are in global settings.
 
-[b]Q: Why did my zone specialization disappear?[/b]
+[b]Q: Why did my district specialization disappear?[/b]
 
-A: Zone auto-demolition may be enabled. BCA removes zones that do not match the panel plan. When disabled, built zones are synced back into the panel.
+A: District specialization auto-demolition may be enabled. BCA removes district specializations that do not match the panel plan. When disabled, built district specializations are synced back into the panel.
 
 [b]Q: Can I only use job statistics or job regulation?[/b]
 
 A: They are in the optional submod. For statistics only, disable Colony Automation and Global Job Regulation. For regulation, Colony Automation must be enabled, but other options can be disabled except Job Management.
 
-[b]Q: Are buildings, districts, and zone specializations from other mods supported?[/b]
+[b]Q: Are buildings, districts, and district specializations from other mods supported?[/b]
 
 A: Mainly vanilla content. More building slots and larger planets usually work. New district types are high-risk.
 

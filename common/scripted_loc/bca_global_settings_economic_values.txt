@@ -16,8 +16,126 @@ defined_text = {
 
 
 defined_text = {
-    name = bca_gs_expect_output_energy_value_raw
-    value = bca_expect_output_energy
+    name = bca_gs_economic_target_energy_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_energy|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_energy_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_energy|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_energy|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_energy_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_energy|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_energy_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_energy|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_energy|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_energy_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_energy|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_energy_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_energy|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_energy|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_energy_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_energy|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_energy_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_energy|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_energy|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -35,25 +153,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_ENERGY"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_energy_status
+    name = bca_gs_economic_income_energy_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_energy = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_energy
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_energy
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_minerals_value_raw
-    value = bca_expect_output_minerals
+    name = bca_gs_economic_difference_energy_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_energy_forbidden
+                has_country_flag = bca_economic_target_energy_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_energy
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_energy
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_energy = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_energy = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_energy
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_energy
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ENERGY_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_minerals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_minerals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_minerals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_minerals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_minerals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_minerals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_minerals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_minerals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_minerals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_minerals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_minerals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_minerals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_minerals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_minerals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_minerals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_minerals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_minerals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_minerals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_minerals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_minerals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -71,25 +386,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_MINERALS"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_minerals_status
+    name = bca_gs_economic_income_minerals_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_minerals = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_minerals
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_minerals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_food_value_raw
-    value = bca_expect_output_food
+    name = bca_gs_economic_difference_minerals_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_minerals_forbidden
+                has_country_flag = bca_economic_target_minerals_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_minerals
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_minerals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_minerals = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_minerals = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_minerals
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_minerals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_MINERALS_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_food_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_food|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_food_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_food|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_food|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_food_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_food|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_food_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_food|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_food|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_food_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_food|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_food_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_food|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_food|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_food_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_food|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_food_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_food|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_food|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -107,25 +619,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_FOOD"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_food_status
+    name = bca_gs_economic_income_food_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_food = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_food
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_food
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_alloys_value_raw
-    value = bca_expect_output_alloys
+    name = bca_gs_economic_difference_food_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_food_forbidden
+                has_country_flag = bca_economic_target_food_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_food
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_food
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_food = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_food = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_food
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_food
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_FOOD_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_alloys_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_alloys|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_alloys_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_alloys|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_alloys|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_alloys_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_alloys|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_alloys_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_alloys|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_alloys|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_alloys_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_alloys|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_alloys_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_alloys|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_alloys|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_alloys_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_alloys|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_alloys_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_alloys|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_alloys|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -143,25 +852,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_ALLOYS"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_alloys_status
+    name = bca_gs_economic_income_alloys_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_alloys = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_alloys
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_alloys
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_consumer_goods_value_raw
-    value = bca_expect_output_consumer_goods
+    name = bca_gs_economic_difference_alloys_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_alloys_forbidden
+                has_country_flag = bca_economic_target_alloys_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_alloys
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_alloys
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_alloys = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_alloys = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_alloys
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_alloys
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ALLOYS_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_consumer_goods_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_consumer_goods|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_consumer_goods_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_consumer_goods|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_consumer_goods|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_consumer_goods_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_consumer_goods|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_consumer_goods_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_consumer_goods|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_consumer_goods|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_consumer_goods_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_consumer_goods|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_consumer_goods_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_consumer_goods|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_consumer_goods|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_consumer_goods_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_consumer_goods|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_consumer_goods_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_consumer_goods|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_consumer_goods|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -179,25 +1085,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_CONSUMER_GOODS"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_consumer_goods_status
+    name = bca_gs_economic_income_consumer_goods_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_consumer_goods = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_consumer_goods
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_consumer_goods
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_trade_value_raw
-    value = bca_expect_output_trade
+    name = bca_gs_economic_difference_consumer_goods_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_consumer_goods_forbidden
+                has_country_flag = bca_economic_target_consumer_goods_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_consumer_goods
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_consumer_goods
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_consumer_goods = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_consumer_goods = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_consumer_goods
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_consumer_goods
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_CONSUMER_GOODS_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_trade_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_trade|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_trade_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_trade|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_trade|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_trade_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_trade|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_trade_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_trade|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_trade|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_trade_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_trade|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_trade_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_trade|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_trade|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_trade_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_trade|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_trade_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_trade|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_trade|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -215,25 +1318,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_TRADE"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_trade_status
+    name = bca_gs_economic_income_trade_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_trade = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_trade
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_trade
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_unity_value_raw
-    value = bca_expect_output_unity
+    name = bca_gs_economic_difference_trade_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_trade_forbidden
+                has_country_flag = bca_economic_target_trade_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_trade
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_trade
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_trade = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_trade = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_trade
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_trade
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_TRADE_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_unity_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_unity|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_unity_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_unity|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_unity|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_unity_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_unity|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_unity_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_unity|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_unity|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_unity_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_unity|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_unity_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_unity|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_unity|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_unity_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_unity|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_unity_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_unity|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_unity|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -251,25 +1551,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_UNITY"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_unity_status
+    name = bca_gs_economic_income_unity_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_unity = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_unity
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_unity
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_physics_research_value_raw
-    value = bca_expect_output_physics_research
+    name = bca_gs_economic_difference_unity_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_unity_forbidden
+                has_country_flag = bca_economic_target_unity_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_unity
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_unity
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_unity = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_unity = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_unity
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_unity
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_UNITY_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_physics_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_physics_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_physics_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_physics_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_physics_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_physics_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_physics_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_physics_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_physics_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_physics_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_physics_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_physics_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_physics_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_physics_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_physics_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_physics_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_physics_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_physics_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_physics_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_physics_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -287,25 +1784,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_PHYSICS_RESEARCH"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_physics_research_status
+    name = bca_gs_economic_income_physics_research_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_physics_research = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_physics_research
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_physics_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_society_research_value_raw
-    value = bca_expect_output_society_research
+    name = bca_gs_economic_difference_physics_research_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_physics_research_forbidden
+                has_country_flag = bca_economic_target_physics_research_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_physics_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_physics_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_physics_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_physics_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_physics_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_physics_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_PHYSICS_RESEARCH_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_society_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_society_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_society_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_society_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_society_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_society_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_society_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_society_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_society_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_society_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_society_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_society_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_society_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_society_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_society_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_society_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_society_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_society_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_society_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_society_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -323,25 +2017,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_SOCIETY_RESEARCH"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_society_research_status
+    name = bca_gs_economic_income_society_research_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_society_research = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_society_research
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_society_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_engineering_research_value_raw
-    value = bca_expect_output_engineering_research
+    name = bca_gs_economic_difference_society_research_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_society_research_forbidden
+                has_country_flag = bca_economic_target_society_research_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_society_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_society_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_society_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_society_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_society_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_society_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_SOCIETY_RESEARCH_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_engineering_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_engineering_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_engineering_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_engineering_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_engineering_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_engineering_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_engineering_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_engineering_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_engineering_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_engineering_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_engineering_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_engineering_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_engineering_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_engineering_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_engineering_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_engineering_research_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_engineering_research|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_engineering_research_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_engineering_research|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_engineering_research|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -359,25 +2250,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_ENGINEERING_RESEARCH"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_engineering_research_status
+    name = bca_gs_economic_income_engineering_research_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_engineering_research = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_engineering_research
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_engineering_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_rare_crystals_value_raw
-    value = bca_expect_output_rare_crystals
+    name = bca_gs_economic_difference_engineering_research_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_engineering_research_forbidden
+                has_country_flag = bca_economic_target_engineering_research_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_engineering_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_engineering_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_engineering_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_engineering_research = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_engineering_research
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_engineering_research
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_ENGINEERING_RESEARCH_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_rare_crystals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_rare_crystals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_rare_crystals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_rare_crystals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_rare_crystals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_rare_crystals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_rare_crystals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_rare_crystals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_rare_crystals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_rare_crystals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_rare_crystals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_rare_crystals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_rare_crystals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_rare_crystals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_rare_crystals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_rare_crystals_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_rare_crystals|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_rare_crystals_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_rare_crystals|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_rare_crystals|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -395,25 +2483,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_RARE_CRYSTALS"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_rare_crystals_status
+    name = bca_gs_economic_income_rare_crystals_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_rare_crystals = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_rare_crystals
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_rare_crystals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_volatile_motes_value_raw
-    value = bca_expect_output_volatile_motes
+    name = bca_gs_economic_difference_rare_crystals_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_rare_crystals_forbidden
+                has_country_flag = bca_economic_target_rare_crystals_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_rare_crystals
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_rare_crystals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_rare_crystals = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_rare_crystals = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_rare_crystals
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_rare_crystals
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_RARE_CRYSTALS_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_volatile_motes_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_volatile_motes|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_volatile_motes_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_volatile_motes|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_volatile_motes|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_volatile_motes_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_volatile_motes|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_volatile_motes_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_volatile_motes|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_volatile_motes|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_volatile_motes_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_volatile_motes|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_volatile_motes_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_volatile_motes|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_volatile_motes|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_volatile_motes_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_volatile_motes|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_volatile_motes_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_volatile_motes|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_volatile_motes|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -431,25 +2716,222 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_VOLATILE_MOTES"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_volatile_motes_status
+    name = bca_gs_economic_income_volatile_motes_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_volatile_motes = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_volatile_motes
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_volatile_motes
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_INCOME_ZERO
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_exotic_gases_value_raw
-    value = bca_expect_output_exotic_gases
+    name = bca_gs_economic_difference_volatile_motes_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_volatile_motes_forbidden
+                has_country_flag = bca_economic_target_volatile_motes_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_volatile_motes
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_volatile_motes
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_volatile_motes = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_volatile_motes = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_volatile_motes
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_volatile_motes
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_VOLATILE_MOTES_DIFFERENCE_SATISFIED_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_exotic_gases_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_target_exotic_gases|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_target_exotic_gases_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_exotic_gases|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_target_exotic_gases|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_exotic_gases_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_stockpile_exotic_gases|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_stockpile_exotic_gases_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_exotic_gases|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_stockpile_exotic_gases|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_exotic_gases_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_income_exotic_gases|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_income_exotic_gases_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_exotic_gases|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_income_exotic_gases|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_exotic_gases_number
+    value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_difference_exotic_gases|
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_exotic_gases_unit
+    random = no
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_exotic_gases|
+                value >= 1000000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_difference_exotic_gases|
+                value >= 1000
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
 }
 
 
@@ -467,17 +2949,96 @@ defined_text = {
         }
         localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_EXOTIC_GASES"
+    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_TARGET_VALUE"
 }
 
 
 defined_text = {
-    name = bca_gs_expect_output_exotic_gases_status
+    name = bca_gs_economic_income_exotic_gases_display
+    random = no
     text = {
         trigger = {
-            bca_country_needs_exotic_gases = yes
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_exotic_gases
+                value > 0
+            }
         }
-        localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_INCOME_POSITIVE
     }
-    default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_income_exotic_gases
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_INCOME_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_INCOME_ZERO
+}
+
+
+defined_text = {
+    name = bca_gs_economic_difference_exotic_gases_display
+    random = no
+    text = {
+        trigger = {
+            OR = {
+                has_country_flag = bca_economic_target_exotic_gases_forbidden
+                has_country_flag = bca_economic_target_exotic_gases_unlimited
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_INACTIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_exotic_gases
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_NEUTRAL_POSITIVE
+    }
+    text = {
+        trigger = {
+            NOT = { has_country_flag = bca_enable_economic_management }
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_exotic_gases
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_NEUTRAL_NEGATIVE
+    }
+    text = {
+        trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_NEUTRAL_ZERO
+    }
+    text = {
+        trigger = { bca_country_needs_exotic_gases = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_NEEDS
+    }
+    text = {
+        trigger = { bca_country_surplus_exotic_gases = yes }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_SURPLUS
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_exotic_gases
+                value > 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_SATISFIED_POSITIVE
+    }
+    text = {
+        trigger = {
+            check_variable_arithmetic = {
+                which = value:bca_gs_economic_difference_exotic_gases
+                value < 0
+            }
+        }
+        localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_SATISFIED_NEGATIVE
+    }
+    default = BCA_GLOBAL_SETTINGS_ECONOMIC_EXOTIC_GASES_DIFFERENCE_SATISFIED_ZERO
 }

@@ -801,25 +801,6 @@ bca_try_build_district_2 = {
                     bca_planet_build_needs_food = yes
                 }
                 AND = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_crew
-                    OR = {
-                        bca_planet_build_needs_unity = yes
-                        bca_planet_build_needs_trade = yes
-                    }
-                }
-                AND = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_engineering
-                    OR = {
-                        bca_planet_build_needs_engineering_research = yes
-                        bca_planet_build_needs_society_research = yes
-                        bca_planet_build_needs_physics_research = yes
-                    }
-                }
-                AND = {
-                    has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_forever_cruise_passenger
-                    bca_planet_build_needs_unity = yes
-                }
-                AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_harvest
                     bca_planet_build_needs_minerals = yes
                 }
@@ -1213,14 +1194,6 @@ bca_try_build_district_2 = {
                     bca_planet_build_needs_energy = yes
                 }
                 AND = {
-                    has_district = district_ark_forever_cruise
-                    OR = {
-                        bca_planet_build_needs_consumer_goods = yes
-                        bca_planet_build_needs_unity = yes
-                        bca_planet_build_needs_trade = yes
-                    }
-                }
-                AND = {
                     has_district = district_hab_mining
                     bca_planet_build_needs_minerals = yes
                 }
@@ -1280,6 +1253,25 @@ bca_try_build_district_3 = {
                 }
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_flight_decks
+                }
+                AND = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_crew
+                    OR = {
+                        bca_planet_build_needs_unity = yes
+                        bca_planet_build_needs_trade = yes
+                    }
+                }
+                AND = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_engineering
+                    OR = {
+                        bca_planet_build_needs_engineering_research = yes
+                        bca_planet_build_needs_society_research = yes
+                        bca_planet_build_needs_physics_research = yes
+                    }
+                }
+                AND = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_passenger
+                    bca_planet_build_needs_unity = yes
                 }
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_laser_capacitors
@@ -1733,6 +1725,14 @@ bca_try_build_district_3 = {
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_volatile_motes_nexus
                     bca_planet_build_needs_energy = yes
+                }
+                AND = {
+                    has_district = district_ark_forever_cruise
+                    OR = {
+                        bca_planet_build_needs_consumer_goods = yes
+                        bca_planet_build_needs_unity = yes
+                        bca_planet_build_needs_trade = yes
+                    }
                 }
                 AND = {
                     has_district = district_ark_military

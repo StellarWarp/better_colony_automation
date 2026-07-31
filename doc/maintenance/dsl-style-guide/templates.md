@@ -86,9 +86,12 @@ DDS generation. If more handwritten build config is needed, prefer moving it to
 
 The economic-management rows are maintained in
 `mod_builder/configs/global_settings_economic_rows.yaml`. Each row owns its
-identity, runtime variable, localization keys, effect names, and adjustment
-steps. The GUI, button effects, scripted localization, and shared numeric
-localization are generated from this file.
+identity, Stellaris `resource`, runtime variable, localization keys, effect
+names, and adjustment steps. `resource` is deliberately independent from the
+row name: it drives the live stockpile and income script values, so a future
+display-row rename does not silently change its game data source. The GUI,
+button effects, scripted localization, and shared numeric localization are
+generated from this file.
 
 When several rows use the same steps, define the YAML anchor on the first
 representative row and reference it from later rows. For example, `energy`

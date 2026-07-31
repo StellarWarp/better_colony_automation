@@ -190,7 +190,13 @@ demolition projections. See
    files, so normal `rg` searches skip generated runtime files.
 9. Normalize `localisation/` files to UTF-8 with BOM.
 10. Publish configured packages through `scripts/publish_mod.py` with quiet
-   output.
+    output.
+
+Native or otherwise standalone submods may own release tooling under
+`submods/<package>/`. Their generated release files are listed explicitly in
+the package's `root_files`; they are not routed through Jinja publish metadata.
+An optional `launcher_descriptor` keeps the external Paradox Launcher `.mod`
+record synchronized with the package descriptor and resolved target path.
 
 This means:
 

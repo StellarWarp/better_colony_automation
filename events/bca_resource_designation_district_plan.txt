@@ -101,6 +101,23 @@ carrier_event = {
 	}
 }
 
+# trigger by on_district_complete
+# keep district plans compatible with the completed layout when demolition is disabled
+carrier_event = {
+	id = colony_automation_event.14
+	is_triggered_only = yes
+	hide_window = yes
+	trigger = {
+		owner = {
+			is_ai = no
+		}
+		has_carrier_flag = bca_pf_disable_planet_auto_destruction_district
+	}
+	immediate = {
+		bca_clamp_district_plan_to_current_layout = yes
+	}
+}
+
 
 
 # trigger by on_building_complete

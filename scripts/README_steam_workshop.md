@@ -79,10 +79,13 @@ conda run -n better_colony_automation python scripts\update_steam_workshop.py
 
 ## 缩略图
 
-缩略图由各包目录中的 `thumbnail_0.png` 生成：
+各包直接维护最终的 `thumbnail.png`，不再使用通用的
+`thumbnail_0.png -> thumbnail.png` 中间生成链路。需要可重复构建的特殊封面时，
+构建脚本与源素材由对应 submod 自己维护。例如并行建造补丁使用：
 
 ```powershell
-conda run -n better_colony_automation python scripts\build_workshop_thumbnails.py
+conda run -n better_colony_automation python `
+  submods\colony_automation_parallelize_patch\build_thumbnail.py
 ```
 
 输出为 512x512 的 `thumbnail.png`。该文件会随 Mod 发布脚本复制到游戏 Mod 目录，但 Steam Workshop 网页预览图目前仍需手动上传。

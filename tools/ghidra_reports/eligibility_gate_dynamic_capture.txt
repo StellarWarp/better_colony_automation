@@ -1,0 +1,166 @@
+status: eligibility gate entry captured
+pid: 47152
+return_address: 0x00007FF67486A1E0
+
+=== lm m stellaris ===
+start             end                 module name
+
+=== r rip rsp rcx rdx r8 r9 r10 r11 rax ===
+command failed: OSError(-2147220987)
+
+=== k ===
+Child-SP          RetAddr               Call Site
+00000039`fbbfb768 00007ff6`7486a1e0     stellaris!PHYSFS_swapSLE64+0xd8c4f0
+00000039`fbbfb770 00007ff6`74869bca     stellaris!PHYSFS_swapSLE64+0xd8b720
+00000039`fbbfba10 00007ff6`74867771     stellaris!PHYSFS_swapSLE64+0xd8b10a
+00000039`fbbfba70 00007ff6`740bb5e6     stellaris!PHYSFS_swapSLE64+0xd88cb1
+00000039`fbbfbf00 00007ff6`740bb271     stellaris!PHYSFS_swapSLE64+0x5dcb26
+00000039`fbbfc160 00007ff6`73be8088     stellaris!PHYSFS_swapSLE64+0x5dc7b1
+00000039`fbbfc3a0 00007ff6`73bd8874     stellaris!PHYSFS_swapSLE64+0x1095c8
+00000039`fbbfe640 00007ff6`7554b0bd     stellaris!PHYSFS_swapSLE64+0xf9db4
+00000039`fbbfe960 00007ff6`75549b65     stellaris!PHYSFS_swapSLE64+0x1a6c5fd
+00000039`fbbfec20 00007ff6`73b4086c     stellaris!PHYSFS_swapSLE64+0x1a6b0a5
+00000039`fbbfed50 00007ff6`73cb7575     stellaris!PHYSFS_swapSLE64+0x61dac
+00000039`fbbfedc0 00007ff6`7553a991     stellaris!PHYSFS_swapSLE64+0x1d8ab5
+00000039`fbbff020 00007ff6`7553ae58     stellaris!PHYSFS_swapSLE64+0x1a5bed1
+00000039`fbbff080 00007ff6`73ad4a47     stellaris!PHYSFS_swapSLE64+0x1a5c398
+00000039`fbbff0b0 00007ff6`73acfc37     stellaris+0x154a47
+00000039`fbbff860 00007ff6`75b6bb02     stellaris+0x14fc37
+00000039`fbbff8c0 00007ff6`75b26a9e     stellaris!PHYSFS_writeUBE64+0x4dc192
+00000039`fbbff920 00007ffd`5098e957     stellaris!PHYSFS_writeUBE64+0x49712e
+00000039`fbbff960 00007ffd`5176ad6c     KERNEL32!BaseThreadInitThunk+0x17
+00000039`fbbff990 00000000`00000000     ntdll!RtlUserThreadStart+0x2c
+
+=== u @rip-20 L32 ===
+stellaris!PHYSFS_swapSLE64+0xd8c4d0:
+00007ff6`7486af90 8bbdd0000000    mov     edi,dword ptr [rbp+0D0h]
+00007ff6`7486af96 488da590000000  lea     rsp,[rbp+90h]
+00007ff6`7486af9d 415f            pop     r15
+00007ff6`7486af9f 415e            pop     r14
+00007ff6`7486afa1 415d            pop     r13
+00007ff6`7486afa3 415c            pop     r12
+00007ff6`7486afa5 5d              pop     rbp
+00007ff6`7486afa6 c3              ret
+00007ff6`7486afa7 cc              int     3
+00007ff6`7486afa8 cc              int     3
+00007ff6`7486afa9 cc              int     3
+00007ff6`7486afaa cc              int     3
+00007ff6`7486afab cc              int     3
+00007ff6`7486afac cc              int     3
+00007ff6`7486afad cc              int     3
+00007ff6`7486afae cc              int     3
+00007ff6`7486afaf cc              int     3
+00007ff6`7486afb0 48895c2408      mov     qword ptr [rsp+8],rbx
+00007ff6`7486afb5 48896c2410      mov     qword ptr [rsp+10h],rbp
+00007ff6`7486afba 4889742418      mov     qword ptr [rsp+18h],rsi
+00007ff6`7486afbf 57              push    rdi
+00007ff6`7486afc0 4154            push    r12
+00007ff6`7486afc2 4155            push    r13
+00007ff6`7486afc4 4156            push    r14
+00007ff6`7486afc6 4157            push    r15
+00007ff6`7486afc8 4883ec30        sub     rsp,30h
+00007ff6`7486afcc 4c8bbc2490000000 mov     r15,qword ptr [rsp+90h]
+00007ff6`7486afd4 4d8be1          mov     r12,r9
+00007ff6`7486afd7 498bc0          mov     rax,r8
+00007ff6`7486afda 4c8be9          mov     r13,rcx
+00007ff6`7486afdd 4d8bcf          mov     r9,r15
+00007ff6`7486afe0 4d8bc4          mov     r8,r12
+00007ff6`7486afe3 488bc8          mov     rcx,rax
+00007ff6`7486afe6 488bda          mov     rbx,rdx
+00007ff6`7486afe9 e8228891ff      call    stellaris!PHYSFS_swapSLE64+0x6a4d50 (00007ff6`74183810)
+00007ff6`7486afee 84c0            test    al,al
+00007ff6`7486aff0 0f8438010000    je      stellaris!PHYSFS_swapSLE64+0xd8c66e (00007ff6`7486b12e)
+00007ff6`7486aff6 488b842480000000 mov     rax,qword ptr [rsp+80h]
+00007ff6`7486affe 33f6            xor     esi,esi
+00007ff6`7486b000 448bc6          mov     r8d,esi
+00007ff6`7486b003 488b08          mov     rcx,qword ptr [rax]
+00007ff6`7486b006 8b510c          mov     edx,dword ptr [rcx+0Ch]
+00007ff6`7486b009 85d2            test    edx,edx
+00007ff6`7486b00b 7e39            jle     stellaris!PHYSFS_swapSLE64+0xd8c586 (00007ff6`7486b046)
+00007ff6`7486b00d 498b07          mov     rax,qword ptr [r15]
+00007ff6`7486b010 4c8b09          mov     r9,qword ptr [rcx]
+00007ff6`7486b013 4c8b10          mov     r10,qword ptr [rax]
+00007ff6`7486b016 66660f1f840000000000 nop word ptr [rax+rax]
+00007ff6`7486b020 4963c0          movsxd  rax,r8d
+00007ff6`7486b023 498b0cc1        mov     rcx,qword ptr [r9+rax*8]
+
+status: eligibility gate return captured
+
+=== r rip rsp rax al rcx rdx r8 r9 r10 r11 ===
+command failed: OSError(-2147220987)
+
+=== k ===
+Child-SP          RetAddr               Call Site
+00000039`fbbfb770 00007ff6`74869bca     stellaris!PHYSFS_swapSLE64+0xd8b720
+00000039`fbbfba10 00007ff6`74867771     stellaris!PHYSFS_swapSLE64+0xd8b10a
+00000039`fbbfba70 00007ff6`740bb5e6     stellaris!PHYSFS_swapSLE64+0xd88cb1
+00000039`fbbfbf00 00007ff6`740bb271     stellaris!PHYSFS_swapSLE64+0x5dcb26
+00000039`fbbfc160 00007ff6`73be8088     stellaris!PHYSFS_swapSLE64+0x5dc7b1
+00000039`fbbfc3a0 00007ff6`73bd8874     stellaris!PHYSFS_swapSLE64+0x1095c8
+00000039`fbbfe640 00007ff6`7554b0bd     stellaris!PHYSFS_swapSLE64+0xf9db4
+00000039`fbbfe960 00007ff6`75549b65     stellaris!PHYSFS_swapSLE64+0x1a6c5fd
+00000039`fbbfec20 00007ff6`73b4086c     stellaris!PHYSFS_swapSLE64+0x1a6b0a5
+00000039`fbbfed50 00007ff6`73cb7575     stellaris!PHYSFS_swapSLE64+0x61dac
+00000039`fbbfedc0 00007ff6`7553a991     stellaris!PHYSFS_swapSLE64+0x1d8ab5
+00000039`fbbff020 00007ff6`7553ae58     stellaris!PHYSFS_swapSLE64+0x1a5bed1
+00000039`fbbff080 00007ff6`73ad4a47     stellaris!PHYSFS_swapSLE64+0x1a5c398
+00000039`fbbff0b0 00007ff6`73acfc37     stellaris+0x154a47
+00000039`fbbff860 00007ff6`75b6bb02     stellaris+0x14fc37
+00000039`fbbff8c0 00007ff6`75b26a9e     stellaris!PHYSFS_writeUBE64+0x4dc192
+00000039`fbbff920 00007ffd`5098e957     stellaris!PHYSFS_writeUBE64+0x49712e
+00000039`fbbff960 00007ffd`5176ad6c     KERNEL32!BaseThreadInitThunk+0x17
+00000039`fbbff990 00000000`00000000     ntdll!RtlUserThreadStart+0x2c
+
+=== u @rip-20 L32 ===
+stellaris!PHYSFS_swapSLE64+0xd8b700:
+00007ff6`7486a1c0 7c24            jl      stellaris!PHYSFS_swapSLE64+0xd8b726 (00007ff6`7486a1e6)
+00007ff6`7486a1c2 28488b          sub     byte ptr [rax-75h],cl
+00007ff6`7486a1c5 9d              popfq
+00007ff6`7486a1c6 e000            loopne  stellaris!PHYSFS_swapSLE64+0xd8b708 (00007ff6`7486a1c8)
+00007ff6`7486a1c8 0000            add     byte ptr [rax],al
+00007ff6`7486a1ca 48895c2420      mov     qword ptr [rsp+20h],rbx
+00007ff6`7486a1cf 4d8bce          mov     r9,r14
+00007ff6`7486a1d2 4d8bc7          mov     r8,r15
+00007ff6`7486a1d5 498bd4          mov     rdx,r12
+00007ff6`7486a1d8 488bce          mov     rcx,rsi
+00007ff6`7486a1db e8d00d0000      call    stellaris!PHYSFS_swapSLE64+0xd8c4f0 (00007ff6`7486afb0)
+00007ff6`7486a1e0 84c0            test    al,al
+00007ff6`7486a1e2 0f84e7000000    je      stellaris!PHYSFS_swapSLE64+0xd8b80f (00007ff6`7486a2cf)
+00007ff6`7486a1e8 488b03          mov     rax,qword ptr [rbx]
+00007ff6`7486a1eb 8b480c          mov     ecx,dword ptr [rax+0Ch]
+00007ff6`7486a1ee 85c9            test    ecx,ecx
+00007ff6`7486a1f0 7e2d            jle     stellaris!PHYSFS_swapSLE64+0xd8b75f (00007ff6`7486a21f)
+00007ff6`7486a1f2 4d8bc5          mov     r8,r13
+00007ff6`7486a1f5 448bc9          mov     r9d,ecx
+00007ff6`7486a1f8 0f1f840000000000 nop     dword ptr [rax+rax]
+00007ff6`7486a200 488b4518        mov     rax,qword ptr [rbp+18h]
+00007ff6`7486a204 488b10          mov     rdx,qword ptr [rax]
+00007ff6`7486a207 488b03          mov     rax,qword ptr [rbx]
+00007ff6`7486a20a 488b08          mov     rcx,qword ptr [rax]
+00007ff6`7486a20d 4a8b0402        mov     rax,qword ptr [rdx+r8]
+00007ff6`7486a211 49290408        sub     qword ptr [r8+rcx],rax
+00007ff6`7486a215 4d8d4008        lea     r8,[r8+8]
+00007ff6`7486a219 4983e901        sub     r9,1
+00007ff6`7486a21d 75e1            jne     stellaris!PHYSFS_swapSLE64+0xd8b740 (00007ff6`7486a200)
+00007ff6`7486a21f 488b07          mov     rax,qword ptr [rdi]
+00007ff6`7486a222 8b480c          mov     ecx,dword ptr [rax+0Ch]
+00007ff6`7486a225 85c9            test    ecx,ecx
+00007ff6`7486a227 7e26            jle     stellaris!PHYSFS_swapSLE64+0xd8b78f (00007ff6`7486a24f)
+00007ff6`7486a229 4d8bc5          mov     r8,r13
+00007ff6`7486a22c 448bc9          mov     r9d,ecx
+00007ff6`7486a22f 90              nop
+00007ff6`7486a230 488b4550        mov     rax,qword ptr [rbp+50h]
+00007ff6`7486a234 488b10          mov     rdx,qword ptr [rax]
+00007ff6`7486a237 488b07          mov     rax,qword ptr [rdi]
+00007ff6`7486a23a 488b08          mov     rcx,qword ptr [rax]
+00007ff6`7486a23d 4a8b0402        mov     rax,qword ptr [rdx+r8]
+00007ff6`7486a241 49290408        sub     qword ptr [r8+rcx],rax
+00007ff6`7486a245 4d8d4008        lea     r8,[r8+8]
+00007ff6`7486a249 4983e901        sub     r9,1
+00007ff6`7486a24d 75e1            jne     stellaris!PHYSFS_swapSLE64+0xd8b770 (00007ff6`7486a230)
+00007ff6`7486a24f b920000000      mov     ecx,20h
+00007ff6`7486a254 e83fc92b01      call    stellaris!PHYSFS_writeUBE64+0x497228 (00007ff6`75b26b98)
+00007ff6`7486a259 488d0d38175f01  lea     rcx,[stellaris!PHYSFS_writeUBE64+0x7cc028 (00007ff6`75e5b998)]
+00007ff6`7486a260 488908          mov     qword ptr [rax],rcx
+00007ff6`7486a263 498b4e08        mov     rcx,qword ptr [r14+8]
+

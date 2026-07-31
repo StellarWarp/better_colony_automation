@@ -1,0 +1,134 @@
+status: external capacity reader captured
+pid: 47152
+stellaris_base: 0x00007FF673980000
+capacity_address: 0x000001C8641BC0C0
+capacity_value: 2
+ignored_updater_hits: 0
+pc: 0x00007FF674FF360B
+static_offset: 0x167360B
+
+rax: 0x0000000000000001
+rbx: 0x000001C8385F40E0
+rcx: 0x000001C8641BC078
+rdx: 0x0000000000000002
+rsi: 0x00000039FBBFE9F0
+rdi: 0x000001C86B9C5AD0
+r8: 0x000001C81BBF6CA8
+r9: 0x000001C8486D2720
+
+=== k ===
+Child-SP          RetAddr               Call Site
+00000039`fbbfe890 00007ff6`74fe438d     stellaris!PHYSFS_swapSLE64+0x1514b4b
+00000039`fbbfe9d0 00007ff6`74c2ef6a     stellaris!PHYSFS_swapSLE64+0x15058cd
+00000039`fbbfeab0 00007ff6`74c2bd59     stellaris!PHYSFS_swapSLE64+0x11504aa
+00000039`fbbfebc0 00007ff6`74308beb     stellaris!PHYSFS_swapSLE64+0x114d299
+00000039`fbbfeca0 00007ff6`73cb8120     stellaris!PHYSFS_swapSLE64+0x82a12b
+00000039`fbbfedc0 00007ff6`7553a991     stellaris!PHYSFS_swapSLE64+0x1d9660
+00000039`fbbff020 00007ff6`7553ae58     stellaris!PHYSFS_swapSLE64+0x1a5bed1
+00000039`fbbff080 00007ff6`73ad4a47     stellaris!PHYSFS_swapSLE64+0x1a5c398
+00000039`fbbff0b0 00007ff6`73acfc37     stellaris+0x154a47
+00000039`fbbff860 00007ff6`75b6bb02     stellaris+0x14fc37
+00000039`fbbff8c0 00007ff6`75b26a9e     stellaris!PHYSFS_writeUBE64+0x4dc192
+00000039`fbbff920 00007ffd`5098e957     stellaris!PHYSFS_writeUBE64+0x49712e
+00000039`fbbff960 00007ffd`5176ad6c     KERNEL32!BaseThreadInitThunk+0x17
+00000039`fbbff990 00000000`00000000     ntdll!RtlUserThreadStart+0x2c
+
+=== u @rip-30 L60 ===
+stellaris!PHYSFS_swapSLE64+0x1514b1b:
+00007ff6`74ff35db c881e1ff        enter   0E181h,0FFh
+00007ff6`74ff35df ff              ???
+00007ff6`74ff35e0 ff00            inc     dword ptr [rax]
+00007ff6`74ff35e2 413b4820        cmp     ecx,dword ptr [r8+20h]
+00007ff6`74ff35e6 7318            jae     stellaris!PHYSFS_swapSLE64+0x1514b40 (00007ff6`74ff3600)
+00007ff6`74ff35e8 8bd1            mov     edx,ecx
+00007ff6`74ff35ea 4803d2          add     rdx,rdx
+00007ff6`74ff35ed 498b4818        mov     rcx,qword ptr [r8+18h]
+00007ff6`74ff35f1 488b4cd108      mov     rcx,qword ptr [rcx+rdx*8+8]
+00007ff6`74ff35f6 4885c9          test    rcx,rcx
+00007ff6`74ff35f9 7405            je      stellaris!PHYSFS_swapSLE64+0x1514b40 (00007ff6`74ff3600)
+00007ff6`74ff35fb 394108          cmp     dword ptr [rcx+8],eax
+00007ff6`74ff35fe 7407            je      stellaris!PHYSFS_swapSLE64+0x1514b47 (00007ff6`74ff3607)
+00007ff6`74ff3600 488b0d8936c101  mov     rcx,qword ptr [stellaris!AmdPowerXpressRequestHighPerformance+0x8e78f4 (00007ff6`76c06c90)]
+00007ff6`74ff3607 448b7148        mov     r14d,dword ptr [rcx+48h]
+00007ff6`74ff360b 488bcb          mov     rcx,rbx
+00007ff6`74ff360e e8bd1519ff      call    stellaris!PHYSFS_swapSLE64+0x6a6110 (00007ff6`74184bd0)
+00007ff6`74ff3613 8bf0            mov     esi,eax
+00007ff6`74ff3615 4c8bbf10030000  mov     r15,qword ptr [rdi+310h]
+00007ff6`74ff361c 413bc6          cmp     eax,r14d
+00007ff6`74ff361f 0f8d11010000    jge     stellaris!PHYSFS_swapSLE64+0x1514c76 (00007ff6`74ff3736)
+00007ff6`74ff3625 488bcb          mov     rcx,rbx
+00007ff6`74ff3628 e8531419ff      call    stellaris!PHYSFS_swapSLE64+0x6a5fc0 (00007ff6`74184a80)
+00007ff6`74ff362d 8bd8            mov     ebx,eax
+00007ff6`74ff362f 488d05d25cf500  lea     rax,[stellaris!PHYSFS_writeUBE64+0x8b9998 (00007ff6`75f49308)]
+00007ff6`74ff3636 4889442440      mov     qword ptr [rsp+40h],rax
+00007ff6`74ff363b c744244814000000 mov     dword ptr [rsp+48h],14h
+00007ff6`74ff3643 c644244c00      mov     byte ptr [rsp+4Ch],0
+00007ff6`74ff3648 4c8d2561c7bcfe  lea     r12,[stellaris!PHYSFS_swapSLE64+0xe12f0 (00007ff6`73bbfdb0)]
+00007ff6`74ff364f 4c89642420      mov     qword ptr [rsp+20h],r12
+00007ff6`74ff3654 4c8d0d05c7bcfe  lea     r9,[stellaris!PHYSFS_swapSLE64+0xe12a0 (00007ff6`73bbfd60)]
+00007ff6`74ff365b ba90000000      mov     edx,90h
+00007ff6`74ff3660 41b801000000    mov     r8d,1
+00007ff6`74ff3666 488d4d80        lea     rcx,[rbp-80h]
+00007ff6`74ff366a e8353cb300      call    stellaris!PHYSFS_writeUBE64+0x497934 (00007ff6`75b272a4)
+00007ff6`74ff366f 90              nop
+00007ff6`74ff3670 488d050d08ea00  lea     rax,[stellaris!PHYSFS_writeUBE64+0x804514 (00007ff6`75e93e84)]
+00007ff6`74ff3677 4889442430      mov     qword ptr [rsp+30h],rax
+00007ff6`74ff367c c744243804000000 mov     dword ptr [rsp+38h],4
+00007ff6`74ff3684 c644243c00      mov     byte ptr [rsp+3Ch],0
+00007ff6`74ff3689 0f10442430      movups  xmm0,xmmword ptr [rsp+30h]
+00007ff6`74ff368e 0f114588        movups  xmmword ptr [rbp-78h],xmm0
+00007ff6`74ff3692 c7458005000000  mov     dword ptr [rbp-80h],5
+00007ff6`74ff3699 895d08          mov     dword ptr [rbp+8],ebx
+00007ff6`74ff369c 0f28442440      movaps  xmm0,xmmword ptr [rsp+40h]
+00007ff6`74ff36a1 660f7f442440    movdqa  xmmword ptr [rsp+40h],xmm0
+00007ff6`74ff36a7 41b901000000    mov     r9d,1
+00007ff6`74ff36ad 4c8d4580        lea     r8,[rbp-80h]
+00007ff6`74ff36b1 488d542440      lea     rdx,[rsp+40h]
+00007ff6`74ff36b6 488d4c2430      lea     rcx,[rsp+30h]
+00007ff6`74ff36bb e8c0e06900      call    stellaris!PHYSFS_writeUBE64+0x1e10 (00007ff6`75691780)
+00007ff6`74ff36c0 c7454006000000  mov     dword ptr [rbp+40h],6
+00007ff6`74ff36c7 4d8bcc          mov     r9,r12
+00007ff6`74ff36ca ba90000000      mov     edx,90h
+00007ff6`74ff36cf 41b801000000    mov     r8d,1
+00007ff6`74ff36d5 488d4d80        lea     rcx,[rbp-80h]
+00007ff6`74ff36d9 e80635b300      call    stellaris!PHYSFS_writeUBE64+0x497274 (00007ff6`75b26be4)
+00007ff6`74ff36de 90              nop
+00007ff6`74ff36df 4c63442438      movsxd  r8,dword ptr [rsp+38h]
+00007ff6`74ff36e4 c744245000000000 mov     dword ptr [rsp+50h],0
+00007ff6`74ff36ec 0f57c0          xorps   xmm0,xmm0
+00007ff6`74ff36ef f30f7f442458    movdqu  xmmword ptr [rsp+58h],xmm0
+00007ff6`74ff36f5 660f6f0d733b0b01 movdqa  xmm1,xmmword ptr [stellaris!PHYSFS_writeUBE64+0xa17900 (00007ff6`760a7270)]
+00007ff6`74ff36fd f30f7f4c2470    movdqu  xmmword ptr [rsp+70h],xmm1
+00007ff6`74ff3703 c644246000      mov     byte ptr [rsp+60h],0
+00007ff6`74ff3708 488b542430      mov     rdx,qword ptr [rsp+30h]
+00007ff6`74ff370d 488d4c2450      lea     rcx,[rsp+50h]
+00007ff6`74ff3712 e8c9cdaefe      call    stellaris!PHYSFS_swapSLE64+0x1a20 (00007ff6`73ae04e0)
+00007ff6`74ff3717 90              nop
+00007ff6`74ff3718 488d4c2430      lea     rcx,[rsp+30h]
+00007ff6`74ff371d e81edf6900      call    stellaris!PHYSFS_writeUBE64+0x1cd0 (00007ff6`75691640)
+00007ff6`74ff3722 90              nop
+00007ff6`74ff3723 488d542450      lea     rdx,[rsp+50h]
+00007ff6`74ff3728 498bcf          mov     rcx,r15
+00007ff6`74ff372b e8604a7000      call    stellaris!PHYSFS_writeUBE64+0x68820 (00007ff6`756f8190)
+00007ff6`74ff3730 90              nop
+00007ff6`74ff3731 e907010000      jmp     stellaris!PHYSFS_swapSLE64+0x1514d7d (00007ff6`74ff383d)
+00007ff6`74ff3736 488d056b68f800  lea     rax,[stellaris!PHYSFS_writeUBE64+0x8ea638 (00007ff6`75f79fa8)]
+00007ff6`74ff373d 4889442430      mov     qword ptr [rsp+30h],rax
+00007ff6`74ff3742 c74424380d000000 mov     dword ptr [rsp+38h],0Dh
+00007ff6`74ff374a c644243c00      mov     byte ptr [rsp+3Ch],0
+00007ff6`74ff374f 4c8d255ac6bcfe  lea     r12,[stellaris!PHYSFS_swapSLE64+0xe12f0 (00007ff6`73bbfdb0)]
+00007ff6`74ff3756 4c89642420      mov     qword ptr [rsp+20h],r12
+00007ff6`74ff375b 4c8d0dfec5bcfe  lea     r9,[stellaris!PHYSFS_swapSLE64+0xe12a0 (00007ff6`73bbfd60)]
+00007ff6`74ff3762 ba90000000      mov     edx,90h
+00007ff6`74ff3767 41b801000000    mov     r8d,1
+00007ff6`74ff376d 488d4d80        lea     rcx,[rbp-80h]
+00007ff6`74ff3771 e82e3bb300      call    stellaris!PHYSFS_writeUBE64+0x497934 (00007ff6`75b272a4)
+00007ff6`74ff3776 90              nop
+00007ff6`74ff3777 488d0536dce900  lea     rax,[stellaris!PHYSFS_writeUBE64+0x801a44 (00007ff6`75e913b4)]
+00007ff6`74ff377e 4889442440      mov     qword ptr [rsp+40h],rax
+00007ff6`74ff3783 c744244806000000 mov     dword ptr [rsp+48h],6
+00007ff6`74ff378b c644244c00      mov     byte ptr [rsp+4Ch],0
+00007ff6`74ff3790 0f10442440      movups  xmm0,xmmword ptr [rsp+40h]
+00007ff6`74ff3795 0f114588        movups  xmmword ptr [rbp-78h],xmm0
+00007ff6`74ff3799 c7458005000000  mov     dword ptr [rbp-80h],5
+

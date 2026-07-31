@@ -1,5 +1,36 @@
 {% set economic_rows = bca_global_settings_economic_rows %}
 
+{% macro compact_number_text(row, metric) -%}
+    defined_text = {
+        name = bca_gs_economic_{{ metric }}_{{ row.name }}_number
+        value = value:bca_display_number|SCRIPT_VALUE|bca_gs_economic_{{ metric }}_{{ row.name }}|
+    }
+
+    defined_text = {
+        name = bca_gs_economic_{{ metric }}_{{ row.name }}_unit
+        random = no
+        text = {
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_{{ metric }}_{{ row.name }}|
+                    value >= 1000000
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_M
+        }
+        text = {
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_display_abs_value|SCRIPT_VALUE|bca_gs_economic_{{ metric }}_{{ row.name }}|
+                    value >= 1000
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_K
+        }
+        default = BCA_GLOBAL_SETTINGS_ECONOMIC_DISPLAY_UNIT_EMPTY
+    }
+{%- endmacro %}
+
 defined_text = {
     name = bca_gs_economic_tolerance_display
     random = no
@@ -11,10 +42,10 @@ defined_text = {
 }
 
 {% for row in economic_rows %}
-    defined_text = {
-        name = bca_gs_expect_output_{{ row.name }}_value_raw
-        value = {{ row.variable }}
-    }
+    {{ compact_number_text(row, "target") }}
+    {{ compact_number_text(row, "stockpile") }}
+    {{ compact_number_text(row, "income") }}
+    {{ compact_number_text(row, "difference") }}
 
     defined_text = {
         name = bca_gs_expect_output_{{ row.name }}_display
@@ -30,18 +61,96 @@ defined_text = {
             }
             localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_UNLIMITED"
         }
-        default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_VALUE_FORMAT_{{ row.name|upper }}"
+        default = "BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_TARGET_VALUE"
     }
 
     defined_text = {
-        name = bca_gs_expect_output_{{ row.name }}_status
+        name = bca_gs_economic_income_{{ row.name }}_display
+        random = no
         text = {
             trigger = {
-                bca_country_needs_{{ row.name }} = yes
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_income_{{ row.name }}
+                    value > 0
+                }
             }
-            localization_key = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_UNMET"
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_POSITIVE
         }
-        default = "BCA_GLOBAL_SETTINGS_ECONOMIC_TARGET_STATUS_MET"
+        text = {
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_income_{{ row.name }}
+                    value < 0
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_NEGATIVE
+        }
+        default = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_INCOME_ZERO
+    }
+
+    defined_text = {
+        name = bca_gs_economic_difference_{{ row.name }}_display
+        random = no
+        text = {
+            trigger = {
+                OR = {
+                    has_country_flag = bca_economic_target_{{ row.name }}_forbidden
+                    has_country_flag = bca_economic_target_{{ row.name }}_unlimited
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_INACTIVE
+        }
+        text = {
+            trigger = {
+                NOT = { has_country_flag = bca_enable_economic_management }
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_difference_{{ row.name }}
+                    value > 0
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_POSITIVE
+        }
+        text = {
+            trigger = {
+                NOT = { has_country_flag = bca_enable_economic_management }
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_difference_{{ row.name }}
+                    value < 0
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_NEGATIVE
+        }
+        text = {
+            trigger = { NOT = { has_country_flag = bca_enable_economic_management } }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEUTRAL_ZERO
+        }
+        text = {
+            trigger = { bca_country_needs_{{ row.name }} = yes }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_NEEDS
+        }
+        text = {
+            trigger = { bca_country_surplus_{{ row.name }} = yes }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SURPLUS
+        }
+        text = {
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_difference_{{ row.name }}
+                    value > 0
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_POSITIVE
+        }
+        text = {
+            trigger = {
+                check_variable_arithmetic = {
+                    which = value:bca_gs_economic_difference_{{ row.name }}
+                    value < 0
+                }
+            }
+            localization_key = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_NEGATIVE
+        }
+        default = BCA_GLOBAL_SETTINGS_ECONOMIC_{{ row.name|upper }}_DIFFERENCE_SATISFIED_ZERO
     }
 
 {% endfor %}

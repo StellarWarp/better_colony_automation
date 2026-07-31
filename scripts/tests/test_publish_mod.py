@@ -95,7 +95,7 @@ class PublishModTests(unittest.TestCase):
             ).exists()
         )
 
-    def test_replaces_entire_target_on_every_publish(self):
+    def test_cleans_only_configured_paths_on_every_publish(self):
         publish_mod.publish(self.config_path, dry_run=False)
         unrelated = self.main_target / "unrelated.txt"
         unrelated.write_text("keep\n", encoding="utf-8")
@@ -106,10 +106,10 @@ class PublishModTests(unittest.TestCase):
 
         result = publish_mod.publish(self.config_path, dry_run=False)
 
-        self.assertEqual(result["main"]["deleted"], 4)
+        self.assertEqual(result["main"]["deleted"], 2)
         self.assertFalse((self.main_target / "common" / "main.txt").exists())
-        self.assertFalse(unrelated.exists())
-        self.assertFalse(old_directory.exists())
+        self.assertTrue(unrelated.exists())
+        self.assertTrue(old_directory.exists())
         self.assertTrue((self.main_target / "descriptor.mod").exists())
 
     def test_dry_run_does_not_replace_target(self):
@@ -123,9 +123,29 @@ class PublishModTests(unittest.TestCase):
             selected_packages={"main"},
         )
 
-        self.assertEqual(result["main"]["deleted"], 1)
+        self.assertEqual(result["main"]["deleted"], 0)
         self.assertTrue(unmanaged.exists())
         self.assertFalse((self.main_target / "descriptor.mod").exists())
+
+    def test_writes_launcher_descriptor_with_published_target_path(self):
+        config = yaml.safe_load(self.config_path.read_text(encoding="utf-8"))
+        launcher_descriptor = self.temp_base / "launcher" / "main.mod"
+        config["main"]["launcher_descriptor"] = str(launcher_descriptor)
+        self.config_path.write_text(
+            yaml.safe_dump(config, sort_keys=False),
+            encoding="utf-8",
+        )
+
+        result = publish_mod.publish(
+            self.config_path,
+            dry_run=False,
+            selected_packages={"main"},
+        )
+
+        text = launcher_descriptor.read_text(encoding="utf-8")
+        self.assertIn('name="main"', text)
+        self.assertIn(f'path="{self.main_target.resolve().as_posix()}"', text)
+        self.assertEqual(result["main"]["copied"], 3)
 
 
 if __name__ == "__main__":

@@ -214,7 +214,7 @@ carrier_event = {
         }
     }
 }
-# reset to default
+# enable zone demolition and reset zone plans to designation defaults
 
 
 carrier_event = {
@@ -231,6 +231,7 @@ carrier_event = {
         remove_carrier_flag = bca_pf_district_balanced
         bca_clear_designation_flag = yes
         bca_designation_sync_with_system = yes
+        carrier_event = { id = colony_automation_event.23 }
         bca_planet_setting_clear_zone_selection = {
             ZONE_SLOT = z1
         }
@@ -292,40 +293,6 @@ carrier_event = {
             }
             bca_set_zx_for_identical_secondary_zone_plan = yes
             try_set_secondary_districts_plan_zero_to_one = yes
-        }
-        if = {
-            limit = {
-                owner = {
-                    has_country_flag = bca_default_disable_auto_destruction_building
-                }
-            }
-            set_carrier_flag = bca_pf_disable_planet_auto_destruction_building
-        }
-        else = {
-            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_building
-        }
-        if = {
-            limit = {
-                owner = {
-                    has_country_flag = bca_default_disable_auto_destruction_district
-                }
-            }
-            set_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-            bca_clamp_district_plan_to_current_layout = yes
-        }
-        else = {
-            remove_carrier_flag = bca_pf_disable_planet_auto_destruction_district
-        }
-        if = {
-            limit = {
-                owner = {
-                    has_country_flag = bca_default_disable_auto_destruction_zone
-                }
-            }
-            carrier_event = { id = colony_automation_event.24 }
-        }
-        else = {
-            carrier_event = { id = colony_automation_event.23 }
         }
         set_carrier_flag = bca_pf_ps_initialized
     }

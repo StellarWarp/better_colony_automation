@@ -62,6 +62,13 @@ https://github.com/StellarWarp/better_colony_automation/blob/master/README_EN.md
 
 ## 最近更新日志
 
+哇噗 **26-07-31 - v2.1.0**：
+
+- 经济调控的资源 row 改为由统一配置生成；全局设置面板补充实时资源数值，并提供主界面入口。
+- 自动建造现在按原生可用建造槽位判断是否继续规划，可利用 `planet_building_capacity_add` 提供的并行建造容量；岗位调控不再因建造队列占用而跳过殖民地。
+- 修复游牧方舟次要区划顺序、建造完成后的区划规划同步和专精重置行为，并补充方舟战斗特化的堡垒建筑支持。
+- 新增可选子 Mod「Colony Automation: Parallel Construction Patch」。它仅支持 Windows x64 与 Stellaris 4.4.6，需在关闭游戏后从子 Mod 本地目录手动运行 `Install Patch.bat`；该补丁 Mod 无需在启动器中启用，订阅仅用于下载安装器。
+
 哇噗 **26-07-04 - v2.0.3**：
 
 - 修复殖民地自动化可能总是优先建造主区划，而不是按规划建造其他区划的问题。

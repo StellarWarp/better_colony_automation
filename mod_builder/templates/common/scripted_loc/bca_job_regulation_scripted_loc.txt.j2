@@ -27,7 +27,7 @@
 {% macro formatted_number_script(s_name, number) -%}
     defined_text = {
         name = BCA_JR_SLOT_{{ s_name }}_FMT_{{ number | upper }}_VALUE_script
-        value = value:bca_jr_display_number|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+        value = value:bca_display_number|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
     }
 
     defined_text = {
@@ -36,7 +36,7 @@
         text = {
             trigger = {
                 check_variable_arithmetic = {
-                    which = value:bca_jr_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+                    which = value:bca_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
                     value >= 1000000
                 }
             }
@@ -45,7 +45,7 @@
         text = {
             trigger = {
                 check_variable_arithmetic = {
-                    which = value:bca_jr_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
+                    which = value:bca_display_abs_value|VALUE|bca_jr_slot_{{ s_name }}_{{ number }}|
                     value >= 1000
                 }
             }

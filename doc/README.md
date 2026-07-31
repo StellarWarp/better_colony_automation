@@ -11,6 +11,12 @@ Design records and active proposals live under `proposal/`. The
 [Building Strategy Model](proposal/building-strategy-model.md) records the
 design that led to the current building automation compiler.
 
+The
+[Native Parallel Construction Automation](proposal/native-parallel-construction-automation.md)
+record documents the Stellaris 4.4.6 scheduler investigation and the
+version-locked binary patch implementation for parallel planet construction
+slots.
+
 ## Architecture Path
 
 Read these when you need to understand how the mod is organized and executed:
