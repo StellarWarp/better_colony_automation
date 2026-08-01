@@ -9,9 +9,13 @@ intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 
 ## Unreleased
 
-- Fixed missing localisation.
-- Fixed Global Settings layout issues.
-- Fixed an automated workforce statistics bug.
+- None.
+
+## Released In v2.1.1 (2026-08-01)
+
+- Fixed missing localisation and Global Settings layout issues.
+- Fixed Nomadic Empire stockpile display.
+- Fixed automated workforce statistics and job regulation for forbidden outputs.
 - Fixed secondary district planning controls when specialization demolition is disabled.
 
 ## Released In v2.1.0 (2026-07-31)

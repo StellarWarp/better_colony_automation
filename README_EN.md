@@ -67,6 +67,11 @@
 
 ## Changelog
 
+哇噗 **26-08-01 - v2.1.1**
+- Fixed Global Settings localisation and layout issues, and made Nomad energy and mineral stockpiles display Operational Reserves correctly.
+- Fixed automated workforce statistics plus multi-output job regulation and status tooltips when a resource is forbidden.
+- Fixed secondary-district planning controls when district specialization auto-demolition is disabled.
+
 哇噗 **26-07-31 - v2.1.0**
 - Reworked economic-management rows into a shared configuration, added live resource values, and added a persistent main-interface entry for BCA Global Settings.
 - Construction planning now uses all free native construction slots, including capacity granted by `planet_building_capacity_add`; job regulation continues independently of construction queue availability.

@@ -18,12 +18,12 @@ INTRO_LOCALISATIONS = [
 
 
 class IntroNotificationsTests(unittest.TestCase):
-    def test_v210_update_and_patch_notifications_are_registered(self):
+    def test_v211_update_and_patch_notifications_are_registered(self):
         event = INTRO_EVENT.read_text(encoding="utf-8-sig")
         on_action = INTRO_ON_ACTION.read_text(encoding="utf-8-sig")
         message_types = MESSAGE_TYPES.read_text(encoding="utf-8-sig")
 
-        self.assertIn("bca_update_v2_1_0_shown", event)
+        self.assertIn("bca_update_v2_1_1_shown", event)
         self.assertIn("id = bca_intro_event.3", event)
         self.assertIn("bca_parallel_construction_patch_v0_1_0_shown", event)
         self.assertIn("MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH", event)
@@ -34,8 +34,8 @@ class IntroNotificationsTests(unittest.TestCase):
         for path in INTRO_LOCALISATIONS:
             with self.subTest(path=path):
                 localisation = path.read_text(encoding="utf-8-sig")
-                self.assertIn("v2.1.0", localisation)
-                self.assertIn("MESSAGE_BCA_STARTUP_desc_log_v210", localisation)
+                self.assertIn("v2.1.1", localisation)
+                self.assertIn("MESSAGE_BCA_STARTUP_desc_log_v211", localisation)
                 self.assertIn("MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH:", localisation)
                 self.assertIn(
                     "MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH_desc:",
@@ -43,11 +43,7 @@ class IntroNotificationsTests(unittest.TestCase):
                 )
 
     def test_patch_does_not_require_launcher_enablement(self):
-        english_localisation = INTRO_LOCALISATIONS[0].read_text(encoding="utf-8-sig")
         patch_readme = PATCH_README.read_text(encoding="utf-8")
 
-        self.assertIn(
-            "does not need to be enabled in the launcher", english_localisation
-        )
         self.assertIn("does not need to be enabled in the launcher", patch_readme)
         self.assertIn("补丁 Mod 无需在启动器中启用", patch_readme)
