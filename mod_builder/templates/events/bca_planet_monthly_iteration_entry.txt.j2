@@ -32,12 +32,7 @@ country_event = {
             }
             if = {
                 limit = {
-                    num_buildings = {
-                        type = any
-                        in_construction = yes
-                        owner_type = normal
-                        value < value:bca_parallel_construction_capacity
-                    }
+                    always = yes
                 }
                 carrier_event = { id = colony_automation_event.28}
                 carrier_event = { id = colony_automation_event.112} # 在建设前清除标识

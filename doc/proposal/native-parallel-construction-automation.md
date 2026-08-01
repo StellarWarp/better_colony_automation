@@ -33,6 +33,56 @@ addresses and field offsets from native code features on every scan. Never
 reuse runtime object addresses or a previous process ID after restarting the
 game.
 
+## Post-4.4.6 Re-evaluation
+
+The game update after the 4.4.6 baseline changed the local compiler register
+allocation and code layout, but not the recovered queue semantics. A read-only
+scan of the updated executable established:
+
+| Feature | Updated result |
+| --- | --- |
+| Scheduler guard | One candidate at `0x140E464DD`; colony state is held in `r15`, rather than 4.4.6's `r13` |
+| Original guard | `0x140D8BF90`; it still resolves the queue through the same validated registry layout |
+| Queue progression | One `min(queue_count, effective_capacity)` candidate at `0x1407A533E` |
+| Queue count field | `0x2C` |
+| Effective capacity field | `0x48` |
+
+The scheduler scanner therefore no longer treats the colony-state register as
+a version contract. It byte-filters the guard-call neighborhood, then decodes
+and verifies this relationship:
+
+```text
+mov rcx, [colony_state + 8]
+call queue_guard
+test al, al
+jnz scheduler_exit
+cmp dword ptr [colony_state + 0x24], 0
+jz scheduler_exit
+```
+
+Both conditional branches must resolve to the same exit and the two memory
+references must use the same base register. A changed register allocation is
+therefore accepted, while a coincidental byte pattern is not. The locator does
+not assume a four-byte load: it recovers the instruction immediately preceding
+the call and accepts regular and SIB-encoded addressing, including register
+allocations such as `r12` or `rsp` that use a different instruction length.
+
+The updated `.text` section has only `0x20` bytes of zero-filled raw padding
+outside its mapped virtual size. It cannot contain the 97-byte helper. The
+installer therefore falls back only when the PE header has a wholly zero-filled
+section-table entry: it appends an aligned `R-X` `.bca` section, updates the
+section count, `SizeOfCode`, and `SizeOfImage`, then replaces the scheduler's
+five-byte `CALL rel32`. The source hash, unused header slot, original header
+fields, raw-file boundary, new section layout, call bytes, and generated helper
+are all verified before replacement.
+
+For the updated executable with SHA-256
+`D4B0819EB9C74B4690DE269B00392C03283C0D11093C97BF2B7FCC1FF755606F`, a
+read-only plan selects `.bca` at `0x1437BB000` with 512 raw bytes and a 128-byte
+virtual payload range. A constructed temporary image reparsed successfully as
+an eight-section PE and matched all declared call and helper bytes. This is a
+static file-structure validation, not yet a game runtime validation.
+
 ## Problem
 
 Stellaris 4.4 introduced parallel planet construction capacity through the

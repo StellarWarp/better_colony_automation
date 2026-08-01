@@ -27,6 +27,16 @@ class BytePatternTests(unittest.TestCase):
     def test_empty_pattern_has_no_matches(self):
         self.assertEqual(patcher.BytePattern.parse("").find_all(b"abc"), [])
 
+    def test_scheduler_anchor_does_not_depend_on_colony_register(self):
+        r13 = bytes.fromhex(
+            "E8 00 00 00 00 84 C0 0F 85 00 00 00 00 41 83 7D 24 00 0F 84 00 00 00 00"
+        )
+        r15 = bytes.fromhex(
+            "E8 00 00 00 00 84 C0 0F 85 00 00 00 00 41 83 7F 24 00 0F 84 00 00 00 00"
+        )
+        self.assertEqual(patcher.SCHEDULER_ANCHOR_PATTERN.find_all(r13), [0])
+        self.assertEqual(patcher.SCHEDULER_ANCHOR_PATTERN.find_all(r15), [0])
+
     def test_steam_library_paths_support_escaped_backslashes(self):
         text = (
             '"0" { "path" "C:\\\\Program Files (x86)\\\\Steam" }\n'
@@ -221,7 +231,8 @@ class HelperEncodingTests(unittest.TestCase):
 
 
 class MinimalPEParserTests(unittest.TestCase):
-    def test_rva_and_file_offset_conversion(self):
+    @staticmethod
+    def make_minimal_pe() -> bytearray:
         image = bytearray(0x600)
         image[:2] = b"MZ"
         struct.pack_into("<I", image, 0x3C, 0x80)
@@ -232,15 +243,23 @@ class MinimalPEParserTests(unittest.TestCase):
         struct.pack_into("<H", image, coff + 16, 0xF0)
         optional = coff + 20
         struct.pack_into("<H", image, optional, 0x20B)
+        struct.pack_into("<I", image, optional + 4, 0x200)
         struct.pack_into("<Q", image, optional + 24, 0x140000000)
+        struct.pack_into("<I", image, optional + 32, 0x1000)
+        struct.pack_into("<I", image, optional + 36, 0x200)
         struct.pack_into("<I", image, optional + 56, 0x2000)
+        struct.pack_into("<I", image, optional + 60, 0x400)
         section = optional + 0xF0
         image[section : section + 8] = b".text\0\0\0"
-        struct.pack_into("<I", image, section + 8, 0x180)
+        struct.pack_into("<I", image, section + 8, 0x200)
         struct.pack_into("<I", image, section + 12, 0x1000)
         struct.pack_into("<I", image, section + 16, 0x200)
         struct.pack_into("<I", image, section + 20, 0x400)
         struct.pack_into("<I", image, section + 36, 0x60000020)
+        return image
+
+    def test_rva_and_file_offset_conversion(self):
+        image = self.make_minimal_pe()
 
         with tempfile.TemporaryDirectory() as directory:
             path = Path(directory, "minimal.exe")
@@ -250,6 +269,92 @@ class MinimalPEParserTests(unittest.TestCase):
         self.assertEqual(parsed.rva_to_offset(0x1010), 0x410)
         self.assertEqual(parsed.offset_to_rva(0x410), 0x1010)
         self.assertEqual([section.name for section in parsed.executable_sections()], [".text"])
+
+    def test_new_section_plan_extends_and_remains_parseable(self):
+        source = bytes(self.make_minimal_pe())
+        with tempfile.TemporaryDirectory() as directory:
+            original_path = Path(directory, "original.exe")
+            original_path.write_bytes(source)
+            image = patcher.PEImage(original_path)
+            injection = patcher.plan_new_executable_section(image, 0x61)
+
+        plan = {
+            "target": {"sha256": patcher.hashlib.sha256(source).hexdigest().upper()},
+            "call_patch": {
+                "file_offset": 0x410,
+                "expected_bytes": bytes(5),
+                "replacement_bytes": b"\xE8\x01\x02\x03\x04",
+            },
+            "helper": {**injection, "payload": b"\x90\xC3"},
+        }
+        patched = patcher.build_patched_image(source, plan)
+        with tempfile.TemporaryDirectory() as directory:
+            patched_path = Path(directory, "patched.exe")
+            patched_path.write_bytes(patched)
+            parsed = patcher.PEImage(patched_path)
+
+        patcher.validate_added_section(parsed, plan["helper"])
+        self.assertEqual(parsed.sections[-1].name, ".bca")
+        self.assertTrue(parsed.sections[-1].executable)
+        self.assertEqual(patched[injection["file_offset"] : injection["file_offset"] + 2], b"\x90\xC3")
+        self.assertEqual(len(patched), injection["file_offset"] + injection["raw_size"])
+
+    def test_new_section_apply_and_restore(self):
+        source = bytes(self.make_minimal_pe())
+        payload = b"\x90\xC3"
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory, "game.exe")
+            target.write_bytes(source)
+            injection = patcher.plan_new_executable_section(
+                patcher.PEImage(target), 0x61
+            )
+            plan = {
+                "target": {
+                    "sha256": patcher.hashlib.sha256(source).hexdigest().upper()
+                },
+                "call_patch": {
+                    "va": 0x140001010,
+                    "rva": 0x1010,
+                    "file_offset": 0x410,
+                    "expected_bytes": bytes(5),
+                    "replacement_bytes": b"\xE8\x01\x02\x03\x04",
+                    "original_target": 0x140001100,
+                    "replacement_target": injection["va"],
+                },
+                "helper": {
+                    **injection,
+                    "payload": payload,
+                    "payload_sha256": patcher.hashlib.sha256(payload).hexdigest().upper(),
+                },
+            }
+            receipt = patcher.apply_plan(target, plan)
+            patched = target.read_bytes()
+            patcher.validate_added_section(patcher.PEImage(target), plan["helper"])
+            self.assertEqual(receipt["status"], "applied")
+            self.assertEqual(patched, patcher.build_patched_image(source, plan))
+
+            restore = patcher.restore_backup(target, Path(receipt["backup"]), plan)
+            self.assertEqual(restore["status"], "restored")
+            self.assertEqual(target.read_bytes(), source)
+
+    def test_scheduler_structure_recovers_sib_encoded_colony_register(self):
+        image = self.make_minimal_pe()
+        image[0x400 : 0x400 + 30] = bytes.fromhex(
+            "49 8B 4C 24 08"  # mov rcx, [r12 + 8]
+            "E8 00 00 00 00"  # call
+            "84 C0"           # test al, al
+            "0F 85 0E 00 00 00"  # jne 0x140001020
+            "41 83 7C 24 24 00"  # cmp dword ptr [r12 + 0x24], 0
+            "0F 84 02 00 00 00"  # je 0x140001020
+        )
+        with tempfile.TemporaryDirectory() as directory:
+            executable = Path(directory, "scheduler.exe")
+            executable.write_bytes(image)
+            scheduler = patcher.locate_scheduler(patcher.PEImage(executable))
+
+        self.assertEqual(scheduler["colony_register"], "r12")
+        self.assertEqual(scheduler["signature_va"], 0x140001000)
+        self.assertEqual(scheduler["scheduler_exit_va"], 0x140001020)
 
 
 if __name__ == "__main__":

@@ -45,6 +45,12 @@ def u64(data: bytes, offset: int) -> int:
     return struct.unpack_from("<Q", data, offset)[0]
 
 
+def align_up(value: int, alignment: int) -> int:
+    if alignment <= 0 or alignment & (alignment - 1):
+        raise ScanError(f"invalid power-of-two alignment: 0x{alignment:X}")
+    return (value + alignment - 1) & -alignment
+
+
 @dataclass(frozen=True)
 class Section:
     name: str
@@ -65,23 +71,27 @@ class PEImage:
         self.data = path.read_bytes()
         if self.data[:2] != b"MZ":
             raise ScanError("input is not a DOS/PE image")
-        pe = u32(self.data, 0x3C)
-        if self.data[pe : pe + 4] != b"PE\0\0":
+        self.pe_offset = u32(self.data, 0x3C)
+        if self.data[self.pe_offset : self.pe_offset + 4] != b"PE\0\0":
             raise ScanError("PE signature is missing")
-        coff = pe + 4
-        if u16(self.data, coff) != 0x8664:
+        self.coff_offset = self.pe_offset + 4
+        if u16(self.data, self.coff_offset) != 0x8664:
             raise ScanError("only AMD64 PE images are supported")
-        section_count = u16(self.data, coff + 2)
-        optional_size = u16(self.data, coff + 16)
-        optional = coff + 20
-        if u16(self.data, optional) != 0x20B:
+        self.section_count = u16(self.data, self.coff_offset + 2)
+        optional_size = u16(self.data, self.coff_offset + 16)
+        self.optional_offset = self.coff_offset + 20
+        if u16(self.data, self.optional_offset) != 0x20B:
             raise ScanError("only PE32+ images are supported")
-        self.image_base = u64(self.data, optional + 24)
-        self.size_of_image = u32(self.data, optional + 56)
-        section_table = optional + optional_size
+        self.image_base = u64(self.data, self.optional_offset + 24)
+        self.size_of_code = u32(self.data, self.optional_offset + 4)
+        self.section_alignment = u32(self.data, self.optional_offset + 32)
+        self.file_alignment = u32(self.data, self.optional_offset + 36)
+        self.size_of_image = u32(self.data, self.optional_offset + 56)
+        self.size_of_headers = u32(self.data, self.optional_offset + 60)
+        self.section_table_offset = self.optional_offset + optional_size
         sections = []
-        for index in range(section_count):
-            entry = section_table + index * 40
+        for index in range(self.section_count):
+            entry = self.section_table_offset + index * 40
             name = self.data[entry : entry + 8].split(b"\0", 1)[0].decode(
                 "ascii", errors="replace"
             )
@@ -158,15 +168,14 @@ class BytePattern:
         return hits
 
 
-SCHEDULER_PATTERN = BytePattern.parse(
+# The colony-state register is compiler allocation, not an ABI. This is only a
+# byte-level prefilter; the candidate is accepted below after decoding its
+# data/control-flow shape and recovering the register from decoded operands.
+SCHEDULER_ANCHOR_PATTERN = BytePattern.parse(
     """
-    49 8B 4D 08
     E8 ?? ?? ?? ??
     84 C0
     0F 85 ?? ?? ?? ??
-    41 83 7D 24 00
-    0F 84 ?? ?? ?? ??
-    48 8B 7C 24 38
     """
 )
 
@@ -241,22 +250,116 @@ def rip_target(instruction) -> int | None:
     return None
 
 
-def locate_scheduler(image: PEImage) -> dict:
-    section, relative = scan_pattern(image, SCHEDULER_PATTERN, "scheduler")
-    signature_rva = section.virtual_address + relative
-    call_va = image.image_base + signature_rva + 4
+def direct_branch_target(instruction) -> int | None:
+    if not instruction.mnemonic.startswith("j") or len(instruction.operands) != 1:
+        return None
+    operand = instruction.operands[0]
+    return operand.imm if operand.type == X86_OP_IMM else None
+
+
+def instructions_ending_at(image: PEImage, address: int) -> list:
+    """Return decodable x64 instructions ending exactly at *address*."""
+    candidates = []
+    for width in range(1, 16):
+        start = address - width
+        if start < image.image_base:
+            break
+        try:
+            instructions = list(
+                make_disassembler().disasm(image.bytes_at_va(start, width), start)
+            )
+        except ScanError:
+            continue
+        if len(instructions) == 1 and instructions[0].address + instructions[0].size == address:
+            candidates.append(instructions[0])
+    return candidates
+
+
+def scheduler_candidate(image: PEImage, call_va: int) -> dict | None:
+    """Decode and validate the local scheduler guard shape around *call_va*."""
+    try:
+        code = image.bytes_at_va(call_va, 0x30)
+    except ScanError:
+        return None
+    instructions = list(make_disassembler().disasm(code, call_va))
+    if len(instructions) < 5:
+        return None
+
+    call, test, occupied_exit, count_check, disabled_exit = instructions[:5]
+    loads = instructions_ending_at(image, call_va)
+    load = next(
+        (
+            instruction
+            for instruction in loads
+            if instruction.mnemonic == "mov"
+            and len(instruction.operands) == 2
+            and instruction.operands[0].type == X86_OP_REG
+            and instruction.operands[0].reg == X86_REG_RCX
+            and instruction.operands[1].type == X86_OP_MEM
+            and instruction.operands[1].mem.disp == 8
+        ),
+        None,
+    )
+    if load is None:
+        return None
+    if (
+        direct_call_target(call) is None
+        or test.mnemonic != "test"
+        or len(test.operands) != 2
+        or any(operand.type != X86_OP_REG or operand.reg != X86_REG_AL for operand in test.operands)
+    ):
+        return None
+
+    colony_register = load.operands[1].mem.base
+    if colony_register == 0:
+        return None
+    if (
+        count_check.mnemonic != "cmp"
+        or len(count_check.operands) != 2
+        or count_check.operands[0].type != X86_OP_MEM
+        or count_check.operands[0].mem.base != colony_register
+        or count_check.operands[0].mem.disp != 0x24
+        or count_check.operands[1].type != X86_OP_IMM
+        or count_check.operands[1].imm != 0
+    ):
+        return None
+
+    first_exit = direct_branch_target(occupied_exit)
+    second_exit = direct_branch_target(disabled_exit)
+    if first_exit is None or first_exit != second_exit:
+        return None
+
     call_bytes = image.bytes_at_va(call_va, 5)
-    if call_bytes[0] != 0xE8:
-        raise ScanError("scheduler signature call is not CALL rel32")
-    displacement = struct.unpack_from("<i", call_bytes, 1)[0]
     return {
-        "signature_va": image.image_base + signature_rva,
+        "signature_va": load.address,
         "call_va": call_va,
         "call_rva": call_va - image.image_base,
         "call_file_offset": image.va_to_offset(call_va),
         "call_bytes": call_bytes,
-        "guard_va": call_va + 5 + displacement,
+        "guard_va": direct_call_target(call),
+        "colony_register": make_disassembler().reg_name(colony_register),
+        "scheduler_exit_va": first_exit,
     }
+
+
+def locate_scheduler(image: PEImage) -> dict:
+    candidates: list[dict] = []
+    for section in image.executable_sections():
+        raw = image.data[section.raw_offset : section.raw_offset + section.raw_size]
+        for relative in SCHEDULER_ANCHOR_PATTERN.find_all(raw):
+            call_va = image.image_base + section.virtual_address + relative
+            candidate = scheduler_candidate(image, call_va)
+            if candidate is not None:
+                candidates.append(candidate)
+    if len(candidates) != 1:
+        addresses = ", ".join(
+            f"0x{candidate['signature_va']:X}" for candidate in candidates[:10]
+        )
+        raise ScanError(
+            f"scheduler structural scan produced {len(candidates)} matches"
+            + (f": {addresses}" if addresses else "")
+        )
+    return candidates[0]
 
 
 def validate_guard(image: PEImage, guard_va: int, expected_count_offset: int) -> dict:
@@ -484,7 +587,7 @@ def zero_runs(data: bytes, minimum: int) -> Iterable[tuple[int, int]]:
 
 def find_code_cave(
     image: PEImage, minimum_size: int, call_va: int
-) -> dict:
+) -> dict | None:
     candidates = []
     for section in image.executable_sections():
         if section.raw_size <= section.virtual_size:
@@ -513,6 +616,8 @@ def find_code_cave(
                     "source": "zero-filled executable raw tail",
                 }
             )
+    if not candidates:
+        return None
     if len(candidates) != 1:
         details = ", ".join(
             f"{candidate['section']}@0x{candidate['va']:X}/0x{candidate['available_bytes']:X}"
@@ -523,6 +628,76 @@ def find_code_cave(
             + (f": {details}" if details else "")
         )
     return candidates[0]
+
+
+def plan_new_executable_section(image: PEImage, minimum_size: int) -> dict:
+    """Reserve an aligned RX PE section when no reviewed code cave exists."""
+    if any(section.name == ".bca" for section in image.sections):
+        raise ScanError("target already contains a .bca section")
+    if not image.sections:
+        raise ScanError("PE image has no sections")
+
+    header_offset = image.section_table_offset + image.section_count * 40
+    header_end = header_offset + 40
+    first_raw_offset = min(section.raw_offset for section in image.sections)
+    if header_end > image.size_of_headers or header_end > first_raw_offset:
+        raise ScanError("PE header has no room for an additional section entry")
+    expected_header = image.data[header_offset:header_end]
+    if len(expected_header) != 40 or any(expected_header):
+        raise ScanError("next PE section header slot is not zero-filled")
+
+    virtual_size = max(0x80, minimum_size)
+    raw_size = align_up(virtual_size, image.file_alignment)
+    last_rva = max(
+        section.virtual_address + max(section.virtual_size, section.raw_size)
+        for section in image.sections
+    )
+    virtual_address = align_up(last_rva, image.section_alignment)
+    raw_offset = align_up(len(image.data), image.file_alignment)
+    size_of_image = align_up(virtual_address + virtual_size, image.section_alignment)
+    if size_of_image <= image.size_of_image:
+        raise ScanError("new section does not extend the PE image")
+    if image.size_of_code > 0xFFFFFFFF - raw_size:
+        raise ScanError("PE SizeOfCode would overflow")
+
+    characteristics = 0x60000020  # code, executable, readable
+    section_header = struct.pack(
+        "<8sIIIIIIHHI",
+        b".bca\0\0\0\0",
+        virtual_size,
+        virtual_address,
+        raw_size,
+        raw_offset,
+        0,
+        0,
+        0,
+        0,
+        characteristics,
+    )
+    return {
+        "section": ".bca",
+        "va": image.image_base + virtual_address,
+        "rva": virtual_address,
+        "file_offset": raw_offset,
+        "available_bytes": raw_size,
+        "source": "new executable PE section",
+        "section_header_offset": header_offset,
+        "section_header_expected": expected_header,
+        "section_header": section_header,
+        "original_section_count": image.section_count,
+        "new_section_count": image.section_count + 1,
+        "coff_section_count_offset": image.coff_offset + 2,
+        "original_size_of_code": image.size_of_code,
+        "new_size_of_code": image.size_of_code + raw_size,
+        "size_of_code_offset": image.optional_offset + 4,
+        "original_size_of_image": image.size_of_image,
+        "new_size_of_image": size_of_image,
+        "size_of_image_offset": image.optional_offset + 56,
+        "original_file_size": len(image.data),
+        "raw_size": raw_size,
+        "virtual_size": virtual_size,
+        "characteristics": characteristics,
+    }
 
 
 def build_helper(
@@ -633,7 +808,11 @@ def build_plan(path: Path) -> dict:
         raise ScanError("guard and progression disagree on the queue count offset")
 
     provisional_payload_size = 0x61
-    cave = find_code_cave(image, max(0x80, provisional_payload_size), scheduler["call_va"])
+    cave = find_code_cave(
+        image, max(0x80, provisional_payload_size), scheduler["call_va"]
+    )
+    if cave is None:
+        cave = plan_new_executable_section(image, provisional_payload_size)
     helper = build_helper(
         helper_va=cave["va"],
         resolver_va=guard["resolver_va"],
@@ -649,7 +828,7 @@ def build_plan(path: Path) -> dict:
         helper,
         cave["va"],
         image.image_base,
-        image.size_of_image,
+        cave.get("new_size_of_image", image.size_of_image),
     )
 
     call_displacement = cave["va"] - (scheduler["call_va"] + 5)
@@ -659,14 +838,14 @@ def build_plan(path: Path) -> dict:
         "guard_semantics_validated": True,
         "progression_signature_unique": True,
         "count_offset_agrees": True,
-        "executable_raw_tail_cave_unique": True,
+        "injection_site_validated": True,
         "replacement_call_is_rel32": True,
         "helper_is_position_independent": True,
         "scanner_is_read_only": True,
     }
     target_sha256 = hashlib.sha256(image.data).hexdigest().upper()
     return {
-        "schema_version": "1.0",
+        "schema_version": "1.1",
         "mode": "scan-only",
         "target": {
             "path": str(path.resolve()),
@@ -699,6 +878,34 @@ def build_plan(path: Path) -> dict:
     }
 
 
+def validate_added_section(image: PEImage, helper: dict) -> None:
+    if helper.get("source") != "new executable PE section":
+        return
+    if image.section_count != helper["new_section_count"]:
+        raise ScanError("patched PE section count does not match the plan")
+    if image.size_of_image != helper["new_size_of_image"]:
+        raise ScanError("patched PE image size does not match the plan")
+    section = image.sections[-1]
+    expected = (
+        helper["section"],
+        helper["rva"],
+        helper["virtual_size"],
+        helper["file_offset"],
+        helper["raw_size"],
+        helper["characteristics"],
+    )
+    actual = (
+        section.name,
+        section.virtual_address,
+        section.virtual_size,
+        section.raw_offset,
+        section.raw_size,
+        section.characteristics,
+    )
+    if actual != expected:
+        raise ScanError("patched .bca section does not match the plan")
+
+
 def build_patched_image(source: bytes, plan: dict) -> bytes:
     expected_hash = plan["target"]["sha256"]
     actual_hash = hashlib.sha256(source).hexdigest().upper()
@@ -714,17 +921,53 @@ def build_patched_image(source: bytes, plan: dict) -> bytes:
     helper = plan["helper"]
     cave_offset = helper["file_offset"]
     available = helper["available_bytes"]
-    if any(source[cave_offset : cave_offset + available]):
-        raise ScanError("code cave is no longer entirely zero-filled")
     if len(helper["payload"]) > available:
-        raise ScanError("helper payload no longer fits in the code cave")
+        raise ScanError("helper payload no longer fits in the injection site")
+
+    if helper.get("source") == "new executable PE section":
+        if len(source) != helper["original_file_size"]:
+            raise ScanError("source file size changed after scanning")
+        header_offset = helper["section_header_offset"]
+        header_expected = helper["section_header_expected"]
+        if source[header_offset : header_offset + len(header_expected)] != header_expected:
+            raise ScanError("PE section header slot changed after scanning")
+        if u16(source, helper["coff_section_count_offset"]) != helper[
+            "original_section_count"
+        ]:
+            raise ScanError("PE section count changed after scanning")
+        if u32(source, helper["size_of_code_offset"]) != helper["original_size_of_code"]:
+            raise ScanError("PE SizeOfCode changed after scanning")
+        if u32(source, helper["size_of_image_offset"]) != helper[
+            "original_size_of_image"
+        ]:
+            raise ScanError("PE SizeOfImage changed after scanning")
+        if cave_offset < len(source):
+            raise ScanError("new PE section raw data would overlap the source file")
+
+        patched = bytearray(source)
+        patched.extend(b"\0" * (cave_offset - len(patched)))
+        patched.extend(b"\0" * helper["raw_size"])
+        patched[header_offset : header_offset + 40] = helper["section_header"]
+        struct.pack_into(
+            "<H", patched, helper["coff_section_count_offset"], helper["new_section_count"]
+        )
+        struct.pack_into(
+            "<I", patched, helper["size_of_code_offset"], helper["new_size_of_code"]
+        )
+        struct.pack_into(
+            "<I", patched, helper["size_of_image_offset"], helper["new_size_of_image"]
+        )
+    else:
+        patched = bytearray(source)
+
+    if any(patched[cave_offset : cave_offset + available]):
+        raise ScanError("injection site is no longer entirely zero-filled")
 
     call_end = call_offset + len(call["replacement_bytes"])
     helper_end = cave_offset + len(helper["payload"])
     if max(call_offset, cave_offset) < min(call_end, helper_end):
         raise ScanError("call patch and helper payload overlap")
 
-    patched = bytearray(source)
     patched[cave_offset:helper_end] = helper["payload"]
     patched[call_offset:call_end] = call["replacement_bytes"]
     return bytes(patched)
@@ -758,6 +1001,8 @@ def apply_plan(path: Path, plan: dict, backup_path: Path | None = None) -> dict:
         shutil.copystat(path, temporary_path)
         if temporary_path.read_bytes() != patched:
             raise ScanError("temporary patched image verification failed")
+        if plan["helper"].get("source") == "new executable PE section":
+            validate_added_section(PEImage(temporary_path), plan["helper"])
 
         if backup_path.exists():
             backup_hash = hashlib.sha256(backup_path.read_bytes()).hexdigest().upper()

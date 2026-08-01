@@ -54,7 +54,9 @@ bca_jr_locate_job_colonies = {
         owner = {
             if = {
                 limit = {
-                    carrier_is_type = planet
+                    prev = {
+                        carrier_is_type = planet
+                    }
                 }
                 create_message = {
                     type = MESSAGE_BCA_JOB_LOCATE

@@ -1,0 +1,139 @@
+program: stellaris.exe
+MD5: 8b1bca722491cf6ddeb66c5cd1ca0ade
+
+=== FUN_1407dac90 @ 1407dac90 ===
+callers:
+  140d471e1 in FUN_140d46b30 @ 140d46b30
+  1404666d7 in FUN_140466520 @ 140466520
+  140dff761 in FUN_140dff5e0 @ 140dff5e0
+
+ulonglong FUN_1407dac90(uint param_1,longlong *param_2)
+
+{
+  uint uVar1;
+  char cVar2;
+  uint uVar3;
+  longlong lVar4;
+  ulonglong uVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  ulonglong uVar8;
+  longlong local_res18;
+  
+  if ((((DAT_1432876d8 == 0) || (*(uint *)(DAT_1432876d8 + 0x20) <= (param_1 & 0xffffff))) ||
+      (lVar7 = *(longlong *)
+                (*(longlong *)(DAT_1432876d8 + 0x18) + 8 + (ulonglong)(param_1 & 0xffffff) * 0x10),
+      lVar7 == 0)) || (*(uint *)(lVar7 + 8) != param_1)) {
+    lVar7 = DAT_143286c90;
+  }
+  uVar5 = 0;
+  if (0 < (int)*(uint *)(lVar7 + 0x2c)) {
+    uVar6 = (ulonglong)*(uint *)(lVar7 + 0x2c);
+    uVar8 = uVar5;
+    do {
+      if (DAT_1432876c8 == 0) {
+LAB_1407dad3a:
+        lVar4 = DAT_143286c80;
+      }
+      else {
+        uVar1 = *(uint *)(uVar8 + *(longlong *)(lVar7 + 0x20));
+        uVar3 = uVar1 & 0xffffff;
+        if (((*(uint *)(DAT_1432876c8 + 0x20) <= uVar3) ||
+            (lVar4 = *(longlong *)
+                      (*(longlong *)(DAT_1432876c8 + 0x18) + 8 + (ulonglong)uVar3 * 0x10),
+            lVar4 == 0)) || (*(uint *)(lVar4 + 8) != uVar1)) goto LAB_1407dad3a;
+      }
+      local_res18 = 0;
+      cVar2 = (**(code **)(**(longlong **)(lVar4 + 0x18) + 0xa0))
+                        (*(longlong **)(lVar4 + 0x18),&CBuildingType::RTTI_Type_Descriptor,
+                         &local_res18);
+      if ((cVar2 != '\0') && (local_res18 == *param_2)) {
+        uVar5 = (ulonglong)((int)uVar5 + 1);
+      }
+      uVar8 = uVar8 + 4;
+      uVar6 = uVar6 - 1;
+    } while (uVar6 != 0);
+  }
+  return uVar5;
+}
+
+
+
+=== FUN_140e24f30 @ 140e24f30 ===
+callers:
+  140e1bb0f in FUN_140e1b8f0 @ 140e1b8f0
+  140e2b7f3 in FUN_140e2b7d0 @ 140e2b7d0
+  140e1f3b6 in FUN_140e1f350 @ 140e1f350
+  140e00d91 in FUN_140e00d40 @ 140e00d40
+  140e22d99 in FUN_140e22d00 @ 140e22d00
+  140d4716d in FUN_140d46b30 @ 140d46b30
+  140e1b4cb in FUN_140e1b480 @ 140e1b480
+  140e22c5d in FUN_140e22c40 @ 140e22c40
+  140b28720 in FUN_140b28690 @ 140b28690
+  140b287c6 in FUN_140b28790 @ 140b28790
+  140e2b4e7 in FUN_140e2b260 @ 140e2b260
+  140b2913b in FUN_140b29050 @ 140b29050
+  140b31d83 in FUN_140b31d00 @ 140b31d00
+  140b31f33 in FUN_140b31ec0 @ 140b31ec0
+  140b852b9 in FUN_140b851a0 @ 140b851a0
+  140c51f1d in FUN_140c51c70 @ 140c51c70
+  140dff6b7 in FUN_140dff5e0 @ 140dff5e0
+  140e1b36e in FUN_140e1b330 @ 140e1b330
+  140e1d776 in FUN_140e1d6e0 @ 140e1d6e0
+  140e1db1e in FUN_140e1dab0 @ 140e1dab0
+  140e1db31 in FUN_140e1dab0 @ 140e1dab0
+  140e1dcc5 in FUN_140e1dc60 @ 140e1dc60
+  140e1dcd8 in FUN_140e1dc60 @ 140e1dc60
+  140e2b773 in FUN_140e2b750 @ 140e2b750
+  140e332bb in FUN_140e331a0 @ 140e331a0
+  1416b95aa in FUN_1416b94a0 @ 1416b94a0
+  1416fb97c in FUN_1416fb6c0 @ 1416fb6c0
+  1416fc19b in FUN_1416fc160 @ 1416fc160
+  1412e0358 in FUN_1412e0240 @ 1412e0240
+  1416505a3 in FUN_1416504f0 @ 1416504f0
+  1415ad1ca in FUN_1415ac8a0 @ 1415ac8a0
+  1415adade in FUN_1415ac8a0 @ 1415ac8a0
+  1416fb0c2 in FUN_1416fa6a0 @ 1416fa6a0
+  1417a5cdf in FUN_1417a5c60 @ 1417a5c60
+  141b7ac37 in FUN_141b7ab80 @ 141b7ab80
+  141b7ac5b in FUN_141b7ab80 @ 141b7ab80
+
+int * FUN_140e24f30(longlong param_1,int param_2,int param_3)
+
+{
+  char cVar1;
+  longlong *plVar2;
+  int *piVar3;
+  int iVar4;
+  longlong lVar5;
+  undefined1 local_res8 [8];
+  
+  cVar1 = (**(code **)(*(longlong *)(param_1 + 8) + 8))(param_1 + 8);
+  if (cVar1 != '\0') {
+    plVar2 = (longlong *)FUN_140d464b0(*(undefined8 *)(param_1 + 0xf78));
+    (**(code **)(*plVar2 + 0x58))(plVar2,local_res8);
+    if (param_3 == 0) {
+      return (int *)(param_1 + 0x50);
+    }
+    iVar4 = 0;
+    if (0 < *(int *)(param_1 + 0x7c)) {
+      lVar5 = 0;
+      piVar3 = *(int **)(param_1 + 0x70);
+      do {
+        if ((piVar3[1] == param_3) && (*piVar3 == param_2)) {
+          if (iVar4 == -1) {
+            return (int *)0x0;
+          }
+          return *(int **)(param_1 + 0x70) + ((longlong)iVar4 * 5 + 1) * 2;
+        }
+        iVar4 = iVar4 + 1;
+        lVar5 = lVar5 + 1;
+        piVar3 = piVar3 + 10;
+      } while (lVar5 < *(int *)(param_1 + 0x7c));
+    }
+  }
+  return (int *)0x0;
+}
+
+
+
