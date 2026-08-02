@@ -337,6 +337,74 @@ class MinimalPEParserTests(unittest.TestCase):
             self.assertEqual(restore["status"], "restored")
             self.assertEqual(target.read_bytes(), source)
 
+    def test_status_verifies_patch_against_automatic_backup(self):
+        source = bytes(self.make_minimal_pe())
+        payload = b"\x90\xC3"
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory, "game.exe")
+            target.write_bytes(source)
+            injection = patcher.plan_new_executable_section(
+                patcher.PEImage(target), 0x61
+            )
+            plan = {
+                "target": {
+                    "sha256": patcher.hashlib.sha256(source).hexdigest().upper(),
+                    "known_profile": None,
+                },
+                "call_patch": {
+                    "file_offset": 0x410,
+                    "expected_bytes": bytes(5),
+                    "replacement_bytes": b"\xE8\x01\x02\x03\x04",
+                },
+                "helper": {
+                    **injection,
+                    "payload": payload,
+                    "payload_sha256": patcher.hashlib.sha256(payload).hexdigest().upper(),
+                },
+            }
+            with patch.object(patcher, "build_plan", return_value=plan):
+                patcher.apply_plan(target, plan)
+                status = patcher.inspect_patch_status(target)
+
+        self.assertEqual(status["status"], "installed_verified")
+        self.assertEqual(status["original_sha256"], plan["target"]["sha256"])
+
+    def test_status_reports_supported_unpatched_executable(self):
+        source = bytes(self.make_minimal_pe())
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory, "game.exe")
+            target.write_bytes(source)
+            plan = {"target": {"known_profile": "test-profile"}}
+            with patch.object(patcher, "build_plan", return_value=plan):
+                status = patcher.inspect_patch_status(target)
+
+        self.assertEqual(status["status"], "not_installed_supported")
+        self.assertEqual(status["known_profile"], "test-profile")
+
+    def test_status_marks_unverifiable_bca_section_as_modified(self):
+        source = bytes(self.make_minimal_pe())
+        with tempfile.TemporaryDirectory() as directory:
+            target = Path(directory, "game.exe")
+            target.write_bytes(source)
+            injection = patcher.plan_new_executable_section(
+                patcher.PEImage(target), 0x61
+            )
+            plan = {
+                "target": {
+                    "sha256": patcher.hashlib.sha256(source).hexdigest().upper()
+                },
+                "call_patch": {
+                    "file_offset": 0x410,
+                    "expected_bytes": bytes(5),
+                    "replacement_bytes": b"\xE8\x01\x02\x03\x04",
+                },
+                "helper": {**injection, "payload": b"\x90\xC3"},
+            }
+            target.write_bytes(patcher.build_patched_image(source, plan))
+            status = patcher.inspect_patch_status(target)
+
+        self.assertEqual(status["status"], "modified_unverified")
+
     def test_scheduler_structure_recovers_sib_encoded_colony_register(self):
         image = self.make_minimal_pe()
         image[0x400 : 0x400 + 30] = bytes.fromhex(

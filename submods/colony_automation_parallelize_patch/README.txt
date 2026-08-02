@@ -30,6 +30,23 @@ The installer creates a hash-named backup next to stellaris.exe before making
 any change. Restore only proceeds when that backup reconstructs the current
 patched executable exactly.
 
+Checking Installation After Updates
+-----------------------------------
+
+After a beta or Steam update, close Stellaris and double-click "Check Patch
+Status.bat". It only reads the executable and its BCA backups. Its result is
+one of:
+
+- `installed_verified`: the current executable exactly matches a patch rebuilt
+  from its automatic backup.
+- `not_installed_supported`: no patch is installed, but this installer can
+  safely scan the current executable. Run the installer again.
+- `not_installed_unsupported`: no patch is installed and the new executable
+  needs a patcher update before it can be applied.
+- `modified_unverified`: a BCA marker or conflicting backups were found, but
+  the current executable cannot be verified. Do not reinstall or restore until
+  the state has been reviewed.
+
 Compatibility And Safety
 ------------------------
 
@@ -75,6 +92,17 @@ Workshop item: 3774886744
 
 安装器会在修改前于 stellaris.exe 旁创建带哈希名称的备份。恢复操作仅会在
 该备份能精确重建当前已补丁 EXE 时执行。
+
+更新后的安装状态检查
+--------------------
+
+在 Beta 或 Steam 更新后，关闭 Stellaris 并双击 "Check Patch Status.bat"。
+该操作只读取 EXE 与同目录的 BCA 备份，结果有四种：
+
+- `installed_verified`：当前 EXE 可由自动备份精确重建，补丁仍在生效。
+- `not_installed_supported`：未安装补丁，但当前 EXE 通过兼容性扫描；可重新运行安装器。
+- `not_installed_unsupported`：未安装补丁，且当前版本需要更新补丁器后才能安全安装。
+- `modified_unverified`：发现 BCA 标记或冲突备份，但无法验证当前 EXE；在人工检查前请勿安装或恢复。
 
 兼容性与安全性
 --------------

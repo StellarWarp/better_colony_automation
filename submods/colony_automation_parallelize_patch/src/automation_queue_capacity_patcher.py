@@ -1232,6 +1232,16 @@ def resolve_executable(explicit: Path | None, auto: bool, prompt: bool) -> Path:
 
 
 def find_matching_backup(path: Path) -> tuple[Path, dict]:
+    matches = matching_backups(path)
+    if len(matches) != 1:
+        raise ScanError(
+            f"automatic restore found {len(matches)} backups matching the current patch"
+        )
+    return matches[0]
+
+
+def matching_backups(path: Path) -> list[tuple[Path, dict]]:
+    """Return backups whose generated patch exactly matches *path* as-is."""
     current = path.read_bytes()
     matches = []
     for backup in sorted(path.parent.glob(f"{path.name}.bca-backup-*")):
@@ -1241,11 +1251,70 @@ def find_matching_backup(path: Path) -> tuple[Path, dict]:
                 matches.append((backup, plan))
         except (OSError, ScanError, struct.error, ValueError):
             continue
-    if len(matches) != 1:
-        raise ScanError(
-            f"automatic restore found {len(matches)} backups matching the current patch"
-        )
-    return matches[0]
+    return matches
+
+
+def inspect_patch_status(path: Path) -> dict:
+    """Classify patch state without changing the executable or its backups."""
+    path = path.resolve()
+    current = path.read_bytes()
+    current_sha256 = hashlib.sha256(current).hexdigest().upper()
+    matches = matching_backups(path)
+    if len(matches) == 1:
+        backup, plan = matches[0]
+        return {
+            "status": "installed_verified",
+            "message": "The executable exactly matches the patch rebuilt from its backup.",
+            "executable": str(path),
+            "sha256": current_sha256,
+            "backup": str(backup.resolve()),
+            "original_sha256": plan["target"]["sha256"],
+        }
+    if len(matches) > 1:
+        return {
+            "status": "modified_unverified",
+            "message": "Multiple backups reconstruct the current executable; do not reinstall or restore automatically.",
+            "executable": str(path),
+            "sha256": current_sha256,
+            "matching_backups": [str(backup.resolve()) for backup, _ in matches],
+        }
+
+    try:
+        image = PEImage(path)
+    except (ScanError, struct.error, ValueError) as error:
+        return {
+            "status": "not_installed_unsupported",
+            "message": "The executable cannot be inspected as a supported Windows x64 PE image.",
+            "executable": str(path),
+            "sha256": current_sha256,
+            "reason": str(error),
+        }
+
+    if any(section.name == ".bca" for section in image.sections):
+        return {
+            "status": "modified_unverified",
+            "message": "A .bca section exists, but no backup can verify this exact patch.",
+            "executable": str(path),
+            "sha256": current_sha256,
+        }
+
+    try:
+        plan = build_plan(path)
+    except (OSError, ScanError, struct.error, ValueError) as error:
+        return {
+            "status": "not_installed_unsupported",
+            "message": "No verified BCA patch is installed, and this game version cannot be patched safely by this build.",
+            "executable": str(path),
+            "sha256": current_sha256,
+            "reason": str(error),
+        }
+    return {
+        "status": "not_installed_supported",
+        "message": "No BCA patch is installed; this executable passed the read-only compatibility scan.",
+        "executable": str(path),
+        "sha256": current_sha256,
+        "known_profile": plan["target"]["known_profile"],
+    }
 
 
 def parse_args(argv: Sequence[str]) -> argparse.Namespace:
@@ -1284,6 +1353,11 @@ def parse_args(argv: Sequence[str]) -> argparse.Namespace:
         action="store_true",
         help="find the one backup that exactly reconstructs the current patch and restore it",
     )
+    mode.add_argument(
+        "--status",
+        action="store_true",
+        help="read and verify whether the BCA patch is currently installed",
+    )
     parser.add_argument(
         "--backup",
         type=Path,
@@ -1303,7 +1377,9 @@ def main(argv: Sequence[str] | None = None) -> int:
         executable = resolve_executable(args.executable, args.auto, args.prompt)
         if args.backup and not args.apply:
             raise ScanError("--backup is only valid with --apply")
-        if args.restore_auto_backup:
+        if args.status:
+            result = inspect_patch_status(executable)
+        elif args.restore_auto_backup:
             backup_path, backup_plan = find_matching_backup(executable)
             result = restore_backup(executable, backup_path, backup_plan)
         elif args.restore_backup:
