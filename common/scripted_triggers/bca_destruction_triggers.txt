@@ -49,6 +49,27 @@ bca_can_remove_pop_assemble = {
 	}
 }
 
+bca_can_remove_biological_pop_assemble = {
+	AND = {
+		bca_can_remove_building = yes
+		owner = { has_country_flag = bca_remove_biological_pop_assembly_buildings }
+	}
+}
+
+bca_can_remove_mechanical_pop_assemble = {
+	AND = {
+		bca_can_remove_building = yes
+		owner = { has_country_flag = bca_remove_mechanical_pop_assembly_buildings }
+	}
+}
+
+bca_can_remove_medical_buildings = {
+	AND = {
+		bca_can_remove_building = yes
+		owner = { has_country_flag = bca_remove_medical_buildings }
+	}
+}
+
 bca_can_build_pop_assemble = {
 	OR = {
 		owner = { has_country_flag = bca_build_pop_assemble_even_if_no_jobs }
@@ -56,6 +77,13 @@ bca_can_build_pop_assemble = {
 			which = value:bca_civilian_jobs
 			value = 0
 		}
+	}
+}
+
+bca_can_build_biological_pop_assemble = {
+	AND = {
+		bca_can_build_pop_assemble = yes
+		owner = { has_country_flag = bca_build_biological_pop_assembly_buildings }
 	}
 }
 
@@ -276,11 +304,10 @@ bca_advanced_trade_building_replace = {
 	}
 }
 
-low_rare_resource_income = {
-	OR = {
-		bca_empire_needs_rare_crystals = yes
-		bca_empire_needs_volatile_motes = yes
-		bca_empire_needs_exotic_gases = yes
+bca_can_build_mechanical_pop_assemble = {
+	AND = {
+		bca_can_build_pop_assemble = yes
+		owner = { has_country_flag = bca_build_mechanical_pop_assembly_buildings }
 	}
 }
 
@@ -291,17 +318,15 @@ bca_advanced_rare_resource_building_replace = {
 		}
 	}
 	has_any_industrial_designation = yes
-	low_rare_resource_income = no
 	OR = {
 		bca_unique_building_potential = {
-				building1 = building_archaeo_refinery
+			building1 = building_archaeo_refinery
 		}
-		has_building =  building_archaeo_refinery
+		has_building = building_archaeo_refinery
 	}
 }
 
 bca_rare_crystals_buidling_potential = {
-	bca_planet_build_needs_rare_crystals = yes
 	OR = {
 		owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
 		NOT = { has_building = building_archaeo_refinery }
@@ -312,7 +337,6 @@ bca_rare_crystals_buidling_potential = {
 }
 
 bca_volatile_motes_building_potential = {
-	bca_planet_build_needs_volatile_motes = yes
 	OR = {
 		owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
 		NOT = { has_building = building_archaeo_refinery }
@@ -323,7 +347,6 @@ bca_volatile_motes_building_potential = {
 }
 
 bca_exotic_gases_building_potential = {
-	bca_planet_build_needs_exotic_gases = yes
 	OR = {
 		owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
 		NOT = { has_building = building_archaeo_refinery }
@@ -337,23 +360,8 @@ bca_industrial_building_repalce_for_rare_resources = {
 	bca_has_minerals_to_build = yes
 	has_any_industrial_designation = yes
 	OR = {
-		AND = {
-			bca_planet_build_needs_rare_crystals = yes
-			bca_unique_building_potential = {
+		bca_unique_building_potential = {
 				building1 = building_archaeo_refinery
-			}
-		}
-		AND = {
-			bca_planet_build_needs_volatile_motes = yes
-			bca_unique_building_potential = {
-				building1 = building_archaeo_refinery
-			}
-		}
-		AND = {
-			bca_planet_build_needs_exotic_gases = yes
-			bca_unique_building_potential = {
-				building1 = building_archaeo_refinery
-			}
 		}
 		bca_rare_crystals_buidling_potential = yes
 		bca_volatile_motes_building_potential = yes

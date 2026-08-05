@@ -106,6 +106,21 @@
     {"name": "needed", "text": "BCA_GLOBAL_SETTINGS_OPTION_BUILD_WHEN_NEEDED", "effect": "bca_global_settings_pop_assemble_needed", "tooltip": "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_NEEDED_TOOLTIP"},
     {"name": "demolish", "text": "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE", "effect": "bca_global_settings_pop_assemble_demolish", "tooltip": "BCA_GLOBAL_SETTINGS_POP_ASSEMBLY_BUILDINGS_DEMOLISH_TOOLTIP"}
     ] %}
+{% set biological_pop_assembly_choices = [
+    {"name": "demolish", "text": "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE", "effect": "bca_global_settings_biological_pop_assembly_buildings_demolish"},
+    {"name": "retain", "text": "BCA_GLOBAL_SETTINGS_OPTION_RETAIN", "effect": "bca_global_settings_biological_pop_assembly_buildings_retain"},
+    {"name": "build", "text": "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD", "effect": "bca_global_settings_biological_pop_assembly_buildings_build"}
+    ] %}
+{% set mechanical_pop_assembly_choices = [
+    {"name": "demolish", "text": "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE", "effect": "bca_global_settings_mechanical_pop_assembly_buildings_demolish"},
+    {"name": "retain", "text": "BCA_GLOBAL_SETTINGS_OPTION_RETAIN", "effect": "bca_global_settings_mechanical_pop_assembly_buildings_retain"},
+    {"name": "build", "text": "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD", "effect": "bca_global_settings_mechanical_pop_assembly_buildings_build"}
+    ] %}
+{% set medical_building_choices = [
+    {"name": "demolish", "text": "BCA_GLOBAL_SETTINGS_OPTION_AUTO_REMOVE", "effect": "bca_global_settings_medical_buildings_demolish"},
+    {"name": "retain", "text": "BCA_GLOBAL_SETTINGS_OPTION_RETAIN", "effect": "bca_global_settings_medical_buildings_retain"},
+    {"name": "build", "text": "BCA_GLOBAL_SETTINGS_OPTION_ALWAYS_BUILD", "effect": "bca_global_settings_medical_buildings_build"}
+    ] %}
 {% set deurbanization_choices = [
     {"name": "off", "text": "BCA_GLOBAL_SETTINGS_DISABLED", "effect": "bca_global_settings_deurbanization_off"},
     {"name": "on", "text": "BCA_GLOBAL_SETTINGS_ENABLED", "effect": "bca_global_settings_deurbanization_on"}
@@ -319,12 +334,24 @@ containerWindowType = {
             x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + behavior_row_height + behavior_row_gap, width = full_width, height = behavior_row_height, button_width = 118, button_gap = 8, options = pop_assembly_choices, label_effect = "bca_tab_visible_2")
     }}
     {{
+        gsc.choice_row(name = "biological_pop_assembly", text = "BCA_GLOBAL_SETTINGS_BIOLOGICAL_POP_ASSEMBLY_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_BIOLOGICAL_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 2, width = full_width, height = behavior_row_height, button_width = 118, button_gap = 8, options = biological_pop_assembly_choices, label_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.choice_row(name = "mechanical_pop_assembly", text = "BCA_GLOBAL_SETTINGS_MECHANICAL_POP_ASSEMBLY_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_MECHANICAL_POP_ASSEMBLY_BUILDINGS_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 3, width = full_width, height = behavior_row_height, button_width = 118, button_gap = 8, options = mechanical_pop_assembly_choices, label_effect = "bca_tab_visible_2")
+    }}
+    {{
+        gsc.choice_row(name = "medical_buildings", text = "BCA_GLOBAL_SETTINGS_MEDICAL_BUILDINGS", tooltip = "BCA_GLOBAL_SETTINGS_MEDICAL_BUILDINGS_TOOLTIP",
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 4, width = full_width, height = behavior_row_height, button_width = 118, button_gap = 8, options = medical_building_choices, label_effect = "bca_tab_visible_2")
+    }}
+    {{
         gsc.choice_row(name = "deurbanization", text = "BCA_GLOBAL_SETTINGS_DEURBANIZATION", tooltip = "BCA_GLOBAL_SETTINGS_DEURBANIZATION_TOOLTIP",
-            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 2, width = full_width, height = behavior_row_height, button_width = 72, button_gap = 10, options = deurbanization_choices, label_effect = "bca_tab_visible_2")
+            x = content_x, y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 5, width = full_width, height = behavior_row_height, button_width = 72, button_gap = 10, options = deurbanization_choices, label_effect = "bca_tab_visible_2")
     }}
 
     {% for row in bca_global_settings_reserve_rows %}
-        {% set row_y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 3 + reserve_row_gap + loop.index0 * (reserve_row_height + reserve_row_gap) %}
+        {% set row_y = tab_content_y + demo_all_row_height + demo_row_gap + (demo_row_height + demo_row_gap) * 3 + behavior_row_gap + (behavior_row_height + behavior_row_gap) * 6 + reserve_row_gap + loop.index0 * (reserve_row_height + reserve_row_gap) %}
         {% set negative_options = [] %}
         {% for option in row.negative_options %}
             {% set _ = negative_options.append({"name": option.name, "text": option.text, "effect": row.effect_prefix ~ "_" ~ option.name}) %}

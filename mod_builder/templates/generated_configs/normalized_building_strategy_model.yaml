@@ -2613,11 +2613,19 @@ building_strategy_model:
         - bca_can_remove_pop_assemble
         source_order: 430
         remove_series: true
+      - triggers:
+        - bca_can_remove_mechanical_pop_assemble
+        source_order: 443
+        remove_series: true
     building_robot_assembly_complex:
       destruction:
       - triggers:
         - bca_can_remove_pop_assemble
         source_order: 431
+        remove_series: true
+      - triggers:
+        - bca_can_remove_mechanical_pop_assemble
+        source_order: 444
         remove_series: true
     building_machine_assembly_plant:
       destruction:
@@ -2625,11 +2633,19 @@ building_strategy_model:
         - bca_can_remove_pop_assemble
         source_order: 432
         remove_series: true
+      - triggers:
+        - bca_can_remove_mechanical_pop_assemble
+        source_order: 445
+        remove_series: true
     building_machine_assembly_complex:
       destruction:
       - triggers:
         - bca_can_remove_pop_assemble
         source_order: 433
+        remove_series: true
+      - triggers:
+        - bca_can_remove_mechanical_pop_assemble
+        source_order: 446
         remove_series: true
     building_clone_vats:
       destruction:
@@ -2637,11 +2653,19 @@ building_strategy_model:
         - bca_can_remove_pop_assemble
         source_order: 434
         remove_series: true
+      - triggers:
+        - bca_can_remove_biological_pop_assemble
+        source_order: 438
+        remove_series: true
     building_posthumous_employment_center:
       destruction:
       - triggers:
         - bca_can_remove_pop_assemble
         source_order: 435
+        remove_series: true
+      - triggers:
+        - bca_can_remove_biological_pop_assemble
+        source_order: 439
         remove_series: true
     building_spawning_pool:
       destruction:
@@ -2649,9 +2673,47 @@ building_strategy_model:
         - bca_can_remove_pop_assemble
         source_order: 436
         remove_series: true
+      - triggers:
+        - bca_can_remove_biological_pop_assemble
+        source_order: 440
+        remove_series: true
     building_offspring_nest:
       destruction:
       - triggers:
         - bca_can_remove_pop_assemble
         source_order: 437
+        remove_series: true
+      - triggers:
+        - bca_can_remove_biological_pop_assemble
+        source_order: 441
+        remove_series: true
+    building_fe_assembly_1:
+      destruction:
+      - triggers:
+        - bca_can_remove_mechanical_pop_assemble
+        source_order: 442
+        remove_series: true
+    building_medical_1:
+      destruction:
+      - triggers:
+        - bca_can_remove_medical_buildings
+        source_order: 447
+        remove_series: true
+    building_medical_2:
+      destruction:
+      - triggers:
+        - bca_can_remove_medical_buildings
+        source_order: 448
+        remove_series: true
+    building_medical_3:
+      destruction:
+      - triggers:
+        - bca_can_remove_medical_buildings
+        source_order: 449
+        remove_series: true
+    building_fe_clinic_1:
+      destruction:
+      - triggers:
+        - bca_can_remove_medical_buildings
+        source_order: 450
         remove_series: true

@@ -872,5 +872,125 @@ bca_auto_building_destruction_entry = {
                 remove_building = building_offspring_nest
             }
         }
+        if = {
+            limit = {
+                num_buildings = {
+                    type = any
+                    category = pop_assembly
+                    value > 0
+                }
+                bca_can_remove_biological_pop_assemble = yes
+            }
+            if = {
+                limit = {
+                    has_building = building_clone_vats
+                }
+                remove_building = building_clone_vats
+            }
+            if = {
+                limit = {
+                    has_building = building_posthumous_employment_center
+                }
+                remove_building = building_posthumous_employment_center
+            }
+            if = {
+                limit = {
+                    has_building = building_spawning_pool
+                }
+                remove_building = building_spawning_pool
+            }
+            if = {
+                limit = {
+                    has_building = building_offspring_nest
+                }
+                remove_building = building_offspring_nest
+            }
+        }
+        if = {
+            limit = {
+                num_buildings = {
+                    type = any
+                    category = pop_assembly
+                    value > 0
+                }
+                bca_can_remove_mechanical_pop_assemble = yes
+            }
+            if = {
+                limit = {
+                    has_building = building_fe_assembly_1
+                }
+                remove_building = building_fe_assembly_1
+            }
+            if = {
+                limit = {
+                    has_building = building_fe_assembly_2
+                }
+                remove_building = building_fe_assembly_2
+            }
+            if = {
+                limit = {
+                    has_building = building_robot_assembly_plant
+                }
+                remove_building = building_robot_assembly_plant
+            }
+            if = {
+                limit = {
+                    has_building = building_robot_assembly_complex
+                }
+                remove_building = building_robot_assembly_complex
+            }
+            if = {
+                limit = {
+                    has_building = building_machine_assembly_plant
+                }
+                remove_building = building_machine_assembly_plant
+            }
+            if = {
+                limit = {
+                    has_building = building_machine_assembly_complex
+                }
+                remove_building = building_machine_assembly_complex
+            }
+        }
+        if = {
+            limit = {
+                num_buildings = {
+                    type = any
+                    category = amenity
+                    value > 0
+                }
+                bca_can_remove_medical_buildings = yes
+            }
+            if = {
+                limit = {
+                    has_building = building_medical_1
+                }
+                remove_building = building_medical_1
+            }
+            if = {
+                limit = {
+                    has_building = building_medical_2
+                }
+                remove_building = building_medical_2
+            }
+            if = {
+                limit = {
+                    has_building = building_medical_3
+                }
+                remove_building = building_medical_3
+            }
+            if = {
+                limit = {
+                    has_building = building_fe_clinic_1
+                }
+                remove_building = building_fe_clinic_1
+            }
+            if = {
+                limit = {
+                    has_building = building_fe_clinic_2
+                }
+                remove_building = building_fe_clinic_2
+            }
+        }
     }
 }

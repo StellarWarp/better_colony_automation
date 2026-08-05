@@ -17,6 +17,7 @@ automate_amenity_management = {
 		clinic = {
 			building = building_medical_2
 			available = {
+				owner = { has_country_flag = bca_build_medical_buildings }
 				owner = { is_synthetic_empire = no }
 				num_buildings = { type = building_medical_2 in_construction = yes value < 1 }
 				NOT = { has_available_jobs = entertainer }
@@ -27,6 +28,7 @@ automate_amenity_management = {
 			}
 
 			upgrade_trigger = {
+				owner = { has_country_flag = bca_build_medical_buildings }
 				owner = { is_synthetic_empire = no }
 				NOT = { has_available_jobs = entertainer }
 				NOT = { has_available_jobs = healthcare }

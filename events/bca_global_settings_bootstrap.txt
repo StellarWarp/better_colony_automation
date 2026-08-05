@@ -39,9 +39,27 @@ event = {
                 set_country_flag = bca_retain_low_level_rare_resource_buildings
                 remove_country_flag = bca_build_pop_assemble_even_if_no_jobs
                 remove_country_flag = bac_remove_pop_assemble_buildings
+                set_country_flag = bca_build_biological_pop_assembly_buildings
+                set_country_flag = bca_build_mechanical_pop_assembly_buildings
+                set_country_flag = bca_build_medical_buildings
+                remove_country_flag = bca_remove_biological_pop_assembly_buildings
+                remove_country_flag = bca_remove_mechanical_pop_assembly_buildings
+                remove_country_flag = bca_remove_medical_buildings
                 set_country_flag = bca_default_disable_auto_destruction_building
                 set_country_flag = bca_default_disable_auto_destruction_district
                 set_country_flag = bca_default_disable_auto_destruction_zone
+            }
+        }
+        if = {
+            limit = { NOT = { has_global_flag = bca_population_assembly_settings_initialized } }
+            set_global_flag = bca_population_assembly_settings_initialized
+            every_playable_country = {
+                set_country_flag = bca_build_biological_pop_assembly_buildings
+                set_country_flag = bca_build_mechanical_pop_assembly_buildings
+                set_country_flag = bca_build_medical_buildings
+                remove_country_flag = bca_remove_biological_pop_assembly_buildings
+                remove_country_flag = bca_remove_mechanical_pop_assembly_buildings
+                remove_country_flag = bca_remove_medical_buildings
             }
         }
         if = {

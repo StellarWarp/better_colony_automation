@@ -25,6 +25,7 @@ automate_medical_autobuild = {
     available = {
         exists = owner
         bca_has_minerals_to_build = yes
+        owner = { has_country_flag = bca_build_medical_buildings }
         owner = {
             has_technology = tech_basic_health
         }
@@ -43,6 +44,7 @@ automate_fe_clinic_autobuild = {
 
     emergency = yes
 	available = {
+		owner = { has_country_flag = bca_build_medical_buildings }
 		owner = {
 			has_technology = tech_fe_clinic_1
 		}

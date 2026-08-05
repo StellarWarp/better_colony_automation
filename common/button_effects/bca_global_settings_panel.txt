@@ -1256,6 +1256,132 @@ bca_global_settings_pop_assemble_demolish_unselected = {
 }
 
 
+bca_global_settings_biological_pop_assembly_buildings_build_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_build_biological_pop_assembly_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_biological_pop_assembly_buildings remove_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_biological_pop_assembly_buildings_build_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_build_biological_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_biological_pop_assembly_buildings remove_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_biological_pop_assembly_buildings_retain_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOR = { has_country_flag = bca_build_biological_pop_assembly_buildings has_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_biological_pop_assembly_buildings remove_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_biological_pop_assembly_buildings_retain_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } OR = { has_country_flag = bca_build_biological_pop_assembly_buildings has_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_biological_pop_assembly_buildings remove_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_biological_pop_assembly_buildings_demolish_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_remove_biological_pop_assembly_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_biological_pop_assembly_buildings remove_country_flag = bca_build_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_biological_pop_assembly_buildings_demolish_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_remove_biological_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_biological_pop_assembly_buildings remove_country_flag = bca_build_biological_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_build_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_build_mechanical_pop_assembly_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_mechanical_pop_assembly_buildings remove_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_build_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_build_mechanical_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_mechanical_pop_assembly_buildings remove_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_retain_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOR = { has_country_flag = bca_build_mechanical_pop_assembly_buildings has_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_mechanical_pop_assembly_buildings remove_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_retain_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } OR = { has_country_flag = bca_build_mechanical_pop_assembly_buildings has_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_mechanical_pop_assembly_buildings remove_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_demolish_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_remove_mechanical_pop_assembly_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_mechanical_pop_assembly_buildings remove_country_flag = bca_build_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_mechanical_pop_assembly_buildings_demolish_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_remove_mechanical_pop_assembly_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_mechanical_pop_assembly_buildings remove_country_flag = bca_build_mechanical_pop_assembly_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_build_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_build_medical_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_medical_buildings remove_country_flag = bca_remove_medical_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_build_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_build_medical_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_build_medical_buildings remove_country_flag = bca_remove_medical_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_retain_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOR = { has_country_flag = bca_build_medical_buildings has_country_flag = bca_remove_medical_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_medical_buildings remove_country_flag = bca_remove_medical_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_retain_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } OR = { has_country_flag = bca_build_medical_buildings has_country_flag = bca_remove_medical_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { remove_country_flag = bca_build_medical_buildings remove_country_flag = bca_remove_medical_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_demolish_selected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } has_country_flag = bca_remove_medical_buildings } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_medical_buildings remove_country_flag = bca_build_medical_buildings } } }
+}
+
+
+bca_global_settings_medical_buildings_demolish_unselected = {
+    potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 } NOT = { has_country_flag = bca_remove_medical_buildings } } }
+    allow = { always = yes }
+    effect = { hidden_effect = { from = { set_country_flag = bca_remove_medical_buildings remove_country_flag = bca_build_medical_buildings } } }
+}
+
+
 bca_global_settings_deurbanization_off_selected = {
     potential = { exists = from from = { check_variable = { which = bca_gui_active_tab value = 2 }  NOT = { has_country_flag = bac_allow_deurbanization } } }
     allow = { always = yes }
