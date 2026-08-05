@@ -96,14 +96,14 @@ bca_designation_changed = {
 bca_district_d0_reach_planet_max = {
     check_variable_arithmetic = {
         which = value:bca_planet_max_districts
-        value = value:num_primary_district
+        value = value:bca_committed_primary_district
     }
 }
 {% for district_set_idx in range(1,4) %}
     {% set district_slot = 'd'~district_set_idx %}
     bca_district_{{ district_slot }}_reach_planet_max = {
         check_variable_arithmetic = {
-            which = value:num_district_{{ district_slot }}
+            which = value:bca_committed_district_{{ district_slot }}
             value = value:bca_district_max_add_{{ district_slot }}
         }
     }

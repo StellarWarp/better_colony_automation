@@ -1,130 +1,130 @@
-automate_passenger_dorms_housing = {
-	category = "planet_automation_housing"
-
-	emergency = yes
-	available = {
-		free_housing < 0
-		bca_has_minerals_to_build = yes
-		bca_can_build_building_passenger_dorms = yes
-	}
-
-	buildings = {
-		1 = {
-			building = building_passenger_dorms
-		}
-	}
-}
-
-automate_generator_planet_housing = {
-	category = "planet_automation_housing"
-
-	emergency = yes
-	available = {
-		free_housing < 0
-		bca_has_minerals_to_build = yes
-		has_generator_designation = yes
-		# num_districts = {
-		# 	type = district_generator
-		# 	value < bca_opti_count_secondary_district
-		# }
-		NAND = {
-			exists = owner
-			owner = { has_technology = tech_mine_betharian }
-			has_deposit = d_betharian_deposit
-		}
-	}
-
-	prio_districts = {
-		district_generator
-		district_hab_energy
-		district_geothermal
-		district_rw_urban_1
-	}
-
-}
-
-automate_mining_planet_housing = {
-	category = "planet_automation_housing"
-
-	emergency = yes
-	available = {
-		free_housing < 0
-        bca_has_minerals_to_build = yes
-		has_mining_designation = yes
-		# num_districts = {
-		# 	type = district_mining
-		# 	value < bca_opti_count_secondary_district
-		# }
-	}
-
-	prio_districts = {
-		district_mining
-		district_hab_mining
-		district_melting
-	}
-}
-
-
-automate_farming_planet_housing = {
-	category = "planet_automation_housing"
-
-	emergency = yes
-	available = {
-		free_housing < 0
-		bca_has_minerals_to_build = yes
-		has_farming_designation = yes
-		# num_districts = {
-		# 	type = district_farming
-		# 	value < bca_opti_count_secondary_district
-		# }
-		NOT = {
-			uses_district_set = habitat
-		}
-	}
-
-	prio_districts = {
-		district_farming
-		district_rw_urban_1
-	}
-
-}
-
-
-automate_slave_planet_housing = {
-	category = "planet_automation_housing"
-
-	emergency = yes
-	available = {
-        free_housing < 0
-        bca_has_minerals_to_build = yes
-		has_designation = col_slave
-	}
-
-	prio_districts = {
-		district_slave
-		district_mining
-		district_farming
-		district_generator
-	}
-
-}
-
-
-automate_building_housing_districts = {
-	available = {
-		free_housing < 0
-		bca_has_minerals_to_build = yes
-	}
-
-	emergency = yes
-	category = "planet_automation_housing"
-
-	prio_districts = {
-		district_city
-		district_hive
-		district_nexus
-		district_arcology_housing
-		district_rw_city
-		district_hab_housing
-	}
-}
+#automate_passenger_dorms_housing = {
+#	category = "planet_automation_housing"
+#
+#	emergency = yes
+#	available = {
+#		free_housing < 0
+#		bca_has_minerals_to_build = yes
+#		bca_can_build_building_passenger_dorms = yes
+#	}
+#
+#	buildings = {
+#		1 = {
+#			building = building_passenger_dorms
+#		}
+#	}
+#}
+#
+#automate_generator_planet_housing = {
+#	category = "planet_automation_housing"
+#
+#	emergency = yes
+#	available = {
+#		free_housing < 0
+#		bca_has_minerals_to_build = yes
+#		has_generator_designation = yes
+#		# num_districts = {
+#		# 	type = district_generator
+#		# 	value < bca_opti_count_secondary_district
+#		# }
+#		NAND = {
+#			exists = owner
+#			owner = { has_technology = tech_mine_betharian }
+#			has_deposit = d_betharian_deposit
+#		}
+#	}
+#
+#	prio_districts = {
+#		district_generator
+#		district_hab_energy
+#		district_geothermal
+#		district_rw_urban_1
+#	}
+#
+#}
+#
+#automate_mining_planet_housing = {
+#	category = "planet_automation_housing"
+#
+#	emergency = yes
+#	available = {
+#		free_housing < 0
+#        bca_has_minerals_to_build = yes
+#		has_mining_designation = yes
+#		# num_districts = {
+#		# 	type = district_mining
+#		# 	value < bca_opti_count_secondary_district
+#		# }
+#	}
+#
+#	prio_districts = {
+#		district_mining
+#		district_hab_mining
+#		district_melting
+#	}
+#}
+#
+#
+#automate_farming_planet_housing = {
+#	category = "planet_automation_housing"
+#
+#	emergency = yes
+#	available = {
+#		free_housing < 0
+#		bca_has_minerals_to_build = yes
+#		has_farming_designation = yes
+#		# num_districts = {
+#		# 	type = district_farming
+#		# 	value < bca_opti_count_secondary_district
+#		# }
+#		NOT = {
+#			uses_district_set = habitat
+#		}
+#	}
+#
+#	prio_districts = {
+#		district_farming
+#		district_rw_urban_1
+#	}
+#
+#}
+#
+#
+#automate_slave_planet_housing = {
+#	category = "planet_automation_housing"
+#
+#	emergency = yes
+#	available = {
+#        free_housing < 0
+#        bca_has_minerals_to_build = yes
+#		has_designation = col_slave
+#	}
+#
+#	prio_districts = {
+#		district_slave
+#		district_mining
+#		district_farming
+#		district_generator
+#	}
+#
+#}
+#
+#
+#automate_building_housing_districts = {
+#	available = {
+#		free_housing < 0
+#		bca_has_minerals_to_build = yes
+#	}
+#
+#	emergency = yes
+#	category = "planet_automation_housing"
+#
+#	prio_districts = {
+#		district_city
+#		district_hive
+#		district_nexus
+#		district_arcology_housing
+#		district_rw_city
+#		district_hab_housing
+#	}
+#}

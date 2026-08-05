@@ -17,12 +17,13 @@ bca_potential_max_districts = {
         }
         mode = add
     }
+    add = value:bca_num_queued_districts
     # set = value:bca_planet_max_districts
 }
 
 bca_num_free_secondary_districts_plan = {
     set = value:bca_potential_max_districts
-    subtract = value:num_primary_district
+    subtract = value:bca_committed_primary_district
     {% for i in range(3,6) %}
         {% set zone_slot = "z"~i %}
         subtract = {{ v.var_district_num_plan(zone_slot) }}
@@ -43,7 +44,7 @@ bca_num_free_primary_districts_plan = {
         {% set zone_slot = "z"~i %}
         add = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
-    subtract = value:num_secondary_district
+    subtract = value:bca_committed_secondary_district
 }
 
 bca_num_primary_districts_plan = {
@@ -126,7 +127,22 @@ num_secondary_district = {
             round = yes
         {% endif %}
     }
+
+    bca_committed_district_d{{ district_set_idx }} = {
+        set = value:num_district_d{{ district_set_idx }}
+        add = bca_queued_district_d{{ district_set_idx }}
+    }
 {% endfor %}
+
+bca_committed_primary_district = {
+    set = value:bca_committed_district_d0
+}
+
+bca_committed_secondary_district = {
+    set = value:bca_committed_district_d1
+    add = value:bca_committed_district_d2
+    add = value:bca_committed_district_d3
+}
 
 
 num_free_primary_district = {

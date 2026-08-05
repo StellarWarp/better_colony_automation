@@ -59,6 +59,10 @@ country_event = {
                         AND = {
                             free_district_slots < 1
                             num_uncleared_blockers < 1
+                            check_variable = {
+                                which = bca_num_queued_districts
+                                value = 0
+                            }
                             num_districts = { type = district_farming value < 1 }
                             num_districts = { type = district_mining value < 1 }
                             num_districts = { type = district_generator value < 1 }

@@ -26,8 +26,21 @@ on_colonized = {
 
 on_district_complete = {
 	events = {
+		colony_automation_event.16  # 完成区划建设后更新队列计数
 		colony_automation_event.11  # 完成区划建设后移除规划标记
 		colony_automation_event.14  # 禁用区划拆除时同步规划下界
+	}
+}
+
+on_district_queued = {
+	events = {
+		colony_automation_event.15
+	}
+}
+
+on_district_unqueued = {
+	events = {
+		colony_automation_event.16
 	}
 }
 

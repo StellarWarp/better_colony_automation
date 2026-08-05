@@ -71,7 +71,7 @@ bca_civilian_jobs = {
 	}
 }
 
-# must ensure that no on going district construction is happening when using this script
+# Includes BCA-tracked district construction queues.
 bca_planet_max_districts= {
 	complex_trigger_modifier = {
 		trigger = num_districts
@@ -87,6 +87,14 @@ bca_planet_max_districts= {
 		}
 		mode = add
 	}
+	add = value:bca_num_queued_districts
+}
+
+bca_num_queued_districts = {
+	add = bca_queued_district_d0
+	add = bca_queued_district_d1
+	add = bca_queued_district_d2
+	add = bca_queued_district_d3
 }
 
 bca_num_districts_value = {

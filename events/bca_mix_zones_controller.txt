@@ -2450,6 +2450,15 @@ carrier_event = {
         else_if = {
             limit = {
                 check_variable_arithmetic = {
+                    which = value:num_zones_of_zone_ark_knights
+                    value > value:num_zone_plan_of_zone_ark_knights
+                }
+            }
+            remove_zone = { zone = zone_ark_knights }
+        }
+        else_if = {
+            limit = {
+                check_variable_arithmetic = {
                     which = value:num_zones_of_zone_energy
                     value > value:num_zone_plan_of_zone_energy
                 }

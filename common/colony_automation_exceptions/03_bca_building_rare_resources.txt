@@ -14,7 +14,10 @@ automate_crystal_deficit_management = {
 		2 = {
 			building = building_crystal_plant
 			available = {
-				NOT = { has_building = building_archaeo_refinery }
+				OR = {
+					owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
+					NOT = { has_building = building_archaeo_refinery }
+				}
 			}
 		}
 	}
@@ -36,7 +39,10 @@ automate_mote_deficit_management = {
 		2 = {
 			building = building_chemical_plant
 			available = {
-				NOT = { has_building = building_archaeo_refinery }
+				OR = {
+					owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
+					NOT = { has_building = building_archaeo_refinery }
+				}
 			}
 		}
 	}
@@ -58,7 +64,10 @@ automate_gas_deficit_management = {
 		2 = {
 			building = building_refinery
 			available = {
-				NOT = { has_building = building_archaeo_refinery }
+				OR = {
+					owner = { has_country_flag = bca_retain_low_level_rare_resource_buildings }
+					NOT = { has_building = building_archaeo_refinery }
+				}
 			}
 		}
 	}

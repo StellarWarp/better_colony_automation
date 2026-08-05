@@ -79,6 +79,10 @@ carrier_event = {
     trigger = {
         free_district_slots = 0
         NOT = { has_carrier_flag = bca_pf_disable_planet_auto_destruction_district }
+        check_variable = {
+            which = bca_num_queued_districts
+            value = 0
+        }
     }
 
     immediate = {

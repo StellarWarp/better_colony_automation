@@ -25,20 +25,23 @@ public class TracePlanetConstructionRtti extends GhidraScript {
     @Override
     public void run() throws Exception {
         String[] args = getScriptArgs();
-        if (args.length != 1) {
-            throw new IllegalArgumentException("Expected one output report path");
+        if (args.length != 1 && args.length != 3) {
+            throw new IllegalArgumentException(
+                "Expected output report path and optional pair of RTTI symbol names");
         }
 
-        Address building = findGlobalSymbol(BUILDING_RTTI);
-        Address district = findGlobalSymbol(DISTRICT_RTTI);
+        String firstName = args.length == 3 ? args[1] : BUILDING_RTTI;
+        String secondName = args.length == 3 ? args[2] : DISTRICT_RTTI;
+        Address building = findGlobalSymbol(firstName);
+        Address district = findGlobalSymbol(secondName);
         Map<Address, Function> buildingFunctions = functionsReferencing(building);
         Map<Address, Function> districtFunctions = functionsReferencing(district);
         Set<Address> intersection = new LinkedHashSet<>(buildingFunctions.keySet());
         intersection.retainAll(districtFunctions.keySet());
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(new File(args[0])))) {
-            writer.write(BUILDING_RTTI + ": " + building + "\n");
-            writer.write(DISTRICT_RTTI + ": " + district + "\n");
+            writer.write(firstName + ": " + building + "\n");
+            writer.write(secondName + ": " + district + "\n");
             writer.write("building functions: " + buildingFunctions.size() + "\n");
             writer.write("district functions: " + districtFunctions.size() + "\n");
             writer.write("intersection: " + intersection.size() + "\n\n");

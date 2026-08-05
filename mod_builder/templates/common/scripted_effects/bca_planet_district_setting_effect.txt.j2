@@ -71,12 +71,12 @@ bca_clamp_district_plan_to_current_layout = {
             limit = {
                 check_variable = {
                     which = {{v.var_district_num_plan(zone_slot)}}
-                    value < value:num_district_{{ district_slot }}
+                    value < value:bca_committed_district_{{ district_slot }}
                 }
             }
             set_variable = {
-                which = {{v.var_district_num_plan(zone_slot)}}
-                value = value:num_district_{{ district_slot }}
+                    which = {{v.var_district_num_plan(zone_slot)}}
+                    value = value:bca_committed_district_{{ district_slot }}
             }
         }
     {% endfor %}
@@ -85,7 +85,7 @@ bca_clamp_district_plan_to_current_layout = {
         limit = {
             check_variable_arithmetic = {
                 which = value:bca_num_primary_districts_plan
-                value < value:num_primary_district
+                value < value:bca_committed_primary_district
             }
             NOT = { has_carrier_flag = bca_no_more_excess_secondary_district_plan }
         }
@@ -97,11 +97,11 @@ bca_clamp_district_plan_to_current_layout = {
                 limit = {
                     check_variable_arithmetic = {
                         which = value:bca_num_primary_districts_plan
-                        value < value:num_primary_district
+                        value < value:bca_committed_primary_district
                     }
                     check_variable = {
                         which = {{v.var_district_num_plan(zone_slot)}}
-                        value > value:num_district_{{ district_slot }}
+                        value > value:bca_committed_district_{{ district_slot }}
                     }
                 }
                 subtract_variable = {
@@ -166,7 +166,7 @@ bca_set_district_plan_by_diff = {
                 limit = {
                     check_variable = {
                         which = {{v.var_district_num_plan(zone_slot)}}
-                        value > value:num_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
+                        value > value:bca_committed_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
                     }
                     check_variable = {
                         which = new_num_main_districts_plan_diff

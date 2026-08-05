@@ -1,0 +1,47 @@
+namespace = colony_automation_event
+
+{% set all_district_set = [primary_districts, secondary_districts_d1, secondary_districts_d2, secondary_districts_d3] %}
+
+{% macro update_queue_counts(effect) -%}
+    {% for district_set_idx in range(4) %}
+        if = {
+            limit = {
+                OR = {
+                    {% for district in all_district_set[district_set_idx] %}
+                    last_district_changed = {{ district }}
+                    {% endfor %}
+                }
+                {% if effect == 'subtract' %}
+                check_variable = {
+                    which = bca_queued_district_d{{ district_set_idx }}
+                    value >= 1
+                }
+                {% endif %}
+            }
+            {{ effect }}_variable = {
+                which = bca_queued_district_d{{ district_set_idx }}
+                value = 1
+            }
+        }
+    {% endfor %}
+{%- endmacro %}
+
+carrier_event = {
+    id = colony_automation_event.15
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        {{ update_queue_counts('add') }}
+    }
+}
+
+carrier_event = {
+    id = colony_automation_event.16
+    hide_window = yes
+    is_triggered_only = yes
+
+    immediate = {
+        {{ update_queue_counts('subtract') }}
+    }
+}

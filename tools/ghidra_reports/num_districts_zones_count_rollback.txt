@@ -1,0 +1,211 @@
+program: stellaris.exe
+MD5: 8b1bca722491cf6ddeb66c5cd1ca0ade
+
+=== FUN_140dff3a0 @ 140dff3a0 ===
+callers:
+  140497603 in FUN_1404975c0 @ 1404975c0
+  140e209db in FUN_140e205d0 @ 140e205d0
+  140d46e66 in FUN_140d46b30 @ 140d46b30
+  140b2adc0 in FUN_140b2ace0 @ 140b2ace0
+  140b2c7c2 in FUN_140b2c700 @ 140b2c700
+  140bb1e4d in FUN_140bb1df0 @ 140bb1df0
+  140bb8478 in FUN_140bb83e0 @ 140bb83e0
+  140d48877 in FUN_140d48380 @ 140d48380
+  140e202b4 in FUN_140e20270 @ 140e20270
+  140e203aa in FUN_140e20270 @ 140e20270
+  1412b9c6a in FUN_1412b9bd0 @ 1412b9bd0
+  141653104 in FUN_141653030 @ 141653030
+  1412cf629 in FUN_1412cf560 @ 1412cf560
+  141387e98 in FUN_141387d40 @ 141387d40
+  141ade554 in FUN_141ade4c0 @ 141ade4c0
+  141ade92a in FUN_141ade8d0 @ 141ade8d0
+
+int FUN_140dff3a0(longlong param_1,undefined8 param_2,char param_3)
+
+{
+  char cVar1;
+  uint uVar2;
+  int iVar3;
+  uint *puVar4;
+  longlong lVar5;
+  longlong *plVar6;
+  int iVar7;
+  undefined8 local_res10;
+  undefined1 local_res18 [16];
+  
+  iVar7 = 0;
+  local_res10 = param_2;
+  puVar4 = (uint *)FUN_140e250d0(param_1,local_res18,param_2);
+  if (DAT_143287848 != 0) {
+    uVar2 = *puVar4 & 0xffffff;
+    if (((uVar2 < *(uint *)(DAT_143287848 + 0x20)) &&
+        (plVar6 = *(longlong **)(*(longlong *)(DAT_143287848 + 0x18) + 8 + (ulonglong)uVar2 * 0x10),
+        plVar6 != (longlong *)0x0)) && (*(uint *)(plVar6 + 1) == *puVar4)) goto LAB_140dff401;
+  }
+  plVar6 = DAT_143287178;
+LAB_140dff401:
+  cVar1 = (**(code **)(*plVar6 + 8))(plVar6);
+  if (cVar1 != '\0') {
+    iVar7 = (int)plVar6[0x36];
+  }
+  if (param_3 != '\0') {
+    lVar5 = FUN_140d464b0(*(undefined8 *)(param_1 + 0xf78));
+    iVar3 = FUN_140e37650(*(undefined4 *)(lVar5 + 0xc4),&local_res10);
+    return iVar3 + iVar7;
+  }
+  return iVar7;
+}
+
+
+
+=== FUN_140dff460 @ 140dff460 ===
+callers:
+  141adee93 in FUN_141adee00 @ 141adee00
+  141adeed9 in FUN_141adee00 @ 141adee00
+
+int FUN_140dff460(longlong param_1,longlong *param_2)
+
+{
+  uint *puVar1;
+  uint *puVar2;
+  longlong lVar3;
+  longlong lVar4;
+  char cVar5;
+  char cVar6;
+  uint uVar7;
+  int iVar8;
+  longlong lVar9;
+  longlong *plVar10;
+  longlong *plVar11;
+  longlong *plVar12;
+  int iVar13;
+  uint *puVar14;
+  longlong lVar15;
+  int iVar16;
+  uint *puVar17;
+  
+  cVar5 = (**(code **)(*param_2 + 8))(param_2);
+  puVar17 = *(uint **)(param_1 + 0x88);
+  iVar16 = 0;
+  puVar1 = puVar17 + *(int *)(param_1 + 0x94);
+  lVar3 = DAT_143287178;
+  plVar11 = DAT_143287190;
+  lVar4 = DAT_143287848;
+  lVar15 = DAT_143287850;
+  do {
+    if (puVar17 == puVar1) {
+      return iVar16;
+    }
+    if (lVar4 == 0) {
+LAB_140dff500:
+      lVar9 = lVar3;
+    }
+    else {
+      uVar7 = *puVar17 & 0xffffff;
+      if (((*(uint *)(lVar4 + 0x20) <= uVar7) ||
+          (lVar9 = *(longlong *)(*(longlong *)(lVar4 + 0x18) + 8 + (ulonglong)uVar7 * 0x10),
+          lVar9 == 0)) || (*(uint *)(lVar9 + 8) != *puVar17)) goto LAB_140dff500;
+    }
+    puVar14 = *(uint **)(lVar9 + 0x30);
+    iVar13 = 0;
+    puVar2 = puVar14 + *(int *)(lVar9 + 0x3c);
+    for (; puVar14 != puVar2; puVar14 = puVar14 + 1) {
+      if (lVar15 == 0) {
+LAB_140dff54a:
+        plVar12 = plVar11;
+      }
+      else {
+        uVar7 = *puVar14 & 0xffffff;
+        if (((*(uint *)(lVar15 + 0x20) <= uVar7) ||
+            (plVar12 = *(longlong **)(*(longlong *)(lVar15 + 0x18) + 8 + (ulonglong)uVar7 * 0x10),
+            plVar12 == (longlong *)0x0)) || (*(uint *)(plVar12 + 1) != *puVar14))
+        goto LAB_140dff54a;
+      }
+      if ((cVar5 == '\0') &&
+         (cVar6 = (**(code **)(*plVar12 + 8))(plVar12), plVar11 = DAT_143287190,
+         lVar15 = DAT_143287850, cVar6 != '\0')) {
+LAB_140dff588:
+        iVar8 = 1;
+      }
+      else {
+        plVar10 = DAT_143285790;
+        if ((longlong *)plVar12[4] != (longlong *)0x0) {
+          plVar10 = (longlong *)plVar12[4];
+        }
+        if (plVar10 == param_2) goto LAB_140dff588;
+        iVar8 = 0;
+      }
+      iVar13 = iVar13 + iVar8;
+      lVar3 = DAT_143287178;
+      lVar4 = DAT_143287848;
+    }
+    iVar16 = iVar16 + iVar13;
+    puVar17 = puVar17 + 1;
+  } while( true );
+}
+
+
+
+=== FUN_140e37650 @ 140e37650 ===
+callers:
+  140dff430 in FUN_140dff3a0 @ 140dff3a0
+  140d488cd in FUN_140d48380 @ 140d48380
+  140e2059a in FUN_140e20270 @ 140e20270
+  140e2e5a0 in FUN_140e2e580 @ 140e2e580
+  1412cf669 in FUN_1412cf560 @ 1412cf560
+  1412cf735 in FUN_1412cf560 @ 1412cf560
+  141387ef6 in FUN_141387d40 @ 141387d40
+  14138819a in FUN_141387d40 @ 141387d40
+
+ulonglong FUN_140e37650(uint param_1,longlong *param_2)
+
+{
+  uint uVar1;
+  char cVar2;
+  uint uVar3;
+  longlong lVar4;
+  ulonglong uVar5;
+  ulonglong uVar6;
+  longlong lVar7;
+  ulonglong uVar8;
+  longlong local_res18;
+  
+  if ((((DAT_1432876d8 == 0) || (*(uint *)(DAT_1432876d8 + 0x20) <= (param_1 & 0xffffff))) ||
+      (lVar7 = *(longlong *)
+                (*(longlong *)(DAT_1432876d8 + 0x18) + 8 + (ulonglong)(param_1 & 0xffffff) * 0x10),
+      lVar7 == 0)) || (*(uint *)(lVar7 + 8) != param_1)) {
+    lVar7 = DAT_143286c90;
+  }
+  uVar5 = 0;
+  if (0 < (int)*(uint *)(lVar7 + 0x2c)) {
+    uVar6 = (ulonglong)*(uint *)(lVar7 + 0x2c);
+    uVar8 = uVar5;
+    do {
+      if (DAT_1432876c8 == 0) {
+LAB_140e376fa:
+        lVar4 = DAT_143286c80;
+      }
+      else {
+        uVar1 = *(uint *)(uVar8 + *(longlong *)(lVar7 + 0x20));
+        uVar3 = uVar1 & 0xffffff;
+        if (((*(uint *)(DAT_1432876c8 + 0x20) <= uVar3) ||
+            (lVar4 = *(longlong *)
+                      (*(longlong *)(DAT_1432876c8 + 0x18) + 8 + (ulonglong)uVar3 * 0x10),
+            lVar4 == 0)) || (*(uint *)(lVar4 + 8) != uVar1)) goto LAB_140e376fa;
+      }
+      local_res18 = 0;
+      cVar2 = (**(code **)(**(longlong **)(lVar4 + 0x18) + 0xa0))
+                        (*(longlong **)(lVar4 + 0x18),&CDistrictType::RTTI_Type_Descriptor,
+                         &local_res18);
+      if ((cVar2 != '\0') && (local_res18 == *param_2)) {
+        uVar5 = (ulonglong)((int)uVar5 + 1);
+      }
+      uVar8 = uVar8 + 4;
+      uVar6 = uVar6 - 1;
+    } while (uVar6 != 0);
+  }
+  return uVar5;
+}
+
+
+

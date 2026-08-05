@@ -4636,6 +4636,18 @@ bca_primary_zone_setting_set_by_current_zones = {
                     ZONE = zone_habitat_knights
                 }
             }
+            if = {
+                limit = {
+                    check_variable_arithmetic = {
+                        which = value:num_zones_of_zone_ark_knights
+                        value > 0
+                    }
+                }
+                bca_primary_zone_setting_set_by_current_zones_helper = {
+                    TYPE = knight_commander
+                    ZONE = zone_ark_knights
+                }
+            }
         }
         if = {
             limit = {
@@ -5413,6 +5425,21 @@ bca_sync_primary_zone_selection_fill_slot = {
         set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
         subtract_variable = {
             which = tp_zone_sync_primary_unmatched_zone_habitat_knights
+            value = 1
+        }
+    }
+    else_if = {
+        limit = {
+            check_variable = {
+                which = tp_zone_sync_primary_unmatched_zone_ark_knights
+                value > 0
+            }
+        }
+        set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_knight_commander
+        set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_knights
+        set_carrier_flag = bca_pf_ps_zone_selection_matched_$ZONE_SLOT$
+        subtract_variable = {
+            which = tp_zone_sync_primary_unmatched_zone_ark_knights
             value = 1
         }
     }
@@ -7756,6 +7783,7 @@ bca_sync_primary_zone_selection_if_overplanned = {
         bca_sync_primary_zone_selection_match = { ZONE = zone_resort }
         bca_sync_primary_zone_selection_match = { ZONE = zone_resort_entertainment }
         bca_sync_primary_zone_selection_match = { ZONE = zone_habitat_knights }
+        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_knights }
         bca_sync_primary_zone_selection_match = { ZONE = zone_spawning }
         bca_sync_primary_zone_selection_match = { ZONE = zone_machine_replication }
         bca_sync_primary_zone_selection_match = { ZONE = zone_urban_wilderness }
@@ -7826,6 +7854,7 @@ bca_sync_primary_zone_selection_if_overplanned = {
         clear_variable = tp_zone_sync_primary_unmatched_zone_resort
         clear_variable = tp_zone_sync_primary_unmatched_zone_resort_entertainment
         clear_variable = tp_zone_sync_primary_unmatched_zone_habitat_knights
+        clear_variable = tp_zone_sync_primary_unmatched_zone_ark_knights
         clear_variable = tp_zone_sync_primary_unmatched_zone_spawning
         clear_variable = tp_zone_sync_primary_unmatched_zone_machine_replication
         clear_variable = tp_zone_sync_primary_unmatched_zone_urban_wilderness

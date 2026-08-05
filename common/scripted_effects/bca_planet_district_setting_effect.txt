@@ -1369,43 +1369,43 @@ bca_clamp_district_plan_to_current_layout = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z3
-                value < value:num_district_d1
+                value < value:bca_committed_district_d1
             }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z3
-            value = value:num_district_d1
+            value = value:bca_committed_district_d1
         }
     }
     if = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z4
-                value < value:num_district_d2
+                value < value:bca_committed_district_d2
             }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z4
-            value = value:num_district_d2
+            value = value:bca_committed_district_d2
         }
     }
     if = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z5
-                value < value:num_district_d3
+                value < value:bca_committed_district_d3
             }
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
-            value = value:num_district_d3
+            value = value:bca_committed_district_d3
         }
     }
     while = {
         limit = {
             check_variable_arithmetic = {
                 which = value:bca_num_primary_districts_plan
-                value < value:num_primary_district
+                value < value:bca_committed_primary_district
             }
             NOT = { has_carrier_flag = bca_no_more_excess_secondary_district_plan }
         }
@@ -1414,11 +1414,11 @@ bca_clamp_district_plan_to_current_layout = {
             limit = {
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
-                    value < value:num_primary_district
+                    value < value:bca_committed_primary_district
                 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z3
-                    value > value:num_district_d1
+                    value > value:bca_committed_district_d1
                 }
             }
             subtract_variable = {
@@ -1431,11 +1431,11 @@ bca_clamp_district_plan_to_current_layout = {
             limit = {
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
-                    value < value:num_primary_district
+                    value < value:bca_committed_primary_district
                 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z4
-                    value > value:num_district_d2
+                    value > value:bca_committed_district_d2
                 }
             }
             subtract_variable = {
@@ -1448,11 +1448,11 @@ bca_clamp_district_plan_to_current_layout = {
             limit = {
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
-                    value < value:num_primary_district
+                    value < value:bca_committed_primary_district
                 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z5
-                    value > value:num_district_d3
+                    value > value:bca_committed_district_d3
                 }
             }
             subtract_variable = {
@@ -1517,7 +1517,7 @@ bca_set_district_plan_by_diff = {
             limit = {
                 check_variable = {
                     which = bca_ps_plan_district_count_z3
-                    value > value:num_district_d1
+                    value > value:bca_committed_district_d1
                 }
                 check_variable = {
                     which = new_num_main_districts_plan_diff
@@ -1538,7 +1538,7 @@ bca_set_district_plan_by_diff = {
             limit = {
                 check_variable = {
                     which = bca_ps_plan_district_count_z4
-                    value > value:num_district_d2
+                    value > value:bca_committed_district_d2
                 }
                 check_variable = {
                     which = new_num_main_districts_plan_diff
@@ -1559,7 +1559,7 @@ bca_set_district_plan_by_diff = {
             limit = {
                 check_variable = {
                     which = bca_ps_plan_district_count_z5
-                    value > value:num_district_d3
+                    value > value:bca_committed_district_d3
                 }
                 check_variable = {
                     which = new_num_main_districts_plan_diff

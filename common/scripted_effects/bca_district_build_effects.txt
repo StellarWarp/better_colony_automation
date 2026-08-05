@@ -10,7 +10,7 @@ bca_try_build_district_0 = {
         limit = {
             check_variable_arithmetic = {
                 which = value:bca_num_primary_districts_plan
-                value > value:num_primary_district
+                value > value:bca_committed_primary_district
             }
             OR = {
                 AND = {
@@ -39,7 +39,10 @@ bca_try_build_district_0 = {
                         has_carrier_flag = bca_pf_ps_selected_zone_z1_zone_ark_forever_cruise_city_passenger
                         has_carrier_flag = bca_pf_ps_selected_zone_z2_zone_ark_forever_cruise_city_passenger
                     }
-                    bca_planet_build_needs_unity = yes
+                    OR = {
+                        bca_planet_build_needs_unity = yes
+                        bca_planet_build_needs_trade = yes
+                    }
                 }
                 AND = {
                     OR = {
@@ -60,6 +63,12 @@ bca_try_build_district_0 = {
                         bca_planet_build_needs_alloys = yes
                         bca_planet_build_needs_consumer_goods = yes
                         bca_planet_build_needs_trade = yes
+                    }
+                }
+                AND = {
+                    OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_z1_zone_ark_knights
+                        has_carrier_flag = bca_pf_ps_selected_zone_z2_zone_ark_knights
                     }
                 }
                 AND = {
@@ -359,7 +368,7 @@ bca_try_build_district_1 = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z3
-                value > value:num_district_d1
+                value > value:bca_committed_district_d1
             }
             OR = {
                 AND = {
@@ -785,7 +794,7 @@ bca_try_build_district_2 = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z4
-                value > value:num_district_d2
+                value > value:bca_committed_district_d2
             }
             OR = {
                 AND = {
@@ -1223,7 +1232,7 @@ bca_try_build_district_3 = {
         limit = {
             check_variable = {
                 which = bca_ps_plan_district_count_z5
-                value > value:num_district_d3
+                value > value:bca_committed_district_d3
             }
             OR = {
                 AND = {
@@ -1271,7 +1280,10 @@ bca_try_build_district_3 = {
                 }
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_forever_cruise_passenger
-                    bca_planet_build_needs_unity = yes
+                    OR = {
+                        bca_planet_build_needs_unity = yes
+                        bca_planet_build_needs_trade = yes
+                    }
                 }
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_laser_capacitors

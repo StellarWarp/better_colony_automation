@@ -1026,7 +1026,10 @@ bca_can_build_building_order_keep = {
             has_origin = origin_toxic_knights
         }
         planet = {
-            has_carrier_flag = toxic_knights_habitat
+            OR = {
+                has_planet_flag = toxic_knights_habitat
+                has_carrier_flag = toxic_knights_arkship
+            }
         }
         owner = {
             NOT = {
@@ -7479,6 +7482,12 @@ bca_can_build_building_storm_attraction_center = {
             solar_system = {
                 system_has_storm_repelling_tech = no
             }
+            OR = {
+                has_building = building_storm_repellent_center
+                has_building_construction = building_storm_repellent_center
+                has_building = building_advanced_storm_repellent_center
+                has_building_construction = building_advanced_storm_repellent_center
+            }
         }
     }
     owner = {
@@ -7514,15 +7523,18 @@ bca_can_build_building_storm_repellent_center = {
         owner = {
             is_wilderness_empire = no
         }
-        solar_system = {
-            system_has_storm_attraction_tech = no
-        }
     }
     AND = {
         custom_tooltip = {
             fail_text = storm_repellent_allow
             solar_system = {
                 system_has_storm_attraction_tech = no
+            }
+            OR = {
+                has_building = building_storm_repellent_center
+                has_building_construction = building_storm_repellent_center
+                has_building = building_advanced_storm_repellent_center
+                has_building_construction = building_advanced_storm_repellent_center
             }
         }
     }

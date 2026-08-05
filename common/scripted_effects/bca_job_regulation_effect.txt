@@ -259,17 +259,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_energy_participates = yes }
         export_resource_income_to_variable = { resource = energy variable = bca_jr_income_energy }
-        set_variable = { which = bca_jr_remaining_inc_energy value = bca_economic_target_lower_energy }
-        subtract_variable = { which = bca_jr_remaining_inc_energy value = bca_jr_income_energy }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_energy value < 0 } }
-            clear_variable = bca_jr_remaining_inc_energy
+            limit = { has_country_flag = bca_economic_target_energy_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_energy value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_energy value = bca_jr_income_energy }
-        subtract_variable = { which = bca_jr_remaining_dec_energy value = bca_economic_target_upper_energy }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_energy value < 0 } }
-            clear_variable = bca_jr_remaining_dec_energy
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_energy value = bca_economic_target_lower_energy }
+            subtract_variable = { which = bca_jr_remaining_inc_energy value = bca_jr_income_energy }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_energy value < 0 } }
+                clear_variable = bca_jr_remaining_inc_energy
+            }
+            set_variable = { which = bca_jr_remaining_dec_energy value = bca_jr_income_energy }
+            subtract_variable = { which = bca_jr_remaining_dec_energy value = bca_economic_target_upper_energy }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_energy value < 0 } }
+                clear_variable = bca_jr_remaining_dec_energy
+            }
         }
     }
     clear_variable = bca_jr_income_minerals
@@ -278,17 +284,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_minerals_participates = yes }
         export_resource_income_to_variable = { resource = minerals variable = bca_jr_income_minerals }
-        set_variable = { which = bca_jr_remaining_inc_minerals value = bca_economic_target_lower_minerals }
-        subtract_variable = { which = bca_jr_remaining_inc_minerals value = bca_jr_income_minerals }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_minerals value < 0 } }
-            clear_variable = bca_jr_remaining_inc_minerals
+            limit = { has_country_flag = bca_economic_target_minerals_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_minerals value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_minerals value = bca_jr_income_minerals }
-        subtract_variable = { which = bca_jr_remaining_dec_minerals value = bca_economic_target_upper_minerals }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_minerals value < 0 } }
-            clear_variable = bca_jr_remaining_dec_minerals
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_minerals value = bca_economic_target_lower_minerals }
+            subtract_variable = { which = bca_jr_remaining_inc_minerals value = bca_jr_income_minerals }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_minerals value < 0 } }
+                clear_variable = bca_jr_remaining_inc_minerals
+            }
+            set_variable = { which = bca_jr_remaining_dec_minerals value = bca_jr_income_minerals }
+            subtract_variable = { which = bca_jr_remaining_dec_minerals value = bca_economic_target_upper_minerals }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_minerals value < 0 } }
+                clear_variable = bca_jr_remaining_dec_minerals
+            }
         }
     }
     clear_variable = bca_jr_income_food
@@ -297,17 +309,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_food_participates = yes }
         export_resource_income_to_variable = { resource = food variable = bca_jr_income_food }
-        set_variable = { which = bca_jr_remaining_inc_food value = bca_economic_target_lower_food }
-        subtract_variable = { which = bca_jr_remaining_inc_food value = bca_jr_income_food }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_food value < 0 } }
-            clear_variable = bca_jr_remaining_inc_food
+            limit = { has_country_flag = bca_economic_target_food_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_food value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_food value = bca_jr_income_food }
-        subtract_variable = { which = bca_jr_remaining_dec_food value = bca_economic_target_upper_food }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_food value < 0 } }
-            clear_variable = bca_jr_remaining_dec_food
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_food value = bca_economic_target_lower_food }
+            subtract_variable = { which = bca_jr_remaining_inc_food value = bca_jr_income_food }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_food value < 0 } }
+                clear_variable = bca_jr_remaining_inc_food
+            }
+            set_variable = { which = bca_jr_remaining_dec_food value = bca_jr_income_food }
+            subtract_variable = { which = bca_jr_remaining_dec_food value = bca_economic_target_upper_food }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_food value < 0 } }
+                clear_variable = bca_jr_remaining_dec_food
+            }
         }
     }
     clear_variable = bca_jr_income_alloys
@@ -316,17 +334,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_alloys_participates = yes }
         export_resource_income_to_variable = { resource = alloys variable = bca_jr_income_alloys }
-        set_variable = { which = bca_jr_remaining_inc_alloys value = bca_economic_target_lower_alloys }
-        subtract_variable = { which = bca_jr_remaining_inc_alloys value = bca_jr_income_alloys }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_alloys value < 0 } }
-            clear_variable = bca_jr_remaining_inc_alloys
+            limit = { has_country_flag = bca_economic_target_alloys_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_alloys value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_alloys value = bca_jr_income_alloys }
-        subtract_variable = { which = bca_jr_remaining_dec_alloys value = bca_economic_target_upper_alloys }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_alloys value < 0 } }
-            clear_variable = bca_jr_remaining_dec_alloys
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_alloys value = bca_economic_target_lower_alloys }
+            subtract_variable = { which = bca_jr_remaining_inc_alloys value = bca_jr_income_alloys }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_alloys value < 0 } }
+                clear_variable = bca_jr_remaining_inc_alloys
+            }
+            set_variable = { which = bca_jr_remaining_dec_alloys value = bca_jr_income_alloys }
+            subtract_variable = { which = bca_jr_remaining_dec_alloys value = bca_economic_target_upper_alloys }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_alloys value < 0 } }
+                clear_variable = bca_jr_remaining_dec_alloys
+            }
         }
     }
     clear_variable = bca_jr_income_consumer_goods
@@ -335,17 +359,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_consumer_goods_participates = yes }
         export_resource_income_to_variable = { resource = consumer_goods variable = bca_jr_income_consumer_goods }
-        set_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_economic_target_lower_consumer_goods }
-        subtract_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_jr_income_consumer_goods }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_consumer_goods value < 0 } }
-            clear_variable = bca_jr_remaining_inc_consumer_goods
+            limit = { has_country_flag = bca_economic_target_consumer_goods_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_consumer_goods value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_jr_income_consumer_goods }
-        subtract_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_economic_target_upper_consumer_goods }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_consumer_goods value < 0 } }
-            clear_variable = bca_jr_remaining_dec_consumer_goods
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_economic_target_lower_consumer_goods }
+            subtract_variable = { which = bca_jr_remaining_inc_consumer_goods value = bca_jr_income_consumer_goods }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_consumer_goods value < 0 } }
+                clear_variable = bca_jr_remaining_inc_consumer_goods
+            }
+            set_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_jr_income_consumer_goods }
+            subtract_variable = { which = bca_jr_remaining_dec_consumer_goods value = bca_economic_target_upper_consumer_goods }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_consumer_goods value < 0 } }
+                clear_variable = bca_jr_remaining_dec_consumer_goods
+            }
         }
     }
     clear_variable = bca_jr_income_trade
@@ -354,17 +384,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_trade_participates = yes }
         export_resource_income_to_variable = { resource = trade variable = bca_jr_income_trade }
-        set_variable = { which = bca_jr_remaining_inc_trade value = bca_economic_target_lower_trade }
-        subtract_variable = { which = bca_jr_remaining_inc_trade value = bca_jr_income_trade }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_trade value < 0 } }
-            clear_variable = bca_jr_remaining_inc_trade
+            limit = { has_country_flag = bca_economic_target_trade_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_trade value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_trade value = bca_jr_income_trade }
-        subtract_variable = { which = bca_jr_remaining_dec_trade value = bca_economic_target_upper_trade }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_trade value < 0 } }
-            clear_variable = bca_jr_remaining_dec_trade
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_trade value = bca_economic_target_lower_trade }
+            subtract_variable = { which = bca_jr_remaining_inc_trade value = bca_jr_income_trade }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_trade value < 0 } }
+                clear_variable = bca_jr_remaining_inc_trade
+            }
+            set_variable = { which = bca_jr_remaining_dec_trade value = bca_jr_income_trade }
+            subtract_variable = { which = bca_jr_remaining_dec_trade value = bca_economic_target_upper_trade }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_trade value < 0 } }
+                clear_variable = bca_jr_remaining_dec_trade
+            }
         }
     }
     clear_variable = bca_jr_income_unity
@@ -373,17 +409,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_unity_participates = yes }
         export_resource_income_to_variable = { resource = unity variable = bca_jr_income_unity }
-        set_variable = { which = bca_jr_remaining_inc_unity value = bca_economic_target_lower_unity }
-        subtract_variable = { which = bca_jr_remaining_inc_unity value = bca_jr_income_unity }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_unity value < 0 } }
-            clear_variable = bca_jr_remaining_inc_unity
+            limit = { has_country_flag = bca_economic_target_unity_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_unity value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_unity value = bca_jr_income_unity }
-        subtract_variable = { which = bca_jr_remaining_dec_unity value = bca_economic_target_upper_unity }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_unity value < 0 } }
-            clear_variable = bca_jr_remaining_dec_unity
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_unity value = bca_economic_target_lower_unity }
+            subtract_variable = { which = bca_jr_remaining_inc_unity value = bca_jr_income_unity }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_unity value < 0 } }
+                clear_variable = bca_jr_remaining_inc_unity
+            }
+            set_variable = { which = bca_jr_remaining_dec_unity value = bca_jr_income_unity }
+            subtract_variable = { which = bca_jr_remaining_dec_unity value = bca_economic_target_upper_unity }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_unity value < 0 } }
+                clear_variable = bca_jr_remaining_dec_unity
+            }
         }
     }
     clear_variable = bca_jr_income_physics_research
@@ -392,17 +434,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_physics_research_participates = yes }
         export_resource_income_to_variable = { resource = physics_research variable = bca_jr_income_physics_research }
-        set_variable = { which = bca_jr_remaining_inc_physics_research value = bca_economic_target_lower_physics_research }
-        subtract_variable = { which = bca_jr_remaining_inc_physics_research value = bca_jr_income_physics_research }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_physics_research value < 0 } }
-            clear_variable = bca_jr_remaining_inc_physics_research
+            limit = { has_country_flag = bca_economic_target_physics_research_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_physics_research value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_physics_research value = bca_jr_income_physics_research }
-        subtract_variable = { which = bca_jr_remaining_dec_physics_research value = bca_economic_target_upper_physics_research }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_physics_research value < 0 } }
-            clear_variable = bca_jr_remaining_dec_physics_research
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_physics_research value = bca_economic_target_lower_physics_research }
+            subtract_variable = { which = bca_jr_remaining_inc_physics_research value = bca_jr_income_physics_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_physics_research value < 0 } }
+                clear_variable = bca_jr_remaining_inc_physics_research
+            }
+            set_variable = { which = bca_jr_remaining_dec_physics_research value = bca_jr_income_physics_research }
+            subtract_variable = { which = bca_jr_remaining_dec_physics_research value = bca_economic_target_upper_physics_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_physics_research value < 0 } }
+                clear_variable = bca_jr_remaining_dec_physics_research
+            }
         }
     }
     clear_variable = bca_jr_income_society_research
@@ -411,17 +459,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_society_research_participates = yes }
         export_resource_income_to_variable = { resource = society_research variable = bca_jr_income_society_research }
-        set_variable = { which = bca_jr_remaining_inc_society_research value = bca_economic_target_lower_society_research }
-        subtract_variable = { which = bca_jr_remaining_inc_society_research value = bca_jr_income_society_research }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_society_research value < 0 } }
-            clear_variable = bca_jr_remaining_inc_society_research
+            limit = { has_country_flag = bca_economic_target_society_research_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_society_research value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_society_research value = bca_jr_income_society_research }
-        subtract_variable = { which = bca_jr_remaining_dec_society_research value = bca_economic_target_upper_society_research }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_society_research value < 0 } }
-            clear_variable = bca_jr_remaining_dec_society_research
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_society_research value = bca_economic_target_lower_society_research }
+            subtract_variable = { which = bca_jr_remaining_inc_society_research value = bca_jr_income_society_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_society_research value < 0 } }
+                clear_variable = bca_jr_remaining_inc_society_research
+            }
+            set_variable = { which = bca_jr_remaining_dec_society_research value = bca_jr_income_society_research }
+            subtract_variable = { which = bca_jr_remaining_dec_society_research value = bca_economic_target_upper_society_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_society_research value < 0 } }
+                clear_variable = bca_jr_remaining_dec_society_research
+            }
         }
     }
     clear_variable = bca_jr_income_engineering_research
@@ -430,17 +484,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_engineering_research_participates = yes }
         export_resource_income_to_variable = { resource = engineering_research variable = bca_jr_income_engineering_research }
-        set_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_economic_target_lower_engineering_research }
-        subtract_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_jr_income_engineering_research }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_engineering_research value < 0 } }
-            clear_variable = bca_jr_remaining_inc_engineering_research
+            limit = { has_country_flag = bca_economic_target_engineering_research_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_engineering_research value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_jr_income_engineering_research }
-        subtract_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_economic_target_upper_engineering_research }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_engineering_research value < 0 } }
-            clear_variable = bca_jr_remaining_dec_engineering_research
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_economic_target_lower_engineering_research }
+            subtract_variable = { which = bca_jr_remaining_inc_engineering_research value = bca_jr_income_engineering_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_engineering_research value < 0 } }
+                clear_variable = bca_jr_remaining_inc_engineering_research
+            }
+            set_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_jr_income_engineering_research }
+            subtract_variable = { which = bca_jr_remaining_dec_engineering_research value = bca_economic_target_upper_engineering_research }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_engineering_research value < 0 } }
+                clear_variable = bca_jr_remaining_dec_engineering_research
+            }
         }
     }
     clear_variable = bca_jr_income_rare_crystals
@@ -449,17 +509,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_rare_crystals_participates = yes }
         export_resource_income_to_variable = { resource = rare_crystals variable = bca_jr_income_rare_crystals }
-        set_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_economic_target_lower_rare_crystals }
-        subtract_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_jr_income_rare_crystals }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_rare_crystals value < 0 } }
-            clear_variable = bca_jr_remaining_inc_rare_crystals
+            limit = { has_country_flag = bca_economic_target_rare_crystals_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_rare_crystals value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_jr_income_rare_crystals }
-        subtract_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_economic_target_upper_rare_crystals }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_rare_crystals value < 0 } }
-            clear_variable = bca_jr_remaining_dec_rare_crystals
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_economic_target_lower_rare_crystals }
+            subtract_variable = { which = bca_jr_remaining_inc_rare_crystals value = bca_jr_income_rare_crystals }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_rare_crystals value < 0 } }
+                clear_variable = bca_jr_remaining_inc_rare_crystals
+            }
+            set_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_jr_income_rare_crystals }
+            subtract_variable = { which = bca_jr_remaining_dec_rare_crystals value = bca_economic_target_upper_rare_crystals }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_rare_crystals value < 0 } }
+                clear_variable = bca_jr_remaining_dec_rare_crystals
+            }
         }
     }
     clear_variable = bca_jr_income_volatile_motes
@@ -468,17 +534,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_volatile_motes_participates = yes }
         export_resource_income_to_variable = { resource = volatile_motes variable = bca_jr_income_volatile_motes }
-        set_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_economic_target_lower_volatile_motes }
-        subtract_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_jr_income_volatile_motes }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_volatile_motes value < 0 } }
-            clear_variable = bca_jr_remaining_inc_volatile_motes
+            limit = { has_country_flag = bca_economic_target_volatile_motes_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_volatile_motes value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_jr_income_volatile_motes }
-        subtract_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_economic_target_upper_volatile_motes }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_volatile_motes value < 0 } }
-            clear_variable = bca_jr_remaining_dec_volatile_motes
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_economic_target_lower_volatile_motes }
+            subtract_variable = { which = bca_jr_remaining_inc_volatile_motes value = bca_jr_income_volatile_motes }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_volatile_motes value < 0 } }
+                clear_variable = bca_jr_remaining_inc_volatile_motes
+            }
+            set_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_jr_income_volatile_motes }
+            subtract_variable = { which = bca_jr_remaining_dec_volatile_motes value = bca_economic_target_upper_volatile_motes }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_volatile_motes value < 0 } }
+                clear_variable = bca_jr_remaining_dec_volatile_motes
+            }
         }
     }
     clear_variable = bca_jr_income_exotic_gases
@@ -487,17 +559,23 @@ bca_jr_initialize_resource_remaining = {
     if = {
         limit = { bca_jr_resource_exotic_gases_participates = yes }
         export_resource_income_to_variable = { resource = exotic_gases variable = bca_jr_income_exotic_gases }
-        set_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_economic_target_lower_exotic_gases }
-        subtract_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_jr_income_exotic_gases }
         if = {
-            limit = { check_variable = { which = bca_jr_remaining_inc_exotic_gases value < 0 } }
-            clear_variable = bca_jr_remaining_inc_exotic_gases
+            limit = { has_country_flag = bca_economic_target_exotic_gases_unlimited }
+            set_variable = { which = bca_jr_remaining_inc_exotic_gases value = 2147483647 }
         }
-        set_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_jr_income_exotic_gases }
-        subtract_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_economic_target_upper_exotic_gases }
-        if = {
-            limit = { check_variable = { which = bca_jr_remaining_dec_exotic_gases value < 0 } }
-            clear_variable = bca_jr_remaining_dec_exotic_gases
+        else = {
+            set_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_economic_target_lower_exotic_gases }
+            subtract_variable = { which = bca_jr_remaining_inc_exotic_gases value = bca_jr_income_exotic_gases }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_inc_exotic_gases value < 0 } }
+                clear_variable = bca_jr_remaining_inc_exotic_gases
+            }
+            set_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_jr_income_exotic_gases }
+            subtract_variable = { which = bca_jr_remaining_dec_exotic_gases value = bca_economic_target_upper_exotic_gases }
+            if = {
+                limit = { check_variable = { which = bca_jr_remaining_dec_exotic_gases value < 0 } }
+                clear_variable = bca_jr_remaining_dec_exotic_gases
+            }
         }
     }
 }

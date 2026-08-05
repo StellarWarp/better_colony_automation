@@ -224,11 +224,11 @@ bca_zones:
 - name: zone_habitat_knights
   potential: "exists = owner\nowner = {\n    has_origin = origin_toxic_knights\n \
     \   NOT = {\n        has_country_flag = quest_abandoned\n    }\n}\nOR = {\n  \
-    \  has_carrier_flag = toxic_knights_habitat\n    has_building = building_order_castle\n\
+    \  has_planet_flag = toxic_knights_habitat\n    has_building = building_order_castle\n\
     }"
   unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_origin\
     \ = origin_toxic_knights\n        NOT = {\n            has_country_flag = quest_abandoned\n\
-    \        }\n    }\n    OR = {\n        has_carrier_flag = toxic_knights_habitat\n\
+    \        }\n    }\n    OR = {\n        has_planet_flag = toxic_knights_habitat\n\
     \        has_building = building_order_castle\n    }\n}"
   show_in_tech: ''
 - name: zone_habitat_hydroponics
@@ -850,6 +850,16 @@ bca_zones:
     \ = origin_sacred_path\n}"
   unlock: "exists = owner\nowner = {\n    is_wilderness_empire = no\n    has_origin\
     \ = origin_sacred_path\n}"
+  show_in_tech: ''
+- name: zone_ark_knights
+  potential: "exists = owner\nowner = {\n    has_origin = origin_toxic_knights\n \
+    \   NOT = {\n        has_country_flag = quest_abandoned\n    }\n}\nOR = {\n  \
+    \  has_carrier_flag = toxic_knights_arkship\n    has_building = building_order_castle\n\
+    }"
+  unlock: "hidden_trigger = {\n    exists = owner\n    owner = {\n        has_origin\
+    \ = origin_toxic_knights\n        NOT = {\n            has_country_flag = quest_abandoned\n\
+    \        }\n    }\n    OR = {\n        has_carrier_flag = toxic_knights_arkship\n\
+    \        has_building = building_order_castle\n    }\n}"
   show_in_tech: ''
 bca_districts:
 - name: district_cosmogenesis_world_science
@@ -2911,6 +2921,11 @@ bca_zone_types:
   - district_ark_city
   single_zone_districts: []
 - name: zone_ark_sacred_path_pilgrims
+  multi_zone_districts:
+  - district_ark_city
+  - district_ark_city
+  single_zone_districts: []
+- name: zone_ark_knights
   multi_zone_districts:
   - district_ark_city
   - district_ark_city

@@ -261,8 +261,14 @@ zone_resource_conditions:
   zone_fortress:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_trade:
     trade:
     - null
@@ -962,8 +968,14 @@ zone_resource_conditions:
   zone_fortress_wilderness:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_minerals_wilderness:
     minerals:
     - null
@@ -1203,8 +1215,14 @@ zone_resource_conditions:
   zone_fortress_arcology:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_trade_arcology:
     trade:
     - null
@@ -1414,8 +1432,14 @@ zone_resource_conditions:
   zone_fortress_ring_world:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_trade_ring_world:
     trade:
     - null
@@ -1641,8 +1665,14 @@ zone_resource_conditions:
   zone_fortress_nexus:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_trade_nexus:
     trade:
     - null
@@ -1853,8 +1883,14 @@ zone_resource_conditions:
   zone_fortress_hive:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_trade_hive:
     trade:
     - null
@@ -2154,23 +2190,47 @@ zone_resource_conditions:
   zone_ark_missile_silos:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_ark_ammunition_lines:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_ark_laser_capacitors:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_ark_flight_decks:
     society_research:
     - soldier_is_necromancer = yes
+    - exists = owner
     engineering_research:
     - soldier_is_necromancer = yes
+    - exists = owner
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
   zone_ark_military_eco:
     alloys:
     - null
@@ -2196,9 +2256,6 @@ zone_resource_conditions:
   zone_ark_forever_cruise_passenger:
     unity:
     - null
-  zone_ark_forever_cruise_crew:
-    unity:
-    - null
     - entertainer_is_duelist_trigger = yes
     - entertainer_is_storm_dancer_trigger = yes
     society_research:
@@ -2206,6 +2263,11 @@ zone_resource_conditions:
     trade:
     - null
     - trader_is_subterranean = yes
+  zone_ark_forever_cruise_crew:
+    unity:
+    - null
+    trade:
+    - null
   zone_ark_forever_cruise_engineering:
     engineering_research:
     - null
@@ -2217,9 +2279,6 @@ zone_resource_conditions:
   zone_ark_forever_cruise_city_passenger:
     unity:
     - null
-  zone_ark_forever_cruise_city_crew:
-    unity:
-    - null
     - entertainer_is_duelist_trigger = yes
     - entertainer_is_storm_dancer_trigger = yes
     society_research:
@@ -2227,6 +2286,11 @@ zone_resource_conditions:
     trade:
     - null
     - trader_is_subterranean = yes
+  zone_ark_forever_cruise_city_crew:
+    unity:
+    - null
+    trade:
+    - null
   zone_ark_forever_cruise_city_mixed:
     alloys:
     - null
@@ -2300,3 +2364,12 @@ zone_resource_conditions:
     minerals:
     - "colony = {\n    physicist_is_extradimensional_research_unit_trigger = yes\n\
       }"
+  zone_ark_knights:
+    unity:
+    - exists = owner
+    physics_research:
+    - exists = owner
+    engineering_research:
+    - exists = owner
+    society_research:
+    - exists = owner

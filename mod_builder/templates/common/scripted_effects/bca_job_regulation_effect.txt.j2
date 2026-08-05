@@ -51,18 +51,24 @@ bca_jr_initialize_resource_remaining = {
             limit = { bca_jr_resource_{{ need_name }}_participates = yes }
             export_resource_income_to_variable = { resource = {{ need.resource }} variable = bca_jr_income_{{ need_name }} }
 
-            set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_economic_target_lower_{{ need_name }} }
-            subtract_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_jr_income_{{ need_name }} }
             if = {
-                limit = { check_variable = { which = bca_jr_remaining_inc_{{ need_name }} value < 0 } }
-                clear_variable = bca_jr_remaining_inc_{{ need_name }}
+                limit = { has_country_flag = bca_economic_target_{{ need_name }}_unlimited }
+                set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = 2147483647 }
             }
+            else = {
+                set_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_economic_target_lower_{{ need_name }} }
+                subtract_variable = { which = bca_jr_remaining_inc_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+                if = {
+                    limit = { check_variable = { which = bca_jr_remaining_inc_{{ need_name }} value < 0 } }
+                    clear_variable = bca_jr_remaining_inc_{{ need_name }}
+                }
 
-            set_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_jr_income_{{ need_name }} }
-            subtract_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_economic_target_upper_{{ need_name }} }
-            if = {
-                limit = { check_variable = { which = bca_jr_remaining_dec_{{ need_name }} value < 0 } }
-                clear_variable = bca_jr_remaining_dec_{{ need_name }}
+                set_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_jr_income_{{ need_name }} }
+                subtract_variable = { which = bca_jr_remaining_dec_{{ need_name }} value = bca_economic_target_upper_{{ need_name }} }
+                if = {
+                    limit = { check_variable = { which = bca_jr_remaining_dec_{{ need_name }} value < 0 } }
+                    clear_variable = bca_jr_remaining_dec_{{ need_name }}
+                }
             }
         }
     {% endfor %}

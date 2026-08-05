@@ -19,13 +19,14 @@ bca_potential_max_districts = {
         }
         mode = add
     }
+    add = value:bca_num_queued_districts
     # set = value:bca_planet_max_districts
 }
 
 
 bca_num_free_secondary_districts_plan = {
     set = value:bca_potential_max_districts
-    subtract = value:num_primary_district
+    subtract = value:bca_committed_primary_district
     subtract = bca_ps_plan_district_count_z3
     subtract = bca_ps_plan_district_count_z4
     subtract = bca_ps_plan_district_count_z5
@@ -45,7 +46,7 @@ bca_num_free_primary_districts_plan = {
     add = bca_ps_plan_district_count_z3
     add = bca_ps_plan_district_count_z4
     add = bca_ps_plan_district_count_z5
-    subtract = value:num_secondary_district
+    subtract = value:bca_committed_secondary_district
 }
 
 
@@ -432,6 +433,12 @@ num_district_d0 = {
 }
 
 
+bca_committed_district_d0 = {
+    set = value:num_district_d0
+    add = bca_queued_district_d0
+}
+
+
 num_district_d1 = {
     complex_trigger_modifier = {
         trigger = num_districts
@@ -506,6 +513,12 @@ num_district_d1 = {
 }
 
 
+bca_committed_district_d1 = {
+    set = value:num_district_d1
+    add = bca_queued_district_d1
+}
+
+
 num_district_d2 = {
     complex_trigger_modifier = {
         trigger = num_districts
@@ -577,6 +590,12 @@ num_district_d2 = {
         }
         mode = add
     }
+}
+
+
+bca_committed_district_d2 = {
+    set = value:num_district_d2
+    add = bca_queued_district_d2
 }
 
 
@@ -658,6 +677,24 @@ num_district_d3 = {
         }
         mode = add
     }
+}
+
+
+bca_committed_district_d3 = {
+    set = value:num_district_d3
+    add = bca_queued_district_d3
+}
+
+
+bca_committed_primary_district = {
+    set = value:bca_committed_district_d0
+}
+
+
+bca_committed_secondary_district = {
+    set = value:bca_committed_district_d1
+    add = value:bca_committed_district_d2
+    add = value:bca_committed_district_d3
 }
 
 
@@ -1745,6 +1782,13 @@ num_zones_primary_district = {
         trigger = num_zones
         parameters = {
             type = zone_ark_sacred_path_pilgrims
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_knights
         }
         mode = add
     }
@@ -3997,6 +4041,13 @@ num_primary_zones_of_type_knight_commander = {
         trigger = num_zones
         parameters = {
             type = zone_habitat_knights
+        }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_knights
         }
         mode = add
     }
@@ -9145,6 +9196,53 @@ num_zone_plan_of_zone_habitat_knights = {
     }
     modifier = {
         has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_habitat_knights
+        check_variable = {
+            which = bca_ps_plan_district_count_z5
+            value > 0
+        }
+        add = 1
+    }
+}
+
+
+num_zones_of_zone_ark_knights = {
+    complex_trigger_modifier = {
+        trigger = num_zones
+        parameters = {
+            type = zone_ark_knights
+        }
+        mode = add
+    }
+}
+
+
+num_zone_plan_of_zone_ark_knights = {
+    modifier = {
+        has_carrier_flag = bca_pf_ps_selected_zone_z1_zone_ark_knights
+        add = 1
+    }
+    modifier = {
+        has_carrier_flag = bca_pf_ps_selected_zone_z2_zone_ark_knights
+        add = 1
+    }
+    modifier = {
+        has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_knights
+        check_variable = {
+            which = bca_ps_plan_district_count_z3
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_knights
+        check_variable = {
+            which = bca_ps_plan_district_count_z4
+            value > 0
+        }
+        add = 1
+    }
+    modifier = {
+        has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_ark_knights
         check_variable = {
             which = bca_ps_plan_district_count_z5
             value > 0

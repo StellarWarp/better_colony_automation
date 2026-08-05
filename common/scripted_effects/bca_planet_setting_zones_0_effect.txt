@@ -463,6 +463,7 @@ bca_primary_district_update_zone_options_interloop = {
             }
             OR = {
                 bca_primary_district_can_build_zone_habitat_knights = yes
+                bca_primary_district_can_build_zone_ark_knights = yes
             }
         }
         set_variable = {
@@ -2384,6 +2385,18 @@ bca_primary_district_update_zone_options_interloop = {
                 value = 1
             }
         }
+        else_if = {
+            limit = {
+                bca_primary_district_can_build_zone_ark_knights = yes
+            }
+            set_carrier_flag = bca_pf_ps_zone_option_elected_knight_commander
+            set_carrier_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_knight_commander
+            set_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_ark_knights
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
     }
     else_if = {
         limit = {
@@ -3706,6 +3719,7 @@ bca_clean_flags_zone_selector = {
     remove_carrier_flag = bca_pf_ps_option_map_duelist_zone_resort_proving_grounds
     remove_carrier_flag = bca_pf_ps_zone_option_elected_knight_commander
     remove_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_habitat_knights
+    remove_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_ark_knights
     remove_carrier_flag = bca_pf_ps_zone_option_elected_energy
     remove_carrier_flag = bca_pf_ps_option_map_energy_zone_energy
     remove_carrier_flag = bca_pf_ps_option_map_energy_zone_energy_ring_world
@@ -6306,6 +6320,12 @@ bca_planet_setting_set_zone_type_selection = {
             }
             set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_knights
         }
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_ark_knights
+            }
+            set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_knights
+        }
     }
     if = {
         limit = {
@@ -7877,6 +7897,11 @@ bca_secondary_district_update_zone_options_interloop = {
             OR = {
                 AND = {
                     bca_can_build_zone_habitat_knights = yes
+                    OR = {
+                    }
+                }
+                AND = {
+                    bca_can_build_zone_ark_knights = yes
                     OR = {
                     }
                 }
@@ -10518,6 +10543,20 @@ bca_secondary_district_update_zone_options_interloop = {
                 value = 1
             }
         }
+        else_if = {
+            limit = {
+                bca_can_build_zone_ark_knights = yes
+                OR = {
+                }
+            }
+            set_carrier_flag = bca_pf_ps_zone_option_elected_knight_commander
+            set_carrier_flag = bca_pf_ps_zone_option_elected_$SELECTOR_SLOT$_knight_commander
+            set_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_ark_knights
+            add_variable = {
+                which = zone_selector_options_count
+                value = 1
+            }
+        }
     }
     else_if = {
         limit = {
@@ -12052,6 +12091,7 @@ bca_planet_setting_remove_current_selected_zone = {
     remove_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_resort_proving_grounds
     remove_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_knight_commander
     remove_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_habitat_knights
+    remove_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_knights
     remove_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_energy
     remove_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy
     remove_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_energy_ring_world

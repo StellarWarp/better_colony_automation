@@ -1,0 +1,121 @@
+program: stellaris.exe
+MD5: 8b1bca722491cf6ddeb66c5cd1ca0ade
+
+=== FUN_140e21750 @ 140e21750 ===
+callers:
+  140e20719 in FUN_140e205d0 @ 140e205d0
+  140e21042 in FUN_140e21030 @ 140e21030
+  140e2a457 in FUN_140e29aa0 @ 140e29aa0
+  140e160cf in FUN_140e160c0 @ 140e160c0
+  140ed8371 in FUN_140ed8340 @ 140ed8340
+  140ee7b16 in FUN_140ee6d80 @ 140ee6d80
+  140ee804f in FUN_140ee6d80 @ 140ee6d80
+  140e2f16d in FUN_140e2ef50 @ 140e2ef50
+  140b2ad84 in FUN_140b2ace0 @ 140b2ace0
+  140bb54d2 in FUN_140bb5100 @ 140bb5100
+  140e1f120 in FUN_140e1f0d0 @ 140e1f0d0
+  140dff988 in FUN_140dff780 @ 140dff780
+  140d48440 in FUN_140d48380 @ 140d48380
+  1412ae931 in FUN_1412ae850 @ 1412ae850
+  1412b53a4 in FUN_1412b47d0 @ 1412b47d0
+  1412cf639 in FUN_1412cf560 @ 1412cf560
+  1412d100a in FUN_1412d0970 @ 1412d0970
+  14138026d in FUN_14137fdb0 @ 14137fdb0
+  141387ea4 in FUN_141387d40 @ 141387d40
+  1413881a6 in FUN_141387d40 @ 141387d40
+  141388d26 in FUN_1413886a0 @ 1413886a0
+  14141fb1e in FUN_14141fa50 @ 14141fa50
+  14141ff70 in FUN_14141fa50 @ 14141fa50
+  14142017a in FUN_14141fa50 @ 14141fa50
+  141addcd5 in FUN_141addca0 @ 141addca0
+  141ade518 in FUN_141ade4c0 @ 141ade4c0
+  141ade90c in FUN_141ade8d0 @ 141ade8d0
+  141aec3f0 in FUN_141aec2b0 @ 141aec2b0
+
+ulonglong FUN_140e21750(longlong param_1,char param_2)
+
+{
+  uint *puVar1;
+  longlong *plVar2;
+  char cVar3;
+  uint uVar4;
+  uint uVar5;
+  longlong lVar6;
+  ulonglong uVar7;
+  longlong lVar8;
+  ulonglong uVar9;
+  uint *puVar10;
+  int iVar11;
+  ulonglong uVar12;
+  ulonglong uVar13;
+  undefined8 local_res8;
+  undefined8 local_res18;
+  
+  puVar10 = *(uint **)(param_1 + 0x88);
+  uVar9 = 0;
+  puVar1 = puVar10 + *(int *)(param_1 + 0x94);
+  uVar13 = uVar9;
+  for (; puVar10 != puVar1; puVar10 = puVar10 + 1) {
+    if (DAT_143287848 == 0) {
+LAB_140e217bd:
+      lVar6 = DAT_143287178;
+    }
+    else {
+      uVar4 = *puVar10 & 0xffffff;
+      if (((*(uint *)(DAT_143287848 + 0x20) <= uVar4) ||
+          (lVar6 = *(longlong *)(*(longlong *)(DAT_143287848 + 0x18) + 8 + (ulonglong)uVar4 * 0x10),
+          lVar6 == 0)) || (*(uint *)(lVar6 + 8) != *puVar10)) goto LAB_140e217bd;
+    }
+    uVar13 = (ulonglong)(uint)((int)uVar13 + *(int *)(lVar6 + 0x1b0));
+  }
+  if (param_2 == '\0') {
+    return uVar13;
+  }
+  lVar6 = FUN_140d464b0(*(undefined8 *)(param_1 + 0xf78));
+  if (DAT_1432876d8 != 0) {
+    uVar4 = *(uint *)(lVar6 + 0xc4) & 0xffffff;
+    if (((uVar4 < *(uint *)(DAT_1432876d8 + 0x20)) &&
+        (lVar8 = *(longlong *)(*(longlong *)(DAT_1432876d8 + 0x18) + 8 + (ulonglong)uVar4 * 0x10),
+        lVar8 != 0)) && (*(uint *)(lVar8 + 8) == *(uint *)(lVar6 + 0xc4))) goto LAB_140e2182f;
+  }
+  lVar8 = DAT_143286c90;
+LAB_140e2182f:
+  iVar11 = 0;
+  if (0 < (int)*(uint *)(lVar8 + 0x2c)) {
+    uVar7 = (ulonglong)*(uint *)(lVar8 + 0x2c);
+    uVar12 = uVar9;
+    do {
+      if (DAT_1432876c8 == 0) {
+LAB_140e2188a:
+        lVar6 = DAT_143286c80;
+      }
+      else {
+        uVar4 = *(uint *)(uVar9 + *(longlong *)(lVar8 + 0x20));
+        uVar5 = uVar4 & 0xffffff;
+        if (((*(uint *)(DAT_1432876c8 + 0x20) <= uVar5) ||
+            (lVar6 = *(longlong *)
+                      (*(longlong *)(DAT_1432876c8 + 0x18) + 8 + (ulonglong)uVar5 * 0x10),
+            lVar6 == 0)) || (*(uint *)(lVar6 + 8) != uVar4)) goto LAB_140e2188a;
+      }
+      plVar2 = *(longlong **)(lVar6 + 0x18);
+      local_res8 = 0;
+      cVar3 = (**(code **)(*plVar2 + 0xa0))(plVar2,&CDistrictType::RTTI_Type_Descriptor,&local_res8)
+      ;
+      if (cVar3 != '\0') {
+        local_res18 = 0;
+        cVar3 = (**(code **)(*plVar2 + 0xa8))
+                          (plVar2,&TPdxRef<CColony>::RTTI_Type_Descriptor,&local_res18);
+        if (cVar3 != '\0') {
+          uVar12 = (ulonglong)((int)uVar12 + 1);
+        }
+      }
+      iVar11 = (int)uVar12;
+      uVar9 = uVar9 + 4;
+      uVar7 = uVar7 - 1;
+    } while (uVar7 != 0);
+  }
+  return (ulonglong)(uint)(iVar11 + (int)uVar13);
+}
+
+
+

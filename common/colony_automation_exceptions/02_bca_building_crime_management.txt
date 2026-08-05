@@ -15,6 +15,7 @@ automate_crime_management = {
 			building = building_fe_security_1
 			available = {
 				planet_crime > 30
+				num_buildings = { type = building_fe_security_1 in_construction = yes value < 1 }
 				NOT = { has_available_jobs = enforcer }
 				NOT = { has_forbidden_jobs = enforcer }
 				any_owned_pop_group = { can_work_specific_job = enforcer }
@@ -32,6 +33,7 @@ automate_crime_management = {
 			building = building_precinct_house
 			available = {
 				planet_crime > 30
+				num_buildings = { type = building_precinct_house in_construction = yes value < 1 }
 				NOT = { has_available_jobs = enforcer }
 				NOT = { has_forbidden_jobs = enforcer }
 				any_owned_pop_group = { can_work_specific_job = enforcer }
@@ -49,6 +51,7 @@ automate_crime_management = {
 			building = building_state_academy
 			available = {
 				planet_crime > 30
+				num_buildings = { type = building_state_academy in_construction = yes value < 1 }
 				NOR = {
 					AND = {
 						has_building = building_state_academy
@@ -101,6 +104,7 @@ automate_crime_management_gestalt = {
 		precinct = {
 			available = {
 				planet_crime > 30
+				num_buildings = { type = building_sentinel_posts in_construction = yes value < 1 }
 				NOT = { has_available_jobs = patrol_drone }
 				NOT = { has_forbidden_jobs = patrol_drone }
 			}

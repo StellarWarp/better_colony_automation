@@ -114,7 +114,7 @@
             limit = {
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
-                    value > value:num_primary_district
+                    value > value:bca_committed_primary_district
                 }
                 {{ district_slot_economic_allowed('d0', ['z1', 'z2']) }}
             }
@@ -128,7 +128,7 @@
             limit = {
                 check_variable = {
                     which = {{ v.var_district_num_plan(zone_slot) }}
-                    value > value:num_district_{{ district_slot }}
+                    value > value:bca_committed_district_{{ district_slot }}
                 }
                 {{ district_slot_economic_allowed(district_slot, [zone_slot]) }}
             }

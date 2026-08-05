@@ -7,9 +7,12 @@ It is not the public changelog. Before release, fold the relevant items into
 the player-facing surfaces listed in [Maintenance Playbook](playbook.md):
 intro/update messages, `README.md`, descriptors, and Workshop descriptions.
 
-## Unreleased
+## Unreleased (v2.1.2)
 
-- None.
+- Fixed the Unlimited economic-target mode so it correctly allows automation to
+  continue construction.
+- Fixed district planning in parallel construction queues so planned districts
+  are not queued again before earlier construction completes.
 
 ## Released In v2.1.1 (2026-08-01)
 

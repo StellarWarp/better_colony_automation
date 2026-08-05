@@ -27,13 +27,18 @@ public class TraceNumBuildingsTrigger extends GhidraScript {
     @Override
     public void run() throws Exception {
         String[] args = getScriptArgs();
-        if (args.length != 1) {
-            throw new IllegalArgumentException("Expected one output report path");
+        if (args.length < 1 || args.length > 2) {
+            throw new IllegalArgumentException(
+                "Expected output report path and optional ASCII error text");
         }
 
-        Address errorText = findBytes(ERROR_TEXT);
+        byte[] errorNeedle = args.length == 2
+            ? args[1].getBytes(StandardCharsets.US_ASCII)
+            : ERROR_TEXT;
+        Address errorText = findBytes(errorNeedle);
         if (errorText == null) {
-            throw new IllegalArgumentException("num_buildings validation error text not found");
+            throw new IllegalArgumentException("validation error text not found: " +
+                new String(errorNeedle, StandardCharsets.US_ASCII));
         }
         Function validator = findReferencingFunction(errorText);
         if (validator == null) {

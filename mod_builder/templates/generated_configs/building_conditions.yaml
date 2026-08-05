@@ -818,8 +818,9 @@ bca_buildings:
   - knights
   upgrades: []
   potential: "owner = {\n    has_origin = origin_toxic_knights\n}\nplanet = {\n  \
-    \  has_carrier_flag = toxic_knights_habitat\n}\nowner = {\n    NOT = {\n     \
-    \   has_country_flag = quest_abandoned\n    }\n}"
+    \  OR = {\n        has_planet_flag = toxic_knights_habitat\n        has_carrier_flag\
+    \ = toxic_knights_arkship\n    }\n}\nowner = {\n    NOT = {\n        has_country_flag\
+    \ = quest_abandoned\n    }\n}"
   allow: ''
   abort_trigger: ''
   prerequisites: null
@@ -5816,7 +5817,11 @@ bca_buildings:
   potential: "NOR = {\n    has_modifier = resort_colony\n    has_modifier = slave_colony\n\
     }\nexists = owner\nowner = {\n    is_wilderness_empire = no\n}"
   allow: "custom_tooltip = {\n    fail_text = storm_attracting_allow\n    solar_system\
-    \ = {\n        system_has_storm_repelling_tech = no\n    }\n}"
+    \ = {\n        system_has_storm_repelling_tech = no\n    }\n    OR = {\n     \
+    \   has_building = building_storm_repellent_center\n        has_building_construction\
+    \ = building_storm_repellent_center\n        has_building = building_advanced_storm_repellent_center\n\
+    \        has_building_construction = building_advanced_storm_repellent_center\n\
+    \    }\n}"
   abort_trigger: ''
   prerequisites:
     kind: group
@@ -5850,10 +5855,13 @@ bca_buildings:
   - physics
   upgrades:
   - building_advanced_storm_repellent_center
-  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}\nsolar_system\
-    \ = {\n    system_has_storm_attraction_tech = no\n}"
+  potential: "exists = owner\nowner = {\n    is_wilderness_empire = no\n}"
   allow: "custom_tooltip = {\n    fail_text = storm_repellent_allow\n    solar_system\
-    \ = {\n        system_has_storm_attraction_tech = no\n    }\n}"
+    \ = {\n        system_has_storm_attraction_tech = no\n    }\n    OR = {\n    \
+    \    has_building = building_storm_repellent_center\n        has_building_construction\
+    \ = building_storm_repellent_center\n        has_building = building_advanced_storm_repellent_center\n\
+    \        has_building_construction = building_advanced_storm_repellent_center\n\
+    \    }\n}"
   abort_trigger: ''
   prerequisites:
     kind: group

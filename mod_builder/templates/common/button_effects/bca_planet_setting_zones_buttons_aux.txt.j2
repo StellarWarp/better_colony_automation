@@ -114,7 +114,7 @@
             hidden_effect = {
                 set_variable = {
                     which = {{v.var_district_num_plan(zone_slot)}}
-                    value = value:num_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
+                    value = value:bca_committed_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
                 }
             }
         }
@@ -171,7 +171,7 @@
                     fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
                     check_variable = {
                         which = {{v.var_district_num_plan(zone_slot)}}
-                        value > value:num_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
+                        value > value:bca_committed_district_{{ zone_slot_district_slot_mapping[zone_slot] }}
                     }
                 }
             }
@@ -218,7 +218,7 @@ bca_planet_setting_primary_district_count_dec = {
                 fail_text = "BCA_DISTRICT_AUTO_DESTRUCTION_NOT_ALLOW"
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
-                    value > value:num_primary_district
+                    value > value:bca_committed_primary_district
                 }
             }
         }
@@ -260,7 +260,7 @@ bca_planet_setting_primary_district_count_inc = {
         else = {
             hidden_trigger = {
                 check_variable_arithmetic = {
-                    which = value:num_district_d0
+                    which = value:bca_committed_district_d0
                     value < value:bca_potential_max_districts
                 }
             }

@@ -2461,6 +2461,7 @@ bca_has_any_zone_of_type_duelist = {
 bca_has_any_zone_of_type_knight_commander = {
     OR = {
         num_zones = { type = zone_habitat_knights value > 0 }
+        num_zones = { type = zone_ark_knights value > 0 }
     }
 }
 
@@ -2787,14 +2788,14 @@ bca_has_district_d3 = {
 bca_district_d0_reach_planet_max = {
     check_variable_arithmetic = {
         which = value:bca_planet_max_districts
-        value = value:num_primary_district
+        value = value:bca_committed_primary_district
     }
 }
 
 
 bca_district_d1_reach_planet_max = {
     check_variable_arithmetic = {
-        which = value:num_district_d1
+        which = value:bca_committed_district_d1
         value = value:bca_district_max_add_d1
     }
 }
@@ -2802,7 +2803,7 @@ bca_district_d1_reach_planet_max = {
 
 bca_district_d2_reach_planet_max = {
     check_variable_arithmetic = {
-        which = value:num_district_d2
+        which = value:bca_committed_district_d2
         value = value:bca_district_max_add_d2
     }
 }
@@ -2810,7 +2811,7 @@ bca_district_d2_reach_planet_max = {
 
 bca_district_d3_reach_planet_max = {
     check_variable_arithmetic = {
-        which = value:num_district_d3
+        which = value:bca_committed_district_d3
         value = value:bca_district_max_add_d3
     }
 }
