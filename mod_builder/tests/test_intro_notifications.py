@@ -18,12 +18,20 @@ INTRO_LOCALISATIONS = [
 
 
 class IntroNotificationsTests(unittest.TestCase):
-    def test_v211_update_and_patch_notifications_are_registered(self):
+    def test_v212_update_and_patch_notifications_are_registered(self):
         event = INTRO_EVENT.read_text(encoding="utf-8-sig")
         on_action = INTRO_ON_ACTION.read_text(encoding="utf-8-sig")
         message_types = MESSAGE_TYPES.read_text(encoding="utf-8-sig")
 
-        self.assertIn("bca_update_v2_1_1_shown", event)
+        self.assertIn("bca_update_v2_1_2_shown", event)
+        self.assertIn(
+            "set_variable = { which = bca_reserve_minerals_amount value = 0 }",
+            event,
+        )
+        self.assertIn(
+            "set_variable = { which = bca_reserve_alloys_amount value = 0 }",
+            event,
+        )
         self.assertIn("id = bca_intro_event.3", event)
         self.assertIn("bca_parallel_construction_patch_v0_1_0_shown", event)
         self.assertIn("MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH", event)
@@ -34,8 +42,8 @@ class IntroNotificationsTests(unittest.TestCase):
         for path in INTRO_LOCALISATIONS:
             with self.subTest(path=path):
                 localisation = path.read_text(encoding="utf-8-sig")
-                self.assertIn("v2.1.1", localisation)
-                self.assertIn("MESSAGE_BCA_STARTUP_desc_log_v211", localisation)
+                self.assertIn("v2.1.2", localisation)
+                self.assertIn("MESSAGE_BCA_STARTUP_desc_log_v212", localisation)
                 self.assertIn("MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH:", localisation)
                 self.assertIn(
                     "MESSAGE_BCA_PARALLEL_CONSTRUCTION_PATCH_desc:",

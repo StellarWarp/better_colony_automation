@@ -30,12 +30,16 @@ event = {
 	hide_window = yes
 
 	trigger = {
-		NOT = { has_global_flag = bca_update_v2_1_1_shown }
+		NOT = { has_global_flag = bca_update_v2_1_2_shown }
 	}
 
 
 	immediate = {
-		set_global_flag = bca_update_v2_1_1_shown
+		set_global_flag = bca_update_v2_1_2_shown
+		every_playable_country = {
+			set_variable = { which = bca_reserve_minerals_amount value = 0 }
+			set_variable = { which = bca_reserve_alloys_amount value = 0 }
+		}
 		every_playable_country = {
 			limit = { is_ai = no }
             create_message = {

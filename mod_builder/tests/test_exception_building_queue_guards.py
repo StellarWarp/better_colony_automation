@@ -48,7 +48,7 @@ class ExceptionBuildingQueueGuardTests(unittest.TestCase):
 
         retain_flag = "has_country_flag = bca_retain_low_level_rare_resource_buildings"
         self.assertEqual(rare_resources.count(retain_flag), 3)
-        self.assertIn("bca_has_minerals_to_build = yes", destruction_triggers)
+        self.assertIn("bca_has_main_resource_to_build = yes", destruction_triggers)
         for resource in ("rare_crystals", "volatile_motes", "exotic_gases"):
             resource_trigger = f"bca_planet_build_needs_{resource} = yes"
             self.assertNotIn(resource_trigger, rare_resources)
@@ -101,6 +101,48 @@ class ExceptionBuildingQueueGuardTests(unittest.TestCase):
             "remove_country_flag = bca_retain_low_level_rare_resource_buildings",
             bootstrap_template,
         )
+
+    def test_main_construction_resource_gate_uses_nomadic_alloys(self):
+        tool_triggers = (
+            ROOT_DIR / "common/scripted_triggers/bt_st_tool.txt"
+        ).read_text(encoding="utf-8")
+        bootstrap = (
+            ROOT_DIR
+            / "mod_builder/templates/events/bca_global_settings_bootstrap.txt.j2"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("bca_has_main_resource_to_build = {", tool_triggers)
+        self.assertIn("limit = { owner = { is_nomadic = yes } }", tool_triggers)
+        self.assertIn(
+            "resource = alloys value >= bca_reserve_alloys_amount", tool_triggers
+        )
+        self.assertIn(
+            "resource = minerals value >= bca_reserve_minerals_amount",
+            tool_triggers,
+        )
+        self.assertIn(
+            "set_variable = { which = bca_reserve_minerals_amount value = 0 }",
+            bootstrap,
+        )
+        self.assertIn(
+            "set_variable = { which = bca_reserve_alloys_amount value = 0 }",
+            bootstrap,
+        )
+
+        source_roots = (
+            ROOT_DIR / "common",
+            ROOT_DIR / "events",
+            ROOT_DIR / "mod_builder/templates",
+        )
+        for source_root in source_roots:
+            for path in source_root.rglob("*"):
+                if path.suffix not in {".txt", ".j2", ".yaml"}:
+                    continue
+                self.assertNotIn(
+                    "bca_has_minerals_to_build",
+                    path.read_text(encoding="utf-8"),
+                    path,
+                )
 
     def test_pop_assembly_gate_and_subtype_policies_are_independent(self):
         pop_assembly = (

@@ -25,9 +25,17 @@ really_requires_more_job = {
 	}
 }
 
-bca_has_minerals_to_build = {
-	owner = {
-		resource_stockpile_compare = { resource = minerals value >= bca_reserve_minerals_amount }
+bca_has_main_resource_to_build = {
+	if = {
+		limit = { owner = { is_nomadic = yes } }
+		owner = {
+			resource_stockpile_compare = { resource = alloys value >= bca_reserve_alloys_amount }
+		}
+	}
+	else = {
+		owner = {
+			resource_stockpile_compare = { resource = minerals value >= bca_reserve_minerals_amount }
+		}
 	}
 }
 
