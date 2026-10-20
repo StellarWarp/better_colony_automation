@@ -87,12 +87,55 @@ carrier_event = {
 
     immediate = {
 
+{# 振荡守卫：方案低于现状须连续 2 个月才执行拆除，防止专精规划与玩家区划方案互相拆建（2026-10-19 玩家反馈 #3 修复） #}
+        set_variable = { which = bca_district_demolition_signal value = 0 }
+        if = {
+            limit = {
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:num_primary_district
+                }
+            }
+            set_variable = { which = bca_district_demolition_signal value = 1 }
+        }
+        {% for i in range(3) %}
+            {% set district_slot = ['d1','d2','d3'][i] %}
+            {% set zone_slot = ['z3','z4','z5'][i] %}
+            else_if = {
+                limit = {
+                    check_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value < value:num_district_{{ district_slot }}
+                    }
+                }
+                set_variable = { which = bca_district_demolition_signal value = 1 }
+            }
+        {% endfor %}
+        if = {
+            limit = { check_variable = { which = bca_district_demolition_signal value > 0 } }
+            if = {
+                limit = { is_variable_set = bca_district_demolition_pending }
+                change_variable = { which = bca_district_demolition_pending value = 1 }
+            }
+            else = {
+                set_variable = { which = bca_district_demolition_pending value = 1 }
+            }
+        }
+        else = {
+            set_variable = { which = bca_district_demolition_pending value = 0 }
+        }
+        clear_variable = bca_district_demolition_signal
+
 {# destroy order #}
         if = {
             limit = {
                 check_variable_arithmetic = {
                     which = value:bca_num_primary_districts_plan
                     value < value:num_primary_district
+                }
+                check_variable = {
+                    which = bca_district_demolition_pending
+                    value >= 2
                 }
             }
             set_carrier_flag = {{ pf.flag_district_plan_remove('d0') }}
@@ -105,6 +148,10 @@ carrier_event = {
                     check_variable = {
                         which = {{v.var_district_num_plan(zone_slot)}}
                         value < value:num_district_{{ district_slot }}
+                    }
+                    check_variable = {
+                        which = bca_district_demolition_pending
+                        value >= 2
                     }
                 }
                 set_carrier_flag = {{ pf.flag_district_plan_remove(district_slot) }}

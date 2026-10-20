@@ -164,8 +164,9 @@ carrier_event = {
     }
 
     immediate = {
-{# remove zones #}
 
+{# 振荡守卫：区划特化方案低于现状须连续 2 个月才执行拆除，防止方案翻转反复拆区导致岗位集体下岗（2026-10-19 玩家反馈 #7a 修复） #}
+        set_variable = { which = bca_zone_demolition_signal value = 0 }
         {% for item in zones_info %}
             {% set first = loop.first %}
             {% set type = item.type %}
@@ -177,10 +178,44 @@ carrier_event = {
                             value > value:num_zone_plan_of_{{ zone }}
                         }
                     }
-                    remove_zone = { zone = {{ zone }} }
+                    set_variable = { which = bca_zone_demolition_signal value = 1 }
                 }
             {% endfor %}
         {% endfor %}
+        if = {
+            limit = { check_variable = { which = bca_zone_demolition_signal value > 0 } }
+            if = {
+                limit = { is_variable_set = bca_zone_demolition_pending }
+                change_variable = { which = bca_zone_demolition_pending value = 1 }
+            }
+            else = {
+                set_variable = { which = bca_zone_demolition_pending value = 1 }
+            }
+        }
+        else = {
+            set_variable = { which = bca_zone_demolition_pending value = 0 }
+        }
+        clear_variable = bca_zone_demolition_signal
+
+{# remove zones #}
+        if = {
+            limit = { check_variable = { which = bca_zone_demolition_pending value >= 2 } }
+            {% for item in zones_info %}
+                {% set first = loop.first %}
+                {% set type = item.type %}
+                {% for zone in item.zones %}
+                    {{ "if" if loop.first and first else "else_if" }} = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = value:num_zones_of_{{ zone }}
+                                value > value:num_zone_plan_of_{{ zone }}
+                            }
+                        }
+                        remove_zone = { zone = {{ zone }} }
+                    }
+                {% endfor %}
+            {% endfor %}
+        }
     }
 }
 
