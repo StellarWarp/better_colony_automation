@@ -1,6 +1,7 @@
 {% import 'component/planet_flag_ps.j2' as pf with context %}
 {% import 'component/planet_variable.j2' as v with context %}
 {% import 'component/conditions.j2' as cond with context %}
+{% import 'component/zone_setting_option_operation.j2' as op with context -%}
 
 {% set resource_boost_builds = {
         'energy': ['building_energy_grid', 'building_energy_nexus'],
@@ -313,7 +314,7 @@ bca_resource_planet_controller_district_only = {
                 }
                 {% for zone_slot in ['z3','z4','z5'] %}
                     {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-                    {{ "if" if loop.first else "else_if" }} = {
+                    if = {
                         limit = {
                             OR = {
                                 {% for zone_type in zone_type_set %}
@@ -324,6 +325,14 @@ bca_resource_planet_controller_district_only = {
                         set_variable = {
                             which = {{v.var_district_num_plan(zone_slot)}}
                             value = value:bca_district_max_build_{{ district_slot }}
+                        }
+                        # 专精适配修复（2026-10-20 玩家反馈：发电专精星球疯狂建设城市区划）：槽位未选资源特区时按排名自动选择，防止城市区划吞掉全部容量
+                        else = {
+                            {{ op.auto_select_default_zone(zone_slot) }}
+                            set_variable = {
+                                which = {{v.var_district_num_plan(zone_slot)}}
+                                value = value:bca_district_max_build_{{ district_slot }}
+                            }
                         }
                     }
                 {% endfor %}
@@ -383,5 +392,18 @@ bca_resource_planet_controller_district_only = {
 
         }
 
+    {% endfor %}
+
+    # 方案钳制（2026-10-20 玩家反馈：栖息地副区划方案出现负数 -11）：方案变量不允许低于 0，防止拆建循环与城市方案膨胀
+    {% for zone_slot in ['z3','z4','z5'] %}
+        if = {
+            limit = {
+                check_variable = { which = {{ v.var_district_num_plan(zone_slot) }} value < 0 }
+            }
+            set_variable = {
+                which = {{ v.var_district_num_plan(zone_slot) }}
+                value = 0
+            }
+        }
     {% endfor %}
 }
