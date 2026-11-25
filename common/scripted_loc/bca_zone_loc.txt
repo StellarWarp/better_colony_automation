@@ -10599,7 +10599,9 @@ defined_text = {
 
 defined_text = {
     name = BCA_DISTRICT_PLAN_FREE_COUNT_script
-    value = value:bca_num_free_secondary_districts_plan
+    # 2026-11-16：读每月/每次点击时写好的变量。之前直接读脚本数值，
+    # 而该数值依赖 complex_trigger_modifier，在 defined_text 上下文里恒为 0。
+    value = bca_ps_disp_secondary_free
 }
 
 
@@ -10618,4 +10620,62 @@ defined_text = {
 defined_text = {
     name = BCA_DISTRICT_PLAN_COUNT_z5_script
     value = bca_ps_plan_district_count_z5
+}
+
+
+defined_text = {
+    name = BCA_MAIN_DISTRICT_COUNT_script
+    value = bca_ps_disp_primary_built
+}
+
+
+defined_text = {
+    name = BCA_MAIN_DISTRICT_PLAN_script
+    value = bca_ps_disp_primary_cap
+}
+
+
+defined_text = {
+    name = BCA_SECONDARY_DISTRICT_COUNT_script
+    value = bca_ps_disp_secondary_built
+}
+
+
+defined_text = {
+    name = BCA_SECONDARY_DISTRICT_PLAN_script
+    value = bca_ps_disp_secondary_plan
+}
+
+defined_text = {
+    name = BCA_DISTRICT_MANUAL_z3
+    text = {
+        trigger = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+        localization_key = BCA_DISTRICT_MANUAL_MARK
+    }
+    text = {
+        trigger = { NOT = { has_carrier_flag = bca_pf_ps_manual_count_z3 } }
+        localization_key = BCA_DISTRICT_MANUAL_NONE
+    }
+}
+defined_text = {
+    name = BCA_DISTRICT_MANUAL_z4
+    text = {
+        trigger = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+        localization_key = BCA_DISTRICT_MANUAL_MARK
+    }
+    text = {
+        trigger = { NOT = { has_carrier_flag = bca_pf_ps_manual_count_z4 } }
+        localization_key = BCA_DISTRICT_MANUAL_NONE
+    }
+}
+defined_text = {
+    name = BCA_DISTRICT_MANUAL_z5
+    text = {
+        trigger = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+        localization_key = BCA_DISTRICT_MANUAL_MARK
+    }
+    text = {
+        trigger = { NOT = { has_carrier_flag = bca_pf_ps_manual_count_z5 } }
+        localization_key = BCA_DISTRICT_MANUAL_NONE
+    }
 }

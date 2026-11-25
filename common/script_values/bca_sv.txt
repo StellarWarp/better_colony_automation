@@ -117,11 +117,107 @@ bca_planet_max_districts= {
 	add = value:bca_num_queued_districts
 }
 
+# 该资源族的区划方案总和（用于按"族"而不是按槽位决定是否拆除）
+bca_plan_energy_total = {
+	value = 0
+	modifier = {
+		add = bca_ps_plan_district_count_z3
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z4
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z5
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+		}
+	}
+}
+
+# 该资源族的区划方案总和（用于按"族"而不是按槽位决定是否拆除）
+bca_plan_minerals_total = {
+	value = 0
+	modifier = {
+		add = bca_ps_plan_district_count_z3
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z4
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z5
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+		}
+	}
+}
+
+# 该资源族的区划方案总和（用于按"族"而不是按槽位决定是否拆除）
+bca_plan_food_total = {
+	value = 0
+	modifier = {
+		add = bca_ps_plan_district_count_z3
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z4
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+		}
+	}
+	modifier = {
+		add = bca_ps_plan_district_count_z5
+		OR = {
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+			has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+		}
+	}
+}
+
 bca_num_queued_districts = {
-	add = bca_queued_district_d0
-	add = bca_queued_district_d1
-	add = bca_queued_district_d2
-	add = bca_queued_district_d3
+	modifier = {
+		add = bca_queued_district_d0
+		is_variable_set = bca_queued_district_d0
+	}
+	modifier = {
+		add = bca_queued_district_d1
+		is_variable_set = bca_queued_district_d1
+	}
+	modifier = {
+		add = bca_queued_district_d2
+		is_variable_set = bca_queued_district_d2
+	}
+	modifier = {
+		add = bca_queued_district_d3
+		is_variable_set = bca_queued_district_d3
+	}
 }
 
 bca_num_districts_value = {

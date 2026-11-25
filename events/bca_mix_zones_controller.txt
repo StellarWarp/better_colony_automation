@@ -19,6 +19,17 @@ carrier_event = {
         remove_carrier_flag = bca_pf_plan_build_district_d3
         remove_carrier_flag = bca_pf_has_district_build_plan
         remove_all_zone_plan_flag = yes
+        # 2026-11-15：预建造旗「bca_pf_planet_pre_construction」会让 bca_planet_build_needs_* 全部为真、
+        # 并让 requires_more_job 恒真。星球区划与建筑槽都建满之后它已无意义，继续挂着只会让自动化
+        # 把可重复建筑（上行链路等）往剩下的建筑槽里塞。这里在星球确实没有可建槽位时自动清除。
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_planet_pre_construction
+                free_district_slots = 0
+                free_building_slots = 0
+            }
+            remove_carrier_flag = bca_pf_planet_pre_construction
+        }
     }
 }
 
@@ -2446,15 +2457,6 @@ carrier_event = {
                 }
             }
             remove_zone = { zone = zone_habitat_knights }
-        }
-        else_if = {
-            limit = {
-                check_variable_arithmetic = {
-                    which = value:num_zones_of_zone_ark_knights
-                    value > value:num_zone_plan_of_zone_ark_knights
-                }
-            }
-            remove_zone = { zone = zone_ark_knights }
         }
         else_if = {
             limit = {

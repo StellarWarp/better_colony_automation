@@ -25,6 +25,10 @@ event = {
                 }
                 carrier_event = { id = colony_automation_event.26 }
             }
+            # 2026-11-15：老存档迁移——三个次级槽都被自动填成"贸易"的星球，改成新的默认三族。
+            every_owned_colony = {
+                carrier_event = { id = colony_automation_event.29 }
+            }
         }
     }
 }
@@ -41,6 +45,33 @@ carrier_event = {
         always = yes
     }
     immediate = {
+        # 2026-11-15：四个显示变量的「每月刷新」在 events/bca_planet_monthly_iteration_entry.txt。
+        # 本事件只在初始化时跑一次，所以这里只做一次赋值，保证新殖民地第一个月就有数值，
+        # 避免 UI 读到未定义变量（"Variable bca_ps_disp_* is not set for scoped planet"）。
+        set_variable = {
+            which = bca_ps_disp_primary_built
+            value = value:bca_committed_district_d0
+        }
+        set_variable = {
+            which = bca_ps_disp_primary_cap
+            value = value:bca_potential_max_districts
+        }
+        set_variable = {
+            which = bca_ps_disp_secondary_built
+            value = value:bca_committed_secondary_district
+        }
+        # 2026-11-18：先确保三个方案变量存在，后面的脚本值才能读，不用守卫
+        if = { limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z3 } }  set_variable = { which = bca_ps_plan_district_count_z3 value = 0 } }
+        if = { limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z4 } }  set_variable = { which = bca_ps_plan_district_count_z4 value = 0 } }
+        if = { limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z5 } }  set_variable = { which = bca_ps_plan_district_count_z5 value = 0 } }
+        set_variable = {
+            which = bca_ps_disp_secondary_plan
+            value = value:bca_num_secondary_districts_plan
+        }
+        set_variable = {
+            which = bca_ps_disp_secondary_free
+            value = value:bca_num_free_secondary_districts_plan_display
+        }
         if = {
             carrier_event = { id = colony_automation_event.12 }
             carrier_event = { id = colony_automation_event.11 }
@@ -92,15 +123,15 @@ carrier_event = {
                 limit = {
                     NOT = { bca_has_zone_plan = { ZONE_SLOT = z3 } }
                 }
+                set_carrier_flag = bca_pf_ps_zone_default_z3
                 bca_planet_setting_clear_zone_selection = {
                     ZONE_SLOT = z3
                 }
                 bca_secondary_district_update_zone_options = {
                     ZONE_SLOT = z3
                 }
-                bca_planet_setting_set_zone_type_selection = {
+                bca_secondary_slot_default_first = {
                     ZONE_SLOT = z3
-                    SELECTOR_SLOT = s1
                 }
                 bca_planet_setting_clear_secondary_zone_selector_flags = yes
             }
@@ -108,15 +139,15 @@ carrier_event = {
                 limit = {
                     NOT = { bca_has_zone_plan = { ZONE_SLOT = z4 } }
                 }
+                set_carrier_flag = bca_pf_ps_zone_default_z4
                 bca_planet_setting_clear_zone_selection = {
                     ZONE_SLOT = z4
                 }
                 bca_secondary_district_update_zone_options = {
                     ZONE_SLOT = z4
                 }
-                bca_planet_setting_set_zone_type_selection = {
+                bca_secondary_slot_default_second = {
                     ZONE_SLOT = z4
-                    SELECTOR_SLOT = s1
                 }
                 bca_planet_setting_clear_secondary_zone_selector_flags = yes
             }
@@ -124,15 +155,15 @@ carrier_event = {
                 limit = {
                     NOT = { bca_has_zone_plan = { ZONE_SLOT = z5 } }
                 }
+                set_carrier_flag = bca_pf_ps_zone_default_z5
                 bca_planet_setting_clear_zone_selection = {
                     ZONE_SLOT = z5
                 }
                 bca_secondary_district_update_zone_options = {
                     ZONE_SLOT = z5
                 }
-                bca_planet_setting_set_zone_type_selection = {
+                bca_secondary_slot_default_third = {
                     ZONE_SLOT = z5
-                    SELECTOR_SLOT = s1
                 }
                 bca_planet_setting_clear_secondary_zone_selector_flags = yes
             }
@@ -260,9 +291,8 @@ carrier_event = {
         bca_secondary_district_update_zone_options = {
             ZONE_SLOT = z3
         }
-        bca_planet_setting_set_zone_type_selection = {
+        bca_secondary_slot_default_first = {
             ZONE_SLOT = z3
-            SELECTOR_SLOT = s1
         }
         bca_planet_setting_clear_secondary_zone_selector_flags = yes
         bca_planet_setting_clear_zone_selection = {
@@ -271,9 +301,8 @@ carrier_event = {
         bca_secondary_district_update_zone_options = {
             ZONE_SLOT = z4
         }
-        bca_planet_setting_set_zone_type_selection = {
+        bca_secondary_slot_default_second = {
             ZONE_SLOT = z4
-            SELECTOR_SLOT = s1
         }
         bca_planet_setting_clear_secondary_zone_selector_flags = yes
         bca_planet_setting_clear_zone_selection = {
@@ -282,9 +311,8 @@ carrier_event = {
         bca_secondary_district_update_zone_options = {
             ZONE_SLOT = z5
         }
-        bca_planet_setting_set_zone_type_selection = {
+        bca_secondary_slot_default_third = {
             ZONE_SLOT = z5
-            SELECTOR_SLOT = s1
         }
         bca_planet_setting_clear_secondary_zone_selector_flags = yes
         if = {
@@ -319,9 +347,8 @@ carrier_event = {
             bca_secondary_district_update_zone_options = {
                 ZONE_SLOT = z3
             }
-            bca_planet_setting_set_zone_type_selection = {
+            bca_secondary_slot_default_first = {
                 ZONE_SLOT = z3
-                SELECTOR_SLOT = s1
             }
             bca_planet_setting_clear_secondary_zone_selector_flags = yes
         }
@@ -335,9 +362,8 @@ carrier_event = {
             bca_secondary_district_update_zone_options = {
                 ZONE_SLOT = z4
             }
-            bca_planet_setting_set_zone_type_selection = {
+            bca_secondary_slot_default_second = {
                 ZONE_SLOT = z4
-                SELECTOR_SLOT = s1
             }
             bca_planet_setting_clear_secondary_zone_selector_flags = yes
         }
@@ -351,11 +377,51 @@ carrier_event = {
             bca_secondary_district_update_zone_options = {
                 ZONE_SLOT = z5
             }
-            bca_planet_setting_set_zone_type_selection = {
+            bca_secondary_slot_default_third = {
                 ZONE_SLOT = z5
-                SELECTOR_SLOT = s1
             }
             bca_planet_setting_clear_secondary_zone_selector_flags = yes
+        }
+    }
+}
+
+
+# 2026-11-15：老存档迁移。旧版本把没有方案的次级槽自动填成「选项列表第一项」（贸易），
+# 于是一产星球的三个次级槽图标都显示贸易。这里把「三个槽都是贸易」的普通星球重置为
+# 新的默认三族（能量/矿物/农业）；特殊星球（环世界/城市世界等）保持原样。
+carrier_event = {
+    id = colony_automation_event.29
+    hide_window = yes
+    is_triggered_only = yes
+    trigger = {
+        always = yes
+    }
+    immediate = {
+        if = {
+            limit = {
+                NOT = { bca_has_advance_secondary_districts = yes }
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_trade
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_trade
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_trade
+            }
+            bca_planet_setting_clear_zone_selection = {
+                ZONE_SLOT = z3
+            }
+            bca_planet_setting_clear_zone_selection = {
+                ZONE_SLOT = z4
+            }
+            bca_planet_setting_clear_zone_selection = {
+                ZONE_SLOT = z5
+            }
+            bca_secondary_slot_default_first = {
+                ZONE_SLOT = z3
+            }
+            bca_secondary_slot_default_second = {
+                ZONE_SLOT = z4
+            }
+            bca_secondary_slot_default_third = {
+                ZONE_SLOT = z5
+            }
         }
     }
 }

@@ -42,17 +42,18 @@ defined_text = {
     value = value:num_secondary_district
 }
 
-define_text = {
+defined_text = {
     name = bca_num_secondary_districts_plan
     value = value:bca_num_secondary_districts_plan
 }
 
-define_text = {
+defined_text = {
     name = bca_planet_size_scripted_loc
-    value = trigger:planet_size
+    # 2026-11-16: defined_text 只认 value:<脚本数值>；trigger: 形式原版从没在 loc 里用过。
+    value = value:bca_planet_size_value
 }
 
-define_text = {
+defined_text = {
     name = bca_monument_building_name
     text = {
         trigger = {

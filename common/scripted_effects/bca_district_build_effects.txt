@@ -8,9 +8,66 @@ bca_try_build_district_0 = {
     optimize_memory
     if = {
         limit = {
+            # 2026-11-15 晚：没有空余区划槽时不再举牌。满槽还继续举牌，自动化会用"顶替"
+            # （拆掉别的区划腾位）来响应，和拆除逻辑叠加就形成拆建循环。
+            free_district_slots > 0
+            # 刚拆掉同族区划后的 12 个月内不重建，避免方案抖动时拆建往复。
+            OR = {
+                NOT = { is_variable_set = bca_ps_build_cd_d0 }
+                check_variable = { which = bca_ps_build_cd_d0 value <= 0 }
+            }
+            # 城市区划按需建造：一产星球只有在住房不足 / 有人失业 /
+            # 建筑槽已满且专精仍想建东西时才补城市；城市型专精不受此限制。
+            OR = {
+                # 城市型专精（科研/统一/合金/消费品/贸易/堡垒等）照旧铺城市
+                NOT = {
+                    OR = {
+                        has_generator_designation = yes
+                        has_mining_designation = yes
+                        has_farming_designation = yes
+                    }
+                }
+                # 住房偏紧（含即将不足）
+                free_housing < 2
+                # 有人失业
+                num_unemployed > 0
+                # 建筑槽已满、且任何一类建造需求仍然存在（需要新槽位放建筑）
+                AND = {
+                    free_building_slots < 1
+                    OR = {
+                        bca_planet_build_needs_energy = yes
+                        bca_planet_build_needs_minerals = yes
+                        bca_planet_build_needs_food = yes
+                        bca_planet_build_needs_alloys = yes
+                        bca_planet_build_needs_consumer_goods = yes
+                        bca_planet_build_needs_unity = yes
+                        bca_planet_build_needs_physics_research = yes
+                        bca_planet_build_needs_society_research = yes
+                        bca_planet_build_needs_engineering_research = yes
+                        bca_planet_build_needs_trade = yes
+                    }
+                }
+            }
             check_variable_arithmetic = {
                 which = value:bca_num_primary_districts_plan
                 value > value:bca_committed_primary_district
+            }
+            # 2026-11-15 晚：城市区划按住房收敛，避免提前建造把城市铺到星球上限、
+            # 留下大半个星球空房并挤占产业区划槽位。
+            # 每个城市区划提供 5 住房：备用住房少于 5 时才继续铺城市；有人失业时也放开。
+            OR = {
+                free_housing < 5
+                num_unemployed > 0
+                # 2026-11-16：高级星球（机械/纳米/环世界等）的科研区划就是「中央枢纽 + 科研聚落」，
+                # 科研欠账也算建城市区划的理由，否则住房宽松时科研永远铺不上去。
+                AND = {
+                    bca_has_advance_secondary_districts = yes
+                    OR = {
+                        bca_planet_build_needs_physics_research = yes
+                        bca_planet_build_needs_society_research = yes
+                        bca_planet_build_needs_engineering_research = yes
+                    }
+                }
             }
             OR = {
                 AND = {
@@ -366,10 +423,28 @@ bca_try_build_district_1 = {
     optimize_memory
     if = {
         limit = {
-            check_variable = {
-                which = bca_ps_plan_district_count_z3
-                value > value:bca_committed_district_d1
+            # 2026-11-15 晚：没有空余区划槽时不再举牌。满槽还继续举牌，自动化会用"顶替"
+            # （拆掉别的区划腾位）来响应，和拆除逻辑叠加就形成拆建循环。
+            free_district_slots > 0
+            # 刚拆掉同族区划后的 12 个月内不重建，避免方案抖动时拆建往复。
+            OR = {
+                NOT = { is_variable_set = bca_ps_build_cd_d1 }
+                check_variable = { which = bca_ps_build_cd_d1 value <= 0 }
             }
+            OR = {
+                    NOT = { bca_has_advance_secondary_districts = yes }
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value > value:bca_committed_district_d1
+                }
+                }
+                OR = {
+                    bca_has_advance_secondary_districts = yes
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z3
+                    value > value:bca_adv_zone_energy
+                }
+                }
             OR = {
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z3_zone_ark_engine_bypass
@@ -792,10 +867,28 @@ bca_try_build_district_2 = {
     optimize_memory
     if = {
         limit = {
-            check_variable = {
-                which = bca_ps_plan_district_count_z4
-                value > value:bca_committed_district_d2
+            # 2026-11-15 晚：没有空余区划槽时不再举牌。满槽还继续举牌，自动化会用"顶替"
+            # （拆掉别的区划腾位）来响应，和拆除逻辑叠加就形成拆建循环。
+            free_district_slots > 0
+            # 刚拆掉同族区划后的 12 个月内不重建，避免方案抖动时拆建往复。
+            OR = {
+                NOT = { is_variable_set = bca_ps_build_cd_d2 }
+                check_variable = { which = bca_ps_build_cd_d2 value <= 0 }
             }
+            OR = {
+                    NOT = { bca_has_advance_secondary_districts = yes }
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value > value:bca_committed_district_d2
+                }
+                }
+                OR = {
+                    bca_has_advance_secondary_districts = yes
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z4
+                    value > value:bca_adv_zone_minerals
+                }
+                }
             OR = {
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z4_zone_ark_farm_society
@@ -1230,10 +1323,28 @@ bca_try_build_district_3 = {
     optimize_memory
     if = {
         limit = {
-            check_variable = {
-                which = bca_ps_plan_district_count_z5
-                value > value:bca_committed_district_d3
+            # 2026-11-15 晚：没有空余区划槽时不再举牌。满槽还继续举牌，自动化会用"顶替"
+            # （拆掉别的区划腾位）来响应，和拆除逻辑叠加就形成拆建循环。
+            free_district_slots > 0
+            # 刚拆掉同族区划后的 12 个月内不重建，避免方案抖动时拆建往复。
+            OR = {
+                NOT = { is_variable_set = bca_ps_build_cd_d3 }
+                check_variable = { which = bca_ps_build_cd_d3 value <= 0 }
             }
+            OR = {
+                    NOT = { bca_has_advance_secondary_districts = yes }
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value > value:bca_committed_district_d3
+                }
+                }
+                OR = {
+                    bca_has_advance_secondary_districts = yes
+                    check_variable = {
+                    which = bca_ps_plan_district_count_z5
+                    value > value:bca_committed_district_d3
+                }
+                }
             OR = {
                 AND = {
                     has_carrier_flag = bca_pf_ps_selected_zone_z5_zone_agrarian_anglers

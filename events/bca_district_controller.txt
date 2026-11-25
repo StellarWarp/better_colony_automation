@@ -12,7 +12,13 @@ carrier_event = {
     hide_window = yes
     is_triggered_only = yes
     trigger = {
-        requires_more_job = yes
+        # 2026-11-15 晚：玩家设定的区划方案数也要能驱动建造。
+        # 原条件只有"空余岗位 <= 50"（或开着提前建造），新殖民地岗位充足时
+        # 即使方案 > 已建也不会跑这条事件，表现为"很多可建造区划一直不建"。
+        OR = {
+            requires_more_job = yes
+            bca_has_district_plan_demand = yes
+        }
         # NOT = { has_carrier_flag = bca_plan_build_new_zone } # cuasing bug
     }
     immediate = {
@@ -236,6 +242,11 @@ carrier_event = {
         }
     }
     immediate = {
+        # 振荡守卫：方案低于现状须连续 2 个月才执行拆除，防止专精规划与玩家区划方案互相拆建（2026-10-19 玩家反馈 #3 修复）
+        set_variable = {
+            which = bca_district_demolition_signal
+            value = 0
+        }
         if = {
             limit = {
                 check_variable_arithmetic = {
@@ -243,34 +254,193 @@ carrier_event = {
                     value < value:num_primary_district
                 }
             }
-            set_carrier_flag = bca_pf_plan_remove_district_d0
+            set_variable = {
+                which = bca_district_demolition_signal
+                value = 1
+            }
         }
         else_if = {
             limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：锁定的槽不参与自动拆除判定。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z3
                     value < value:num_district_d1
                 }
             }
-            set_carrier_flag = bca_pf_plan_remove_district_d1
+            set_variable = {
+                which = bca_district_demolition_signal
+                value = 1
+            }
         }
         else_if = {
             limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：锁定的槽不参与自动拆除判定。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z4
                     value < value:num_district_d2
                 }
             }
-            set_carrier_flag = bca_pf_plan_remove_district_d2
+            set_variable = {
+                which = bca_district_demolition_signal
+                value = 1
+            }
         }
         else_if = {
             limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：锁定的槽不参与自动拆除判定。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
                 check_variable = {
                     which = bca_ps_plan_district_count_z5
                     value < value:num_district_d3
                 }
             }
+            set_variable = {
+                which = bca_district_demolition_signal
+                value = 1
+            }
+        }
+        if = {
+            limit = {
+                check_variable = {
+                    which = bca_district_demolition_signal
+                    value > 0
+                }
+            }
+            if = {
+                limit = {
+                    is_variable_set = bca_district_demolition_pending
+                }
+                change_variable = {
+                    which = bca_district_demolition_pending
+                    value = 1
+                }
+            }
+            else = {
+                set_variable = {
+                    which = bca_district_demolition_pending
+                    value = 1
+                }
+            }
+        }
+        else = {
+            set_variable = {
+                which = bca_district_demolition_pending
+                value = 0
+            }
+        }
+        clear_variable = bca_district_demolition_signal
+        # destroy order
+        if = {
+            limit = {
+                # 2026-11-15：城市（d0）拆除原来没有冷却、也没有容差，方案比现状少 1 就拆，
+                # 拆完空出的槽位又让方案回升 → 拆建循环。这里补 6 个月冷却 + 1 的容差。
+                check_variable_arithmetic = {
+                    which = value:bca_num_primary_districts_plan
+                    value < value:bca_num_primary_district_remove_threshold
+                }
+                check_variable = {
+                    which = bca_district_demolition_pending
+                    value >= 3
+                }
+                # 触发器块里不能用 if，这里改成等价的 OR 写法（原写法是无效触发器）。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_demolish_cd_d0 }
+                    check_variable = { which = bca_ps_demolish_cd_d0 value <= 0 }
+                }
+            }
+            set_carrier_flag = bca_pf_plan_remove_district_d0
+            set_variable = { which = bca_ps_demolish_cd_d0 value = 6 }
+            # 拆掉后 6 个月内不再重建同族区划，掐断拆建往复。
+            set_variable = { which = bca_ps_build_cd_d0 value = 6 }
+        }
+        else_if = {
+            limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：玩家手动锁定的族不做自动拆除。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+                check_variable = {
+                    which = value:bca_plan_energy_total
+                    value < value:num_district_d1
+                }
+                check_variable = {
+                    which = bca_district_demolition_pending
+                    value >= 3
+                }
+                # 触发器块里不能用 if，这里改成等价的 OR 写法（原写法是无效触发器）。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_demolish_cd_d1 }
+                    check_variable = { which = bca_ps_demolish_cd_d1 value <= 0 }
+                }
+            }
+            set_carrier_flag = bca_pf_plan_remove_district_d1
+            set_variable = { which = bca_ps_demolish_cd_d1 value = 6 }
+            # 拆掉后 6 个月内不再重建同族区划，掐断拆建往复。
+            set_variable = { which = bca_ps_build_cd_d1 value = 6 }
+        }
+        else_if = {
+            limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：玩家手动锁定的族不做自动拆除。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+                check_variable = {
+                    which = value:bca_plan_minerals_total
+                    value < value:num_district_d2
+                }
+                check_variable = {
+                    which = bca_district_demolition_pending
+                    value >= 3
+                }
+                # 触发器块里不能用 if，这里改成等价的 OR 写法（原写法是无效触发器）。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_demolish_cd_d2 }
+                    check_variable = { which = bca_ps_demolish_cd_d2 value <= 0 }
+                }
+            }
+            set_carrier_flag = bca_pf_plan_remove_district_d2
+            set_variable = { which = bca_ps_demolish_cd_d2 value = 6 }
+            # 拆掉后 6 个月内不再重建同族区划，掐断拆建往复。
+            set_variable = { which = bca_ps_build_cd_d2 value = 6 }
+        }
+        else_if = {
+            limit = {
+                # 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的区划按「层级」归类，
+                # 与槽的产出族无关；那里的拆除交给玩家，避免把发电枢纽当成多余矿物拆掉。
+                NOT = { bca_has_advance_secondary_districts = yes }
+                # 2026-11-21：玩家手动锁定的族不做自动拆除。
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+                check_variable = {
+                    which = value:bca_plan_food_total
+                    value < value:num_district_d3
+                }
+                check_variable = {
+                    which = bca_district_demolition_pending
+                    value >= 3
+                }
+                # 触发器块里不能用 if，这里改成等价的 OR 写法（原写法是无效触发器）。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_demolish_cd_d3 }
+                    check_variable = { which = bca_ps_demolish_cd_d3 value <= 0 }
+                }
+            }
             set_carrier_flag = bca_pf_plan_remove_district_d3
+            set_variable = { which = bca_ps_demolish_cd_d3 value = 6 }
+            # 拆掉后 6 个月内不再重建同族区划，掐断拆建往复。
+            set_variable = { which = bca_ps_build_cd_d3 value = 6 }
         }
         if = {
             limit = {

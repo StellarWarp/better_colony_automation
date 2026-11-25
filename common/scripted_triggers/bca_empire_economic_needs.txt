@@ -37,10 +37,39 @@ bca_empire_needs_energy = {
     }
 }
 
+# 2026-11-15 晚：能量"赤字"只看净收入是否为负（< 0）。
+# 之前用"经济目标下限"比较，而下限是增长目标（存档里 345），实际收入 155 永远追不上，
+# 于是每颗星球永久处于"赤字"，把非能量类建造全部锁死。上限/下限只管经济调控面板本身。
+bca_planet_energy_deficit_now = {
+    owner = {
+        NOT = { has_country_flag = bca_economic_target_energy_unlimited }
+        resource_income_compare = {
+            resource = energy
+            value < 0
+        }
+    }
+}
+
+
+bca_empire_economic_emergency = {
+    # 2026-11-21：紧急刹车。能量或矿物已经在赤字、且库存见底时，
+    # 暂停所有非能量方向的建造，先让经济回血。
+    owner = {
+        OR = {
+            AND = {
+                resource_income_compare = { resource = energy value < 0 }
+                resource_stockpile_compare = { resource = energy value < 2000 }
+            }
+            AND = {
+                resource_income_compare = { resource = minerals value < 0 }
+                resource_stockpile_compare = { resource = minerals value < 500 }
+            }
+        }
+    }
+}
 
 bca_planet_build_needs_energy = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
         bca_empire_needs_energy = yes
     }
 }
@@ -112,8 +141,11 @@ bca_empire_needs_minerals = {
 
 bca_planet_build_needs_minerals = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_minerals = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_minerals = yes
+        }
     }
 }
 
@@ -184,8 +216,11 @@ bca_empire_needs_food = {
 
 bca_planet_build_needs_food = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_food = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_food = yes
+        }
     }
 }
 
@@ -256,8 +291,11 @@ bca_empire_needs_alloys = {
 
 bca_planet_build_needs_alloys = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_alloys = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_alloys = yes
+        }
     }
 }
 
@@ -328,8 +366,11 @@ bca_empire_needs_consumer_goods = {
 
 bca_planet_build_needs_consumer_goods = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_consumer_goods = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_consumer_goods = yes
+        }
     }
 }
 
@@ -400,8 +441,11 @@ bca_empire_needs_trade = {
 
 bca_planet_build_needs_trade = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_trade = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_trade = yes
+        }
     }
 }
 
@@ -472,8 +516,11 @@ bca_empire_needs_unity = {
 
 bca_planet_build_needs_unity = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_unity = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_unity = yes
+        }
     }
 }
 
@@ -544,8 +591,11 @@ bca_empire_needs_physics_research = {
 
 bca_planet_build_needs_physics_research = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_physics_research = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_physics_research = yes
+        }
     }
 }
 
@@ -616,8 +666,11 @@ bca_empire_needs_society_research = {
 
 bca_planet_build_needs_society_research = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_society_research = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_society_research = yes
+        }
     }
 }
 
@@ -688,8 +741,11 @@ bca_empire_needs_engineering_research = {
 
 bca_planet_build_needs_engineering_research = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_engineering_research = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_engineering_research = yes
+        }
     }
 }
 
@@ -760,8 +816,11 @@ bca_empire_needs_rare_crystals = {
 
 bca_planet_build_needs_rare_crystals = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_rare_crystals = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_rare_crystals = yes
+        }
     }
 }
 
@@ -832,8 +891,11 @@ bca_empire_needs_volatile_motes = {
 
 bca_planet_build_needs_volatile_motes = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_volatile_motes = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_volatile_motes = yes
+        }
     }
 }
 
@@ -904,8 +966,11 @@ bca_empire_needs_exotic_gases = {
 
 bca_planet_build_needs_exotic_gases = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_exotic_gases = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_exotic_gases = yes
+        }
     }
 }
 
@@ -958,8 +1023,11 @@ bca_empire_needs_research = {
 
 bca_planet_build_needs_research = {
     OR = {
-        has_carrier_flag = bca_pf_planet_pre_construction
-        bca_empire_needs_research = yes
+        AND = {
+            NOT = { bca_planet_energy_deficit_now = yes }
+            NOT = { bca_empire_economic_emergency = yes }
+            bca_empire_needs_research = yes
+        }
     }
 }
 

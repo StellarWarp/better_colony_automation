@@ -40,12 +40,38 @@ country_event = {
                 }
                 carrier_event = { id = colony_automation_event.28}
                 carrier_event = { id = colony_automation_event.112} # 在建设前清除标识
+                # 先补选一产特区，再由控制器据此下方案（避免方案为 0 导致城市区划吃满整颗星球）
+                bca_fix_resource_zone_fallback = yes
                 carrier_event = { id = colony_automation_event.10} # 资源特化区块自动规划
                 carrier_event = { id = colony_automation_event.20 } # 特化建造
                 carrier_event = { id = colony_automation_event.1} # 区划建造
                 carrier_event = { id = colony_automation_event.2} # 区划拆除
                 carrier_event = { id = colony_automation_event.21 } # 特化拆除
                 bca_auto_building_destruction_entry = yes # 建筑自动拆除
+                # 2026-11-15：面板「主要/次要区划比例」的四个数字，每月在所有规划步骤之后刷新。
+                # （放在 .26 里是错的：那个事件只在初始化时跑一次，数值永远停在殖民地建成那天。）
+                set_variable = {
+                    which = bca_ps_disp_primary_built
+                    value = value:bca_committed_district_d0
+                }
+                set_variable = {
+                    which = bca_ps_disp_primary_cap
+                    value = value:bca_potential_max_districts
+                }
+                set_variable = {
+                    which = bca_ps_disp_secondary_built
+                    value = value:bca_committed_secondary_district
+                }
+                set_variable = {
+                    which = bca_ps_disp_secondary_plan
+                    value = value:bca_num_secondary_districts_plan
+                }
+                # 2026-11-16：次级槽的「可用槽数」。脚本数值里含 complex_trigger_modifier，
+                # 直接放进 defined_text 会被求值成 0（面板永远显示 0），所以在这里算好存变量。
+                set_variable = {
+                    which = bca_ps_disp_secondary_free
+                    value = value:bca_num_free_secondary_districts_plan_display
+                }
             }
             if = {
                 limit = {
