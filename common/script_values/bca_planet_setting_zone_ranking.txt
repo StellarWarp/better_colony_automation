@@ -25,6 +25,17 @@ bca_planet_setting_zone_rank_trade = {
         has_trade_designation = yes
         add = 1000
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    # 贸易只是兜底项：默认分压低，只有真的缺贸易时才重新占槽。
+    modifier = {
+        always = yes
+        add = -60
+    }
+    modifier = {
+        bca_empire_needs_trade = yes
+        add = 100
+    }
 }
 
 
@@ -42,6 +53,12 @@ bca_planet_setting_zone_rank_industrial = {
     modifier = {
         has_foundry_designation = yes
         add = 500
+    }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_alloys = yes
+        add = 60
     }
 }
 
@@ -61,6 +78,12 @@ bca_planet_setting_zone_rank_foundry = {
         has_factory_designation = yes
         add = 500
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_alloys = yes
+        add = 60
+    }
 }
 
 
@@ -79,6 +102,12 @@ bca_planet_setting_zone_rank_factory = {
         has_foundry_designation = yes
         add = 500
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_consumer_goods = yes
+        add = 60
+    }
 }
 
 
@@ -88,6 +117,12 @@ bca_planet_setting_zone_rank_research = {
     modifier = {
         has_research_designation = yes
         add = 1000
+    }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_research = yes
+        add = 70
     }
 }
 
@@ -99,6 +134,12 @@ bca_planet_setting_zone_rank_physics = {
         has_research_designation = yes
         add = 1000
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_research = yes
+        add = 70
+    }
 }
 
 
@@ -109,6 +150,12 @@ bca_planet_setting_zone_rank_society = {
         has_research_designation = yes
         add = 1000
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_research = yes
+        add = 70
+    }
 }
 
 
@@ -118,6 +165,12 @@ bca_planet_setting_zone_rank_engineering = {
     modifier = {
         has_research_designation = yes
         add = 1000
+    }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_research = yes
+        add = 70
     }
 }
 
@@ -133,6 +186,12 @@ bca_planet_setting_zone_rank_bureaucrat = {
         has_research_designation = yes
         add = 750
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_unity = yes
+        add = 60
+    }
 }
 
 
@@ -143,6 +202,12 @@ bca_planet_setting_zone_rank_unity = {
         has_unity_designation = yes
         add = 1000
     }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_unity = yes
+        add = 60
+    }
 }
 
 
@@ -152,6 +217,12 @@ bca_planet_setting_zone_rank_priest = {
     modifier = {
         has_unity_designation = yes
         add = 1000
+    }
+
+    # 2026-11-15 晚：加入“帝国缺口”加成，避免没有专精加成的星球两个特区槽都被兜底项占满。
+    modifier = {
+        bca_empire_needs_unity = yes
+        add = 60
     }
 }
 
