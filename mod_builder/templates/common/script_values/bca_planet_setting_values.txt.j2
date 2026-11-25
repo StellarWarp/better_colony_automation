@@ -48,11 +48,60 @@ bca_num_free_primary_districts_plan = {
 }
 
 bca_num_primary_districts_plan = {
-    set = value:bca_potential_max_districts
-    {% for i in range(3,6) %}
-        {% set zone_slot = "z"~i %}
-        subtract = {{ v.var_district_num_plan(zone_slot) }}
-    {% endfor %}
+    {# 城市型专精（统一中心 / 科研 / 合金 / 消费品 / 贸易）：这类星球本身就是靠城市区划提供建筑槽，
+       继续沿用「容量 − 副区划方案」，把它们该铺的城市铺满。 #}
+    if = {
+        limit = {
+            OR = {
+                has_unity_designation = yes
+                has_research_designation = yes
+                has_foundry_designation = yes
+                has_factory_designation = yes
+                has_trade_designation = yes
+            }
+        }
+        set = value:bca_potential_max_districts
+        {% for i in range(3,6) %}
+            {% set zone_slot = "z"~i %}
+            subtract = {{ v.var_district_num_plan(zone_slot) }}
+        {% endfor %}
+    }
+    else = {
+        {# 其它星球（尤其一产星球）：基线 = 已建主区划数量，只有确实需要时才多给 1 个， #}
+        {# 避免"采矿区划一建满就自动开始铺城市"（2026-11-06 玩家反馈）。 #}
+        set = value:num_district_d0
+        if = {
+            limit = {
+                OR = {
+                    {# 住房不足 #}
+                    free_housing < 1
+                    {# 有人失业、岗位不够 #}
+                    num_unemployed > 0
+                    {# 建筑槽已满，而且这颗星球仍然想建东西（专精产出仍低于目标）→ 需要新城市提供建筑槽 #}
+                    AND = {
+                        free_building_slots < 1
+                        OR = {
+                            AND = {
+                                has_generator_designation = yes
+                                bca_planet_district_needs_energy = yes
+                            }
+                            AND = {
+                                has_mining_designation = yes
+                                bca_planet_district_needs_minerals = yes
+                            }
+                            AND = {
+                                has_farming_designation = yes
+                                bca_planet_district_needs_food = yes
+                            }
+                        }
+                    }
+                }
+            }
+            add = 1
+        }
+    }
+    min = 1
+    max = value:bca_potential_max_districts
 }
 
 bca_num_secondary_districts_plan = {
@@ -60,6 +109,7 @@ bca_num_secondary_districts_plan = {
         {% set zone_slot = "z"~i %}
         add = {{ v.var_district_num_plan(zone_slot) }}
     {% endfor %}
+    min = 0
 }
 
 # floor(value:bca_potential_max_districts * RATIO)
@@ -334,6 +384,16 @@ num_zones_secondary_district = {
 bca_planet_max_districts_subtract_one = {
     set = value:bca_planet_max_districts
     subtract = 1
+}
+
+{# 首都采集星球：三类资源区划平均分配，留 3 个槽位给主区划（建筑槽）。
+   例：星球容量 19 → (19-3)/3 ≈ 5，即 发电 5 / 采矿 5 / 农业 5（受各自上限截断），城市 4~6。 #}
+bca_capital_extraction_secondary_share = {
+    set = value:bca_potential_max_districts
+    subtract = 3
+    divide = 3
+    round = yes
+    min = 1
 }
 
 {% for district_set_idx in range(1,4) %}

@@ -43,11 +43,12 @@
     {% set has_unconditional = conditions | select('equalto', none) | list | length > 0 %}
     {% if conditional and not has_unconditional %}
         AND = {
-            bca_planet_build_needs_{{ output }} = yes
+            {# 区划专用需求判断：不含「提前建造」短路，只按宏观经济目标判断 #}
+            bca_planet_district_needs_{{ output }} = yes
             {{ output_condition(conditions) }}
         }
     {% else %}
-        bca_planet_build_needs_{{ output }} = yes
+        bca_planet_district_needs_{{ output }} = yes
     {% endif %}
 {%- endmacro %}
 

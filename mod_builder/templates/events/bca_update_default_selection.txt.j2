@@ -65,6 +65,38 @@ carrier_event = {
                     {{ op.auto_select_default_zone(zone_slot) }}
                 }
             {% endfor %}
+            {# 殖民初始化会把主区划默认选成"贸易枢纽"（当时可行的第一个选项）。
+               如果这颗星球的专精是一产/科研/合金/消费品/凝聚，这里改选成对应的主区划特区，
+               省得玩家必须手动切一次专精来"刷新"（2026-11-06 玩家反馈）。 #}
+            {% for zone_slot in ['z1','z2'] %}
+                if = {
+                    limit = {
+                        has_carrier_flag = {{ pf.flag_selected_zone(zone_slot, 'zone_trade') }}
+                    }
+                    {% set zone_map = [
+                        ('has_mining_designation', 'urban', 'zone_urban'),
+                        ('has_generator_designation', 'urban', 'zone_urban'),
+                        ('has_farming_designation', 'urban', 'zone_urban'),
+                        ('has_foundry_designation', 'foundry', 'zone_foundry'),
+                        ('has_factory_designation', 'factory', 'zone_factory'),
+                        ('has_unity_designation', 'unity', 'zone_unity'),
+                        ('has_research_designation', 'research', 'zone_research')
+                    ] %}
+                    {% for trigger_name, zone_type, zone_name in zone_map %}
+                        {{ "if" if loop.first else "else_if" }} = {
+                            limit = {
+                                {{ trigger_name }} = yes
+                                bca_can_build_zone_{{ zone_type }} = yes
+                            }
+                            bca_planet_setting_clear_zone_selection = {
+                                ZONE_SLOT = {{ zone_slot }}
+                            }
+                            set_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                            set_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone_name) }}
+                        }
+                    {% endfor %}
+                }
+            {% endfor %}
             if = {
                 limit = {
                     bca_has_advance_secondary_districts = yes

@@ -13,6 +13,18 @@ bca_country_has_basic_deficit = {
 }
 
 {% for need_name, need in economic_need_thresholds.items() %}
+    {% set designation_triggers = {
+        "energy": "has_generator_designation",
+        "minerals": "has_mining_designation",
+        "food": "has_farming_designation",
+        "alloys": "has_foundry_designation",
+        "consumer_goods": "has_factory_designation",
+        "trade": "has_trade_designation",
+        "unity": "has_unity_designation",
+        "physics_research": "has_research_designation",
+        "society_research": "has_research_designation",
+        "engineering_research": "has_research_designation"
+    } %}
     bca_country_needs_{{ need_name }} = {
         OR = {
             NOT = { has_country_flag = bca_enable_economic_management }
@@ -52,14 +64,55 @@ bca_country_has_basic_deficit = {
         }
     }
 
-    bca_planet_build_needs_{{ need_name }} = {
+    {# 区划专用：不含「提前建造」短路，区划数量只按宏观经济目标判断 #}
+    bca_planet_district_needs_{{ need_name }} = {
         OR = {
-            has_carrier_flag = bca_pf_planet_pre_construction
+            {% if need.resource in ("energy", "minerals", "food") %}
+            {# 专精星球（发电/采矿/农业）按宏观经济面板里的设置判断是否继续补自己的资源区划：
+               资源被设为「禁用」→ 不建；
+               「无限制」或未开启经济调控 → 直接补满；
+               其它情况 → 帝国月收入低于「目标 + 容差」时继续补，达到上限就停。
+               这样面板里把目标调高就能继续扩建，而不是无条件放行。 #}
+            AND = {
+                {{ {"energy": "has_generator_designation", "minerals": "has_mining_designation", "food": "has_farming_designation"}[need.resource] }} = yes
+                owner = {
+                    NOT = { has_country_flag = bca_economic_target_{{ need.resource }}_forbidden }
+                    OR = {
+                        NOT = { has_country_flag = bca_enable_economic_management }
+                        has_country_flag = bca_economic_target_{{ need.resource }}_unlimited
+                        AND = {
+                            is_variable_set = bca_economic_target_upper_{{ need.resource }}
+                            resource_income_compare = {
+                                resource = {{ need.resource }}
+                                value < bca_economic_target_upper_{{ need.resource }}
+                            }
+                        }
+                    }
+                }
+            }
+            {% endif %}
+            {% if need_name in designation_triggers and need.resource not in ("energy", "minerals", "food") %}
+            {# 专精星球（统一中心 / 科研星球 / 合金星球 / 消费品星球 / 贸易星球）：
+               玩家把它指定成这类产地，就应该继续补对应建筑与区划（城市区划提供建筑槽），
+               不再受"帝国当前收入已超过目标"的限制；面板里设为「禁用」时仍然不建。
+               否则统一中心会一直"无反应"（2026-11-06 玩家反馈）。 #}
+            AND = {
+                {{ designation_triggers[need_name] }} = yes
+                owner = {
+                    NOT = { has_country_flag = bca_economic_target_{{ need_name }}_forbidden }
+                }
+            }
+            {% endif %}
             AND = {
                 bca_empire_needs_{{ need_name }} = yes
                 OR = {
-                    NOT = { has_country_flag = bca_enable_economic_management }
-                    NOT = { bca_country_has_basic_deficit = yes }
+                    {# 国家作用域触发器必须包在 owner 里，否则行星作用域调用会报 Wrong scope（2026-11-01 修复） #}
+                    owner = {
+                        NOT = { has_country_flag = bca_enable_economic_management }
+                    }
+                    owner = {
+                        NOT = { bca_country_has_basic_deficit = yes }
+                    }
                     {% if need.resource == "trade" %}
                     always = no
                     {% else %}
@@ -67,6 +120,14 @@ bca_country_has_basic_deficit = {
                     {% endif %}
                 }
             }
+        }
+    }
+
+    {# 建筑 / 区划特化用：保留「提前建造」= 人口没到也先铺好 #}
+    bca_planet_build_needs_{{ need_name }} = {
+        OR = {
+            has_carrier_flag = bca_pf_planet_pre_construction
+            bca_planet_district_needs_{{ need_name }} = yes
         }
     }
 

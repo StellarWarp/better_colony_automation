@@ -19,11 +19,8 @@ bca_jr_is_enabled = {
 
 bca_jr_should_collect_job_stats = {
     OR = {
+        {# 先判廉价的旗标，再判 modifier：绝大多数岗位没被选中，可跳过昂贵的 check_modifier_value #}
         AND = {
-            check_modifier_value = {
-                modifier = job_$JOB$_add
-                value > 0
-            }
             OR = {
                 has_carrier_flag = bca_jr_check_all_jobs
                 has_carrier_flag = bca_jr_plan_inc_$JOB$
@@ -34,6 +31,10 @@ bca_jr_should_collect_job_stats = {
                         has_country_flag = bca_jr_mode_full_$JOB$
                     }
                 }
+            }
+            check_modifier_value = {
+                modifier = job_$JOB$_add
+                value > 0
             }
         }
         AND = {

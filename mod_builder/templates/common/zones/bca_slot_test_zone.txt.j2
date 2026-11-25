@@ -1,8 +1,24 @@
 zone_bca_test = {
     icon = GFX_district_specialization_energy
     base_buildtime = @zone_buildtime
+    # 2026-11-22：必须 potential = yes 且带 zone_sets，否则 add_zone 添加不了，
+    # bca_get_num_free_zones_d0 会恒为 0，导致 BCA 永远不为新特化区下建造旗。
+    # 玩家无法建它，因为下面的 unlock 仍是 always = no。
+    # 只在探测瞬间可用（见 bca_planet_test_effect.txt 的 bca_zone_probe），
+    # 平时 potential 为假，避免在「特化区划」面板里露出来。
     potential = {
-        always = no
+        is_variable_set = bca_zone_probe
+        check_variable = {
+            which = bca_zone_probe
+            value > 0
+        }
+    }
+    zone_sets = {
+        urban
+        energy
+        minerals
+        food
+        nexus
     }
     unlock = {
         always = no

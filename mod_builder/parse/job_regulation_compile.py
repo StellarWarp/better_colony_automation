@@ -70,6 +70,31 @@ def _modifier_positive_trigger(modifier: str) -> str:
     )
 
 
+_PRODUCE_MODIFIER_RE = re.compile(r"modifier\s*=\s*([A-Za-z0-9_:.\-$]+)")
+
+
+def _filter_produces_by_known_modifiers(produces: list[dict], known_modifiers: set[str]) -> list[dict]:
+    """去掉引用了当前游戏不存在的修正名的产出条目。
+
+    2026-11-15：生成器会给每个 job×资源 组合都发一条 check_modifier_value，
+    但只有真实存在的组合才会被游戏识别；不存在的会在每次求值时写
+    `Invalid modifier for check_modifier_value` 到 error.log。
+    """
+    if not known_modifiers:
+        return produces
+
+    kept: list[dict] = []
+    for prod in produces:
+        trigger = prod.get("trigger") or ""
+        match = _PRODUCE_MODIFIER_RE.search(trigger)
+        if match:
+            name = match.group(1)
+            if "$" not in name and name not in known_modifiers:
+                continue
+        kept.append(prod)
+    return kept
+
+
 def _category_chain(meta: dict) -> list[str]:
     category = meta.get("economic_category")
     chain = [category] if category else []
@@ -125,8 +150,9 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
     # 资源顺序跟随经济阈值配置，模板和 GUI 统一消费这份列表。
     resources = list(economic_need_thresholds.keys())
     resource_set = set(resources)
+    known_modifiers = _load_known_modifiers()
     category_resource_add_modifiers = _build_category_resource_add_modifiers(
-        _load_known_modifiers(),
+        known_modifiers,
         resources,
     )
 
@@ -141,6 +167,7 @@ def compile_job_regulation(generated_configs_dir: Path | None = None) -> dict:
 
         economic_resources = [r for r in meta.get("economic_resources", []) if r in resource_set]
         produces = [dict(prod) for prod in meta.get("produces", [])]
+        produces = _filter_produces_by_known_modifiers(produces, known_modifiers)
         _apply_modifier_driven_extra_outputs(
             meta,
             economic_resources,
