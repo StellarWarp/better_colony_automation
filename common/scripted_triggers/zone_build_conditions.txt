@@ -2879,34 +2879,7 @@ bca_can_build_zone_ark_sacred_path_pilgrims = {
 
 
 bca_can_build_zone_ark_knights = {
-    AND = {
-        exists = owner
-        owner = {
-            has_origin = origin_toxic_knights
-            NOT = {
-                has_country_flag = quest_abandoned
-            }
-        }
-        OR = {
-            has_carrier_flag = toxic_knights_arkship
-            has_building = building_order_castle
-        }
-    }
-    AND = {
-        hidden_trigger = {
-            exists = owner
-            owner = {
-                has_origin = origin_toxic_knights
-                NOT = {
-                    has_country_flag = quest_abandoned
-                }
-            }
-            OR = {
-                has_carrier_flag = toxic_knights_arkship
-                has_building = building_order_castle
-            }
-        }
-    }
+    always = no
 }
 
 
@@ -7770,11 +7743,7 @@ bca_secondary_district_can_build_zone_ark_sacred_path_pilgrims = {
 
 
 bca_primary_district_can_build_zone_ark_knights = {
-    bca_can_build_zone_ark_knights = yes
-    OR = {
-        has_district = district_ark_city
-        has_district = district_ark_city
-    }
+    always = no
 }
 
 

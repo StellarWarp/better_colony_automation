@@ -233,6 +233,14 @@ bca_sync_primary_zone_selection_match = {
                 }
                 subtract_variable = { which = bca_num_free_zones_d0 value = 1 }
             }
+            else_if = {
+                {# 这个特区本身可建、只是暂时没有空位 → 保留玩家/自动的选择，不要改写回专精默认。
+                   只有"根本建不了这个特区"时才会走到下面的改写分支（2026-11-02 玩家反馈）。 #}
+                limit = {
+                    bca_can_build_zone_{{ zone }} = yes
+                }
+                set_carrier_flag = {{ pf.flag_zone_selection_matched(zone_slot) }}
+            }
             else = {
                 set_carrier_flag = tp_zone_sync_rewrite_{{ zone_slot }}
             }

@@ -2,17 +2,6 @@
 {% import 'component/planet_flag_ps.j2' as pf with context %}
 {% import 'component/planet_variable.j2' as v with context %}
 
-{% macro try_build_district_by_order(order) -%}
-    {% for i in order %}
-        if = {
-            limit = {
-                NOT = { has_carrier_flag = bca_pf_has_district_build_plan }
-            }
-            bca_try_build_district_{{ i }} = yes
-        }
-    {% endfor %}
-{%- endmacro %}
-
 namespace = colony_automation_event
 
 carrier_event = {
@@ -32,41 +21,15 @@ carrier_event = {
             }
             bca_try_build_district_0 = yes
         }
-        else_if = {
-            limit = {
-                OR = {
-                    has_generator_designation = yes
-                    has_mining_designation = yes
-                    has_farming_designation = yes
-                }
-            }
-            random_list = {
-                1 = {
-                    {{ try_build_district_by_order([1,2,3,0]) }}
-                }
-                1 = {
-                    {{ try_build_district_by_order([2,1,3,0]) }}
-                }
-                1 = {
-                    {{ try_build_district_by_order([3,2,1,0]) }}
-                }
-            }
-        }
         else = {
-            random_list = {
-                1 = {
-                    {{ try_build_district_by_order([0,1,2,3]) }}
-                }
-                1 = {
-                    {{ try_build_district_by_order([1,2,3,0]) }}
-                }
-                1 = {
-                    {{ try_build_district_by_order([2,3,0,1]) }}
-                }
-                1 = {
-                    {{ try_build_district_by_order([3,0,1,2]) }}
-                }
-            }
+            {# 同时规划所有有缺口的区划类型，而不是每月只挑一种：
+               原版自动化每个类别每 tick 只能排一个，但装了「并行建造补丁」后
+               队列容量 > 1 时，一个月内可以同时排入多个区划。
+               没有补丁时原版仍会在队列非空时拒绝，因此行为与以前一致。 #}
+            bca_try_build_district_0 = yes
+            bca_try_build_district_1 = yes
+            bca_try_build_district_2 = yes
+            bca_try_build_district_3 = yes
         }
     }
 }

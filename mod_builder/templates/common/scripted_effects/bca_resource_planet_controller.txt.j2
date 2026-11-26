@@ -311,10 +311,63 @@ bca_resource_planet_controller_district_only = {
             if = {
                 limit = {
                     bca_auto_district_manage_enabled = yes
+                    {# 该资源在宏观经济面板里被设为「禁用」时，不为这个专精规划区划（星球退回城市规划） #}
+                    owner = {
+                        NOT = { has_country_flag = bca_economic_target_{{ ['energy','minerals','food'][i] }}_forbidden }
+                    }
                 }
+                {# 自动补选一产特区（2026-11-01 玩家反馈：矿产星球一直建城市区划占满格子）：
+                   资源专精星球如果三个次要槽位都没有该专精的资源特区，副区划方案会保持 0，
+                   而主区划（城市）方案 = 星球容量 − 副区划方案，于是城市区划会把整颗星球吃满。
+                   这里只在"该资源区划确实可建"且"三个槽位都没选该资源特区"时，
+                   把该资源特区补到对应槽位（发电 z3 / 采矿 z4 / 农业 z5），
+                   不改动其它槽位，也不覆盖玩家已有的其它特区选择。 #}
+                {% set target_slot = ['z3','z4','z5'][i] %}
+                {% set target_district_slot = zone_slot_district_slot_mapping[target_slot] %}
+                {% set target_type = ['energy','minerals','food'][i] %}
+                if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:bca_district_max_build_{{ target_district_slot }}
+                            value > 0
+                        }
+                        NOT = {
+                            OR = {
+                                {% for zone_slot in ['z3','z4','z5'] %}
+                                    {% for zone_type in zone_type_set %}
+                                        has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                                    {% endfor %}
+                                {% endfor %}
+                            }
+                        }
+                    }
+                    {# 直接按"这颗星球能建哪种具体特区"补选，不再依赖特区选择器：
+                       选择器要求槽位已经绑定对应区划类型标记，新建殖民地常常还没有，
+                       会导致一个都选不上、方案恒为 0（2026-11-02 玩家反馈）。 #}
+                    {% for item in zones_info %}
+                        {% if item.type == target_type %}
+                            {% for zone in item.zones %}
+                                {{ "if" if loop.first else "else_if" }} = {
+                                    limit = {
+                                        bca_can_build_zone_{{ zone.replace('zone_', '') }} = yes
+                                    }
+                                    bca_planet_setting_clear_zone_selection = {
+                                        ZONE_SLOT = {{ target_slot }}
+                                    }
+                                    set_carrier_flag = {{ pf.flag_selected_zone_type(target_slot, target_type) }}
+                                    set_carrier_flag = {{ pf.flag_selected_zone(target_slot, zone) }}
+                                }
+                            {% endfor %}
+                        {% endif %}
+                    {% endfor %}
+                    bca_planet_setting_clear_secondary_zone_selector_flags = yes
+                }
+                {# 一次只给一个槽位下达满额一产方案：若多个槽位同时满额，副区划方案总和会超过星球区划容量，
+                   把主区划（城市）方案压成负数，反过来触发"城市方案膨胀 → 无限建城市区划"。
+                   未选择一产特化的槽位保持原方案（不自动改写玩家的区划特化选择）。 #}
                 {% for zone_slot in ['z3','z4','z5'] %}
                     {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
-                    if = {
+                    {{ "if" if loop.first else "else_if" }} = {
                         limit = {
                             OR = {
                                 {% for zone_type in zone_type_set %}
@@ -325,14 +378,6 @@ bca_resource_planet_controller_district_only = {
                         set_variable = {
                             which = {{v.var_district_num_plan(zone_slot)}}
                             value = value:bca_district_max_build_{{ district_slot }}
-                        }
-                        # 专精适配修复（2026-10-20 玩家反馈：发电专精星球疯狂建设城市区划）：槽位未选资源特区时按排名自动选择，防止城市区划吞掉全部容量
-                        else = {
-                            {{ op.auto_select_default_zone(zone_slot) }}
-                            set_variable = {
-                                which = {{v.var_district_num_plan(zone_slot)}}
-                                value = value:bca_district_max_build_{{ district_slot }}
-                            }
                         }
                     }
                 {% endfor %}
@@ -393,6 +438,130 @@ bca_resource_planet_controller_district_only = {
         }
 
     {% endfor %}
+
+    {# 通用：任何次要槽位只要选了对应的一产特区（发电/采矿/农业），就按该资源的区划上限下方案。
+       之前只有"当前专精对应分支"才会下方案，导致矿产星球上玩家手动选的发电特区方案恒为 0，
+       表现成"只铺矿产、其它全停"（2026-11-06 玩家反馈）。 #}
+    if = {
+        limit = {
+            bca_auto_district_manage_enabled = yes
+        }
+        {% for i in range(3) %}
+            {% set zone_slot = ['z3','z4','z5'][i] %}
+            {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+            {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
+            {% set resource_name = ['energy','minerals','food'][i] %}
+            if = {
+                limit = {
+                    OR = {
+                        {% for zone_type in zone_type_set %}
+                            has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                        {% endfor %}
+                    }
+                    check_variable_arithmetic = {
+                        which = value:bca_district_max_build_{{ district_slot }}
+                        value > 0
+                    }
+                    owner = {
+                        NOT = { has_country_flag = bca_economic_target_{{ resource_name }}_forbidden }
+                    }
+                }
+                set_variable = {
+                    which = {{ v.var_district_num_plan(zone_slot) }}
+                    value = value:bca_district_max_build_{{ district_slot }}
+                }
+            }
+        {% endfor %}
+    }
+
+    {# 首都采集星球（开局母星默认专精）：同时加成采矿/发电/农业，按平均份额分配三类资源区划，
+       并保留 3 个槽位给主区划（建筑槽）。之前这里不归任何一产分支管，副区划方案一直是 0，
+       城市区划就会一路铺满整颗星球。 #}
+    if = {
+        limit = { has_designation = col_capital_extraction }
+        if = {
+            limit = { bca_auto_district_manage_enabled = yes }
+            {% for i in range(3) %}
+                {% set zone_slot = ['z3','z4','z5'][i] %}
+                {% set district_slot = zone_slot_district_slot_mapping[zone_slot] %}
+                {% set target_type = ['energy','minerals','food'][i] %}
+                {% set zone_type_set = [energy_zone_types, minerals_zone_types, food_zone_types][i] %}
+                if = {
+                    limit = {
+                        check_variable_arithmetic = {
+                            which = value:bca_district_max_build_{{ district_slot }}
+                            value > 0
+                        }
+                        NOT = {
+                            OR = {
+                                {% for zone_type in zone_type_set %}
+                                    has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                                {% endfor %}
+                            }
+                        }
+                    }
+                    bca_secondary_district_update_zone_options = {
+                        ZONE_SLOT = {{ zone_slot }}
+                    }
+                    if = {
+                        limit = {
+                            OR = {
+                                {% for item in zones_info %}
+                                    {% if item.type == target_type %}
+                                        {% for zone in item.zones %}
+                                            has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
+                                        {% endfor %}
+                                    {% endif %}
+                                {% endfor %}
+                            }
+                        }
+                        bca_planet_setting_clear_zone_selection = {
+                            ZONE_SLOT = {{ zone_slot }}
+                        }
+                        set_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, target_type) }}
+                        {% for item in zones_info %}
+                            {% if item.type == target_type %}
+                                {% for zone in item.zones %}
+                                    if = {
+                                        limit = {
+                                            has_carrier_flag = {{ pf.flag_zone_option_zone_mapping(item.type, zone) }}
+                                        }
+                                        set_carrier_flag = {{ pf.flag_selected_zone(zone_slot, zone) }}
+                                    }
+                                {% endfor %}
+                            {% endif %}
+                        {% endfor %}
+                    }
+                    bca_planet_setting_clear_secondary_zone_selector_flags = yes
+                }
+                if = {
+                    limit = {
+                        OR = {
+                            {% for zone_type in zone_type_set %}
+                                has_carrier_flag = {{ pf.flag_selected_zone_type(zone_slot, zone_type) }}
+                            {% endfor %}
+                        }
+                    }
+                    set_variable = {
+                        which = {{v.var_district_num_plan(zone_slot)}}
+                        value = value:bca_capital_extraction_secondary_share
+                    }
+                    if = {
+                        limit = {
+                            check_variable_arithmetic = {
+                                which = {{v.var_district_num_plan(zone_slot)}}
+                                value > value:bca_district_max_build_{{ district_slot }}
+                            }
+                        }
+                        set_variable = {
+                            which = {{v.var_district_num_plan(zone_slot)}}
+                            value = value:bca_district_max_build_{{ district_slot }}
+                        }
+                    }
+                }
+            {% endfor %}
+        }
+    }
 
     # 方案钳制（2026-10-20 玩家反馈：栖息地副区划方案出现负数 -11）：方案变量不允许低于 0，防止拆建循环与城市方案膨胀
     {% for zone_slot in ['z3','z4','z5'] %}

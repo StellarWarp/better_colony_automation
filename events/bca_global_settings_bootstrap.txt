@@ -12,12 +12,21 @@ event = {
     is_triggered_only = yes
     hide_window = yes
     immediate = {
+        # 2026-11-19: 面板标签页变量必须始终有值；否则所有带
+        # check_variable = { which = bca_gui_active_tab ... } 的按钮 potential 会失败，
+        # 面板视其为无效按钮，鼠标悬停时反复播放不可用提示音。
+        every_playable_country = {
+            if = {
+                limit = { NOT = { is_variable_set = bca_gui_active_tab } }
+                set_variable = { which = bca_gui_active_tab value = 0 }
+            }
+        }
         if = {
             limit = { NOT = { has_global_flag = bca_global_settings_defaults_initialized } }
             set_global_flag = bca_global_settings_defaults_initialized
             every_playable_country = {
-                set_variable = { which = bca_reserve_minerals_amount value = 0 }
-                set_variable = { which = bca_reserve_alloys_amount value = 0 }
+                set_variable = { which = bca_reserve_minerals_amount value = 200 }
+                set_variable = { which = bca_reserve_alloys_amount value = 150 }
                 set_variable = { which = bca_reserve_influence_amount value = 200 }
                 set_variable = { which = bca_reserve_job_amount value = 50 }
                 set_variable = { which = bca_expect_output_energy value = 200 }

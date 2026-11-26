@@ -25,6 +25,65 @@ TPL_LOCALISATION_DIR = os.path.join(TEMPLATE_DIR, 'localisation')
 OUTPUT_GUI_DIR = os.path.join(ROOT_DIR, 'interface')
 RGIGNORE_PATH = Path(ROOT_DIR) / ".rgignore"
 
+# 手工维护的输出文件：逻辑已经直接改在运行时文件里，重新生成时不要覆盖它们。
+HAND_MAINTAINED_OUTPUTS = {
+    # 2026-11-19: 无条件初始化 bca_gui_active_tab（面板按钮 potential 依赖它，否则重复提示音）
+    'events/bca_global_settings_bootstrap.txt',
+    'common/scripted_effects/bca_resource_planet_controller.txt',
+    'common/scripted_effects/bca_district_build_effects.txt',
+    'events/bca_district_controller.txt',
+    'events/bca_mix_zones_controller.txt',
+    'events/bca_planet_monthly_iteration_entry.txt',
+    'common/colony_automation/500_bca_mixed_zones.txt',
+    'common/decisions/bt_colony_transform.txt',
+    # 2026-11-15: 以下运行时文件已直接修 bug（能量目标下限守卫、区划/建筑规划上限、
+    # 次级槽默认值、区划图标变量镜像等），而 templates/ 里仍是未合入的实验分支内容。
+    # 加入此集合，避免 run_generate.py 用旧模板把它们覆盖回去（备份文件被当作脚本
+    # 加载那次事故的同类问题）。
+    'common/button_effects/bca_planet_setting_zones.txt',
+    # 2026-11-15 晚：+/- 按钮加了「手动方案」标记（bca_pf_ps_manual_count_z*），模板里没有。
+    'common/button_effects/bca_planet_setting_zones_buttons_aux.txt',
+    'common/colony_automation_exceptions/31_bca_designation_buildings.txt',
+    'common/colony_automation_exceptions/500_bca_mixd_zones_building.txt',
+    'common/scripted_effects/bca_planet_setting_zones_0_effect.txt',
+    'common/scripted_effects/bca_planet_setting_zones_1_effect.txt',
+    'common/scripted_loc/bca_zone_loc.txt',
+    'common/scripted_triggers/bca_empire_economic_needs.txt',
+    'common/script_values/bca_planet_setting_values.txt',
+    'events/bca_district_queue_events.txt',
+    'events/bca_update_default_selection.txt',
+    # 2026-11-15 晚：特区评分加了“帝国缺口”加成（研究/凝聚/合金/贸易），模板与配置文件已同步，
+    # 但 run_generate.py 会重新按旧 configs 渲染，这里先跳过，保持运行时为准。
+    'common/script_values/bca_planet_setting_zone_ranking.txt',
+    # 2026-11-25：以下三个文件的运行时版本同样已验证，模板落后于运行时，一并跳过。
+    'common/scripted_loc/bca_global_settings_economic_values.txt',
+    'common/scripted_triggers/bca_zone_setting_triggers.txt',
+    'common/scripted_triggers/zone_build_conditions.txt',
+    # 2026-11-25：4.4 原版条件的快照（toxic_knights / storm_repellent 等）已手工跟进，
+    # 模板里的旧快照重渲染会把它们改回去。
+    'common/scripted_triggers/building_build_conditions.txt',
+}
+
+def is_hand_maintained_output(rel_out):
+    """True when the runtime file must not be overwritten by a render.
+
+    interface/ and localisation/ are hand-maintained while templates/ still carries
+    unreleased experimental changes; regenerating them from those templates would
+    silently revert fixes that were verified in game.
+    """
+    return (
+        rel_out in HAND_MAINTAINED_OUTPUTS
+        or rel_out.startswith('interface/')
+        or rel_out.startswith('localisation/')
+    )
+
+
+STALE_TEMPLATE_WARNING = (
+    'WARNING: templates/ still contains unreleased experimental changes. '
+    'Runtime files listed in HAND_MAINTAINED_OUTPUTS are skipped, but other generated '
+    'outputs will be overwritten with the experimental template content.'
+)
+
 # --- Jinja 环境设置 ---
 # 允许从 TEMPLATE_DIR 加载（包括 component/ 子目录）
 env = Environment(
@@ -408,6 +467,11 @@ def build():
             output_name = filename.replace('.j2', '')
             for variant in get_render_variants(tpl_path, output_name):
                 output_path = os.path.join(OUTPUT_GUI_DIR, variant.output_name)
+                rel_out = os.path.relpath(output_path, ROOT_DIR).replace(os.path.sep, '/')
+                if is_hand_maintained_output(rel_out):
+                    print(f'  skip (hand-maintained): {rel_out}')
+                    generated_output_paths.append(os.path.relpath(output_path, ROOT_DIR))
+                    continue
                 render_to_file(
                     tpl_path,
                     output_path,
@@ -422,6 +486,23 @@ def build():
                 full_path = os.path.join(root, filename)
                 # 生成 Jinja 模板相对路径（使用 '/'）
                 rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
+                # 子 mod 文件只在子 mod 里生成，主 mod 不要重复生成（否则游戏会解析两份）
+                try:
+                    with open(full_path, 'r', encoding='utf-8-sig', errors='ignore') as handle:
+                        first_line = handle.readline().strip()
+                except OSError:
+                    first_line = ''
+                if first_line.startswith('# submod'):
+                    print(f'  skip (submod): {rel_path}')
+                    # 子 mod 文件仍属于“本次生成会产出的路径”，记进清单，
+                    # 这样 .rgignore 不会因为跳过而丢条目。
+                    generated_output_paths.append(
+                        os.path.relpath(
+                            os.path.join(ROOT_DIR, os.path.splitext(rel_path)[0]),
+                            ROOT_DIR,
+                        )
+                    )
+                    continue
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
                 # 将输出放到 Mod 根目录下对应的相对位置（保留 common/ 子目录结构）
@@ -429,6 +510,11 @@ def build():
                 os.makedirs(output_dir, exist_ok=True)
                 for variant in get_render_variants(tpl_path, output_name):
                     output_path = os.path.join(output_dir, variant.output_name)
+                    rel_out = os.path.relpath(output_path, ROOT_DIR).replace(os.path.sep, '/')
+                    if is_hand_maintained_output(rel_out):
+                        print(f'  skip (hand-maintained): {rel_out}')
+                        generated_output_paths.append(os.path.relpath(output_path, ROOT_DIR))
+                        continue
                     content = render_to_file(
                         tpl_path,
                         output_path,
@@ -447,12 +533,34 @@ def build():
             if filename.endswith('.txt.j2'):
                 full_path = os.path.join(root, filename)
                 rel_path = os.path.relpath(full_path, TEMPLATE_DIR)
+                # 子 mod 文件只在子 mod 里生成，主 mod 不要重复生成（否则游戏会解析两份）
+                try:
+                    with open(full_path, 'r', encoding='utf-8-sig', errors='ignore') as handle:
+                        first_line = handle.readline().strip()
+                except OSError:
+                    first_line = ''
+                if first_line.startswith('# submod'):
+                    print(f'  skip (submod): {rel_path}')
+                    # 子 mod 文件仍属于“本次生成会产出的路径”，记进清单，
+                    # 这样 .rgignore 不会因为跳过而丢条目。
+                    generated_output_paths.append(
+                        os.path.relpath(
+                            os.path.join(ROOT_DIR, os.path.splitext(rel_path)[0]),
+                            ROOT_DIR,
+                        )
+                    )
+                    continue
                 tpl_path = rel_path.replace(os.path.sep, '/')
                 output_name = filename.replace('.j2', '')
                 output_dir = os.path.join(ROOT_DIR, os.path.dirname(rel_path))
                 os.makedirs(output_dir, exist_ok=True)
                 for variant in get_render_variants(tpl_path, output_name):
                     output_path = os.path.join(output_dir, variant.output_name)
+                    rel_out = os.path.relpath(output_path, ROOT_DIR).replace(os.path.sep, '/')
+                    if is_hand_maintained_output(rel_out):
+                        print(f'  skip (hand-maintained): {rel_out}')
+                        generated_output_paths.append(os.path.relpath(output_path, ROOT_DIR))
+                        continue
                     content = render_to_file(
                         tpl_path,
                         output_path,
@@ -519,6 +627,11 @@ def build():
                             output_dir = os.path.join(ROOT_DIR, 'localisation', lang_key)
                             os.makedirs(output_dir, exist_ok=True)
                             output_path = os.path.join(output_dir, lang_output_name)
+                            rel_out = os.path.relpath(output_path, ROOT_DIR).replace(os.path.sep, '/')
+                            if is_hand_maintained_output(rel_out):
+                                print(f'  skip (hand-maintained): {rel_out}')
+                                generated_output_paths.append(os.path.relpath(output_path, ROOT_DIR))
+                                continue
                             with open(output_path, 'w', encoding='utf-8-sig') as f:
                                 f.write(
                                     prepend_generated_warning(
@@ -536,6 +649,11 @@ def build():
                     os.makedirs(output_dir, exist_ok=True)
                     for variant in get_render_variants(tpl_path, output_name):
                         output_path = os.path.join(output_dir, variant.output_name)
+                        rel_out = os.path.relpath(output_path, ROOT_DIR).replace(os.path.sep, '/')
+                        if is_hand_maintained_output(rel_out):
+                            print(f'  skip (hand-maintained): {rel_out}')
+                            generated_output_paths.append(os.path.relpath(output_path, ROOT_DIR))
+                            continue
                         render_to_file(
                             tpl_path,
                             output_path,
@@ -564,4 +682,5 @@ def build():
     print("生成完成！")
 
 if __name__ == "__main__":
+    print(STALE_TEMPLATE_WARNING)
     build()

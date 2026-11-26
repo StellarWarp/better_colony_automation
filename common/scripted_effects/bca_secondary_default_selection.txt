@@ -1,0 +1,41 @@
+# ====================================================================
+# 次级区划槽（z3/z4/z5）默认类型
+# 2026-11-15：
+#   · 普通星球：三个槽固定为 能量 / 矿物 / 农业，图标与数字由方案驱动。
+#   · 特殊星球（环世界/城市世界/蜂巢世界/机械世界/方舟候选）：不预选，保持空白，
+#     等玩家在面板里手动确认区划方向后再显示对应图标。
+# ====================================================================
+
+
+# 给指定槽位设置"选中类型"（同时镜像变量，供 scripted_loc 图标使用）
+bca_secondary_slot_set_type = {
+    set_carrier_flag = bca_pf_ps_selected_zone_type_$ZONE_SLOT$_$TYPE$
+    set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_$TYPE$
+}
+
+
+# 第一个次级槽：能量币（特殊星球不预选）
+bca_secondary_slot_default_first = {
+    if = {
+        limit = { NOT = { bca_has_advance_secondary_districts = yes } }
+        bca_secondary_slot_set_type = { ZONE_SLOT = $ZONE_SLOT$ TYPE = energy }
+    }
+}
+
+
+# 第二个次级槽：矿物（特殊星球不预选）
+bca_secondary_slot_default_second = {
+    if = {
+        limit = { NOT = { bca_has_advance_secondary_districts = yes } }
+        bca_secondary_slot_set_type = { ZONE_SLOT = $ZONE_SLOT$ TYPE = minerals }
+    }
+}
+
+
+# 第三个次级槽：农业（特殊星球不预选）
+bca_secondary_slot_default_third = {
+    if = {
+        limit = { NOT = { bca_has_advance_secondary_districts = yes } }
+        bca_secondary_slot_set_type = { ZONE_SLOT = $ZONE_SLOT$ TYPE = food }
+    }
+}

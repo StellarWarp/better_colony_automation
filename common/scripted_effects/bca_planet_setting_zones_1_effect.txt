@@ -4636,18 +4636,6 @@ bca_primary_zone_setting_set_by_current_zones = {
                     ZONE = zone_habitat_knights
                 }
             }
-            if = {
-                limit = {
-                    check_variable_arithmetic = {
-                        which = value:num_zones_of_zone_ark_knights
-                        value > 0
-                    }
-                }
-                bca_primary_zone_setting_set_by_current_zones_helper = {
-                    TYPE = knight_commander
-                    ZONE = zone_ark_knights
-                }
-            }
         }
         if = {
             limit = {
@@ -7783,7 +7771,6 @@ bca_sync_primary_zone_selection_if_overplanned = {
         bca_sync_primary_zone_selection_match = { ZONE = zone_resort }
         bca_sync_primary_zone_selection_match = { ZONE = zone_resort_entertainment }
         bca_sync_primary_zone_selection_match = { ZONE = zone_habitat_knights }
-        bca_sync_primary_zone_selection_match = { ZONE = zone_ark_knights }
         bca_sync_primary_zone_selection_match = { ZONE = zone_spawning }
         bca_sync_primary_zone_selection_match = { ZONE = zone_machine_replication }
         bca_sync_primary_zone_selection_match = { ZONE = zone_urban_wilderness }

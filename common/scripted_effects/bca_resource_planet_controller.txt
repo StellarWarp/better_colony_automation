@@ -5,6 +5,60 @@
 
 
 bca_resource_planet_controller_district_only = {
+    # 2026-11-15：三个方案变量必须在每颗星球上都存在。
+    # 非一产专精星球（城市/铸造/科研）不会进入下面的方案分支，变量一直不存在，
+    # 于是 UI（比例按钮）和建造判断读取时刷 "Variable ... is not set for scoped planet"。
+    if = {
+        limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z3 } }
+        set_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = 0
+        }
+    }
+    if = {
+        limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z4 } }
+        set_variable = {
+            which = bca_ps_plan_district_count_z4
+            value = 0
+        }
+    }
+    if = {
+        limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z5 } }
+        set_variable = {
+            which = bca_ps_plan_district_count_z5
+            value = 0
+        }
+    }
+    # 2026-11-24：探测 zone 的开关变量，平时 0，探测瞬间 1（见 bca_planet_test_effect.txt）
+    if = {
+        limit = { NOT = { is_variable_set = bca_zone_probe } }
+        set_variable = {
+            which = bca_zone_probe
+            value = 0
+        }
+    }
+    # 2026-11-15 修复：玩家用 +/- 手动设定过的二级区划方案，月度重算后必须原样还原。
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+        set_variable = {
+            which = bca_ps_manual_saved_count_z3
+            value = bca_ps_plan_district_count_z3
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+        set_variable = {
+            which = bca_ps_manual_saved_count_z4
+            value = bca_ps_plan_district_count_z4
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+        set_variable = {
+            which = bca_ps_manual_saved_count_z5
+            value = bca_ps_plan_district_count_z5
+        }
+    }
     if = {
         limit = {
             bca_auto_district_manage_enabled = yes
@@ -17,10 +71,9 @@ bca_resource_planet_controller_district_only = {
         }
         if = {
             limit = {
-                OR = {
-                    has_carrier_flag = bca_pf_can_build_extra_zones_for_storage
-                    bca_has_advance_secondary_districts = yes
-                }
+                # 2026-11-15 晚：仓库世界（额外存储区划）开关只影响存罐类建筑，
+                # 不再把三个次级方案强制写成 1——那会每月覆盖玩家手动设的数字。
+                bca_has_advance_secondary_districts = yes
             }
             set_variable = {
                 which = bca_ps_plan_district_count_z3
@@ -67,197 +120,714 @@ bca_resource_planet_controller_district_only = {
         }
         set_variable = {
             which = bca_ps_plan_district_count_z5
-            value = value:bca_district_max_build_d3
+            value = value:bca_target_district_d3
+        }
+    }
+    # 每个"区划族"只下一次方案（if / else_if：先 z3，再 z4，最后 z5）：
+    #   · 该族与星球专精一致 → 无论特区是否初始化默认填充都下方案；
+    #   · 其它族 → 只有玩家手动选过（默认标记已被清除）才下方案。
+    # 这样既能让玩家手动选的特区立刻生效，也不会因为初始化默认填充而每颗星球同时铺电/矿/农。
+    if = {
+        limit = {
+            bca_auto_district_manage_enabled = yes
+            NOT = { bca_has_advance_secondary_districts = yes }
+        }
+        if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                }
+                OR = {
+                    has_generator_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z3 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_target_district_d1
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                }
+                OR = {
+                    has_generator_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z4 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_target_district_d1
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                }
+                OR = {
+                    has_generator_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z5 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_target_district_d1
+            }
+        }
+        if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                }
+                OR = {
+                    has_mining_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z3 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_target_district_d2
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                }
+                OR = {
+                    has_mining_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z4 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_target_district_d2
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                }
+                OR = {
+                    has_mining_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z5 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_target_district_d2
+            }
+        }
+        if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+                }
+                OR = {
+                    has_farming_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z3 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_target_district_d3
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+                }
+                OR = {
+                    has_farming_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z4 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_target_district_d3
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+                }
+                OR = {
+                    has_farming_designation = yes
+                    NOT = { has_carrier_flag = bca_pf_ps_zone_default_z5 }
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_target_district_d3
+            }
+        }
+    }
+    # 2026-11-15 晚：非一产专精星球（首都/铸造/科研/凝聚/要塞…）以前完全跳过方案规划，
+    # 于是“发电 0/12”这类星球的次级区划永远不会自己建。这里按帝国缺口补方案：
+    # 缺能量→发电族、缺矿物→采矿族、缺食物→农业族；不需要的族把方案压回“已建数量”，
+    # 只停止新建、不触发拆除（拆除条件是 方案 < 已建）。
+    if = {
+        limit = {
+            NOT = { bca_has_auto_district_manage = yes }
+            NOT = { has_carrier_flag = bca_pf_disable_auto_district_manage }
+            NOT = { bca_has_advance_secondary_districts = yes }
+        }
+        # z3
+        if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_energy = yes }
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:bca_target_district_d1 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:num_district_d1 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_minerals = yes }
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:bca_target_district_d2 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:num_district_d2 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_food = yes }
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:bca_target_district_d3 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z3 value = value:num_district_d3 }
+            }
+        }
+        # z4
+        if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_energy = yes }
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:bca_target_district_d1 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:num_district_d1 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_minerals = yes }
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:bca_target_district_d2 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:num_district_d2 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_food = yes }
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:bca_target_district_d3 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z4 value = value:num_district_d3 }
+            }
+        }
+        # z5
+        if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_energy = yes }
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:bca_target_district_d1 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:num_district_d1 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_minerals = yes }
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:bca_target_district_d2 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:num_district_d2 }
+            }
+        }
+        else_if = {
+            limit = {
+                OR = {
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+                    has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
+                }
+            }
+            if = {
+                limit = { bca_empire_needs_food = yes }
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:bca_target_district_d3 }
+            }
+            else = {
+                set_variable = { which = bca_ps_plan_district_count_z5 value = value:num_district_d3 }
+            }
+        }
+    }
+
+    # 2026-11-16：高级星球（纳米/机械/环世界/蜂巢/城市世界）也做副区划自动规划。
+    # 这类星球的区划按「层级」归类，与槽位序号无关，所以这里按槽的产出族取目标，
+    # 而不是写死 z3->d1 / z4->d2 / z5->d3（旧写法会把能量槽按矿物族的目标抬起来）。
+    if = {
+        limit = {
+            bca_has_advance_secondary_districts = yes
+            NOT = { bca_auto_district_manage_enabled = yes }
+        }
+        # z3 槽 = energy 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+                bca_empire_needs_energy = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z3 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z3
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z3
+                    value < value:bca_adv_zone_energy_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_adv_zone_energy_next
+            }
+        }
+        # z3 槽 = minerals 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+                bca_empire_needs_minerals = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z3 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z3
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z3
+                    value < value:bca_adv_zone_minerals_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_adv_zone_minerals_next
+            }
+        }
+        # z3 槽 = food 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+                bca_empire_needs_food = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z3 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z3
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z3
+                    value < value:bca_adv_food_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = value:bca_adv_food_next
+            }
+        }
+        # z4 槽 = energy 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+                bca_empire_needs_energy = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z4 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z4
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z4
+                    value < value:bca_adv_zone_energy_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_adv_zone_energy_next
+            }
+        }
+        # z4 槽 = minerals 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+                bca_empire_needs_minerals = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z4 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z4
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z4
+                    value < value:bca_adv_zone_minerals_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_adv_zone_minerals_next
+            }
+        }
+        # z4 槽 = food 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+                bca_empire_needs_food = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z4 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z4
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z4
+                    value < value:bca_adv_food_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = value:bca_adv_food_next
+            }
+        }
+        # z5 槽 = energy 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+                bca_empire_needs_energy = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z5 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z5
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z5
+                    value < value:bca_adv_zone_energy_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_adv_zone_energy_next
+            }
+        }
+        # z5 槽 = minerals 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+                bca_empire_needs_minerals = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z5 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z5
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z5
+                    value < value:bca_adv_zone_minerals_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_adv_zone_minerals_next
+            }
+        }
+        # z5 槽 = food 族
+        if = {
+            limit = {
+                has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+                bca_empire_needs_food = yes
+                # 方案为 0 视为玩家明确不要建，不动。
+                OR = {
+                    NOT = { is_variable_set = bca_ps_plan_district_count_z5 }
+                    check_variable = {
+                        which = bca_ps_plan_district_count_z5
+                        value > 0
+                    }
+                }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z5
+                    value < value:bca_adv_food_next
+                }
+            }
+            set_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = value:bca_adv_food_next
+            }
+        }
+    }
+
+    # 2026-11-21：科研 / 统一 / 行政类星球不让次级区划抢格子。
+    # 这些星球的产出靠「特区槽 + 建筑」，次级区划（发电/采矿/农业）只吃区划位、不产研究/凝聚。
+    # 这里把三个方案统一压回「该族已建数量」：只停止新建，不触发拆除（拆除条件是 方案 < 已建）。
+    # 玩家仍然可以用 +/- 手动设定；锁定槽由后面的还原逻辑保护。
+    if = {
+        limit = {
+            OR = {
+                has_research_designation = yes
+                has_unity_designation = yes
+            }
+        }
+        set_variable = { which = bca_ps_plan_district_count_z3 value = value:num_district_d1 }
+        set_variable = { which = bca_ps_plan_district_count_z4 value = value:num_district_d2 }
+        set_variable = { which = bca_ps_plan_district_count_z5 value = value:num_district_d3 }
+    }
+
+# 还原手动方案（放在所有自动规划之后，手动锁定的槽以玩家数字为准，不再被抬高）。
+    # 未锁定的槽：自动规划已按缺口写好目标，这里不动它。
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = bca_ps_manual_saved_count_z3
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z4
+            value = bca_ps_manual_saved_count_z4
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z5
+            value = bca_ps_manual_saved_count_z5
+        }
+    }
+    # 方案总和不能超过「星球容量 - 1」：超出时把溢出的部分从 z3 方案里扣掉，
+    # 避免三个槽位都满额导致城市方案被压到下限、后续拆建来回震荡。
+    if = {
+        limit = {
+            check_variable_arithmetic = {
+                which = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+                value < 0
+            }
+        }
+        add_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = value:bca_num_free_secondary_districts_plan_full_secondary_districts
+        }
+    }
+    # 2026-11-15 修复：方案总量必须落在「当前空余区划槽 - 1」以内（至少给城市留 1 个槽）。
+    # 预建造星旗 bca_pf_planet_pre_construction 会让 bca_planet_build_needs_* 全部为真，
+    # 方案会被直接写到各族上限；若星球其实只剩 0~1 个空槽，就会出现「计划 10 个、只建得动 1 个」，
+    # 自动化每月举牌却永远建不出来，还会让城市方案被挤掉、失业人口没人管。
+    # 收敛下限是该族已建数量（num_district_d1/d2/d3），保证不会低于现状而触发拆除。
+    while = {
+        limit = {
+            check_variable_arithmetic = {
+                which = value:bca_num_free_districts_for_secondary_plan_reserved
+                value < 0
+            }
+            OR = {
+                AND = {
+                    NOT = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+                    check_variable_arithmetic = {
+                        which = bca_ps_plan_district_count_z4
+                        value > value:num_district_d2
+                    }
+                }
+                AND = {
+                    NOT = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+                    check_variable_arithmetic = {
+                        which = bca_ps_plan_district_count_z3
+                        value > value:num_district_d1
+                    }
+                }
+                AND = {
+                    NOT = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+                    check_variable_arithmetic = {
+                        which = bca_ps_plan_district_count_z5
+                        value > value:num_district_d3
+                    }
+                }
+            }
+        }
+        if = {
+            limit = {
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z4
+                    value > value:num_district_d2
+                }
+            }
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z4
+                value = 1
+            }
+        }
+        else_if = {
+            limit = {
+                NOT = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+                check_variable_arithmetic = {
+                    which = bca_ps_plan_district_count_z3
+                    value > value:num_district_d1
+                }
+            }
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z3
+                value = 1
+            }
+        }
+        else = {
+            subtract_variable = {
+                which = bca_ps_plan_district_count_z5
+                value = 1
+            }
+        }
+    }
+    # 方案钳制（2026-10-20 玩家反馈：栖息地副区划方案出现负数 -11）：方案变量不允许低于 0，防止拆建循环与城市方案膨胀
+    if = {
+        limit = {
+            check_variable = { which = bca_ps_plan_district_count_z3 value < 0 }
+        }
+        set_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = 0
         }
     }
     if = {
         limit = {
-            has_generator_designation = yes
+            check_variable = { which = bca_ps_plan_district_count_z4 value < 0 }
         }
-        if = {
-            limit = {
-                bca_auto_district_manage_enabled = yes
-            }
-            if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z3
-                    value = value:bca_district_max_build_d1
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z4
-                    value = value:bca_district_max_build_d2
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z5
-                    value = value:bca_district_max_build_d3
-                }
-            }
-            if = {
-                limit = {
-                    exists = owner
-                    owner = { has_technology = tech_mine_betharian }
-                    has_deposit = d_betharian_deposit
-                    has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                }
-                if = {
-                    limit = {
-                        OR = {
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
-                        }
-                    }
-                    set_variable = {
-                        which = bca_ps_plan_district_count_z4
-                        value = value:bca_district_max_build_d2
-                    }
-                }
-                if = {
-                    limit = {
-                        OR = {
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
-                            has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
-                        }
-                    }
-                    set_variable = {
-                        which = bca_ps_plan_district_count_z3
-                        value = value:bca_district_max_build_d1
-                    }
-                    if = {
-                        limit = {
-                            check_variable_arithmetic = {
-                                which = value:bca_num_free_secondary_districts_plan_full_secondary_districts
-                                value < 0
-                            }
-                        }
-                        add_variable = {
-                            which = bca_ps_plan_district_count_z3
-                            value = value:bca_num_free_secondary_districts_plan_full_secondary_districts
-                        }
-                    }
-                }
-            }
+        set_variable = {
+            which = bca_ps_plan_district_count_z4
+            value = 0
         }
     }
-    else_if = {
+    if = {
         limit = {
-            has_mining_designation = yes
+            check_variable = { which = bca_ps_plan_district_count_z5 value < 0 }
         }
-        if = {
-            limit = {
-                bca_auto_district_manage_enabled = yes
-            }
-            if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z3
-                    value = value:bca_district_max_build_d1
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z4
-                    value = value:bca_district_max_build_d2
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z5
-                    value = value:bca_district_max_build_d3
-                }
-            }
+        set_variable = {
+            which = bca_ps_plan_district_count_z5
+            value = 0
         }
     }
-    else_if = {
-        limit = {
-            has_farming_designation = yes
-        }
-        if = {
-            limit = {
-                bca_auto_district_manage_enabled = yes
-            }
-            if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z3_hydroponics
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z3
-                    value = value:bca_district_max_build_d1
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z4_hydroponics
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z4
-                    value = value:bca_district_max_build_d2
-                }
-            }
-            else_if = {
-                limit = {
-                    OR = {
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
-                        has_carrier_flag = bca_pf_ps_selected_zone_type_z5_hydroponics
-                    }
-                }
-                set_variable = {
-                    which = bca_ps_plan_district_count_z5
-                    value = value:bca_district_max_build_d3
-                }
-            }
+    # ===== 收口：锁定槽的唯一写入者 =====
+    # 无论前面多少块写过 plan，锁定槽最终一律恢复成玩家数字；
+    # 这样"锁定"在语义上等于"自动逻辑对该槽不存在"，不会互相覆盖。
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z3
+            value = bca_ps_manual_saved_count_z3
         }
     }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z4
+            value = bca_ps_manual_saved_count_z4
+        }
+    }
+    if = {
+        limit = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+        set_variable = {
+            which = bca_ps_plan_district_count_z5
+            value = bca_ps_manual_saved_count_z5
+        }
+    }
+
 }

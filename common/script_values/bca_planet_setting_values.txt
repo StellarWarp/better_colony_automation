@@ -42,6 +42,49 @@ bca_num_free_secondary_districts_plan_full_secondary_districts = {
 }
 
 
+# 2026-11-15 修复：按「当前空余区划槽」收敛副区划方案。
+# 旧逻辑用 bca_potential_max_districts（= 已建 + 空槽）做基值，等于把已建区划又算成可用槽，
+# 于是一颗 19/20 的星球也能算出「还能再建 10 个区划」的假方案。
+# 该值为负时表示方案超出空槽（至少给城市留 1 个槽），由 bca_resource_planet_controller 逐级扣减。
+bca_num_free_districts_for_secondary_plan = {
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = {
+            type = any
+        }
+        mode = set
+    }
+    # 2026-11-16：原式漏加了「已建次级区划」——方案数是目标总量，不是增量，
+    # 不减掉已建部分就等于把已建的区划再算一次占用，导致手动设 4 被压回 3。
+    add = value:bca_committed_secondary_district
+    subtract = value:bca_num_secondary_districts_plan
+    # 只有在城市区划确实还想增长时才预留 1 个槽，否则不预留。
+    modifier = {
+        add = -1
+        check_variable_arithmetic = {
+            which = value:bca_num_primary_districts_plan
+            value > value:bca_committed_primary_district
+        }
+    }
+}
+
+# 2026-11-21：给城市/枢纽留出保留额度。
+# 次级区划方案总和不得超过「容量 - 保留」，保留 = max(3, 容量的 1/4)。
+# 之前没有这条限制，科研/统一星球被发电/采矿区划吃满，城市区划只剩 1 个，
+# 建筑槽与特区槽都长不出来，星球的方向就失去了意义。
+bca_secondary_plan_reserve = {
+    set = value:bca_potential_max_districts
+    divide = 4
+    min = 3
+}
+
+bca_num_free_districts_for_secondary_plan_reserved = {
+    set = value:bca_num_free_districts_for_secondary_plan
+    subtract = value:bca_secondary_plan_reserve
+}
+
+
+
 bca_num_free_primary_districts_plan = {
     add = bca_ps_plan_district_count_z3
     add = bca_ps_plan_district_count_z4
@@ -52,16 +95,39 @@ bca_num_free_primary_districts_plan = {
 
 bca_num_primary_districts_plan = {
     set = value:bca_potential_max_districts
-    subtract = bca_ps_plan_district_count_z3
-    subtract = bca_ps_plan_district_count_z4
-    subtract = bca_ps_plan_district_count_z5
+    modifier = {
+        subtract = bca_ps_plan_district_count_z3
+        is_variable_set = bca_ps_plan_district_count_z3
+    }
+    modifier = {
+        subtract = bca_ps_plan_district_count_z4
+        is_variable_set = bca_ps_plan_district_count_z4
+    }
+    modifier = {
+        subtract = bca_ps_plan_district_count_z5
+        is_variable_set = bca_ps_plan_district_count_z5
+    }
+    # 主区划（城市）方案上限守卫：任何副区划方案异常都不允许把城市方案抬到星球区划容量之上，
+    # 否则自动化会持续认为"还缺城市区划"而无限建设城市区划。
+    min = 1
+    max = value:bca_potential_max_districts
 }
 
 
 bca_num_secondary_districts_plan = {
-    add = bca_ps_plan_district_count_z3
-    add = bca_ps_plan_district_count_z4
-    add = bca_ps_plan_district_count_z5
+    modifier = {
+        add = bca_ps_plan_district_count_z3
+        is_variable_set = bca_ps_plan_district_count_z3
+    }
+    modifier = {
+        add = bca_ps_plan_district_count_z4
+        is_variable_set = bca_ps_plan_district_count_z4
+    }
+    modifier = {
+        add = bca_ps_plan_district_count_z5
+        is_variable_set = bca_ps_plan_district_count_z5
+    }
+    min = 0
 }
 # floor(value:bca_potential_max_districts * RATIO)
 
@@ -93,15 +159,38 @@ bca_built_secondary_districts_to_ratio = {
 
 
 bca_plan_secondary_districts_to_ratio = {
-    add = bca_ps_plan_district_count_z3
-    add = bca_ps_plan_district_count_z4
-    add = bca_ps_plan_district_count_z5
+    # 2026-11-15：非一产专精的星球根本不会写这三个方案变量，直接 add 会刷
+    # "Variable bca_ps_plan_district_count_z3 is not set for scoped planet"（点比例按钮时 54 条/次）。
+    modifier = {
+        is_variable_set = bca_ps_plan_district_count_z3
+        add = bca_ps_plan_district_count_z3
+    }
+    modifier = {
+        is_variable_set = bca_ps_plan_district_count_z4
+        add = bca_ps_plan_district_count_z4
+    }
+    modifier = {
+        is_variable_set = bca_ps_plan_district_count_z5
+        add = bca_ps_plan_district_count_z5
+    }
     divide = value:bca_potential_max_districts
 }
 
 
 num_primary_district = {
     set = value:num_district_d0
+}
+
+
+# 2026-11-15：城市（d0）拆除阈值 = 已建 - 1，留 1 的容差。
+# 原来用严格的 plan < 已建，方案只要比现状少 1 就会举牌拆除；拆掉一个后空出的槽位又让方案回升，
+# 于是出现「拆中央枢纽 → 建中央枢纽」的循环（玩家反馈：伊特拉本-I 铸造星）。
+bca_num_primary_district_remove_threshold = {
+    # 2026-11-15 晚：容差从 1 提到 2。方案 = 容量 − 三方案和，容量随排队/完工抖动，
+    # 差 1 就拆会让城市区划在边界上反复拆建。
+    set = value:num_district_d0
+    subtract = 2
+    min = 0
 }
 
 
@@ -435,7 +524,10 @@ num_district_d0 = {
 
 bca_committed_district_d0 = {
     set = value:num_district_d0
-    add = bca_queued_district_d0
+    modifier = {
+        add = bca_queued_district_d0
+        is_variable_set = bca_queued_district_d0
+    }
 }
 
 
@@ -515,7 +607,10 @@ num_district_d1 = {
 
 bca_committed_district_d1 = {
     set = value:num_district_d1
-    add = bca_queued_district_d1
+    modifier = {
+        add = bca_queued_district_d1
+        is_variable_set = bca_queued_district_d1
+    }
 }
 
 
@@ -595,7 +690,10 @@ num_district_d2 = {
 
 bca_committed_district_d2 = {
     set = value:num_district_d2
-    add = bca_queued_district_d2
+    modifier = {
+        add = bca_queued_district_d2
+        is_variable_set = bca_queued_district_d2
+    }
 }
 
 
@@ -682,7 +780,10 @@ num_district_d3 = {
 
 bca_committed_district_d3 = {
     set = value:num_district_d3
-    add = bca_queued_district_d3
+    modifier = {
+        add = bca_queued_district_d3
+        is_variable_set = bca_queued_district_d3
+    }
 }
 
 
@@ -1782,13 +1883,6 @@ num_zones_primary_district = {
         trigger = num_zones
         parameters = {
             type = zone_ark_sacred_path_pilgrims
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = zone_ark_knights
         }
         mode = add
     }
@@ -4041,13 +4135,6 @@ num_primary_zones_of_type_knight_commander = {
         trigger = num_zones
         parameters = {
             type = zone_habitat_knights
-        }
-        mode = add
-    }
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = zone_ark_knights
         }
         mode = add
     }
@@ -9206,13 +9293,7 @@ num_zone_plan_of_zone_habitat_knights = {
 
 
 num_zones_of_zone_ark_knights = {
-    complex_trigger_modifier = {
-        trigger = num_zones
-        parameters = {
-            type = zone_ark_knights
-        }
-        mode = add
-    }
+    set = 0
 }
 
 
@@ -12208,6 +12289,133 @@ bca_district_max_build_d3 = {
 }
 
 
+# ====================================================================
+# 2026-11-15（E）：副区划「目标数」兜底
+# bca_district_max_build_d* 只取 modifier:district_*_max_add（星球上的区划容量加成），
+# 在部分星球类型上这个值会小于实际还能建的数量（仓库世界/机械世界/轨道居住站等）。
+# 结果就是方案被钳到「已建数量」，建造条件 plan > committed 永远为假 ——
+# 玩家看到的「明明还有 10 个区划可建，自动化却一直不动」。
+# 这里用游戏自身的 num_free_districts 兜底：
+#     目标数 = max(原容量, 该族已建 + 该族剩余可建位)
+# 下限仍为已建数量，保证不会因为兜底反而触发拆除。
+# ====================================================================
+bca_free_district_d1 = {
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_generator }
+        mode = set
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_geothermal }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_hab_energy }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_photosynthesis_fields }
+        mode = add
+    }
+}
+
+
+bca_free_district_d2 = {
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_mining }
+        mode = set
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_melting }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_hab_mining }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_hollow_mountains }
+        mode = add
+    }
+}
+
+
+bca_free_district_d3 = {
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_farming }
+        mode = set
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_polytechnic }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_hab_science }
+        mode = add
+    }
+    complex_trigger_modifier = {
+        trigger = num_free_districts
+        parameters = { type = district_orchard_forests }
+        mode = add
+    }
+}
+
+
+bca_district_total_d1 = {
+    add = value:num_district_d1
+    add = value:bca_free_district_d1
+}
+
+
+bca_district_total_d2 = {
+    add = value:num_district_d2
+    add = value:bca_free_district_d2
+}
+
+
+bca_district_total_d3 = {
+    add = value:num_district_d3
+    add = value:bca_free_district_d3
+}
+
+
+bca_target_district_d1 = {
+    set = value:bca_district_total_d1
+    # min 在脚本数值里是「下限」语义，等价于 max(当前值, 该值)：
+    # 容量加成比「已建 + 可建」小时不起作用，比它大时仍以容量为准（保持旧行为）。
+    min = value:bca_district_max_build_d1
+    max = value:bca_planet_max_districts
+}
+
+
+bca_target_district_d2 = {
+    set = value:bca_district_total_d2
+    # min 在脚本数值里是「下限」语义，等价于 max(当前值, 该值)：
+    # 容量加成比「已建 + 可建」小时不起作用，比它大时仍以容量为准（保持旧行为）。
+    min = value:bca_district_max_build_d2
+    max = value:bca_planet_max_districts
+}
+
+
+bca_target_district_d3 = {
+    set = value:bca_district_total_d3
+    # min 在脚本数值里是「下限」语义，等价于 max(当前值, 该值)：
+    # 容量加成比「已建 + 可建」小时不起作用，比它大时仍以容量为准（保持旧行为）。
+    min = value:bca_district_max_build_d3
+    max = value:bca_planet_max_districts
+}
+
+
 bca_potential_district_max_add_d1 = {
     add = value:bca_planet_max_districts_of|type|district_generator|
     add = value:bca_planet_max_districts_of|type|district_geothermal|
@@ -12350,4 +12558,56 @@ bca_potential_district_max_build_d3 = {
         bca_has_advance_secondary_districts = yes
         subtract = 2
     }
+}
+
+
+# 2026-11-15：BCA_MAIN_DISTRICT_RATIO_DISPLAY 引用了这三个数值，
+# 但定义缺失，导致界面一直显示 0/0|0/0。这里用已有数值做别名。
+bca_num_primary_district = {
+    set = value:bca_committed_district_d0
+}
+
+
+bca_num_primary_district_plan = {
+    set = value:bca_num_primary_districts_plan
+}
+
+
+bca_num_secondary_district = {
+    set = value:bca_committed_secondary_district
+}
+
+# 2026-11-15: 次级槽按钮显示的「可用槽数」，手动方案可超额，显示值不允许为负。
+bca_num_free_secondary_districts_plan_display = {
+    set = value:bca_num_free_secondary_districts_plan
+    min = 0
+}
+
+
+# 2026-11-16: 星球尺寸暴露成脚本数值，供 scripted_loc 显示（defined_text 只能读 value:X）。
+bca_planet_size_value = {
+    base = 0
+    add = trigger:planet_size
+}
+
+# 2026-11-16：高级星球（机械/纳米/蜂巢/环世界/城市世界）的副区划真实产出按 zone 统计，
+# 而不是按 district_nexus_1/2/3 的层级统计——层级与产出无关，用它做「已建」会永远对不上方案。
+bca_adv_zone_energy = {
+    set = value:num_zones_of_zone_energy_nexus
+}
+bca_adv_zone_minerals = {
+    set = value:num_zones_of_zone_minerals_nexus
+}
+# 高级星球逐月步进目标：每次只比已建多 1，缺口补上就停，避免一次性把方案抬到满容量。
+bca_adv_zone_energy_next = {
+    set = value:num_zones_of_zone_energy_nexus
+    add = 1
+}
+bca_adv_zone_minerals_next = {
+    set = value:num_zones_of_zone_minerals_nexus
+    add = 1
+}
+bca_adv_food_next = {
+    set = value:bca_committed_district_d3
+    add = 1
 }

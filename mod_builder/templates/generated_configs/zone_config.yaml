@@ -18,6 +18,8 @@ zones_info:
   - zone_ark_waystation_trade
   type: trade
   fitness_trigger:
+    always: -12
+    bca_empire_needs_trade: 20
     has_trade_designation: 200
 - icon: GFX_district_specialization_industrial
   zones:
@@ -28,6 +30,7 @@ zones_info:
   - zone_industrial_hive
   type: industrial
   fitness_trigger:
+    bca_empire_needs_alloys: 12
     has_industrial_designation: 200
     has_factory_designation: 100
     has_foundry_designation: 100
@@ -41,6 +44,7 @@ zones_info:
   - zone_ark_military_eco
   type: foundry
   fitness_trigger:
+    bca_empire_needs_alloys: 12
     has_foundry_designation: 200
     has_industrial_designation: 150
     has_factory_designation: 100
@@ -53,6 +57,7 @@ zones_info:
   - zone_factory_hive
   type: factory
   fitness_trigger:
+    bca_empire_needs_consumer_goods: 12
     has_factory_designation: 200
     has_industrial_designation: 150
     has_foundry_designation: 100
@@ -67,6 +72,7 @@ zones_info:
   - zone_research_hive
   type: research
   fitness_trigger:
+    bca_empire_needs_research: 14
     has_research_designation: 200
 - icon: GFX_district_specialization_physics
   zones:
@@ -79,6 +85,7 @@ zones_info:
   - zone_ark_reactor_physics
   type: physics
   fitness_trigger:
+    bca_empire_needs_research: 14
     has_research_designation: 200
 - icon: GFX_district_specialization_society
   zones:
@@ -90,6 +97,7 @@ zones_info:
   - zone_ark_farm_society
   type: society
   fitness_trigger:
+    bca_empire_needs_research: 14
     has_research_designation: 200
 - icon: GFX_district_specialization_engineering
   zones:
@@ -102,6 +110,7 @@ zones_info:
   - zone_ark_forever_cruise_engineering
   type: engineering
   fitness_trigger:
+    bca_empire_needs_research: 14
     has_research_designation: 200
 - icon: GFX_district_specialization_bureaucrat
   zones:
@@ -109,6 +118,7 @@ zones_info:
   - zone_habitat_research_unity
   type: bureaucrat
   fitness_trigger:
+    bca_empire_needs_unity: 12
     has_unity_designation: 150
     has_research_designation: 150
 - icon: GFX_district_specialization_unity
@@ -124,6 +134,7 @@ zones_info:
   - zone_unity_hive
   type: unity
   fitness_trigger:
+    bca_empire_needs_unity: 12
     has_unity_designation: 200
 - icon: GFX_district_specialization_priest
   zones:
@@ -134,6 +145,7 @@ zones_info:
   - zone_unity_spiritualist_nexus
   type: priest
   fitness_trigger:
+    bca_empire_needs_unity: 12
     has_unity_designation: 200
 - icon: GFX_district_specialization_fortress
   zones:
@@ -196,7 +208,6 @@ zones_info:
 - icon: GFX_district_specialization_knight_commander
   zones:
   - zone_habitat_knights
-  - zone_ark_knights
   type: knight_commander
   fitness_trigger:
     always: 50
@@ -404,9 +415,9 @@ zones_info:
   - zone_ark_foundry
   type: ark_research_alloys_support
   fitness_trigger:
-    has_research_designation: 200
-    has_foundry_designation: 150
-    has_industrial_designation: 100
+    has_foundry_designation: 200
+    has_industrial_designation: 150
+    has_research_designation: 100
 - icon: GFX_district_specialization_ark_reactor
   zones:
   - zone_ark_engine_bypass

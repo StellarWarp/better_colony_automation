@@ -1966,6 +1966,7 @@ bca_planet_setting_slider_secondary_district_plan_20 = {
 
 bca_planet_setting_secondary_zone_count_icon_z3 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -1973,10 +1974,21 @@ bca_planet_setting_secondary_zone_count_icon_z3 = {
     }
     # set to current
     effect = {
+        # 点击 = 切换锁定（不再重置为已建数）：已锁 → 解锁；未锁 → 锁定当前数字。
+        hidden_effect = {
+            if = {
+                limit = { has_carrier_flag = bca_pf_ps_manual_count_z3 }
+                remove_carrier_flag = bca_pf_ps_manual_count_z3
+            }
+            else = {
+                set_carrier_flag = bca_pf_ps_manual_count_z3
+            }
+        }
+
         hidden_effect = {
             set_variable = {
-                which = bca_ps_plan_district_count_z3
-                value = value:bca_committed_district_d1
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -1985,6 +1997,7 @@ bca_planet_setting_secondary_zone_count_icon_z3 = {
 
 bca_planet_setting_secondary_zone_count_inc_z3 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2012,9 +2025,17 @@ bca_planet_setting_secondary_zone_count_inc_z3 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z3
             add_variable = {
                 which = bca_ps_plan_district_count_z3
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2023,6 +2044,7 @@ bca_planet_setting_secondary_zone_count_inc_z3 = {
 
 bca_planet_setting_secondary_zone_count_dec_z3 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2050,9 +2072,17 @@ bca_planet_setting_secondary_zone_count_dec_z3 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z3
             subtract_variable = {
                 which = bca_ps_plan_district_count_z3
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2061,6 +2091,7 @@ bca_planet_setting_secondary_zone_count_dec_z3 = {
 
 bca_planet_setting_secondary_zone_count_icon_z4 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2068,10 +2099,21 @@ bca_planet_setting_secondary_zone_count_icon_z4 = {
     }
     # set to current
     effect = {
+        # 点击 = 切换锁定（不再重置为已建数）：已锁 → 解锁；未锁 → 锁定当前数字。
+        hidden_effect = {
+            if = {
+                limit = { has_carrier_flag = bca_pf_ps_manual_count_z4 }
+                remove_carrier_flag = bca_pf_ps_manual_count_z4
+            }
+            else = {
+                set_carrier_flag = bca_pf_ps_manual_count_z4
+            }
+        }
+
         hidden_effect = {
             set_variable = {
-                which = bca_ps_plan_district_count_z4
-                value = value:bca_committed_district_d2
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2080,6 +2122,7 @@ bca_planet_setting_secondary_zone_count_icon_z4 = {
 
 bca_planet_setting_secondary_zone_count_inc_z4 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2107,9 +2150,17 @@ bca_planet_setting_secondary_zone_count_inc_z4 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z4
             add_variable = {
                 which = bca_ps_plan_district_count_z4
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2118,6 +2169,7 @@ bca_planet_setting_secondary_zone_count_inc_z4 = {
 
 bca_planet_setting_secondary_zone_count_dec_z4 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2145,9 +2197,17 @@ bca_planet_setting_secondary_zone_count_dec_z4 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z4
             subtract_variable = {
                 which = bca_ps_plan_district_count_z4
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2156,6 +2216,7 @@ bca_planet_setting_secondary_zone_count_dec_z4 = {
 
 bca_planet_setting_secondary_zone_count_icon_z5 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2163,10 +2224,21 @@ bca_planet_setting_secondary_zone_count_icon_z5 = {
     }
     # set to current
     effect = {
+        # 点击 = 切换锁定（不再重置为已建数）：已锁 → 解锁；未锁 → 锁定当前数字。
+        hidden_effect = {
+            if = {
+                limit = { has_carrier_flag = bca_pf_ps_manual_count_z5 }
+                remove_carrier_flag = bca_pf_ps_manual_count_z5
+            }
+            else = {
+                set_carrier_flag = bca_pf_ps_manual_count_z5
+            }
+        }
+
         hidden_effect = {
             set_variable = {
-                which = bca_ps_plan_district_count_z5
-                value = value:bca_committed_district_d3
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2175,6 +2247,7 @@ bca_planet_setting_secondary_zone_count_icon_z5 = {
 
 bca_planet_setting_secondary_zone_count_inc_z5 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2202,9 +2275,17 @@ bca_planet_setting_secondary_zone_count_inc_z5 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z5
             add_variable = {
                 which = bca_ps_plan_district_count_z5
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2213,6 +2294,7 @@ bca_planet_setting_secondary_zone_count_inc_z5 = {
 
 bca_planet_setting_secondary_zone_count_dec_z5 = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = {
@@ -2240,9 +2322,17 @@ bca_planet_setting_secondary_zone_count_dec_z5 = {
     }
     effect = {
         hidden_effect = {
+            set_carrier_flag = bca_pf_ps_manual_count_z5
             subtract_variable = {
                 which = bca_ps_plan_district_count_z5
                 value = 1
+            }
+        }
+
+        hidden_effect = {
+            set_variable = {
+                which = bca_ps_disp_secondary_free
+                value = value:bca_num_free_secondary_districts_plan_display
             }
         }
     }
@@ -2251,6 +2341,7 @@ bca_planet_setting_secondary_zone_count_dec_z5 = {
 
 bca_planet_setting_secondary_zone_show_up = {
     potential = {
+        exists = owner
         has_carrier_flag = bca_pf_ps_show_detailed_secondary_districts
     }
     allow = { always = yes }

@@ -90,6 +90,10 @@ bca_test_update_construction_metric_max_with_cost = {
 # }
 
 bca_get_num_free_zones_d0 = {
+	set_variable = {
+		which = bca_zone_probe
+		value = 1
+	}
 	add_zone = {
 		district = 0
 		zone = zone_bca_test
@@ -120,9 +124,17 @@ bca_get_num_free_zones_d0 = {
 	remove_zone = {
 		zone = zone_bca_test
 	}
+	set_variable = {
+		which = bca_zone_probe
+		value = 0
+	}
 }
 
 bca_get_num_potential_free_zones_d0 = {
+	set_variable = {
+		which = bca_zone_probe
+		value = 1
+	}
 	add_zone = {
 		district = 0
 		zone = zone_bca_test
@@ -149,9 +161,17 @@ bca_get_num_potential_free_zones_d0 = {
 	remove_zone = {
 		zone = zone_bca_test
 	}
+	set_variable = {
+		which = bca_zone_probe
+		value = 0
+	}
 }
 
 bca_get_num_potential_free_zones_secondary = {
+	set_variable = {
+		which = bca_zone_probe
+		value = 1
+	}
 	set_variable = {
 		which = bca_num_free_zones_secondary
 		value = 0
@@ -195,4 +215,8 @@ bca_get_num_potential_free_zones_secondary = {
 	remove_zone = { zone = zone_bca_test }
 	remove_zone = { zone = zone_bca_test }
 	clear_variable = temp_num_zones
+	set_variable = {
+		which = bca_zone_probe
+		value = 0
+	}
 }

@@ -6897,6 +6897,13 @@ bca_planet_setting_set_zone_type_selection = {
             set_carrier_flag = bca_pf_ps_selected_zone_$ZONE_SLOT$_zone_ark_sacred_path_pilgrims
         }
     }
+    # 玩家手动选择特区 → 清掉"默认填充"标记，让它按玩家意图参与规划；
+    # 并立即重算区划方案，避免"选了特区还要手动拨一次数字才生效"。
+    remove_carrier_flag = bca_pf_ps_zone_default_$ZONE_SLOT$
+    if = {
+        limit = { bca_auto_district_manage_enabled = yes }
+        bca_resource_planet_controller_district_only = yes
+    }
 }
 
 

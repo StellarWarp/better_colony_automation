@@ -37,6 +37,26 @@ bca_has_main_resource_to_build = {
 			resource_stockpile_compare = { resource = minerals value >= bca_reserve_minerals_amount }
 		}
 	}
+	# 2026-11-21：建造前的地板。收入为负时要求更多库存，避免「资源一到就全铺」。
+	# 触发器里不能用 if/else，用 OR/AND 表达同一逻辑。
+	owner = {
+		OR = {
+			AND = {
+				is_nomadic = yes
+				OR = {
+					resource_income_compare = { resource = alloys value >= 0 }
+					resource_stockpile_compare = { resource = alloys value >= 1500 }
+				}
+			}
+			AND = {
+				NOT = { is_nomadic = yes }
+				OR = {
+					resource_income_compare = { resource = minerals value >= 0 }
+					resource_stockpile_compare = { resource = minerals value >= 2000 }
+				}
+			}
+		}
+	}
 }
 
 bca_has_resource_for_arcology_project = {
@@ -133,3 +153,23 @@ bca_has_build_plan = {
 # 		has_carrier_flag = bca_free_$type$_slots_leq_$gt$
 # 	}
 # }
+
+# 2026-11-15 晚：某一族区划"方案数 > 已建数"即视为有建造需求。
+# 用来放宽 colony_automation_event.1 的 requires_more_job 门槛：
+# 否则新殖民地（空余岗位还很多）即使玩家设了方案，也一个月都不会建区划。
+bca_has_district_plan_demand = {
+	OR = {
+		check_variable = {
+			which = bca_ps_plan_district_count_z3
+			value > value:bca_committed_district_d1
+		}
+		check_variable = {
+			which = bca_ps_plan_district_count_z4
+			value > value:bca_committed_district_d2
+		}
+		check_variable = {
+			which = bca_ps_plan_district_count_z5
+			value > value:bca_committed_district_d3
+		}
+	}
+}

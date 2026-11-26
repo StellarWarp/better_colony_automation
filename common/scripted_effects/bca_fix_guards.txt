@@ -1,0 +1,238 @@
+# ====================================================================
+# 最小化修复（基于原始 mod 逻辑，只动这三类问题）
+# 1) 一产星球的次要槽位没有选对应资源特区时，方案会恒为 0，
+#    主区划（城市）方案就会等于全部容量 → 一直建造城市区划。
+#    这里直接在"该资源可建、但三个槽位都没选它"时补选特区并下方案。
+# 2) 拆除-建造死循环：拆除后给星球一个冷却，冷却期间不再拆除。
+# ====================================================================
+
+bca_fix_resource_zone_fallback = {
+	# 老存档可能残留"不存在的特区"选择（zone_ark_knights 在本版本不存在），清除这些标记，
+	# 否则星球的特区栏会一直显示原始 key。
+	remove_carrier_flag = bca_pf_ps_selected_zone_z1_zone_ark_knights
+	remove_carrier_flag = bca_pf_ps_selected_zone_z2_zone_ark_knights
+	remove_carrier_flag = bca_pf_ps_selected_zone_zx_zone_ark_knights
+	remove_carrier_flag = bca_pf_ps_option_map_knight_commander_zone_ark_knights
+	# 变量兜底：老存档/未初始化过的星球没有这些变量，会让若干脚本值取值报错。
+	if = {
+		limit = { NOT = { is_variable_set = bca_queued_district_d0 } }
+		set_variable = { which = bca_queued_district_d0 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_queued_district_d1 } }
+		set_variable = { which = bca_queued_district_d1 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_queued_district_d2 } }
+		set_variable = { which = bca_queued_district_d2 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_queued_district_d3 } }
+		set_variable = { which = bca_queued_district_d3 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z3 } }
+		set_variable = { which = bca_ps_plan_district_count_z3 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z4 } }
+		set_variable = { which = bca_ps_plan_district_count_z4 value = 0 }
+	}
+	if = {
+		limit = { NOT = { is_variable_set = bca_ps_plan_district_count_z5 } }
+		set_variable = { which = bca_ps_plan_district_count_z5 value = 0 }
+	}
+
+
+	if = {
+		limit = {
+			bca_auto_district_manage_enabled = yes
+			has_generator_designation = yes
+			check_variable_arithmetic = {
+				which = value:bca_district_max_build_d1
+				value > 0
+			}
+			NOT = {
+				OR = {
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_betharian
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_energy
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_energy
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_betharian
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_energy
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_energy
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_betharian
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_energy
+				}
+			}
+		}
+		if = {
+			limit = { bca_can_build_zone_energy = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z3 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+			set_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy
+			set_variable = {
+				which = bca_ps_plan_district_count_z3
+				value = value:bca_district_max_build_d1
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_energy_ring_world = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z3 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+			set_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_ring_world
+			set_variable = {
+				which = bca_ps_plan_district_count_z3
+				value = value:bca_district_max_build_d1
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_energy_nexus = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z3 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+			set_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_nexus
+			set_variable = {
+				which = bca_ps_plan_district_count_z3
+				value = value:bca_district_max_build_d1
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_energy_hive = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z3 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z3_energy
+			set_carrier_flag = bca_pf_ps_selected_zone_z3_zone_energy_hive
+			set_variable = {
+				which = bca_ps_plan_district_count_z3
+				value = value:bca_district_max_build_d1
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			bca_auto_district_manage_enabled = yes
+			has_mining_designation = yes
+			check_variable_arithmetic = {
+				which = value:bca_district_max_build_d2
+				value > 0
+			}
+			NOT = {
+				OR = {
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_minerals
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_minerals
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_minerals
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_minerals
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_minerals
+				}
+			}
+		}
+		if = {
+			limit = { bca_can_build_zone_minerals = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z4 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+			set_carrier_flag = bca_pf_ps_selected_zone_z4_zone_minerals
+			set_variable = {
+				which = bca_ps_plan_district_count_z4
+				value = value:bca_district_max_build_d2
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_minerals_nexus = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z4 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+			set_carrier_flag = bca_pf_ps_selected_zone_z4_zone_minerals_nexus
+			set_variable = {
+				which = bca_ps_plan_district_count_z4
+				value = value:bca_district_max_build_d2
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_minerals_hive = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z4 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z4_minerals
+			set_carrier_flag = bca_pf_ps_selected_zone_z4_zone_minerals_hive
+			set_variable = {
+				which = bca_ps_plan_district_count_z4
+				value = value:bca_district_max_build_d2
+			}
+		}
+	}
+
+	if = {
+		limit = {
+			bca_auto_district_manage_enabled = yes
+			has_farming_designation = yes
+			check_variable_arithmetic = {
+				which = value:bca_district_max_build_d3
+				value > 0
+			}
+			NOT = {
+				OR = {
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_food
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z3_wilderness_food
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_food
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z4_wilderness_food
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+					has_carrier_flag = bca_pf_ps_selected_zone_type_z5_wilderness_food
+				}
+			}
+		}
+		if = {
+			limit = { bca_can_build_zone_food = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z5 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+			set_carrier_flag = bca_pf_ps_selected_zone_z5_zone_food
+			set_variable = {
+				which = bca_ps_plan_district_count_z5
+				value = value:bca_district_max_build_d3
+			}
+		}
+		else_if = {
+			limit = { bca_can_build_zone_food_hive = yes }
+			bca_planet_setting_clear_zone_selection = { ZONE_SLOT = z5 }
+			set_carrier_flag = bca_pf_ps_selected_zone_type_z5_food
+			set_carrier_flag = bca_pf_ps_selected_zone_z5_zone_food_hive
+			set_variable = {
+				which = bca_ps_plan_district_count_z5
+				value = value:bca_district_max_build_d3
+			}
+		}
+	}
+
+	# 拆除冷却递减（按区划族分别计时，6 个月）
+	if = {
+		limit = { check_variable = { which = bca_ps_demolish_cd_d1 value > 0 } }
+		subtract_variable = { which = bca_ps_demolish_cd_d1 value = 1 }
+	}
+	if = {
+		limit = { check_variable = { which = bca_ps_demolish_cd_d2 value > 0 } }
+		subtract_variable = { which = bca_ps_demolish_cd_d2 value = 1 }
+	}
+	if = {
+		limit = { check_variable = { which = bca_ps_demolish_cd_d3 value > 0 } }
+		subtract_variable = { which = bca_ps_demolish_cd_d3 value = 1 }
+	}
+	# 2026-11-15：城市（d0）拆除冷却，与 d1/d2/d3 同一套机制
+	if = {
+		limit = { check_variable = { which = bca_ps_demolish_cd_d0 value > 0 } }
+		subtract_variable = { which = bca_ps_demolish_cd_d0 value = 1 }
+	}
+	# 2026-11-15 晚：拆后建冷却递减（6 个月）
+	if = {
+		limit = { check_variable = { which = bca_ps_build_cd_d0 value > 0 } }
+		subtract_variable = { which = bca_ps_build_cd_d0 value = 1 }
+	}
+	if = {
+		limit = { check_variable = { which = bca_ps_build_cd_d1 value > 0 } }
+		subtract_variable = { which = bca_ps_build_cd_d1 value = 1 }
+	}
+	if = {
+		limit = { check_variable = { which = bca_ps_build_cd_d2 value > 0 } }
+		subtract_variable = { which = bca_ps_build_cd_d2 value = 1 }
+	}
+	if = {
+		limit = { check_variable = { which = bca_ps_build_cd_d3 value > 0 } }
+		subtract_variable = { which = bca_ps_build_cd_d3 value = 1 }
+	}
+}
